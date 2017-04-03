@@ -2,6 +2,9 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Mono.Cecil;
+using System.Threading;
+using HacknetPathfinder.Pathfinder;
+using Hacknet;
 
 namespace Pathfinder
 {
@@ -12,9 +15,15 @@ namespace Pathfinder
 			// Opens Hacknet.exe's Assembly
 			AssemblyDefinition ad = AssemblyDefinition.ReadAssembly("Hacknet.exe");
 			ad.AddAssemblyAttribute<InternalsVisibleToAttribute>("HacknetPathfinder");
-			ad.Write("PatchedHacknet.exe");
-			Type.GetType("Hacknet.Program,Hacknet").GetMethod("Main", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, new object[] { args });
-		}
+            ad.Write("PatchedHacknet.exe");
+
+            Type.GetType("Hacknet.MainMenu, Hacknet").GetField("OSVersion", BindingFlags.Static | BindingFlags.Public).SetValue(null, "Pathfinder v0.1");
+
+            Thread hacknetThread = new Thread(() => HacknetLauncher.runHacknet(args));
+            hacknetThread.Start();
+
+            Console.WriteLine("Pathfinder Initialized.");
+        }
 
 		internal static void AddAssemblyAttribute<T>(this AssemblyDefinition ad, params object[] attribArgs)
 		{
