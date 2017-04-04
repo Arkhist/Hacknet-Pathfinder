@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.CompilerServices;
 using Mono.Cecil;
 using Mono.Cecil.Inject;
@@ -7,18 +8,31 @@ namespace PathfinderPatcher
 {
 	// This will be the modloader.
 	public static class PatcherProgram
-    {
+	{
 		internal static void Main(string[] args)
 		{
-			// Opens Hacknet.exe's Assembly
-			AssemblyDefinition ad = AssemblyDefinition.ReadAssembly("Hacknet.exe");
+			Console.WriteLine(String.Join("|", args));
+			string pathfinderDir = "", exeDir = "";
+			int index = 0;
+			foreach (var arg in args)
+			{
+				if (arg.Equals("-pathfinderDir"))
+					pathfinderDir = args[index + 1] + '\\';
+				if (arg.Equals("-exeDir"))
+					exeDir = args[index + 1] + '\\';
+				index++;
+			}
+
+			// Opens Hacknet.exe and HacknetPathfinder.dll's Assembly
+			var ad = LoadAssembly(exeDir + "Hacknet.exe");
+			var pathfinder = LoadAssembly(pathfinderDir + "HacknetPathfinder.dll");
+
 			ad.AddAssemblyAttribute<InternalsVisibleToAttribute>("HacknetPathfinder");
 			ad.RemoveInternals();
 
-			var pathfinder = AssemblyDefinition.ReadAssembly("HacknetPathfinder.dll");
 			ad.EntryPoint.InjectWith(
 				pathfinder.MainModule.GetType("HacknetPathfinder.PathfinderHooks")
-			                         .GetMethod("onMain"), 
+									 .GetMethod("onMain"),
 				flags: InjectFlags.PassParametersVal);
 
 			ad.Write("HacknetPathfinder.exe");
@@ -59,5 +73,36 @@ namespace PathfinderPatcher
                             field.IsAssembly = false;*/
 			}
 		}
-    }
+
+		internal static AssemblyDefinition LoadAssembly(string fileName, ReaderParameters parameters = null)
+		{
+			parameters = parameters ?? new ReaderParameters(ReadingMode.Deferred);
+			if (string.IsNullOrEmpty(fileName))
+			{
+				throw new ArgumentException("fileName is null/empty");
+			}
+			Stream stream = new FileStream(fileName, FileMode.Open, parameters.ReadWrite ? FileAccess.ReadWrite : FileAccess.Read, FileShare.Read);
+			if (parameters.InMemory)
+			{
+				var memoryStream = new MemoryStream(stream.CanSeek ? ((int)stream.Length) : 0);
+				using (stream)
+				{
+					stream.CopyTo(memoryStream);
+				}
+				memoryStream.Position = 0L;
+				stream = memoryStream;
+			}
+			ModuleDefinition result;
+			try
+			{
+				result = ModuleDefinition.ReadModule(stream, parameters);
+			}
+			catch (Exception)
+			{
+				stream.Dispose();
+				throw;
+			}
+			return result.Assembly;
+		}
+	}
 }
