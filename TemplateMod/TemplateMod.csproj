@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FCD7FD47-6B38-47F4-9761-FC4290110125}</ProjectGuid>
+    <ProjectGuid>{8B86A3C8-3234-405D-BA3C-0E58DA65D8AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PathfinderModloader</RootNamespace>
-    <AssemblyName>PathfinderModloader</AssemblyName>
+    <RootNamespace>TemplateMod</RootNamespace>
+    <AssemblyName>TemplateMod</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -38,7 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pathfinder.cs" />
+    <Compile Include="TemplateMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

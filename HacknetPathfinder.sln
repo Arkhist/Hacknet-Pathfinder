@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HacknetPathfinder", "Hackne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderPatcher", "PathfinderPatcher\PathfinderPatcher.csproj", "{FCD7FD47-6B38-47F4-9761-FC4290110125}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateMod", "TemplateMod\TemplateMod.csproj", "{8B86A3C8-3234-405D-BA3C-0E58DA65D8AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{FCD7FD47-6B38-47F4-9761-FC4290110125}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCD7FD47-6B38-47F4-9761-FC4290110125}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCD7FD47-6B38-47F4-9761-FC4290110125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B86A3C8-3234-405D-BA3C-0E58DA65D8AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B86A3C8-3234-405D-BA3C-0E58DA65D8AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B86A3C8-3234-405D-BA3C-0E58DA65D8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B86A3C8-3234-405D-BA3C-0E58DA65D8AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
