@@ -32,10 +32,14 @@
     <Reference Include="FNA">
       <HintPath>F:\Program Files (x86)\Steam\steamapps\common\Hacknet\FNA.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="Mono.Cecil">
-      <HintPath>lib\Mono.Cecil.dll</HintPath>
+    <Reference Include="Mono.Cecil, Version=0.10.0.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Mono.Cecil.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Cecil.Inject">
+      <HintPath>.\Mono.Cecil.Inject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
     <Reference Include="PatchedHacknet">
       <HintPath>F:\Program Files (x86)\Steam\steamapps\common\Hacknet\PatchedHacknet.exe</HintPath>
       <Private>False</Private>
