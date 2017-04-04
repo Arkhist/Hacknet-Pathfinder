@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+
 namespace HacknetPathfinder
 {
 	/// <summary>
@@ -9,6 +11,10 @@ namespace HacknetPathfinder
 	{
 		public static void onMain(string[] args)
 		{
+            Pathfinder.Pathfinder.init();
+            Pathfinder.Event.StartUpEvent startUpEvent = new Pathfinder.Event.StartUpEvent(args);
+            if (startUpEvent.IsCancelled)
+                return;
 			Hacknet.MainMenu.OSVersion = Hacknet.MainMenu.OSVersion + " Pathfinder v0.1";
 		}
 	}
