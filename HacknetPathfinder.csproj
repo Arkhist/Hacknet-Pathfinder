@@ -4,10 +4,9 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B46D689F-4F1A-432C-8755-15BD50755016}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>HacknetPathfinder</RootNamespace>
     <AssemblyName>HacknetPathfinder</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,26 +28,27 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FNA">
-      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\Hacknet\FNA.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil, Version=0.10.0.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Inject">
-      <HintPath>.\Mono.Cecil.Inject.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="PatchedHacknet">
-      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\Hacknet\PatchedHacknet.exe</HintPath>
+    <Reference Include="AlienFXManagedWrapper3.5">
+      <HintPath>lib\AlienFXManagedWrapper3.5.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FNA">
+      <HintPath>lib\FNA.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Steamworks.NET">
+      <HintPath>lib\Steamworks.NET.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HacknetPathfinder">
+      <HintPath>lib\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pathfinder\HacknetLauncher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pathfinder\MainProgram.cs" />
+    <Compile Include="Pathfinder\PathfinderHooks.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
