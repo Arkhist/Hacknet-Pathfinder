@@ -13,6 +13,7 @@ namespace HacknetPathfinder
 		{
             Pathfinder.Pathfinder.init();
             Pathfinder.Event.StartUpEvent startUpEvent = new Pathfinder.Event.StartUpEvent(args);
+            startUpEvent.CallEvent();
             if (startUpEvent.IsCancelled)
                 return;
 			Hacknet.MainMenu.OSVersion = Hacknet.MainMenu.OSVersion + " Pathfinder v0.1";

@@ -30,17 +30,28 @@ namespace Pathfinder.Event
         {
             add
             {
-                lock (eventListeners)
+                if(eventListeners != null)
+                {
+                    lock (eventListeners)
+                        eventListeners += value;
+                }
+                else
                     eventListeners += value;
+
             }
             remove
             {
-                lock (eventListeners)
+                if (eventListeners != null)
+                {
+                    lock (eventListeners)
+                        eventListeners -= value;
+                }
+                else
                     eventListeners -= value;
             }
         }
 
-        public void noticeListeners()
+        public void CallEvent()
         {
             if (eventListeners != null)
                 eventListeners(this);
