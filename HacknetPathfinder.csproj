@@ -43,7 +43,6 @@
     </Reference>
     <Reference Include="HacknetPathfinder">
       <HintPath>lib\HacknetPathfinder.exe</HintPath>
-      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
