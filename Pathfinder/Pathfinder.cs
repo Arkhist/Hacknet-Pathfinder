@@ -8,8 +8,11 @@ namespace Pathfinder
 {
     static class Pathfinder
     {
+        static Dictionary<string, PathfinderMod> mods = new Dictionary<string, PathfinderMod>();
+
         public static void init()
         {
+
             StartUpEvent.EventListeners += testEventListener;
         }
 
