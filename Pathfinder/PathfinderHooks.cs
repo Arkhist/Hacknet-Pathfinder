@@ -19,7 +19,7 @@
 
         //  Hook location : Game1.LoadContent()
         //  if (this.CanLoadContent)
-        //  {
+        //  {   
         //	    <HOOK HERE>
         //      PortExploits.populate();
         public static void onLoadContent(Hacknet.Game1 self)
@@ -42,6 +42,13 @@
             }
             disconnects = commandSentEvent.Disconnects;
             return false;
+        }
+
+        // Hook location : OS.LoadContent()
+        public static void onLoadSession(Hacknet.OS self)
+        {
+            var loadSessionEvent = new Event.LoadSessionEvent(self);
+            loadSessionEvent.CallEvent();
         }
 	}
 }

@@ -38,3 +38,4 @@ Thumbs.db
 
 # dotCover
 *.dotCover
+lib/PathfinderPatcher.vshost.exe

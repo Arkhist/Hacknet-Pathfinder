@@ -61,6 +61,11 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn
                 );
 
+                ad.MainModule.GetType("Hacknet.OS").GetMethod("LoadContent").InjectWith(
+                    hooks.GetMethod("onLoadSession"),
+                    flags: InjectFlags.PassInvokingInstance
+                );
+
                 ad.Write("HacknetPathfinder.exe");
             } catch (Exception ex) {
                 Console.Write(ex);

@@ -82,6 +82,25 @@ namespace Pathfinder.Event
         }
     }
 
+    public class LoadSessionEvent : PathfinderEvent
+    {
+        private Hacknet.OS osInstance;
+
+        public Hacknet.OS OsInstance
+        {
+            get
+            {
+                return osInstance;
+            }
+        }
+
+        public LoadSessionEvent(Hacknet.OS osInstance)
+        {
+            this.osInstance = osInstance;
+        }
+    }
+
+
     public class GameExitEvent : PathfinderEvent
     {
         private Hacknet.Game1 gameInstance;
