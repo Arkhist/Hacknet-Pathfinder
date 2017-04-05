@@ -25,8 +25,8 @@ namespace Pathfinder.Event
 
     }
 
-    // Called after Hacknet creates the Game instance (Program.Main)
-    class GameStartEvent : PathfinderEvent
+    // Called after Hacknet loads the Game Object (actual game)
+    class LoadContentEvent : PathfinderEvent
     {
         private Hacknet.Game1 gameInstance;
 
@@ -38,35 +38,29 @@ namespace Pathfinder.Event
             }
         }
 
-        public GameStartEvent(Hacknet.Game1 gameInstance)
+        public LoadContentEvent(Hacknet.Game1 gameInstance)
         {
             this.gameInstance = gameInstance;
         }
     }
 
-    // Called after Hacknet loads the OS object (actual game)
-    class LoadContentEvent : PathfinderEvent
-    {
-        private Hacknet.OS osInstance;
-
-        public Hacknet.OS OsInstance
-        {
-            get
-            {
-                return osInstance;
-            }
-        }
-
-        public LoadContentEvent(Hacknet.OS osInstance)
-        {
-            this.osInstance = osInstance;
-        }
-    }
-
-    class TerminalMessageEvent : PathfinderEvent
+    class CommandSentEvent : PathfinderEvent
     {
         private Hacknet.OS osInstance;
         private string[] args;
+        private bool disconnectFlag = false;
+
+        public bool Disconnects
+        {
+            get
+            {
+                return disconnectFlag;
+            }
+            set
+            {
+                disconnectFlag = value;
+            }
+        }
 
         public string[] Args
         {
@@ -84,7 +78,7 @@ namespace Pathfinder.Event
             }
         }
 
-        public TerminalMessageEvent(Hacknet.OS osInstance, string[] args)
+        public CommandSentEvent(Hacknet.OS osInstance, string[] args)
         {
             this.osInstance = osInstance;
             this.args = args;

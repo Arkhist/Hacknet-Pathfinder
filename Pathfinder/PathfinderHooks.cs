@@ -12,11 +12,36 @@ namespace HacknetPathfinder
 		public static void onMain(string[] args)
 		{
             Pathfinder.Pathfinder.init();
-            Pathfinder.Event.StartUpEvent startUpEvent = new Pathfinder.Event.StartUpEvent(args);
+            var startUpEvent = new Pathfinder.Event.StartUpEvent(args);
             startUpEvent.CallEvent();
             if (startUpEvent.IsCancelled)
                 return;
 			Hacknet.MainMenu.OSVersion = Hacknet.MainMenu.OSVersion + " Pathfinder v0.1";
 		}
+
+        //  Hook location : Game1.LoadContent()
+        //  if (this.CanLoadContent)
+        //  {
+        //	    <HOOK HERE>
+        //      PortExploits.populate();
+        public static void onLoadContent(Hacknet.Game1 self)
+        {
+            var loadContentEvent = new Pathfinder.Event.LoadContentEvent(self);
+            loadContentEvent.CallEvent();
+        }
+
+        // Hook location : ProgramRunner.ExecuteProgram()
+        public static bool onCommandSent(Hacknet.OS os, string[] arguments, out bool disconnects)
+        {
+            var commandSentEvent = new Pathfinder.Event.CommandSentEvent(os, arguments);
+            commandSentEvent.CallEvent();
+            if (commandSentEvent.IsCancelled)
+            {
+                disconnects = commandSentEvent.Disconnects;
+                return true;
+            }
+            disconnects = commandSentEvent.Disconnects;
+            return false;
+        }
 	}
 }
