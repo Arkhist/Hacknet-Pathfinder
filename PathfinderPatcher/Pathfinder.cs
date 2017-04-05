@@ -11,31 +11,60 @@ namespace PathfinderPatcher
     {
         internal static void Main(string[] args)
         {
-            Console.WriteLine(String.Join("|", args));
-            string pathfinderDir = "", exeDir = "";
-            int index = 0;
-            foreach (var arg in args)
+            try
             {
-                if (arg.Equals("-pathfinderDir"))
-                    pathfinderDir = args[index + 1] + '\\';
-                if (arg.Equals("-exeDir"))
-                    exeDir = args[index + 1] + '\\';
-                index++;
+                Console.WriteLine(String.Join("|", args));
+                string pathfinderDir = "", exeDir = "";
+                bool spitOutHacknetOnly = false;
+                int index = 0;
+                foreach (var arg in args)
+                {
+                    if (arg.Equals("-pathfinderDir"))
+                        pathfinderDir = args[index + 1] + '\\';
+                    if (arg.Equals("-exeDir"))
+                        exeDir = args[index + 1] + '\\';
+                    if (arg.Equals("-spit"))
+                        spitOutHacknetOnly = true;
+                    index++;
+                }
+
+                // Opens Hacknet.exe, mods it, and then HacknetPathfinder.dll's Assembly
+                var ad = LoadAssembly(exeDir + "Hacknet.exe");
+
+                ad.AddAssemblyAttribute<InternalsVisibleToAttribute>("Pathfinder");
+                ad.RemoveInternals();
+
+                if (spitOutHacknetOnly)
+                {
+                    ad.Write("HacknetPathfinder.exe");
+                    return;
+                }
+
+                var pathfinder = LoadAssembly(pathfinderDir + "Pathfinder.dll");
+
+                var hooks = pathfinder.MainModule.GetType("Pathfinder.PathfinderHooks");
+
+                // Hook to the Program.Main
+                ad.EntryPoint.InjectWith(hooks.GetMethod("onMain"),
+                    flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn);
+
+                // Hook to the Game1.LoadContent
+                ad.MainModule.GetType("Hacknet.Game1").GetMethod("LoadContent").InjectWith(
+                    hooks.GetMethod("onLoadContent"),
+                    flags: InjectFlags.PassInvokingInstance
+                );
+
+                ad.MainModule.GetType("Hacknet.ProgramRunner").GetMethod("ExecuteProgram").InjectWith(
+                    hooks.GetMethod("onCommandSent"),
+                    flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn
+                );
+
+                ad.Write("HacknetPathfinder.exe");
+            } catch (Exception ex) {
+                Console.Write(ex);
+                Console.WriteLine("Press enter to end...");
+                Console.ReadLine();
             }
-
-            // Opens Hacknet.exe and HacknetPathfinder.dll's Assembly
-            var ad = LoadAssembly(exeDir + "Hacknet.exe");
-            var pathfinder = LoadAssembly(pathfinderDir + "Pathfinder.dll");
-
-            ad.AddAssemblyAttribute<InternalsVisibleToAttribute>("Pathfinder");
-            ad.RemoveInternals();
-
-            ad.EntryPoint.InjectWith(
-                pathfinder.MainModule.GetType("Pathfinder.PathfinderHooks")
-                                     .GetMethod("onMain"),
-                flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn);
-
-            ad.Write("HacknetPathfinder.exe");
         }
 
         internal static void AddAssemblyAttribute<T>(this AssemblyDefinition ad, params object[] attribArgs)

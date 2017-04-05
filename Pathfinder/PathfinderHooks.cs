@@ -29,8 +29,9 @@
         }
 
         // Hook location : ProgramRunner.ExecuteProgram()
-        public static bool onCommandSent(Hacknet.OS os, string[] arguments, out bool disconnects)
+        public static bool onCommandSent(out bool disconnects, object osObj, string[] arguments)
         {
+            var os = osObj as Hacknet.OS;
             var commandSentEvent = new Event.CommandSentEvent(os, arguments);
             commandSentEvent.CallEvent();
             if (commandSentEvent.IsCancelled)

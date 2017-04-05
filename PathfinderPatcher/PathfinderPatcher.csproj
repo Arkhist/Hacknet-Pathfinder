@@ -34,6 +34,11 @@
     <StartArguments>-pathfinderDir "..\bin\Release" -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet"</StartArguments>
     <ExternalConsole>false</ExternalConsole>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Spit' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet" -spit</StartArguments>
+    <ExternalConsole>false</ExternalConsole>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     
