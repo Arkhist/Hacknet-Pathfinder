@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TemplateMod
 {
@@ -9,12 +6,18 @@ namespace TemplateMod
     {
         public override string GetIdentifier()
         {
-            return "Template Mod"
+            string s = Hacknet.MainMenu.OSVersion;
+            return "Template Mod";
         }
 
         public override void Load()
         {
             Console.WriteLine("Loading Template Mod");
+        }
+
+        public override void Unload()
+        {
+            Console.WriteLine("Unloading Template Mod");
         }
     }
 }
