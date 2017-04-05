@@ -28,6 +28,9 @@ namespace Pathfinder
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             char separator = Path.DirectorySeparatorChar;
 
+			if (!Directory.Exists(path + separator + "Mods"))
+				Directory.CreateDirectory(path + separator + "Mods");
+
             foreach (string dll in Directory.GetFiles(path + separator + "Mods" + separator, "*.dll"))
             {
                 try
