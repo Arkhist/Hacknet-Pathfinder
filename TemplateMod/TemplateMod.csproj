@@ -34,18 +34,20 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HacknetPathfinder">
-      <HintPath>..\bin\Debug\HacknetPathfinder.exe</HintPath>
-    </Reference>
-    <Reference Include="Pathfinder">
-      <HintPath>..\bin\Debug\Pathfinder.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="HacknetPathfinder">
+      <HintPath>..\lib\HacknetPathfinder.exe</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Pathfinder">
+      <HintPath>..\bin\Release\Pathfinder.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands.cs" />
