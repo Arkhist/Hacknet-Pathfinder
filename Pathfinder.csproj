@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B46D689F-4F1A-432C-8755-15BD50755016}</ProjectGuid>
+    <ProjectGuid>{F321B880-D4FC-4DF6-8CE3-666B29EF41C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Pathfinder</RootNamespace>
     <AssemblyName>Pathfinder</AssemblyName>
@@ -47,7 +47,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pathfinder\CommandHandler.cs" />
     <Compile Include="Pathfinder\Event\BasicEvents.cs" />
+    <Compile Include="Pathfinder\Event\EventManager.cs" />
     <Compile Include="Pathfinder\Event\PathfinderEvent.cs" />
     <Compile Include="Pathfinder\Pathfinder.cs" />
     <Compile Include="Pathfinder\PathfinderMod.cs" />

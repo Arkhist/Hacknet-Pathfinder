@@ -1,7 +1,9 @@
-﻿namespace Pathfinder.Event
+﻿#pragma warning disable CS0108 // Un membre masque un membre hérité ; le mot clé new est manquant
+
+namespace Pathfinder.Event
 {
     // Called when Hacknet boots up (Program.Main start)
-    class StartUpEvent : PathfinderEvent
+    public class StartUpEvent : PathfinderEvent
     {
         private string[] mainArgs;
 
@@ -21,7 +23,7 @@
     }
 
     // Called after Hacknet loads the Game Object (actual game)
-    class LoadContentEvent : PathfinderEvent
+    public class LoadContentEvent : PathfinderEvent
     {
         private Hacknet.Game1 gameInstance;
 
@@ -39,7 +41,7 @@
         }
     }
 
-    class CommandSentEvent : PathfinderEvent
+    public class CommandSentEvent : PathfinderEvent
     {
         private Hacknet.OS osInstance;
         private string[] args;
@@ -80,7 +82,7 @@
         }
     }
 
-    class GameExitEvent : PathfinderEvent
+    public class GameExitEvent : PathfinderEvent
     {
         private Hacknet.Game1 gameInstance;
 

@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pathfinder", "Pathfinder.csproj", "{B46D689F-4F1A-432C-8755-15BD50755016}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderPatcher", "PathfinderPatcher\PathfinderPatcher.csproj", "{FCD7FD47-6B38-47F4-9761-FC4290110125}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateMod", "TemplateMod\TemplateMod.csproj", "{8B86A3C8-3234-405D-BA3C-0E58DA65D8AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pathfinder", "Pathfinder.csproj", "{F321B880-D4FC-4DF6-8CE3-666B29EF41C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,10 +14,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B46D689F-4F1A-432C-8755-15BD50755016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B46D689F-4F1A-432C-8755-15BD50755016}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B46D689F-4F1A-432C-8755-15BD50755016}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B46D689F-4F1A-432C-8755-15BD50755016}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FCD7FD47-6B38-47F4-9761-FC4290110125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCD7FD47-6B38-47F4-9761-FC4290110125}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCD7FD47-6B38-47F4-9761-FC4290110125}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -26,38 +22,12 @@ Global
 		{8B86A3C8-3234-405D-BA3C-0E58DA65D8AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B86A3C8-3234-405D-BA3C-0E58DA65D8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B86A3C8-3234-405D-BA3C-0E58DA65D8AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F321B880-D4FC-4DF6-8CE3-666B29EF41C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F321B880-D4FC-4DF6-8CE3-666B29EF41C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F321B880-D4FC-4DF6-8CE3-666B29EF41C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F321B880-D4FC-4DF6-8CE3-666B29EF41C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		Policies = $0
-		$0.TextStylePolicy = $1
-		$1.inheritsSet = VisualStudio
-		$1.scope = text/plain
-		$1.FileWidth = 120
-		$1.NoTabsAfterNonTabs = True
-		$1.inheritsScope = text/plain
-		$0.CSharpFormattingPolicy = $2
-		$2.IndentSwitchSection = True
-		$2.NewLinesForBracesInProperties = True
-		$2.NewLinesForBracesInAccessors = True
-		$2.NewLinesForBracesInAnonymousMethods = True
-		$2.NewLinesForBracesInControlBlocks = True
-		$2.NewLinesForBracesInAnonymousTypes = True
-		$2.NewLinesForBracesInObjectCollectionArrayInitializers = True
-		$2.NewLinesForBracesInLambdaExpressionBody = True
-		$2.NewLineForElse = True
-		$2.NewLineForCatch = True
-		$2.NewLineForFinally = True
-		$2.NewLineForMembersInObjectInit = True
-		$2.NewLineForMembersInAnonymousTypes = True
-		$2.NewLineForClausesInQuery = True
-		$2.SpacingAfterMethodDeclarationName = False
-		$2.SpaceAfterMethodCallName = False
-		$2.SpaceBeforeOpenSquareBracket = False
-		$2.inheritsSet = Mono
-		$2.inheritsScope = text/x-csharp
-		$2.scope = text/x-csharp
 	EndGlobalSection
 EndGlobal

@@ -14,6 +14,9 @@
         /// </summary>
         public abstract void Load();
 
+
+        public abstract void LoadContent();
+
         /// <summary>
         /// Called when the mod is unloaded
         /// </summary>

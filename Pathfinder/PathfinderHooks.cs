@@ -24,6 +24,7 @@
         //      PortExploits.populate();
         public static void onLoadContent(Hacknet.Game1 self)
         {
+            Pathfinder.LoadModContent();
             var loadContentEvent = new Event.LoadContentEvent(self);
             loadContentEvent.CallEvent();
         }
