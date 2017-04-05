@@ -1,7 +1,4 @@
-﻿using System;
-using System.Reflection;
-
-namespace Pathfinder
+﻿namespace Pathfinder
 {
     /// <summary>
     /// Function hooks for the Pathfinder mod system
@@ -11,8 +8,8 @@ namespace Pathfinder
     {
         public static bool onMain(string[] args)
         {
-            Pathfinder.Pathfinder.init();
-            var startUpEvent = new Pathfinder.Event.StartUpEvent(args);
+            Pathfinder.init();
+            var startUpEvent = new Event.StartUpEvent(args);
             startUpEvent.CallEvent();
             if (startUpEvent.IsCancelled)
                 return true;
@@ -27,14 +24,14 @@ namespace Pathfinder
         //      PortExploits.populate();
         public static void onLoadContent(Hacknet.Game1 self)
         {
-            var loadContentEvent = new Pathfinder.Event.LoadContentEvent(self);
+            var loadContentEvent = new Event.LoadContentEvent(self);
             loadContentEvent.CallEvent();
         }
 
         // Hook location : ProgramRunner.ExecuteProgram()
         public static bool onCommandSent(Hacknet.OS os, string[] arguments, out bool disconnects)
         {
-            var commandSentEvent = new Pathfinder.Event.CommandSentEvent(os, arguments);
+            var commandSentEvent = new Event.CommandSentEvent(os, arguments);
             commandSentEvent.CallEvent();
             if (commandSentEvent.IsCancelled)
             {

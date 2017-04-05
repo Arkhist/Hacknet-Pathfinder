@@ -27,7 +27,7 @@ namespace PathfinderPatcher
             var ad = LoadAssembly(exeDir + "Hacknet.exe");
             var pathfinder = LoadAssembly(pathfinderDir + "Pathfinder.dll");
 
-            ad.AddAssemblyAttribute<InternalsVisibleToAttribute>("HacknetPathfinder");
+            ad.AddAssemblyAttribute<InternalsVisibleToAttribute>("Pathfinder");
             ad.RemoveInternals();
 
             ad.EntryPoint.InjectWith(
