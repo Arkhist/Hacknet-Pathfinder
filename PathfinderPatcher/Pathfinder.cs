@@ -25,13 +25,13 @@ namespace PathfinderPatcher
 
             // Opens Hacknet.exe and HacknetPathfinder.dll's Assembly
             var ad = LoadAssembly(exeDir + "Hacknet.exe");
-            var pathfinder = LoadAssembly(pathfinderDir + "HacknetPathfinder.dll");
+            var pathfinder = LoadAssembly(pathfinderDir + "Pathfinder.dll");
 
             ad.AddAssemblyAttribute<InternalsVisibleToAttribute>("HacknetPathfinder");
             ad.RemoveInternals();
 
             ad.EntryPoint.InjectWith(
-                pathfinder.MainModule.GetType("HacknetPathfinder.PathfinderHooks")
+                pathfinder.MainModule.GetType("Pathfinder.PathfinderHooks")
                                      .GetMethod("onMain"),
                 flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn);
 

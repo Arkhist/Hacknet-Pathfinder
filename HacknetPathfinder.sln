@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HacknetPathfinder", "HacknetPathfinder.csproj", "{B46D689F-4F1A-432C-8755-15BD50755016}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pathfinder", "Pathfinder.csproj", "{B46D689F-4F1A-432C-8755-15BD50755016}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderPatcher", "PathfinderPatcher\PathfinderPatcher.csproj", "{FCD7FD47-6B38-47F4-9761-FC4290110125}"
 EndProject

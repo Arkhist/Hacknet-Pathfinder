@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace HacknetPathfinder
+namespace Pathfinder
 {
     /// <summary>
     /// Function hooks for the Pathfinder mod system
