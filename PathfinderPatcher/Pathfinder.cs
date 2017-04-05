@@ -17,12 +17,14 @@ namespace PathfinderPatcher
                 string pathfinderDir = "", exeDir = "";
                 bool spitOutHacknetOnly = false;
                 int index = 0;
+
+                char separator = Path.DirectorySeparatorChar;
                 foreach (var arg in args)
                 {
                     if (arg.Equals("-pathfinderDir"))
-                        pathfinderDir = args[index + 1] + '\\';
+                        pathfinderDir = args[index + 1] + separator;
                     if (arg.Equals("-exeDir"))
-                        exeDir = args[index + 1] + '\\';
+                        exeDir = args[index + 1] + separator;
                     if (arg.Equals("-spit"))
                         spitOutHacknetOnly = true;
                     index++;

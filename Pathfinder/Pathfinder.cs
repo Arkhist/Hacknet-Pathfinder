@@ -54,7 +54,7 @@ namespace Pathfinder
                 }
                 catch(Exception ex)
                 {
-                    Console.WriteLine("Impossible de charger le mod " + dll + " : " + ex.Message);
+                    Console.WriteLine("Impossible to load mod " + dll + " : " + ex.Message);
                 }
             }
         }

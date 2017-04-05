@@ -47,7 +47,6 @@ namespace Pathfinder
         /// </summary>
         public static void CommandListener(PathfinderEvent pathfinderEvent)
         {
-            Console.WriteLine("BRUH");
             var commandSentEvent = (CommandSentEvent)pathfinderEvent;
             foreach (KeyValuePair<string, Func<OS, string[], bool>> entry in commands)
                 if (commandSentEvent.Args[0].ToLower() == entry.Key.ToLower())
