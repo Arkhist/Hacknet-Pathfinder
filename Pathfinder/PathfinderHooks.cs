@@ -50,5 +50,12 @@
             var loadSessionEvent = new Event.LoadSessionEvent(self);
             loadSessionEvent.CallEvent();
         }
+
+        // Hook location : MainMenu.drawMainMenuButtons()
+        public static void onMainMenuButtonsDraw(Hacknet.MainMenu self)
+        {
+            var drawMainMenuButtonsEvent = new Event.DrawMainMenuButtonsEvent(self);
+            drawMainMenuButtonsEvent.CallEvent();
+        }
 	}
 }

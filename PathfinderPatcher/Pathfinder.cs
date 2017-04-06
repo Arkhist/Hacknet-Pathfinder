@@ -66,6 +66,12 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance
                 );
 
+                ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("drawMainMenuButtons").InjectWith(
+                    hooks.GetMethod("onMainMenuButtonsDraw"),
+                    flags: InjectFlags.PassInvokingInstance,
+                    dir: InjectDirection.After
+                );
+
                 ad.Write("HacknetPathfinder.exe");
             } catch (Exception ex) {
                 Console.Write(ex);

@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Pathfinder\CommandHandler.cs" />
     <Compile Include="Pathfinder\Event\BasicEvents.cs" />
+    <Compile Include="Pathfinder\Event\DrawEvent.cs" />
     <Compile Include="Pathfinder\Event\EventManager.cs" />
     <Compile Include="Pathfinder\Event\PathfinderEvent.cs" />
     <Compile Include="Pathfinder\Pathfinder.cs" />
