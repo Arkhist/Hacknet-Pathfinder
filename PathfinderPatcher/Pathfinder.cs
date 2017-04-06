@@ -74,6 +74,7 @@ namespace PathfinderPatcher
 
                 ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("Draw").InjectWith(
                     hooks.GetMethod("onMainMenuDraw"),
+                    120,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassParametersVal
                 );
 
@@ -84,7 +85,9 @@ namespace PathfinderPatcher
                 );
 
                 ad.Write("HacknetPathfinder.exe");
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 Console.Write(ex);
                 Console.WriteLine("Press enter to end...");
                 Console.ReadLine();

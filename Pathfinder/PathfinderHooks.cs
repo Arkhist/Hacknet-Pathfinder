@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Hacknet;
+using Microsoft.Xna.Framework;
 
 namespace Pathfinder
 {
@@ -56,7 +57,7 @@ namespace Pathfinder
             return false;
         }
 
-        
+
         // Hook location : end of OS.LoadContent()
         public static void onPostLoadSession(Hacknet.OS self)
         {
@@ -70,7 +71,12 @@ namespace Pathfinder
             var drawMainMenuEvent = new Event.DrawMainMenuEvent(self, gameTime);
             drawMainMenuEvent.CallEvent();
             if (drawMainMenuEvent.IsCancelled)
+            {
+                GuiData.endDraw();
+                PostProcessor.end();
+                self.ScreenManager.FadeBackBufferToBlack((int)(255 - self.TransitionAlpha));
                 return true;
+            }
             return false;
         }
 
@@ -80,5 +86,5 @@ namespace Pathfinder
             var drawMainMenuButtonsEvent = new Event.DrawMainMenuButtonsEvent(self);
             drawMainMenuButtonsEvent.CallEvent();
         }
-	}
+    }
 }
