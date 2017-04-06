@@ -47,10 +47,21 @@ namespace Pathfinder
         }
 
         // Hook location : OS.LoadContent()
-        public static void onLoadSession(Hacknet.OS self)
+        public static bool onLoadSession(Hacknet.OS self)
         {
             var loadSessionEvent = new Event.LoadSessionEvent(self);
             loadSessionEvent.CallEvent();
+            if (loadSessionEvent.IsCancelled)
+                return true;
+            return false;
+        }
+
+        
+        // Hook location : end of OS.LoadContent()
+        public static void onPostLoadSession(Hacknet.OS self)
+        {
+            var postLoadSessionEvent = new Event.PostLoadSessionEvent(self);
+            postLoadSessionEvent.CallEvent();
         }
 
         // Hook location : MainMenu.Draw()

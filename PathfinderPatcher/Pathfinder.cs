@@ -63,7 +63,13 @@ namespace PathfinderPatcher
 
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("LoadContent").InjectWith(
                     hooks.GetMethod("onLoadSession"),
-                    flags: InjectFlags.PassInvokingInstance
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn
+                );
+
+                ad.MainModule.GetType("Hacknet.OS").GetMethod("LoadContent").InjectWith(
+                    hooks.GetMethod("onPostLoadSession"),
+                    flags: InjectFlags.PassInvokingInstance,
+                    dir: InjectDirection.After
                 );
 
                 ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("Draw").InjectWith(

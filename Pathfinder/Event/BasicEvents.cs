@@ -100,6 +100,24 @@ namespace Pathfinder.Event
         }
     }
 
+    public class PostLoadSessionEvent : PathfinderEvent
+    {
+        private Hacknet.OS osInstance;
+
+        public Hacknet.OS OsInstance
+        {
+            get
+            {
+                return osInstance;
+            }
+        }
+
+        public PostLoadSessionEvent(Hacknet.OS osInstance)
+        {
+            this.osInstance = osInstance;
+        }
+    }
+
 
     public class GameExitEvent : PathfinderEvent
     {
