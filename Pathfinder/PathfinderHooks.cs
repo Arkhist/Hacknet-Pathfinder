@@ -1,4 +1,6 @@
-﻿namespace Pathfinder
+﻿using Microsoft.Xna.Framework;
+
+namespace Pathfinder
 {
     /// <summary>
     /// Function hooks for the Pathfinder mod system
@@ -49,6 +51,16 @@
         {
             var loadSessionEvent = new Event.LoadSessionEvent(self);
             loadSessionEvent.CallEvent();
+        }
+
+        // Hook location : MainMenu.Draw()
+        public static bool onMainMenuDraw(Hacknet.MainMenu self, GameTime gameTime)
+        {
+            var drawMainMenuEvent = new Event.DrawMainMenuEvent(self, gameTime);
+            drawMainMenuEvent.CallEvent();
+            if (drawMainMenuEvent.IsCancelled)
+                return true;
+            return false;
         }
 
         // Hook location : MainMenu.drawMainMenuButtons()

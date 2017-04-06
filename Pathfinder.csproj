@@ -83,6 +83,7 @@
     <Compile Include="Pathfinder\Event\DrawEvent.cs" />
     <Compile Include="Pathfinder\Event\EventManager.cs" />
     <Compile Include="Pathfinder\Event\PathfinderEvent.cs" />
+    <Compile Include="Pathfinder\Gui\PathfinderMainMenu.cs" />
     <Compile Include="Pathfinder\Pathfinder.cs" />
     <Compile Include="Pathfinder\PathfinderMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -15,6 +15,10 @@ namespace Pathfinder
         public static void init()
         {
             EventManager.RegisterListener(typeof(CommandSentEvent), CommandHandler.CommandListener);
+
+            EventManager.RegisterListener(typeof(DrawMainMenuEvent), Gui.PathfinderMainMenu.drawMainMenu);
+            EventManager.RegisterListener(typeof(DrawMainMenuButtonsEvent), Gui.PathfinderMainMenu.drawPathfinderButtons);
+
             LoadMods();
         }
 
@@ -67,6 +71,14 @@ namespace Pathfinder
             foreach(KeyValuePair<string, PathfinderMod> mod in mods)
             {
                 mod.Value.LoadContent();
+            }
+        }
+
+        internal static string[] LoadedModIdentifiers
+        {
+            get
+            {
+                return mods.Keys.ToArray();
             }
         }
     }
