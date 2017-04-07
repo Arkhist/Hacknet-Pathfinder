@@ -1,4 +1,5 @@
-﻿using Hacknet;
+﻿using System.Reflection;
+using Hacknet;
 using Microsoft.Xna.Framework;
 using System.IO;
 using System.Xml;
@@ -18,7 +19,8 @@ namespace Pathfinder
             startUpEvent.CallEvent();
             if (startUpEvent.IsCancelled)
                 return true;
-            Hacknet.MainMenu.OSVersion = Hacknet.MainMenu.OSVersion + " Pathfinder v0.1";
+            var version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            Hacknet.MainMenu.OSVersion = Hacknet.MainMenu.OSVersion + " Pathfinder " + version;
             return false;
         }
 
