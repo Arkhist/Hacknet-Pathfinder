@@ -114,5 +114,15 @@ namespace Pathfinder
             }
             return false;
         }
+
+        // Hook location : NetworkMap.LoadContent()
+        public static bool onLoadNetmapContent(Hacknet.NetworkMap self)
+        {
+            var loadNetmapContentEvent = new Event.LoadNetmapContentEvent(self);
+            loadNetmapContentEvent.CallEvent();
+            if (loadNetmapContentEvent.IsCancelled)
+                return true;
+            return false;
+        }
     }
 }

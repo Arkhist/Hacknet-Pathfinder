@@ -98,6 +98,11 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersVal | InjectFlags.ModifyReturn
                 );
 
+                ad.MainModule.GetType("Hacknet.NetworkMap").GetMethod("LoadContent").InjectWith(
+                    hooks.GetMethod("onLoadNetmapContent"),
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn
+                );
+
                 ad.Write("HacknetPathfinder.exe");
             }
             catch (Exception ex)

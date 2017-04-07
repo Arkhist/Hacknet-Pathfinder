@@ -188,6 +188,24 @@ namespace Pathfinder.Event
         }
     }
 
+    public class LoadNetmapContentEvent : PathfinderEvent
+    {
+        private Hacknet.NetworkMap netMapInstance;
+
+        public Hacknet.NetworkMap NetMapInstance
+        {
+            get
+            {
+                return netMapInstance;
+            }
+        }
+
+        public LoadNetmapContentEvent(Hacknet.NetworkMap netmapInstance)
+        {
+            this.netMapInstance = netmapInstance;
+        }
+    }
+
     public class GameExitEvent : PathfinderEvent
     {
         private Hacknet.Game1 gameInstance;
