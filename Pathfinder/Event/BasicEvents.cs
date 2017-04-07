@@ -159,6 +159,34 @@ namespace Pathfinder.Event
         }
     }
 
+    public class SaveFileEvent : PathfinderEvent
+    {
+        private Hacknet.OS osInstance;
+        private string filename;
+
+        public Hacknet.OS OsInstance
+        {
+            get
+            {
+                return osInstance;
+            }
+        }
+
+        public string Filename
+        {
+            get
+            {
+                return filename;
+            }
+        }
+
+
+        public SaveFileEvent(Hacknet.OS osInstance, string filename)
+        {
+            this.osInstance = osInstance;
+            this.filename = filename;
+        }
+    }
 
     public class GameExitEvent : PathfinderEvent
     {

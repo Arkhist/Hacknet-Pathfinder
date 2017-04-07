@@ -88,9 +88,14 @@ namespace PathfinderPatcher
                 // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("loadSaveFile").InjectWith(
                     hooks.GetMethod("onLoadSaveFile"),
-                    34,
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals,
+                    33,
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals | InjectFlags.ModifyReturn,
                     localsID: new int[2] { 0, 1 }
+                );
+
+                ad.MainModule.GetType("Hacknet.OS").GetMethod("writeSaveGame").InjectWith(
+                    hooks.GetMethod("onSaveFile"),
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersVal | InjectFlags.ModifyReturn
                 );
 
                 ad.Write("HacknetPathfinder.exe");

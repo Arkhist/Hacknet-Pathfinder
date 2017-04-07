@@ -102,5 +102,17 @@ namespace Pathfinder
             }
             return false;
         }
+
+        // Hook location : OS.writeSaveGame()
+        public static bool onSaveFile(Hacknet.OS self, string filename)
+        {
+            var saveFileEvent = new Event.SaveFileEvent(self, filename);
+            saveFileEvent.CallEvent();
+            if (saveFileEvent.IsCancelled)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
