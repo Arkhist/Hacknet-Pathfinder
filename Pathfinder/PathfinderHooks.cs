@@ -26,7 +26,7 @@ namespace Pathfinder
 
         //  Hook location : Game1.LoadContent()
         //  if (this.CanLoadContent)
-        //  {   
+        //  {
         //	    <HOOK HERE>
         //      PortExploits.populate();
         public static void onLoadContent(Hacknet.Game1 self)
@@ -121,6 +121,15 @@ namespace Pathfinder
             var loadNetmapContentEvent = new Event.LoadNetmapContentEvent(self);
             loadNetmapContentEvent.CallEvent();
             if (loadNetmapContentEvent.IsCancelled)
+                return true;
+            return false;
+        }
+
+        public static bool onExecutableExecute(Hacknet.OS self, ref Rectangle location, ref string exeName, ref string exeFileData, ref int targetPort, ref string[] allParams, ref string originalName)
+        {
+            var executableExecuteEvent = new Event.ExecutableExecuteEvent(self, location, exeName, exeFileData, targetPort, allParams);
+            executableExecuteEvent.CallEvent();
+            if (executableExecuteEvent.IsCancelled)
                 return true;
             return false;
         }

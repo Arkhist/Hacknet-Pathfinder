@@ -1,7 +1,9 @@
 ﻿#pragma warning disable CS0108 // Un membre masque un membre hérité ; le mot clé new est manquant
 
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using Microsoft.Xna.Framework;
 
 namespace Pathfinder.Event
 {
@@ -203,6 +205,74 @@ namespace Pathfinder.Event
         public LoadNetmapContentEvent(Hacknet.NetworkMap netmapInstance)
         {
             this.netMapInstance = netmapInstance;
+        }
+    }
+
+    public class ExecutableExecuteEvent : PathfinderEvent
+    {
+        private Hacknet.OS osInstance;
+        private Rectangle location;
+        private string executableName;
+        private string executableData;
+        private int targetPort;
+        private List<string> parameters;
+
+        public Hacknet.OS OsInstance
+        {
+            get
+            {
+                return osInstance;
+            }
+        }
+
+        public Rectangle Location
+        {
+            get
+            {
+                return location;
+            }
+        }
+
+        public string ExecutableName
+        {
+            get
+            {
+                return executableName;
+            }
+        }
+
+        public string ExecutableData
+        {
+            get
+            {
+                return executableData;
+            }
+        }
+
+        public int TargetPort
+        {
+            get
+            {
+                return targetPort;
+            }
+        }
+
+        public List<string> Parameters
+        {
+            get
+            {
+                return parameters;
+            }
+        }
+
+        public ExecutableExecuteEvent(Hacknet.OS os, Rectangle location, string exeName, string exeFileData, int targetPort, string[] allParams)
+        {
+            this.osInstance = os;
+            this.location = location;
+            this.executableName = exeName;
+            this.executableData = exeFileData;
+            this.targetPort = targetPort;
+            this.parameters = new List<string>(allParams);
         }
     }
 

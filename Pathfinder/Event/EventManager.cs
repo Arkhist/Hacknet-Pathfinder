@@ -43,7 +43,7 @@ namespace Pathfinder.Event
                 var l = eventListeners[pathfinderEventType][i];
                 try
                 {
-                    if(l.Method.Module.ResolveMethod(listener.Method.MetadataToken).Equals(l.Method.GetMethodBody()))
+                    if(l.Method.Module.ResolveMethod(listener.Method.MetadataToken).Equals(listener.Method))
                         eventListeners[pathfinderEventType].Remove(l);
                 }
                 catch (Exception) {}

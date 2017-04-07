@@ -9,7 +9,7 @@ namespace Pathfinder
     {
         PathfinderDaemon(Hacknet.Computer computer, string serviceName, Hacknet.OS os) : base(computer, serviceName, os)
         {
-            
+
         }
     }
 }

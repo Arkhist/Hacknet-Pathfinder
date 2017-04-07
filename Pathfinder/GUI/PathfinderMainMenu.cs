@@ -3,7 +3,7 @@ using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 
-namespace Pathfinder.Gui
+namespace Pathfinder.GUI
 {
     static class PathfinderMainMenu
     {

@@ -11,6 +11,7 @@ namespace PathfinderPatcher
     {
         internal static void Main(string[] args)
         {
+            AssemblyDefinition ad = null;
             try
             {
                 Console.WriteLine(String.Join("|", args));
@@ -31,7 +32,7 @@ namespace PathfinderPatcher
                 }
 
                 // Opens Hacknet.exe, mods it, and then HacknetPathfinder.dll's Assembly
-                var ad = LoadAssembly(exeDir + "Hacknet.exe");
+                ad = LoadAssembly(exeDir + "Hacknet.exe");
 
                 ad.AddAssemblyAttribute<InternalsVisibleToAttribute>("Pathfinder");
                 ad.RemoveInternals();
@@ -103,7 +104,12 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn
                 );
 
-                ad.Write("HacknetPathfinder.exe");
+                ad.MainModule.GetType("Hacknet.OS").GetMethod("launchExecutable").InjectWith(
+                    hooks.GetMethod("onExecutableExecute"),
+                    48,
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
+                    localsID: new int[] { 2 }
+                );
             }
             catch (Exception ex)
             {
@@ -111,6 +117,8 @@ namespace PathfinderPatcher
                 Console.WriteLine("Press enter to end...");
                 Console.ReadLine();
             }
+            if (ad != null)
+                ad.Write("HacknetPathfinder.exe");
         }
 
         internal static void AddAssemblyAttribute<T>(this AssemblyDefinition ad, params object[] attribArgs)

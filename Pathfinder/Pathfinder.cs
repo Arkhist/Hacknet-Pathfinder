@@ -13,10 +13,12 @@ namespace Pathfinder
 
         public static void init()
         {
-            EventManager.RegisterListener<CommandSentEvent>(CommandHandler.CommandListener);
+            EventManager.RegisterListener<CommandSentEvent>(Command.Handler.CommandListener);
 
-            EventManager.RegisterListener<DrawMainMenuEvent>(Gui.PathfinderMainMenu.drawMainMenu);
-            EventManager.RegisterListener<DrawMainMenuButtonsEvent>(Gui.PathfinderMainMenu.drawPathfinderButtons);
+            EventManager.RegisterListener<DrawMainMenuEvent>(GUI.PathfinderMainMenu.drawMainMenu);
+            EventManager.RegisterListener<DrawMainMenuButtonsEvent>(GUI.PathfinderMainMenu.drawPathfinderButtons);
+
+            EventManager.RegisterListener<ExecutableExecuteEvent>(Executable.Handler.ExecutableListener);
 
             LoadMods();
         }
