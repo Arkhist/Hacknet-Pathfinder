@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace Pathfinder
 {
@@ -14,10 +13,10 @@ namespace Pathfinder
 
         public static void init()
         {
-            EventManager.RegisterListener(typeof(CommandSentEvent), CommandHandler.CommandListener);
+            EventManager.RegisterListener<CommandSentEvent>(CommandHandler.CommandListener);
 
-            EventManager.RegisterListener(typeof(DrawMainMenuEvent), Gui.PathfinderMainMenu.drawMainMenu);
-            EventManager.RegisterListener(typeof(DrawMainMenuButtonsEvent), Gui.PathfinderMainMenu.drawPathfinderButtons);
+            EventManager.RegisterListener<DrawMainMenuEvent>(Gui.PathfinderMainMenu.drawMainMenu);
+            EventManager.RegisterListener<DrawMainMenuButtonsEvent>(Gui.PathfinderMainMenu.drawPathfinderButtons);
 
             LoadMods();
         }
@@ -29,29 +28,29 @@ namespace Pathfinder
 
         public static void LoadMods()
         {
-            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             char separator = Path.DirectorySeparatorChar;
 
-			if (!Directory.Exists(path + separator + "Mods"))
-				Directory.CreateDirectory(path + separator + "Mods");
+            if (!Directory.Exists(path + separator + "Mods"))
+                Directory.CreateDirectory(path + separator + "Mods");
 
             foreach (string dll in Directory.GetFiles(path + separator + "Mods" + separator, "*.dll"))
             {
                 try
                 {
-                    Assembly modAssembly = Assembly.LoadFile(dll);
+                    var modAssembly = Assembly.LoadFile(dll);
                     Type modType = null;
                     foreach (Type t in (modAssembly.GetTypes().Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(PathfinderMod)))))
                     {
                         modType = t;
                         break;
                     }
-                    PathfinderMod modInstance = (PathfinderMod)Activator.CreateInstance(modType);
+                    var modInstance = (PathfinderMod)Activator.CreateInstance(modType);
 
-                    MethodInfo methodInfo = modType.GetMethod("GetIdentifier");
+                    var methodInfo = modType.GetMethod("GetIdentifier");
                     if (methodInfo == null)
                         throw new NotSupportedException("Method 'GetIdentifier' doesn't exist : invalid Mod.dll");
-                    string name = (string)methodInfo.Invoke(modInstance, null);
+                    var name = (string)methodInfo.Invoke(modInstance, null);
                     Console.WriteLine("Loading mod : " + name);
 
                     mods.Add(name, modInstance);
@@ -59,7 +58,7 @@ namespace Pathfinder
                     modInstance.Load();
 
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine("Impossible to load mod " + dll + " : " + ex.Message);
                 }
@@ -68,7 +67,7 @@ namespace Pathfinder
 
         public static void LoadModContent()
         {
-            foreach(KeyValuePair<string, PathfinderMod> mod in mods)
+            foreach (KeyValuePair<string, PathfinderMod> mod in mods)
             {
                 mod.Value.LoadContent();
             }

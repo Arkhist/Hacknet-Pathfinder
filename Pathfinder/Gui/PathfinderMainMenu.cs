@@ -1,10 +1,7 @@
 ﻿using Hacknet;
-using Hacknet.Effects;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
-using System;
-using System.Reflection;
 
 namespace Pathfinder.Gui
 {
@@ -18,14 +15,13 @@ namespace Pathfinder.Gui
 
         private static MainMenuState mainMenuState = MainMenuState.GameHandled;
 
-        public static void drawMainMenu(PathfinderEvent pathfinderEvent)
+        public static void drawMainMenu(DrawMainMenuEvent pathfinderEvent)
         {
-            var drawMainMenuEvent = (DrawMainMenuEvent)pathfinderEvent;
             if (mainMenuState != MainMenuState.PathfinderModList)
                 return;
             pathfinderEvent.IsCancelled = true;
 
-            GameScreen baseS = ((GameScreen)drawMainMenuEvent.MainMenuInstance);
+            GameScreen baseS = ((GameScreen)pathfinderEvent.MainMenuInstance);
 
             if (Button.doButton(15, 180, 650, 250, 28, "Return", new Color?(MainMenu.exitButtonColor)))
             {
@@ -42,9 +38,8 @@ namespace Pathfinder.Gui
             }
         }
 
-        public static void drawPathfinderButtons(PathfinderEvent pathfinderEvent)
+        public static void drawPathfinderButtons(DrawMainMenuButtonsEvent pathfinderEvent)
         {
-            var drawMainMenuButtonsEvent = (DrawMainMenuButtonsEvent)pathfinderEvent;
             if (Button.doButton(200, 180, 475, 450, 40, "Pathfinder Mod List", new Color?(MainMenu.buttonColor)))
             {
                 mainMenuState = MainMenuState.PathfinderModList;
