@@ -14,12 +14,7 @@ namespace Pathfinder.Event
             {
                 eventListeners.Add(pathfinderEventType, new List<Action<PathfinderEvent>>());
             }
-            eventListeners[pathfinderEventType].Add((Action<PathfinderEvent>)listener);
-        }
-
-        public static void RegisterListener<T>(Action<PathfinderEvent> listener) where T : PathfinderEvent
-        {
-            RegisterListener(typeof(T), listener);
+            eventListeners[pathfinderEventType].Add(listener);
         }
 
         public static void RegisterListener<T>(Action<T> listener) where T : PathfinderEvent
@@ -34,11 +29,6 @@ namespace Pathfinder.Event
                 eventListeners.Add(pathfinderEventType, new List<Action<PathfinderEvent>>());
             }
             eventListeners[pathfinderEventType].Remove(listener);
-        }
-
-        public static void UnregisterListener<T>(Action<PathfinderEvent> listener) where T : PathfinderEvent
-        {
-            UnregisterListener(typeof(T), listener);
         }
 
         public static void UnregisterListener<T>(Action<T> listener) where T : PathfinderEvent
