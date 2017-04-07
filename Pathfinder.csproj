@@ -79,6 +79,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PathfinderDaemon.cs" />
     <Compile Include="Pathfinder\CommandHandler.cs" />
     <Compile Include="Pathfinder\Event\BasicEvents.cs" />
     <Compile Include="Pathfinder\Event\DrawEvent.cs" />
