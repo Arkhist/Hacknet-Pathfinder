@@ -72,6 +72,7 @@ namespace PathfinderPatcher
                     dir: InjectDirection.After
                 );
 
+                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
                 ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("Draw").InjectWith(
                     hooks.GetMethod("onMainMenuDraw"),
                     120,
@@ -82,6 +83,14 @@ namespace PathfinderPatcher
                     hooks.GetMethod("onMainMenuButtonsDraw"),
                     flags: InjectFlags.PassInvokingInstance,
                     dir: InjectDirection.After
+                );
+
+                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                ad.MainModule.GetType("Hacknet.OS").GetMethod("loadSaveFile").InjectWith(
+                    hooks.GetMethod("onLoadSaveFile"),
+                    34,
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals,
+                    localsID: new int[2] { 0, 1 }
                 );
 
                 ad.Write("HacknetPathfinder.exe");

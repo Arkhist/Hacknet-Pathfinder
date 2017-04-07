@@ -1,5 +1,7 @@
 ﻿using Hacknet;
 using Microsoft.Xna.Framework;
+using System.IO;
+using System.Xml;
 
 namespace Pathfinder
 {
@@ -85,6 +87,18 @@ namespace Pathfinder
         {
             var drawMainMenuButtonsEvent = new Event.DrawMainMenuButtonsEvent(self);
             drawMainMenuButtonsEvent.CallEvent();
+        }
+
+        // Hook location : OS.loadSaveFile()
+        public static bool onLoadSaveFile(Hacknet.OS self, ref Stream stream, ref XmlReader xmlReader)
+        {
+            var loadSaveFileEvent = new Event.LoadSaveFileEvent(self, xmlReader, stream);
+            loadSaveFileEvent.CallEvent();
+            if (loadSaveFileEvent.IsCancelled)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿#pragma warning disable CS0108 // Un membre masque un membre hérité ; le mot clé new est manquant
 
+using System.IO;
+using System.Xml;
+
 namespace Pathfinder.Event
 {
     // Called when Hacknet boots up (Program.Main start)
@@ -115,6 +118,44 @@ namespace Pathfinder.Event
         public PostLoadSessionEvent(Hacknet.OS osInstance)
         {
             this.osInstance = osInstance;
+        }
+    }
+
+    public class LoadSaveFileEvent : PathfinderEvent
+    {
+        private Hacknet.OS osInstance;
+        private XmlReader xmlReader;
+        private Stream stream;
+
+        public Hacknet.OS OsInstance
+        {
+            get
+            {
+                return osInstance;
+            }
+        }
+
+        public XmlReader XmlReader
+        {
+            get
+            {
+                return xmlReader;
+            }
+        }
+
+        public Stream Stream
+        {
+            get
+            {
+                return stream;
+            }
+        }
+
+        public LoadSaveFileEvent(Hacknet.OS osInstance, XmlReader xmlReader, Stream stream)
+        {
+            this.osInstance = osInstance;
+            this.xmlReader = xmlReader;
+            this.stream = stream;
         }
     }
 
