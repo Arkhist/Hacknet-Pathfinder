@@ -19,7 +19,7 @@ namespace Pathfinder.Event
 
         public static void RegisterListener<T>(Action<T> listener) where T : PathfinderEvent
         {
-            RegisterListener<T>((e) => listener.Invoke((T)e));
+            RegisterListener(typeof(T), (e) => listener.Invoke((T)e));
         }
 
         public static void UnregisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener)
@@ -43,8 +43,8 @@ namespace Pathfinder.Event
                 var l = eventListeners[pathfinderEventType][i];
                 try
                 {
-                    l.Method.Module.ResolveMethod(listener.Method.MetadataToken);
-                    eventListeners[pathfinderEventType].Remove(l);
+                    if(l.Method.Module.ResolveMethod(listener.Method.MetadataToken).Equals(l.Method.GetMethodBody()))
+                        eventListeners[pathfinderEventType].Remove(l);
                 }
                 catch (Exception) {}
             }

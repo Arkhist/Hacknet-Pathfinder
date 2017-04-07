@@ -28,12 +28,13 @@ namespace Pathfinder.Gui
                 mainMenuState = MainMenuState.GameHandled;
             }
 
-            TextItem.doFontLabel(new Vector2(125f, (float)50), "Loaded Pathfinder Mods", GuiData.font, new Color?(Color.White), 3.40282347E+38f, 3.40282347E+38f, false);
+            TextItem.doFontLabel(new Vector2(125f, (float)50), "Pathfinder Mod Load Order", GuiData.font, new Color?(Color.White), 3.40282347E+38f, 3.40282347E+38f, false);
 
             float yPos = 120;
+            int index = 0;
             foreach (var modIdentifier in Pathfinder.LoadedModIdentifiers)
             {
-                TextItem.doFontLabel(new Vector2(200f, (float)yPos), modIdentifier, GuiData.smallfont, new Color?(Color.White), 3.40282347E+38f, 3.40282347E+38f, false);
+                TextItem.doFontLabel(new Vector2(200f, (float)yPos), (++index) + ". " + modIdentifier, GuiData.smallfont, new Color?(Color.White), 3.40282347E+38f, 3.40282347E+38f, false);
                 yPos += 30;
             }
         }
