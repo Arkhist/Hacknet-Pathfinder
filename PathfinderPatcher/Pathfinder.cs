@@ -54,6 +54,7 @@ namespace PathfinderPatcher
                 // Hook to the Game1.LoadContent
                 ad.MainModule.GetType("Hacknet.Game1").GetMethod("LoadContent").InjectWith(
                     hooks.GetMethod("onLoadContent"),
+                    -1,
                     flags: InjectFlags.PassInvokingInstance
                 );
 
