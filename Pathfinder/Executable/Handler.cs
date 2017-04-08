@@ -14,7 +14,7 @@ namespace Pathfinder.Executable
             if (interfaces.ContainsKey(exeName))
                 return false;
             var type = inter.GetType();
-            var fileData = "ldloc.args\ncall Pathfinder.Executable.Instance [" + type.Assembly.FullName + "::" + type.Module.Name + "]"
+            var fileData = "ldloc.args\ncall Pathfinder.Executable.Instance [" + type.Assembly.GetName().Name + "::" + type.Module.Name + "]"
                                                      + type.FullName + "=" + exeName + "()";
             if (fileData.Length < 1 || nameToFileData.ContainsValue(fileData))
                 throw new ArgumentException("exeName and inter combined is not unique");
