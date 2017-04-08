@@ -51,4 +51,50 @@ namespace Pathfinder.Event
             this.mainMenuInstance = mainMenuInstance;
         }
     }
+
+    public class DrawMainMenuTitlesEvent : PathfinderEvent
+    {
+        private Hacknet.MainMenu mainMenuInstance;
+        private string mainTitle;
+        private string subtitle;
+
+        public Hacknet.MainMenu MainMenuInstance
+        {
+            get
+            {
+                return mainMenuInstance;
+            }
+        }
+
+        public string MainTitle
+        {
+            get
+            {
+                return mainTitle;
+            }
+            set
+            {
+                mainTitle = value;
+            }
+        }
+
+        public string Subtitle
+        {
+            get
+            {
+                return subtitle;
+            }
+            set
+            {
+                subtitle = value;
+            }
+        }
+
+        public DrawMainMenuTitlesEvent(Hacknet.MainMenu mainMenuInstance, ref string mainTitle, ref string subtitle)
+        {
+            this.mainMenuInstance = mainMenuInstance;
+            this.mainTitle = mainTitle;
+            this.subtitle = subtitle;
+        }
+    }
 }

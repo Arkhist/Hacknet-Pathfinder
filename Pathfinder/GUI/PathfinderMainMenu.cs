@@ -41,7 +41,7 @@ namespace Pathfinder.GUI
 
         public static void drawPathfinderButtons(DrawMainMenuButtonsEvent pathfinderEvent)
         {
-            if (Button.doButton(200, 180, 475, 450, 40, "Pathfinder Mod List", new Color?(MainMenu.buttonColor)))
+            if (Button.doButton(200, 180, 600, 450, 40, "Pathfinder Mod List", new Color?(MainMenu.buttonColor)))
             {
                 mainMenuState = MainMenuState.PathfinderModList;
             }

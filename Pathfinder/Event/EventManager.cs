@@ -55,7 +55,7 @@ namespace Pathfinder.Event
             var eventType = pathfinderEvent.GetType();
             if (eventListeners.ContainsKey(eventType))
             {
-                foreach (Action<PathfinderEvent> listener in eventListeners[eventType])
+                foreach (var listener in eventListeners[eventType])
                 {
                     listener(pathfinderEvent);
                 }

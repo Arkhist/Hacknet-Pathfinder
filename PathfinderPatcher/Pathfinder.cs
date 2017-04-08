@@ -91,7 +91,7 @@ namespace PathfinderPatcher
                     hooks.GetMethod("onLoadSaveFile"),
                     33,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals | InjectFlags.ModifyReturn,
-                    localsID: new int[2] { 0, 1 }
+                    localsID: new int[] { 0, 1 }
                 );
 
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("writeSaveGame").InjectWith(
@@ -109,6 +109,14 @@ namespace PathfinderPatcher
                     48,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
                     localsID: new int[] { 2 }
+                );
+
+                var mainMenu = ad.MainModule.GetType("Hacknet.MainMenu");
+                mainMenu.GetMethod("DrawBackgroundAndTitle").InjectWith(
+                    hooks.GetMethod("onDrawMainMenuTitles"),
+                    7,
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
+                    localsID: new int[] { 0 }
                 );
             }
             catch (Exception ex)
