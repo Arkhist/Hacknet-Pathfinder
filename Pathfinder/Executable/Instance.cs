@@ -7,7 +7,7 @@ namespace Pathfinder.Executable
     {
         private List<string> parameters;
         private Interface exeInterface;
-        private string fileData;
+        private Dictionary<string, object> keyToObject = new Dictionary<string, object>();
 
         public List<string> Parameters
         {
@@ -25,19 +25,26 @@ namespace Pathfinder.Executable
             }
         }
 
-        public string FileData
-        {
-            get
-            {
-                return fileData;
-            }
-        }
-
-        internal Instance(Rectangle loc, Hacknet.OS os, List<string> parameters, Interface exeInterface, string fileData) : base(loc, os)
+        internal Instance(Rectangle loc, Hacknet.OS os, List<string> parameters, Interface exeInterface) : base(loc, os)
         {
             this.parameters = parameters;
             this.exeInterface = exeInterface;
-            this.fileData = fileData;
+        }
+
+        public object GetInstanceData(string key)
+        {
+            return keyToObject[key];
+        }
+
+        public T GetInstanceData<T>(string key)
+        {
+            return (T) GetInstanceData(key);
+        }
+
+        public bool SetInstanceData(string key, object val)
+        {
+            keyToObject[key] = val;
+            return keyToObject[key] == val;
         }
 
         public override void LoadContent()

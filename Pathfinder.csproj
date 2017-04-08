@@ -79,7 +79,6 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PathfinderDaemon.cs" />
     <Compile Include="Pathfinder\Event\BasicEvents.cs" />
     <Compile Include="Pathfinder\Event\DrawEvent.cs" />
     <Compile Include="Pathfinder\Event\EventManager.cs" />
@@ -94,11 +93,14 @@
     <Compile Include="Pathfinder\Command\Handler.cs" />
     <Compile Include="Pathfinder\Executable\Instance.cs" />
     <Compile Include="Pathfinder\Command\CommandHandler.cs" />
+    <Compile Include="Pathfinder\Daemon\Instance.cs" />
+    <Compile Include="Pathfinder\Daemon\Interface.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <Folder Include="Pathfinder\Executable\" />
     <Folder Include="Pathfinder\Command\" />
+    <Folder Include="Pathfinder\Daemon\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -19,6 +19,7 @@ namespace Pathfinder
             EventManager.RegisterListener<DrawMainMenuButtonsEvent>(GUI.PathfinderMainMenu.drawPathfinderButtons);
 
             EventManager.RegisterListener<ExecutableExecuteEvent>(Executable.Handler.ExecutableListener);
+            EventManager.RegisterListener<CommandSentEvent>(Executable.Handler.ExecutableListInsertListener);
 
             LoadMods();
         }

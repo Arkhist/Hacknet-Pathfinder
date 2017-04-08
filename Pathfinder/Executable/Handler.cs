@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Hacknet;
 using Pathfinder.Event;
 
 namespace Pathfinder.Executable
@@ -31,7 +30,40 @@ namespace Pathfinder.Executable
             if (interfaces.TryGetValue(e.ExecutableName, out i)
                 && e.ExecutableData.Equals(i.FileData))
             {
-                e.OsInstance.addExe(new Instance(e.Location, e.OsInstance, e.Parameters, i, i.FileData));
+                e.OsInstance.addExe(new Instance(e.Location, e.OsInstance, e.Parameters, i));
+                e.IsCancelled = true;
+            }
+        }
+
+        internal static void ExecutableListInsertListener(CommandSentEvent e)
+        {
+            if (e.Args[0].Equals("exe"))
+            {
+                e.IsCancelled = true;
+                e.Disconnects = false;
+                var os = e.OsInstance;
+                var folder = os.thisComputer.files.root.searchForFolder("bin");
+                os.write("Available Executables:\n");
+                os.write("PortHack");
+                os.write("ForkBomb");
+                os.write("Shell");
+                os.write("Tutorial");
+                foreach (var file in folder.files)
+                {
+                    bool alreadyHandled = false;
+                    var name = file.name.Contains(".") ? file.name.Remove(file.name.LastIndexOf('.')) : file.name;
+                    foreach (var num in Hacknet.PortExploits.exeNums)
+                        if (file.data == Hacknet.PortExploits.crackExeData[num]
+                            || file.data == Hacknet.PortExploits.crackExeDataLocalRNG[num])
+                        {
+                            os.write (name);
+                            alreadyHandled = true;
+                            break;
+                        }
+                    if (!alreadyHandled && nameToFileData.ContainsValue(file.name))
+                        os.write(name);
+                }
+                os.write(" ");
             }
         }
     }

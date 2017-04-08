@@ -125,6 +125,7 @@ namespace Pathfinder
             return false;
         }
 
+        // Hook location : OS.launchExecutable
         public static bool onExecutableExecute(Hacknet.OS self, ref Rectangle location, ref string exeName, ref string exeFileData, ref int targetPort, ref string[] allParams, ref string originalName)
         {
             var executableExecuteEvent = new Event.ExecutableExecuteEvent(self, location, exeName, exeFileData, targetPort, allParams);
