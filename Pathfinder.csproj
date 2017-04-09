@@ -96,12 +96,10 @@
     <Compile Include="Pathfinder\Daemon\Instance.cs" />
     <Compile Include="Pathfinder\Daemon\Interface.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Pathfinder\Executable\" />
-    <Folder Include="Pathfinder\Command\" />
-    <Folder Include="Pathfinder\Daemon\" />
+    <Folder Include="Pathfinder\Computer\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

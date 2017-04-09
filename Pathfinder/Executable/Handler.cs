@@ -26,12 +26,14 @@ namespace Pathfinder.Executable
 
         internal static void ExecutableListener(ExecutableExecuteEvent e)
         {
-            Interface i;
-            if (interfaces.TryGetValue(e.ExecutableName, out i)
-                && e.ExecutableData.Equals(i.FileData))
+            foreach(Interface i in interfaces.Values)
             {
-                e.OsInstance.addExe(new Instance(e.Location, e.OsInstance, e.Parameters, i));
-                e.IsCancelled = true;
+                if (e.ExecutableData.Equals(i.FileData))
+                {
+                    e.OsInstance.addExe(new Instance(e.Location, e.OsInstance, e.Parameters, i));
+                    e.IsCancelled = true;
+                    break;
+                }
             }
         }
 

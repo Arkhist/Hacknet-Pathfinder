@@ -105,6 +105,7 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn
                 );
 
+                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("launchExecutable").InjectWith(
                     hooks.GetMethod("onExecutableExecute"),
                     48,
@@ -112,6 +113,7 @@ namespace PathfinderPatcher
                     localsID: new int[] { 2 }
                 );
 
+                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
                 var mainMenu = ad.MainModule.GetType("Hacknet.MainMenu");
                 mainMenu.GetMethod("DrawBackgroundAndTitle").InjectWith(
                     hooks.GetMethod("onDrawMainMenuTitles"),
