@@ -1,19 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace Pathfinder.Executable
 {
     public class Instance : Hacknet.ExeModule
     {
-        private List<string> parameters;
+        private List<string> arguments;
         private Interface exeInterface;
         private Dictionary<string, object> keyToObject = new Dictionary<string, object>();
 
+        public List<string> Arguments
+        {
+            get
+            {
+                return arguments;
+            }
+        }
+
+        [Obsolete("Use Arguments")]
         public List<string> Parameters
         {
             get
             {
-                return parameters;
+                return Arguments;
             }
         }
 
@@ -25,10 +35,20 @@ namespace Pathfinder.Executable
             }
         }
 
-        internal Instance(Rectangle loc, Hacknet.OS os, List<string> parameters, Interface exeInterface) : base(loc, os)
+        protected Instance(Rectangle loc, Hacknet.OS os, List<string> arguments, Interface exeInterface) : base(loc, os)
         {
-            this.parameters = parameters;
+            this.arguments = arguments;
             this.exeInterface = exeInterface;
+        }
+
+        internal static Instance CreateInstance(Interface exeInterface, Hacknet.OS os, List<string> args, Rectangle loc)
+        {
+            return new Instance(loc, os, args, exeInterface);
+        }
+
+        public static Instance CreateInstance(Interface exeInterface, Hacknet.OS os, List<string> args)
+        {
+            return CreateInstance(exeInterface, os, args, Rectangle.Empty);
         }
 
         public object GetInstanceData(string key)

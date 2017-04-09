@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 
 namespace Pathfinder.Executable
@@ -7,39 +8,48 @@ namespace Pathfinder.Executable
     public static class Handler
     {
         private static Dictionary<string, Interface> interfaces = new Dictionary<string, Interface>();
-        private static Dictionary<string, string> nameToFileData = new Dictionary<string, string>();
+        private static Dictionary<string, string> idToFileData = new Dictionary<string, string>();
 
-        public static bool AddExecutable(string exeName, Interface inter)
+        public static bool AddExecutable(string exeIdentity, Interface inter)
         {
-            if (interfaces.ContainsKey(exeName))
+            if (interfaces.ContainsKey(exeIdentity))
                 return false;
             var type = inter.GetType();
-            var fileData = "ldloc.args\ncall Pathfinder.Executable.Instance [" + type.Assembly.GetName().Name + "::" + type.Module.Name + "]"
-                                                     + type.FullName + "=" + exeName + "()";
-            if (fileData.Length < 1 || nameToFileData.ContainsValue(fileData))
+            var fileData = exeIdentity + "\nldloc.args\ncall Pathfinder.Executable.Instance [" + type.Assembly.GetName().Name + ".dll]"
+                                                     + type.FullName + "=" + exeIdentity + "()";
+            if (fileData.Length < 1 || idToFileData.ContainsValue(fileData))
                 throw new ArgumentException("exeName and inter combined is not unique");
             inter.FileData = fileData;
-            interfaces.Add(exeName, inter);
-            nameToFileData.Add(exeName, fileData);
+            interfaces.Add(exeIdentity, inter);
+            idToFileData.Add(exeIdentity, fileData);
             return true;
+        }
+
+        public static bool IsFileDataForMod(string fileData)
+        {
+            var dataLines = fileData.Split('\n');
+            return dataLines.Length == 2 && dataLines[1] == "ldloc.args"
+                            && dataLines[2].StartsWith("call Pathfinder.Executable.Instance ", StringComparison.Ordinal)
+                            && dataLines[2].EndsWith("=" + dataLines[0] + "()", StringComparison.Ordinal)
+                            && idToFileData.ContainsValue(dataLines[0]);
         }
 
         internal static void ExecutableListener(ExecutableExecuteEvent e)
         {
-            foreach(Interface i in interfaces.Values)
+            if (IsFileDataForMod(e.ExeFile.data))
             {
-                if (e.ExecutableData.Equals(i.FileData))
+                Interface i;
+                if (interfaces.TryGetValue(e.ExeFile.data.Split('\n')[0], out i) && e.ExeFile.data == i.FileData)
                 {
-                    e.OsInstance.addExe(new Instance(e.Location, e.OsInstance, e.Parameters, i));
-                    e.IsCancelled = true;
-                    break;
+                    e.OsInstance.addExe(Instance.CreateInstance(i, e.OsInstance, e.Arguments));
+                    e.Result = ExecutionResult.StartupSuccess;
                 }
             }
         }
 
         internal static void ExecutableListInsertListener(CommandSentEvent e)
         {
-            if (e.Args[0].Equals("exe"))
+            if (e.Arguments[0].Equals("exe"))
             {
                 e.IsCancelled = true;
                 e.Disconnects = false;
@@ -62,7 +72,7 @@ namespace Pathfinder.Executable
                             alreadyHandled = true;
                             break;
                         }
-                    if (!alreadyHandled && nameToFileData.ContainsValue(file.name))
+                    if (!alreadyHandled && IsFileDataForMod(file.data))
                         os.write(name);
                 }
                 os.write(" ");

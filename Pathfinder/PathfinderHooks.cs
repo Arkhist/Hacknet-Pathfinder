@@ -128,11 +128,23 @@ namespace Pathfinder
         }
 
         // Hook location : OS.launchExecutable
-        public static bool onExecutableExecute(OS self, ref Rectangle location, ref string exeName, ref string exeFileData, ref int targetPort, ref string[] allParams, ref string originalName)
+        public static bool onExecutableExecute(out int result,
+                                               ref Computer computer,
+                                               ref Folder exeFolder,
+                                               ref int fileIndex,
+                                               ref string exeFileData,
+                                               ref OS os,
+                                               ref string[] argArray)
         {
-            var executableExecuteEvent = new Event.ExecutableExecuteEvent(self, location, exeName, exeFileData, targetPort, allParams);
+            var executableExecuteEvent = new Event.ExecutableExecuteEvent(computer,
+                                                                          exeFolder,
+                                                                          fileIndex,
+                                                                          fileIndex > 0 ? exeFolder.files[fileIndex] : null,
+                                                                          os,
+                                                                          argArray);
             executableExecuteEvent.CallEvent();
-            if (executableExecuteEvent.IsCancelled)
+            result = (int) executableExecuteEvent.Result;
+            if (executableExecuteEvent.IsCancelled || result != -1)
                 return true;
             return false;
         }

@@ -106,11 +106,11 @@ namespace PathfinderPatcher
                 );
 
                 // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("launchExecutable").InjectWith(
+                ad.MainModule.GetType("Hacknet.ProgramRunner").GetMethod("AttemptExeProgramExecution").InjectWith(
                     hooks.GetMethod("onExecutableExecute"),
-                    48,
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
-                    localsID: new int[] { 2 }
+                    20,
+                    flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
+                    localsID: new int[] { 0, 1, 2, 6 }
                 );
 
                 // SENSIBLE CODE, CHANGE OFFSET IF NEEDED

@@ -1,9 +1,11 @@
 ﻿#pragma warning disable CS0108 // Un membre masque un membre hérité ; le mot clé new est manquant
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using Microsoft.Xna.Framework;
+using Executable = Pathfinder.Executable;
 
 namespace Pathfinder.Event
 {
@@ -64,11 +66,20 @@ namespace Pathfinder.Event
             }
         }
 
-        public string[] Args
+        public string[] Arguments
         {
             get
             {
                 return args;
+            }
+        }
+
+        [Obsolete("Use Arguments")]
+        public string[] Args
+        {
+            get
+            {
+                return Arguments;
             }
         }
 
@@ -210,69 +221,132 @@ namespace Pathfinder.Event
 
     public class ExecutableExecuteEvent : PathfinderEvent
     {
-        private Hacknet.OS osInstance;
-        private Rectangle location;
-        private string executableName;
-        private string executableData;
-        private int targetPort;
-        private List<string> parameters;
+        private Hacknet.Computer computer;
+        private Hacknet.Folder folder;
+        private int fileIndex;
+        private Hacknet.FileEntry exeFile;
+        private Hacknet.OS os;
+        private List<string> arguments;
+        private Executable.ExecutionResult result;
+
+        public Hacknet.Computer Computer
+        {
+            get
+            {
+                return computer;
+            }
+        }
+
+        public Hacknet.Folder Folder
+        {
+            get
+            {
+                return folder;
+            }
+        }
+
+        public int FileIndex
+        {
+            get
+            {
+                return fileIndex;
+            }
+        }
+
+        public Hacknet.FileEntry ExeFile
+        {
+            get
+            {
+                return exeFile;
+            }
+        }
 
         public Hacknet.OS OsInstance
         {
             get
             {
-                return osInstance;
+                return os;
             }
         }
 
-        public Rectangle Location
+        public List<string> Arguments
         {
             get
             {
-                return location;
+                return arguments;
             }
         }
 
-        public string ExecutableName
+        public Executable.ExecutionResult Result
         {
             get
             {
-                return executableName;
+                return result;
             }
-        }
-
-        public string ExecutableData
-        {
-            get
+            set
             {
-                return executableData;
+                result = value;
             }
         }
 
-        public int TargetPort
-        {
-            get
-            {
-                return targetPort;
-            }
-        }
-
+        [Obsolete("Use Arguments")]
         public List<string> Parameters
         {
             get
             {
-                return parameters;
+                return Arguments;
             }
         }
 
-        public ExecutableExecuteEvent(Hacknet.OS os, Rectangle location, string exeName, string exeFileData, int targetPort, string[] allParams)
+        [Obsolete("Does not pertain to normal executables")]
+        public Rectangle Location
         {
-            this.osInstance = os;
-            this.location = location;
-            this.executableName = exeName;
-            this.executableData = exeFileData;
-            this.targetPort = targetPort;
-            this.parameters = new List<string>(allParams);
+            get
+            {
+                return default(Rectangle);
+            }
+        }
+
+        [Obsolete("Just directly use ExeFile.name")]
+        public string ExecutableName
+        {
+            get
+            {
+                return ExeFile.name;
+            }
+        }
+
+        [Obsolete("Just directly use Exefile.data")]
+        public string ExecutableData
+        {
+            get
+            {
+                return ExeFile.data;
+            }
+        }
+
+        [Obsolete("Does not pertain to normal executables")]
+        public int TargetPort
+        {
+            get
+            {
+                return -1;
+            }
+        }
+
+        public ExecutableExecuteEvent(Hacknet.Computer computer,
+                                      Hacknet.Folder folder,
+                                      int fileIndex,
+                                      Hacknet.FileEntry exeFile,
+                                      Hacknet.OS os,
+                                      string[] argArray)
+        {
+            this.computer = computer;
+            this.folder = folder;
+            this.fileIndex = fileIndex;
+            this.exeFile = exeFile;
+            this.os = os;
+            this.arguments = new List<string>(argArray);
         }
     }
 

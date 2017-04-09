@@ -45,10 +45,10 @@ namespace Pathfinder.Command
         internal static void CommandListener(CommandSentEvent commandSentEvent)
         {
             foreach (KeyValuePair<string, Func<OS, string[], bool>> entry in commands)
-                if (commandSentEvent.Args[0].Equals(entry.Key))
+                if (commandSentEvent.Arguments[0].Equals(entry.Key))
                 {
                     commandSentEvent.IsCancelled = true;
-                    commandSentEvent.Disconnects = entry.Value(commandSentEvent.OsInstance, commandSentEvent.Args);
+                    commandSentEvent.Disconnects = entry.Value(commandSentEvent.OsInstance, commandSentEvent.Arguments);
                     break;
                 }
         }
