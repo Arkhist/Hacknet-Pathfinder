@@ -108,7 +108,7 @@ namespace PathfinderPatcher
                 // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
                 ad.MainModule.GetType("Hacknet.ProgramRunner").GetMethod("AttemptExeProgramExecution").InjectWith(
                     hooks.GetMethod("onExecutableExecute"),
-                    20,
+                    48,
                     flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
                     localsID: new int[] { 0, 1, 2, 6 }
                 );
