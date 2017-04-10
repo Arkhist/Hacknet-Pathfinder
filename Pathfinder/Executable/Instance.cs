@@ -35,6 +35,8 @@ namespace Pathfinder.Executable
             }
         }
 
+
+
         protected Instance(Rectangle loc, Hacknet.OS os, List<string> arguments, Interface exeInterface) : base(loc, os)
         {
             this.arguments = arguments;
@@ -105,7 +107,9 @@ namespace Pathfinder.Executable
 
         public override void Update(float t)
         {
-            this.IdentifierName = exeInterface.GetIdentifer(this);
+            this.IdentifierName = exeInterface.GetIdentifier(this);
+            if (this.IdentifierName == "UNKNOWN")
+                this.IdentifierName = exeInterface.GetIdentifer(this);
             this.needsProxyAccess = exeInterface.NeedsProxyAccess(this);
             this.ramCost = exeInterface.GetRamCost(this);
             bool? result = exeInterface.Update(this, t);

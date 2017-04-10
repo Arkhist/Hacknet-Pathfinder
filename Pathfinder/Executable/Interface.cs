@@ -1,4 +1,6 @@
-﻿namespace Pathfinder.Executable
+﻿using System;
+
+namespace Pathfinder.Executable
 {
     public class Interface
     {
@@ -16,7 +18,13 @@
             }
         }
 
+        [Obsolete("Use GetIdentifier")]
         public virtual string GetIdentifer(Instance instance)
+        {
+            return GetIdentifier(instance);
+        }
+
+        public virtual string GetIdentifier(Instance instance)
         {
             return "UNKNOWN";
         }
