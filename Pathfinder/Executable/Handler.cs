@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 
@@ -41,7 +42,11 @@ namespace Pathfinder.Executable
                 Interface i;
                 if (interfaces.TryGetValue(e.ExeFile.data.Split('\n')[0], out i) && e.ExeFile.data == i.FileData)
                 {
-                    e.OsInstance.addExe(Instance.CreateInstance(i, e.OsInstance, e.Arguments));
+                    int num = e.OsInstance.ram.bounds.Y + RamModule.contentStartOffset;
+                    foreach (var exe in e.OsInstance.exes)
+                            num += exe.bounds.Height;
+                    Rectangle location = new Rectangle(e.OsInstance.ram.bounds.X, num, RamModule.MODULE_WIDTH, (int)OS.EXE_MODULE_HEIGHT);
+                    e.OsInstance.addExe(Instance.CreateInstance(i, e.OsInstance, e.Arguments, location));
                     e.Result = ExecutionResult.StartupSuccess;
                 }
             }

@@ -121,6 +121,13 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
                     localsID: new int[] { 0 }
                 );
+
+                ad.MainModule.GetType("Hacknet.OS").GetMethod("launchExecutable").InjectWith(
+					hooks.GetMethod("onPortExecutableExecute"),
+                    48,
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
+                    localsID: new int[] { 2 }
+                );
             }
             catch (Exception ex)
             {

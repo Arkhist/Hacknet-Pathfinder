@@ -149,6 +149,26 @@ namespace Pathfinder
             return false;
         }
 
+        public static bool onPortExecutableExecute(OS self,
+                                                     ref Rectangle location,
+                                                     ref string exeName,
+                                                     ref string exeFileData,
+                                                     ref int targetPort,
+                                                     ref string[] argArray,
+                                                     ref string originalName)
+        {
+            var portExecutableExecuteEvent = new Event.PortExecutableExecuteEvent(self,
+                                                                                    location,
+                                                                                    exeName,
+                                                                                    exeFileData,
+                                                                                    targetPort,
+                                                                                    argArray);
+            portExecutableExecuteEvent.CallEvent();
+            if (portExecutableExecuteEvent.IsCancelled)
+                return true;
+            return false;
+        }
+
         static FieldInfo titleFontField = typeof(MainMenu).GetField("titleFont",
                                                                             BindingFlags.NonPublic | BindingFlags.Instance);
         static FieldInfo titleColorField = typeof(MainMenu).GetField("titleColor",

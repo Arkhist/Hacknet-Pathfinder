@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using Hacknet;
 using Microsoft.Xna.Framework;
 using Executable = Pathfinder.Executable;
 
@@ -32,9 +33,9 @@ namespace Pathfinder.Event
     // Called after Hacknet loads the Game Object (actual game)
     public class LoadContentEvent : PathfinderEvent
     {
-        private Hacknet.Game1 gameInstance;
+        private Game1 gameInstance;
 
-        public Hacknet.Game1 GameInstance
+        public Game1 GameInstance
         {
             get
             {
@@ -42,7 +43,7 @@ namespace Pathfinder.Event
             }
         }
 
-        public LoadContentEvent(Hacknet.Game1 gameInstance)
+        public LoadContentEvent(Game1 gameInstance)
         {
             this.gameInstance = gameInstance;
         }
@@ -50,7 +51,7 @@ namespace Pathfinder.Event
 
     public class CommandSentEvent : PathfinderEvent
     {
-        private Hacknet.OS osInstance;
+        private OS osInstance;
         private string[] args;
         private bool disconnectFlag = false;
 
@@ -83,7 +84,7 @@ namespace Pathfinder.Event
             }
         }
 
-        public Hacknet.OS OsInstance
+        public OS OsInstance
         {
             get
             {
@@ -91,7 +92,7 @@ namespace Pathfinder.Event
             }
         }
 
-        public CommandSentEvent(Hacknet.OS osInstance, string[] args)
+        public CommandSentEvent(OS osInstance, string[] args)
         {
             this.osInstance = osInstance;
             this.args = args;
@@ -100,9 +101,9 @@ namespace Pathfinder.Event
 
     public class LoadSessionEvent : PathfinderEvent
     {
-        private Hacknet.OS osInstance;
+        private OS osInstance;
 
-        public Hacknet.OS OsInstance
+        public OS OsInstance
         {
             get
             {
@@ -110,7 +111,7 @@ namespace Pathfinder.Event
             }
         }
 
-        public LoadSessionEvent(Hacknet.OS osInstance)
+        public LoadSessionEvent(OS osInstance)
         {
             this.osInstance = osInstance;
         }
@@ -118,9 +119,9 @@ namespace Pathfinder.Event
 
     public class PostLoadSessionEvent : PathfinderEvent
     {
-        private Hacknet.OS osInstance;
+        private OS osInstance;
 
-        public Hacknet.OS OsInstance
+        public OS OsInstance
         {
             get
             {
@@ -128,7 +129,7 @@ namespace Pathfinder.Event
             }
         }
 
-        public PostLoadSessionEvent(Hacknet.OS osInstance)
+        public PostLoadSessionEvent(OS osInstance)
         {
             this.osInstance = osInstance;
         }
@@ -136,11 +137,11 @@ namespace Pathfinder.Event
 
     public class LoadSaveFileEvent : PathfinderEvent
     {
-        private Hacknet.OS osInstance;
+        private OS osInstance;
         private XmlReader xmlReader;
         private Stream stream;
 
-        public Hacknet.OS OsInstance
+        public OS OsInstance
         {
             get
             {
@@ -164,7 +165,7 @@ namespace Pathfinder.Event
             }
         }
 
-        public LoadSaveFileEvent(Hacknet.OS osInstance, XmlReader xmlReader, Stream stream)
+        public LoadSaveFileEvent(OS osInstance, XmlReader xmlReader, Stream stream)
         {
             this.osInstance = osInstance;
             this.xmlReader = xmlReader;
@@ -174,10 +175,10 @@ namespace Pathfinder.Event
 
     public class SaveFileEvent : PathfinderEvent
     {
-        private Hacknet.OS osInstance;
+        private OS osInstance;
         private string filename;
 
-        public Hacknet.OS OsInstance
+        public OS OsInstance
         {
             get
             {
@@ -194,7 +195,7 @@ namespace Pathfinder.Event
         }
 
 
-        public SaveFileEvent(Hacknet.OS osInstance, string filename)
+        public SaveFileEvent(OS osInstance, string filename)
         {
             this.osInstance = osInstance;
             this.filename = filename;
@@ -203,9 +204,9 @@ namespace Pathfinder.Event
 
     public class LoadNetmapContentEvent : PathfinderEvent
     {
-        private Hacknet.NetworkMap netMapInstance;
+        private NetworkMap netMapInstance;
 
-        public Hacknet.NetworkMap NetMapInstance
+        public NetworkMap NetMapInstance
         {
             get
             {
@@ -213,7 +214,7 @@ namespace Pathfinder.Event
             }
         }
 
-        public LoadNetmapContentEvent(Hacknet.NetworkMap netmapInstance)
+        public LoadNetmapContentEvent(NetworkMap netmapInstance)
         {
             this.netMapInstance = netmapInstance;
         }
@@ -221,15 +222,15 @@ namespace Pathfinder.Event
 
     public class ExecutableExecuteEvent : PathfinderEvent
     {
-        private Hacknet.Computer computer;
-        private Hacknet.Folder folder;
+        private Computer computer;
+        private Folder folder;
         private int fileIndex;
-        private Hacknet.FileEntry exeFile;
-        private Hacknet.OS os;
+        private FileEntry exeFile;
+        private OS os;
         private List<string> arguments;
         private Executable.ExecutionResult result;
 
-        public Hacknet.Computer Computer
+        public Computer Computer
         {
             get
             {
@@ -237,7 +238,7 @@ namespace Pathfinder.Event
             }
         }
 
-        public Hacknet.Folder Folder
+        public Folder Folder
         {
             get
             {
@@ -253,7 +254,7 @@ namespace Pathfinder.Event
             }
         }
 
-        public Hacknet.FileEntry ExeFile
+        public FileEntry ExeFile
         {
             get
             {
@@ -261,7 +262,7 @@ namespace Pathfinder.Event
             }
         }
 
-        public Hacknet.OS OsInstance
+        public OS OsInstance
         {
             get
             {
@@ -334,11 +335,11 @@ namespace Pathfinder.Event
             }
         }
 
-        public ExecutableExecuteEvent(Hacknet.Computer computer,
-                                      Hacknet.Folder folder,
+        public ExecutableExecuteEvent(Computer computer,
+                                      Folder folder,
                                       int fileIndex,
-                                      Hacknet.FileEntry exeFile,
-                                      Hacknet.OS os,
+                                      FileEntry exeFile,
+                                      OS os,
                                       string[] argArray)
         {
             this.computer = computer;
@@ -350,11 +351,83 @@ namespace Pathfinder.Event
         }
     }
 
+    public class PortExecutableExecuteEvent : PathfinderEvent
+    {
+        private OS osInstance;
+        private Rectangle destination;
+        private string exeName;
+        private string exeData;
+        private int targetPort;
+        private List<string> arguments;
+
+        public OS OsInstance
+        {
+            get
+            {
+                return osInstance;
+            }
+        }
+
+        public Rectangle Destination
+        {
+            get
+            {
+                return destination;
+            }
+        }
+
+        public string ExecutableName
+        {
+            get
+            {
+                return exeName;
+            }
+        }
+        public string ExecutableData
+        {
+            get
+            {
+                return exeData;
+            }
+        }
+
+        public int TargetPort
+        {
+            get
+            {
+                return targetPort;
+            }
+        }
+
+        public List<string> Arguments
+        {
+            get
+            {
+                return arguments;
+            }
+        }
+
+        public PortExecutableExecuteEvent(OS os,
+                                            Rectangle dest,
+                                            string exeName,
+                                            string exeFileData,
+                                            int targetPort,
+                                            string[] argArray)
+        {
+            this.osInstance = os;
+            this.destination = dest;
+            this.exeName = exeName;
+            this.exeData = exeFileData;
+            this.targetPort = targetPort;
+            this.arguments = new List<string>(argArray);
+        }
+    }
+
     public class GameExitEvent : PathfinderEvent
     {
-        private Hacknet.Game1 gameInstance;
+        private Game1 gameInstance;
 
-        public Hacknet.Game1 GameInstance
+        public Game1 GameInstance
         {
             get
             {
@@ -362,7 +435,7 @@ namespace Pathfinder.Event
             }
         }
 
-        public GameExitEvent(Hacknet.Game1 gameInstance)
+        public GameExitEvent(Game1 gameInstance)
         {
             this.gameInstance = gameInstance;
         }

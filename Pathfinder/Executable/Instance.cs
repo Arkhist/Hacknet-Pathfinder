@@ -35,15 +35,13 @@ namespace Pathfinder.Executable
             }
         }
 
-
-
         protected Instance(Rectangle loc, Hacknet.OS os, List<string> arguments, Interface exeInterface) : base(loc, os)
         {
             this.arguments = arguments;
             this.exeInterface = exeInterface;
         }
 
-        internal static Instance CreateInstance(Interface exeInterface, Hacknet.OS os, List<string> args, Rectangle loc)
+        public static Instance CreateInstance(Interface exeInterface, Hacknet.OS os, List<string> args, Rectangle loc)
         {
             return new Instance(loc, os, args, exeInterface);
         }
