@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Hacknet;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Pathfinder.Executable
 {
@@ -35,7 +37,7 @@ namespace Pathfinder.Executable
             }
         }
 
-        protected Instance(Rectangle loc, Hacknet.OS os, List<string> arguments, Interface exeInterface) : base(loc, os)
+        public Instance(Rectangle loc, Hacknet.OS os, List<string> arguments, Interface exeInterface) : base(loc, os)
         {
             this.arguments = arguments;
             this.exeInterface = exeInterface;
@@ -43,6 +45,8 @@ namespace Pathfinder.Executable
 
         public static Instance CreateInstance(Interface exeInterface, Hacknet.OS os, List<string> args, Rectangle loc)
         {
+            if (exeInterface is IMainDisplayOverride)
+                return new InstanceOverrideDisplay(loc, os, args, exeInterface);
             return new Instance(loc, os, args, exeInterface);
         }
 
@@ -126,6 +130,35 @@ namespace Pathfinder.Executable
         {
             base.PostDrawStep();
             exeInterface.PostDraw(this);
+        }
+
+        public class InstanceOverrideDisplay : Instance, MainDisplayOverrideEXE
+        {
+            private bool isOverrideAble = true;
+
+            public bool DisplayOverrideIsActive
+            {
+                get
+                {
+                    return isOverrideAble && (exeInterface as IMainDisplayOverride).IsOverrideActive(this);
+                }
+                set
+                {
+                    isOverrideAble = value;
+                }
+            }
+
+            public InstanceOverrideDisplay(Rectangle loc, OS os, List<string> arguments, Interface exeInterface)
+                : base(loc, os, arguments, exeInterface)
+            {
+                if (!(exeInterface is IMainDisplayOverride))
+                    throw new ArgumentException("exeInterface must be derived from IMainDisplayOverride");
+            }
+
+            public void RenderMainDisplay(Rectangle dest, SpriteBatch sb)
+            {
+                (exeInterface as IMainDisplayOverride).DrawMain(this, dest, sb);
+            }
         }
     }
 }

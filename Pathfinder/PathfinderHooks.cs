@@ -157,7 +157,8 @@ namespace Pathfinder
                                                      ref string[] argArray,
                                                      ref string originalName)
         {
-            var portExecutableExecuteEvent = new Event.PortExecutableExecuteEvent(self,
+            // hangs thread for some reason TODO: figure why and fix it
+            /*var portExecutableExecuteEvent = new Event.PortExecutableExecuteEvent(self,
                                                                                     location,
                                                                                     exeName,
                                                                                     exeFileData,
@@ -165,7 +166,8 @@ namespace Pathfinder
                                                                                     argArray);
             portExecutableExecuteEvent.CallEvent();
             if (portExecutableExecuteEvent.IsCancelled)
-                return true;
+                return true;*/
+
             return false;
         }
 

@@ -70,8 +70,8 @@ namespace PathfinderPatcher
 
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("LoadContent").InjectWith(
                     hooks.GetMethod("onPostLoadSession"),
-                    flags: InjectFlags.PassInvokingInstance,
-                    dir: InjectDirection.After
+                    -1,
+                    flags: InjectFlags.PassInvokingInstance
                 );
 
                 // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
@@ -124,7 +124,7 @@ namespace PathfinderPatcher
 
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("launchExecutable").InjectWith(
 					hooks.GetMethod("onPortExecutableExecute"),
-                    48,
+                    44,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
                     localsID: new int[] { 2 }
                 );
