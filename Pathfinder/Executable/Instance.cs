@@ -4,12 +4,14 @@ using Hacknet;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+#pragma warning disable CS0618
 namespace Pathfinder.Executable
 {
     public class Instance : Hacknet.ExeModule
     {
+        private FileEntry executingFile;
         private List<string> arguments;
-        private Interface exeInterface;
+        private IInterface exeInterface;
         private Dictionary<string, object> keyToObject = new Dictionary<string, object>();
 
         public List<string> Arguments
@@ -29,7 +31,7 @@ namespace Pathfinder.Executable
             }
         }
 
-        public Interface Interface
+        public IInterface Interface
         {
             get
             {
@@ -37,22 +39,31 @@ namespace Pathfinder.Executable
             }
         }
 
-        public Instance(Rectangle loc, Hacknet.OS os, List<string> arguments, Interface exeInterface) : base(loc, os)
+        public FileEntry ExecutionFile
+        {
+            get
+            {
+                return executingFile;
+            }
+        }
+
+        public Instance(Rectangle loc, Hacknet.OS os, List<string> arguments, FileEntry executionFile, IInterface exeInterface) : base(loc, os)
         {
             this.arguments = arguments;
             this.exeInterface = exeInterface;
+            this.executingFile = executionFile;
         }
 
-        public static Instance CreateInstance(Interface exeInterface, Hacknet.OS os, List<string> args, Rectangle loc)
+        public static Instance CreateInstance(IInterface exeInterface, FileEntry executionFile, OS os, List<string> args, Rectangle loc)
         {
             if (exeInterface is IMainDisplayOverride)
-                return new InstanceOverrideDisplay(loc, os, args, exeInterface);
-            return new Instance(loc, os, args, exeInterface);
+                return new InstanceOverrideDisplay(loc, os, args, executionFile, exeInterface);
+            return new Instance(loc, os, args, executionFile, exeInterface);
         }
 
-        public static Instance CreateInstance(Interface exeInterface, Hacknet.OS os, List<string> args)
+        public static Instance CreateInstance(IInterface exeInterface, FileEntry executionFile, OS os, List<string> args)
         {
-            return CreateInstance(exeInterface, os, args, Rectangle.Empty);
+            return CreateInstance(exeInterface, executionFile, os, args, Rectangle.Empty);
         }
 
         public object GetInstanceData(string key)
@@ -110,8 +121,8 @@ namespace Pathfinder.Executable
         public override void Update(float t)
         {
             this.IdentifierName = exeInterface.GetIdentifier(this);
-            if (this.IdentifierName == "UNKNOWN")
-                this.IdentifierName = exeInterface.GetIdentifer(this);
+            if (this.IdentifierName == "UNKNOWN" && exeInterface is Interface)
+                this.IdentifierName = (exeInterface as Interface).GetIdentifer(this);
             this.needsProxyAccess = exeInterface.NeedsProxyAccess(this);
             this.ramCost = exeInterface.GetRamCost(this);
             bool? result = exeInterface.Update(this, t);
@@ -148,8 +159,8 @@ namespace Pathfinder.Executable
                 }
             }
 
-            public InstanceOverrideDisplay(Rectangle loc, OS os, List<string> arguments, Interface exeInterface)
-                : base(loc, os, arguments, exeInterface)
+            public InstanceOverrideDisplay(Rectangle loc, OS os, List<string> arguments, FileEntry executionFile, IInterface exeInterface)
+                : base(loc, os, arguments, executionFile, exeInterface)
             {
                 if (!(exeInterface is IMainDisplayOverride))
                     throw new ArgumentException("exeInterface must be derived from IMainDisplayOverride");

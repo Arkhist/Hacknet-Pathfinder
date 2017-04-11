@@ -2,19 +2,42 @@
 
 namespace Pathfinder.Executable
 {
-    public class Interface
+    public interface IInterface
     {
-        private string fileData;
+        string GetIdentifier(Instance instance);
+        bool NeedsProxyAccess(Instance instance);
+        int GetRamCost(Instance instance);
+        void LoadContent(Instance instance);
+        void OnComplete(Instance instance);
+        void Draw(Instance instance, float time);
+        /// <summary>
+        /// Draws the outline.
+        /// </summary>
+        /// <returns><c>true</c>, if vanilla outline draw should continue, <c>false</c> otherwise.</returns>
+        bool DrawOutline(Instance instance);
+        /// <summary>
+        /// Draws the target.
+        /// </summary>
+        /// <returns><c>true</c>, if vanilla target draw should continue, <c>false</c> otherwise.</returns>
+        bool DrawTarget(Instance instance, string typeName = "app:");
+        void OnKilled(Instance instance);
+        /// <summary>
+        /// Runs an update tick for the executable
+        /// </summary>
+        /// <returns>Whether isExiting should be set to true or not (thus exiting the program), null doesn't set it</returns>
+        bool? Update(Instance instance, float time);
+        void PreDraw(Instance instance);
+        void PostDraw(Instance instance);
+    }
 
+    public class Interface : IInterface
+    {
+        [Obsolete("Rely on instance.ExecutionFile.data instead")]
         public string FileData
         {
             get
             {
-                return fileData;
-            }
-            internal set
-            {
-                this.fileData = value;
+                return Handler.GetStandardFileDataBy(this);
             }
         }
 
