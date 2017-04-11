@@ -220,6 +220,64 @@ namespace Pathfinder.Event
         }
     }
 
+    public class LoadComputerXmlReadEvent : PathfinderEvent
+    {
+        private Computer computer;
+        private XmlReader reader;
+        private string filename;
+        private bool preventNetmapAdd;
+        private bool preventDaemonInit;
+
+        public Computer Computer
+        {
+            get
+            {
+                return computer;
+            }
+        }
+
+        public XmlReader Reader
+        {
+            get
+            {
+                return reader;
+            }
+        }
+
+        public string Filename
+        {
+            get
+            {
+                return filename;
+            }
+        }
+
+        public bool PreventNetmapAdd
+        {
+            get
+            {
+                return preventNetmapAdd;
+            }
+        }
+
+        public bool PreventDaemonInit
+        {
+            get
+            {
+                return preventDaemonInit;
+            }
+        }
+
+        public LoadComputerXmlReadEvent(Computer computer, XmlReader reader, string filename, bool preventNetmapAdd, bool preventDaemonInit)
+        {
+            this.computer = computer;
+            this.reader = reader;
+            this.filename = filename;
+            this.preventNetmapAdd = preventNetmapAdd;
+            this.preventDaemonInit = preventDaemonInit;
+        }
+    }
+
     public class ExecutableExecuteEvent : PathfinderEvent
     {
         private Computer computer;

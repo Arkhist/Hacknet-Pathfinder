@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -6,10 +7,10 @@ namespace Pathfinder.Daemon
 {
     public class Instance : Hacknet.Daemon
     {
-        private Interface daeInterface;
-        private Dictionary<string, object> keyToObject = new Dictionary<string, object>();
+        private IInterface daeInterface;
+        private Dictionary<string, Tuple<bool, object>> keyToObject = new Dictionary<string, Tuple<bool, object>>();
 
-        public Interface Interface
+        public IInterface Interface
         {
             get
             {
@@ -17,15 +18,35 @@ namespace Pathfinder.Daemon
             }
         }
 
-        public Instance(Hacknet.Computer computer, string serviceName, Hacknet.OS os, Interface daeInterface) : base(computer, serviceName, os)
+        public string InterfaceId
+        {
+            get; internal set;
+        }
+
+        public Instance(Hacknet.Computer computer, string serviceName, Hacknet.OS os, IInterface daeInterface) : base(computer, serviceName, os)
         {
             this.daeInterface = daeInterface;
             daeInterface.OnCreate(this);
         }
 
+        public static Instance CreateInstance(Hacknet.Computer computer, string serviceName, Hacknet.OS os, IInterface daeInterface)
+        {
+            return new Instance(computer, serviceName, os, daeInterface);
+        }
+
+        public static Instance CreateInstance(Event.LoadComputerXmlReadEvent e, IInterface daeInterface)
+        {
+            var i = CreateInstance(e.Computer, daeInterface.InitialServiceName, e.Computer.os, daeInterface);
+            daeInterface.LoadInstance(i, e.Reader);
+            return i;
+        }
+
         public object GetInstanceData(string key)
         {
-            return keyToObject[key];
+            Tuple<bool, object> t;
+            if (keyToObject.TryGetValue(key, out t))
+               return t.Item2;
+            return null;
         }
 
         public T GetInstanceData<T>(string key)
@@ -33,10 +54,29 @@ namespace Pathfinder.Daemon
             return (T)GetInstanceData(key);
         }
 
-        public bool SetInstanceData(string key, object val)
+        public bool? IsInstanceSaveable(string key)
         {
-            keyToObject[key] = val;
-            return keyToObject[key] == val;
+            Tuple<bool, object> t;
+            if (keyToObject.TryGetValue(key, out t))
+               return t.Item1;
+            return null;
+        }
+
+        public bool SetInstanceData(string key, object val, bool shouldSave = false)
+        {
+            var t = new Tuple<bool, object>(shouldSave, val);
+            keyToObject[key] = t;
+            return keyToObject[key] == t;
+        }
+
+        public void SetInstanceDataSaveable(string key, bool shouldSave)
+        {
+            Tuple<bool, object> t;
+            if (keyToObject.TryGetValue(key, out t))
+            {
+                t = new Tuple<bool, object>(shouldSave, t.Item2);
+                keyToObject[key] = t;
+            }
         }
 
         public override void draw(Rectangle bounds, SpriteBatch sb)
@@ -47,7 +87,14 @@ namespace Pathfinder.Daemon
 
         public override string getSaveString()
         {
-            return daeInterface.GetSaveString(this);
+            var str = "<"+InterfaceId;
+            foreach (var o in keyToObject)
+            {
+                if(o.Value.Item1)
+                    str+= " " + o.Key + "=\"" + o.Value.Item2.ToString() + "\"";
+            }
+            str += " />";
+            return str;
         }
 
         public override void initFiles()

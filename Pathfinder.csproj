@@ -97,6 +97,7 @@
     <Compile Include="Pathfinder\Daemon\Interface.cs" />
     <Compile Include="Pathfinder\Executable\ExecutionResult.cs" />
     <Compile Include="Pathfinder\Executable\IMainDisplayOverride.cs" />
+    <Compile Include="Pathfinder\Daemon\Handler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

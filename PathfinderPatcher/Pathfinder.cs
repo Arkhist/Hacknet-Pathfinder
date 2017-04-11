@@ -37,6 +37,10 @@ namespace PathfinderPatcher
                 ad.AddAssemblyAttribute<InternalsVisibleToAttribute>("Pathfinder");
                 ad.RemoveInternals();
 
+                var osField = ad.MainModule.GetType("Hacknet.Computer").GetField("os");
+                osField.IsPrivate = false;
+                osField.IsAssembly = true;
+
                 if (spitOutHacknetOnly)
                 {
                     ad.Write("HacknetPathfinder.exe");
@@ -127,6 +131,13 @@ namespace PathfinderPatcher
                     44,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
                     localsID: new int[] { 2 }
+                );
+
+                ad.MainModule.GetType("Hacknet.ComputerLoader").GetMethod("loadComputer").InjectWith(
+                    hooks.GetMethod("onLoadComputer"),
+                    197,
+                    flags: InjectFlags.PassParametersVal | InjectFlags.PassLocals,
+                    localsID: new int[] { 0, 2 }
                 );
             }
             catch (Exception ex)

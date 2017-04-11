@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
@@ -13,6 +15,11 @@ namespace Pathfinder.Executable
 
         public static bool AddExecutable(string exeIdentity, IInterface inter)
         {
+            var asm = new StackFrame(1).GetMethod().Module.Assembly;
+            if (asm == MethodBase.GetCurrentMethod().Module.Assembly)
+                exeIdentity = "Pathfinder:" + exeIdentity;
+            else
+                exeIdentity = Pathfinder.GetModByAssembly(asm).GetIdentifier() + ":" + exeIdentity;
             if (interfaces.ContainsKey(exeIdentity))
                 return false;
             var type = inter.GetType();

@@ -171,6 +171,20 @@ namespace Pathfinder
             return false;
         }
 
+        public static void onLoadComputer(ref Computer createdComputer,
+                                          ref XmlReader reader,
+                                          string filename,
+                                          bool preventAddingToNetmap,
+                                          bool preventInitDaemons)
+        {
+            var loadComputerEvent = new Event.LoadComputerXmlReadEvent(createdComputer,
+                                                                reader,
+                                                                filename,
+                                                                preventAddingToNetmap,
+                                                                preventInitDaemons);
+            loadComputerEvent.CallEvent();
+        }
+
         static FieldInfo titleFontField = typeof(MainMenu).GetField("titleFont",
                                                                             BindingFlags.NonPublic | BindingFlags.Instance);
         static FieldInfo titleColorField = typeof(MainMenu).GetField("titleColor",

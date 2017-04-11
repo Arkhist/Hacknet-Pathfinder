@@ -9,7 +9,7 @@ namespace Pathfinder
 {
     static class Pathfinder
     {
-        static Dictionary<string, PathfinderMod> mods = new Dictionary<string, PathfinderMod>();
+        private static Dictionary<string, PathfinderMod> mods = new Dictionary<string, PathfinderMod>();
 
         public static void init()
         {
@@ -66,6 +66,16 @@ namespace Pathfinder
                     Console.WriteLine("Impossible to load mod " + dll + " : " + ex.Message);
                 }
             }
+        }
+
+        internal static PathfinderMod GetModByAssembly(Assembly asm)
+        {
+            foreach (var pair in mods)
+            {
+                if (pair.Value.GetType().Assembly == asm)
+                    return pair.Value;
+            }
+            return null;
         }
 
         public static void LoadModContent()

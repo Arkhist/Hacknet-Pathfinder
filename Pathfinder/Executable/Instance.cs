@@ -4,7 +4,6 @@ using Hacknet;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-#pragma warning disable CS0618
 namespace Pathfinder.Executable
 {
     public class Instance : Hacknet.ExeModule
@@ -19,15 +18,6 @@ namespace Pathfinder.Executable
             get
             {
                 return arguments;
-            }
-        }
-
-        [Obsolete("Use Arguments")]
-        public List<string> Parameters
-        {
-            get
-            {
-                return Arguments;
             }
         }
 
@@ -121,8 +111,6 @@ namespace Pathfinder.Executable
         public override void Update(float t)
         {
             this.IdentifierName = exeInterface.GetIdentifier(this);
-            if (this.IdentifierName == "UNKNOWN" && exeInterface is Interface)
-                this.IdentifierName = (exeInterface as Interface).GetIdentifer(this);
             this.needsProxyAccess = exeInterface.NeedsProxyAccess(this);
             this.ramCost = exeInterface.GetRamCost(this);
             bool? result = exeInterface.Update(this, t);

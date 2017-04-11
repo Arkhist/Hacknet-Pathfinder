@@ -29,7 +29,7 @@ namespace TemplateMod
 
         class TempExe : Executable.Interface
         {
-            public override string GetIdentifer(Executable.Instance instance)
+            public override string GetIdentifier(Executable.Instance instance)
             {
                 return "TempExe";
             }

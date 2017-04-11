@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Pathfinder.Executable
+﻿namespace Pathfinder.Executable
 {
     public interface IInterface
     {
@@ -32,21 +30,6 @@ namespace Pathfinder.Executable
 
     public class Interface : IInterface
     {
-        [Obsolete("Rely on instance.ExecutionFile.data instead")]
-        public string FileData
-        {
-            get
-            {
-                return Handler.GetStandardFileDataBy(this);
-            }
-        }
-
-        [Obsolete("Use GetIdentifier")]
-        public virtual string GetIdentifer(Instance instance)
-        {
-            return GetIdentifier(instance);
-        }
-
         public virtual string GetIdentifier(Instance instance)
         {
             return "UNKNOWN";
