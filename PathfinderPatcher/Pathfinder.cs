@@ -112,7 +112,7 @@ namespace PathfinderPatcher
                 // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
                 ad.MainModule.GetType("Hacknet.ProgramRunner").GetMethod("AttemptExeProgramExecution").InjectWith(
                     hooks.GetMethod("onExecutableExecute"),
-                    48,
+                    54,
                     flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
                     localsID: new int[] { 0, 1, 2, 6 }
                 );
@@ -126,6 +126,7 @@ namespace PathfinderPatcher
                     localsID: new int[] { 0 }
                 );
 
+                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("launchExecutable").InjectWith(
 					hooks.GetMethod("onPortExecutableExecute"),
                     44,
@@ -133,6 +134,7 @@ namespace PathfinderPatcher
                     localsID: new int[] { 2 }
                 );
 
+                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
                 ad.MainModule.GetType("Hacknet.ComputerLoader").GetMethod("loadComputer").InjectWith(
                     hooks.GetMethod("onLoadComputer"),
                     197,

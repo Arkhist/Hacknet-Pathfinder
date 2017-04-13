@@ -57,7 +57,14 @@ namespace Pathfinder.Event
             {
                 foreach (var listener in eventListeners[eventType])
                 {
-                    listener(pathfinderEvent);
+                    try
+                    {
+                        listener(pathfinderEvent);
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
             }
         }

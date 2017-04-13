@@ -44,14 +44,14 @@ namespace Pathfinder.Executable
             this.executingFile = executionFile;
         }
 
-        public static Instance CreateInstance(IInterface exeInterface, FileEntry executionFile, OS os, List<string> args, Rectangle loc)
+        public static Instance CreateInstance(IInterface exeInterface, FileEntry executionFile, Hacknet.OS os, List<string> args, Rectangle loc)
         {
             if (exeInterface is IMainDisplayOverride)
                 return new InstanceOverrideDisplay(loc, os, args, executionFile, exeInterface);
             return new Instance(loc, os, args, executionFile, exeInterface);
         }
 
-        public static Instance CreateInstance(IInterface exeInterface, FileEntry executionFile, OS os, List<string> args)
+        public static Instance CreateInstance(IInterface exeInterface, FileEntry executionFile, Hacknet.OS os, List<string> args)
         {
             return CreateInstance(exeInterface, executionFile, os, args, Rectangle.Empty);
         }
@@ -147,7 +147,7 @@ namespace Pathfinder.Executable
                 }
             }
 
-            public InstanceOverrideDisplay(Rectangle loc, OS os, List<string> arguments, FileEntry executionFile, IInterface exeInterface)
+            public InstanceOverrideDisplay(Rectangle loc, Hacknet.OS os, List<string> arguments, FileEntry executionFile, IInterface exeInterface)
                 : base(loc, os, arguments, executionFile, exeInterface)
             {
                 if (!(exeInterface is IMainDisplayOverride))

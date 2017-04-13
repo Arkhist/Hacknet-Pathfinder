@@ -41,7 +41,7 @@ namespace Pathfinder
         // Hook location : ProgramRunner.ExecuteProgram()
         public static bool onCommandSent(out bool disconnects, object osObj, string[] arguments)
         {
-            var os = osObj as OS;
+            var os = osObj as Hacknet.OS;
             var commandSentEvent = new Event.CommandSentEvent(os, arguments);
             commandSentEvent.CallEvent();
             if (commandSentEvent.IsCancelled)
@@ -54,7 +54,7 @@ namespace Pathfinder
         }
 
         // Hook location : OS.LoadContent()
-        public static bool onLoadSession(OS self)
+        public static bool onLoadSession(Hacknet.OS self)
         {
             var loadSessionEvent = new Event.LoadSessionEvent(self);
             loadSessionEvent.CallEvent();
@@ -65,7 +65,7 @@ namespace Pathfinder
 
 
         // Hook location : end of OS.LoadContent()
-        public static void onPostLoadSession(OS self)
+        public static void onPostLoadSession(Hacknet.OS self)
         {
             var postLoadSessionEvent = new Event.PostLoadSessionEvent(self);
             postLoadSessionEvent.CallEvent();
@@ -94,7 +94,7 @@ namespace Pathfinder
         }
 
         // Hook location : OS.loadSaveFile()
-        public static bool onLoadSaveFile(OS self, ref Stream stream, ref XmlReader xmlReader)
+        public static bool onLoadSaveFile(Hacknet.OS self, ref Stream stream, ref XmlReader xmlReader)
         {
             var loadSaveFileEvent = new Event.LoadSaveFileEvent(self, xmlReader, stream);
             loadSaveFileEvent.CallEvent();
@@ -106,7 +106,7 @@ namespace Pathfinder
         }
 
         // Hook location : OS.writeSaveGame()
-        public static bool onSaveFile(OS self, string filename)
+        public static bool onSaveFile(Hacknet.OS self, string filename)
         {
             var saveFileEvent = new Event.SaveFileEvent(self, filename);
             saveFileEvent.CallEvent();
@@ -129,17 +129,17 @@ namespace Pathfinder
 
         // Hook location : OS.launchExecutable
         public static bool onExecutableExecute(out int result,
-                                               ref Computer computer,
+                                               ref Hacknet.Computer computer,
                                                ref Folder exeFolder,
                                                ref int fileIndex,
                                                ref string exeFileData,
-                                               ref OS os,
+                                               ref Hacknet.OS os,
                                                ref string[] argArray)
         {
             var executableExecuteEvent = new Event.ExecutableExecuteEvent(computer,
                                                                           exeFolder,
                                                                           fileIndex,
-                                                                          fileIndex > 0 ? exeFolder.files[fileIndex] : null,
+                                                                          fileIndex >= 0 ? exeFolder.files[fileIndex] : null,
                                                                           os,
                                                                           argArray);
             executableExecuteEvent.CallEvent();
@@ -149,7 +149,7 @@ namespace Pathfinder
             return false;
         }
 
-        public static bool onPortExecutableExecute(OS self,
+        public static bool onPortExecutableExecute(Hacknet.OS self,
                                                      ref Rectangle location,
                                                      ref string exeName,
                                                      ref string exeFileData,
@@ -157,8 +157,7 @@ namespace Pathfinder
                                                      ref string[] argArray,
                                                      ref string originalName)
         {
-            // hangs thread for some reason TODO: figure why and fix it
-            /*var portExecutableExecuteEvent = new Event.PortExecutableExecuteEvent(self,
+            var portExecutableExecuteEvent = new Event.PortExecutableExecuteEvent(self,
                                                                                     location,
                                                                                     exeName,
                                                                                     exeFileData,
@@ -166,12 +165,12 @@ namespace Pathfinder
                                                                                     argArray);
             portExecutableExecuteEvent.CallEvent();
             if (portExecutableExecuteEvent.IsCancelled)
-                return true;*/
+                return true;
 
             return false;
         }
 
-        public static void onLoadComputer(ref Computer createdComputer,
+        public static void onLoadComputer(ref Hacknet.Computer createdComputer,
                                           ref XmlReader reader,
                                           string filename,
                                           bool preventAddingToNetmap,

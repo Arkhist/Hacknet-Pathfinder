@@ -7,10 +7,10 @@ namespace Pathfinder.Command
 {
     public static class Handler
     {
-        private static Dictionary<string, Func<OS, string[], bool>> commands =
+        private static Dictionary<string, Func<Hacknet.OS, string[], bool>> commands =
             new Dictionary<string, Func<Hacknet.OS, string[], bool>>();
 
-        public static bool AddCommand(string key, Func<OS, string[], bool> function)
+        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function)
         {
             if (commands.ContainsKey(key))
                 return false;
@@ -18,7 +18,7 @@ namespace Pathfinder.Command
             return true;
         }
 
-        public static bool AddCommand(string key, Func<OS, string[], bool> function, bool autoComplete)
+        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function, bool autoComplete)
         {
             if (AddCommand(key, function))
             {
@@ -29,7 +29,7 @@ namespace Pathfinder.Command
             return false;
         }
 
-        public static bool AddCommand(string key, Func<OS, string[], bool> function, string description, bool autoComplete)
+        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function, string description, bool autoComplete)
         {
             if (AddCommand(key, function, autoComplete))
             {
@@ -44,7 +44,7 @@ namespace Pathfinder.Command
         /// </summary>
         internal static void CommandListener(CommandSentEvent commandSentEvent)
         {
-            foreach (KeyValuePair<string, Func<OS, string[], bool>> entry in commands)
+            foreach (KeyValuePair<string, Func<Hacknet.OS, string[], bool>> entry in commands)
                 if (commandSentEvent.Arguments[0].Equals(entry.Key))
                 {
                     commandSentEvent.IsCancelled = true;

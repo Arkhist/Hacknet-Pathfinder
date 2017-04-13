@@ -65,7 +65,7 @@ namespace Pathfinder.Executable
                 int num = e.OsInstance.ram.bounds.Y + RamModule.contentStartOffset;
                 foreach (var exe in e.OsInstance.exes)
                         num += exe.bounds.Height;
-                Rectangle location = new Rectangle(e.OsInstance.ram.bounds.X, num, RamModule.MODULE_WIDTH, (int)OS.EXE_MODULE_HEIGHT);
+                Rectangle location = new Rectangle(e.OsInstance.ram.bounds.X, num, RamModule.MODULE_WIDTH, (int)Hacknet.OS.EXE_MODULE_HEIGHT);
                 e.OsInstance.addExe(Instance.CreateInstance(i, e.ExeFile, e.OsInstance, e.Arguments, location));
                 e.Result = ExecutionResult.StartupSuccess;
             }
