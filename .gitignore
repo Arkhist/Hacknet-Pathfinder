@@ -38,6 +38,3 @@ Thumbs.db
 
 # dotCover
 *.dotCover
-lib/PathfinderPatcher.vshost.exe
-lib/PathfinderPatcher.vshost.exe.manifest
-lib/Hacknet.exe

@@ -104,6 +104,13 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersVal | InjectFlags.ModifyReturn
                 );
 
+                ad.MainModule.GetType("Hacknet.OS").GetMethod("writeSaveGame").InjectWith(
+					hooks.GetMethod("onSaveWrite"),
+                    -5,
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals | InjectFlags.PassParametersVal,
+                    localsID: new int[] { 0 }
+                );
+
                 ad.MainModule.GetType("Hacknet.NetworkMap").GetMethod("LoadContent").InjectWith(
                     hooks.GetMethod("onLoadNetmapContent"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn

@@ -4,3 +4,6 @@ Steamworks.NET.dll
 PathfinderPatcher.exe
 PathfinderPatcher.pdb
 HacknetPathfinder.exe
+PathfinderPatcher.vshost.exe
+PathfinderPatcher.vshost.exe.manifest
+Hacknet.exe

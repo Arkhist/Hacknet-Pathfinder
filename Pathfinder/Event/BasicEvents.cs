@@ -6,7 +6,6 @@ using System.IO;
 using System.Xml;
 using Hacknet;
 using Microsoft.Xna.Framework;
-using Executable = Pathfinder.Executable;
 
 namespace Pathfinder.Event
 {
@@ -199,6 +198,19 @@ namespace Pathfinder.Event
         {
             this.osInstance = osInstance;
             this.filename = filename;
+        }
+    }
+
+    public class SaveWriteEvent : SaveFileEvent
+    {
+        public string SaveString
+        {
+            get; set;
+        }
+
+        public SaveWriteEvent(Hacknet.OS osInstance, string filename, string saveString) : base(osInstance, filename)
+        {
+            this.SaveString = saveString;
         }
     }
 
@@ -405,7 +417,7 @@ namespace Pathfinder.Event
             this.fileIndex = fileIndex;
             this.exeFile = exeFile;
             this.os = os;
-            this.arguments = new List<string>(argArray);
+            this.arguments = new List<string>(argArray ?? new string[0]);
         }
     }
 
@@ -477,10 +489,7 @@ namespace Pathfinder.Event
             this.exeName = exeName;
             this.exeData = exeFileData;
             this.targetPort = targetPort;
-            if (argArray == null)
-                this.arguments = new List<string>();
-            else
-                this.arguments = new List<string>(argArray);
+            this.arguments = new List<string>(argArray ?? new string[0]);
         }
     }
 

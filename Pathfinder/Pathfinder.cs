@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Xml;
 
 namespace Pathfinder
 {
     static class Pathfinder
     {
         private static Dictionary<string, PathfinderMod> mods = new Dictionary<string, PathfinderMod>();
+        //private static bool currentSaveMissingMods = false;
 
         public static void init()
         {
@@ -20,6 +22,8 @@ namespace Pathfinder
 
             EventManager.RegisterListener<ExecutableExecuteEvent>(Executable.Handler.ExecutableListener);
             EventManager.RegisterListener<CommandSentEvent>(Executable.Handler.ExecutableListInsertListener);
+
+            EventManager.RegisterListener<SaveWriteEvent>(ManageSaveXml);
 
             LoadMods();
         }
@@ -92,6 +96,15 @@ namespace Pathfinder
             {
                 return mods.Keys.ToArray();
             }
+        }
+
+        internal static void ManageSaveXml(SaveWriteEvent e)
+        {
+            var i = e.SaveString.IndexOf("</HacknetSave>", StringComparison.Ordinal);
+            string modListStr = "";
+            foreach (var pair in mods)
+                modListStr += "\t<Mod assembly='" + pair.Value.GetType().Assembly.GetName().Name + "'>" + pair.Key + "</Mod>\n";
+            e.SaveString = e.SaveString.Insert(i, "\n<PathfinderMods>\n" + modListStr + "</PathfinderMods>\n");
         }
     }
 }

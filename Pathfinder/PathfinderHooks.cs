@@ -117,6 +117,13 @@ namespace Pathfinder
             return false;
         }
 
+        public static void onSaveWrite(Hacknet.OS self, ref string saveString, string filename)
+        {
+            var saveWriteEvent = new Event.SaveWriteEvent(self, filename, saveString);
+            saveWriteEvent.CallEvent();
+            saveString = saveWriteEvent.SaveString;
+        }
+
         // Hook location : NetworkMap.LoadContent()
         public static bool onLoadNetmapContent(NetworkMap self)
         {
