@@ -98,9 +98,12 @@
     <Compile Include="Pathfinder\Executable\ExecutionResult.cs" />
     <Compile Include="Pathfinder\Executable\IMainDisplayOverride.cs" />
     <Compile Include="Pathfinder\Daemon\Handler.cs" />
+    <Compile Include="Pathfinder\Computer\Extensions.cs" />
+    <Compile Include="Pathfinder\OS\Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />
+    <Folder Include="Pathfinder\OS\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
