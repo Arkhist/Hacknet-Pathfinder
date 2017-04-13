@@ -477,7 +477,10 @@ namespace Pathfinder.Event
             this.exeName = exeName;
             this.exeData = exeFileData;
             this.targetPort = targetPort;
-            this.arguments = new List<string>(argArray);
+            if (argArray == null)
+                this.arguments = new List<string>();
+            else
+                this.arguments = new List<string>(argArray);
         }
     }
 
