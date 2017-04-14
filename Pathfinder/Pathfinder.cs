@@ -13,6 +13,9 @@ namespace Pathfinder
         private static Dictionary<string, PathfinderMod> mods = new Dictionary<string, PathfinderMod>();
         //private static bool currentSaveMissingMods = false;
 
+        public static readonly string ModFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+                                                          + Path.DirectorySeparatorChar + "Mods";
+
         public static void init()
         {
             EventManager.RegisterListener<CommandSentEvent>(Command.Handler.CommandListener);
@@ -35,13 +38,12 @@ namespace Pathfinder
 
         public static void LoadMods()
         {
-            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            char separator = Path.DirectorySeparatorChar;
+            var separator = Path.DirectorySeparatorChar;
 
-            if (!Directory.Exists(path + separator + "Mods"))
-                Directory.CreateDirectory(path + separator + "Mods");
+            if (!Directory.Exists(ModFolderPath))
+                Directory.CreateDirectory(ModFolderPath);
 
-            foreach (string dll in Directory.GetFiles(path + separator + "Mods" + separator, "*.dll"))
+            foreach (string dll in Directory.GetFiles(ModFolderPath + separator, "*.dll"))
             {
                 try
                 {

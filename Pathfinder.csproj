@@ -100,10 +100,14 @@
     <Compile Include="Pathfinder\Daemon\Handler.cs" />
     <Compile Include="Pathfinder\Computer\Extensions.cs" />
     <Compile Include="Pathfinder\OS\Extensions.cs" />
+    <Compile Include="Pathfinder\Util\File\ModContent.cs" />
+    <Compile Include="Pathfinder\Util\SoundSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />
     <Folder Include="Pathfinder\OS\" />
+    <Folder Include="Pathfinder\Util\" />
+    <Folder Include="Pathfinder\Util\File\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
