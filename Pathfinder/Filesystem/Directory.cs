@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Hacknet;
+using Pathfinder.Util;
 
 namespace Pathfinder.Filesystem
 {
@@ -136,6 +137,35 @@ namespace Pathfinder.Filesystem
                 Vanilla.files.Add(f.Vanilla);
             }
             return f;
+        }
+
+        public File CreateExecutableFile(string name, Executable.IInterface modInterface)
+        {
+            var data = Executable.Handler.GetStandardFileDataBy(modInterface);
+            if (data == null)
+                return null;
+            return CreateFile(name, data);
+        }
+
+        public File CreateExecutableFile(string name, string exeId)
+        {
+            var data = Executable.Handler.GetStandardFileDataBy(exeId);
+            if (data == null)
+            {
+                data = ExeInfoManager.GetExecutableInfo(exeId).Data;
+                if (data == null)
+                    return null;
+            }
+            return CreateFile(name, data);
+        }
+
+        public File CreateExecutableFile(string name, int vanillaIndex)
+        {
+            string data;
+            PortExploits.crackExeData.TryGetValue(vanillaIndex, out data);
+            if (data == null)
+                return null;
+            return CreateFile(name, data);
         }
 
         public bool DeleteDirectory(string name)

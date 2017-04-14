@@ -53,7 +53,7 @@ namespace Pathfinder.Executable
         {
             foreach (var pair in interfaces)
                 if (pair.Value == inter)
-                    return pair.Key;
+                    return GetStandardFileDataBy(pair.Key);
             return null;
         }
 

@@ -81,7 +81,12 @@ namespace Pathfinder.Filesystem
 
         public static Filesystem GetPrimaryFilesystem()
         {
-            return new Filesystem(Hacknet.OS.currentInstance.thisComputer);
+            return Hacknet.OS.currentInstance;
+        }
+
+        public static implicit operator Filesystem(Hacknet.OS os)
+        {
+            return os.thisComputer;
         }
 
         public static implicit operator Filesystem(Hacknet.Computer computer)

@@ -63,7 +63,9 @@ namespace Pathfinder.Event
                     }
                     catch(Exception ex)
                     {
-                        Console.WriteLine(ex.Message);
+                        Console.WriteLine("Execption:");
+                        Console.WriteLine("\tMessage: " + ex.Message);
+                        Console.WriteLine("\tWhole: " + ex);
                     }
                 }
             }

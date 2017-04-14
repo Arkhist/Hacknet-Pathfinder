@@ -28,6 +28,8 @@ namespace Pathfinder
 
             EventManager.RegisterListener<SaveWriteEvent>(ManageSaveXml);
 
+            EventManager.RegisterListener<LoadContentEvent>(Util.ExeInfoManager.LoadExecutableStruct);
+
             LoadMods();
         }
 

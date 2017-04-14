@@ -107,6 +107,7 @@
     <Compile Include="Pathfinder\Filesystem\IFilesystemObject.cs" />
     <Compile Include="Pathfinder\Filesystem\File.cs" />
     <Compile Include="Pathfinder\Filesystem\Directory.cs" />
+    <Compile Include="Pathfinder\Util\ExeInfoManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />
