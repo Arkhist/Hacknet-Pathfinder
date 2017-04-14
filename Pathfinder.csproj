@@ -102,12 +102,18 @@
     <Compile Include="Pathfinder\OS\Extensions.cs" />
     <Compile Include="Pathfinder\Util\File\ModContent.cs" />
     <Compile Include="Pathfinder\Util\SoundSystem.cs" />
+    <Compile Include="Pathfinder\Filesystem\Extensions.cs" />
+    <Compile Include="Pathfinder\Filesystem\Filesystem.cs" />
+    <Compile Include="Pathfinder\Filesystem\IFilesystemObject.cs" />
+    <Compile Include="Pathfinder\Filesystem\File.cs" />
+    <Compile Include="Pathfinder\Filesystem\Directory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />
     <Folder Include="Pathfinder\OS\" />
     <Folder Include="Pathfinder\Util\" />
     <Folder Include="Pathfinder\Util\File\" />
+    <Folder Include="Pathfinder\Filesystem\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

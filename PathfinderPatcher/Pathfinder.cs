@@ -43,7 +43,7 @@ namespace PathfinderPatcher
 
                 if (spitOutHacknetOnly)
                 {
-                    ad.Write("HacknetPathfinder.exe");
+                    ad?.Write("HacknetPathfinder.exe");
                     return;
                 }
 
@@ -148,15 +148,16 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassParametersVal | InjectFlags.PassLocals,
                     localsID: new int[] { 0, 2 }
                 );
+
+                ad?.Write("HacknetPathfinder.exe");
             }
             catch (Exception ex)
             {
+                ad?.Write("HacknetPathfinder.exe");
                 Console.Write(ex);
                 Console.WriteLine("Press enter to end...");
                 Console.ReadLine();
             }
-            if (ad != null)
-                ad.Write("HacknetPathfinder.exe");
         }
 
         internal static void AddAssemblyAttribute<T>(this AssemblyDefinition ad, params object[] attribArgs)
