@@ -7,6 +7,8 @@ namespace Pathfinder.Util
     {
         public struct ExecutableInfo
         {
+            public static ExecutableInfo Empty = new ExecutableInfo();
+
             public int PortNumber { get; private set; }
             public int Index { get; private set; }
             public int NumberIndex { get; private set; }
@@ -15,6 +17,14 @@ namespace Pathfinder.Util
             public bool NeedsPort { get; private set; }
             public string Data { get; private set; }
             public string LocalData { get; private set; }
+            public bool IsEmpty
+            {
+                get
+                {
+                    return this.Equals(Empty);
+                }
+            }
+
             public ExecutableInfo(int pn, int i, int ni, string n, string sn, bool np, string d, string ld)
             {
                 PortNumber = pn;
@@ -25,6 +35,39 @@ namespace Pathfinder.Util
                 NeedsPort = np;
                 Data = d;
                 LocalData = ld;
+            }
+
+            public bool Equals(ExecutableInfo o)
+            {
+                return o.PortNumber == PortNumber
+                        && o.Index == Index
+                        && o.NumberIndex == NumberIndex
+                        && o.Name == Name
+                        && o.ServiceName == ServiceName
+                        && o.NeedsPort == NeedsPort
+                        && o.Data == Data
+                        && o.LocalData == LocalData;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj is ExecutableInfo)
+                    Equals((ExecutableInfo)obj);
+                return false;
+            }
+
+            public override int GetHashCode()
+            {
+                int hash = Index;
+                hash = (hash * 15) + NumberIndex;
+                hash = (hash * 15) + Name.GetHashCode();
+                hash = (hash * 15) + ServiceName.GetHashCode();
+                hash = (hash * 15) + (NeedsPort ? 1 : 2);
+                hash = (hash * 15) + Data.GetHashCode();
+                hash = (hash * 15) + Data.GetHashCode();
+                if (PortNumber != -1)
+                    hash = (hash * 15) + PortNumber;
+                return hash;
             }
         }
 
