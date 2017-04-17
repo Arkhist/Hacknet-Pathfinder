@@ -5,7 +5,6 @@ using System.IO;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Hacknet;
-using Microsoft.Xna.Framework.Media;
 
 namespace Pathfinder.Util.File
 {

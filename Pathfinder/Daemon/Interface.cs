@@ -1,4 +1,4 @@
-﻿using System.Xml;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -10,7 +10,7 @@ namespace Pathfinder.Daemon
 
         void OnCreate(Instance instance);
         void Draw(Instance instance, Rectangle bounds, SpriteBatch sb);
-        void LoadInstance(Instance instance, XmlReader reader);
+        void LoadInstance(Instance instance, Dictionary<string, string> objects);
         void InitFiles(Instance instance);
         void LoadInit(Instance instance);
         void OnNavigatedTo(Instance instance);
@@ -29,7 +29,7 @@ namespace Pathfinder.Daemon
 
         public virtual void OnCreate(Instance instance) {}
         public virtual void Draw(Instance instance, Rectangle bounds, SpriteBatch sb) {}
-        public virtual void LoadInstance(Instance instance, XmlReader reader) {}
+        public virtual void LoadInstance(Instance instance, Dictionary<string, string> objects) {}
         public virtual void InitFiles(Instance instance) {}
         public virtual void LoadInit(Instance instance) {}
         public virtual void OnNavigatedTo(Instance instance) {}

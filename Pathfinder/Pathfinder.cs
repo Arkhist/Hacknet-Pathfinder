@@ -1,15 +1,19 @@
-﻿using Pathfinder.Event;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Xml;
+using Pathfinder.Event;
 
 namespace Pathfinder
 {
     static class Pathfinder
     {
+        class ExceptionInvalidId : ArgumentException
+        {
+            public ExceptionInvalidId(string msg) : base(msg) { }
+        }
+
         private static Dictionary<string, PathfinderMod> mods = new Dictionary<string, PathfinderMod>();
         //private static bool currentSaveMissingMods = false;
 
@@ -62,6 +66,10 @@ namespace Pathfinder
                     if (methodInfo == null)
                         throw new NotSupportedException("Method 'GetIdentifier' doesn't exist : invalid Mod.dll");
                     var name = (string)methodInfo.Invoke(modInstance, null);
+                    if (name == "Pathfinder" || name == "Hacknet" || mods.ContainsKey(name))
+                        throw new ExceptionInvalidId("Mod with identifier '" + name + "' is either already loaded or is reserved");
+                    if (name.Contains('.'))
+                        throw new ExceptionInvalidId("Mod identifier '" + name + "' contains a period, mod identifiers may not contain a period (.)");
                     Console.WriteLine("Loading mod : " + name);
 
                     mods.Add(name, modInstance);

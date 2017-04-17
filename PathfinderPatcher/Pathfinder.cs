@@ -41,6 +41,30 @@ namespace PathfinderPatcher
                 osField.IsPrivate = false;
                 osField.IsAssembly = true;
 
+                var missionServer = ad.MainModule.GetType("Hacknet.MissionListingServer");
+                foreach (var f in missionServer.Fields)
+                {
+                    if (!f.IsPrivate) continue;
+                    f.IsPrivate = false;
+                    f.IsAssembly = true;
+                }
+
+                missionServer = ad.MainModule.GetType("Hacknet.MissionHubServer");
+                foreach (var f in missionServer.Fields)
+                {
+                    if (!f.IsPrivate) continue;
+                    f.IsPrivate = false;
+                    f.IsAssembly = true;
+                }
+
+                var activeMission = ad.MainModule.GetType("Hacknet.ActiveMission");
+                foreach (var m in activeMission.Methods)
+                {
+                    if (m.IsStatic || m.IsConstructor) continue;
+                    m.IsVirtual = true;
+                    m.IsNewSlot = true;
+                }
+
                 if (spitOutHacknetOnly)
                 {
                     ad?.Write("HacknetPathfinder.exe");

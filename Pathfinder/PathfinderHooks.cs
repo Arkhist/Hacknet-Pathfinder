@@ -217,7 +217,7 @@ namespace Pathfinder
                 {
                     text3 = "Test Build : Expires in " + timeSpan.ToString();
                 }
-                TextItem.doFontLabel(new Vector2(180f, 105f), text3, GuiData.smallfont, new Color?(Color.Red* 0.8f), 600f, 26f, false);
+                TextItem.doFontLabel(new Vector2(180f, 105f), text3, GuiData.smallfont, Color.Red * 0.8f, 600f, 26f, false);
             }
             var drawMainMenuTitles = new Event.DrawMainMenuTitlesEvent(self, ref mainTitle, ref subtitle);
             drawMainMenuTitles.CallEvent();
@@ -235,7 +235,7 @@ namespace Pathfinder
                 c,
                 2
             );
-            TextItem.doFontLabel (new Vector2(520f, 178f), subtitle, GuiData.smallfont, new Color? (c* 0.5f), 600f, 26f, false);
+            TextItem.doFontLabel (new Vector2(520f, 178f), subtitle, GuiData.smallfont, c * 0.5f, 600f, 26f, false);
             return true;
         }
     }

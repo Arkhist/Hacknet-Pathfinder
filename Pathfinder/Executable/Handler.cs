@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
+using Pathfinder.Util;
 
 namespace Pathfinder.Executable
 {
@@ -15,11 +14,7 @@ namespace Pathfinder.Executable
 
         public static bool AddExecutable(string exeIdentity, IInterface inter)
         {
-            var asm = new StackFrame(1).GetMethod().Module.Assembly;
-            if (asm == MethodBase.GetCurrentMethod().Module.Assembly)
-                exeIdentity = "Pathfinder:" + exeIdentity;
-            else
-                exeIdentity = Pathfinder.GetModByAssembly(asm).GetIdentifier() + ":" + exeIdentity;
+            exeIdentity = Utility.GetPreviousStackFrameIdentity() + "." + exeIdentity;
             if (interfaces.ContainsKey(exeIdentity))
                 return false;
             var type = inter.GetType();
@@ -43,7 +38,8 @@ namespace Pathfinder.Executable
 
         public static string GetStandardFileDataBy(string id)
         {
-            string result = null;
+            id = Utility.GetId(id, ignoreValidXml: true);
+            string result;
             if (idToDataCache.TryGetValue(id, out result))
                 return result;
             return null;
@@ -60,13 +56,13 @@ namespace Pathfinder.Executable
         internal static void ExecutableListener(ExecutableExecuteEvent e)
         {
             IInterface i;
-            if (IsFileDataForMod(e.ExeFile.data) && interfaces.TryGetValue(e.ExeFile.data.Split('\n')[0], out i))
+            if (IsFileDataForMod(e.ExecutableFile.data) && interfaces.TryGetValue(e.ExecutableFile.data.Split('\n')[0], out i))
             {
                 int num = e.OsInstance.ram.bounds.Y + RamModule.contentStartOffset;
                 foreach (var exe in e.OsInstance.exes)
-                        num += exe.bounds.Height;
-                Rectangle location = new Rectangle(e.OsInstance.ram.bounds.X, num, RamModule.MODULE_WIDTH, (int)Hacknet.OS.EXE_MODULE_HEIGHT);
-                e.OsInstance.addExe(Instance.CreateInstance(i, e.ExeFile, e.OsInstance, e.Arguments, location));
+                    num += exe.bounds.Height;
+                var location = new Rectangle(e.OsInstance.ram.bounds.X, num, RamModule.MODULE_WIDTH, (int)Hacknet.OS.EXE_MODULE_HEIGHT);
+                e.OsInstance.addExe(Instance.CreateInstance(i, e.ExecutableFile, e.OsInstance, e.Arguments, location));
                 e.Result = ExecutionResult.StartupSuccess;
             }
         }
@@ -88,11 +84,11 @@ namespace Pathfinder.Executable
                 {
                     bool alreadyHandled = false;
                     var name = file.name.Contains(".") ? file.name.Remove(file.name.LastIndexOf('.')) : file.name;
-                    foreach (var num in Hacknet.PortExploits.exeNums)
-                        if (file.data == Hacknet.PortExploits.crackExeData[num]
-                            || file.data == Hacknet.PortExploits.crackExeDataLocalRNG[num])
+                    foreach (var num in PortExploits.exeNums)
+                        if (file.data == PortExploits.crackExeData[num]
+                            || file.data == PortExploits.crackExeDataLocalRNG[num])
                         {
-                            os.write (name);
+                            os.write(name);
                             alreadyHandled = true;
                             break;
                         }

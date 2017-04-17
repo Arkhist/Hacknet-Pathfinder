@@ -2,7 +2,7 @@
 using Hacknet;
 using Pathfinder.Util;
 
-namespace Pathfinder.Filesystem
+namespace Pathfinder.GameFilesystem
 {
     public class Directory : IFilesystemObject
     {

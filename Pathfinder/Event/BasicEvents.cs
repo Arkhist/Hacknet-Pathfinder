@@ -6,72 +6,48 @@ using System.IO;
 using System.Xml;
 using Hacknet;
 using Microsoft.Xna.Framework;
+using Pathfinder.Util;
 
 namespace Pathfinder.Event
 {
     // Called when Hacknet boots up (Program.Main start)
     public class StartUpEvent : PathfinderEvent
     {
-        private string[] mainArgs;
-
-        public string[] MainArgs
+        public List<string> MainArguments
         {
-            get
-            {
-                return mainArgs;
-            }
+            get; private set;
         }
 
         public StartUpEvent(string[] args)
         {
-            mainArgs = args;
+            MainArguments = new List<string>(args ?? Utility.Array<string>.Empty);
         }
-
     }
 
     // Called after Hacknet loads the Game Object (actual game)
     public class LoadContentEvent : PathfinderEvent
     {
-        private Game1 gameInstance;
-
         public Game1 GameInstance
         {
-            get
-            {
-                return gameInstance;
-            }
+            get; private set;
         }
 
         public LoadContentEvent(Game1 gameInstance)
         {
-            this.gameInstance = gameInstance;
+            GameInstance = gameInstance;
         }
     }
 
     public class CommandSentEvent : PathfinderEvent
     {
-        private Hacknet.OS osInstance;
-        private string[] args;
-        private bool disconnectFlag = false;
-
         public bool Disconnects
         {
-            get
-            {
-                return disconnectFlag;
-            }
-            set
-            {
-                disconnectFlag = value;
-            }
+            get; set;
         }
 
-        public string[] Arguments
+        public List<string> Arguments
         {
-            get
-            {
-                return args;
-            }
+            get; private set;
         }
 
         [Obsolete("Use Arguments")]
@@ -79,125 +55,100 @@ namespace Pathfinder.Event
         {
             get
             {
-                return Arguments;
+                return Arguments.ToArray();
             }
         }
 
         public Hacknet.OS OsInstance
         {
-            get
-            {
-                return osInstance;
-            }
+            get; private set;
         }
 
         public CommandSentEvent(Hacknet.OS osInstance, string[] args)
         {
-            this.osInstance = osInstance;
-            this.args = args;
+            OsInstance = osInstance;
+            Arguments = new List<string>(args ?? Utility.Array<string>.Empty);
+            Disconnects = false;
         }
     }
 
     public class LoadSessionEvent : PathfinderEvent
     {
-        private Hacknet.OS osInstance;
-
         public Hacknet.OS OsInstance
         {
-            get
-            {
-                return osInstance;
-            }
+            get; private set;
         }
 
         public LoadSessionEvent(Hacknet.OS osInstance)
         {
-            this.osInstance = osInstance;
+            OsInstance = osInstance;
         }
     }
 
     public class PostLoadSessionEvent : PathfinderEvent
     {
-        private Hacknet.OS osInstance;
-
         public Hacknet.OS OsInstance
         {
-            get
-            {
-                return osInstance;
-            }
+            get; private set;
         }
 
         public PostLoadSessionEvent(Hacknet.OS osInstance)
         {
-            this.osInstance = osInstance;
+            OsInstance = osInstance;
         }
     }
 
     public class LoadSaveFileEvent : PathfinderEvent
     {
-        private Hacknet.OS osInstance;
-        private XmlReader xmlReader;
-        private Stream stream;
-
         public Hacknet.OS OsInstance
         {
-            get
-            {
-                return osInstance;
-            }
+            get; private set;
         }
 
+        public XmlReader Reader
+        {
+            get; private set;
+        }
+
+        [Obsolete("Use Reader")]
         public XmlReader XmlReader
         {
             get
             {
-                return xmlReader;
+                return Reader;
             }
         }
 
         public Stream Stream
         {
-            get
-            {
-                return stream;
-            }
+            get; private set;
         }
 
         public LoadSaveFileEvent(Hacknet.OS osInstance, XmlReader xmlReader, Stream stream)
         {
-            this.osInstance = osInstance;
-            this.xmlReader = xmlReader;
-            this.stream = stream;
+            OsInstance = osInstance;
+            Reader = xmlReader;
+            Stream = stream;
         }
     }
 
     public class SaveFileEvent : PathfinderEvent
     {
-        private Hacknet.OS osInstance;
-        private string filename;
-
         public Hacknet.OS OsInstance
         {
-            get
-            {
-                return osInstance;
-            }
+            get; private set;
         }
 
         public string Filename
         {
-            get
-            {
-                return filename;
-            }
+            get; private set;
         }
 
 
         public SaveFileEvent(Hacknet.OS osInstance, string filename)
         {
-            this.osInstance = osInstance;
-            this.filename = filename;
+            OsInstance = osInstance;
+            Filename = filename;
         }
     }
 
@@ -216,148 +167,90 @@ namespace Pathfinder.Event
 
     public class LoadNetmapContentEvent : PathfinderEvent
     {
-        private NetworkMap netMapInstance;
-
         public NetworkMap NetMapInstance
         {
-            get
-            {
-                return netMapInstance;
-            }
+            get; private set;
         }
 
         public LoadNetmapContentEvent(NetworkMap netmapInstance)
         {
-            this.netMapInstance = netmapInstance;
+            NetMapInstance = netmapInstance;
         }
     }
 
     public class LoadComputerXmlReadEvent : PathfinderEvent
     {
-        private Hacknet.Computer computer;
-        private XmlReader reader;
-        private string filename;
-        private bool preventNetmapAdd;
-        private bool preventDaemonInit;
 
         public Hacknet.Computer Computer
         {
-            get
-            {
-                return computer;
-            }
+            get; private set;
         }
 
         public XmlReader Reader
         {
-            get
-            {
-                return reader;
-            }
+            get; private set;
         }
 
         public string Filename
         {
-            get
-            {
-                return filename;
-            }
+            get; private set;
         }
 
         public bool PreventNetmapAdd
         {
-            get
-            {
-                return preventNetmapAdd;
-            }
+            get; private set;
         }
 
         public bool PreventDaemonInit
         {
-            get
-            {
-                return preventDaemonInit;
-            }
+            get; private set;
         }
 
         public LoadComputerXmlReadEvent(Hacknet.Computer computer, XmlReader reader, string filename, bool preventNetmapAdd, bool preventDaemonInit)
         {
-            this.computer = computer;
-            this.reader = reader;
-            this.filename = filename;
-            this.preventNetmapAdd = preventNetmapAdd;
-            this.preventDaemonInit = preventDaemonInit;
+            Computer = computer;
+            Reader = reader;
+            Filename = filename;
+            PreventNetmapAdd = preventNetmapAdd;
+            PreventDaemonInit = preventDaemonInit;
         }
     }
 
     public class ExecutableExecuteEvent : PathfinderEvent
     {
-        private Hacknet.Computer computer;
-        private Folder folder;
-        private int fileIndex;
-        private FileEntry exeFile;
-        private Hacknet.OS os;
-        private List<string> arguments;
-        private Executable.ExecutionResult result = Executable.ExecutionResult.NotFound;
-
         public Hacknet.Computer Computer
         {
-            get
-            {
-                return computer;
-            }
+            get; private set;
         }
 
         public Folder Folder
         {
-            get
-            {
-                return folder;
-            }
+            get; private set;
         }
 
         public int FileIndex
         {
-            get
-            {
-                return fileIndex;
-            }
+            get; private set;
         }
 
-        public FileEntry ExeFile
+        public FileEntry ExecutableFile
         {
-            get
-            {
-                return exeFile;
-            }
+            get; private set;
         }
 
         public Hacknet.OS OsInstance
         {
-            get
-            {
-                return os;
-            }
+            get; private set;
         }
 
         public List<string> Arguments
         {
-            get
-            {
-                return arguments;
-            }
+            get; private set;
         }
 
         public Executable.ExecutionResult Result
         {
-            get
-            {
-                return result;
-            }
-            set
-            {
-                result = value;
-            }
+            get; set;
         }
 
         [Obsolete("Use Arguments")]
@@ -378,21 +271,21 @@ namespace Pathfinder.Event
             }
         }
 
-        [Obsolete("Just directly use ExeFile.name")]
+        [Obsolete("Just directly use ExecutableFile.name")]
         public string ExecutableName
         {
             get
             {
-                return ExeFile.name;
+                return ExecutableFile.name;
             }
         }
 
-        [Obsolete("Just directly use Exefile.data")]
+        [Obsolete("Just directly use Executablefile.data")]
         public string ExecutableData
         {
             get
             {
-                return ExeFile.data;
+                return ExecutableFile.data;
             }
         }
 
@@ -412,69 +305,44 @@ namespace Pathfinder.Event
                                       Hacknet.OS os,
                                       string[] argArray)
         {
-            this.computer = computer;
-            this.folder = folder;
-            this.fileIndex = fileIndex;
-            this.exeFile = exeFile;
-            this.os = os;
-            this.arguments = new List<string>(argArray ?? new string[0]);
+            Computer = computer;
+            Folder = folder;
+            FileIndex = fileIndex;
+            ExecutableFile = exeFile;
+            OsInstance = os;
+            Arguments = new List<string>(argArray ?? Utility.Array<string>.Empty);
         }
     }
 
     public class PortExecutableExecuteEvent : PathfinderEvent
     {
-        private Hacknet.OS osInstance;
-        private Rectangle destination;
-        private string exeName;
-        private string exeData;
-        private int targetPort;
-        private List<string> arguments;
-
         public Hacknet.OS OsInstance
         {
-            get
-            {
-                return osInstance;
-            }
+            get; private set;
         }
 
         public Rectangle Destination
         {
-            get
-            {
-                return destination;
-            }
+            get; private set;
         }
 
         public string ExecutableName
         {
-            get
-            {
-                return exeName;
-            }
+            get; private set;
         }
         public string ExecutableData
         {
-            get
-            {
-                return exeData;
-            }
+            get; private set;
         }
 
         public int TargetPort
         {
-            get
-            {
-                return targetPort;
-            }
+            get; private set;
         }
 
         public List<string> Arguments
         {
-            get
-            {
-                return arguments;
-            }
+            get; private set;
         }
 
         public PortExecutableExecuteEvent(Hacknet.OS os,
@@ -484,30 +352,25 @@ namespace Pathfinder.Event
                                             int targetPort,
                                             string[] argArray)
         {
-            this.osInstance = os;
-            this.destination = dest;
-            this.exeName = exeName;
-            this.exeData = exeFileData;
-            this.targetPort = targetPort;
-            this.arguments = new List<string>(argArray ?? new string[0]);
+            OsInstance = os;
+            Destination = dest;
+            ExecutableName = exeName;
+            ExecutableData = exeFileData;
+            TargetPort = targetPort;
+            Arguments = new List<string>(argArray ?? Utility.Array<string>.Empty);
         }
     }
 
     public class GameExitEvent : PathfinderEvent
     {
-        private Game1 gameInstance;
-
         public Game1 GameInstance
         {
-            get
-            {
-                return gameInstance;
-            }
+            get; private set;
         }
 
         public GameExitEvent(Game1 gameInstance)
         {
-            this.gameInstance = gameInstance;
+            GameInstance = gameInstance;
         }
     }
 }

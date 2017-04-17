@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Pathfinder.Executable
 {
-    public class Instance : Hacknet.ExeModule
+    public class Instance : ExeModule
     {
         private FileEntry executingFile;
         private List<string> arguments;
@@ -37,14 +37,19 @@ namespace Pathfinder.Executable
             }
         }
 
-        public Instance(Rectangle loc, Hacknet.OS os, List<string> arguments, FileEntry executionFile, IInterface exeInterface) : base(loc, os)
+        public Instance(Rectangle loc, Hacknet.OS os, List<string> arguments, FileEntry executionFile, IInterface exeInterface)
+            : base(loc, os)
         {
             this.arguments = arguments;
             this.exeInterface = exeInterface;
             this.executingFile = executionFile;
         }
 
-        public static Instance CreateInstance(IInterface exeInterface, FileEntry executionFile, Hacknet.OS os, List<string> args, Rectangle loc)
+        public static Instance CreateInstance(IInterface exeInterface,
+                                              FileEntry executionFile,
+                                              Hacknet.OS os,
+                                              List<string> args,
+                                              Rectangle loc)
         {
             if (exeInterface is IMainDisplayOverride)
                 return new InstanceOverrideDisplay(loc, os, args, executionFile, exeInterface);
@@ -56,9 +61,24 @@ namespace Pathfinder.Executable
             return CreateInstance(exeInterface, executionFile, os, args, Rectangle.Empty);
         }
 
+        public object this[string key]
+        {
+            get
+            {
+                object o;
+                if (keyToObject.TryGetValue(key, out o))
+                    return o;
+                return null;
+            }
+            set
+            {
+                keyToObject[key] = value;
+            }
+        }
+
         public object GetInstanceData(string key)
         {
-            return keyToObject[key];
+            return this[key];
         }
 
         public T GetInstanceData<T>(string key)
@@ -68,8 +88,8 @@ namespace Pathfinder.Executable
 
         public bool SetInstanceData(string key, object val)
         {
-            keyToObject[key] = val;
-            return keyToObject[key] == val;
+            this[key] = val;
+            return this[key] == val;
         }
 
         public override void LoadContent()
@@ -113,7 +133,7 @@ namespace Pathfinder.Executable
             this.IdentifierName = exeInterface.GetIdentifier(this);
             this.needsProxyAccess = exeInterface.NeedsProxyAccess(this);
             this.ramCost = exeInterface.GetRamCost(this);
-            bool? result = exeInterface.Update(this, t);
+            var result = exeInterface.Update(this, t);
             if(result.HasValue)
                 this.isExiting = result.Value;
             base.Update(t);

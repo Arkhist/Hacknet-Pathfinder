@@ -1,100 +1,61 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Pathfinder.Event
 {
     public class DrawMainMenuEvent : PathfinderEvent
     {
-        private Hacknet.MainMenu mainMenuInstance;
-        private GameTime gameTime;
-
         public Hacknet.MainMenu MainMenuInstance
         {
-            get
-            {
-                return mainMenuInstance;
-            }
+            get; private set;
         }
 
         public GameTime GameTime
         {
-            get
-            {
-                return gameTime;
-            }
+            get; private set;
         }
 
         public DrawMainMenuEvent(Hacknet.MainMenu mainMenuInstance, GameTime gameTime)
         {
-            this.mainMenuInstance = mainMenuInstance;
-            this.gameTime = gameTime;
+            MainMenuInstance = mainMenuInstance;
+            GameTime = gameTime;
         }
     }
 
     public class DrawMainMenuButtonsEvent : PathfinderEvent
     {
-        private Hacknet.MainMenu mainMenuInstance;
-
         public Hacknet.MainMenu MainMenuInstance
         {
-            get
-            {
-                return mainMenuInstance;
-            }
+            get; private set;
         }
 
         public DrawMainMenuButtonsEvent(Hacknet.MainMenu mainMenuInstance)
         {
-            this.mainMenuInstance = mainMenuInstance;
+            MainMenuInstance = mainMenuInstance;
         }
     }
 
     public class DrawMainMenuTitlesEvent : PathfinderEvent
     {
-        private Hacknet.MainMenu mainMenuInstance;
-        private string mainTitle;
-        private string subtitle;
-
         public Hacknet.MainMenu MainMenuInstance
         {
-            get
-            {
-                return mainMenuInstance;
-            }
+            get; set;
         }
 
         public string MainTitle
         {
-            get
-            {
-                return mainTitle;
-            }
-            set
-            {
-                mainTitle = value;
-            }
+            get; set;
         }
 
         public string Subtitle
         {
-            get
-            {
-                return subtitle;
-            }
-            set
-            {
-                subtitle = value;
-            }
+            get; set;
         }
 
         public DrawMainMenuTitlesEvent(Hacknet.MainMenu mainMenuInstance, ref string mainTitle, ref string subtitle)
         {
-            this.mainMenuInstance = mainMenuInstance;
-            this.mainTitle = mainTitle;
-            this.subtitle = subtitle;
+            MainMenuInstance = mainMenuInstance;
+            MainTitle = mainTitle;
+            Subtitle = subtitle;
         }
     }
 }

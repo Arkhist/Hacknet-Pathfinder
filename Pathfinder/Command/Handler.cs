@@ -7,50 +7,50 @@ namespace Pathfinder.Command
 {
     public static class Handler
     {
-        private static Dictionary<string, Func<Hacknet.OS, string[], bool>> commands =
-            new Dictionary<string, Func<Hacknet.OS, string[], bool>>();
+        private static Dictionary<string, Func<Hacknet.OS, List<string>, bool>> commands =
+            new Dictionary<string, Func<Hacknet.OS, List<string>, bool>>();
 
-        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function)
+        public static bool AddCommand(string key,
+                                      Func<Hacknet.OS, List<string>, bool> function,
+                                      string description = null,
+                                      bool autoComplete = false)
         {
             if (commands.ContainsKey(key))
                 return false;
             commands.Add(key, function);
-            return true;
+            if (description != null)
+                Helpfile.help.Add(key + "\n    " + description);
+            if(autoComplete && !ProgramList.programs.Contains(key))
+                    ProgramList.programs.Add(key);
+            return false;
         }
 
+        [Obsolete("The second argument of function should be a list instead of an array")]
+        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function)
+        {
+            return AddCommand(key, (os, l) => function(os, l.ToArray()));
+        }
+
+        [Obsolete("The second argument of function should be a list instead of an array")]
         public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function, bool autoComplete)
         {
-            if (AddCommand(key, function))
-            {
-                if (autoComplete && !ProgramList.programs.Contains(key))
-                    ProgramList.programs.Add(key);
-                return true;
-            }
-            return false;
+            return AddCommand(key, (os, l) => function(os, l.ToArray()), autoComplete: autoComplete);
         }
 
+        [Obsolete("The second argument of function should be a list instead of an array")]
         public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function, string description, bool autoComplete)
         {
-            if (AddCommand(key, function, autoComplete))
-            {
-                Helpfile.help.Add(key + "\n    " + description);
-                return true;
-            }
-            return false;
+            return AddCommand(key, (os, l) => function(os, l.ToArray()), description, autoComplete);
         }
 
-        /// <summary>
-        /// Do not use this method outside of Pathfinder.dll
-        /// </summary>
         internal static void CommandListener(CommandSentEvent commandSentEvent)
         {
-            foreach (KeyValuePair<string, Func<Hacknet.OS, string[], bool>> entry in commands)
-                if (commandSentEvent.Arguments[0].Equals(entry.Key))
-                {
-                    commandSentEvent.IsCancelled = true;
-                    commandSentEvent.Disconnects = entry.Value(commandSentEvent.OsInstance, commandSentEvent.Arguments);
-                    break;
-                }
+            Func<Hacknet.OS, List<string>, bool> f;
+            if (commands.TryGetValue(commandSentEvent.Arguments[0], out f))
+            {
+                commandSentEvent.IsCancelled = true;
+                commandSentEvent.Disconnects = f(commandSentEvent.OsInstance, commandSentEvent.Arguments);
+            }
         }
     }
 }

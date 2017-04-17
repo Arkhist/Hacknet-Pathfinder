@@ -1,6 +1,6 @@
-﻿using Hacknet;
+using Hacknet;
 
-namespace Pathfinder.Filesystem
+namespace Pathfinder.GameFilesystem
 {
     public class File : IFilesystemObject
     {

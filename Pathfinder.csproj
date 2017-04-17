@@ -102,19 +102,27 @@
     <Compile Include="Pathfinder\OS\Extensions.cs" />
     <Compile Include="Pathfinder\Util\File\ModContent.cs" />
     <Compile Include="Pathfinder\Util\SoundSystem.cs" />
-    <Compile Include="Pathfinder\Filesystem\Extensions.cs" />
-    <Compile Include="Pathfinder\Filesystem\Filesystem.cs" />
-    <Compile Include="Pathfinder\Filesystem\IFilesystemObject.cs" />
-    <Compile Include="Pathfinder\Filesystem\File.cs" />
-    <Compile Include="Pathfinder\Filesystem\Directory.cs" />
+    <Compile Include="Pathfinder\GameFilesystem\Extensions.cs" />
+    <Compile Include="Pathfinder\GameFilesystem\Filesystem.cs" />
+    <Compile Include="Pathfinder\GameFilesystem\IFilesystemObject.cs" />
+    <Compile Include="Pathfinder\GameFilesystem\File.cs" />
+    <Compile Include="Pathfinder\GameFilesystem\Directory.cs" />
     <Compile Include="Pathfinder\Util\ExeInfoManager.cs" />
+    <Compile Include="Pathfinder\Mission\MissionManager.cs" />
+    <Compile Include="Pathfinder\Mission\MissionGoalInstance.cs" />
+    <Compile Include="Pathfinder\Mission\MissionGoalInterface.cs" />
+    <Compile Include="Pathfinder\Mission\Instance.cs" />
+    <Compile Include="Pathfinder\Mission\Handler.cs" />
+    <Compile Include="Pathfinder\Util\Utility.cs" />
+    <Compile Include="Pathfinder\Mission\Interface.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />
     <Folder Include="Pathfinder\OS\" />
     <Folder Include="Pathfinder\Util\" />
     <Folder Include="Pathfinder\Util\File\" />
-    <Folder Include="Pathfinder\Filesystem\" />
+    <Folder Include="Pathfinder\GameFilesystem\" />
+    <Folder Include="Pathfinder\Mission\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

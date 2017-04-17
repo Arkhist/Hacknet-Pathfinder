@@ -21,27 +21,27 @@ namespace Pathfinder.GUI
                 return;
             pathfinderEvent.IsCancelled = true;
 
-            GameScreen baseS = ((GameScreen)pathfinderEvent.MainMenuInstance);
+            GameScreen baseS = pathfinderEvent.MainMenuInstance;
 
-            if (Button.doButton(15, 180, 650, 250, 28, "Return", new Color?(MainMenu.exitButtonColor)))
+            if (Button.doButton(15, 180, 650, 250, 28, "Return", MainMenu.exitButtonColor))
             {
                 mainMenuState = MainMenuState.GameHandled;
             }
 
-            TextItem.doFontLabel(new Vector2(125f, (float)50), "Pathfinder Mod Load Order", GuiData.font, new Color?(Color.White), 3.40282347E+38f, 3.40282347E+38f, false);
+            TextItem.doFontLabel(new Vector2(125f, 50), "Pathfinder Mod Load Order", GuiData.font, Color.White, 3.40282347E+38f, 3.40282347E+38f, false);
 
             float yPos = 120;
             int index = 0;
             foreach (var modIdentifier in Pathfinder.LoadedModIdentifiers)
             {
-                TextItem.doFontLabel(new Vector2(200f, (float)yPos), (++index) + ". " + modIdentifier, GuiData.smallfont, new Color?(Color.White), 3.40282347E+38f, 3.40282347E+38f, false);
+                TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + modIdentifier, GuiData.smallfont, Color.White, 3.40282347E+38f, 3.40282347E+38f, false);
                 yPos += 30;
             }
         }
 
         public static void drawPathfinderButtons(DrawMainMenuButtonsEvent pathfinderEvent)
         {
-            if (Button.doButton(200, 180, 600, 450, 40, "Pathfinder Mod List", new Color?(MainMenu.buttonColor)))
+            if (Button.doButton(200, 180, 600, 450, 40, "Pathfinder Mod List", MainMenu.buttonColor))
             {
                 mainMenuState = MainMenuState.PathfinderModList;
             }
