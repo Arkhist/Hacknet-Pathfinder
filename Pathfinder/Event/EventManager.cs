@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Pathfinder.Util;
 
 namespace Pathfinder.Event
 {
@@ -55,17 +56,18 @@ namespace Pathfinder.Event
             var eventType = pathfinderEvent.GetType();
             if (eventListeners.ContainsKey(eventType))
             {
+                Logger.Verbose("Attepting to call event {0}", eventType.FullName);
                 foreach (var listener in eventListeners[eventType])
                 {
                     try
                     {
+                        Logger.Verbose("Attempting to call event listener {0}", listener.Method.Name);
                         listener(pathfinderEvent);
                     }
                     catch(Exception ex)
                     {
-                        Console.WriteLine("Execption:");
-                        Console.WriteLine("\tMessage: " + ex.Message);
-                        Console.WriteLine("\tWhole: " + ex);
+                        Logger.Error("Event Call Failed");
+                        Logger.Error("Exception: ", ex);
                     }
                 }
             }

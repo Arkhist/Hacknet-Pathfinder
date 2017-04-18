@@ -15,6 +15,10 @@ namespace Pathfinder.Executable
         public static bool AddExecutable(string exeIdentity, IInterface inter)
         {
             exeIdentity = Utility.GetPreviousStackFrameIdentity() + "." + exeIdentity;
+            Logger.Verbose("Mod {0} is attempting to add executable interface {1} with id {2}",
+                           Utility.GetPreviousStackFrameIdentity(),
+                           inter.GetType().FullName,
+                           exeIdentity);
             if (interfaces.ContainsKey(exeIdentity))
                 return false;
             var type = inter.GetType();
@@ -30,7 +34,7 @@ namespace Pathfinder.Executable
         public static bool IsFileDataForMod(string fileData)
         {
             var dataLines = fileData.Split('\n');
-            return dataLines.Length == 2 && dataLines[1] == "ldloc.args"
+            return dataLines.Length >= 3 && dataLines[1] == "ldloc.args"
                             && dataLines[2].StartsWith("call Pathfinder.Executable.Instance ", StringComparison.Ordinal)
                             && dataLines[2].EndsWith("=" + dataLines[0] + "()", StringComparison.Ordinal)
                             && idToDataCache.ContainsValue(dataLines[0]);

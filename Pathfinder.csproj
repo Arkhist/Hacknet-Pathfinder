@@ -115,6 +115,7 @@
     <Compile Include="Pathfinder\Mission\Handler.cs" />
     <Compile Include="Pathfinder\Util\Utility.cs" />
     <Compile Include="Pathfinder\Mission\Interface.cs" />
+    <Compile Include="Pathfinder\Util\Logger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

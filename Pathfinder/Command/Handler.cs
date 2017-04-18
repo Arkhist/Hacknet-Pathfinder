@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Hacknet;
 using Pathfinder.Event;
+using Pathfinder.Util;
 
 namespace Pathfinder.Command
 {
@@ -15,6 +16,7 @@ namespace Pathfinder.Command
                                       string description = null,
                                       bool autoComplete = false)
         {
+            Logger.Verbose("Mod {0} is attempting to add command {1}", Utility.GetPreviousStackFrameIdentity(), key);
             if (commands.ContainsKey(key))
                 return false;
             commands.Add(key, function);

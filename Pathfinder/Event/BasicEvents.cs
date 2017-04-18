@@ -161,7 +161,7 @@ namespace Pathfinder.Event
 
         public SaveWriteEvent(Hacknet.OS osInstance, string filename, string saveString) : base(osInstance, filename)
         {
-            this.SaveString = saveString;
+            SaveString = saveString;
         }
     }
 

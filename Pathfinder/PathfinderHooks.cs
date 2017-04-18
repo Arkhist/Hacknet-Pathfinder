@@ -7,6 +7,7 @@ using Hacknet.Effects;
 using System;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework.Graphics;
+using Pathfinder.Util;
 
 namespace Pathfinder
 {
@@ -18,6 +19,21 @@ namespace Pathfinder
     {
         public static bool onMain(string[] args)
         {
+            for (int i = 0; i < args.Length; i++)
+            {
+                try
+                {
+                    if (args[i] == "-logIgnore" && args.Length > i + 1)
+                        Logger.RemoveFlag((Logger.LogLevel)Enum.Parse(typeof(Logger.LogLevel), args[i + 1].ToUpper()));
+                    if (args[i] == "-log" && args.Length > i + 1)
+                        Logger.SetFlag((Logger.LogLevel)Enum.Parse(typeof(Logger.LogLevel), args[i + 1].ToUpper()));
+                }
+                catch (Exception e)
+                {
+                    Logger.Error("Could not do {0}, value {1}: ", args[i], args.Length > i + 1 ? args[i + 1] : "null", e);
+                }
+            }
+            Logger.Verbose("Initializing Pathfinder");
             Pathfinder.init();
             var startUpEvent = new Event.StartUpEvent(args);
             startUpEvent.CallEvent();
@@ -33,6 +49,7 @@ namespace Pathfinder
         //      PortExploits.populate();
         public static void onLoadContent(Game1 self)
         {
+            Logger.Verbose("Loading Pathfinder content");
             Pathfinder.LoadModContent();
             var loadContentEvent = new Event.LoadContentEvent(self);
             loadContentEvent.CallEvent();
@@ -99,9 +116,7 @@ namespace Pathfinder
             var loadSaveFileEvent = new Event.LoadSaveFileEvent(self, xmlReader, stream);
             loadSaveFileEvent.CallEvent();
             if (loadSaveFileEvent.IsCancelled)
-            {
                 return true;
-            }
             return false;
         }
 
@@ -198,6 +213,7 @@ namespace Pathfinder
 
         public static bool onDrawMainMenuTitles(MainMenu self, out bool result, ref Rectangle dest)
         {
+            Logger.Verbose("Redrawing Main Menu Titles");
             var version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             var mainTitle = "HACKNET";
             var subtitle = "OS"
@@ -223,6 +239,8 @@ namespace Pathfinder
             drawMainMenuTitles.CallEvent();
             if (drawMainMenuTitles.IsCancelled)
                 return true;
+            mainTitle = drawMainMenuTitles.MainTitle;
+            subtitle = drawMainMenuTitles.Subtitle;
 
             var c = (Color)titleColorField.GetValue(self);
             FlickeringTextEffect.DrawLinedFlickeringText (
@@ -236,6 +254,7 @@ namespace Pathfinder
                 2
             );
             TextItem.doFontLabel (new Vector2(520f, 178f), subtitle, GuiData.smallfont, c * 0.5f, 600f, 26f, false);
+            Logger.Verbose("Finished Redrawing Main Menu Titles");
             return true;
         }
     }
