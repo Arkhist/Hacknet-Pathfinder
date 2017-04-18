@@ -305,6 +305,7 @@ namespace Pathfinder.Event
                                       Hacknet.OS os,
                                       string[] argArray)
         {
+            Result = Executable.ExecutionResult.NotFound;
             Computer = computer;
             Folder = folder;
             FileIndex = fileIndex;
