@@ -8,5 +8,7 @@ namespace Pathfinder.GameFilesystem
         IFilesystemObject Parent { get; }
         bool IsRoot { get; }
         string Name { get; }
+        Filesystem Root { get; }
+        int ParentIndex { get; }
     }
 }

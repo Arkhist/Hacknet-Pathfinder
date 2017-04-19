@@ -65,6 +65,10 @@ namespace PathfinderPatcher
                     m.IsNewSlot = true;
                 }
 
+                var compSendMsg = ad.MainModule.GetType("Hacknet.Computer").GetMethod("sendNetworkMessage");
+                compSendMsg.IsPrivate = false;
+                compSendMsg.IsPublic = true;
+
                 if (spitOutHacknetOnly)
                 {
                     ad?.Write("HacknetPathfinder.exe");
