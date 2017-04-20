@@ -116,6 +116,12 @@
     <Compile Include="Pathfinder\GameFilesystem\Filesystem.cs" />
     <Compile Include="Pathfinder\GameFilesystem\Directory.cs" />
     <Compile Include="Pathfinder\GameFilesystem\File.cs" />
+    <Compile Include="Pathfinder\Event\ProgramEvents.cs" />
+    <Compile Include="Pathfinder\Event\GameEvents.cs" />
+    <Compile Include="Pathfinder\Event\CommandEvents.cs" />
+    <Compile Include="Pathfinder\Event\OSEvents.cs" />
+    <Compile Include="Pathfinder\Event\ComputerEvents.cs" />
+    <Compile Include="Pathfinder\Event\ExecutableEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -32,9 +32,9 @@ namespace Pathfinder
             EventManager.RegisterListener<ExecutableExecuteEvent>(Executable.Handler.ExecutableListener);
             EventManager.RegisterListener<CommandSentEvent>(Executable.Handler.ExecutableListInsertListener);
 
-            EventManager.RegisterListener<SaveWriteEvent>(ManageSaveXml);
+            EventManager.RegisterListener<OSSaveWriteEvent>(ManageSaveXml);
 
-            EventManager.RegisterListener<LoadContentEvent>(Util.ExeInfoManager.LoadExecutableStruct);
+            EventManager.RegisterListener<GameLoadContentEvent>(ExeInfoManager.LoadExecutableStruct);
 
             Logger.Verbose("Loading mods");
             LoadMods();
@@ -61,32 +61,42 @@ namespace Pathfinder
                     Type modType = null;
                     foreach (Type t in (modAssembly.GetTypes().Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(PathfinderMod)))))
                     {
-                        modType = t;
-                        break;
+                        try
+                        {
+                            modType = t;
+                            var modInstance = (PathfinderMod)Activator.CreateInstance(modType);
+
+                            var methodInfo = modType.GetMethod("GetIdentifier");
+                            if (methodInfo == null)
+                                throw new NotSupportedException("Method 'GetIdentifier' doesn't exist, mod '"
+                                                                + Path.GetFileName(modAssembly.Location) + "' is invalid");
+                            var name = (string)methodInfo.Invoke(modInstance, null);
+                            if (IsModLoaded(name))
+                                throw new ExceptionInvalidId("Mod with identifier '" + name + "' is either already loaded or is reserved");
+                            if (name.Contains('.'))
+                                throw new ExceptionInvalidId("Mod identifier '" + name + "' contains a period, mod identifiers may not contain a period (.)");
+                            Logger.Info("Loading mod '{0}'", name);
+
+                            mods.Add(name, modInstance);
+
+                            modInstance.Load();
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Error("Mod '{0}' of file '{1}' failed to load:\n\t{1}", t.FullName, Path.GetFileName(dll), ex);
+                        }
                     }
-                    var modInstance = (PathfinderMod)Activator.CreateInstance(modType);
-
-                    var methodInfo = modType.GetMethod("GetIdentifier");
-                    if (methodInfo == null)
-                        throw new NotSupportedException("Method 'GetIdentifier' doesn't exist, mod '"
-                                                        + Path.GetFileName(modAssembly.Location) + "' is invalid" );
-                    var name = (string)methodInfo.Invoke(modInstance, null);
-                    if (name == "Pathfinder" || name == "Hacknet" || mods.ContainsKey(name))
-                        throw new ExceptionInvalidId("Mod with identifier '" + name + "' is either already loaded or is reserved");
-                    if (name.Contains('.'))
-                        throw new ExceptionInvalidId("Mod identifier '" + name + "' contains a period, mod identifiers may not contain a period (.)");
-                    Logger.Info("Loading mod '{0}'", name);
-
-                    mods.Add(name, modInstance);
-
-                    modInstance.Load();
-
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error("Mod {0} failed to load:\n\t{1}", Path.GetFileName(dll), ex);
+                    Logger.Error("Mod file '{0}' failed to load:\n\t{1}", Path.GetFileName(dll), ex);
                 }
             }
+        }
+
+        public static bool IsModLoaded(string id)
+        {
+            return id == "Pathfinder" || id == "Hacknet" || mods.ContainsKey(id);
         }
 
         internal static PathfinderMod GetModByAssembly(Assembly asm)
@@ -116,7 +126,7 @@ namespace Pathfinder
             }
         }
 
-        internal static void ManageSaveXml(SaveWriteEvent e)
+        internal static void ManageSaveXml(OSSaveWriteEvent e)
         {
             var i = e.SaveString.IndexOf("</HacknetSave>", StringComparison.Ordinal);
             string modListStr = "";

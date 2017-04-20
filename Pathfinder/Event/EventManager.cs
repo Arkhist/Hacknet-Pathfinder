@@ -1,35 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Pathfinder.Util;
 
 namespace Pathfinder.Event
 {
     public static class EventManager
     {
-        private static Dictionary<Type, List<Action<PathfinderEvent>>> eventListeners =
-            new Dictionary<Type, List<Action<PathfinderEvent>>>();
+        private static Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string>>> eventListeners =
+            new Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string>>>();
 
-        public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener)
+        public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string methodName = null)
         {
             if (!eventListeners.ContainsKey(pathfinderEventType))
             {
-                eventListeners.Add(pathfinderEventType, new List<Action<PathfinderEvent>>());
+                eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string>>());
             }
-            eventListeners[pathfinderEventType].Add(listener);
+            if (methodName == null)
+                methodName = "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
+                                       + listener.Method.DeclaringType.FullName + "." + listener.Method.Name;
+            eventListeners[pathfinderEventType].Add(new Tuple<Action<PathfinderEvent>, string>(listener, methodName));
         }
 
         public static void RegisterListener<T>(Action<T> listener) where T : PathfinderEvent
         {
-            RegisterListener(typeof(T), (e) => listener.Invoke((T)e));
+            RegisterListener(typeof(T), (e) => listener.Invoke((T)e),
+                             "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
+                                       + listener.Method.DeclaringType.FullName + "." + listener.Method.Name);
         }
 
         public static void UnregisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener)
         {
             if (!eventListeners.ContainsKey(pathfinderEventType))
             {
-                eventListeners.Add(pathfinderEventType, new List<Action<PathfinderEvent>>());
+                eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string>>());
             }
-            eventListeners[pathfinderEventType].Remove(listener);
+            var i = eventListeners[pathfinderEventType].FindIndex(l => l.Item1 == listener);
+            eventListeners[pathfinderEventType].RemoveAt(i);
         }
 
         public static void UnregisterListener<T>(Action<T> listener) where T : PathfinderEvent
@@ -37,14 +44,14 @@ namespace Pathfinder.Event
             Type pathfinderEventType = typeof(T);
             if (!eventListeners.ContainsKey(pathfinderEventType))
             {
-                eventListeners.Add(pathfinderEventType, new List<Action<PathfinderEvent>>());
+                eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string>>());
             }
             for (var i = eventListeners[pathfinderEventType].Count-1; i >= 0; i--)
             {
                 var l = eventListeners[pathfinderEventType][i];
                 try
                 {
-                    if(l.Method.Module.ResolveMethod(listener.Method.MetadataToken).Equals(listener.Method))
+                    if(l.Item1.Method.Module.ResolveMethod(listener.Method.MetadataToken).Equals(listener.Method))
                         eventListeners[pathfinderEventType].Remove(l);
                 }
                 catch (Exception) {}
@@ -56,13 +63,13 @@ namespace Pathfinder.Event
             var eventType = pathfinderEvent.GetType();
             if (eventListeners.ContainsKey(eventType))
             {
-                Logger.Verbose("Attepting to call event {0}", eventType.FullName);
+                Logger.Verbose("Attempting to call event '{0}'", eventType.FullName);
                 foreach (var listener in eventListeners[eventType])
                 {
                     try
                     {
-                        Logger.Verbose("Attempting to call event listener {0}", listener.Method.Name);
-                        listener(pathfinderEvent);
+                        Logger.Verbose("Attempting to call event listener '{0}'", listener.Item2);
+                        listener.Item1(pathfinderEvent);
                     }
                     catch(Exception ex)
                     {

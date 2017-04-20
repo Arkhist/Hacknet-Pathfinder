@@ -110,6 +110,16 @@ namespace Pathfinder.GameFilesystem
             return res;
         }
 
+        public File GetFile(int index)
+        {
+            return new File(Object.files[index], this);
+        }
+
+        public Directory GetDirectory(int index)
+        {
+            return new Directory(Object.folders[index], Cast);
+        }
+
         public File CreateFile(string name, string data = null)
         {
             if (data == null)
@@ -232,30 +242,11 @@ namespace Pathfinder.GameFilesystem
             get; private set;
         }
 
-        public IFileObject<object> this[string name]
-        {
-            get
-            {
-                IFileObject<object> f = FindFile(name)?.Cast;
-                return f ?? FindDirectory(name)?.Cast;
-            }
-        }
-
-        public List<File> Files
-        {
-            get
-            {
-                return Object.files.Select(f => new File(f, this)).ToList();
-            }
-        }
-
-        public List<Directory> Directories
-        {
-            get
-            {
-                return Object.folders.Select(f => new Directory(f, Cast)).ToList();
-            }
-        }
+        public IFileObject<object> this[string name] => FindFile(name)?.Cast ?? FindDirectory(name)?.Cast;
+        public List<File> Files => Object.files.Select(f => new File(f, this)).ToList();
+        public List<Directory> Directories => Object.folders.Select(f => new Directory(f, Cast)).ToList();
+        public int FileCount => Object.files.Count;
+        public int DirectoryCount => Object.folders.Count;
 
         public IEnumerator<IFileObject<object>> GetEnumerator()
         {

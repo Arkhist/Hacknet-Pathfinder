@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Hacknet;
 
 namespace Pathfinder.Util
@@ -73,7 +73,7 @@ namespace Pathfinder.Util
 
         private static Dictionary<string, ExecutableInfo> nameToExeStruct = new Dictionary<string, ExecutableInfo>();
 
-        internal static void LoadExecutableStruct(Event.LoadContentEvent e)
+        internal static void LoadExecutableStruct(Event.GameLoadContentEvent e)
         {
             int i = 0;
             string sn;

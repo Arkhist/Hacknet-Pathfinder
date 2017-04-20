@@ -7,7 +7,7 @@ namespace TemplateMod
 {
     static class Commands
     {
-        public static bool TemplateModVersion(Hacknet.OS os, string[] args)
+        public static bool TemplateModVersion(Hacknet.OS os, List<string> args)
         {
             os.write("Template Mod version 1 !");
             return false;

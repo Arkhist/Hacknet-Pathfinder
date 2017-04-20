@@ -29,7 +29,27 @@ namespace Pathfinder.GameFilesystem
 
         public static Filesystem GetFilesystem(this Hacknet.Computer computer)
         {
-            return new Filesystem(computer);
+            return computer;
+        }
+
+        public static Directory GetDirectoryAtDepth(this Hacknet.OS os, int depth)
+        {
+            Filesystem fs = os.connectedComp ?? os.thisComputer;
+            var dir = fs.Directory;
+            if (os.navigationPath.Count > 0)
+                try
+                {
+                    for (int i = 0; i < depth; i++)
+                        if (dir.DirectoryCount > os.navigationPath[i])
+                            dir = dir.GetDirectory(os.navigationPath[i]);
+                }
+                catch {}
+            return dir;
+        }
+
+        public static Directory GetCurrentDirectory(this Hacknet.OS os)
+        {
+            return GetDirectoryAtDepth(os, os.navigationPath.Count);
         }
     }
 }
