@@ -103,10 +103,6 @@
     <Compile Include="Pathfinder\Util\File\ModContent.cs" />
     <Compile Include="Pathfinder\Util\SoundSystem.cs" />
     <Compile Include="Pathfinder\GameFilesystem\Extensions.cs" />
-    <Compile Include="Pathfinder\GameFilesystem\Filesystem.cs" />
-    <Compile Include="Pathfinder\GameFilesystem\IFilesystemObject.cs" />
-    <Compile Include="Pathfinder\GameFilesystem\File.cs" />
-    <Compile Include="Pathfinder\GameFilesystem\Directory.cs" />
     <Compile Include="Pathfinder\Util\ExeInfoManager.cs" />
     <Compile Include="Pathfinder\Mission\MissionManager.cs" />
     <Compile Include="Pathfinder\Mission\MissionGoalInstance.cs" />
@@ -116,6 +112,10 @@
     <Compile Include="Pathfinder\Util\Utility.cs" />
     <Compile Include="Pathfinder\Mission\Interface.cs" />
     <Compile Include="Pathfinder\Util\Logger.cs" />
+    <Compile Include="Pathfinder\GameFilesystem\FileObject.cs" />
+    <Compile Include="Pathfinder\GameFilesystem\Filesystem.cs" />
+    <Compile Include="Pathfinder\GameFilesystem\Directory.cs" />
+    <Compile Include="Pathfinder\GameFilesystem\File.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

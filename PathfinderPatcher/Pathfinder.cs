@@ -37,6 +37,8 @@ namespace PathfinderPatcher
                 ad.AddAssemblyAttribute<InternalsVisibleToAttribute>("Pathfinder");
                 ad.RemoveInternals();
 
+                var mod = ad.MainModule;
+
                 var osField = ad.MainModule.GetType("Hacknet.Computer").GetField("os");
                 osField.IsPrivate = false;
                 osField.IsAssembly = true;

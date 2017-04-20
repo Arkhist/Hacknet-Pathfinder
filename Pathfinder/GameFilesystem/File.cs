@@ -1,58 +1,57 @@
-using Hacknet;
+﻿using Hacknet;
 
 namespace Pathfinder.GameFilesystem
 {
-    public class File : IFilesystemObject
+    public class File : FileObject<FileEntry, Directory>
     {
         private string path;
-        private Filesystem root;
-        private int? pindex;
 
-        public FileEntry Vanilla
+        public File(FileEntry vanila, Directory parent) : base(vanila, parent)
         {
-            get; private set;
+            Index = Parent.Object.files.BinarySearch(Object);
+            path = Parent.Path + '/' + Name;
+            Cast = (FileObject<object>)(IFileObject<object>)this;
         }
 
-        FileType IFilesystemObject.Vanilla
+        public sealed override string Name
         {
             get
             {
-                return Vanilla;
+                return Object.name;
             }
-        }
 
-        public IFilesystemObject Parent
-        {
-            get; private set;
-        }
-
-        public bool IsRoot
-        {
-            get
-            {
-                return false;
-            }
-        }
-
-        public int ParentIndex
-        {
-            get
-            {
-                if (!pindex.HasValue)
-                    pindex = (Parent.Vanilla as Folder)?.files.BinarySearch(this);
-                return pindex.GetValueOrDefault(-1);
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return Vanilla.getName();
-            }
             set
             {
-                Vanilla.name = value.Replace(" ", "_");
+                LogOperation(FileOpLogType.MoveFile, value, Path, Parent.Path + '/' + Name);
+                Object.name = value;
+                path = Parent.Path + '/' + Name;
+            }
+        }
+
+        public sealed override int Index
+        {
+            get; internal set;
+        }
+
+        public sealed override Filesystem Root => Parent.Root;
+
+        public override string Path
+        {
+            get
+            {
+                return path;
+            }
+
+            set
+            {
+                var d = Root.SeacrhForDirectory(value.Remove(value.LastIndexOf('/')));
+                if (d != null)
+                    Parent = d;
+                var name = value.Substring(value.LastIndexOf('/') + 1);
+                name = name.Length > 0 ? name : Name;
+                LogOperation(FileOpLogType.MoveFile, name, Path, Parent.Path + '/' + Name);
+                Object.name = name;
+                path = Parent.Path + '/' + Name;
             }
         }
 
@@ -60,20 +59,12 @@ namespace Pathfinder.GameFilesystem
         {
             get
             {
-                return Vanilla.data;
+                return Object.data;
             }
+
             set
             {
-                Vanilla.data = value;
-                Vanilla.size = value.Length * 8;
-            }
-        }
-
-        public int CreatedAt
-        {
-            get
-            {
-                return Vanilla.secondCreatedAt;
+                Object.data = value;
             }
         }
 
@@ -81,66 +72,30 @@ namespace Pathfinder.GameFilesystem
         {
             get
             {
-                return Vanilla.size;
+                return Object.size;
             }
-        }
 
-        public string Path
-        {
-            get
+            set
             {
-                if (path == null)
-                    path = Filesystem.GetPathFor(this);
-                return path;
+                Object.size = value;
             }
         }
 
-        public Filesystem Root
+        public void UpdateFileSize()
         {
-            get
-            {
-                if (root == null)
-                {
-                    IFilesystemObject fso = this;
-                    Filesystem.RunToRoot(this, (f) => fso = f);
-                    root = fso.Parent as Filesystem;
-                }
-                return root;
-            }
+            Size = Data.Length * 8;
         }
 
-        public File(IFilesystemObject parent, FileEntry fe)
+        public string Head { get { return Object.head(); } }
+
+        public FileObject<object> Cast
         {
-            Parent = parent;
-            Vanilla = fe;
+            get; private set;
         }
 
-        public bool MoveTo(Directory d, string changeName = null)
+        public File MoveTo(Directory to)
         {
-            if (changeName == null) changeName = Name;
-            Filesystem.LogOperation(this, Filesystem.FileOpLogType.MoveFile,
-                                    Root.Parent.ip, Root.IpAccessor, Name, changeName, (Parent as Directory)?.Path, d.Path);
-            Name = changeName;
-            (Parent as Directory)?.Vanilla?.files?.RemoveAt(ParentIndex);
-            Parent = d;
-            d.Vanilla.files.Add(Vanilla);
-            ResetIndex();
-            return d.Vanilla.files[ParentIndex] == this.Parent;
-        }
-
-        internal void ResetIndex()
-        {
-            pindex = null;
-        }
-
-        public static implicit operator FileEntry(File f)
-        {
-            return f.Vanilla;
-        }
-
-        public static implicit operator string(File f)
-        {
-            return f.Data;
+            return Parent.MoveFile(this, to);
         }
     }
 }

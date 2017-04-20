@@ -40,9 +40,11 @@ namespace Pathfinder.Executable
                             && idToDataCache.ContainsValue(dataLines[0]);
         }
 
-        public static string GetStandardFileDataBy(string id)
+        public static string GetStandardFileDataBy(string id, bool requiresModId = false)
         {
-            id = Utility.GetId(id, ignoreValidXml: true);
+            if (requiresModId && id.IndexOf('.') == -1)
+                throw new ArgumentException("must contain a mod id and delimter (.)", nameof(id));
+            id = Utility.GetId(id, requiresModId, ignoreValidXml: true);
             string result;
             if (idToDataCache.TryGetValue(id, out result))
                 return result;
