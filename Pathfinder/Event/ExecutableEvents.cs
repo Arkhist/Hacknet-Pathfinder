@@ -17,7 +17,7 @@ namespace Pathfinder.Event
         [Obsolete("Use Arguments")]
         public List<string> Parameters => Arguments;
         [Obsolete("Use OS")]
-        public Hacknet.OS OsInstance { get; }
+        public Hacknet.OS OsInstance => OS;
 
         public ExecutableEvent(Hacknet.Computer com, Hacknet.OS os, string name, string data, string[] args)
         {
