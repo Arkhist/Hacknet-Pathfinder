@@ -139,7 +139,7 @@ namespace Pathfinder
         }
 
         // Hook location : NetworkMap.LoadContent()
-        public static bool onLoadNetmapContent(NetworkMap self)
+        public static bool onLoadNetmapContent(Hacknet.NetworkMap self)
         {
             var loadNetmapContentEvent = new Event.NetworkMapLoadContentEvent(self);
             loadNetmapContentEvent.CallEvent();
@@ -177,9 +177,10 @@ namespace Pathfinder
             var portExecutableExecuteEvent =
                 new Event.ExecutablePortExecuteEvent(self, dest, name, data, port, args);
             portExecutableExecuteEvent.CallEvent();
+            name = portExecutableExecuteEvent.ExecutableName;
+            data = portExecutableExecuteEvent.ExecutableData;
             if (portExecutableExecuteEvent.IsCancelled)
                 return true;
-
             return false;
         }
 
@@ -226,7 +227,7 @@ namespace Pathfinder
                 }
                 TextItem.doFontLabel(new Vector2(180f, 105f), text3, GuiData.smallfont, Color.Red * 0.8f, 600f, 26f, false);
             }
-            var drawMainMenuTitles = new Event.DrawMainMenuTitlesEvent(self, ref mainTitle, ref subtitle);
+            var drawMainMenuTitles = new Event.DrawMainMenuTitlesEvent(self, mainTitle, subtitle);
             drawMainMenuTitles.CallEvent();
             if (drawMainMenuTitles.IsCancelled)
                 return true;

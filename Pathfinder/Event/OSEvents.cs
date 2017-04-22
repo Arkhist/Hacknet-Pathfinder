@@ -28,7 +28,6 @@ namespace Pathfinder.Event
         [Obsolete("Use Reader")]
         public XmlReader XmlReader => Reader;
         public Stream Stream { get; private set; }
-
         public OSLoadSaveFileEvent(Hacknet.OS os, XmlReader xmlReader, Stream stream) : base(os)
         {
             Reader = xmlReader;
@@ -39,7 +38,6 @@ namespace Pathfinder.Event
     public class OSSaveFileEvent : OSEvent
     {
         public string Filename { get; private set; }
-
         public OSSaveFileEvent(Hacknet.OS os, string fnam) : base(os)
         {
             Filename = fnam;
@@ -49,7 +47,6 @@ namespace Pathfinder.Event
     public class OSSaveWriteEvent : OSSaveFileEvent
     {
         public string SaveString { get; set; }
-
         public OSSaveWriteEvent(Hacknet.OS os, string fnam, string saveStr) : base(os, fnam)
         {
             SaveString = saveStr;

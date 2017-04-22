@@ -14,7 +14,6 @@ namespace Pathfinder.Event
         public string Filename { get; private set; }
         public bool PreventNetmapAdd { get; private set; }
         public bool PreventDaemonInit { get; private set; }
-
         public LoadComputerXmlReadEvent(Hacknet.Computer com, XmlReader red, string fnam, bool prevNetmap, bool prevDaeInit) : base(com)
         {
             Reader = red;

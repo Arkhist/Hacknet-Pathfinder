@@ -5,11 +5,10 @@ namespace Pathfinder.Event
 {
     public class GameEvent : PathfinderEvent
     {
-        public Game1 GameInstance { get; private set; }
-        public GameEvent(Game1 ins)
-        {
-            GameInstance = ins;
-        }
+        public Game1 Game { get; private set; }
+        [Obsolete("Use Game")]
+        public Game1 GameInstance => Game;
+        public GameEvent(Game1 ins) { Game = ins; }
     }
 
     // Called after Hacknet loads the Game Object (actual game)

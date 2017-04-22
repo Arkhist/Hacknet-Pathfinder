@@ -1,10 +1,13 @@
-﻿using Hacknet;
+﻿using System;
+using Hacknet;
 
 namespace Pathfinder.Event
 {
     public class NetworkMapLoadContentEvent : PathfinderEvent
     {
-        public NetworkMap NetMapInstance { get; private set; }
-        public NetworkMapLoadContentEvent(NetworkMap netmapInstance) { NetMapInstance = netmapInstance; }
+        public Hacknet.NetworkMap NetMap { get; private set; }
+        [Obsolete("Use NetMap")]
+        public Hacknet.NetworkMap NetMapInstance => NetMap;
+        public NetworkMapLoadContentEvent(Hacknet.NetworkMap netmap) { NetMap = netmap; }
     }
 }

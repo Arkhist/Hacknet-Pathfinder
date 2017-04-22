@@ -40,5 +40,10 @@ namespace Pathfinder.Util
                 inputId = GetPreviousStackFrameIdentity(frameSkip) + "." + inputId;
             return inputId;
         }
+
+        public static Hacknet.NetworkMap GetPrimaryNetMap()
+        {
+            return Hacknet.OS.currentInstance?.netMap;
+        }
     }
 }

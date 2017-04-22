@@ -17,7 +17,7 @@ namespace Pathfinder.Util
             FATAL = 32,
             All = VERBOSE | DEBUG | INFO | WARN | ERROR | FATAL,
             None = 0,
-            Default = FATAL | ERROR | WARN
+            Default = FATAL | ERROR | WARN | INFO
         }
 
         const int MAX_LOG_SIZE = 100;

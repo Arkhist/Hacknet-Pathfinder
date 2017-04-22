@@ -61,19 +61,20 @@ namespace Pathfinder.Event
         public static void CallEvent(PathfinderEvent pathfinderEvent)
         {
             var eventType = pathfinderEvent.GetType();
+            Logger.Verbose("Event Type contains check '[{0}] {1}'", Path.GetFileName(eventType.Assembly.Location), eventType.FullName);
             if (eventListeners.ContainsKey(eventType))
             {
-                Logger.Verbose("Attempting to call event '{0}'", eventType.FullName);
+                Logger.Verbose("Attempting Event call '[{0}] {1}'", Path.GetFileName(eventType.Assembly.Location), eventType.FullName);
                 foreach (var listener in eventListeners[eventType])
                 {
                     try
                     {
-                        Logger.Verbose("Attempting to call event listener '{0}'", listener.Item2);
+                        Logger.Verbose("Attempting Event Listener call '{0}'", listener.Item2);
                         listener.Item1(pathfinderEvent);
                     }
                     catch(Exception ex)
                     {
-                        Logger.Error("Event Call Failed");
+                        Logger.Error("Event Listener Call Failed");
                         Logger.Error("Exception: ", ex);
                     }
                 }

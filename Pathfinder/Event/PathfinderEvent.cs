@@ -3,10 +3,6 @@
     public abstract class PathfinderEvent
     {
         public bool IsCancelled { get; set; }
-
-        public void CallEvent()
-        {
-            EventManager.CallEvent(this);
-        }
+        public void CallEvent() { EventManager.CallEvent(this); }
     }
 }

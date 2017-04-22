@@ -79,7 +79,7 @@ namespace Pathfinder.Executable
             {
                 e.IsCancelled = true;
                 e.Disconnects = false;
-                var os = e.OsInstance;
+                var os = e.OS;
                 var folder = os.thisComputer.files.root.searchForFolder("bin");
                 os.write("Available Executables:\n");
                 os.write("PortHack");

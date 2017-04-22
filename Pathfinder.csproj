@@ -80,7 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pathfinder\Event\BasicEvents.cs" />
-    <Compile Include="Pathfinder\Event\DrawEvent.cs" />
+    <Compile Include="Pathfinder\Event\MainMenuEvents.cs" />
     <Compile Include="Pathfinder\Event\EventManager.cs" />
     <Compile Include="Pathfinder\Event\PathfinderEvent.cs" />
     <Compile Include="Pathfinder\GUI\PathfinderMainMenu.cs" />
@@ -122,6 +122,7 @@
     <Compile Include="Pathfinder\Event\OSEvents.cs" />
     <Compile Include="Pathfinder\Event\ComputerEvents.cs" />
     <Compile Include="Pathfinder\Event\ExecutableEvents.cs" />
+    <Compile Include="Pathfinder\NetworkMap\Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />
@@ -130,6 +131,7 @@
     <Folder Include="Pathfinder\Util\File\" />
     <Folder Include="Pathfinder\GameFilesystem\" />
     <Folder Include="Pathfinder\Mission\" />
+    <Folder Include="Pathfinder\NetworkMap\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
