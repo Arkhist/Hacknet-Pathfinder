@@ -1,4 +1,5 @@
 ﻿using System;
+using Pathfinder.Util;
 using Command = Pathfinder.Command;
 using Executable = Pathfinder.Executable;
 
@@ -13,30 +14,27 @@ namespace TemplateMod
 
         public override void Load()
         {
-            Console.WriteLine("Loading Template Mod");
+            Logger.Verbose("Loading Template Mod");
         }
 
         public override void LoadContent()
         {
-            Command.Handler.AddCommand("templateModVersion", Commands.TemplateModVersion, true);
+            Command.Handler.AddCommand("templateModVersion", Commands.TemplateModVersion, autoComplete: true);
             Executable.Handler.AddExecutable("TempExe", new TempExe());
         }
 
         public override void Unload()
         {
-            Console.WriteLine("Unloading Template Mod");
+            Logger.Verbose("Unloading Template Mod");
         }
 
         class TempExe : Executable.Interface
         {
-            public override string GetIdentifier(Executable.Instance instance)
-            {
-                return "TempExe";
-            }
+            public override string Identifier => "TempExe";
 
             public override bool? Update(Executable.Instance instance, float time)
             {
-                Console.WriteLine("TempExe");
+                Logger.Verbose("TempExe");
                 return true;
             }
         }

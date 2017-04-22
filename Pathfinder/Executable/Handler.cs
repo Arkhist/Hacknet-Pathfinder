@@ -64,11 +64,11 @@ namespace Pathfinder.Executable
             IInterface i;
             if (IsFileDataForMod(e.ExecutableFile.data) && interfaces.TryGetValue(e.ExecutableFile.data.Split('\n')[0], out i))
             {
-                int num = e.OsInstance.ram.bounds.Y + RamModule.contentStartOffset;
-                foreach (var exe in e.OsInstance.exes)
+                int num = e.OS.ram.bounds.Y + RamModule.contentStartOffset;
+                foreach (var exe in e.OS.exes)
                     num += exe.bounds.Height;
-                var location = new Rectangle(e.OsInstance.ram.bounds.X, num, RamModule.MODULE_WIDTH, (int)Hacknet.OS.EXE_MODULE_HEIGHT);
-                e.OsInstance.addExe(Instance.CreateInstance(i, e.ExecutableFile, e.OsInstance, e.Arguments, location));
+                var location = new Rectangle(e.OS.ram.bounds.X, num, RamModule.MODULE_WIDTH, (int)Hacknet.OS.EXE_MODULE_HEIGHT);
+                e.OS.addExe(Instance.CreateInstance(i, e.ExecutableFile, e.OS, e.Arguments, location));
                 e.Result = ExecutionResult.StartupSuccess;
             }
         }
@@ -79,7 +79,7 @@ namespace Pathfinder.Executable
             {
                 e.IsCancelled = true;
                 e.Disconnects = false;
-                var os = e.OsInstance;
+                var os = e.OS;
                 var folder = os.thisComputer.files.root.searchForFolder("bin");
                 os.write("Available Executables:\n");
                 os.write("PortHack");

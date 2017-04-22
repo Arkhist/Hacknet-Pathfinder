@@ -2,9 +2,10 @@
 {
     public interface IInterface
     {
-        string GetIdentifier(Instance instance);
-        bool NeedsProxyAccess(Instance instance);
-        int GetRamCost(Instance instance);
+        string Identifier { get; }
+        bool NeedsProxyAccess { get; }
+        int RamCost { get; }
+        void OnConstruction(Instance instance);
         void LoadContent(Instance instance);
         void OnComplete(Instance instance);
         void Draw(Instance instance, float time);
@@ -30,21 +31,11 @@
 
     public class Interface : IInterface
     {
-        public virtual string GetIdentifier(Instance instance)
-        {
-            return "UNKNOWN";
-        }
+        public virtual string Identifier => "UNKNOWN";
+        public virtual bool NeedsProxyAccess => false;
+        public virtual int RamCost => Hacknet.ExeModule.DEFAULT_RAM_COST;
 
-        public virtual bool NeedsProxyAccess(Instance instance)
-        {
-            return false;
-        }
-
-        public virtual int GetRamCost(Instance instance)
-        {
-            return Hacknet.ExeModule.DEFAULT_RAM_COST;
-        }
-
+        public virtual void OnConstruction(Instance instance) {}
         public virtual void LoadContent(Instance instance) {}
         public virtual void OnComplete(Instance instance) {}
         public virtual void Draw(Instance instance, float time) {}

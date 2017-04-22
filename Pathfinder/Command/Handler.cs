@@ -45,13 +45,13 @@ namespace Pathfinder.Command
             return AddCommand(key, (os, l) => function(os, l.ToArray()), description, autoComplete);
         }
 
-        internal static void CommandListener(CommandSentEvent commandSentEvent)
+        internal static void CommandListener(CommandSentEvent e)
         {
             Func<Hacknet.OS, List<string>, bool> f;
-            if (commands.TryGetValue(commandSentEvent.Arguments[0], out f))
+            if (commands.TryGetValue(e.Arguments[0], out f))
             {
-                commandSentEvent.IsCancelled = true;
-                commandSentEvent.Disconnects = f(commandSentEvent.OsInstance, commandSentEvent.Arguments);
+                e.IsCancelled = true;
+                e.Disconnects = f(e.OS, e.Arguments);
             }
         }
     }

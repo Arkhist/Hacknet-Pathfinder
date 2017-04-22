@@ -51,7 +51,7 @@ namespace Pathfinder
         {
             Logger.Verbose("Loading Pathfinder content");
             Pathfinder.LoadModContent();
-            var loadContentEvent = new Event.LoadContentEvent(self);
+            var loadContentEvent = new Event.GameLoadContentEvent(self);
             loadContentEvent.CallEvent();
         }
 
@@ -73,18 +73,17 @@ namespace Pathfinder
         // Hook location : OS.LoadContent()
         public static bool onLoadSession(Hacknet.OS self)
         {
-            var loadSessionEvent = new Event.LoadSessionEvent(self);
+            var loadSessionEvent = new Event.OSLoadContentEvent(self);
             loadSessionEvent.CallEvent();
             if (loadSessionEvent.IsCancelled)
                 return true;
             return false;
         }
 
-
         // Hook location : end of OS.LoadContent()
         public static void onPostLoadSession(Hacknet.OS self)
         {
-            var postLoadSessionEvent = new Event.PostLoadSessionEvent(self);
+            var postLoadSessionEvent = new Event.OSPostLoadContenEvent(self);
             postLoadSessionEvent.CallEvent();
         }
 
@@ -113,7 +112,7 @@ namespace Pathfinder
         // Hook location : OS.loadSaveFile()
         public static bool onLoadSaveFile(Hacknet.OS self, ref Stream stream, ref XmlReader xmlReader)
         {
-            var loadSaveFileEvent = new Event.LoadSaveFileEvent(self, xmlReader, stream);
+            var loadSaveFileEvent = new Event.OSLoadSaveFileEvent(self, xmlReader, stream);
             loadSaveFileEvent.CallEvent();
             if (loadSaveFileEvent.IsCancelled)
                 return true;
@@ -123,7 +122,7 @@ namespace Pathfinder
         // Hook location : OS.writeSaveGame()
         public static bool onSaveFile(Hacknet.OS self, string filename)
         {
-            var saveFileEvent = new Event.SaveFileEvent(self, filename);
+            var saveFileEvent = new Event.OSSaveFileEvent(self, filename);
             saveFileEvent.CallEvent();
             if (saveFileEvent.IsCancelled)
             {
@@ -134,15 +133,15 @@ namespace Pathfinder
 
         public static void onSaveWrite(Hacknet.OS self, ref string saveString, string filename)
         {
-            var saveWriteEvent = new Event.SaveWriteEvent(self, filename, saveString);
+            var saveWriteEvent = new Event.OSSaveWriteEvent(self, filename, saveString);
             saveWriteEvent.CallEvent();
             saveString = saveWriteEvent.SaveString;
         }
 
         // Hook location : NetworkMap.LoadContent()
-        public static bool onLoadNetmapContent(NetworkMap self)
+        public static bool onLoadNetmapContent(Hacknet.NetworkMap self)
         {
-            var loadNetmapContentEvent = new Event.LoadNetmapContentEvent(self);
+            var loadNetmapContentEvent = new Event.NetworkMapLoadContentEvent(self);
             loadNetmapContentEvent.CallEvent();
             if (loadNetmapContentEvent.IsCancelled)
                 return true;
@@ -151,19 +150,15 @@ namespace Pathfinder
 
         // Hook location : OS.launchExecutable
         public static bool onExecutableExecute(out int result,
-                                               ref Hacknet.Computer computer,
-                                               ref Folder exeFolder,
-                                               ref int fileIndex,
+                                               ref Hacknet.Computer com,
+                                               ref Folder fol,
+                                               ref int finde,
                                                ref string exeFileData,
                                                ref Hacknet.OS os,
-                                               ref string[] argArray)
+                                               ref string[] args)
         {
-            var executableExecuteEvent = new Event.ExecutableExecuteEvent(computer,
-                                                                          exeFolder,
-                                                                          fileIndex,
-                                                                          fileIndex >= 0 ? exeFolder.files[fileIndex] : null,
-                                                                          os,
-                                                                          argArray);
+            var executableExecuteEvent =
+                new Event.ExecutableExecuteEvent(com, fol, finde, finde >= 0 ? fol.files[finde] : null, os, args);
             executableExecuteEvent.CallEvent();
             result = (int) executableExecuteEvent.Result;
             if (executableExecuteEvent.IsCancelled || result != -1)
@@ -172,23 +167,20 @@ namespace Pathfinder
         }
 
         public static bool onPortExecutableExecute(Hacknet.OS self,
-                                                     ref Rectangle location,
-                                                     ref string exeName,
-                                                     ref string exeFileData,
-                                                     ref int targetPort,
-                                                     ref string[] argArray,
+                                                     ref Rectangle dest,
+                                                     ref string name,
+                                                     ref string data,
+                                                     ref int port,
+                                                     ref string[] args,
                                                      ref string originalName)
         {
-            var portExecutableExecuteEvent = new Event.PortExecutableExecuteEvent(self,
-                                                                                    location,
-                                                                                    exeName,
-                                                                                    exeFileData,
-                                                                                    targetPort,
-                                                                                    argArray);
+            var portExecutableExecuteEvent =
+                new Event.ExecutablePortExecuteEvent(self, dest, name, data, port, args);
             portExecutableExecuteEvent.CallEvent();
+            name = portExecutableExecuteEvent.ExecutableName;
+            data = portExecutableExecuteEvent.ExecutableData;
             if (portExecutableExecuteEvent.IsCancelled)
                 return true;
-
             return false;
         }
 
@@ -235,7 +227,7 @@ namespace Pathfinder
                 }
                 TextItem.doFontLabel(new Vector2(180f, 105f), text3, GuiData.smallfont, Color.Red * 0.8f, 600f, 26f, false);
             }
-            var drawMainMenuTitles = new Event.DrawMainMenuTitlesEvent(self, ref mainTitle, ref subtitle);
+            var drawMainMenuTitles = new Event.DrawMainMenuTitlesEvent(self, mainTitle, subtitle);
             drawMainMenuTitles.CallEvent();
             if (drawMainMenuTitles.IsCancelled)
                 return true;

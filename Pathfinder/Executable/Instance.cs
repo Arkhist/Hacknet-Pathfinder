@@ -8,41 +8,22 @@ namespace Pathfinder.Executable
 {
     public class Instance : ExeModule
     {
-        private FileEntry executingFile;
-        private List<string> arguments;
-        private IInterface exeInterface;
         private Dictionary<string, object> keyToObject = new Dictionary<string, object>();
 
-        public List<string> Arguments
-        {
-            get
-            {
-                return arguments;
-            }
-        }
+        public List<string> Arguments { get; private set; }
+        public IInterface Interface { get; private set; }
+        public FileEntry ExecutionFile { get; private set; }
 
-        public IInterface Interface
-        {
-            get
-            {
-                return exeInterface;
-            }
-        }
-
-        public FileEntry ExecutionFile
-        {
-            get
-            {
-                return executingFile;
-            }
-        }
-
-        public Instance(Rectangle loc, Hacknet.OS os, List<string> arguments, FileEntry executionFile, IInterface exeInterface)
+        public Instance(Rectangle loc, Hacknet.OS os, List<string> args, FileEntry executionFile, IInterface exeInterface)
             : base(loc, os)
         {
-            this.arguments = arguments;
-            this.exeInterface = exeInterface;
-            this.executingFile = executionFile;
+            Arguments = args;
+            Interface = exeInterface;
+            ExecutionFile = executionFile;
+            this.IdentifierName = Interface.Identifier;
+            this.needsProxyAccess = Interface.NeedsProxyAccess;
+            this.ramCost = Interface.RamCost;
+            Interface.OnConstruction(this);
         }
 
         public static Instance CreateInstance(IInterface exeInterface,
@@ -95,45 +76,42 @@ namespace Pathfinder.Executable
         public override void LoadContent()
         {
             base.LoadContent();
-            exeInterface.LoadContent(this);
+            Interface.LoadContent(this);
         }
 
         public override void Completed()
         {
             base.Completed();
-            exeInterface.OnComplete(this);
+            Interface.OnComplete(this);
         }
 
         public override void Draw(float t)
         {
             base.Draw(t);
-            exeInterface.Draw(this, t);
+            Interface.Draw(this, t);
         }
 
         public override void drawOutline()
         {
-            if(exeInterface.DrawOutline(this))
+            if(Interface.DrawOutline(this))
                 base.drawOutline();
         }
 
         public override void drawTarget(string typeName = "app:")
         {
-            if(exeInterface.DrawTarget(this, typeName))
+            if(Interface.DrawTarget(this, typeName))
                 base.drawTarget(typeName);
         }
 
         public override void Killed()
         {
             base.Killed();
-            exeInterface.OnKilled(this);
+            Interface.OnKilled(this);
         }
 
         public override void Update(float t)
         {
-            this.IdentifierName = exeInterface.GetIdentifier(this);
-            this.needsProxyAccess = exeInterface.NeedsProxyAccess(this);
-            this.ramCost = exeInterface.GetRamCost(this);
-            var result = exeInterface.Update(this, t);
+            var result = Interface.Update(this, t);
             if(result.HasValue)
                 this.isExiting = result.Value;
             base.Update(t);
@@ -142,28 +120,28 @@ namespace Pathfinder.Executable
         public override void PreDrawStep()
         {
             base.PreDrawStep();
-            exeInterface.PreDraw(this);
+            Interface.PreDraw(this);
         }
 
         public override void PostDrawStep()
         {
             base.PostDrawStep();
-            exeInterface.PostDraw(this);
+            Interface.PostDraw(this);
         }
 
         public class InstanceOverrideDisplay : Instance, MainDisplayOverrideEXE
         {
-            private bool isOverrideAble = true;
+            private bool isOverrideable = true;
 
             public bool DisplayOverrideIsActive
             {
                 get
                 {
-                    return isOverrideAble && (exeInterface as IMainDisplayOverride).IsOverrideActive(this);
+                    return isOverrideable && (Interface as IMainDisplayOverride).IsOverrideActive(this);
                 }
                 set
                 {
-                    isOverrideAble = value;
+                    isOverrideable = value;
                 }
             }
 
@@ -176,7 +154,7 @@ namespace Pathfinder.Executable
 
             public void RenderMainDisplay(Rectangle dest, SpriteBatch sb)
             {
-                (exeInterface as IMainDisplayOverride).DrawMain(this, dest, sb);
+                (Interface as IMainDisplayOverride).DrawMain(this, dest, sb);
             }
         }
     }

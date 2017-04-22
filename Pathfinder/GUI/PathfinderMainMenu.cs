@@ -15,13 +15,13 @@ namespace Pathfinder.GUI
 
         private static MainMenuState mainMenuState = MainMenuState.GameHandled;
 
-        public static void drawMainMenu(DrawMainMenuEvent pathfinderEvent)
+        public static void drawMainMenu(DrawMainMenuEvent e)
         {
             if (mainMenuState != MainMenuState.PathfinderModList)
                 return;
-            pathfinderEvent.IsCancelled = true;
+            e.IsCancelled = true;
 
-            GameScreen baseS = pathfinderEvent.MainMenuInstance;
+            GameScreen baseS = e.MainMenu;
 
             if (Button.doButton(15, 180, 650, 250, 28, "Return", MainMenu.exitButtonColor))
             {
@@ -39,7 +39,7 @@ namespace Pathfinder.GUI
             }
         }
 
-        public static void drawPathfinderButtons(DrawMainMenuButtonsEvent pathfinderEvent)
+        public static void drawPathfinderButtons(DrawMainMenuButtonsEvent e)
         {
             if (Button.doButton(200, 180, 600, 450, 40, "Pathfinder Mod List", MainMenu.buttonColor))
             {
