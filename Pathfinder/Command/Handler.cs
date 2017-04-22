@@ -11,6 +11,14 @@ namespace Pathfinder.Command
         private static Dictionary<string, Func<Hacknet.OS, List<string>, bool>> commands =
             new Dictionary<string, Func<Hacknet.OS, List<string>, bool>>();
 
+        /// <summary>
+        /// Adds a command to the game.
+        /// </summary>
+        /// <returns><c>true</c>, if command was added, <c>false</c> otherwise.</returns>
+        /// <param name="key">The key used to run the command.</param>
+        /// <param name="function">The function run when command is input.</param>
+        /// <param name="description">A description to input when help is command is run (if not null).</param>
+        /// <param name="autoComplete">If set to <c>true</c> then autocomplete for command is enabled.</param>
         public static bool AddCommand(string key,
                                       Func<Hacknet.OS, List<string>, bool> function,
                                       string description = null,

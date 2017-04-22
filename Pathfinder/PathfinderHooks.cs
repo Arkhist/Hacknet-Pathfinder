@@ -26,7 +26,7 @@ namespace Pathfinder
                     if (args[i] == "-logIgnore" && args.Length > i + 1)
                         Logger.RemoveFlag((Logger.LogLevel)Enum.Parse(typeof(Logger.LogLevel), args[i + 1].ToUpper()));
                     if (args[i] == "-log" && args.Length > i + 1)
-                        Logger.SetFlag((Logger.LogLevel)Enum.Parse(typeof(Logger.LogLevel), args[i + 1].ToUpper()));
+                        Logger.AddFlag((Logger.LogLevel)Enum.Parse(typeof(Logger.LogLevel), args[i + 1].ToUpper()));
                 }
                 catch (Exception e)
                 {

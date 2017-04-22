@@ -10,6 +10,12 @@ namespace Pathfinder.Event
         private static Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string>>> eventListeners =
             new Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string>>>();
 
+        /// <summary>
+        /// Registers an event listener by runtime type.
+        /// </summary>
+        /// <param name="pathfinderEventType">The PathfinderEvent Runtime Type to register for</param>
+        /// <param name="listener">The listener function that will be executed on an event call</param>
+        /// <param name="methodName">Name to assign for debug purposes</param>
         public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string methodName = null)
         {
             if (!eventListeners.ContainsKey(pathfinderEventType))
@@ -22,6 +28,11 @@ namespace Pathfinder.Event
             eventListeners[pathfinderEventType].Add(new Tuple<Action<PathfinderEvent>, string>(listener, methodName));
         }
 
+        /// <summary>
+        /// Registers an event listener by compile time type.
+        /// </summary>
+        /// <param name="listener">The listener function that will be executed on an event call</param>
+        /// <typeparam name="T">The PathfinderEvent Compile time Type to listen for</typeparam>
         public static void RegisterListener<T>(Action<T> listener) where T : PathfinderEvent
         {
             RegisterListener(typeof(T), (e) => listener.Invoke((T)e),
@@ -29,6 +40,11 @@ namespace Pathfinder.Event
                                        + listener.Method.DeclaringType.FullName + "." + listener.Method.Name);
         }
 
+        /// <summary>
+        /// Removes an event listener by runtime type.
+        /// </summary>
+        /// <param name="pathfinderEventType">The PathfinderEvent Runtime Type to remove for</param>
+        /// <param name="listener">The listener function to remove</param>
         public static void UnregisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener)
         {
             if (!eventListeners.ContainsKey(pathfinderEventType))
@@ -39,6 +55,11 @@ namespace Pathfinder.Event
             eventListeners[pathfinderEventType].RemoveAt(i);
         }
 
+        /// <summary>
+        /// Removes an event listener by compile time type.
+        /// </summary>
+        /// <param name="listener">The listener function to remove</param>
+        /// <typeparam name="T">The PathfinderEvent Compile time Type to remove for</typeparam>
         public static void UnregisterListener<T>(Action<T> listener) where T : PathfinderEvent
         {
             Type pathfinderEventType = typeof(T);
@@ -58,6 +79,10 @@ namespace Pathfinder.Event
             }
         }
 
+        /// <summary>
+        /// Calls a PathfinderEvent.
+        /// </summary>
+        /// <param name="pathfinderEvent">The PathfinderEvent to call.</param>
         public static void CallEvent(PathfinderEvent pathfinderEvent)
         {
             var eventType = pathfinderEvent.GetType();

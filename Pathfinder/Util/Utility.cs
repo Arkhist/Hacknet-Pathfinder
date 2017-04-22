@@ -14,6 +14,11 @@ namespace Pathfinder.Util
 
         private static Regex xmlAttribRegex = new Regex("[^a-zA-Z0-9_.]");
 
+        /// <summary>
+        /// Gets the previous stack frame identity.
+        /// </summary>
+        /// <returns>The previous stack frame identity.</returns>
+        /// <param name="frameSkip">The frames to skip back to.</param>
         public static string GetPreviousStackFrameIdentity(int frameSkip = 2)
         {
             var result = "";
@@ -21,10 +26,15 @@ namespace Pathfinder.Util
             if (asm == MethodBase.GetCurrentMethod().Module.Assembly)
                 result = "Pathfinder";
             else
-                result = Pathfinder.GetModByAssembly(asm).GetIdentifier();
+                result = Pathfinder.GetModByAssembly(asm).Identifier;
             return result;
         }
 
+        /// <summary>
+        /// Converts the input to a valid xml attribute name.
+        /// </summary>
+        /// <returns>A valid xml attribute name.</returns>
+        /// <param name="input">Input to convert.</param>
         public static string ConvertToValidXmlAttributeName(string input)
         {
             input = xmlAttribRegex.Replace(input, "_");
@@ -33,6 +43,14 @@ namespace Pathfinder.Util
             return input;
         }
 
+        /// <summary>
+        /// Retrieves an identifier for the input.
+        /// </summary>
+        /// <returns>The resulting identifier.</returns>
+        /// <param name="inputId">Input identifier.</param>
+        /// <param name="ignorePeriod">If set to <c>true</c> ignore period.</param>
+        /// <param name="frameSkip">The frames to skip back to.</param>
+        /// <param name="ignoreValidXml">If set to <c>true</c> ignore valid xml.</param>
         public static string GetId(string inputId, bool ignorePeriod = false, int frameSkip = 3, bool ignoreValidXml = false)
         {
             inputId = ignoreValidXml ? inputId : ConvertToValidXmlAttributeName(inputId);
@@ -41,6 +59,10 @@ namespace Pathfinder.Util
             return inputId;
         }
 
+        /// <summary>
+        /// Gets the primary NetworkMap for the current OS instance.
+        /// </summary>
+        /// <returns>The primary Network Map.</returns>
         public static Hacknet.NetworkMap GetPrimaryNetMap()
         {
             return Hacknet.OS.currentInstance?.netMap;

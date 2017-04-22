@@ -15,7 +15,7 @@ namespace Pathfinder
             public ExceptionInvalidId(string msg) : base(msg) { }
         }
 
-        private static Dictionary<string, PathfinderMod> mods = new Dictionary<string, PathfinderMod>();
+        private static Dictionary<string, IPathfinderMod> mods = new Dictionary<string, IPathfinderMod>();
         //private static bool currentSaveMissingMods = false;
 
         public static readonly string ModFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
@@ -64,11 +64,11 @@ namespace Pathfinder
                         try
                         {
                             modType = t;
-                            var modInstance = (PathfinderMod)Activator.CreateInstance(modType);
+                            var modInstance = (IPathfinderMod)Activator.CreateInstance(modType);
 
-                            var methodInfo = modType.GetMethod("GetIdentifier");
+                            var methodInfo = modType.GetProperty("Identifier").GetGetMethod();
                             if (methodInfo == null)
-                                throw new NotSupportedException("Method 'GetIdentifier' doesn't exist, mod '"
+                                throw new NotSupportedException("Method 'Identifier' doesn't exist, mod '"
                                                                 + Path.GetFileName(modAssembly.Location) + "' is invalid");
                             var name = (string)methodInfo.Invoke(modInstance, null);
                             if (IsModLoaded(name))
@@ -94,12 +94,17 @@ namespace Pathfinder
             }
         }
 
+        /// <summary>
+        /// Determines whether a mod is loaded
+        /// </summary>
+        /// <returns><c>true</c>, if mod is loaded, <c>false</c> otherwise.</returns>
+        /// <param name="id">Mod Identifier.</param>
         public static bool IsModLoaded(string id)
         {
             return id == "Pathfinder" || id == "Hacknet" || mods.ContainsKey(id);
         }
 
-        internal static PathfinderMod GetModByAssembly(Assembly asm)
+        internal static IPathfinderMod GetModByAssembly(Assembly asm)
         {
             foreach (var pair in mods)
             {
@@ -109,7 +114,7 @@ namespace Pathfinder
             return null;
         }
 
-        public static void LoadModContent()
+        internal static void LoadModContent()
         {
             foreach (var mod in mods)
             {

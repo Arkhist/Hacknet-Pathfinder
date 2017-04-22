@@ -1,47 +1,47 @@
-﻿using Pathfinder.Util.File;
+﻿using System;
+using Pathfinder.Util.File;
 
 namespace Pathfinder
 {
-    public abstract class PathfinderMod
+    public interface IPathfinderMod
+    {
+        string Identifier { get; }
+
+        void Load();
+        void LoadContent();
+        void Unload();
+    }
+
+    public abstract class PathfinderMod : IPathfinderMod
     {
         private ModContent modContent;
 
         /// <summary>
-        /// This function returns the mod identifier of your mod.
+        /// Retrieves the Mod's identifier.
         /// </summary>
-        /// <returns>String - The mod identifier of your mod</returns>
+        /// <value>The Mod's identifier</value>
+#pragma warning disable CS0618 // Type or member is obsolete
+        public string Identifier => GetIdentifier();
+#pragma warning restore CS0618 // Type or member is obsolete
+
+        /// <summary>
+        /// Retrieves the Mod's identifier.
+        /// </summary>
+        /// <returns>String - The Mod's identifier</returns>
+        /// <remarks>Obsolete: Use Identifier instead</remarks>
+        [Obsolete("Use Identifier")]
         public abstract string GetIdentifier();
 
-        public virtual string TexturePath
-        {
-            get
-            {
-                return "Texture";
-            }
-        }
-
-        public virtual string SoundPath
-        {
-            get
-            {
-                return "Sound";
-            }
-        }
-
-        public virtual string MusicPath
-        {
-            get
-            {
-                return "Music";
-            }
-        }
+        public virtual string TexturePath => "Texture";
+        public virtual string SoundPath => "Sound";
+        public virtual string MusicPath => "Music";
 
         public ModContent ModContent
         {
             get
             {
                 if(modContent == null)
-                    modContent = new ModContent(GetIdentifier(), TexturePath, SoundPath, MusicPath);
+                    modContent = new ModContent(Identifier, TexturePath, SoundPath, MusicPath);
                 return modContent;
             }
         }
