@@ -3,6 +3,7 @@ using System.IO;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Pathfinder.Util;
 
 namespace Pathfinder.Mission
 {
@@ -15,7 +16,7 @@ namespace Pathfinder.Mission
                                                                       bool isAssigner = false,
                                                                       Hacknet.OS os = null)
         {
-            var s = new MissionListingServer(c, serviceName, serviceName, os ?? Hacknet.OS.currentInstance, isPublic, isAssigner);
+            var s = new MissionListingServer(c, serviceName, serviceName, os ?? Utility.GetClientOS(), isPublic, isAssigner);
             try
             {
                 using (var fs = File.OpenRead(logoPath))
@@ -65,7 +66,7 @@ namespace Pathfinder.Mission
 
         public static MissionHubServer CreateMissionHubDaemon(this Hacknet.Computer c, string serviceName, Hacknet.OS os = null)
         {
-            var s = new MissionHubServer(c, serviceName, serviceName, os ?? Hacknet.OS.currentInstance);
+            var s = new MissionHubServer(c, serviceName, serviceName, os ?? Utility.GetClientOS());
             c.daemons.Add(s);
             return s;
         }

@@ -5,6 +5,10 @@ namespace Pathfinder
 {
     public interface IPathfinderMod
     {
+        /// <summary>
+        /// Retrieves the Mod's identifier.
+        /// </summary>
+        /// <value>The Mod's identifier</value>
         string Identifier { get; }
 
         void Load();
@@ -47,15 +51,18 @@ namespace Pathfinder
         }
 
         /// <summary>
-        /// Called when the mod is loaded
+        /// Called when the mod is being loaded, use to ensure all mod related stuff is ready to be loaded
         /// </summary>
+        /// <remarks>DO NOT USE TO LOAD CONTENT</remarks>
         public abstract void Load();
 
-
+        /// <summary>
+        /// Loads the mod's content.
+        /// </summary>
         public abstract void LoadContent();
 
         /// <summary>
-        /// Called when the mod is unloaded
+        /// Called when the mod is being unloaded
         /// </summary>
         public abstract void Unload();
     }

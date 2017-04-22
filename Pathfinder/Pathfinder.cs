@@ -36,6 +36,8 @@ namespace Pathfinder
 
             EventManager.RegisterListener<GameLoadContentEvent>(ExeInfoManager.LoadExecutableStruct);
 
+            EventManager.RegisterListener<GameUnloadEvent>(UnloadMods);
+
             Logger.Verbose("Loading mods");
             LoadMods();
         }
@@ -77,13 +79,13 @@ namespace Pathfinder
                                 throw new ExceptionInvalidId("Mod identifier '" + name + "' contains a period, mod identifiers may not contain a period (.)");
                             Logger.Info("Loading mod '{0}'", name);
 
-                            mods.Add(name, modInstance);
-
                             modInstance.Load();
+
+                            mods.Add(name, modInstance);
                         }
                         catch (Exception ex)
                         {
-                            Logger.Error("Mod '{0}' of file '{1}' failed to load:\n\t{1}", t.FullName, Path.GetFileName(dll), ex);
+                            Logger.Error("Mod '{0}' of file '{1}' failed to load:\n\t{2}", t.FullName, Path.GetFileName(dll), ex);
                         }
                     }
                 }
@@ -138,6 +140,15 @@ namespace Pathfinder
             foreach (var pair in mods)
                 modListStr += "\t<Mod assembly='" + Path.GetFileName(pair.Value.GetType().Assembly.Location) + "'>" + pair.Key + "</Mod>\n";
             e.SaveString = e.SaveString.Insert(i, "\n<PathfinderMods>\n" + modListStr + "</PathfinderMods>\n");
+        }
+
+        internal static void UnloadMods(GameUnloadEvent e)
+        {
+            foreach (var mod in mods)
+            {
+                Logger.Verbose("Unloading mod '{0}'", mod.Key);
+                mod.Value.Unload();
+            }
         }
     }
 }

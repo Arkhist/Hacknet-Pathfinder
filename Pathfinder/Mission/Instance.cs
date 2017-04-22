@@ -151,12 +151,13 @@ namespace Pathfinder.Mission
             if ((t = Interface.OnEnd(this)) != null)
                 this.addEndFunction(t.Item2, t.Item1);
 
-            Hacknet.OS.currentInstance.branchMissions.Clear();
+            var os = Utility.GetClientOS();
+            os.branchMissions.Clear();
             if (this.nextMission.StartsWith("Pathfinder:", StringComparison.Ordinal))
             {
                 var id = nextMission.Substring(nextMission.IndexOf(':') + 1);
-                Hacknet.OS.currentInstance.currentMission = CreateInstance(id, new Dictionary<string, string>());
-                Hacknet.OS.currentInstance.currentMission?.sendEmail(Hacknet.OS.currentInstance);
+                os.currentMission = CreateInstance(id, new Dictionary<string, string>());
+                os.currentMission?.sendEmail(os);
             }
             else if (!this.nextMission.Equals("NONE"))
             {
@@ -166,16 +167,16 @@ namespace Pathfinder.Mission
                 ComputerLoader.loadMission(str + "/" + this.nextMission, false);
             }
             else
-                Hacknet.OS.currentInstance.currentMission = null;
+                os.currentMission = null;
 
-            Hacknet.OS.currentInstance.currentMission?.ActivateSuppressedStartFunctionIfPresent();
+            os.currentMission?.ActivateSuppressedStartFunctionIfPresent();
 
             if (this.endFunctionName != null)
                 MissionFunctions.runCommand(this.endFunctionValue, this.endFunctionName);
 
-            Hacknet.OS.currentInstance.saveGame();
-            if (Hacknet.OS.currentInstance.multiplayer)
-                Hacknet.OS.currentInstance.endMultiplayerMatch(true);
+            os.saveGame();
+            if (os.multiplayer)
+                os.endMultiplayerMatch(true);
         }
 
         public override bool isComplete(List<string> additionalDetails = null)

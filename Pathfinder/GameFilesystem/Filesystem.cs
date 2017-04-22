@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Hacknet;
+using Pathfinder.Util;
 
 namespace Pathfinder.GameFilesystem
 {
@@ -73,7 +74,7 @@ namespace Pathfinder.GameFilesystem
         public string IPAccess { get; set; } = null;
         public bool ShouldLogMultiplayer { get; set; } = true;
 
-        public static Filesystem PrimaryFilesystem => Hacknet.OS.currentInstance.thisComputer;
+        public static Filesystem PrimaryFilesystem => Utility.GetClientComputer();
 
         public static implicit operator Filesystem(Hacknet.Computer c)
         {

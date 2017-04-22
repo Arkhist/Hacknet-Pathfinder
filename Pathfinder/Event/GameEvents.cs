@@ -1,5 +1,6 @@
 ﻿using System;
 using Hacknet;
+using Microsoft.Xna.Framework;
 
 namespace Pathfinder.Event
 {
@@ -17,8 +18,14 @@ namespace Pathfinder.Event
         public GameLoadContentEvent(Game1 ins) : base(ins) {}
     }
 
-    public class GameExitEvent : GameEvent
+    public class GameUpdateEvent : GameEvent
     {
-        public GameExitEvent(Game1 ins) : base(ins) {}
+        public GameTime Time { get; private set; }
+        public GameUpdateEvent(Game1 ins, GameTime time) : base(ins) { Time = time; }
+    }
+
+    public class GameUnloadEvent : GameEvent
+    {
+        public GameUnloadEvent(Game1 ins) : base(ins) {}
     }
 }

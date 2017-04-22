@@ -179,6 +179,18 @@ namespace PathfinderPatcher
                     localsID: new int[] { 0, 2 }
                 );
 
+                ad.MainModule.GetType("Hacknet.Game1").GetMethod("UnloadContent").InjectWith(
+                    hooks.GetMethod("onGameUnloadContent"),
+                    -1,
+                    flags: InjectFlags.PassInvokingInstance
+                );
+
+                ad.MainModule.GetType("Hacknet.Game1").GetMethod("Update").InjectWith(
+					hooks.GetMethod("onGameUpdate"),
+                    -5,
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef
+                );
+
                 ad?.Write("HacknetPathfinder.exe");
             }
             catch (Exception ex)

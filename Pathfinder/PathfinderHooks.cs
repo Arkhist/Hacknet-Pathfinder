@@ -249,5 +249,17 @@ namespace Pathfinder
             Logger.Verbose("Finished Redrawing Main Menu Titles");
             return true;
         }
+
+        public static void onGameUnloadContent(Game1 self)
+        {
+            var gameUnloadEvent = new Event.GameUnloadEvent(self);
+            gameUnloadEvent.CallEvent();
+        }
+
+        public static void onGameUpdate(Game1 self, ref GameTime time)
+        {
+            var gameUpdateEvent = new Event.GameUpdateEvent(self, time);
+            gameUpdateEvent.CallEvent();
+        }
     }
 }

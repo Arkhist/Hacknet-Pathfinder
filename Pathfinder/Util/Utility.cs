@@ -60,12 +60,30 @@ namespace Pathfinder.Util
         }
 
         /// <summary>
-        /// Gets the primary NetworkMap for the current OS instance.
+        /// Gets the current client OS.
         /// </summary>
-        /// <returns>The primary Network Map.</returns>
-        public static Hacknet.NetworkMap GetPrimaryNetMap()
+        /// <returns>The client's current OS.</returns>
+        public static Hacknet.OS GetClientOS()
         {
-            return Hacknet.OS.currentInstance?.netMap;
+            return Hacknet.OS.currentInstance;
+        }
+
+        /// <summary>
+        /// Gets the current client's Computer.
+        /// </summary>
+        /// <returns>The client's Current Computer.</returns>
+        public static Hacknet.Computer GetClientComputer()
+        {
+            return GetClientOS().thisComputer;
+        }
+
+        /// <summary>
+        /// Gets the current client's NetworkMap for the current client OS.
+        /// </summary>
+        /// <returns>The client's current Network Map.</returns>
+        public static Hacknet.NetworkMap GetClientNetMap()
+        {
+            return GetClientOS()?.netMap;
         }
     }
 }
