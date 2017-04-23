@@ -12,34 +12,51 @@ namespace Pathfinder.Executable
         private static Dictionary<string, IInterface> interfaces = new Dictionary<string, IInterface>();
         private static Dictionary<string, string> idToDataCache = new Dictionary<string, string>();
 
-        public static bool AddExecutable(string exeIdentity, IInterface inter)
+        /// <summary>
+        /// Adds an executable interface by id.
+        /// </summary>
+        /// <returns><c>true</c>, if executable was added, <c>false</c> otherwise.</returns>
+        /// <param name="id">The Executable Identifier to try and add.</param>
+        /// <param name="inter">The interface object.</param>
+        public static bool AddExecutable(string id, IInterface inter)
         {
-            exeIdentity = Utility.GetPreviousStackFrameIdentity() + "." + exeIdentity;
-            Logger.Verbose("Mod {0} is attempting to add executable interface {1} with id {2}",
+            id = Utility.GetPreviousStackFrameIdentity() + "." + id;
+            Logger.Verbose("Mod '{0}' is attempting to add executable interface {1} with id {2}",
                            Utility.GetPreviousStackFrameIdentity(),
                            inter.GetType().FullName,
-                           exeIdentity);
-            if (interfaces.ContainsKey(exeIdentity))
+                           id);
+            if (interfaces.ContainsKey(id))
                 return false;
             var type = inter.GetType();
-            var fileData = exeIdentity + "\nldloc.args\ncall Pathfinder.Executable.Instance [" + type.Assembly.GetName().Name + ".dll]"
-                                                     + type.FullName + "=" + exeIdentity + "()";
+            var fileData = id + "\nldloc.args\ncall Pathfinder.Executable.Instance [" + type.Assembly.GetName().Name + ".dll]"
+                                                     + type.FullName + "=" + id + "()";
             if (fileData.Length < 1 || idToDataCache.ContainsValue(fileData))
-                throw new ArgumentException("exeName and inter combined is not unique");
-            interfaces.Add(exeIdentity, inter);
-            idToDataCache.Add(exeIdentity, fileData);
+                throw new ArgumentException("created data for '" + id + "' is not unique");
+            interfaces.Add(id, inter);
+            idToDataCache.Add(id, fileData);
             return true;
         }
 
-        public static bool IsFileDataForMod(string fileData)
+        /// <summary>
+        /// Determines whether the file data is for a mod interface.
+        /// </summary>
+        /// <returns><c>true</c>, if the file data is for a mod interface, <c>false</c> otherwise.</returns>
+        /// <param name="fileData">File data.</param>
+        public static bool IsFileDataForModExe(string fileData)
         {
             var dataLines = fileData.Split('\n');
             return dataLines.Length >= 3 && dataLines[1] == "ldloc.args"
-                            && dataLines[2].StartsWith("call Pathfinder.Executable.Instance ", StringComparison.Ordinal)
+                            && dataLines[2].StartsWith("call Pathfinder.Executable.Instance", StringComparison.Ordinal)
                             && dataLines[2].EndsWith("=" + dataLines[0] + "()", StringComparison.Ordinal)
                             && idToDataCache.ContainsValue(dataLines[0]);
         }
 
+        /// <summary>
+        /// Gets the standard file data by id.
+        /// </summary>
+        /// <returns>The standard file data or <c>nulll</c> if it doesn't exist.</returns>
+        /// <param name="id">Executable Identifier.</param>
+        /// <param name="requiresModId">If set to <c>true</c> id requires a prefixing mod identifier delimated by period.</param>
         public static string GetStandardFileDataBy(string id, bool requiresModId = false)
         {
             if (requiresModId && id.IndexOf('.') == -1)
@@ -51,6 +68,11 @@ namespace Pathfinder.Executable
             return null;
         }
 
+        /// <summary>
+        /// Gets the first standard file data by interface.
+        /// </summary>
+        /// <returns>The standard file data or <c>null</c> if it doesn't exist.</returns>
+        /// <param name="inter">The Executable Interface</param>
         public static string GetStandardFileDataBy(IInterface inter)
         {
             foreach (var pair in interfaces)
@@ -62,7 +84,7 @@ namespace Pathfinder.Executable
         internal static void ExecutableListener(ExecutableExecuteEvent e)
         {
             IInterface i;
-            if (IsFileDataForMod(e.ExecutableFile.data) && interfaces.TryGetValue(e.ExecutableFile.data.Split('\n')[0], out i))
+            if (IsFileDataForModExe(e.ExecutableFile.data) && interfaces.TryGetValue(e.ExecutableFile.data.Split('\n')[0], out i))
             {
                 int num = e.OS.ram.bounds.Y + RamModule.contentStartOffset;
                 foreach (var exe in e.OS.exes)
@@ -98,7 +120,7 @@ namespace Pathfinder.Executable
                             alreadyHandled = true;
                             break;
                         }
-                    if (!alreadyHandled && IsFileDataForMod(file.data))
+                    if (!alreadyHandled && IsFileDataForModExe(file.data))
                         os.write(name);
                 }
                 os.write(" ");

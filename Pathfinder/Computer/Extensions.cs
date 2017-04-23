@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Pathfinder.Util;
+using Pathfinder.NetworkMap;
 
 namespace Pathfinder.Computer
 {
@@ -67,6 +69,20 @@ namespace Pathfinder.Computer
                 if ((d as Daemon.Instance)?.Interface is T)
                     result.Add(d as Daemon.Instance);
             return result;
+        }
+
+        /// <summary>
+        /// Adds from this comp connecting to newLink.
+        /// </summary>
+        /// <returns><c>true</c>, if the link was added, <c>false</c> otherwise.</returns>
+        /// <param name="comp">The Computer</param>
+        /// <param name="newLink">The New link.</param>
+        /// <param name="netmap">The NetworkMap or the main client NetworkMap from <see cref="T:Utility.GetClientNetMap"/> if <c>null</c>.</param>
+        public static bool AddLink(this Hacknet.Computer comp, Hacknet.Computer newLink, Hacknet.NetworkMap netmap = null)
+        {
+            if (netmap == null)
+                netmap = Utility.GetClientNetMap();
+            return netmap?.AddLink(comp, newLink) ?? false;
         }
     }
 }

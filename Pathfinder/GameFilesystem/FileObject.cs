@@ -18,38 +18,43 @@ namespace Pathfinder.GameFilesystem
             Parent = parent;
         }
 
-        public new ParentT Parent { get; internal set; }
+        public new ParentT Parent { get { return parent as ParentT; } internal set { parent = value; } }
     }
 
-    public class FileObject<VanillaT> : IFileObject<VanillaT> where VanillaT : class
+    public abstract class FileObject<VanillaT> : IFileObject<VanillaT> where VanillaT : class
     {
+        protected object parent;
+
         /// <summary>
         /// Gets or sets the object's full path, setting changes the object's parent
         /// </summary>
         public virtual string Path { get; set; }
+        string IFileObject<VanillaT>.Path { get { return Path; } set { Path = value; } }
         /// <summary>
         /// Gets or sets the object's name
         /// </summary>
         public virtual string Name { get; set; }
+        string IFileObject<VanillaT>.Name { get { return Name; } set { Name = value; } }
         /// <summary>
         /// Gets the vanilla object
         /// </summary>
-        VanillaT IFileObject<VanillaT>.Object { get { return Object; } }
         public virtual VanillaT Object { get; internal set; }
+        VanillaT IFileObject<VanillaT>.Object => Object;
         /// <summary>
         /// Gets the object's parent
         /// </summary>
-        object IFileObject<VanillaT>.Parent { get { return Parent; } }
-        public virtual object Parent { get; internal set; }
+        public virtual object Parent { get { return parent; } internal set { parent = value; } }
+        object IFileObject<VanillaT>.Parent => Parent;
         /// <summary>
         /// Gets the index inside its parent's respective list
         /// </summary>
-        int IFileObject<VanillaT>.Index { get { return Index; } }
         public virtual int Index { get; internal set; }
+        int IFileObject<VanillaT>.Index => Index;
         /// <summary>
         /// Gets the root Filesystem the object is within
         /// </summary>
         public virtual Filesystem Root { get; }
+        Filesystem IFileObject<VanillaT>.Root => Root;
 
         public bool LogOperation(FileOpLogType t, params string[] inputArr)
         {

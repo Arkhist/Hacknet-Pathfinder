@@ -85,5 +85,14 @@ namespace Pathfinder.Util
         {
             return GetClientOS()?.netMap;
         }
+
+        /// <summary>
+        /// Gets the current Computer the client is connected to.
+        /// </summary>
+        /// <returns>The currently connected to Computer.</returns>
+        public static Hacknet.Computer GetCurrentComputer()
+        {
+            return GetClientOS()?.connectedComp ?? GetClientComputer();
+        }
     }
 }

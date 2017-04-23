@@ -22,6 +22,10 @@ namespace Pathfinder.GameFilesystem
             Cast = (FileObject<object>)(IFileObject<object>)this;
         }
 
+        /// <summary>
+        /// Gets or sets the directory name.
+        /// </summary>
+        /// <value>The name of the directory.</value>
         public sealed override string Name
         {
             get
@@ -37,6 +41,10 @@ namespace Pathfinder.GameFilesystem
             }
         }
 
+        /// <summary>
+        /// Gets or sets the directory's path, both renames and modifies the directories location.
+        /// </summary>
+        /// <value>The directory's path.</value>
         public override string Path
         {
             get
@@ -57,6 +65,10 @@ namespace Pathfinder.GameFilesystem
             }
         }
 
+        /// <summary>
+        /// Gets the folder index inside the vanilla parent folder.
+        /// </summary>
+        /// <value>The folder index in the parent or <c>-1</c> if root directory.</value>
         public sealed override int Index
         {
             get; internal set;
@@ -64,6 +76,11 @@ namespace Pathfinder.GameFilesystem
 
         public sealed override Filesystem Root => Parent.Root;
 
+        /// <summary>
+        /// Tries to cast the Parent to T
+        /// </summary>
+        /// <returns>The Parent as T or <c>null</c> if Parent isn't able to be casted to T.</returns>
+        /// <typeparam name="T">The type to cast Parent to.</typeparam>
         public T CastParent<T>() where T : class
         {
             return Parent as T;
@@ -183,6 +200,8 @@ namespace Pathfinder.GameFilesystem
 
         public File MoveFile(File f, Directory newDir)
         {
+            if (!Contains(f))
+                return null;
             f.LogOperation(FileOpLogType.MoveFile, f.Name, Path, newDir.Path);
             Object.files.RemoveAt(f.Index);
             f.Parent = newDir;
@@ -194,6 +213,8 @@ namespace Pathfinder.GameFilesystem
 
         public Directory MoveDirectory(Directory d, Directory newDir)
         {
+            if (!Contains(d))
+                return null;
             d.LogOperation(FileOpLogType.MoveFolder, d.Name, Path, newDir.Path);
             Object.folders.RemoveAt(d.Index);
             d.Parent = newDir.Cast;
@@ -221,7 +242,7 @@ namespace Pathfinder.GameFilesystem
         public bool ContainsFile(string name = null, string data = null)
         {
             if (name == null && data == null)
-                return Object.files.Count < 1;
+                return Object.files.Count > 1;
             if (name == null)
                 return Object.containsFileWithData(data);
             else if (data == null)
@@ -237,11 +258,7 @@ namespace Pathfinder.GameFilesystem
             return Object.folders.Exists(f => f.name == name);
         }
 
-        public FileObject<object> Cast
-        {
-            get; private set;
-        }
-
+        public FileObject<object> Cast { get; private set; }
         public IFileObject<object> this[string name] => FindFile(name)?.Cast ?? FindDirectory(name)?.Cast;
         public List<File> Files => Object.files.Select(f => new File(f, this)).ToList();
         public List<Directory> Directories => Object.folders.Select(f => new Directory(f, Cast)).ToList();
@@ -251,14 +268,10 @@ namespace Pathfinder.GameFilesystem
         public IEnumerator<IFileObject<object>> GetEnumerator()
         {
             foreach (var f in Object.files)
-            {
                 yield return new File(f, this).Cast;
-            }
 
             foreach (var f in Object.folders)
-            {
                 yield return new Directory(f, Cast).Cast;
-            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
