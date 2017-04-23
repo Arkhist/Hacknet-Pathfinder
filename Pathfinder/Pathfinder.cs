@@ -61,8 +61,12 @@ namespace Pathfinder
                 {
                     var modAssembly = Assembly.LoadFile(dll);
                     Type modType = null;
-                    foreach (Type t in (modAssembly.GetTypes().Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(PathfinderMod)))))
+                    foreach (Type t in (modAssembly.GetExportedTypes().Where(t =>
+                                                                     t.IsClass && !t.IsAbstract
+                                                                     && typeof(IPathfinderMod).IsAssignableFrom(t)))
+                            )
                     {
+                        string name = null;
                         try
                         {
                             modType = t;
@@ -72,20 +76,22 @@ namespace Pathfinder
                             if (methodInfo == null)
                                 throw new NotSupportedException("Method 'Identifier' doesn't exist, mod '"
                                                                 + Path.GetFileName(modAssembly.Location) + "' is invalid");
-                            var name = (string)methodInfo.Invoke(modInstance, null);
+                            name = (string)methodInfo.Invoke(modInstance, null);
                             if (IsModLoaded(name))
                                 throw new ExceptionInvalidId("Mod with identifier '" + name + "' is either already loaded or is reserved");
                             if (name.Contains('.'))
                                 throw new ExceptionInvalidId("Mod identifier '" + name + "' contains a period, mod identifiers may not contain a period (.)");
                             Logger.Info("Loading mod '{0}'", name);
 
-                            modInstance.Load();
-
                             mods.Add(name, modInstance);
+
+                            modInstance.Load();
                         }
                         catch (Exception ex)
                         {
                             Logger.Error("Mod '{0}' of file '{1}' failed to load:\n\t{2}", t.FullName, Path.GetFileName(dll), ex);
+                            if (mods.ContainsKey(name))
+                                mods.Remove(name);
                         }
                     }
                 }
