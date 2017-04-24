@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_util_1_1_utility" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::Utility</compoundname>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_utility_1_1_array" prot="public">Pathfinder::Util::Utility::Array</innerclass>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1ad71662557bf33ea7f96789246152440e" prot="private" static="yes" mutable="no">
+        <type>Regex</type>
+        <definition>Regex Pathfinder.Util.Utility.xmlAttribRegex</definition>
+        <argsstring></argsstring>
+        <name>xmlAttribRegex</name>
+        <initializer>= new Regex(&quot;[^a-zA-Z0-9_.]&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="15" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a2226c43ab09a5d67e844b616defb1ec2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Util.Utility.GetPreviousStackFrameIdentity</definition>
+        <argsstring>(int frameSkip=2)</argsstring>
+        <name>GetPreviousStackFrameIdentity</name>
+        <param>
+          <type>int</type>
+          <declname>frameSkip</declname>
+          <defval>2</defval>
+        </param>
+        <briefdescription>
+<para>Gets the previous stack frame identity. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The previous stack frame identity.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frameSkip</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frames to skip back to.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="22" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="22" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a357eda9e4e9b509912046ccc5ba928bb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Util.Utility.ConvertToValidXmlAttributeName</definition>
+        <argsstring>(string input)</argsstring>
+        <name>ConvertToValidXmlAttributeName</name>
+        <param>
+          <type>string</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Converts the input to a valid xml attribute name. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A valid xml attribute name.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input to convert.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="38" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="38" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a30d4a1a896db583bfcb2d8717e82d77e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Util.Utility.GetId</definition>
+        <argsstring>(string inputId, bool ignorePeriod=false, int frameSkip=3, bool ignoreValidXml=false)</argsstring>
+        <name>GetId</name>
+        <param>
+          <type>string</type>
+          <declname>inputId</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>ignorePeriod</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>frameSkip</declname>
+          <defval>3</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>ignoreValidXml</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Retrieves an identifier for the input. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The resulting identifier.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>inputId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input identifier.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ignorePeriod</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If set to <computeroutput>true</computeroutput> ignore period.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frameSkip</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frames to skip back to.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ignoreValidXml</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If set to <computeroutput>true</computeroutput> ignore valid xml.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="54" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="54" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a0bf7e9763485523e55c7bc0c053d64f5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Hacknet.OS</type>
+        <definition>static Hacknet.OS Pathfinder.Util.Utility.GetClientOS</definition>
+        <argsstring>()</argsstring>
+        <name>GetClientOS</name>
+        <briefdescription>
+<para>Gets the current client <ref refid="namespace_pathfinder_1_1_o_s" kindref="compound">OS</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The client&apos;s current <ref refid="namespace_pathfinder_1_1_o_s" kindref="compound">OS</ref>.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="66" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a39f234cf157a8731f04b3a5cd72c4095" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Hacknet.Computer</type>
+        <definition>static Hacknet.Computer Pathfinder.Util.Utility.GetClientComputer</definition>
+        <argsstring>()</argsstring>
+        <name>GetClientComputer</name>
+        <briefdescription>
+<para>Gets the current client&apos;s <ref refid="namespace_pathfinder_1_1_computer" kindref="compound">Computer</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The client&apos;s Current <ref refid="namespace_pathfinder_1_1_computer" kindref="compound">Computer</ref>.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="75" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="75" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1ae82fa135fd32ea463792474334864d41" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Hacknet.NetworkMap</type>
+        <definition>static Hacknet.NetworkMap Pathfinder.Util.Utility.GetClientNetMap</definition>
+        <argsstring>()</argsstring>
+        <name>GetClientNetMap</name>
+        <briefdescription>
+<para>Gets the current client&apos;s <ref refid="namespace_pathfinder_1_1_network_map" kindref="compound">NetworkMap</ref> for the current client <ref refid="namespace_pathfinder_1_1_o_s" kindref="compound">OS</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The client&apos;s current Network Map.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="84" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="84" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a081ad9358b2f563ace650268a7869bdb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Hacknet.Computer</type>
+        <definition>static Hacknet.Computer Pathfinder.Util.Utility.GetCurrentComputer</definition>
+        <argsstring>()</argsstring>
+        <name>GetCurrentComputer</name>
+        <briefdescription>
+<para>Gets the current <ref refid="namespace_pathfinder_1_1_computer" kindref="compound">Computer</ref> the client is connected to. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The currently connected to <ref refid="namespace_pathfinder_1_1_computer" kindref="compound">Computer</ref>.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="93" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="93" bodyend="96"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Util/Utility.cs" line="9" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="8" bodyend="97"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1a357eda9e4e9b509912046ccc5ba928bb" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ConvertToValidXmlAttributeName</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1a39f234cf157a8731f04b3a5cd72c4095" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetClientComputer</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1ae82fa135fd32ea463792474334864d41" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetClientNetMap</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1a0bf7e9763485523e55c7bc0c053d64f5" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetClientOS</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1a081ad9358b2f563ace650268a7869bdb" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetCurrentComputer</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1a30d4a1a896db583bfcb2d8717e82d77e" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetId</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1a2226c43ab09a5d67e844b616defb1ec2" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetPreviousStackFrameIdentity</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1ad71662557bf33ea7f96789246152440e" prot="private" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>xmlAttribRegex</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

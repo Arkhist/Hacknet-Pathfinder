@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_bb9b7a59faf0de76c7fb34485be0c2e5" kind="dir">
+    <compoundname>Pathfinder/GameFilesystem</compoundname>
+    <innerfile refid="_directory_8cs">Directory.cs</innerfile>
+    <innerfile refid="_game_filesystem_2_extensions_8cs">Extensions.cs</innerfile>
+    <innerfile refid="_file_8cs">File.cs</innerfile>
+    <innerfile refid="_file_object_8cs">FileObject.cs</innerfile>
+    <innerfile refid="_filesystem_8cs">Filesystem.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/GameFilesystem/"/>
+  </compounddef>
+</doxygen>

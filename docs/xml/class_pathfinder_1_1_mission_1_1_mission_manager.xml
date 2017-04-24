@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_mission_1_1_mission_manager" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Mission::MissionManager</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a9b3654a57182013913078034747f4881" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MissionListingServer</type>
+        <definition>static MissionListingServer Pathfinder.Mission.MissionManager.CreateMissionListingDaemon</definition>
+        <argsstring>(this Hacknet.Computer c, string serviceName, string logoPath, bool isPublic=false, bool isAssigner=false, Hacknet.OS os=null)</argsstring>
+        <name>CreateMissionListingDaemon</name>
+        <param>
+          <type>this Hacknet.Computer</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>serviceName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>logoPath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isPublic</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isAssigner</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>Hacknet.OS</type>
+          <declname>os</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="12" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="12" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a820241fc02c5b01d15ef863fe9f7e433" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MissionListingServer</type>
+        <definition>static MissionListingServer Pathfinder.Mission.MissionManager.SetThemeColor</definition>
+        <argsstring>(this MissionListingServer s, Color color)</argsstring>
+        <name>SetThemeColor</name>
+        <param>
+          <type>this MissionListingServer</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>Color</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="34" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1afbfe2fd3ecb5ed53f205e356368f03e0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MissionListingServer</type>
+        <definition>static MissionListingServer Pathfinder.Mission.MissionManager.SetGroupName</definition>
+        <argsstring>(this MissionListingServer s, string name)</argsstring>
+        <name>SetGroupName</name>
+        <param>
+          <type>this MissionListingServer</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="40" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="40" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a3249fcfd617228b0c145986ca6b22db9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MissionListingServer</type>
+        <definition>static MissionListingServer Pathfinder.Mission.MissionManager.SetListingTitle</definition>
+        <argsstring>(this MissionListingServer s, string title)</argsstring>
+        <name>SetListingTitle</name>
+        <param>
+          <type>this MissionListingServer</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>title</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="46" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="46" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1ae056454d364f859b6ddd9dfa5eac1c82" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MissionListingServer</type>
+        <definition>static MissionListingServer Pathfinder.Mission.MissionManager.SetState</definition>
+        <argsstring>(this MissionListingServer s, int state)</argsstring>
+        <name>SetState</name>
+        <param>
+          <type>this MissionListingServer</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="52" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="52" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1ab87dd245a2f379b7e667027d0e9fe230" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MissionListingServer</type>
+        <definition>static MissionListingServer Pathfinder.Mission.MissionManager.AddMission</definition>
+        <argsstring>(this MissionListingServer s, ActiveMission m, bool injectTop=false)</argsstring>
+        <name>AddMission</name>
+        <param>
+          <type>this MissionListingServer</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>ActiveMission</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>injectTop</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="58" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="58" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a42bd646f03743a4fdcd4598798e50e4f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MissionHubServer</type>
+        <definition>static MissionHubServer Pathfinder.Mission.MissionManager.CreateMissionHubDaemon</definition>
+        <argsstring>(this Hacknet.Computer c, string serviceName, Hacknet.OS os=null)</argsstring>
+        <name>CreateMissionHubDaemon</name>
+        <param>
+          <type>this Hacknet.Computer</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>serviceName</declname>
+        </param>
+        <param>
+          <type>Hacknet.OS</type>
+          <declname>os</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="67" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="67" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a76d33e08811a6ed0c40300607ce5d57b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MissionHubServer</type>
+        <definition>static MissionHubServer Pathfinder.Mission.MissionManager.SetThemeColor</definition>
+        <argsstring>(this MissionHubServer s, Color color)</argsstring>
+        <name>SetThemeColor</name>
+        <param>
+          <type>this MissionHubServer</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>Color</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="74" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="74" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1ac57bb178f11a195254d43d0842730f23" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MissionHubServer</type>
+        <definition>static MissionHubServer Pathfinder.Mission.MissionManager.SetGroupName</definition>
+        <argsstring>(this MissionHubServer s, string name)</argsstring>
+        <name>SetGroupName</name>
+        <param>
+          <type>this MissionHubServer</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="80" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="80" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a0e303561ee82526bdc95e1d8f81dafb8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MissionHubServer</type>
+        <definition>static MissionHubServer Pathfinder.Mission.MissionManager.AddMission</definition>
+        <argsstring>(this MissionHubServer s, ActiveMission m, bool insertTop=false, bool preventRegistryChange=false, int desiredIndex=-1)</argsstring>
+        <name>AddMission</name>
+        <param>
+          <type>this MissionHubServer</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>ActiveMission</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>insertTop</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>preventRegistryChange</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>desiredIndex</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="86" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="86" bodyend="103"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Mission/MissionManager.cs" line="11" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="10" bodyend="104"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1ab87dd245a2f379b7e667027d0e9fe230" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>AddMission</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a0e303561ee82526bdc95e1d8f81dafb8" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>AddMission</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a42bd646f03743a4fdcd4598798e50e4f" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>CreateMissionHubDaemon</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a9b3654a57182013913078034747f4881" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>CreateMissionListingDaemon</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1afbfe2fd3ecb5ed53f205e356368f03e0" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>SetGroupName</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1ac57bb178f11a195254d43d0842730f23" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>SetGroupName</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a3249fcfd617228b0c145986ca6b22db9" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>SetListingTitle</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1ae056454d364f859b6ddd9dfa5eac1c82" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>SetState</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a820241fc02c5b01d15ef863fe9f7e433" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>SetThemeColor</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a76d33e08811a6ed0c40300607ce5d57b" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>SetThemeColor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

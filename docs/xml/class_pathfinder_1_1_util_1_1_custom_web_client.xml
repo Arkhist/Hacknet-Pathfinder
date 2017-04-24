@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_util_1_1_custom_web_client" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::CustomWebClient</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">WebClient</basecompoundref>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_custom_web_client_1a64b6b43896e1168eb6a8c28fd83e3e70" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override WebRequest</type>
+        <definition>override WebRequest Pathfinder.Util.CustomWebClient.GetWebRequest</definition>
+        <argsstring>(Uri address)</argsstring>
+        <name>GetWebRequest</name>
+        <param>
+          <type>Uri</type>
+          <declname>address</declname>
+        </param>
+        <briefdescription>
+<para>Returns a T:System.Net.WebRequest object for the specified resource. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>address</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A T:System.Uri that identifies the resource to request.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new T:System.Net.WebRequest object for the specified resource. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Updater.cs" line="56" column="1" bodyfile="Pathfinder/Util/Updater.cs" bodystart="56" bodyend="64"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="17">
+        <label>WebClient</label>
+      </node>
+      <node id="16">
+        <label>Pathfinder.Util.CustomWebClient</label>
+        <link refid="class_pathfinder_1_1_util_1_1_custom_web_client"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="19">
+        <label>WebClient</label>
+      </node>
+      <node id="18">
+        <label>Pathfinder.Util.CustomWebClient</label>
+        <link refid="class_pathfinder_1_1_util_1_1_custom_web_client"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Util/Updater.cs" line="48" column="1" bodyfile="Pathfinder/Util/Updater.cs" bodystart="47" bodyend="65"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_util_1_1_custom_web_client_1a64b6b43896e1168eb6a8c28fd83e3e70" prot="protected" virt="non-virtual"><scope>Pathfinder::Util::CustomWebClient</scope><name>GetWebRequest</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

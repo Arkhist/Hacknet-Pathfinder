@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_event_1_1_network_map_load_content_event" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Event::NetworkMapLoadContentEvent</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" prot="public" virt="non-virtual">Pathfinder.Event.PathfinderEvent</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1af2ff4aea9af5d492762baf0ce7a82c26" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>Hacknet.NetworkMap</type>
+        <definition>Hacknet.NetworkMap Pathfinder.Event.NetworkMapLoadContentEvent.NetMap</definition>
+        <argsstring></argsstring>
+        <name>NetMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/BasicEvents.cs" line="8" column="1" bodyfile="Pathfinder/Event/BasicEvents.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1a19dd3a686dff35b8b58b3383b0e50234" prot="public" static="no" mutable="no">
+        <type>Hacknet.NetworkMap</type>
+        <definition>Hacknet.NetworkMap Pathfinder.Event.NetworkMapLoadContentEvent.NetMapInstance</definition>
+        <argsstring></argsstring>
+        <name>NetMapInstance</name>
+        <initializer>=&gt; <ref refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1af2ff4aea9af5d492762baf0ce7a82c26" kindref="member">NetMap</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/BasicEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/BasicEvents.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1a086329ed48d7b2f6705ad7770b3ff90d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Event.NetworkMapLoadContentEvent.NetworkMapLoadContentEvent</definition>
+        <argsstring>(Hacknet.NetworkMap netmap)</argsstring>
+        <name>NetworkMapLoadContentEvent</name>
+        <param>
+          <type>Hacknet.NetworkMap</type>
+          <declname>netmap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/BasicEvents.cs" line="11" column="1" bodyfile="Pathfinder/Event/BasicEvents.cs" bodystart="11" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="225">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="224">
+        <label>Pathfinder.Event.NetworkMapLoadContentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event"/>
+        <childnode refid="225" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="227">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="226">
+        <label>Pathfinder.Event.NetworkMapLoadContentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event"/>
+        <childnode refid="227" relation="public-inheritance">
+        </childnode>
+        <childnode refid="228" relation="usage">
+          <edgelabel>NetMapInstance</edgelabel>
+        </childnode>
+      </node>
+      <node id="228">
+        <label>Hacknet</label>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Event/BasicEvents.cs" line="7" column="1" bodyfile="Pathfinder/Event/BasicEvents.cs" bodystart="6" bodyend="12"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::NetworkMapLoadContentEvent</scope><name>CallEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::NetworkMapLoadContentEvent</scope><name>IsCancelled</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1af2ff4aea9af5d492762baf0ce7a82c26" prot="public" virt="non-virtual"><scope>Pathfinder::Event::NetworkMapLoadContentEvent</scope><name>NetMap</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1a19dd3a686dff35b8b58b3383b0e50234" prot="public" virt="non-virtual"><scope>Pathfinder::Event::NetworkMapLoadContentEvent</scope><name>NetMapInstance</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1a086329ed48d7b2f6705ad7770b3ff90d" prot="public" virt="non-virtual"><scope>Pathfinder::Event::NetworkMapLoadContentEvent</scope><name>NetworkMapLoadContentEvent</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

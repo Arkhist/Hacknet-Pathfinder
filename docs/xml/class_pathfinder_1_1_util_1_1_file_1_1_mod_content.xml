@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::File::ModContent</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a0a4ff823684075d14c9ca28dad69ecb0" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Util.File.ModContent.modId</definition>
+        <argsstring></argsstring>
+        <name>modId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="13" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a50c7e62b7e2166ebb0292dec8cb96af8" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Util.File.ModContent.contentPath</definition>
+        <argsstring></argsstring>
+        <name>contentPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="14" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a1120f4374c57e371dddf520a54a47dd3" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Util.File.ModContent.texturePath</definition>
+        <argsstring></argsstring>
+        <name>texturePath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="15" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1aa8acf2bd7d829e515e358f9de1eb838e" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Util.File.ModContent.soundPath</definition>
+        <argsstring></argsstring>
+        <name>soundPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="16" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a38c414fd9db0696e1fed49e827c6ad4b" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Util.File.ModContent.musicPath</definition>
+        <argsstring></argsstring>
+        <name>musicPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="17" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a816e708c4f6e66bd3b532c1d90a0d6be" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, Texture2D &gt;</type>
+        <definition>Dictionary&lt;string, Texture2D&gt; Pathfinder.Util.File.ModContent.loadedTextures</definition>
+        <argsstring></argsstring>
+        <name>loadedTextures</name>
+        <initializer>= new Dictionary&lt;string, Texture2D&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="18" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a46f7a18c208e4e67e7e733df527eeb66" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, SoundEffect &gt;</type>
+        <definition>Dictionary&lt;string, SoundEffect&gt; Pathfinder.Util.File.ModContent.loadedSounds</definition>
+        <argsstring></argsstring>
+        <name>loadedSounds</name>
+        <initializer>= new Dictionary&lt;string, SoundEffect&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="19" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1ae972db6f9390f408da481a169db0dfee" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, string &gt;</type>
+        <definition>Dictionary&lt;string, string&gt; Pathfinder.Util.File.ModContent.songNameToPath</definition>
+        <argsstring></argsstring>
+        <name>songNameToPath</name>
+        <initializer>= new Dictionary&lt;string, string&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="20" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1ac24f862c6747c7d138c75af452484d6b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Util.File.ModContent.ModContent</definition>
+        <argsstring>(string modId, string textureDirName, string soundDirName, string musicDirName)</argsstring>
+        <name>ModContent</name>
+        <param>
+          <type>string</type>
+          <declname>modId</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>textureDirName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>soundDirName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>musicDirName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="22" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="22" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1aa528e46d9e4b8a52e1f2bd99719459ef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Texture2D</type>
+        <definition>Texture2D Pathfinder.Util.File.ModContent.GetTexture</definition>
+        <argsstring>(string texName)</argsstring>
+        <name>GetTexture</name>
+        <param>
+          <type>string</type>
+          <declname>texName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="44" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="44" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1ae0626b02bfbca475685c7615eb1360e1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>SoundEffect</type>
+        <definition>SoundEffect Pathfinder.Util.File.ModContent.GetSound</definition>
+        <argsstring>(string soundName)</argsstring>
+        <name>GetSound</name>
+        <param>
+          <type>string</type>
+          <declname>soundName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="51" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="51" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a245046d20f8a5fb5f4ff90375e365a53" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Pathfinder.Util.File.ModContent.GetSongPath</definition>
+        <argsstring>(string songName)</argsstring>
+        <name>GetSongPath</name>
+        <param>
+          <type>string</type>
+          <declname>songName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="58" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="58" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a80b0f1759d9ef413b8973932aeb05d14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Pathfinder.Util.File.ModContent.PlaySound</definition>
+        <argsstring>(string soundName, float volume=1, float pitch=0, float pan=0)</argsstring>
+        <name>PlaySound</name>
+        <param>
+          <type>string</type>
+          <declname>soundName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>volume</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>pitch</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>pan</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="65" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="65" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1af1b69f5652b9fd3d88712dd10a5b0f72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Util.File.ModContent.LoadAsCurrentSong</definition>
+        <argsstring>(string songName)</argsstring>
+        <name>LoadAsCurrentSong</name>
+        <param>
+          <type>string</type>
+          <declname>songName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="72" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="72" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a986b93dda85fc128749e255a40237560" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Util.File.ModContent.TransitionToSong</definition>
+        <argsstring>(string songName)</argsstring>
+        <name>TransitionToSong</name>
+        <param>
+          <type>string</type>
+          <declname>songName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="78" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="78" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a474053c5e3ba6203cbd73e686f01c77e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Util.File.ModContent.PlaySongImmediately</definition>
+        <argsstring>(string songName)</argsstring>
+        <name>PlaySongImmediately</name>
+        <param>
+          <type>string</type>
+          <declname>songName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="84" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="84" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a2e0421c8cb0a6b4f629d3173a646926f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Util.File.ModContent.LoadTextures</definition>
+        <argsstring>()</argsstring>
+        <name>LoadTextures</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="90" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="90" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a536ce2aaf3b833e3b52a25c93b1faa66" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Util.File.ModContent.LoadSounds</definition>
+        <argsstring>()</argsstring>
+        <name>LoadSounds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="108" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="108" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1aaf4ebb3dd342b76cf9a86497d7f463b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Util.File.ModContent.LoadMusicList</definition>
+        <argsstring>()</argsstring>
+        <name>LoadMusicList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/File/ModContent.cs" line="125" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="125" bodyend="130"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Util/File/ModContent.cs" line="12" column="1" bodyfile="Pathfinder/Util/File/ModContent.cs" bodystart="11" bodyend="131"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a50c7e62b7e2166ebb0292dec8cb96af8" prot="private" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>contentPath</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a245046d20f8a5fb5f4ff90375e365a53" prot="public" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>GetSongPath</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1ae0626b02bfbca475685c7615eb1360e1" prot="public" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>GetSound</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1aa528e46d9e4b8a52e1f2bd99719459ef" prot="public" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>GetTexture</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1af1b69f5652b9fd3d88712dd10a5b0f72" prot="public" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>LoadAsCurrentSong</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a46f7a18c208e4e67e7e733df527eeb66" prot="private" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>loadedSounds</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a816e708c4f6e66bd3b532c1d90a0d6be" prot="private" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>loadedTextures</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1aaf4ebb3dd342b76cf9a86497d7f463b0" prot="public" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>LoadMusicList</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a536ce2aaf3b833e3b52a25c93b1faa66" prot="public" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>LoadSounds</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a2e0421c8cb0a6b4f629d3173a646926f" prot="public" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>LoadTextures</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1ac24f862c6747c7d138c75af452484d6b" prot="public" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>ModContent</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a0a4ff823684075d14c9ca28dad69ecb0" prot="private" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>modId</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a38c414fd9db0696e1fed49e827c6ad4b" prot="private" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>musicPath</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a474053c5e3ba6203cbd73e686f01c77e" prot="public" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>PlaySongImmediately</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a80b0f1759d9ef413b8973932aeb05d14" prot="public" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>PlaySound</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1ae972db6f9390f408da481a169db0dfee" prot="private" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>songNameToPath</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1aa8acf2bd7d829e515e358f9de1eb838e" prot="private" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>soundPath</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a1120f4374c57e371dddf520a54a47dd3" prot="private" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>texturePath</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content_1a986b93dda85fc128749e255a40237560" prot="public" virt="non-virtual"><scope>Pathfinder::Util::File::ModContent</scope><name>TransitionToSong</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

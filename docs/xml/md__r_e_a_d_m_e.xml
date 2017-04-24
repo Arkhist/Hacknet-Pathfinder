@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="md__r_e_a_d_m_e" kind="page">
+    <compoundname>md_README</compoundname>
+    <title>Hacknet Pathfinder</title>
+    <detaileddescription>
+<para>Hacknet Modloader in C#</para><para><heading level="1">Note</heading>
+</para><para>Must include Hacknet&apos;s AlienFXManagedWrapper3.5.dll, FNA.dll, and Steamworks.NET.dll in the lib directory</para><para><heading level="1">Warning</heading>
+</para><para>Use at your own risk </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

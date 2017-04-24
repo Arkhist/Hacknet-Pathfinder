@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_64d253ef1f79ff8128c877fa1dc35bc4" kind="dir">
+    <compoundname>Pathfinder/Event</compoundname>
+    <innerfile refid="_basic_events_8cs">BasicEvents.cs</innerfile>
+    <innerfile refid="_command_events_8cs">CommandEvents.cs</innerfile>
+    <innerfile refid="_computer_event_8cs">ComputerEvent.cs</innerfile>
+    <innerfile refid="_computer_events_8cs">ComputerEvents.cs</innerfile>
+    <innerfile refid="_event_manager_8cs">EventManager.cs</innerfile>
+    <innerfile refid="_executable_events_8cs">ExecutableEvents.cs</innerfile>
+    <innerfile refid="_game_events_8cs">GameEvents.cs</innerfile>
+    <innerfile refid="_main_menu_events_8cs">MainMenuEvents.cs</innerfile>
+    <innerfile refid="_o_s_events_8cs">OSEvents.cs</innerfile>
+    <innerfile refid="_pathfinder_event_8cs">PathfinderEvent.cs</innerfile>
+    <innerfile refid="_program_events_8cs">ProgramEvents.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Event/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_util_1_1_utility_1_1_array" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::Utility::Array</compoundname>
+    <templateparamlist>
+      <param>
+        <type>T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1_1_array_1a08a3e616b98a5258a9195e849e36e3c4" prot="public" static="yes" mutable="no">
+        <type>readonly T []</type>
+        <definition>readonly T [] Pathfinder.Util.Utility.Array&lt; T &gt;.Empty</definition>
+        <argsstring></argsstring>
+        <name>Empty</name>
+        <initializer>= new T[0]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="12" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Util/Utility.cs" line="11" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="10" bodyend="13"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1_1_array_1a08a3e616b98a5258a9195e849e36e3c4" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility::Array</scope><name>Empty</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

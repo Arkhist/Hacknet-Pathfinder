@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_event_1_1_game_event" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Event::GameEvent</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" prot="public" virt="non-virtual">Pathfinder.Event.PathfinderEvent</basecompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_event_1_1_game_load_content_event" prot="public" virt="non-virtual">Pathfinder.Event.GameLoadContentEvent</derivedcompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_event_1_1_game_unload_event" prot="public" virt="non-virtual">Pathfinder.Event.GameUnloadEvent</derivedcompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_event_1_1_game_update_event" prot="public" virt="non-virtual">Pathfinder.Event.GameUpdateEvent</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_game_event_1af8af5de0396ccac6181b63bc739c97e6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>Game1</type>
+        <definition>Game1 Pathfinder.Event.GameEvent.Game</definition>
+        <argsstring></argsstring>
+        <name>Game</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/GameEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/GameEvents.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_event_1_1_game_event_1a2cb1886844c91ecbaf196c9d129f477c" prot="public" static="no" mutable="no">
+        <type>Game1</type>
+        <definition>Game1 Pathfinder.Event.GameEvent.GameInstance</definition>
+        <argsstring></argsstring>
+        <name>GameInstance</name>
+        <initializer>=&gt; <ref refid="class_pathfinder_1_1_event_1_1_game_event_1af8af5de0396ccac6181b63bc739c97e6" kindref="member">Game</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/GameEvents.cs" line="11" column="1" bodyfile="Pathfinder/Event/GameEvents.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_game_event_1ac03c69a6e5e859d262ef84694d8e43ef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Event.GameEvent.GameEvent</definition>
+        <argsstring>(Game1 ins)</argsstring>
+        <name>GameEvent</name>
+        <param>
+          <type>Game1</type>
+          <declname>ins</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/GameEvents.cs" line="12" column="1" bodyfile="Pathfinder/Event/GameEvents.cs" bodystart="12" bodyend="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="108">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="109">
+        <label>Pathfinder.Event.GameLoadContentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_game_load_content_event"/>
+        <childnode refid="107" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="111">
+        <label>Pathfinder.Event.GameUpdateEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_game_update_event"/>
+        <childnode refid="107" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="110">
+        <label>Pathfinder.Event.GameUnloadEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_game_unload_event"/>
+        <childnode refid="107" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="107">
+        <label>Pathfinder.Event.GameEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_game_event"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="113">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="112">
+        <label>Pathfinder.Event.GameEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_game_event"/>
+        <childnode refid="113" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Event/GameEvents.cs" line="8" column="1" bodyfile="Pathfinder/Event/GameEvents.cs" bodystart="7" bodyend="13"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::GameEvent</scope><name>CallEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_game_event_1af8af5de0396ccac6181b63bc739c97e6" prot="public" virt="non-virtual"><scope>Pathfinder::Event::GameEvent</scope><name>Game</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_game_event_1ac03c69a6e5e859d262ef84694d8e43ef" prot="public" virt="non-virtual"><scope>Pathfinder::Event::GameEvent</scope><name>GameEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_game_event_1a2cb1886844c91ecbaf196c9d129f477c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::GameEvent</scope><name>GameInstance</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::GameEvent</scope><name>IsCancelled</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

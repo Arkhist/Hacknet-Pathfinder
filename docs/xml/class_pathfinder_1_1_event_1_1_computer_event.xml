@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_event_1_1_computer_event" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Event::ComputerEvent</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" prot="public" virt="non-virtual">Pathfinder.Event.PathfinderEvent</basecompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event" prot="public" virt="non-virtual">Pathfinder.Event.LoadComputerXmlReadEvent</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_computer_event_1a936079c75c9135637f9a7d454a722dd2" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>Hacknet.Computer</type>
+        <definition>Hacknet.Computer Pathfinder.Event.ComputerEvent.Computer</definition>
+        <argsstring></argsstring>
+        <name>Computer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ComputerEvents.cs" line="7" column="1" bodyfile="Pathfinder/Event/ComputerEvents.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_computer_event_1a58954d0c2abb84aadce2d8c8bf914d8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Event.ComputerEvent.ComputerEvent</definition>
+        <argsstring>(Hacknet.Computer com)</argsstring>
+        <name>ComputerEvent</name>
+        <param>
+          <type>Hacknet.Computer</type>
+          <declname>com</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ComputerEvents.cs" line="8" column="1" bodyfile="Pathfinder/Event/ComputerEvents.cs" bodystart="8" bodyend="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="12">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="13">
+        <label>Pathfinder.Event.LoadComputerXmlReadEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Pathfinder.Event.ComputerEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_computer_event"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="15">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="14">
+        <label>Pathfinder.Event.ComputerEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_computer_event"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Event/ComputerEvent.cs" line="9" column="1" bodyfile="Pathfinder/Event/ComputerEvent.cs" bodystart="8" bodyend="10"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ComputerEvent</scope><name>CallEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_computer_event_1a936079c75c9135637f9a7d454a722dd2" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ComputerEvent</scope><name>Computer</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_computer_event_1a58954d0c2abb84aadce2d8c8bf914d8e" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ComputerEvent</scope><name>ComputerEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ComputerEvent</scope><name>IsCancelled</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

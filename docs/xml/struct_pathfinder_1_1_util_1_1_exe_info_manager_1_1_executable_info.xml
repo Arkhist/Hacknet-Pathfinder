@@ -1,0 +1,265 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info" kind="struct" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::ExeInfoManager::ExecutableInfo</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1ae66a7518ba48967df46d684030e4c9bf" prot="public" static="yes" mutable="no">
+        <type><ref refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info" kindref="compound">ExecutableInfo</ref></type>
+        <definition>ExecutableInfo Pathfinder.Util.ExeInfoManager.ExecutableInfo.Empty</definition>
+        <argsstring></argsstring>
+        <name>Empty</name>
+        <initializer>= new <ref refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info" kindref="compound">ExecutableInfo</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="10" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a425b486532be29d317ea676523b0a07d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>int</type>
+        <definition>int Pathfinder.Util.ExeInfoManager.ExecutableInfo.PortNumber</definition>
+        <argsstring></argsstring>
+        <name>PortNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="12" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a395aa8adfd70dd808cab041e9c4c7aa4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>int</type>
+        <definition>int Pathfinder.Util.ExeInfoManager.ExecutableInfo.Index</definition>
+        <argsstring></argsstring>
+        <name>Index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="13" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a670122ad619970c81a45e30ba0bc824d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>int</type>
+        <definition>int Pathfinder.Util.ExeInfoManager.ExecutableInfo.NumberIndex</definition>
+        <argsstring></argsstring>
+        <name>NumberIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="14" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1afd6d30c5994518451d6e3ed6348554f8" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Util.ExeInfoManager.ExecutableInfo.Name</definition>
+        <argsstring></argsstring>
+        <name>Name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="15" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a999bd57f467954b7142ae330daa121d7" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Util.ExeInfoManager.ExecutableInfo.ServiceName</definition>
+        <argsstring></argsstring>
+        <name>ServiceName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="16" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a6e7e72556d79769a93f63d746f489794" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Util.ExeInfoManager.ExecutableInfo.NeedsPort</definition>
+        <argsstring></argsstring>
+        <name>NeedsPort</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="17" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1ab13a41bb5ff60fb93404790c8421a996" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Util.ExeInfoManager.ExecutableInfo.Data</definition>
+        <argsstring></argsstring>
+        <name>Data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="18" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a0ed0aeeaa35d405d86028659f627600d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Util.ExeInfoManager.ExecutableInfo.LocalData</definition>
+        <argsstring></argsstring>
+        <name>LocalData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="19" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a1648ddaa83a80def55f40e6ee30de217" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Util.ExeInfoManager.ExecutableInfo.IsEmpty</definition>
+        <argsstring></argsstring>
+        <name>IsEmpty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="20" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1adadafce5ca2878c69c4ba200150a68fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Util.ExeInfoManager.ExecutableInfo.ExecutableInfo</definition>
+        <argsstring>(int pn, int i, int ni, string n, string sn, bool np, string d, string ld)</argsstring>
+        <name>ExecutableInfo</name>
+        <param>
+          <type>int</type>
+          <declname>pn</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ni</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>sn</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>np</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>ld</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="28" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="28" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a319353e736975ffe54cdd51f909976f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Pathfinder.Util.ExeInfoManager.ExecutableInfo.Equals</definition>
+        <argsstring>(ExecutableInfo o)</argsstring>
+        <name>Equals</name>
+        <param>
+          <type><ref refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info" kindref="compound">ExecutableInfo</ref></type>
+          <declname>o</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="40" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="40" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1ac9608bcf8a2afd6f465603d83c482bad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool Pathfinder.Util.ExeInfoManager.ExecutableInfo.Equals</definition>
+        <argsstring>(object obj)</argsstring>
+        <name>Equals</name>
+        <param>
+          <type>object</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="52" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="52" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a9d3d59a502bfea47267fb927879e50ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override int</type>
+        <definition>override int Pathfinder.Util.ExeInfoManager.ExecutableInfo.GetHashCode</definition>
+        <argsstring>()</argsstring>
+        <name>GetHashCode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="59" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="59" bodyend="71"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="71">
+        <label>Pathfinder.Util.ExeInfoManager.ExecutableInfo</label>
+        <link refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info"/>
+        <childnode refid="71" relation="usage">
+          <edgelabel>Empty</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Util/ExeInfoManager.cs" line="9" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="8" bodyend="72"/>
+    <listofallmembers>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1ab13a41bb5ff60fb93404790c8421a996" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>Data</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1ae66a7518ba48967df46d684030e4c9bf" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>Empty</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a319353e736975ffe54cdd51f909976f4" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>Equals</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1ac9608bcf8a2afd6f465603d83c482bad" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>Equals</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1adadafce5ca2878c69c4ba200150a68fc" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>ExecutableInfo</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a9d3d59a502bfea47267fb927879e50ad" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>GetHashCode</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a395aa8adfd70dd808cab041e9c4c7aa4" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>Index</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a1648ddaa83a80def55f40e6ee30de217" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>IsEmpty</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a0ed0aeeaa35d405d86028659f627600d" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>LocalData</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1afd6d30c5994518451d6e3ed6348554f8" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>Name</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a6e7e72556d79769a93f63d746f489794" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>NeedsPort</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a670122ad619970c81a45e30ba0bc824d" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>NumberIndex</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a425b486532be29d317ea676523b0a07d" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>PortNumber</name></member>
+      <member refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info_1a999bd57f467954b7142ae330daa121d7" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager::ExecutableInfo</scope><name>ServiceName</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

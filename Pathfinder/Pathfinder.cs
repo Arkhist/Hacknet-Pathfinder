@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Hacknet;
+using Hacknet.Gui;
+using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 using Pathfinder.Util;
 
@@ -10,6 +13,10 @@ namespace Pathfinder
 {
     static class Pathfinder
     {
+        /*private static readonly Version AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
+        public static readonly Version Version = new Version(AssemblyVersion.Major,AssemblyVersion.Minor,1);
+        private static Version latestVersion;*/
+
         class ExceptionInvalidId : ArgumentException
         {
             public ExceptionInvalidId(string msg) : base(msg) { }
@@ -24,6 +31,12 @@ namespace Pathfinder
         public static void init()
         {
             Logger.Verbose("Registering Pathfinder listeners");
+            /*var verStr = Updater.GetString("https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases/latest",
+                                           "tag_name"); // Does not work, IDK
+            if (Version.TryParse(verStr.Select(c => Char.IsDigit(c) || c == '.' ? c : (char)0).ToString(), out latestVersion)
+               && latestVersion > Version)
+                EventManager.RegisterListener<DrawMainMenuEvent>(DrawNewReleaseGraphic);*/
+
             EventManager.RegisterListener<CommandSentEvent>(Command.Handler.CommandListener);
 
             EventManager.RegisterListener<DrawMainMenuEvent>(GUI.PathfinderMainMenu.drawMainMenu);
@@ -155,6 +168,12 @@ namespace Pathfinder
                 Logger.Verbose("Unloading mod '{0}'", mod.Key);
                 mod.Value.Unload();
             }
+        }
+
+        internal static void DrawNewReleaseGraphic(DrawMainMenuEvent e)
+        {
+            if(e.GameTime.ElapsedGameTime.Seconds % 3 != 0)
+                TextItem.doFontLabel(new Vector2(300, 100), "New Release Up", GuiData.font, Color.White);
         }
     }
 }

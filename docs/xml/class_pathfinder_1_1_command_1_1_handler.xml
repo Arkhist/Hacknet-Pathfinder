@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_command_1_1_handler" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Command::Handler</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_command_1_1_handler_1af10da0bd8528ee4bfdeeba3235374f15" prot="private" static="yes" mutable="no">
+        <type>Dictionary&lt; string, Func&lt; Hacknet.OS, List&lt; string &gt;, bool &gt; &gt;</type>
+        <definition>Dictionary&lt;string, Func&lt;Hacknet.OS, List&lt;string&gt;, bool&gt; &gt; Pathfinder.Command.Handler.commands</definition>
+        <argsstring></argsstring>
+        <name>commands</name>
+        <initializer>=
+            new Dictionary&lt;string, Func&lt;Hacknet.OS, List&lt;string&gt;, bool&gt;&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Handler.cs" line="11" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_handler_1a1e1314b9193ca69471aabbb4c1c37a75" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Command.Handler.AddCommand</definition>
+        <argsstring>(string key, Func&lt; Hacknet.OS, List&lt; string &gt;, bool &gt; function, string description=null, bool autoComplete=false)</argsstring>
+        <name>AddCommand</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Func&lt; Hacknet.OS, List&lt; string &gt;, bool &gt;</type>
+          <declname>function</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>description</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>autoComplete</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Adds a command to the game. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if command was added, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key used to run the command.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The function run when command is input.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>description</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A description to input when help is command is run (if not null).</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>autoComplete</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If set to <computeroutput>true</computeroutput> then autocomplete for command is enabled.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Handler.cs" line="22" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="22" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_handler_1a5d65fa66db7779a37ab893fff72f4a1b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Command.Handler.AddCommand</definition>
+        <argsstring>(string key, Func&lt; Hacknet.OS, string[], bool &gt; function)</argsstring>
+        <name>AddCommand</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Func&lt; Hacknet.OS, string[], bool &gt;</type>
+          <declname>function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Handler.cs" line="39" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_handler_1a5d356bef792c1a84c85c0f36b133b8e9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Command.Handler.AddCommand</definition>
+        <argsstring>(string key, Func&lt; Hacknet.OS, string[], bool &gt; function, bool autoComplete)</argsstring>
+        <name>AddCommand</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Func&lt; Hacknet.OS, string[], bool &gt;</type>
+          <declname>function</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>autoComplete</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Handler.cs" line="45" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_handler_1a44ba6003ea9105440128ab0ed399527a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Command.Handler.AddCommand</definition>
+        <argsstring>(string key, Func&lt; Hacknet.OS, string[], bool &gt; function, string description, bool autoComplete)</argsstring>
+        <name>AddCommand</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Func&lt; Hacknet.OS, string[], bool &gt;</type>
+          <declname>function</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>description</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>autoComplete</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Handler.cs" line="51" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="51" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_handler_1a97765f3c48c3e5cc850a269d2cad7118" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Command.Handler.CommandListener</definition>
+        <argsstring>(CommandSentEvent e)</argsstring>
+        <name>CommandListener</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_command_sent_event" kindref="compound">CommandSentEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Handler.cs" line="56" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="56" bodyend="64"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Command/Handler.cs" line="10" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="9" bodyend="65"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_command_1_1_handler_1a1e1314b9193ca69471aabbb4c1c37a75" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>AddCommand</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_handler_1a5d65fa66db7779a37ab893fff72f4a1b" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>AddCommand</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_handler_1a5d356bef792c1a84c85c0f36b133b8e9" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>AddCommand</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_handler_1a44ba6003ea9105440128ab0ed399527a" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>AddCommand</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_handler_1a97765f3c48c3e5cc850a269d2cad7118" prot="package" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>CommandListener</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_handler_1af10da0bd8528ee4bfdeeba3235374f15" prot="private" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>commands</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

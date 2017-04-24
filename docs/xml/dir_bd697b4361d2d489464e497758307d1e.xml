@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_bd697b4361d2d489464e497758307d1e" kind="dir">
+    <compoundname>Pathfinder/GUI</compoundname>
+    <innerfile refid="_pathfinder_main_menu_8cs">PathfinderMainMenu.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/GUI/"/>
+  </compounddef>
+</doxygen>

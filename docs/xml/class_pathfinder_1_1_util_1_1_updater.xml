@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_util_1_1_updater" kind="class" language="C#" prot="package">
+    <compoundname>Pathfinder::Util::Updater</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_updater_1ab675ea1bb8c7a5c93aabed90ab96a3af" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Util.Updater.GetString</definition>
+        <argsstring>(string url, string tag, string authKey=&quot;&quot;)</argsstring>
+        <name>GetString</name>
+        <param>
+          <type>string</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>tag</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>authKey</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Updater.cs" line="9" column="1" bodyfile="Pathfinder/Util/Updater.cs" bodystart="9" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_updater_1a0817f4befdbe462d99b1152be939c7a6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Util.Updater.VerifyVersions</definition>
+        <argsstring>(Version latestVersion, string currentVersion)</argsstring>
+        <name>VerifyVersions</name>
+        <param>
+          <type>Version</type>
+          <declname>latestVersion</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>currentVersion</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Updater.cs" line="22" column="1" bodyfile="Pathfinder/Util/Updater.cs" bodystart="22" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_updater_1aea29a0c5ac307c26b7d95ae473cb0a00" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Util.Updater.VerifyVersionByUrl</definition>
+        <argsstring>(string url, string versionTag, string currentVer)</argsstring>
+        <name>VerifyVersionByUrl</name>
+        <param>
+          <type>string</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>versionTag</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>currentVer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Updater.cs" line="30" column="1" bodyfile="Pathfinder/Util/Updater.cs" bodystart="30" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Util/Updater.cs" line="8" column="1" bodyfile="Pathfinder/Util/Updater.cs" bodystart="7" bodyend="45"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_util_1_1_updater_1ab675ea1bb8c7a5c93aabed90ab96a3af" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Updater</scope><name>GetString</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_updater_1aea29a0c5ac307c26b7d95ae473cb0a00" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Updater</scope><name>VerifyVersionByUrl</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_updater_1a0817f4befdbe462d99b1152be939c7a6" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Updater</scope><name>VerifyVersions</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="_r_e_a_d_m_e_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Hacknet<sp/>Pathfinder</highlight></codeline>
+<codeline><highlight class="normal">Hacknet<sp/>Modloader<sp/>in<sp/>C#</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Note</highlight></codeline>
+<codeline><highlight class="normal">Must<sp/>include<sp/>Hacknet&apos;s<sp/>AlienFXManagedWrapper3.5.dll,<sp/>FNA.dll,<sp/>and<sp/>Steamworks.NET.dll<sp/>in<sp/>the<sp/>lib<sp/>directory</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Warning</highlight></codeline>
+<codeline><highlight class="normal">Use<sp/>at<sp/>your<sp/>own<sp/>risk</highlight></codeline>
+    </programlisting>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

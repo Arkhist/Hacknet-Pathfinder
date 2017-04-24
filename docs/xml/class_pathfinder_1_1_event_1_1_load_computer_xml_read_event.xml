@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Event::LoadComputerXmlReadEvent</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_event_1_1_computer_event" prot="public" virt="non-virtual">Pathfinder.Event.ComputerEvent</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event_1a4fdbd3e2d8b775425b1f698a568258f9" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>XmlReader</type>
+        <definition>XmlReader Pathfinder.Event.LoadComputerXmlReadEvent.Reader</definition>
+        <argsstring></argsstring>
+        <name>Reader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ComputerEvents.cs" line="13" column="1" bodyfile="Pathfinder/Event/ComputerEvents.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event_1ad13739e71c7e1291dadee7a08b881520" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Event.LoadComputerXmlReadEvent.Filename</definition>
+        <argsstring></argsstring>
+        <name>Filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ComputerEvents.cs" line="14" column="1" bodyfile="Pathfinder/Event/ComputerEvents.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event_1ad1c92a4872f2f5ce2e6f2dc1fa5d0a25" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Event.LoadComputerXmlReadEvent.PreventNetmapAdd</definition>
+        <argsstring></argsstring>
+        <name>PreventNetmapAdd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ComputerEvents.cs" line="15" column="1" bodyfile="Pathfinder/Event/ComputerEvents.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event_1a988ccc012d4aee5245724d67c1cd4c62" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Event.LoadComputerXmlReadEvent.PreventDaemonInit</definition>
+        <argsstring></argsstring>
+        <name>PreventDaemonInit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ComputerEvents.cs" line="16" column="1" bodyfile="Pathfinder/Event/ComputerEvents.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event_1a97e509939f5ad27ca5cc2ac2d4d95f6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Event.LoadComputerXmlReadEvent.LoadComputerXmlReadEvent</definition>
+        <argsstring>(Hacknet.Computer com, XmlReader red, string fnam, bool prevNetmap, bool prevDaeInit)</argsstring>
+        <name>LoadComputerXmlReadEvent</name>
+        <param>
+          <type>Hacknet.Computer</type>
+          <declname>com</declname>
+        </param>
+        <param>
+          <type>XmlReader</type>
+          <declname>red</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>fnam</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>prevNetmap</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>prevDaeInit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ComputerEvents.cs" line="17" column="1" bodyfile="Pathfinder/Event/ComputerEvents.cs" bodystart="17" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="198">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="196">
+        <label>Pathfinder.Event.LoadComputerXmlReadEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event"/>
+        <childnode refid="197" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="197">
+        <label>ComputerEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_computer_event"/>
+        <childnode refid="198" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="201">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="199">
+        <label>Pathfinder.Event.LoadComputerXmlReadEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event"/>
+        <childnode refid="200" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="200">
+        <label>ComputerEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_computer_event"/>
+        <childnode refid="201" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Event/ComputerEvents.cs" line="12" column="1" bodyfile="Pathfinder/Event/ComputerEvents.cs" bodystart="11" bodyend="24"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::LoadComputerXmlReadEvent</scope><name>CallEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_computer_event_1a936079c75c9135637f9a7d454a722dd2" prot="public" virt="non-virtual"><scope>Pathfinder::Event::LoadComputerXmlReadEvent</scope><name>Computer</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_computer_event_1a58954d0c2abb84aadce2d8c8bf914d8e" prot="public" virt="non-virtual"><scope>Pathfinder::Event::LoadComputerXmlReadEvent</scope><name>ComputerEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event_1ad13739e71c7e1291dadee7a08b881520" prot="public" virt="non-virtual"><scope>Pathfinder::Event::LoadComputerXmlReadEvent</scope><name>Filename</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::LoadComputerXmlReadEvent</scope><name>IsCancelled</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event_1a97e509939f5ad27ca5cc2ac2d4d95f6c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::LoadComputerXmlReadEvent</scope><name>LoadComputerXmlReadEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event_1a988ccc012d4aee5245724d67c1cd4c62" prot="public" virt="non-virtual"><scope>Pathfinder::Event::LoadComputerXmlReadEvent</scope><name>PreventDaemonInit</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event_1ad1c92a4872f2f5ce2e6f2dc1fa5d0a25" prot="public" virt="non-virtual"><scope>Pathfinder::Event::LoadComputerXmlReadEvent</scope><name>PreventNetmapAdd</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event_1a4fdbd3e2d8b775425b1f698a568258f9" prot="public" virt="non-virtual"><scope>Pathfinder::Event::LoadComputerXmlReadEvent</scope><name>Reader</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

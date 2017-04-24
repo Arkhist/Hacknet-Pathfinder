@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_b4488c8994418478ca9c1343a98cd7e8" kind="dir">
+    <compoundname>PathfinderPatcher</compoundname>
+    <innerdir refid="dir_4bb25fc28e8780b9407e0deb3e0fa438">PathfinderPatcher/Properties</innerdir>
+    <innerfile refid="_pathfinder_patcher_8cs">PathfinderPatcher.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="PathfinderPatcher/"/>
+  </compounddef>
+</doxygen>

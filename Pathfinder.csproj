@@ -123,6 +123,8 @@
     <Compile Include="Pathfinder\Event\ComputerEvents.cs" />
     <Compile Include="Pathfinder\Event\ExecutableEvents.cs" />
     <Compile Include="Pathfinder\NetworkMap\Extensions.cs" />
+    <Compile Include="Pathfinder\Util\Updater.cs" />
+    <Compile Include="Pathfinder\Util\JsonObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

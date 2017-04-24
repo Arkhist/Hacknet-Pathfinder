@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="_basic_events_8cs" kind="file" language="C#">
+    <compoundname>BasicEvents.cs</compoundname>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event" prot="public">Pathfinder::Event::NetworkMapLoadContentEvent</innerclass>
+    <innernamespace refid="namespace_pathfinder_1_1_event">Pathfinder::Event</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_system" kindref="compound">System</ref>;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_hacknet" kindref="compound">Hacknet</ref>;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="namespace_pathfinder_1_1_event" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.Event</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6" refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event" kindref="compound">NetworkMapLoadContentEvent</ref><sp/>:<sp/><ref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" kindref="compound">PathfinderEvent</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="8" refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1af2ff4aea9af5d492762baf0ce7a82c26" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="namespace_hacknet" kindref="compound">Hacknet</ref>.NetworkMap<sp/>NetMap<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">set</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[Obsolete(</highlight><highlight class="stringliteral">&quot;Use<sp/>NetMap&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="10" refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1a19dd3a686dff35b8b58b3383b0e50234" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="namespace_hacknet" kindref="compound">Hacknet</ref>.NetworkMap<sp/>NetMapInstance<sp/>=&gt;<sp/>NetMap;</highlight></codeline>
+<codeline lineno="11" refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1a086329ed48d7b2f6705ad7770b3ff90d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1a086329ed48d7b2f6705ad7770b3ff90d" kindref="member">NetworkMapLoadContentEvent</ref>(<ref refid="namespace_hacknet" kindref="compound">Hacknet</ref>.NetworkMap<sp/>netmap)<sp/>{<sp/>NetMap<sp/>=<sp/>netmap;<sp/>}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Pathfinder/Event/BasicEvents.cs"/>
+  </compounddef>
+</doxygen>

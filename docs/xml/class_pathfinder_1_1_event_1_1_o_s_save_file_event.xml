@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_event_1_1_o_s_save_file_event" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Event::OSSaveFileEvent</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_event_1_1_o_s_event" prot="public" virt="non-virtual">Pathfinder.Event.OSEvent</basecompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_event_1_1_o_s_save_write_event" prot="public" virt="non-virtual">Pathfinder.Event.OSSaveWriteEvent</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_o_s_save_file_event_1a1a7c9d85a617f8c63f21e6c72ca9b300" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Event.OSSaveFileEvent.Filename</definition>
+        <argsstring></argsstring>
+        <name>Filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/OSEvents.cs" line="40" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_o_s_save_file_event_1a8682239e6bb736a8d5c7618228de115e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Event.OSSaveFileEvent.OSSaveFileEvent</definition>
+        <argsstring>(Hacknet.OS os, string fnam)</argsstring>
+        <name>OSSaveFileEvent</name>
+        <param>
+          <type>Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>fnam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/OSEvents.cs" line="41" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="41" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="262">
+        <label>OSEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
+        <childnode refid="263" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="263">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="261">
+        <label>Pathfinder.Event.OSSaveFileEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event"/>
+        <childnode refid="262" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="264">
+        <label>Pathfinder.Event.OSSaveWriteEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_save_write_event"/>
+        <childnode refid="261" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="266">
+        <label>OSEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
+        <childnode refid="267" relation="public-inheritance">
+        </childnode>
+        <childnode refid="268" relation="usage">
+          <edgelabel>OsInstance</edgelabel>
+        </childnode>
+      </node>
+      <node id="267">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="268">
+        <label>Hacknet</label>
+      </node>
+      <node id="265">
+        <label>Pathfinder.Event.OSSaveFileEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event"/>
+        <childnode refid="266" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Event/OSEvents.cs" line="39" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="38" bodyend="45"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>CallEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event_1a1a7c9d85a617f8c63f21e6c72ca9b300" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>Filename</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>IsCancelled</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1a59c0db53d1a98f303716f74f9ae844e5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>OS</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1afbed2fcd726a384a8baf01375de0e96c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>OSEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1ac373c93e4c8c30fd9efc814c74e89c99" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>OsInstance</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event_1a8682239e6bb736a8d5c7618228de115e" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>OSSaveFileEvent</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

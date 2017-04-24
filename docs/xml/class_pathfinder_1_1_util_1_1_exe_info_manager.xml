@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_util_1_1_exe_info_manager" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::ExeInfoManager</compoundname>
+    <innerclass refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info" prot="public">Pathfinder::Util::ExeInfoManager::ExecutableInfo</innerclass>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_exe_info_manager_1a01cbfb321231f2e63cc460366751c8a1" prot="private" static="yes" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info" kindref="compound">ExecutableInfo</ref> &gt;</type>
+        <definition>Dictionary&lt;string, ExecutableInfo&gt; Pathfinder.Util.ExeInfoManager.nameToExeStruct</definition>
+        <argsstring></argsstring>
+        <name>nameToExeStruct</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info" kindref="compound">ExecutableInfo</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="74" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_exe_info_manager_1aa6c24ceea354e8ed7b94970648701169" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Util.ExeInfoManager.LoadExecutableStruct</definition>
+        <argsstring>(Event.GameLoadContentEvent e)</argsstring>
+        <name>LoadExecutableStruct</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_game_load_content_event" kindref="compound">Event.GameLoadContentEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="76" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="76" bodyend="91"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_exe_info_manager_1ae37ee0af06892afa5a837a326abfea03" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info" kindref="compound">ExecutableInfo</ref></type>
+        <definition>static ExecutableInfo Pathfinder.Util.ExeInfoManager.GetExecutableInfo</definition>
+        <argsstring>(string name)</argsstring>
+        <name>GetExecutableInfo</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="93" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="93" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_exe_info_manager_1ad7e5e3c7d00e175baddaf29412a31f44" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info" kindref="compound">ExecutableInfo</ref></type>
+        <definition>static ExecutableInfo Pathfinder.Util.ExeInfoManager.GetExecutableInfo</definition>
+        <argsstring>(int index)</argsstring>
+        <name>GetExecutableInfo</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="101" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="101" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_exe_info_manager_1a933366d771546e3c6ffdf178bd6b123a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info" kindref="compound">ExecutableInfo</ref> &gt;</type>
+        <definition>static List&lt;ExecutableInfo&gt; Pathfinder.Util.ExeInfoManager.GetInfoList</definition>
+        <argsstring>()</argsstring>
+        <name>GetInfoList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="110" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="110" bodyend="116"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Util/ExeInfoManager.cs" line="7" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="6" bodyend="117"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_util_1_1_exe_info_manager_1ae37ee0af06892afa5a837a326abfea03" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager</scope><name>GetExecutableInfo</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_exe_info_manager_1ad7e5e3c7d00e175baddaf29412a31f44" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager</scope><name>GetExecutableInfo</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_exe_info_manager_1a933366d771546e3c6ffdf178bd6b123a" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager</scope><name>GetInfoList</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_exe_info_manager_1aa6c24ceea354e8ed7b94970648701169" prot="package" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager</scope><name>LoadExecutableStruct</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_exe_info_manager_1a01cbfb321231f2e63cc460366751c8a1" prot="private" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager</scope><name>nameToExeStruct</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

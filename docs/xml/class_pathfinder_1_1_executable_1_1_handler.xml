@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_executable_1_1_handler" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Executable::Handler</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_executable_1_1_handler_1a2730b7ba6d9ea4e409ce26c8e7e0bb53" prot="private" static="yes" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="interface_pathfinder_1_1_executable_1_1_i_interface" kindref="compound">IInterface</ref> &gt;</type>
+        <definition>Dictionary&lt;string, IInterface&gt; Pathfinder.Executable.Handler.interfaces</definition>
+        <argsstring></argsstring>
+        <name>interfaces</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="interface_pathfinder_1_1_executable_1_1_i_interface" kindref="compound">IInterface</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Handler.cs" line="12" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_executable_1_1_handler_1a13bdf9542c7ddf8b2ce53a8987467aa9" prot="private" static="yes" mutable="no">
+        <type>Dictionary&lt; string, string &gt;</type>
+        <definition>Dictionary&lt;string, string&gt; Pathfinder.Executable.Handler.idToDataCache</definition>
+        <argsstring></argsstring>
+        <name>idToDataCache</name>
+        <initializer>= new Dictionary&lt;string, string&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Handler.cs" line="13" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1aeea60860961b9af31162b6e28ef6f41a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Executable.Handler.AddExecutable</definition>
+        <argsstring>(string id, IInterface inter)</argsstring>
+        <name>AddExecutable</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_pathfinder_1_1_executable_1_1_i_interface" kindref="compound">IInterface</ref></type>
+          <declname>inter</declname>
+        </param>
+        <briefdescription>
+<para>Adds an executable interface by id. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if executable was added, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_executable" kindref="compound">Executable</ref> Identifier to try and add.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The interface object.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Handler.cs" line="21" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="21" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1a9b8e34a0bc16ae4000b78cd534886783" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Executable.Handler.IsFileDataForModExe</definition>
+        <argsstring>(string fileData)</argsstring>
+        <name>IsFileDataForModExe</name>
+        <param>
+          <type>string</type>
+          <declname>fileData</declname>
+        </param>
+        <briefdescription>
+<para>Determines whether the file data is for a mod interface. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if the file data is for a mod interface, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fileData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>File data.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Handler.cs" line="45" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="45" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1a03d09fcc2079a242d5e0f19a0eef8cb3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Executable.Handler.GetStandardFileDataBy</definition>
+        <argsstring>(string id, bool requiresModId=false)</argsstring>
+        <name>GetStandardFileDataBy</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>requiresModId</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Gets the standard file data by id. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The standard file data or <computeroutput>nulll</computeroutput> if it doesn&apos;t exist.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="namespace_pathfinder_1_1_executable" kindref="compound">Executable</ref> Identifier.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>requiresModId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If set to <computeroutput>true</computeroutput> id requires a prefixing mod identifier delimated by period.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Handler.cs" line="60" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="60" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1ac5ace69a2f4b3dbf962df8073f2cc23b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Executable.Handler.GetStandardFileDataBy</definition>
+        <argsstring>(IInterface inter)</argsstring>
+        <name>GetStandardFileDataBy</name>
+        <param>
+          <type><ref refid="interface_pathfinder_1_1_executable_1_1_i_interface" kindref="compound">IInterface</ref></type>
+          <declname>inter</declname>
+        </param>
+        <briefdescription>
+<para>Gets the first standard file data by interface. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The standard file data or <computeroutput>null</computeroutput> if it doesn&apos;t exist.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>inter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_executable" kindref="compound">Executable</ref> <ref refid="class_pathfinder_1_1_executable_1_1_interface" kindref="compound">Interface</ref></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Handler.cs" line="76" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="76" bodyend="82"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1a03a962b359ad3b4801d7cb646f42aa6b" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Executable.Handler.ExecutableListener</definition>
+        <argsstring>(ExecutableExecuteEvent e)</argsstring>
+        <name>ExecutableListener</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_executable_execute_event" kindref="compound">ExecutableExecuteEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Handler.cs" line="84" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="84" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1a91c0fe3762decdc0778e9243c16331c2" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Executable.Handler.ExecutableListInsertListener</definition>
+        <argsstring>(CommandSentEvent e)</argsstring>
+        <name>ExecutableListInsertListener</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_command_sent_event" kindref="compound">CommandSentEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Handler.cs" line="98" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="98" bodyend="128"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Executable/Handler.cs" line="11" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="10" bodyend="129"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_executable_1_1_handler_1aeea60860961b9af31162b6e28ef6f41a" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>AddExecutable</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_handler_1a03a962b359ad3b4801d7cb646f42aa6b" prot="package" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>ExecutableListener</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_handler_1a91c0fe3762decdc0778e9243c16331c2" prot="package" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>ExecutableListInsertListener</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_handler_1a03d09fcc2079a242d5e0f19a0eef8cb3" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>GetStandardFileDataBy</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_handler_1ac5ace69a2f4b3dbf962df8073f2cc23b" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>GetStandardFileDataBy</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_handler_1a13bdf9542c7ddf8b2ce53a8987467aa9" prot="private" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>idToDataCache</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_handler_1a2730b7ba6d9ea4e409ce26c8e7e0bb53" prot="private" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>interfaces</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_handler_1a9b8e34a0bc16ae4000b78cd534886783" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>IsFileDataForModExe</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

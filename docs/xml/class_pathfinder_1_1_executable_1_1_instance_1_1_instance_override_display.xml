@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Executable::Instance::InstanceOverrideDisplay</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_executable_1_1_instance" prot="public" virt="non-virtual">Pathfinder.Executable.Instance</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">MainDisplayOverrideEXE</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display_1a45ab7a47e78f38753a3737cedc96139e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Executable.Instance.InstanceOverrideDisplay.isOverrideable</definition>
+        <argsstring></argsstring>
+        <name>isOverrideable</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Instance.cs" line="134" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display_1a97c98f2f1295c64def0dee7a206739ef" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Executable.Instance.InstanceOverrideDisplay.DisplayOverrideIsActive</definition>
+        <argsstring></argsstring>
+        <name>DisplayOverrideIsActive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Instance.cs" line="136" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display_1a79ba3a5c640f6dddbff1e60fe7cebe41" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Executable.Instance.InstanceOverrideDisplay.InstanceOverrideDisplay</definition>
+        <argsstring>(Rectangle loc, Hacknet.OS os, List&lt; string &gt; arguments, FileEntry executionFile, IInterface exeInterface)</argsstring>
+        <name>InstanceOverrideDisplay</name>
+        <param>
+          <type>Rectangle</type>
+          <declname>loc</declname>
+        </param>
+        <param>
+          <type>Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>arguments</declname>
+        </param>
+        <param>
+          <type>FileEntry</type>
+          <declname>executionFile</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_pathfinder_1_1_executable_1_1_i_interface" kindref="compound">IInterface</ref></type>
+          <declname>exeInterface</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Instance.cs" line="148" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="148" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display_1a536b19989cc1771d2115c23513ab8ae2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Executable.Instance.InstanceOverrideDisplay.RenderMainDisplay</definition>
+        <argsstring>(Rectangle dest, SpriteBatch sb)</argsstring>
+        <name>RenderMainDisplay</name>
+        <param>
+          <type>Rectangle</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type>SpriteBatch</type>
+          <declname>sb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Instance.cs" line="155" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="155" bodyend="158"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="172">
+        <label>ExeModule</label>
+      </node>
+      <node id="171">
+        <label>Instance</label>
+        <link refid="class_pathfinder_1_1_executable_1_1_instance"/>
+        <childnode refid="172" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="173">
+        <label>MainDisplayOverrideEXE</label>
+      </node>
+      <node id="170">
+        <label>Pathfinder.Executable.Instance.InstanceOverrideDisplay</label>
+        <link refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display"/>
+        <childnode refid="171" relation="public-inheritance">
+        </childnode>
+        <childnode refid="173" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="176">
+        <label>ExeModule</label>
+      </node>
+      <node id="175">
+        <label>Instance</label>
+        <link refid="class_pathfinder_1_1_executable_1_1_instance"/>
+        <childnode refid="176" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="177">
+        <label>MainDisplayOverrideEXE</label>
+      </node>
+      <node id="174">
+        <label>Pathfinder.Executable.Instance.InstanceOverrideDisplay</label>
+        <link refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display"/>
+        <childnode refid="175" relation="public-inheritance">
+        </childnode>
+        <childnode refid="177" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Executable/Instance.cs" line="133" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="132" bodyend="159"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1a27cb7492992c3a401f91a03f6dc1afea" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>Arguments</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1acbfa0b10d3b806cdf193a96d28b64427" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>Completed</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1ac1fe76737c3807e7a3a30eefb5adcbc0" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>CreateInstance</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1a06916f772a19702356c8c1d20ac0ca75" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>CreateInstance</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display_1a97c98f2f1295c64def0dee7a206739ef" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>DisplayOverrideIsActive</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1a9662e1e07e9176aa8d1d20aa5d62011a" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>Draw</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1a3dd8d03b9a8ca7571120010aafc2ff0e" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>drawOutline</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1aada09ac32b8d910ce570de7f885b05aa" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>drawTarget</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1a69e1fbd1c1916a301132619f8acde178" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>ExecutionFile</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1a5e634e15f0318580574628f969096a85" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>GetInstanceData</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1a293ac84945183d6d1c85e96cf96f8587" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>GetInstanceData&lt; T &gt;</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1a0ae080d33031df52737f1145b4b86ad9" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>Instance</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display_1a79ba3a5c640f6dddbff1e60fe7cebe41" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>InstanceOverrideDisplay</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1aab0bd3088cfb3917e7ed95c35ba2a6eb" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>Interface</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display_1a45ab7a47e78f38753a3737cedc96139e" prot="private" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>isOverrideable</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1a78c4283943889aae2046bcc2b90a7232" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>Killed</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1aeba6c6875898fa5753041da6119a12ef" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>LoadContent</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1ad04270a30a4c0aaff5f0c316e3ce345c" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>PostDrawStep</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1a705afb81180025993ead03c0fd5a7309" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>PreDrawStep</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display_1a536b19989cc1771d2115c23513ab8ae2" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>RenderMainDisplay</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1abe9bde1c1dc2296884b9b84ad011872e" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>SetInstanceData</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1a16fd9b140b9aa331ae9dec19f7dc8731" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>this[string key]</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_instance_1a6fae642c6d3d848208ff22502dcfcc3f" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

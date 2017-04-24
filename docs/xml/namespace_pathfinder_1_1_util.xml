@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespace_pathfinder_1_1_util" kind="namespace" language="C#">
+    <compoundname>Pathfinder::Util</compoundname>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_custom_web_client" prot="public">Pathfinder::Util::CustomWebClient</innerclass>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_exe_info_manager" prot="public">Pathfinder::Util::ExeInfoManager</innerclass>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_json_object" prot="public">Pathfinder::Util::JsonObject</innerclass>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_logger" prot="public">Pathfinder::Util::Logger</innerclass>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_sound_system" prot="public">Pathfinder::Util::SoundSystem</innerclass>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_updater" prot="package">Pathfinder::Util::Updater</innerclass>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_utility" prot="public">Pathfinder::Util::Utility</innerclass>
+    <innernamespace refid="namespace_pathfinder_1_1_util_1_1_file">Pathfinder::Util::File</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Util/ExeInfoManager.cs" line="5" column="1"/>
+  </compounddef>
+</doxygen>

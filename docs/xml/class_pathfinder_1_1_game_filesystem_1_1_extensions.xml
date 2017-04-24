@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_game_filesystem_1_1_extensions" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::GameFilesystem::Extensions</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a35979df9043fddabfbefbfb2a5f97d86" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.GameFilesystem.Extensions.ContainsFolder</definition>
+        <argsstring>(this Folder folder, string name)</argsstring>
+        <name>ContainsFolder</name>
+        <param>
+          <type>this Folder</type>
+          <declname>folder</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="7" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="7" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a057d54005c7c83b3411cf03c08b10bb4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Folder</type>
+        <definition>static Folder Pathfinder.GameFilesystem.Extensions.MakeFolder</definition>
+        <argsstring>(this Folder folder, string path)</argsstring>
+        <name>MakeFolder</name>
+        <param>
+          <type>this Folder</type>
+          <declname>folder</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="12" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="12" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a6f9fbff6a19ac473c42a42e8b3aeb204" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Folder</type>
+        <definition>static Folder Pathfinder.GameFilesystem.Extensions.MakeFolder</definition>
+        <argsstring>(this FileSystem fs, string path)</argsstring>
+        <name>MakeFolder</name>
+        <param>
+          <type>this FileSystem</type>
+          <declname>fs</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="25" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a59be22288105daa5b60545866327eae3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem" kindref="compound">Filesystem</ref></type>
+        <definition>static Filesystem Pathfinder.GameFilesystem.Extensions.GetFilesystem</definition>
+        <argsstring>(this Hacknet.Computer computer)</argsstring>
+        <name>GetFilesystem</name>
+        <param>
+          <type>this Hacknet.Computer</type>
+          <declname>computer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="30" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="30" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a3e1d4091a7bdc8ade57467aee5bfbc2c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
+        <definition>static Directory Pathfinder.GameFilesystem.Extensions.GetDirectoryAtDepth</definition>
+        <argsstring>(this Hacknet.OS os, int depth)</argsstring>
+        <name>GetDirectoryAtDepth</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>depth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="35" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="35" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a9005b534185336ca73c69effc8a0fe4c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
+        <definition>static Directory Pathfinder.GameFilesystem.Extensions.GetCurrentDirectory</definition>
+        <argsstring>(this Hacknet.OS os)</argsstring>
+        <name>GetCurrentDirectory</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="50" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="50" bodyend="53"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/GameFilesystem/Extensions.cs" line="6" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="5" bodyend="54"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a35979df9043fddabfbefbfb2a5f97d86" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Extensions</scope><name>ContainsFolder</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a9005b534185336ca73c69effc8a0fe4c" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Extensions</scope><name>GetCurrentDirectory</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a3e1d4091a7bdc8ade57467aee5bfbc2c" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Extensions</scope><name>GetDirectoryAtDepth</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a59be22288105daa5b60545866327eae3" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Extensions</scope><name>GetFilesystem</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a057d54005c7c83b3411cf03c08b10bb4" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Extensions</scope><name>MakeFolder</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a6f9fbff6a19ac473c42a42e8b3aeb204" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Extensions</scope><name>MakeFolder</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

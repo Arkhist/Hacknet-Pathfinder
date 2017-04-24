@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_c64f3ee0330408b832b2ff013f2b8372" kind="dir">
+    <compoundname>Pathfinder/Command</compoundname>
+    <innerfile refid="_command_handler_8cs">CommandHandler.cs</innerfile>
+    <innerfile refid="_command_2_handler_8cs">Handler.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Command/"/>
+  </compounddef>
+</doxygen>

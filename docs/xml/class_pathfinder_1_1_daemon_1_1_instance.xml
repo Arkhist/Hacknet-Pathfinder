@@ -1,0 +1,366 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_daemon_1_1_instance" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Daemon::Instance</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Daemon</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_daemon_1_1_instance_1ada804e320ebcbb804103d04120cb02e2" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, Tuple&lt; bool, object &gt; &gt;</type>
+        <definition>Dictionary&lt;string, Tuple&lt;bool, object&gt; &gt; Pathfinder.Daemon.Instance.keyToObject</definition>
+        <argsstring></argsstring>
+        <name>keyToObject</name>
+        <initializer>= new Dictionary&lt;string, Tuple&lt;bool, object&gt;&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="11" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_daemon_1_1_instance_1a4eb5cce73510781f0cbddfd8e67567e2" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="interface_pathfinder_1_1_daemon_1_1_i_interface" kindref="compound">IInterface</ref></type>
+        <definition>IInterface Pathfinder.Daemon.Instance.Interface</definition>
+        <argsstring></argsstring>
+        <name>Interface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="13" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_daemon_1_1_instance_1ae7dfe4ab933781a99b9bddd918426fcf" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Daemon.Instance.InterfaceId</definition>
+        <argsstring></argsstring>
+        <name>InterfaceId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="18" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_daemon_1_1_instance_1a1edcb1ad1e2e5c1d9cae106c4156c44e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>object</type>
+        <definition>object Pathfinder.Daemon.Instance.this[string key]</definition>
+        <argsstring></argsstring>
+        <name>this[string key]</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="46" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1abc54a44187b34387c09f7025e5a1f9d6" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Daemon.Instance.Instance</definition>
+        <argsstring>(Hacknet.Computer computer, string serviceName, Hacknet.OS os, IInterface daeInterface)</argsstring>
+        <name>Instance</name>
+        <param>
+          <type>Hacknet.Computer</type>
+          <declname>computer</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>serviceName</declname>
+        </param>
+        <param>
+          <type>Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_pathfinder_1_1_daemon_1_1_i_interface" kindref="compound">IInterface</ref></type>
+          <declname>daeInterface</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="23" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="23" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1aba8be79a7c9d0198f64e96f71b666cf1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Instance</ref></type>
+        <definition>static Instance Pathfinder.Daemon.Instance.CreateInstance</definition>
+        <argsstring>(string id, Hacknet.Computer computer, Dictionary&lt; string, string &gt; objects)</argsstring>
+        <name>CreateInstance</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>Hacknet.Computer</type>
+          <declname>computer</declname>
+        </param>
+        <param>
+          <type>Dictionary&lt; string, string &gt;</type>
+          <declname>objects</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="30" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="30" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a1ea093842b14fdf3803bbf13bca6f8cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object Pathfinder.Daemon.Instance.GetInstanceData</definition>
+        <argsstring>(string key)</argsstring>
+        <name>GetInstanceData</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="63" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="63" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a35a110b3f23e270936168799e8cad1f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T Pathfinder.Daemon.Instance.GetInstanceData&lt; T &gt;</definition>
+        <argsstring>(string key)</argsstring>
+        <name>GetInstanceData&lt; T &gt;</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="68" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a0ebc30b92578de61d055950aa37586c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Pathfinder.Daemon.Instance.IsInstanceSaveable</definition>
+        <argsstring>(string key)</argsstring>
+        <name>IsInstanceSaveable</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="73" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="73" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a503f3f3a5181f6c2d97f778ab1ca490d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Pathfinder.Daemon.Instance.SetInstanceData</definition>
+        <argsstring>(string key, object val, bool shouldSave=false)</argsstring>
+        <name>SetInstanceData</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>shouldSave</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="82" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="82" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a9e574f325dfc5e782d6b2b17cf2a3a12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Daemon.Instance.SetInstanceDataSaveable</definition>
+        <argsstring>(string key, bool shouldSave)</argsstring>
+        <name>SetInstanceDataSaveable</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>shouldSave</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="90" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="90" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a6f9257835a3d44259f9559a20c28e88f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void Pathfinder.Daemon.Instance.draw</definition>
+        <argsstring>(Rectangle bounds, SpriteBatch sb)</argsstring>
+        <name>draw</name>
+        <param>
+          <type>Rectangle</type>
+          <declname>bounds</declname>
+        </param>
+        <param>
+          <type>SpriteBatch</type>
+          <declname>sb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="101" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="101" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1ad22126d7d4e8ac25c959bf424a99e616" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string Pathfinder.Daemon.Instance.getSaveString</definition>
+        <argsstring>()</argsstring>
+        <name>getSaveString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="107" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="107" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a19c6cfd8c016126ac41917c132c3a8b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void Pathfinder.Daemon.Instance.initFiles</definition>
+        <argsstring>()</argsstring>
+        <name>initFiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="119" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="119" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a42f1eb454ea1a2e4a860fa2d7f4b3cd4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void Pathfinder.Daemon.Instance.loadInit</definition>
+        <argsstring>()</argsstring>
+        <name>loadInit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="125" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="125" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a1153af52b7967768f9129b3d7d0f8dcc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void Pathfinder.Daemon.Instance.navigatedTo</definition>
+        <argsstring>()</argsstring>
+        <name>navigatedTo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="131" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="131" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a59d75b6a5b8015f0b86f21c6c863cd6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void Pathfinder.Daemon.Instance.userAdded</definition>
+        <argsstring>(string name, string pass, byte type)</argsstring>
+        <name>userAdded</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Instance.cs" line="137" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="137" bodyend="141"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="167">
+        <label>Hacknet::Daemon</label>
+      </node>
+      <node id="166">
+        <label>Pathfinder.Daemon.Instance</label>
+        <link refid="class_pathfinder_1_1_daemon_1_1_instance"/>
+        <childnode refid="167" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="169">
+        <label>Hacknet::Daemon</label>
+      </node>
+      <node id="168">
+        <label>Pathfinder.Daemon.Instance</label>
+        <link refid="class_pathfinder_1_1_daemon_1_1_instance"/>
+        <childnode refid="169" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Daemon/Instance.cs" line="10" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="9" bodyend="142"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1aba8be79a7c9d0198f64e96f71b666cf1" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>CreateInstance</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a6f9257835a3d44259f9559a20c28e88f" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>draw</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a1ea093842b14fdf3803bbf13bca6f8cb" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>GetInstanceData</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a35a110b3f23e270936168799e8cad1f1" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>GetInstanceData&lt; T &gt;</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1ad22126d7d4e8ac25c959bf424a99e616" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>getSaveString</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a19c6cfd8c016126ac41917c132c3a8b2" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>initFiles</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1abc54a44187b34387c09f7025e5a1f9d6" prot="package" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>Instance</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a4eb5cce73510781f0cbddfd8e67567e2" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>Interface</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1ae7dfe4ab933781a99b9bddd918426fcf" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>InterfaceId</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a0ebc30b92578de61d055950aa37586c3" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>IsInstanceSaveable</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1ada804e320ebcbb804103d04120cb02e2" prot="private" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>keyToObject</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a42f1eb454ea1a2e4a860fa2d7f4b3cd4" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>loadInit</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a1153af52b7967768f9129b3d7d0f8dcc" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>navigatedTo</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a503f3f3a5181f6c2d97f778ab1ca490d" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>SetInstanceData</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a9e574f325dfc5e782d6b2b17cf2a3a12" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>SetInstanceDataSaveable</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a1edcb1ad1e2e5c1d9cae106c4156c44e" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>this[string key]</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a59d75b6a5b8015f0b86f21c6c863cd6e" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>userAdded</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

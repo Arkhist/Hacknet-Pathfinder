@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_util_1_1_sound_system" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::SoundSystem</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_util_1_1_sound_system_1aacb22ecc5014b78e1471c46c156d0c37" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Util.SoundSystem.SoundMuted</definition>
+        <argsstring></argsstring>
+        <name>SoundMuted</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/SoundSystem.cs" line="8" column="1" bodyfile="Pathfinder/Util/SoundSystem.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_util_1_1_sound_system_1abfb8c7ce5c636baf251ecb7b7ef8cdf6" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float Pathfinder.Util.SoundSystem.SoundVolume</definition>
+        <argsstring></argsstring>
+        <name>SoundVolume</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/SoundSystem.cs" line="15" column="1" bodyfile="Pathfinder/Util/SoundSystem.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_util_1_1_sound_system_1a05ee04c9680db370bc7fb43499d89ab6" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Util.SoundSystem.MusicMuted</definition>
+        <argsstring></argsstring>
+        <name>MusicMuted</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/SoundSystem.cs" line="21" column="1" bodyfile="Pathfinder/Util/SoundSystem.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_util_1_1_sound_system_1a97b4c673d83a882cca246f17f3a05e54" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float Pathfinder.Util.SoundSystem.MusicVolume</definition>
+        <argsstring></argsstring>
+        <name>MusicVolume</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/SoundSystem.cs" line="33" column="1" bodyfile="Pathfinder/Util/SoundSystem.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_sound_system_1aa8fb73b0efff338f56826c9f042b33c9" prot="private" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Pathfinder.Util.SoundSystem.soundVolume</definition>
+        <argsstring></argsstring>
+        <name>soundVolume</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/SoundSystem.cs" line="13" column="1" bodyfile="Pathfinder/Util/SoundSystem.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Util/SoundSystem.cs" line="7" column="1" bodyfile="Pathfinder/Util/SoundSystem.cs" bodystart="6" bodyend="44"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_util_1_1_sound_system_1a05ee04c9680db370bc7fb43499d89ab6" prot="public" virt="non-virtual"><scope>Pathfinder::Util::SoundSystem</scope><name>MusicMuted</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_sound_system_1a97b4c673d83a882cca246f17f3a05e54" prot="public" virt="non-virtual"><scope>Pathfinder::Util::SoundSystem</scope><name>MusicVolume</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_sound_system_1aacb22ecc5014b78e1471c46c156d0c37" prot="public" virt="non-virtual"><scope>Pathfinder::Util::SoundSystem</scope><name>SoundMuted</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_sound_system_1abfb8c7ce5c636baf251ecb7b7ef8cdf6" prot="public" virt="non-virtual"><scope>Pathfinder::Util::SoundSystem</scope><name>SoundVolume</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_sound_system_1aa8fb73b0efff338f56826c9f042b33c9" prot="private" virt="non-virtual"><scope>Pathfinder::Util::SoundSystem</scope><name>soundVolume</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

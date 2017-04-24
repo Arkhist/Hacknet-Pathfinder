@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespace_pathfinder_1_1_game_filesystem" kind="namespace" language="C#">
+    <compoundname>Pathfinder::GameFilesystem</compoundname>
+    <innerclass refid="class_pathfinder_1_1_game_filesystem_1_1_directory" prot="public">Pathfinder::GameFilesystem::Directory</innerclass>
+    <innerclass refid="class_pathfinder_1_1_game_filesystem_1_1_extensions" prot="public">Pathfinder::GameFilesystem::Extensions</innerclass>
+    <innerclass refid="class_pathfinder_1_1_game_filesystem_1_1_file" prot="public">Pathfinder::GameFilesystem::File</innerclass>
+    <innerclass refid="class_pathfinder_1_1_game_filesystem_1_1_file_object" prot="public">Pathfinder::GameFilesystem::FileObject</innerclass>
+    <innerclass refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem" prot="public">Pathfinder::GameFilesystem::Filesystem</innerclass>
+    <innerclass refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object" prot="public">Pathfinder::GameFilesystem::IFileObject</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespace_pathfinder_1_1_game_filesystem_1a03dead9151c6fa847caa5f40346a6a6a" prot="public" static="no">
+        <name>FileOpLogType</name>
+        <enumvalue id="namespace_pathfinder_1_1_game_filesystem_1a03dead9151c6fa847caa5f40346a6a6aaf83dd7896428e470a486020feb820863" prot="public">
+          <name>CreateFile</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Input 0 = file owner&apos;s ip 1 = accessor&apos;s ip 2 = name 3 = data 4 = folderPath </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_pathfinder_1_1_game_filesystem_1a03dead9151c6fa847caa5f40346a6a6aa6e3016ffc7ec31d02806bc10b74faf8b" prot="public">
+          <name>CreateFolder</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Input 0 = file owner&apos;s ip 1 = accessor&apos;s ip 2 = name 3 = folderPath </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_pathfinder_1_1_game_filesystem_1a03dead9151c6fa847caa5f40346a6a6aa9793e97d7800c4d457a5ddacf2871fba" prot="public">
+          <name>ReadFile</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Input 0 = file owner&apos;s ip 1 = accessor&apos;s ip 2 = name 3 = parentIndex </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_pathfinder_1_1_game_filesystem_1a03dead9151c6fa847caa5f40346a6a6aaf7561946dcc5ddb53d72302d4e3196e0" prot="public">
+          <name>CopyFile</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Input 0 = file owner&apos;s ip 1 = accessor&apos;s ip 2 = name </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_pathfinder_1_1_game_filesystem_1a03dead9151c6fa847caa5f40346a6a6aa5b1dbf60cafa9babe615760bf7e6bed6" prot="public">
+          <name>DeleteFile</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Input 0 = file owner&apos;s ip 1 = accessor&apos;s ip 2 = name 3 = folderPath </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_pathfinder_1_1_game_filesystem_1a03dead9151c6fa847caa5f40346a6a6aa28f66e83ad979b9c110577f106b0637a" prot="public">
+          <name>DeleteFolder</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Input 0 = file owner&apos;s ip 1 = accessor&apos;s ip 2 = name 3 = folderPath </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_pathfinder_1_1_game_filesystem_1a03dead9151c6fa847caa5f40346a6a6aabfeefe3eff618f4a10d7ca7b7bd019bf" prot="public">
+          <name>MoveFile</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Input 0 = file owner&apos;s ip 1 = accessor&apos;s ip 2 = oldName 3 = newName 4 = oldFolderPath 5 = newFolderPath </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_pathfinder_1_1_game_filesystem_1a03dead9151c6fa847caa5f40346a6a6aad2ff82f3b08732bc0f5d6024bb9ca6e1" prot="public">
+          <name>MoveFolder</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Input 0 = file owner&apos;s ip 1 = accessor&apos;s ip 2 = oldName 3 = newName 4 = oldFolderPath 5 = newFolderPath </para>          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="145" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="144" bodyend="198"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/GameFilesystem/Directory.cs" line="8" column="1"/>
+  </compounddef>
+</doxygen>

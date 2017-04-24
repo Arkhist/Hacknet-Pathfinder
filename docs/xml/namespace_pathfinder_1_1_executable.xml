@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespace_pathfinder_1_1_executable" kind="namespace" language="C#">
+    <compoundname>Pathfinder::Executable</compoundname>
+    <innerclass refid="class_pathfinder_1_1_executable_1_1_handler" prot="public">Pathfinder::Executable::Handler</innerclass>
+    <innerclass refid="interface_pathfinder_1_1_executable_1_1_i_interface" prot="public">Pathfinder::Executable::IInterface</innerclass>
+    <innerclass refid="interface_pathfinder_1_1_executable_1_1_i_main_display_override" prot="public">Pathfinder::Executable::IMainDisplayOverride</innerclass>
+    <innerclass refid="class_pathfinder_1_1_executable_1_1_instance" prot="public">Pathfinder::Executable::Instance</innerclass>
+    <innerclass refid="class_pathfinder_1_1_executable_1_1_interface" prot="public">Pathfinder::Executable::Interface</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespace_pathfinder_1_1_executable_1aaa2b3756d0b9a290663bfdca556fb475" prot="public" static="no">
+        <name>ExecutionResult</name>
+        <enumvalue id="namespace_pathfinder_1_1_executable_1aaa2b3756d0b9a290663bfdca556fb475a38c300f4fc9ce8a77aad4a30de05cad8" prot="public">
+          <name>NotFound</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_pathfinder_1_1_executable_1aaa2b3756d0b9a290663bfdca556fb475a902b0d55fddef6f8d651fe1035b7d4bd" prot="public">
+          <name>Error</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_pathfinder_1_1_executable_1aaa2b3756d0b9a290663bfdca556fb475a5a505009b7fa84e920ee7d59ae4b61b9" prot="public">
+          <name>StartupSuccess</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/ExecutionResult.cs" line="7" column="1" bodyfile="Pathfinder/Executable/ExecutionResult.cs" bodystart="6" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Executable/ExecutionResult.cs" line="4" column="1"/>
+  </compounddef>
+</doxygen>

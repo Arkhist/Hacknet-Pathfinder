@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="interface_pathfinder_1_1_mission_1_1_i_interface" kind="interface" language="C#" prot="public">
+    <compoundname>Pathfinder::Mission::IInterface</compoundname>
+    <derivedcompoundref refid="class_pathfinder_1_1_mission_1_1_interface" prot="public" virt="non-virtual">Pathfinder.Mission.Interface</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="interface_pathfinder_1_1_mission_1_1_i_interface_1a89f9276b5fd6236f90a0735e27e1c9ef" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; MisisonGoal &gt;</type>
+        <definition>List&lt;MisisonGoal&gt; Pathfinder.Mission.IInterface.DefaultGoals</definition>
+        <argsstring></argsstring>
+        <name>DefaultGoals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Interface.cs" line="10" column="1" bodyfile="Pathfinder/Mission/Interface.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="interface_pathfinder_1_1_mission_1_1_i_interface_1aeaf43bbe8a80c713b122eaf9f98955bc" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Mission.IInterface.InitialNextMission</definition>
+        <argsstring></argsstring>
+        <name>InitialNextMission</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Interface.cs" line="11" column="1" bodyfile="Pathfinder/Mission/Interface.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="interface_pathfinder_1_1_mission_1_1_i_interface_1add1783b6871b8ae2e66ab89d2cc97c93" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>MailServer.EMailData</type>
+        <definition>MailServer.EMailData Pathfinder.Mission.IInterface.IntialEmailData</definition>
+        <argsstring></argsstring>
+        <name>IntialEmailData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Interface.cs" line="12" column="1" bodyfile="Pathfinder/Mission/Interface.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interface_pathfinder_1_1_mission_1_1_i_interface_1a81a8b03802647ef5a7b01f41048539c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Tuple&lt; string, int &gt;</type>
+        <definition>Tuple&lt;string, int&gt; Pathfinder.Mission.IInterface.OnStart</definition>
+        <argsstring>(Instance instance)</argsstring>
+        <name>OnStart</name>
+        <reimplementedby refid="class_pathfinder_1_1_mission_1_1_interface_1a3e09bea3c138dbfab6e70be038441da1">OnStart</reimplementedby>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_mission_1_1_instance" kindref="compound">Instance</ref></type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Interface.cs" line="14" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_mission_1_1_i_interface_1a7a6eac2d1579a60554769cf75f6034ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Mission.IInterface.OnLoadInstance</definition>
+        <argsstring>(Instance instance, Dictionary&lt; string, string &gt; objects)</argsstring>
+        <name>OnLoadInstance</name>
+        <reimplementedby refid="class_pathfinder_1_1_mission_1_1_interface_1ac6c7e9131c5021a93838538f5dd9918a">OnLoadInstance</reimplementedby>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_mission_1_1_instance" kindref="compound">Instance</ref></type>
+          <declname>instance</declname>
+        </param>
+        <param>
+          <type>Dictionary&lt; string, string &gt;</type>
+          <declname>objects</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Interface.cs" line="15" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_mission_1_1_i_interface_1a423b1cf32954ebfdd855f6b0f3e977a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Mission.IInterface.OnGoalAdd</definition>
+        <argsstring>(Instance instance, MisisonGoal goal)</argsstring>
+        <name>OnGoalAdd</name>
+        <reimplementedby refid="class_pathfinder_1_1_mission_1_1_interface_1abc2aaabcd4c2abc3dbd6cf0a0fb974f1">OnGoalAdd</reimplementedby>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_mission_1_1_instance" kindref="compound">Instance</ref></type>
+          <declname>instance</declname>
+        </param>
+        <param>
+          <type>MisisonGoal</type>
+          <declname>goal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Interface.cs" line="16" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_mission_1_1_i_interface_1a52c270aad3febc8324890030a7b3c8c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Mission.IInterface.Update</definition>
+        <argsstring>(Instance instance, float time)</argsstring>
+        <name>Update</name>
+        <reimplementedby refid="class_pathfinder_1_1_mission_1_1_interface_1a0d3776fc0c5559b52fb786d64c8963cf">Update</reimplementedby>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_mission_1_1_instance" kindref="compound">Instance</ref></type>
+          <declname>instance</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Interface.cs" line="17" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_mission_1_1_i_interface_1a6cacb91eac2e5f80ab6a3ed5475c38e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Pathfinder.Mission.IInterface.IsComplete</definition>
+        <argsstring>(Instance instance, List&lt; string &gt; details)</argsstring>
+        <name>IsComplete</name>
+        <reimplementedby refid="class_pathfinder_1_1_mission_1_1_interface_1a077f96503ea54b541e5a9b7d6834ac2b">IsComplete</reimplementedby>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_mission_1_1_instance" kindref="compound">Instance</ref></type>
+          <declname>instance</declname>
+        </param>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>details</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Interface.cs" line="18" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_mission_1_1_i_interface_1a1f338473d59326921eb8d534e0162860" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Pathfinder.Mission.IInterface.SendEmail</definition>
+        <argsstring>(Instance instance, Hacknet.OS os)</argsstring>
+        <name>SendEmail</name>
+        <reimplementedby refid="class_pathfinder_1_1_mission_1_1_interface_1a1575b44a6e80fc4a2c7a610b23c6934b">SendEmail</reimplementedby>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_mission_1_1_instance" kindref="compound">Instance</ref></type>
+          <declname>instance</declname>
+        </param>
+        <param>
+          <type>Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Interface.cs" line="19" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_mission_1_1_i_interface_1abeaf10a984db7f8ab19ee93487a732ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Tuple&lt; string, int &gt;</type>
+        <definition>Tuple&lt;string, int&gt; Pathfinder.Mission.IInterface.OnEnd</definition>
+        <argsstring>(Instance instance)</argsstring>
+        <name>OnEnd</name>
+        <reimplementedby refid="class_pathfinder_1_1_mission_1_1_interface_1a8d51a9556fa3675ccea643ae5d264106">OnEnd</reimplementedby>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_mission_1_1_instance" kindref="compound">Instance</ref></type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Interface.cs" line="20" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="150">
+        <label>Pathfinder.Mission.Interface</label>
+        <link refid="class_pathfinder_1_1_mission_1_1_interface"/>
+        <childnode refid="149" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="149">
+        <label>Pathfinder.Mission.IInterface</label>
+        <link refid="interface_pathfinder_1_1_mission_1_1_i_interface"/>
+      </node>
+    </inheritancegraph>
+    <location file="Pathfinder/Mission/Interface.cs" line="9" column="1" bodyfile="Pathfinder/Mission/Interface.cs" bodystart="8" bodyend="21"/>
+    <listofallmembers>
+      <member refid="interface_pathfinder_1_1_mission_1_1_i_interface_1a89f9276b5fd6236f90a0735e27e1c9ef" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::IInterface</scope><name>DefaultGoals</name></member>
+      <member refid="interface_pathfinder_1_1_mission_1_1_i_interface_1aeaf43bbe8a80c713b122eaf9f98955bc" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::IInterface</scope><name>InitialNextMission</name></member>
+      <member refid="interface_pathfinder_1_1_mission_1_1_i_interface_1add1783b6871b8ae2e66ab89d2cc97c93" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::IInterface</scope><name>IntialEmailData</name></member>
+      <member refid="interface_pathfinder_1_1_mission_1_1_i_interface_1a6cacb91eac2e5f80ab6a3ed5475c38e1" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::IInterface</scope><name>IsComplete</name></member>
+      <member refid="interface_pathfinder_1_1_mission_1_1_i_interface_1abeaf10a984db7f8ab19ee93487a732ac" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::IInterface</scope><name>OnEnd</name></member>
+      <member refid="interface_pathfinder_1_1_mission_1_1_i_interface_1a423b1cf32954ebfdd855f6b0f3e977a1" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::IInterface</scope><name>OnGoalAdd</name></member>
+      <member refid="interface_pathfinder_1_1_mission_1_1_i_interface_1a7a6eac2d1579a60554769cf75f6034ac" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::IInterface</scope><name>OnLoadInstance</name></member>
+      <member refid="interface_pathfinder_1_1_mission_1_1_i_interface_1a81a8b03802647ef5a7b01f41048539c3" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::IInterface</scope><name>OnStart</name></member>
+      <member refid="interface_pathfinder_1_1_mission_1_1_i_interface_1a1f338473d59326921eb8d534e0162860" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::IInterface</scope><name>SendEmail</name></member>
+      <member refid="interface_pathfinder_1_1_mission_1_1_i_interface_1a52c270aad3febc8324890030a7b3c8c7" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::IInterface</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

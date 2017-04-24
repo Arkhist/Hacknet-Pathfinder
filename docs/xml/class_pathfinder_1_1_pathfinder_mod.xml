@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_pathfinder_mod" kind="class" language="C#" prot="public" abstract="yes">
+    <compoundname>Pathfinder::PathfinderMod</compoundname>
+    <basecompoundref refid="interface_pathfinder_1_1_i_pathfinder_mod" prot="public" virt="non-virtual">Pathfinder.IPathfinderMod</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_pathfinder_mod_1aa5f0da6083d2569082468650827eaeff" prot="private" static="no" mutable="no">
+        <type><ref refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content" kindref="compound">ModContent</ref></type>
+        <definition>ModContent Pathfinder.PathfinderMod.modContent</definition>
+        <argsstring></argsstring>
+        <name>modContent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/PathfinderMod.cs" line="21" column="1" bodyfile="Pathfinder/PathfinderMod.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_pathfinder_mod_1aed3404b55ee7ae85f6e5032b4b419aae" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Pathfinder.PathfinderMod.Identifier</definition>
+        <argsstring></argsstring>
+        <name>Identifier</name>
+        <initializer>=&gt; <ref refid="class_pathfinder_1_1_pathfinder_mod_1a0349b44de925c436e9215580d148e7d8" kindref="member">GetIdentifier</ref>()</initializer>
+        <briefdescription>
+<para>Retrieves the Mod&apos;s identifier. </para>        </briefdescription>
+        <detaileddescription>
+<para>The Mod&apos;s identifier</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/PathfinderMod.cs" line="28" column="1" bodyfile="Pathfinder/PathfinderMod.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_pathfinder_mod_1aeb700b0f98c6bc2abe2b2af0d9c47d49" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>virtual string Pathfinder.PathfinderMod.TexturePath</definition>
+        <argsstring></argsstring>
+        <name>TexturePath</name>
+        <initializer>=&gt; &quot;Texture&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/PathfinderMod.cs" line="39" column="1" bodyfile="Pathfinder/PathfinderMod.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_pathfinder_mod_1ad2d60d27fc3d514a34b092ea4034c012" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>virtual string Pathfinder.PathfinderMod.SoundPath</definition>
+        <argsstring></argsstring>
+        <name>SoundPath</name>
+        <initializer>=&gt; &quot;Sound&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/PathfinderMod.cs" line="40" column="1" bodyfile="Pathfinder/PathfinderMod.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_pathfinder_mod_1ac984316a35cdb7b15c8d5068857d1574" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>virtual string Pathfinder.PathfinderMod.MusicPath</definition>
+        <argsstring></argsstring>
+        <name>MusicPath</name>
+        <initializer>=&gt; &quot;Music&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/PathfinderMod.cs" line="41" column="1" bodyfile="Pathfinder/PathfinderMod.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_pathfinder_mod_1abeeee2c34ce2b7977cc35a0ae1ed5c3f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content" kindref="compound">ModContent</ref></type>
+        <definition>ModContent Pathfinder.PathfinderMod.ModContent</definition>
+        <argsstring></argsstring>
+        <name>ModContent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/PathfinderMod.cs" line="43" column="1" bodyfile="Pathfinder/PathfinderMod.cs" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_mod_1a0349b44de925c436e9215580d148e7d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract string</type>
+        <definition>abstract string Pathfinder.PathfinderMod.GetIdentifier</definition>
+        <argsstring>()</argsstring>
+        <name>GetIdentifier</name>
+        <briefdescription>
+<para>Retrieves the Mod&apos;s identifier. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>String - The Mod&apos;s identifier</para></simplesect>
+</para><para>Obsolete: Use Identifier instead</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/PathfinderMod.cs" line="37" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_mod_1a6a7ca1435453eff5c4bd0be4edf0e6da" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Pathfinder.PathfinderMod.Load</definition>
+        <argsstring>()</argsstring>
+        <name>Load</name>
+        <reimplements refid="interface_pathfinder_1_1_i_pathfinder_mod_1a576eecacda11d0caef924934011ed298">Load</reimplements>
+        <briefdescription>
+<para>Called when the mod is being loaded, use to ensure all mod related stuff is ready to be loaded </para>        </briefdescription>
+        <detaileddescription>
+<para>DO NOT USE TO LOAD CONTENT</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/PathfinderMod.cs" line="57" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_mod_1a5499a306f321040f04cde49aec07c5a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Pathfinder.PathfinderMod.LoadContent</definition>
+        <argsstring>()</argsstring>
+        <name>LoadContent</name>
+        <reimplements refid="interface_pathfinder_1_1_i_pathfinder_mod_1ace01650801ff5d68d143c9f72b658eba">LoadContent</reimplements>
+        <briefdescription>
+<para>Loads the mod&apos;s content. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/PathfinderMod.cs" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_mod_1a0161223a6cece35439ca60191d5e8a2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Pathfinder.PathfinderMod.Unload</definition>
+        <argsstring>()</argsstring>
+        <name>Unload</name>
+        <reimplements refid="interface_pathfinder_1_1_i_pathfinder_mod_1a00713fc3d2c888fc6f2823e071ad0e21">Unload</reimplements>
+        <briefdescription>
+<para>Called when the mod is being unloaded </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/PathfinderMod.cs" line="67" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="308">
+        <label>Pathfinder.PathfinderMod</label>
+        <link refid="class_pathfinder_1_1_pathfinder_mod"/>
+        <childnode refid="309" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="309">
+        <label>IPathfinderMod</label>
+        <link refid="interface_pathfinder_1_1_i_pathfinder_mod"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="310">
+        <label>Pathfinder.PathfinderMod</label>
+        <link refid="class_pathfinder_1_1_pathfinder_mod"/>
+        <childnode refid="311" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="311">
+        <label>IPathfinderMod</label>
+        <link refid="interface_pathfinder_1_1_i_pathfinder_mod"/>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/PathfinderMod.cs" line="20" column="1" bodyfile="Pathfinder/PathfinderMod.cs" bodystart="19" bodyend="68"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_pathfinder_mod_1a0349b44de925c436e9215580d148e7d8" prot="public" virt="pure-virtual"><scope>Pathfinder::PathfinderMod</scope><name>GetIdentifier</name></member>
+      <member refid="class_pathfinder_1_1_pathfinder_mod_1aed3404b55ee7ae85f6e5032b4b419aae" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderMod</scope><name>Identifier</name></member>
+      <member refid="class_pathfinder_1_1_pathfinder_mod_1a6a7ca1435453eff5c4bd0be4edf0e6da" prot="public" virt="pure-virtual"><scope>Pathfinder::PathfinderMod</scope><name>Load</name></member>
+      <member refid="class_pathfinder_1_1_pathfinder_mod_1a5499a306f321040f04cde49aec07c5a7" prot="public" virt="pure-virtual"><scope>Pathfinder::PathfinderMod</scope><name>LoadContent</name></member>
+      <member refid="class_pathfinder_1_1_pathfinder_mod_1aa5f0da6083d2569082468650827eaeff" prot="private" virt="non-virtual"><scope>Pathfinder::PathfinderMod</scope><name>modContent</name></member>
+      <member refid="class_pathfinder_1_1_pathfinder_mod_1abeeee2c34ce2b7977cc35a0ae1ed5c3f" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderMod</scope><name>ModContent</name></member>
+      <member refid="class_pathfinder_1_1_pathfinder_mod_1ac984316a35cdb7b15c8d5068857d1574" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderMod</scope><name>MusicPath</name></member>
+      <member refid="class_pathfinder_1_1_pathfinder_mod_1ad2d60d27fc3d514a34b092ea4034c012" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderMod</scope><name>SoundPath</name></member>
+      <member refid="class_pathfinder_1_1_pathfinder_mod_1aeb700b0f98c6bc2abe2b2af0d9c47d49" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderMod</scope><name>TexturePath</name></member>
+      <member refid="class_pathfinder_1_1_pathfinder_mod_1a0161223a6cece35439ca60191d5e8a2e" prot="public" virt="pure-virtual"><scope>Pathfinder::PathfinderMod</scope><name>Unload</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

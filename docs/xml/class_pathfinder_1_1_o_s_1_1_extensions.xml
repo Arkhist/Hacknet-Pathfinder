@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_o_s_1_1_extensions" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::OS::Extensions</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_o_s_1_1_extensions_1a4950c4d2a55107114b2dd8dc6880bb6d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; ExeModule &gt;</type>
+        <definition>static List&lt;ExeModule&gt; Pathfinder.OS.Extensions.GetExesFor</definition>
+        <argsstring>(this Hacknet.OS os, Type instanceType)</argsstring>
+        <name>GetExesFor</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>instanceType</declname>
+        </param>
+        <briefdescription>
+<para>Only retrieves the <ref refid="namespace_pathfinder_1_1_o_s" kindref="compound">OS</ref>&apos;s exes of the specifed type. Use Extensions.GetExesFor(Hacknet.OS) to get inherited types </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/OS/Extensions.cs" line="12" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="12" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_o_s_1_1_extensions_1a16b906e987fed24868b83f396b7c3981" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; T &gt;</type>
+        <definition>static List&lt;T&gt; Pathfinder.OS.Extensions.GetExesFor&lt; T &gt;</definition>
+        <argsstring>(this Hacknet.OS os)</argsstring>
+        <name>GetExesFor&lt; T &gt;</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves all exes derived from T on the <ref refid="namespace_pathfinder_1_1_o_s" kindref="compound">OS</ref>, Use Extensions.GetExesFor(Hacknet.OS, Type) to get only singular types </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/OS/Extensions.cs" line="24" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="24" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_o_s_1_1_extensions_1a8c1146c3e85cf109a3a22a91ffca1309" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Executable.Instance &gt;</type>
+        <definition>static List&lt;Executable.Instance&gt; Pathfinder.OS.Extensions.GetModExeInterfaceFor</definition>
+        <argsstring>(this Hacknet.OS os, Type interfaceType)</argsstring>
+        <name>GetModExeInterfaceFor</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>interfaceType</declname>
+        </param>
+        <briefdescription>
+<para>Only retrieves the <ref refid="namespace_pathfinder_1_1_o_s" kindref="compound">OS</ref>&apos;s modded exes of the specifed interface. Use Extensions.GetModExeInterfaceFor(Hacknet.OS) to get inherited types </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/OS/Extensions.cs" line="36" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="36" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_o_s_1_1_extensions_1abab4d3e2ab3b3162b5444bfa68ad7deb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Executable.Instance &gt;</type>
+        <definition>static List&lt;Executable.Instance&gt; Pathfinder.OS.Extensions.GetModExeInterfaceFor&lt; T &gt;</definition>
+        <argsstring>(this Hacknet.OS os)</argsstring>
+        <name>GetModExeInterfaceFor&lt; T &gt;</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves all modded exe interfaces derived from T on the <ref refid="namespace_pathfinder_1_1_o_s" kindref="compound">OS</ref>, Use Extensions.GetModExeInterfaceFor(Hacknet.OS, Type) to get only singular types </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/OS/Extensions.cs" line="48" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="48" bodyend="55"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/OS/Extensions.cs" line="8" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="7" bodyend="56"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_o_s_1_1_extensions_1a4950c4d2a55107114b2dd8dc6880bb6d" prot="public" virt="non-virtual"><scope>Pathfinder::OS::Extensions</scope><name>GetExesFor</name></member>
+      <member refid="class_pathfinder_1_1_o_s_1_1_extensions_1a16b906e987fed24868b83f396b7c3981" prot="public" virt="non-virtual"><scope>Pathfinder::OS::Extensions</scope><name>GetExesFor&lt; T &gt;</name></member>
+      <member refid="class_pathfinder_1_1_o_s_1_1_extensions_1a8c1146c3e85cf109a3a22a91ffca1309" prot="public" virt="non-virtual"><scope>Pathfinder::OS::Extensions</scope><name>GetModExeInterfaceFor</name></member>
+      <member refid="class_pathfinder_1_1_o_s_1_1_extensions_1abab4d3e2ab3b3162b5444bfa68ad7deb" prot="public" virt="non-virtual"><scope>Pathfinder::OS::Extensions</scope><name>GetModExeInterfaceFor&lt; T &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

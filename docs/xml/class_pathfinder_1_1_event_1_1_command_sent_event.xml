@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_event_1_1_command_sent_event" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Event::CommandSentEvent</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_event_1_1_o_s_event" prot="public" virt="non-virtual">Pathfinder.Event.OSEvent</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_command_sent_event_1ab5531469ac72423f211f8216e710910c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Event.CommandSentEvent.Disconnects</definition>
+        <argsstring></argsstring>
+        <name>Disconnects</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/CommandEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_command_sent_event_1a88be71dc1510de7945eeefd1c45f4537" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; Pathfinder.Event.CommandSentEvent.Arguments</definition>
+        <argsstring></argsstring>
+        <name>Arguments</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/CommandEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_event_1_1_command_sent_event_1a81a926e9ac9b118bf0834ef3339eee22" prot="public" static="no" mutable="no">
+        <type>string []</type>
+        <definition>string [] Pathfinder.Event.CommandSentEvent.Args</definition>
+        <argsstring></argsstring>
+        <name>Args</name>
+        <initializer>=&gt; Arguments.ToArray()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/CommandEvents.cs" line="12" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_command_sent_event_1a0a5a02a73ab1637f2208e12a68f87203" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Event.CommandSentEvent.CommandSentEvent</definition>
+        <argsstring>(Hacknet.OS os, string[] args)</argsstring>
+        <name>CommandSentEvent</name>
+        <param>
+          <type>Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>string []</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/CommandEvents.cs" line="13" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="13" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>OSEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="4">
+        <label>Pathfinder.Event.CommandSentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_command_sent_event"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8">
+        <label>OSEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>OsInstance</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="10">
+        <label>Hacknet</label>
+      </node>
+      <node id="7">
+        <label>Pathfinder.Event.CommandSentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_command_sent_event"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Event/CommandEvents.cs" line="8" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="7" bodyend="18"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1a81a926e9ac9b118bf0834ef3339eee22" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>Args</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1a88be71dc1510de7945eeefd1c45f4537" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>Arguments</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>CallEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1a0a5a02a73ab1637f2208e12a68f87203" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>CommandSentEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1ab5531469ac72423f211f8216e710910c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>Disconnects</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>IsCancelled</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1a59c0db53d1a98f303716f74f9ae844e5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>OS</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1afbed2fcd726a384a8baf01375de0e96c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>OSEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1ac373c93e4c8c30fd9efc814c74e89c99" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>OsInstance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

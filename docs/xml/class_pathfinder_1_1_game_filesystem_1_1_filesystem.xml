@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_game_filesystem_1_1_filesystem" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::GameFilesystem::Filesystem</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_game_filesystem_1_1_file_object" prot="public" virt="non-virtual">Pathfinder.GameFilesystem.FileObject&lt; FileSystem, Hacknet.Computer &gt;</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afc82accf50bcf4058669ac7743404f51" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>override string</type>
+        <definition>override string Pathfinder.GameFilesystem.Filesystem.Name</definition>
+        <argsstring></argsstring>
+        <name>Name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="12" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1af6d10a009c7b2f9aa982d4b071fc7ef0" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>override int</type>
+        <definition>override int Pathfinder.GameFilesystem.Filesystem.Index</definition>
+        <argsstring></argsstring>
+        <name>Index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="27" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ae3ecec102d5ba29ad216e2b022fcae51" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
+        <definition>Directory Pathfinder.GameFilesystem.Filesystem.Directory</definition>
+        <argsstring></argsstring>
+        <name>Directory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="41" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1accfa9fd3938eb3fa0c59890808fa857d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.GameFilesystem.Filesystem.IPAccess</definition>
+        <argsstring></argsstring>
+        <name>IPAccess</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="74" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afcf736453f2b3bc1271cc4b8f29e250d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.GameFilesystem.Filesystem.ShouldLogMultiplayer</definition>
+        <argsstring></argsstring>
+        <name>ShouldLogMultiplayer</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="75" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a5f98b5c861dee41f2be6b46f2dfb9ec4" prot="public" static="no" mutable="no">
+        <type>override string</type>
+        <definition>override string Pathfinder.GameFilesystem.Filesystem.Path</definition>
+        <argsstring></argsstring>
+        <name>Path</name>
+        <initializer>=&gt; <ref refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afc82accf50bcf4058669ac7743404f51" kindref="member">Name</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="25" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a01f1c1672698fcf0b0ee11df2f0f82f6" prot="public" static="no" mutable="no">
+        <type>override <ref refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem" kindref="compound">Filesystem</ref></type>
+        <definition>override Filesystem Pathfinder.GameFilesystem.Filesystem.Root</definition>
+        <argsstring></argsstring>
+        <name>Root</name>
+        <initializer>=&gt; this</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="39" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ab89979582a7f7c9a5d986cb0be4dfb75" prot="public" static="yes" mutable="no">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem" kindref="compound">Filesystem</ref></type>
+        <definition>Filesystem Pathfinder.GameFilesystem.Filesystem.PrimaryFilesystem</definition>
+        <argsstring></argsstring>
+        <name>PrimaryFilesystem</name>
+        <initializer>=&gt; Utility.GetClientComputer()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="77" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a6656e9fc34cc04e1c3460747b9b73316" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.GameFilesystem.Filesystem.Filesystem</definition>
+        <argsstring>(Hacknet.Computer parent)</argsstring>
+        <name>Filesystem</name>
+        <param>
+          <type>Hacknet.Computer</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="10" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a7e9b72d960fd9f2bd7a03fcda08b25e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
+        <definition>Directory Pathfinder.GameFilesystem.Filesystem.SeacrhForDirectory</definition>
+        <argsstring>(string path)</argsstring>
+        <name>SeacrhForDirectory</name>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="49" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="49" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afc0733d1a42d0022a5a71d789543bf51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file" kindref="compound">File</ref></type>
+        <definition>File Pathfinder.GameFilesystem.Filesystem.SearchForFile</definition>
+        <argsstring>(string path)</argsstring>
+        <name>SearchForFile</name>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="58" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="58" bodyend="72"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a191277e8f7df7ea2a5f3d0346374d5ba" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>implicit</type>
+        <definition>static implicit Pathfinder.GameFilesystem.Filesystem.operator Filesystem</definition>
+        <argsstring>(Hacknet.Computer c)</argsstring>
+        <name>operator Filesystem</name>
+        <param>
+          <type>Hacknet.Computer</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="79" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="79" bodyend="82"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="104">
+        <label>FileObject&lt; FileSystem, Hacknet.Computer &gt;</label>
+        <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
+      </node>
+      <node id="103">
+        <label>Pathfinder.GameFilesystem.Filesystem</label>
+        <link refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem"/>
+        <childnode refid="104" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="106">
+        <label>FileObject&lt; FileSystem, Hacknet.Computer &gt;</label>
+        <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
+      </node>
+      <node id="105">
+        <label>Pathfinder.GameFilesystem.Filesystem</label>
+        <link refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem"/>
+        <childnode refid="106" relation="public-inheritance">
+        </childnode>
+        <childnode refid="105" relation="usage">
+          <edgelabel>Root</edgelabel>
+          <edgelabel>PrimaryFilesystem</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="9" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="8" bodyend="83"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ae3ecec102d5ba29ad216e2b022fcae51" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>Directory</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a6656e9fc34cc04e1c3460747b9b73316" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>Filesystem</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1af6d10a009c7b2f9aa982d4b071fc7ef0" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>Index</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1accfa9fd3938eb3fa0c59890808fa857d" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>IPAccess</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afc82accf50bcf4058669ac7743404f51" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>Name</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a191277e8f7df7ea2a5f3d0346374d5ba" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>operator Filesystem</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a5f98b5c861dee41f2be6b46f2dfb9ec4" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>Path</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ab89979582a7f7c9a5d986cb0be4dfb75" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>PrimaryFilesystem</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a01f1c1672698fcf0b0ee11df2f0f82f6" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>Root</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a7e9b72d960fd9f2bd7a03fcda08b25e5" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>SeacrhForDirectory</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afc0733d1a42d0022a5a71d789543bf51" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>SearchForFile</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afcf736453f2b3bc1271cc4b8f29e250d" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>ShouldLogMultiplayer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

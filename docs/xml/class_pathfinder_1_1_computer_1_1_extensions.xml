@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_computer_1_1_extensions" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Computer::Extensions</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1aa2c97089d9fc50540db645007115f750" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Hacknet.Daemon &gt;</type>
+        <definition>static List&lt;Hacknet.Daemon&gt; Pathfinder.Computer.Extensions.GetDaemonList</definition>
+        <argsstring>(this Hacknet.Computer comp, Type daemonType)</argsstring>
+        <name>GetDaemonList</name>
+        <param>
+          <type>this Hacknet.Computer</type>
+          <declname>comp</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>daemonType</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a list of daemon of the exact type daemonType from comp </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Computer/Extensions.cs" line="13" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="13" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a3ba426e804aa8193d0377bd208bd366c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; T &gt;</type>
+        <definition>static List&lt;T&gt; Pathfinder.Computer.Extensions.GetDaemonList&lt; T &gt;</definition>
+        <argsstring>(this Hacknet.Computer comp)</argsstring>
+        <name>GetDaemonList&lt; T &gt;</name>
+        <param>
+          <type>this Hacknet.Computer</type>
+          <declname>comp</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a list of daemon whose type is either T or derived from T, pulled from comp </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Computer/Extensions.cs" line="25" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="25" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a9f1841e770f51b0c5122adfa706532aa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref></type>
+        <definition>static Daemon.Instance Pathfinder.Computer.Extensions.GetModdedDaemon</definition>
+        <argsstring>(this Hacknet.Computer comp, Type modInterface)</argsstring>
+        <name>GetModdedDaemon</name>
+        <param>
+          <type>this Hacknet.Computer</type>
+          <declname>comp</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>modInterface</declname>
+        </param>
+        <briefdescription>
+<para>Gets the first mod daemon instance whose interface type is exactly modInterface. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Computer/Extensions.cs" line="37" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="37" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a78532a9f582a9e462ca8c24b59ab0f6a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref></type>
+        <definition>static Daemon.Instance Pathfinder.Computer.Extensions.GetModdedDaemon&lt; T &gt;</definition>
+        <argsstring>(this Hacknet.Computer comp)</argsstring>
+        <name>GetModdedDaemon&lt; T &gt;</name>
+        <param>
+          <type>this Hacknet.Computer</type>
+          <declname>comp</declname>
+        </param>
+        <briefdescription>
+<para>Gets the first mod daemon instance whose interface type derives or is of type modInterface. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Computer/Extensions.cs" line="45" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1ac8157a64c5099db20bd18b509530cfbd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref> &gt;</type>
+        <definition>static List&lt;Daemon.Instance&gt; Pathfinder.Computer.Extensions.GetModdedDaemonList</definition>
+        <argsstring>(this Hacknet.Computer comp, Type modInterface)</argsstring>
+        <name>GetModdedDaemonList</name>
+        <param>
+          <type>this Hacknet.Computer</type>
+          <declname>comp</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>modInterface</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a list of mod daemon instances whose interface is exactly of type modInterface </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Computer/Extensions.cs" line="53" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="53" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a86f6cc392fc0bd16a3cf7b2a8a008eea" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; <ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref> &gt;</type>
+        <definition>static List&lt;Daemon.Instance&gt; Pathfinder.Computer.Extensions.GetModdedDaemonList&lt; T &gt;</definition>
+        <argsstring>(this Hacknet.Computer comp)</argsstring>
+        <name>GetModdedDaemonList&lt; T &gt;</name>
+        <param>
+          <type>this Hacknet.Computer</type>
+          <declname>comp</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a list of mod daemon instances whose interface type is either T or derived from T, pulled from comp </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Computer/Extensions.cs" line="65" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="65" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a1c735776db1eccf3cc41f9484fb19a15" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Computer.Extensions.AddLink</definition>
+        <argsstring>(this Hacknet.Computer comp, Hacknet.Computer newLink, Hacknet.NetworkMap netmap=null)</argsstring>
+        <name>AddLink</name>
+        <param>
+          <type>this Hacknet.Computer</type>
+          <declname>comp</declname>
+        </param>
+        <param>
+          <type>Hacknet.Computer</type>
+          <declname>newLink</declname>
+        </param>
+        <param>
+          <type>Hacknet.NetworkMap</type>
+          <declname>netmap</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Adds from this comp connecting to newLink. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if the link was added, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>comp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_computer" kindref="compound">Computer</ref></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>newLink</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The New link.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>netmap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_network_map" kindref="compound">NetworkMap</ref> or the main client <ref refid="namespace_pathfinder_1_1_network_map" kindref="compound">NetworkMap</ref> from T:Utility.GetClientNetMap if <computeroutput>null</computeroutput>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Computer/Extensions.cs" line="81" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="81" bodyend="86"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Computer/Extensions.cs" line="9" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="8" bodyend="87"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_computer_1_1_extensions_1a1c735776db1eccf3cc41f9484fb19a15" prot="public" virt="non-virtual"><scope>Pathfinder::Computer::Extensions</scope><name>AddLink</name></member>
+      <member refid="class_pathfinder_1_1_computer_1_1_extensions_1aa2c97089d9fc50540db645007115f750" prot="public" virt="non-virtual"><scope>Pathfinder::Computer::Extensions</scope><name>GetDaemonList</name></member>
+      <member refid="class_pathfinder_1_1_computer_1_1_extensions_1a3ba426e804aa8193d0377bd208bd366c" prot="public" virt="non-virtual"><scope>Pathfinder::Computer::Extensions</scope><name>GetDaemonList&lt; T &gt;</name></member>
+      <member refid="class_pathfinder_1_1_computer_1_1_extensions_1a9f1841e770f51b0c5122adfa706532aa" prot="public" virt="non-virtual"><scope>Pathfinder::Computer::Extensions</scope><name>GetModdedDaemon</name></member>
+      <member refid="class_pathfinder_1_1_computer_1_1_extensions_1a78532a9f582a9e462ca8c24b59ab0f6a" prot="public" virt="non-virtual"><scope>Pathfinder::Computer::Extensions</scope><name>GetModdedDaemon&lt; T &gt;</name></member>
+      <member refid="class_pathfinder_1_1_computer_1_1_extensions_1ac8157a64c5099db20bd18b509530cfbd" prot="public" virt="non-virtual"><scope>Pathfinder::Computer::Extensions</scope><name>GetModdedDaemonList</name></member>
+      <member refid="class_pathfinder_1_1_computer_1_1_extensions_1a86f6cc392fc0bd16a3cf7b2a8a008eea" prot="public" virt="non-virtual"><scope>Pathfinder::Computer::Extensions</scope><name>GetModdedDaemonList&lt; T &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

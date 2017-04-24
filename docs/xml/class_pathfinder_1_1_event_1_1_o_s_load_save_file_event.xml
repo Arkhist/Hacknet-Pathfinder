@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Event::OSLoadSaveFileEvent</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_event_1_1_o_s_event" prot="public" virt="non-virtual">Pathfinder.Event.OSEvent</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1adcae2048c7aa633ad34e57e1f7c6e7ef" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1ab2fc837b46cd1de2925d72b3efc197ba" kindref="member">XmlReader</ref></type>
+        <definition>XmlReader Pathfinder.Event.OSLoadSaveFileEvent.Reader</definition>
+        <argsstring></argsstring>
+        <name>Reader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/OSEvents.cs" line="27" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1a52aee1e458346f4a75a7479d19789c7d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>Stream</type>
+        <definition>Stream Pathfinder.Event.OSLoadSaveFileEvent.Stream</definition>
+        <argsstring></argsstring>
+        <name>Stream</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/OSEvents.cs" line="30" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1ab2fc837b46cd1de2925d72b3efc197ba" prot="public" static="no" mutable="no">
+        <type>XmlReader</type>
+        <definition>XmlReader Pathfinder.Event.OSLoadSaveFileEvent.XmlReader</definition>
+        <argsstring></argsstring>
+        <name>XmlReader</name>
+        <initializer>=&gt; <ref refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1adcae2048c7aa633ad34e57e1f7c6e7ef" kindref="member">Reader</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/OSEvents.cs" line="29" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1a89a93fbdc7efb2e789956eb29876330a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Event.OSLoadSaveFileEvent.OSLoadSaveFileEvent</definition>
+        <argsstring>(Hacknet.OS os, XmlReader xmlReader, Stream stream)</argsstring>
+        <name>OSLoadSaveFileEvent</name>
+        <param>
+          <type>Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1ab2fc837b46cd1de2925d72b3efc197ba" kindref="member">XmlReader</ref></type>
+          <declname>xmlReader</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1a52aee1e458346f4a75a7479d19789c7d" kindref="member">Stream</ref></type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/OSEvents.cs" line="31" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="31" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="248">
+        <label>OSEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
+        <childnode refid="249" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="249">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="247">
+        <label>Pathfinder.Event.OSLoadSaveFileEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event"/>
+        <childnode refid="248" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="251">
+        <label>OSEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
+        <childnode refid="252" relation="public-inheritance">
+        </childnode>
+        <childnode refid="253" relation="usage">
+          <edgelabel>OsInstance</edgelabel>
+        </childnode>
+      </node>
+      <node id="252">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="253">
+        <label>Hacknet</label>
+      </node>
+      <node id="250">
+        <label>Pathfinder.Event.OSLoadSaveFileEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event"/>
+        <childnode refid="251" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Event/OSEvents.cs" line="26" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="25" bodyend="36"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadSaveFileEvent</scope><name>CallEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadSaveFileEvent</scope><name>IsCancelled</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1a59c0db53d1a98f303716f74f9ae844e5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadSaveFileEvent</scope><name>OS</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1afbed2fcd726a384a8baf01375de0e96c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadSaveFileEvent</scope><name>OSEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1ac373c93e4c8c30fd9efc814c74e89c99" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadSaveFileEvent</scope><name>OsInstance</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1a89a93fbdc7efb2e789956eb29876330a" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadSaveFileEvent</scope><name>OSLoadSaveFileEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1adcae2048c7aa633ad34e57e1f7c6e7ef" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadSaveFileEvent</scope><name>Reader</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1a52aee1e458346f4a75a7479d19789c7d" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadSaveFileEvent</scope><name>Stream</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1ab2fc837b46cd1de2925d72b3efc197ba" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadSaveFileEvent</scope><name>XmlReader</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

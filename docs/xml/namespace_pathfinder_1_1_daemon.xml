@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespace_pathfinder_1_1_daemon" kind="namespace" language="C#">
+    <compoundname>Pathfinder::Daemon</compoundname>
+    <innerclass refid="class_pathfinder_1_1_daemon_1_1_handler" prot="public">Pathfinder::Daemon::Handler</innerclass>
+    <innerclass refid="interface_pathfinder_1_1_daemon_1_1_i_interface" prot="public">Pathfinder::Daemon::IInterface</innerclass>
+    <innerclass refid="class_pathfinder_1_1_daemon_1_1_instance" prot="public">Pathfinder::Daemon::Instance</innerclass>
+    <innerclass refid="class_pathfinder_1_1_daemon_1_1_interface" prot="public">Pathfinder::Daemon::Interface</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Daemon/Handler.cs" line="6" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_daemon_1_1_handler" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Daemon::Handler</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_daemon_1_1_handler_1a22c9fd8a10990261133ee026b1677a1a" prot="private" static="yes" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="interface_pathfinder_1_1_daemon_1_1_i_interface" kindref="compound">IInterface</ref> &gt;</type>
+        <definition>Dictionary&lt;string, IInterface&gt; Pathfinder.Daemon.Handler.interfaces</definition>
+        <argsstring></argsstring>
+        <name>interfaces</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="interface_pathfinder_1_1_daemon_1_1_i_interface" kindref="compound">IInterface</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Handler.cs" line="9" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_handler_1a2fbb3f752fe50261f7d5fd3d784a38c7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Daemon.Handler.AddDaemon</definition>
+        <argsstring>(string daemonId, IInterface inter)</argsstring>
+        <name>AddDaemon</name>
+        <param>
+          <type>string</type>
+          <declname>daemonId</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_pathfinder_1_1_daemon_1_1_i_interface" kindref="compound">IInterface</ref></type>
+          <declname>inter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Handler.cs" line="11" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="11" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_handler_1acde19a6a94d142a5106b9697b0062e19" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Daemon.Handler.ContainsDaemon</definition>
+        <argsstring>(string id)</argsstring>
+        <name>ContainsDaemon</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Handler.cs" line="25" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_handler_1ac6fe93befa456f655c6bd259407143ab" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="interface_pathfinder_1_1_daemon_1_1_i_interface" kindref="compound">IInterface</ref></type>
+        <definition>static IInterface Pathfinder.Daemon.Handler.GetDaemonById</definition>
+        <argsstring>(string id)</argsstring>
+        <name>GetDaemonById</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Handler.cs" line="30" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="30" bodyend="37"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_handler_1acf6963a540e1606e560652ae8e03a0e9" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Daemon.Handler.DaemonLoadListener</definition>
+        <argsstring>(LoadComputerXmlReadEvent e)</argsstring>
+        <name>DaemonLoadListener</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event" kindref="compound">LoadComputerXmlReadEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Daemon/Handler.cs" line="39" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="39" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Daemon/Handler.cs" line="8" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="7" bodyend="53"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_daemon_1_1_handler_1a2fbb3f752fe50261f7d5fd3d784a38c7" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>AddDaemon</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_handler_1acde19a6a94d142a5106b9697b0062e19" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>ContainsDaemon</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_handler_1acf6963a540e1606e560652ae8e03a0e9" prot="package" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>DaemonLoadListener</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_handler_1ac6fe93befa456f655c6bd259407143ab" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>GetDaemonById</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_handler_1a22c9fd8a10990261133ee026b1677a1a" prot="private" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>interfaces</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
