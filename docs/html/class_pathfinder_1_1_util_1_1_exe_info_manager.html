@@ -132,7 +132,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_exe_info_manager_8cs_source.html#l00093">93</a> of file <a class="el" href="_exe_info_manager_8cs_source.html">ExeInfoManager.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        {</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            ExecutableInfo i;</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">if</span> (nameToExeStruct.TryGetValue(name, out i))</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                <span class="keywordflow">return</span> i;</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keywordflow">return</span> i;</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        }</div></div><!-- fragment -->
 </div>
 </div>
 <a id="ad7e5e3c7d00e175baddaf29412a31f44"></a>
@@ -160,7 +160,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_exe_info_manager_8cs_source.html#l00101">101</a> of file <a class="el" href="_exe_info_manager_8cs_source.html">ExeInfoManager.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        {</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            ExecutableInfo i = <span class="keywordflow">default</span>(ExecutableInfo);</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="keywordtype">string</span> n;</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="keywordflow">if</span> (PortExploits.cracks.TryGetValue(index, out n) &amp;&amp; nameToExeStruct.TryGetValue(n, out i))</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                <span class="keywordflow">return</span> i;</div><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">return</span> i;</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        }</div></div><!-- fragment -->
 </div>
 </div>
 <a id="a933366d771546e3c6ffdf178bd6b123a"></a>
@@ -187,7 +187,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_exe_info_manager_8cs_source.html#l00110">110</a> of file <a class="el" href="_exe_info_manager_8cs_source.html">ExeInfoManager.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        {</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            var result = <span class="keyword">new</span> List&lt;ExecutableInfo&gt;();</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <span class="keywordflow">foreach</span> (var pair <span class="keywordflow">in</span> nameToExeStruct)</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                result.Add(pair.Value);</div><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keywordflow">return</span> result;</div><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        }</div></div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>

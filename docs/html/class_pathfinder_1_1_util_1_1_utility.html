@@ -156,7 +156,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="_utility_8cs_source.html#l00038">38</a> of file <a class="el" href="_utility_8cs_source.html">Utility.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        {</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            input = xmlAttribRegex.Replace(input, <span class="stringliteral">&quot;_&quot;</span>);</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">if</span> (Char.IsDigit(input[0]))</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                input = <span class="charliteral">&#39;_&#39;</span> + input.Substring(1);</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">return</span> input;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div></div><!-- fragment -->
 </div>
 </div>
 <a id="a39f234cf157a8731f04b3a5cd72c4095"></a>
@@ -186,7 +186,8 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The client's Current <a class="el" href="namespace_pathfinder_1_1_computer.html">Computer</a>.</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_utility_8cs_source.html#l00075">75</a> of file <a class="el" href="_utility_8cs_source.html">Utility.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        {</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="class_pathfinder_1_1_util_1_1_utility.html#a0bf7e9763485523e55c7bc0c053d64f5">GetClientOS</a>().thisComputer;</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div><div class="ttc" id="class_pathfinder_1_1_util_1_1_utility_html_a0bf7e9763485523e55c7bc0c053d64f5"><div class="ttname"><a href="class_pathfinder_1_1_util_1_1_utility.html#a0bf7e9763485523e55c7bc0c053d64f5">Pathfinder.Util.Utility.GetClientOS</a></div><div class="ttdeci">static Hacknet.OS GetClientOS()</div><div class="ttdoc">Gets the current client OS. </div><div class="ttdef"><b>Definition:</b> <a href="_utility_8cs_source.html#l00066">Utility.cs:66</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ae82fa135fd32ea463792474334864d41"></a>
@@ -216,7 +217,8 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The client's current Network Map.</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_utility_8cs_source.html#l00084">84</a> of file <a class="el" href="_utility_8cs_source.html">Utility.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        {</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="class_pathfinder_1_1_util_1_1_utility.html#a0bf7e9763485523e55c7bc0c053d64f5">GetClientOS</a>()?.netMap;</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        }</div><div class="ttc" id="class_pathfinder_1_1_util_1_1_utility_html_a0bf7e9763485523e55c7bc0c053d64f5"><div class="ttname"><a href="class_pathfinder_1_1_util_1_1_utility.html#a0bf7e9763485523e55c7bc0c053d64f5">Pathfinder.Util.Utility.GetClientOS</a></div><div class="ttdeci">static Hacknet.OS GetClientOS()</div><div class="ttdoc">Gets the current client OS. </div><div class="ttdef"><b>Definition:</b> <a href="_utility_8cs_source.html#l00066">Utility.cs:66</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a0bf7e9763485523e55c7bc0c053d64f5"></a>
@@ -246,7 +248,8 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The client's current <a class="el" href="namespace_pathfinder_1_1_o_s.html">OS</a>.</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_utility_8cs_source.html#l00066">66</a> of file <a class="el" href="_utility_8cs_source.html">Utility.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        {</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="namespace_hacknet.html">Hacknet</a>.OS.currentInstance;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        }</div><div class="ttc" id="namespace_hacknet_html"><div class="ttname"><a href="namespace_hacknet.html">Hacknet</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a081ad9358b2f563ace650268a7869bdb"></a>
@@ -276,7 +279,9 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The currently connected to <a class="el" href="namespace_pathfinder_1_1_computer.html">Computer</a>.</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_utility_8cs_source.html#l00093">93</a> of file <a class="el" href="_utility_8cs_source.html">Utility.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        {</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="class_pathfinder_1_1_util_1_1_utility.html#a0bf7e9763485523e55c7bc0c053d64f5">GetClientOS</a>()?.connectedComp ?? <a class="code" href="class_pathfinder_1_1_util_1_1_utility.html#a39f234cf157a8731f04b3a5cd72c4095">GetClientComputer</a>();</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div><div class="ttc" id="class_pathfinder_1_1_util_1_1_utility_html_a39f234cf157a8731f04b3a5cd72c4095"><div class="ttname"><a href="class_pathfinder_1_1_util_1_1_utility.html#a39f234cf157a8731f04b3a5cd72c4095">Pathfinder.Util.Utility.GetClientComputer</a></div><div class="ttdeci">static Hacknet.Computer GetClientComputer()</div><div class="ttdoc">Gets the current client&amp;#39;s Computer. </div><div class="ttdef"><b>Definition:</b> <a href="_utility_8cs_source.html#l00075">Utility.cs:75</a></div></div>
+<div class="ttc" id="class_pathfinder_1_1_util_1_1_utility_html_a0bf7e9763485523e55c7bc0c053d64f5"><div class="ttname"><a href="class_pathfinder_1_1_util_1_1_utility.html#a0bf7e9763485523e55c7bc0c053d64f5">Pathfinder.Util.Utility.GetClientOS</a></div><div class="ttdeci">static Hacknet.OS GetClientOS()</div><div class="ttdoc">Gets the current client OS. </div><div class="ttdef"><b>Definition:</b> <a href="_utility_8cs_source.html#l00066">Utility.cs:66</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a30d4a1a896db583bfcb2d8717e82d77e"></a>
@@ -338,7 +343,9 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="_utility_8cs_source.html#l00054">54</a> of file <a class="el" href="_utility_8cs_source.html">Utility.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        {</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            inputId = ignoreValidXml ? inputId : <a class="code" href="class_pathfinder_1_1_util_1_1_utility.html#a357eda9e4e9b509912046ccc5ba928bb">ConvertToValidXmlAttributeName</a>(inputId);</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">if</span> (!ignorePeriod &amp;&amp; inputId.IndexOf(<span class="charliteral">&#39;.&#39;</span>) == -1)</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                inputId = <a class="code" href="class_pathfinder_1_1_util_1_1_utility.html#a2226c43ab09a5d67e844b616defb1ec2">GetPreviousStackFrameIdentity</a>(frameSkip) + <span class="stringliteral">&quot;.&quot;</span> + inputId;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">return</span> inputId;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div><div class="ttc" id="class_pathfinder_1_1_util_1_1_utility_html_a357eda9e4e9b509912046ccc5ba928bb"><div class="ttname"><a href="class_pathfinder_1_1_util_1_1_utility.html#a357eda9e4e9b509912046ccc5ba928bb">Pathfinder.Util.Utility.ConvertToValidXmlAttributeName</a></div><div class="ttdeci">static string ConvertToValidXmlAttributeName(string input)</div><div class="ttdoc">Converts the input to a valid xml attribute name. </div><div class="ttdef"><b>Definition:</b> <a href="_utility_8cs_source.html#l00038">Utility.cs:38</a></div></div>
+<div class="ttc" id="class_pathfinder_1_1_util_1_1_utility_html_a2226c43ab09a5d67e844b616defb1ec2"><div class="ttname"><a href="class_pathfinder_1_1_util_1_1_utility.html#a2226c43ab09a5d67e844b616defb1ec2">Pathfinder.Util.Utility.GetPreviousStackFrameIdentity</a></div><div class="ttdeci">static string GetPreviousStackFrameIdentity(int frameSkip=2)</div><div class="ttdoc">Gets the previous stack frame identity. </div><div class="ttdef"><b>Definition:</b> <a href="_utility_8cs_source.html#l00022">Utility.cs:22</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a2226c43ab09a5d67e844b616defb1ec2"></a>
@@ -375,7 +382,8 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="_utility_8cs_source.html#l00022">22</a> of file <a class="el" href="_utility_8cs_source.html">Utility.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        {</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            var result = <span class="stringliteral">&quot;&quot;</span>;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            var <span class="keyword">asm</span> = <span class="keyword">new</span> StackFrame(frameSkip).GetMethod().Module.Assembly;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keywordflow">if</span> (<span class="keyword">asm</span> == MethodBase.GetCurrentMethod().Module.Assembly)</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                result = <span class="stringliteral">&quot;Pathfinder&quot;</span>;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">else</span></div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                result = <a class="code" href="namespace_pathfinder.html">Pathfinder</a>.GetModByAssembly(<span class="keyword">asm</span>).Identifier;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">return</span> result;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div><div class="ttc" id="namespace_pathfinder_html"><div class="ttname"><a href="namespace_pathfinder.html">Pathfinder</a></div><div class="ttdef"><b>Definition:</b> <a href="_command_handler_8cs_source.html#l00004">CommandHandler.cs:4</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>

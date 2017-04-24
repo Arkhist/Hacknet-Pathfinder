@@ -152,7 +152,10 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_mission_goal_instance_8cs_source.html#l00028">28</a> of file <a class="el" href="_mission_goal_instance_8cs_source.html">MissionGoalInstance.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        {</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordtype">id</span> = <a class="code" href="class_pathfinder_1_1_util_1_1_utility.html">Utility</a>.<a class="code" href="class_pathfinder_1_1_util_1_1_utility.html#a357eda9e4e9b509912046ccc5ba928bb">ConvertToValidXmlAttributeName</a>(<span class="keywordtype">id</span>);</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            var inter = Handler.GetMissionGoalById(<span class="keywordtype">id</span>);</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span> (inter == null)</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <span class="keywordflow">return</span> null;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            var i = <span class="keyword">new</span> MissionGoalInstance(inter)</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            {</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <a class="code" href="class_pathfinder_1_1_mission_1_1_mission_goal_instance.html#a91c4c27be8c17380e05cbd4d235e25ec">InterfaceId</a> = <span class="keywordtype">id</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            };</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">return</span> i;</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        }</div><div class="ttc" id="class_pathfinder_1_1_mission_1_1_mission_goal_instance_html_a91c4c27be8c17380e05cbd4d235e25ec"><div class="ttname"><a href="class_pathfinder_1_1_mission_1_1_mission_goal_instance.html#a91c4c27be8c17380e05cbd4d235e25ec">Pathfinder.Mission.MissionGoalInstance.InterfaceId</a></div><div class="ttdeci">string InterfaceId</div><div class="ttdef"><b>Definition:</b> <a href="_mission_goal_instance_8cs_source.html#l00019">MissionGoalInstance.cs:19</a></div></div>
+<div class="ttc" id="class_pathfinder_1_1_util_1_1_utility_html_a357eda9e4e9b509912046ccc5ba928bb"><div class="ttname"><a href="class_pathfinder_1_1_util_1_1_utility.html#a357eda9e4e9b509912046ccc5ba928bb">Pathfinder.Util.Utility.ConvertToValidXmlAttributeName</a></div><div class="ttdeci">static string ConvertToValidXmlAttributeName(string input)</div><div class="ttdoc">Converts the input to a valid xml attribute name. </div><div class="ttdef"><b>Definition:</b> <a href="_utility_8cs_source.html#l00038">Utility.cs:38</a></div></div>
+<div class="ttc" id="class_pathfinder_1_1_util_1_1_utility_html"><div class="ttname"><a href="class_pathfinder_1_1_util_1_1_utility.html">Pathfinder.Util.Utility</a></div><div class="ttdef"><b>Definition:</b> <a href="_utility_8cs_source.html#l00008">Utility.cs:8</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a560b5ddc20b9858539e9df9daafceab4"></a>
@@ -172,7 +175,9 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_mission_goal_instance_8cs_source.html#l00041">41</a> of file <a class="el" href="_mission_goal_instance_8cs_source.html">MissionGoalInstance.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        {</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="class_pathfinder_1_1_mission_1_1_mission_goal_instance.html#a6116bec9aa336b2d345e8ec38d607f8a">Interface</a>.<a class="code" href="interface_pathfinder_1_1_mission_1_1_i_mission_goal.html#a6cbb2d5d1582c2a4439a1fccf147173b">IsComplete</a>(<span class="keyword">this</span>, additionalDetails ?? <span class="keyword">new</span> List&lt;string&gt;());</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div><div class="ttc" id="class_pathfinder_1_1_mission_1_1_mission_goal_instance_html_a6116bec9aa336b2d345e8ec38d607f8a"><div class="ttname"><a href="class_pathfinder_1_1_mission_1_1_mission_goal_instance.html#a6116bec9aa336b2d345e8ec38d607f8a">Pathfinder.Mission.MissionGoalInstance.Interface</a></div><div class="ttdeci">IMissionGoal Interface</div><div class="ttdef"><b>Definition:</b> <a href="_mission_goal_instance_8cs_source.html#l00014">MissionGoalInstance.cs:14</a></div></div>
+<div class="ttc" id="interface_pathfinder_1_1_mission_1_1_i_mission_goal_html_a6cbb2d5d1582c2a4439a1fccf147173b"><div class="ttname"><a href="interface_pathfinder_1_1_mission_1_1_i_mission_goal.html#a6cbb2d5d1582c2a4439a1fccf147173b">Pathfinder.Mission.IMissionGoal.IsComplete</a></div><div class="ttdeci">bool IsComplete(MissionGoalInstance instance, List&lt; string &gt; details)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a0f22a69d1b6e0d5a885502c5d910af22"></a>
@@ -192,7 +197,8 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_mission_goal_instance_8cs_source.html#l00056">56</a> of file <a class="el" href="_mission_goal_instance_8cs_source.html">MissionGoalInstance.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <a class="code" href="class_pathfinder_1_1_mission_1_1_mission_goal_instance.html#a97684264aaa86c3030bf52543a745c4d">Mission</a> = mission;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div><div class="ttc" id="class_pathfinder_1_1_mission_1_1_mission_goal_instance_html_a97684264aaa86c3030bf52543a745c4d"><div class="ttname"><a href="class_pathfinder_1_1_mission_1_1_mission_goal_instance.html#a97684264aaa86c3030bf52543a745c4d">Pathfinder.Mission.MissionGoalInstance.Mission</a></div><div class="ttdeci">Hacknet.ActiveMission Mission</div><div class="ttdef"><b>Definition:</b> <a href="_mission_goal_instance_8cs_source.html#l00009">MissionGoalInstance.cs:9</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a155478e1c061f3697b3ab80bed722d2c"></a>
@@ -211,7 +217,9 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_mission_goal_instance_8cs_source.html#l00046">46</a> of file <a class="el" href="_mission_goal_instance_8cs_source.html">MissionGoalInstance.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        {</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <a class="code" href="class_pathfinder_1_1_mission_1_1_mission_goal_instance.html#a6116bec9aa336b2d345e8ec38d607f8a">Interface</a>.<a class="code" href="interface_pathfinder_1_1_mission_1_1_i_mission_goal.html#a0f012081b54ac45af0e6c96f89ddba64">Reset</a>(<span class="keyword">this</span>);</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div><div class="ttc" id="class_pathfinder_1_1_mission_1_1_mission_goal_instance_html_a6116bec9aa336b2d345e8ec38d607f8a"><div class="ttname"><a href="class_pathfinder_1_1_mission_1_1_mission_goal_instance.html#a6116bec9aa336b2d345e8ec38d607f8a">Pathfinder.Mission.MissionGoalInstance.Interface</a></div><div class="ttdeci">IMissionGoal Interface</div><div class="ttdef"><b>Definition:</b> <a href="_mission_goal_instance_8cs_source.html#l00014">MissionGoalInstance.cs:14</a></div></div>
+<div class="ttc" id="interface_pathfinder_1_1_mission_1_1_i_mission_goal_html_a0f012081b54ac45af0e6c96f89ddba64"><div class="ttname"><a href="interface_pathfinder_1_1_mission_1_1_i_mission_goal.html#a0f012081b54ac45af0e6c96f89ddba64">Pathfinder.Mission.IMissionGoal.Reset</a></div><div class="ttdeci">void Reset(MissionGoalInstance instance)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ac9c6257376d3b2f7bdf02bfe3ab6bede"></a>
@@ -230,7 +238,9 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_mission_goal_instance_8cs_source.html#l00051">51</a> of file <a class="el" href="_mission_goal_instance_8cs_source.html">MissionGoalInstance.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        {</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="class_pathfinder_1_1_mission_1_1_mission_goal_instance.html#a6116bec9aa336b2d345e8ec38d607f8a">Interface</a>.<a class="code" href="interface_pathfinder_1_1_mission_1_1_i_mission_goal.html#a18e020da0318e13e8c070ea0d68e835e">GetTestCompletableString</a>(<span class="keyword">this</span>);</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div><div class="ttc" id="class_pathfinder_1_1_mission_1_1_mission_goal_instance_html_a6116bec9aa336b2d345e8ec38d607f8a"><div class="ttname"><a href="class_pathfinder_1_1_mission_1_1_mission_goal_instance.html#a6116bec9aa336b2d345e8ec38d607f8a">Pathfinder.Mission.MissionGoalInstance.Interface</a></div><div class="ttdeci">IMissionGoal Interface</div><div class="ttdef"><b>Definition:</b> <a href="_mission_goal_instance_8cs_source.html#l00014">MissionGoalInstance.cs:14</a></div></div>
+<div class="ttc" id="interface_pathfinder_1_1_mission_1_1_i_mission_goal_html_a18e020da0318e13e8c070ea0d68e835e"><div class="ttname"><a href="interface_pathfinder_1_1_mission_1_1_i_mission_goal.html#a18e020da0318e13e8c070ea0d68e835e">Pathfinder.Mission.IMissionGoal.GetTestCompletableString</a></div><div class="ttdeci">string GetTestCompletableString(MissionGoalInstance instance)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>

@@ -140,7 +140,7 @@ Protected Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>A new T:System.Net.WebRequest object for the specified resource. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_updater_8cs_source.html#l00056">56</a> of file <a class="el" href="_updater_8cs_source.html">Updater.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            WebRequest request = base.GetWebRequest(address);</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">if</span> (request is HttpWebRequest)</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            {</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                (request as HttpWebRequest).KeepAlive = <span class="keyword">false</span>;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            }</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">return</span> request;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div></div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
