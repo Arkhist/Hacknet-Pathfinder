@@ -1002,7 +1002,7 @@ SOURCE_BROWSER         = YES
 # classes and enums directly into the documentation.
 # The default value is: NO.
 
-INLINE_SOURCES         = YES
+INLINE_SOURCES         = NO
 
 # Setting the STRIP_CODE_COMMENTS tag to YES will instruct doxygen to hide any
 # special comment blocks from generated source code fragments. Normal C, C++ and
@@ -1069,7 +1069,7 @@ USE_HTAGS              = NO
 # See also: Section \class.
 # The default value is: YES.
 
-VERBATIM_HEADERS       = YES
+VERBATIM_HEADERS       = NO
 
 # If the CLANG_ASSISTED_PARSING tag is set to YES then doxygen will use the
 # clang parser (see: http://clang.llvm.org/) for more accurate parsing at the
@@ -1242,7 +1242,7 @@ HTML_COLORSTYLE_GAMMA  = 80
 # The default value is: NO.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_TIMESTAMP         = NO
+HTML_TIMESTAMP         = YES
 
 # If the HTML_DYNAMIC_SECTIONS tag is set to YES then the generated HTML
 # documentation will contain sections that can be hidden and shown after the

@@ -161,7 +161,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_filesystem_8cs_source.html#l00010">10</a> of file <a class="el" href="_filesystem_8cs_source.html">Filesystem.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;: base(parent.files, parent) { }</div></div><!-- fragment -->
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -190,8 +190,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_filesystem_8cs_source.html#l00079">79</a> of file <a class="el" href="_filesystem_8cs_source.html">Filesystem.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        {</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#a6656e9fc34cc04e1c3460747b9b73316">Filesystem</a>(c);</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        }</div><div class="ttc" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_html_a6656e9fc34cc04e1c3460747b9b73316"><div class="ttname"><a href="class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#a6656e9fc34cc04e1c3460747b9b73316">Pathfinder.GameFilesystem.Filesystem.Filesystem</a></div><div class="ttdeci">Filesystem(Hacknet.Computer parent)</div><div class="ttdef"><b>Definition:</b> <a href="_filesystem_8cs_source.html#l00010">Filesystem.cs:10</a></div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a7e9b72d960fd9f2bd7a03fcda08b25e5"></a>
@@ -211,8 +210,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_filesystem_8cs_source.html#l00049">49</a> of file <a class="el" href="_filesystem_8cs_source.html">Filesystem.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            var res = <a class="code" href="class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#ae3ecec102d5ba29ad216e2b022fcae51">Directory</a>;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">foreach</span> (var p <span class="keywordflow">in</span> path.Split(<span class="charliteral">&#39;/&#39;</span>).Skip(1))</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordflow">if</span> ((res = res.FindDirectory(p)) == null)</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                    <span class="keywordflow">break</span>;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">return</span> res;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div><div class="ttc" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_html_ae3ecec102d5ba29ad216e2b022fcae51"><div class="ttname"><a href="class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#ae3ecec102d5ba29ad216e2b022fcae51">Pathfinder.GameFilesystem.Filesystem.Directory</a></div><div class="ttdeci">Directory Directory</div><div class="ttdef"><b>Definition:</b> <a href="_filesystem_8cs_source.html#l00042">Filesystem.cs:42</a></div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="afc0733d1a42d0022a5a71d789543bf51"></a>
@@ -232,9 +230,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_filesystem_8cs_source.html#l00058">58</a> of file <a class="el" href="_filesystem_8cs_source.html">Filesystem.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        {</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            var pList = path.Split(<span class="charliteral">&#39;/&#39;</span>).Skip(1);</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordtype">string</span> p = null;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            File res = null;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            var dir = <a class="code" href="class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#ae3ecec102d5ba29ad216e2b022fcae51">Directory</a>;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; pList.Count(); p = pList.ElementAt(i++))</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            {</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keywordflow">if</span> (i == pList.Count() - 1)</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    res = dir.<a class="code" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#ad1299c0bbb0255b3c2582d8ece06ae9d">FindFile</a>(p);</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                <span class="keywordflow">if</span> ((dir = dir.FindDirectory(p)) == null)</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    <span class="keywordflow">break</span>;</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            }</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">return</span> res;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div><div class="ttc" id="class_pathfinder_1_1_game_filesystem_1_1_directory_html_ad1299c0bbb0255b3c2582d8ece06ae9d"><div class="ttname"><a href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#ad1299c0bbb0255b3c2582d8ece06ae9d">Pathfinder.GameFilesystem.Directory.FindFile</a></div><div class="ttdeci">File FindFile(string name)</div><div class="ttdef"><b>Definition:</b> <a href="_directory_8cs_source.html#l00089">Directory.cs:89</a></div></div>
-<div class="ttc" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_html_ae3ecec102d5ba29ad216e2b022fcae51"><div class="ttname"><a href="class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#ae3ecec102d5ba29ad216e2b022fcae51">Pathfinder.GameFilesystem.Filesystem.Directory</a></div><div class="ttdeci">Directory Directory</div><div class="ttdef"><b>Definition:</b> <a href="_filesystem_8cs_source.html#l00042">Filesystem.cs:42</a></div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -424,7 +420,7 @@ Properties</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_pathfinder.html">Pathfinder</a></li><li class="navelem"><a class="el" href="namespace_pathfinder_1_1_game_filesystem.html">GameFilesystem</a></li><li class="navelem"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_filesystem.html">Filesystem</a></li>
-    <li class="footer">Generated by
+    <li class="footer">Generated on Sun Apr 23 2017 21:36:52 for Pathfinder Hacknet by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>
