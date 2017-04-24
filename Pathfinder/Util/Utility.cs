@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable RECS0137 // Method with optional parameter is hidden by overload
+using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -90,9 +91,16 @@ namespace Pathfinder.Util
         /// Gets the current Computer the client is connected to.
         /// </summary>
         /// <returns>The currently connected to Computer.</returns>
+        public static Hacknet.Computer GetCurrentComputer(Hacknet.OS os = null)
+        {
+            if (os == null)
+                os = GetClientOS();
+            return os?.connectedComp ?? os?.thisComputer;
+        }
+
         public static Hacknet.Computer GetCurrentComputer()
         {
-            return GetClientOS()?.connectedComp ?? GetClientComputer();
+            return GetCurrentComputer(null);
         }
     }
 }

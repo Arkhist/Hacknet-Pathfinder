@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Pathfinder.Util;
 using Pathfinder.NetworkMap;
+using Pathfinder.Port;
 
 namespace Pathfinder.Computer
 {
@@ -83,6 +84,97 @@ namespace Pathfinder.Computer
             if (netmap == null)
                 netmap = Utility.GetClientNetMap();
             return netmap?.AddLink(comp, newLink) ?? false;
+        }
+
+        public static bool AddVanillaPort(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, bool unlocked = false)
+        {
+            if (info.IsEmpty)
+                return false;
+            comp.ports.Add(info.PortNumber);
+            comp.portsOpen.Add(unlocked ? (byte)1 : (byte)0);
+            return true;
+        }
+
+        public static bool AddVanillaPort(this Hacknet.Computer comp, string portName, bool unlocked = false)
+        {
+            return comp.AddVanillaPort(ExeInfoManager.GetExecutableInfo(portName), unlocked);
+        }
+
+        public static bool AddVanillaPort(this Hacknet.Computer comp, int portNum, bool unlocked = false)
+        {
+            return comp.AddVanillaPort(ExeInfoManager.GetExecutableInfo(portNum), unlocked);
+        }
+
+        public static bool AddModPort(this Hacknet.Computer comp, PortType port, bool unlocked = false)
+        {
+            return port.AssignTo(comp, unlocked);
+        }
+
+        public static bool AddModPort(this Hacknet.Computer comp, string id, bool unlocked = false)
+        {
+            return Instance.AssignTo(id, comp, unlocked);
+        }
+
+        public static bool RemoveVanillaPort(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info)
+        {
+            if (info.IsEmpty)
+                return false;
+            var index = comp.ports.IndexOf(info.PortNumber);
+            comp.ports.RemoveAt(index);
+            comp.portsOpen.RemoveAt(index);
+            return true;
+        }
+
+        public static bool RemoveVanillaPort(this Hacknet.Computer comp, string portName)
+        {
+            return comp.RemoveVanillaPort(ExeInfoManager.GetExecutableInfo(portName));
+        }
+
+        public static bool RemoveVanillaPort(this Hacknet.Computer comp, int portNum)
+        {
+            return comp.RemoveVanillaPort(ExeInfoManager.GetExecutableInfo(portNum));
+        }
+
+        public static bool RemoveModPort(this Hacknet.Computer comp, PortType port)
+        {
+            return port.RemoveFrom(comp);
+        }
+
+        public static bool RemoveModPort(this Hacknet.Computer comp, string id)
+        {
+            return Instance.RemoveFrom(id, comp);
+        }
+
+        public static bool HasPort(this Hacknet.Computer comp, PortType port)
+        {
+            return port.GetWithin(comp) != null;
+        }
+
+        public static bool IsPortOpen(this Hacknet.Computer comp, PortType port)
+        {
+            return port.GetWithin(comp)?.Unlocked == true;
+        }
+
+        public static void OpenPort(this Hacknet.Computer comp, PortType port, string ipFrom)
+        {
+            var i = port.GetWithin(comp);
+            if (i == null)
+                return;
+            i.Unlocked |= !comp.silent;
+            comp.log(ipFrom + " Opened Port#" + port.PortName + "/" + port.PortDisplay);
+            comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port.PortDisplay + " " + port.PortName);
+        }
+
+        public static void ClosePort(this Hacknet.Computer comp, PortType port, string ipFrom)
+        {
+            var i = port.GetWithin(comp);
+            if (i == null)
+                return;
+            var wasOpen = i.Unlocked;
+            i.Unlocked &= comp.silent;
+            if(wasOpen)
+                comp.log(ipFrom + " Closed Port#" + port.PortName + "/" + port.PortDisplay);
+            comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port.PortDisplay + " " + port.PortName);
         }
     }
 }

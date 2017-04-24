@@ -56,17 +56,32 @@ namespace Pathfinder
         }
 
         // Hook location : ProgramRunner.ExecuteProgram()
-        public static bool onCommandSent(out bool disconnects, object osObj, string[] arguments)
+        public static bool onCommandSent(out bool disconnects, ref bool returnFlag, object osObj, string[] arguments)
         {
             var os = osObj as Hacknet.OS;
-            var commandSentEvent = new Event.CommandSentEvent(os, arguments);
+            var commandSentEvent = new Event.CommandSentEvent(os, arguments)
+            {
+                Disconnects = false,
+                HandleReturn = returnFlag
+            };
             commandSentEvent.CallEvent();
+            disconnects = commandSentEvent.Disconnects;
+            returnFlag = disconnects;
             if (commandSentEvent.IsCancelled)
             {
-                disconnects = commandSentEvent.Disconnects;
+                if (commandSentEvent.HandleReturn)
+                {
+                    if (os.commandInvalid)
+                        os.commandInvalid = false;
+                    else
+                    {
+                        os.display.command = commandSentEvent.Arguments[0];
+                        os.display.commandArgs = commandSentEvent.Arguments.ToArray();
+                        os.display.typeChanged();
+                    }
+                }
                 return true;
             }
-            disconnects = commandSentEvent.Disconnects;
             return false;
         }
 
@@ -260,6 +275,31 @@ namespace Pathfinder
         {
             var gameUpdateEvent = new Event.GameUpdateEvent(self, time);
             gameUpdateEvent.CallEvent();
+        }
+
+        public static void onPortNameDraw(Hacknet.DisplayModule self,
+                                            ref Rectangle rect,
+                                            ref Hacknet.Computer computer,
+                                            ref Vector2 lockPos)
+        {
+            var leftMeasure = Vector2.Zero;
+            if (Port.Instance.compToInst.ContainsKey(computer)) foreach (var i in Port.Instance.compToInst[computer])
+            {
+                rect.Y = self.y + 4;
+                lockPos.Y = rect.Y + 4;
+                self.spriteBatch.Draw(Utils.white, rect, i.Unlocked ? self.os.unlockedColor : self.os.lockedColor);
+                self.spriteBatch.Draw(i.Unlocked ? self.openLockSprite : self.lockSprite, lockPos, Color.White);
+                var portLeft = "Port#: " + i.Port.PortDisplay;
+                leftMeasure = GuiData.font.MeasureString(portLeft);
+                self.spriteBatch.DrawString(GuiData.font, portLeft, new Vector2(self.x, self.y + 3), Color.White);
+                var portRight = " - " + i.Port.PortName;
+                var rightMeasure = GuiData.smallfont.MeasureString(portRight);
+                var width = rect.Width - leftMeasure.X - 50f;
+                var single1 = Math.Min(1f, width / rightMeasure.X);
+                self.spriteBatch.DrawString(GuiData.smallfont, portRight, new Vector2(self.x + leftMeasure.X, self.y + 4),
+                                            Color.White, 0f, Vector2.Zero, single1, SpriteEffects.None, 0.8f);
+                self.y += 45;
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Hacknet;
+using Pathfinder.Util;
 
 namespace Pathfinder.OS
 {
@@ -52,6 +53,11 @@ namespace Pathfinder.OS
         		if (e.Interface is T)
         			result.Add(e);
         	return result;
+        }
+
+        public static Hacknet.Computer GetCurrentComputer(this Hacknet.OS os)
+        {
+            return Utility.GetCurrentComputer(os);
         }
     }
 }

@@ -71,6 +71,20 @@ namespace PathfinderPatcher
                 compSendMsg.IsPrivate = false;
                 compSendMsg.IsPublic = true;
 
+                var displayModule = ad.MainModule.GetType("Hacknet.DisplayModule");
+                var displayModuleVars = displayModule.GetField("x");
+                displayModuleVars.IsPrivate = false;
+                displayModuleVars.IsPublic = true;
+                displayModuleVars = displayModule.GetField("y");
+                displayModuleVars.IsPrivate = false;
+                displayModuleVars.IsPublic = true;
+                displayModuleVars = displayModule.GetField("openLockSprite");
+                displayModuleVars.IsPrivate = false;
+                displayModuleVars.IsPublic = true;
+                displayModuleVars = displayModule.GetField("lockSprite");
+                displayModuleVars.IsPrivate = false;
+                displayModuleVars.IsPublic = true;
+
                 if (spitOutHacknetOnly)
                 {
                     ad?.Write("HacknetPathfinder.exe");
@@ -94,7 +108,9 @@ namespace PathfinderPatcher
 
                 ad.MainModule.GetType("Hacknet.ProgramRunner").GetMethod("ExecuteProgram").InjectWith(
                     hooks.GetMethod("onCommandSent"),
-                    flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn
+                    13,
+                    flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
+                    localsID: new int[] { 1 }
                 );
 
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("LoadContent").InjectWith(
@@ -189,6 +205,14 @@ namespace PathfinderPatcher
 					hooks.GetMethod("onGameUpdate"),
                     -5,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef
+                );
+
+                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("doProbeDisplay").InjectWith(
+                    hooks.GetMethod("onPortNameDraw"),
+                    -158,
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals,
+                    localsID: new int[] { 0, 1, 10 }
                 );
 
                 ad?.Write("HacknetPathfinder.exe");

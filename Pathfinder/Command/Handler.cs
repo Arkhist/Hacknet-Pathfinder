@@ -60,6 +60,7 @@ namespace Pathfinder.Command
             {
                 e.IsCancelled = true;
                 e.Disconnects = f(e.OS, e.Arguments);
+                e.HandleReturn = true;
             }
         }
     }

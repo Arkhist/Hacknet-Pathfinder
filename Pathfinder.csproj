@@ -125,6 +125,9 @@
     <Compile Include="Pathfinder\NetworkMap\Extensions.cs" />
     <Compile Include="Pathfinder\Util\Updater.cs" />
     <Compile Include="Pathfinder\Util\JsonObject.cs" />
+    <Compile Include="Pathfinder\Port\PortType.cs" />
+    <Compile Include="Pathfinder\Port\Instance.cs" />
+    <Compile Include="Pathfinder\Port\Handler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />
@@ -134,6 +137,7 @@
     <Folder Include="Pathfinder\GameFilesystem\" />
     <Folder Include="Pathfinder\Mission\" />
     <Folder Include="Pathfinder\NetworkMap\" />
+    <Folder Include="Pathfinder\Port\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

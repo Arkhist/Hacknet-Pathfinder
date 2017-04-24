@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using Hacknet;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
+using Pathfinder.OS;
 using Pathfinder.Util;
 
 namespace Pathfinder
@@ -37,6 +39,7 @@ namespace Pathfinder
                && latestVersion > Version)
                 EventManager.RegisterListener<DrawMainMenuEvent>(DrawNewReleaseGraphic);*/
 
+            EventManager.RegisterListener<CommandSentEvent>(OverwriteProbe);
             EventManager.RegisterListener<CommandSentEvent>(Command.Handler.CommandListener);
 
             EventManager.RegisterListener<DrawMainMenuEvent>(GUI.PathfinderMainMenu.drawMainMenu);
@@ -167,6 +170,43 @@ namespace Pathfinder
             {
                 Logger.Verbose("Unloading mod '{0}'", mod.Key);
                 mod.Value.Unload();
+            }
+        }
+
+        internal static void OverwriteProbe(CommandSentEvent e)
+        {
+            if (e.Arguments[0] == "probe" || e.Arguments[0] == "nmap")
+            {
+                e.HandleReturn = true;
+                e.IsCancelled = true;
+                var os = e.OS;
+                int i;
+                var c = os.GetCurrentComputer();
+                os.write(string.Concat("Probing ", c.ip, "...\n"));
+                for (i = 0; i < 10; i++)
+                {
+                    Thread.Sleep(80);
+                    os.writeSingle(".");
+                }
+                os.write("\nProbe Complete - Open ports:\n");
+                os.write("---------------------------------");
+                if (Port.Instance.compToInst.ContainsKey(c)) foreach (var ins in Port.Instance.compToInst[c])
+                {
+                    os.write("Port#: " + ins.Port.PortDisplay + " - " + ins.Port.PortName + (ins.Unlocked ? "OPEN" : ""));
+                    Thread.Sleep(120);
+                }
+                for (i = 0; i < c.ports.Count; i++)
+                {
+                    os.write("Port#: " + c.GetDisplayPortNumberFromCodePort(c.ports[i]) + "  -  " + PortExploits.services[c.ports[i]]
+                            + (c.portsOpen[i] > 0 ? " : OPEN" : ""));
+                    Thread.Sleep(120);
+                }
+                os.write("---------------------------------");
+                os.write("Open Ports Required for Crack : " + Math.Max(c.portsNeededForCrack + 1, 0));
+                if (c.hasProxy)
+                    os.write("Proxy Detected : " + (c.proxyActive ? "ACTIVE" : "INACTIVE"));
+                if (c.firewall != null)
+                    os.write("Firewall Detected : " + (c.firewall.solved ? "SOLVED" : "ACTIVE"));
             }
         }
 

@@ -30,10 +30,9 @@ namespace Pathfinder.Daemon
         public static IInterface GetDaemonById(string id)
         {
             id = Utility.GetId(id);
-            IInterface i;
-            if (interfaces.TryGetValue(id, out i))
-               return i;
-            return null;
+            IInterface i = null;
+            interfaces.TryGetValue(id, out i);
+            return i;
         }
 
         internal static void DaemonLoadListener(LoadComputerXmlReadEvent e)
