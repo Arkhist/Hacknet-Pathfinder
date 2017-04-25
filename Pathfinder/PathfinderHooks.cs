@@ -8,6 +8,8 @@ using System;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.Util;
+using Pathfinder.GUI;
+using System.Linq;
 
 namespace Pathfinder
 {
@@ -61,30 +63,22 @@ namespace Pathfinder
             var os = osObj as Hacknet.OS;
             var commandSentEvent = new Event.CommandSentEvent(os, arguments)
             {
-                Disconnects = true,
-                HandleReturn = true
+                Disconnects = true
             };
             commandSentEvent.CallEvent();
             disconnects = commandSentEvent.Disconnects;
-            
-                returnFlag = disconnects;
-            
+            returnFlag = disconnects;
             if (commandSentEvent.IsCancelled)
             {
-                if (commandSentEvent.HandleReturn)
+                if (os.commandInvalid)
+                    os.commandInvalid = false;
+                else if(commandSentEvent.StateChange != CommandDisplayStateChange.None)
                 {
-                    if (os.commandInvalid)
-                        os.commandInvalid = false;
-                    else if(commandSentEvent.StateChange != "")
-                    {
-                        string state = commandSentEvent.StateChange;
-                        string commandState = state;
-                        if (state.Contains(" "))
-                             commandState = state.Substring(0, state.IndexOf(" "));
-                        os.display.command = commandState;
-                        os.display.commandArgs = state.Split(' ');
-                        os.display.typeChanged();
-                    }
+                    var state = commandSentEvent.State;
+                    os.display.command = state;
+                    os.display.commandArgs =
+                        (state + " " + String.Join(" ", commandSentEvent.Arguments.Skip(1).ToArray())).Split(' ');
+                    os.display.typeChanged();
                 }
                 return true;
             }

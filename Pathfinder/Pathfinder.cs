@@ -9,6 +9,7 @@ using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Pathfinder.Computer;
 using Pathfinder.Event;
+using Pathfinder.GUI;
 using Pathfinder.OS;
 using Pathfinder.Util;
 
@@ -210,11 +211,10 @@ namespace Pathfinder
 
         internal static void OverwriteProbe(CommandSentEvent e)
         {
-            if (e.Arguments[0] == "probe" || e.Arguments[0] == "nmap")
+            if (e.Arguments[0].ToLower() == "probe" || e.Arguments[0].ToLower() == "nmap")
             {
-                e.HandleReturn = true;
                 e.IsCancelled = true;
-                e.StateChange = "probe";
+                e.StateChange = CommandDisplayStateChange.Probe;
                 var os = e.OS;
                 int i;
                 var c = os.GetCurrentComputer();
