@@ -1,4 +1,5 @@
 ﻿using System;
+using Pathfinder.Util;
 
 namespace Pathfinder.Port
 {
@@ -34,29 +35,16 @@ namespace Pathfinder.Port
         }
 
         public Instance GetWithin(Hacknet.Computer c) => Instance.GetInstanceIn(c, this);
-
-        public bool Equals(PortType other) => other != null && PortName == other.PortName && PortDisplay == other.PortDisplay && PortId == other.PortId;
+        public bool Equals(PortType other) => other != null
+                                && PortName == other.PortName
+                                && PortDisplay == other.PortDisplay
+                                && PortId == other.PortId;
         public bool Equals(Instance other) => Equals(other?.Port);
-        public override bool Equals(Object obj)
+        public override string ToString() => string.Format("{0} {1}", PortName, PortDisplay);
+        public static PortType GetById(string portId)
         {
-            var pt = obj as PortType;
-            if (pt != null)
-                return this == pt;
-            var ins = obj as Instance;
-            if (ins != null)
-                return this.Equals(ins);
-            return false;
+            portId = Utility.GetId(portId);
+            return Handler.GetPort(portId);
         }
-
-        public override int GetHashCode() => PortName.GetHashCode() ^ PortDisplay.GetHashCode();
-        public override string ToString()
-        {
-            return string.Format("{0} {1}", PortName, PortDisplay);
-        }
-
-        public static bool operator ==(PortType left, PortType right) => left.Equals(right);
-        public static bool operator !=(PortType left, PortType right) => !(left != right);
-
-        public static PortType GetById(string portId) => Handler.GetPort(portId);
     }
 }

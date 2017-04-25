@@ -54,10 +54,12 @@ namespace Pathfinder.Util
         /// <param name="ignoreValidXml">If set to <c>true</c> ignore valid xml.</param>
         public static string GetId(string inputId, bool ignorePeriod = false, int frameSkip = 3, bool ignoreValidXml = false)
         {
-            inputId = ignoreValidXml ? inputId : ConvertToValidXmlAttributeName(inputId);
+            var xmlString = inputId.IndexOf('.') != -1 ? inputId.Substring(inputId.LastIndexOf('.') + 1) : inputId;
+
+            xmlString = ignoreValidXml ? xmlString : ConvertToValidXmlAttributeName(xmlString);
             if (!ignorePeriod && inputId.IndexOf('.') == -1)
-                inputId = GetPreviousStackFrameIdentity(frameSkip) + "." + inputId;
-            return inputId;
+                xmlString = GetPreviousStackFrameIdentity(frameSkip) + "." + xmlString;
+            return inputId.IndexOf('.') != -1 ? inputId.Remove(inputId.LastIndexOf('.')) + xmlString : inputId;
         }
 
         /// <summary>

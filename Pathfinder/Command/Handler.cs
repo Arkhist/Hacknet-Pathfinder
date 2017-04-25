@@ -59,8 +59,16 @@ namespace Pathfinder.Command
             if (commands.TryGetValue(e.Arguments[0], out f))
             {
                 e.IsCancelled = true;
-                e.Disconnects = f(e.OS, e.Arguments);
-                e.HandleReturn = true;
+                try
+                {
+                    e.Disconnects = f(e.OS, e.Arguments);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error("Command {0} threw Execption: {1}", e.Arguments[0], ex);
+                    e.OS.write("Command " + e.Arguments[0] + " threw Exception: " + ex);
+                    throw ex;
+                }
             }
         }
     }

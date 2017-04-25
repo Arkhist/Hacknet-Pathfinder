@@ -1,11 +1,14 @@
 ﻿using Pathfinder.Util;
 using Command = Pathfinder.Command;
 using Executable = Pathfinder.Executable;
+using Port = Pathfinder.Port;
 
 namespace TemplateMod
 {
     public class TemplateMod : Pathfinder.IPathfinderMod
     {
+        internal static Port.PortType p = new Port.PortType("TemplateName", 4);
+
         public string Identifier => "Template Mod";
 
         public void Load()
@@ -17,6 +20,8 @@ namespace TemplateMod
         {
             Command.Handler.AddCommand("templateModVersion", Commands.TemplateModVersion, autoComplete: true);
             Executable.Handler.AddExecutable("TempExe", new TempExe());
+            if (Port.Handler.AddPort("tempPort", p))
+                Logger.Info("added tempPort to game");
         }
 
         public void Unload()

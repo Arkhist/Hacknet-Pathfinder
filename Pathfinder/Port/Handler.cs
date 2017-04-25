@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Pathfinder.Util;
 
 namespace Pathfinder.Port
@@ -10,7 +9,7 @@ namespace Pathfinder.Port
 
         public static bool AddPort(string portId, PortType port)
         {
-            portId = Utility.GetPreviousStackFrameIdentity() + "." + Utility.GetId(portId, true);
+            portId = Utility.GetId(portId);
             Logger.Verbose("Mod {0} attempting to register port [{1}] with id {2}",
                            Utility.GetPreviousStackFrameIdentity(), port, portId);
             if (idToPortType.ContainsKey(portId))

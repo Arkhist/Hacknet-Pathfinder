@@ -112,7 +112,8 @@ namespace Pathfinder.Computer
 
         public static bool AddModPort(this Hacknet.Computer comp, string id, bool unlocked = false)
         {
-            return Instance.AssignTo(id, comp, unlocked);
+            id = Utility.GetId(id);
+            return comp.AddModPort(Port.Handler.GetPort(id), unlocked);
         }
 
         public static bool RemoveVanillaPort(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info)
@@ -142,7 +143,8 @@ namespace Pathfinder.Computer
 
         public static bool RemoveModPort(this Hacknet.Computer comp, string id)
         {
-            return Instance.RemoveFrom(id, comp);
+            id = Utility.GetId(id);
+            return comp.RemoveModPort(Port.Handler.GetPort(id));
         }
 
         public static IList<Instance> GetModdedPortList(this Hacknet.Computer comp)

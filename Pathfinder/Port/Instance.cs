@@ -19,22 +19,6 @@ namespace Pathfinder.Port
             Unlocked = unlocked;
         }
 
-        public static bool AssignTo(string id, Hacknet.Computer c, bool unlocked = false)
-        {
-            var pt = PortType.GetById(id);
-            if (pt == null)
-                return false;
-            return new Instance(pt, unlocked).AssignTo(c);
-        }
-
-        public static bool RemoveFrom(string id, Hacknet.Computer c)
-        {
-            var ins = GetInstanceIn(c, PortType.GetById(id));
-            if (ins == null)
-                return false;
-            return ins.RemoveFrom(c);
-        }
-
         public static bool AssignTo(Instance ins, Hacknet.Computer c)
         {
             if (!compToInst.ContainsKey(c))

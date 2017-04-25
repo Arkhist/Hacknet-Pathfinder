@@ -39,6 +39,8 @@ namespace Pathfinder.Util
         /// <value>The log history for the past 100 log calls.</value>
         public static IList<Tuple<LogLevel, string>> LogHistory => logHistory.AsReadOnly();
 
+        public static bool LogUpdates { get; set; } = false;
+
         /// <summary>
         /// Adds flag(s) to this <see cref="T:Pathfinder.Util.Logger"/>'s flags.
         /// </summary>
