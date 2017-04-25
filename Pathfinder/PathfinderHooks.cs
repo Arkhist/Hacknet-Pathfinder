@@ -75,10 +75,14 @@ namespace Pathfinder
                 {
                     if (os.commandInvalid)
                         os.commandInvalid = false;
-                    else
+                    else if(commandSentEvent.StateChange != "")
                     {
-                        os.display.command = commandSentEvent.Arguments[0];
-                        os.display.commandArgs = commandSentEvent.Arguments.ToArray();
+                        string state = commandSentEvent.StateChange;
+                        string commandState = state;
+                        if (state.Contains(" "))
+                             commandState = state.Substring(0, state.IndexOf(" "));
+                        os.display.command = commandState;
+                        os.display.commandArgs = state.Split(' ');
                         os.display.typeChanged();
                     }
                 }

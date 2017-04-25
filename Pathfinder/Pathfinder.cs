@@ -214,6 +214,7 @@ namespace Pathfinder
             {
                 e.HandleReturn = true;
                 e.IsCancelled = true;
+                e.StateChange = "probe";
                 var os = e.OS;
                 int i;
                 var c = os.GetCurrentComputer();
