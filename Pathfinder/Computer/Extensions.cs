@@ -145,6 +145,15 @@ namespace Pathfinder.Computer
             return Instance.RemoveFrom(id, comp);
         }
 
+        public static IList<Instance> GetModdedPortList(this Hacknet.Computer comp)
+        {
+            List<Instance> res;
+            Instance.compToInst.TryGetValue(comp, out res);
+            if (res == null)
+                res = new List<Instance>();
+            return res.AsReadOnly();
+        }
+
         public static bool HasPort(this Hacknet.Computer comp, PortType port)
         {
             return port.GetWithin(comp) != null;

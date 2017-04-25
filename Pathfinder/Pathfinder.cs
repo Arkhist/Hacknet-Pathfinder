@@ -7,6 +7,7 @@ using System.Threading;
 using Hacknet;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
+using Pathfinder.Computer;
 using Pathfinder.Event;
 using Pathfinder.OS;
 using Pathfinder.Util;
@@ -40,6 +41,8 @@ namespace Pathfinder
                 EventManager.RegisterListener<DrawMainMenuEvent>(DrawNewReleaseGraphic);*/
 
             EventManager.RegisterListener<CommandSentEvent>(OverwriteProbe);
+            EventManager.RegisterListener<ExecutablePortExecuteEvent>(OverridePortHack);
+
             EventManager.RegisterListener<CommandSentEvent>(Command.Handler.CommandListener);
 
             EventManager.RegisterListener<DrawMainMenuEvent>(GUI.PathfinderMainMenu.drawMainMenu);
@@ -170,6 +173,38 @@ namespace Pathfinder
             {
                 Logger.Verbose("Unloading mod '{0}'", mod.Key);
                 mod.Value.Unload();
+            }
+        }
+
+        internal static void OverridePortHack(ExecutablePortExecuteEvent e)
+        {
+            if (e.Arguments[0].ToLower() == "porthack")
+            {
+                e.IsCancelled = true;
+                var os = e.OS;
+                var cComp = os.connectedComp;
+                bool canRun = false;
+                bool firewallActive = false;
+                if (cComp != null)
+                {
+                    int num2 = 0;
+                    for (int i = 0; i < cComp.portsOpen.Count; i++)
+                        num2 += os.connectedComp.portsOpen[i];
+                    foreach (var p in cComp.GetModdedPortList())
+                        num2 += p.Unlocked ? 1 : 0;
+                    canRun |= num2 > cComp.portsNeededForCrack;
+                    if (cComp.firewall != null && !cComp.firewall.solved)
+                    {
+                        firewallActive |= canRun;
+                        canRun = false;
+                    }
+                }
+                if (canRun)
+                    os.addExe(new PortHackExe(e.Destination, os));
+                else if (firewallActive)
+                    os.write(LocaleTerms.Loc("Target Machine Rejecting Syndicated UDP Traffic") + " -\n" + LocaleTerms.Loc("Bypass Firewall to allow unrestricted traffic"));
+                else
+                    os.write(LocaleTerms.Loc("Too Few Open Ports to Run") + " - \n" + LocaleTerms.Loc("Open Additional Ports on Target Machine") + "\n");
             }
         }
 
