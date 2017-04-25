@@ -61,12 +61,14 @@ namespace Pathfinder
             var os = osObj as Hacknet.OS;
             var commandSentEvent = new Event.CommandSentEvent(os, arguments)
             {
-                Disconnects = false,
-                HandleReturn = returnFlag
+                Disconnects = true,
+                HandleReturn = true
             };
             commandSentEvent.CallEvent();
             disconnects = commandSentEvent.Disconnects;
-            returnFlag = disconnects;
+            
+                returnFlag = disconnects;
+            
             if (commandSentEvent.IsCancelled)
             {
                 if (commandSentEvent.HandleReturn)
@@ -82,6 +84,7 @@ namespace Pathfinder
                 }
                 return true;
             }
+            disconnects = false;
             return false;
         }
 
