@@ -129,6 +129,7 @@
     <Compile Include="Pathfinder\Port\Instance.cs" />
     <Compile Include="Pathfinder\Port\Handler.cs" />
     <Compile Include="Pathfinder\GUI\CommandDisplayState.cs" />
+    <Compile Include="Pathfinder\LoadOrderAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

@@ -46,8 +46,8 @@ namespace Pathfinder
 
             EventManager.RegisterListener<CommandSentEvent>(Command.Handler.CommandListener);
 
-            EventManager.RegisterListener<DrawMainMenuEvent>(GUI.PathfinderMainMenu.drawMainMenu);
-            EventManager.RegisterListener<DrawMainMenuButtonsEvent>(GUI.PathfinderMainMenu.drawPathfinderButtons);
+            EventManager.RegisterListener<DrawMainMenuEvent>(PathfinderMainMenu.drawMainMenu);
+            EventManager.RegisterListener<DrawMainMenuButtonsEvent>(PathfinderMainMenu.drawPathfinderButtons);
 
             EventManager.RegisterListener<ExecutableExecuteEvent>(Executable.Handler.ExecutableListener);
             EventManager.RegisterListener<CommandSentEvent>(Executable.Handler.ExecutableListInsertListener);
@@ -83,8 +83,7 @@ namespace Pathfinder
                     Type modType = null;
                     foreach (Type t in (modAssembly.GetExportedTypes().Where(t =>
                                                                      t.IsClass && !t.IsAbstract
-                                                                     && typeof(IPathfinderMod).IsAssignableFrom(t)))
-                            )
+                                                                     && typeof(IPathfinderMod).IsAssignableFrom(t))))
                     {
                         string name = null;
                         try
@@ -96,7 +95,7 @@ namespace Pathfinder
                             if (methodInfo == null)
                                 throw new NotSupportedException("Method 'Identifier' doesn't exist, mod '"
                                                                 + Path.GetFileName(modAssembly.Location) + "' is invalid");
-                            name = (string)methodInfo.Invoke(modInstance, null);
+                            name = ((string)methodInfo.Invoke(modInstance, null)).Trim();
                             if (IsModLoaded(name))
                                 throw new ExceptionInvalidId("Mod with identifier '" + name + "' is either already loaded or is reserved");
                             if (name.Contains('.'))
