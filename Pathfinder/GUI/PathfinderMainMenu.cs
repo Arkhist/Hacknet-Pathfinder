@@ -1,5 +1,5 @@
 ﻿using Hacknet;
-using Hacknet.Gui;
+using Gui = Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 
@@ -13,6 +13,9 @@ namespace Pathfinder.GUI
             PathfinderModList
         }
 
+        private static Button modListButton = new Button(180, 600, 450, 40, "Pathfinder Mod List", MainMenu.buttonColor);
+        private static Button returnButton = new Button(180, 650, 250, 28, "Return", MainMenu.exitButtonColor);
+
         private static MainMenuState mainMenuState = MainMenuState.GameHandled;
 
         public static void drawMainMenu(DrawMainMenuEvent e)
@@ -23,28 +26,24 @@ namespace Pathfinder.GUI
 
             GameScreen baseS = e.MainMenu;
 
-            if (Button.doButton(15, 180, 650, 250, 28, "Return", MainMenu.exitButtonColor))
-            {
+            if (returnButton.Draw())
                 mainMenuState = MainMenuState.GameHandled;
-            }
 
-            TextItem.doFontLabel(new Vector2(125f, 50), "Pathfinder Mod Load Order", GuiData.font, Color.White, 3.40282347E+38f, 3.40282347E+38f, false);
+            Gui.TextItem.doFontLabel(new Vector2(125f, 50), "Pathfinder Mod Load Order", GuiData.font, Color.White, 3.40282347E+38f, 3.40282347E+38f, false);
 
             float yPos = 120;
             int index = 0;
             foreach (var modIdentifier in Pathfinder.LoadedModIdentifiers)
             {
-                TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + modIdentifier, GuiData.smallfont, Color.White, 3.40282347E+38f, 3.40282347E+38f, false);
+                Gui.TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + modIdentifier, GuiData.smallfont, Color.White, 3.40282347E+38f, 3.40282347E+38f, false);
                 yPos += 30;
             }
         }
 
         public static void drawPathfinderButtons(DrawMainMenuButtonsEvent e)
         {
-            if (Button.doButton(200, 180, 600, 450, 40, "Pathfinder Mod List", MainMenu.buttonColor))
-            {
+            if (modListButton.Draw())
                 mainMenuState = MainMenuState.PathfinderModList;
-            }
         }
     }
 }

@@ -71,19 +71,26 @@ namespace PathfinderPatcher
                 compSendMsg.IsPrivate = false;
                 compSendMsg.IsPublic = true;
 
-                var displayModule = ad.MainModule.GetType("Hacknet.DisplayModule");
-                var displayModuleVars = displayModule.GetField("x");
-                displayModuleVars.IsPrivate = false;
-                displayModuleVars.IsPublic = true;
-                displayModuleVars = displayModule.GetField("y");
-                displayModuleVars.IsPrivate = false;
-                displayModuleVars.IsPublic = true;
-                displayModuleVars = displayModule.GetField("openLockSprite");
-                displayModuleVars.IsPrivate = false;
-                displayModuleVars.IsPublic = true;
-                displayModuleVars = displayModule.GetField("lockSprite");
-                displayModuleVars.IsPrivate = false;
-                displayModuleVars.IsPublic = true;
+                var type = ad.MainModule.GetType("Hacknet.DisplayModule");
+                var typeVars = type.GetField("x");
+                typeVars.IsPrivate = false;
+                typeVars.IsPublic = true;
+                typeVars = type.GetField("y");
+                typeVars.IsPrivate = false;
+                typeVars.IsPublic = true;
+                typeVars = type.GetField("openLockSprite");
+                typeVars.IsPrivate = false;
+                typeVars.IsPublic = true;
+                typeVars = type.GetField("lockSprite");
+                typeVars.IsPrivate = false;
+                typeVars.IsPublic = true;
+
+                type = ad.MainModule.GetType("Hacknet.Gui.Button");
+                foreach (var m in type.Methods)
+                {
+                    m.IsPrivate = false;
+                    m.IsPublic = true;
+                }
 
                 if (spitOutHacknetOnly)
                 {
