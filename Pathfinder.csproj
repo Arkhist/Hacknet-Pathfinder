@@ -131,6 +131,9 @@
     <Compile Include="Pathfinder\GUI\CommandDisplayState.cs" />
     <Compile Include="Pathfinder\LoadOrderAttribute.cs" />
     <Compile Include="Pathfinder\GUI\Button.cs" />
+    <Compile Include="Pathfinder\GUI\Scrollbar.cs" />
+    <Compile Include="Pathfinder\GUI\BaseInteractiveRectangle.cs" />
+    <Compile Include="Pathfinder\GUI\DynamicRectangle.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

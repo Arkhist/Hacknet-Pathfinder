@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Hacknet;
 using Pathfinder.Util;
 
@@ -48,16 +49,32 @@ namespace Pathfinder.OS
         /// </summary>
         public static List<Executable.Instance> GetModExeInterfaceFor<T>(this Hacknet.OS os) where T : Executable.IInterface
         {
-        	var result = new List<Executable.Instance>();
-        	foreach (var e in os.GetExesFor<Executable.Instance>())
-        		if (e.Interface is T)
-        			result.Add(e);
-        	return result;
+            var result = new List<Executable.Instance>();
+            foreach (var e in os.GetExesFor<Executable.Instance>())
+                if (e.Interface is T)
+                    result.Add(e);
+            return result;
         }
 
         public static Hacknet.Computer GetCurrentComputer(this Hacknet.OS os)
         {
             return Utility.GetCurrentComputer(os);
+        }
+
+        public static Hacknet.OS WriteF(this Hacknet.OS os, params object[] input)
+        {
+            if (input.Length <= 0)
+                return os;
+            os.write(String.Format(input[0].ToString(), input.Length > 1 ? input.Skip(1).ToArray() : Utility.Array<object>.Empty));
+            return os;
+        }
+
+        public static Hacknet.OS WriteSingleF(this Hacknet.OS os, params object[] input)
+        {
+            if(input.Length <= 0)
+                return os;
+            os.writeSingle(String.Format(input[0].ToString(), input.Length > 1 ? input.Skip(1).ToArray() : Utility.Array<object>.Empty));
+            return os;
         }
     }
 }
