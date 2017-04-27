@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Pathfinder.Computer;
+using Pathfinder.GameFilesystem;
+using Pathfinder.Util;
 
 namespace TemplateMod
 {
@@ -10,6 +12,13 @@ namespace TemplateMod
             os.write("Template Mod version 1 !");
             if (os.thisComputer.AddModPort("tempPort"))
                 os.write("tempPort added");
+            var bin = os.thisComputer.GetFilesystem().Directory.FindDirectory("bin");
+            if (Pathfinder.Executable.Handler.GetStandardFileDataBy("Template Mod.TempExe") != null)
+                Logger.Info("working");
+            if(!bin.ContainsFile("derpy"))
+                bin.CreateFile("derpy", "derpyderp");
+            if (!bin.ContainsFile("derp.exe") && bin.CreateExecutableFile("derp.exe", "Template Mod.TempExe") != null)
+                os.write("TempExe added");
             return false;
         }
     }

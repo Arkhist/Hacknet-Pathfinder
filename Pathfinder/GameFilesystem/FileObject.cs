@@ -21,7 +21,7 @@ namespace Pathfinder.GameFilesystem
         public new ParentT Parent { get { return parent as ParentT; } internal set { parent = value; } }
     }
 
-    public abstract class FileObject<VanillaT> : IFileObject<VanillaT> where VanillaT : class
+    public abstract class FileObject<VanillaT> : IFileObject where VanillaT : class
     {
         protected object parent;
 
@@ -29,32 +29,32 @@ namespace Pathfinder.GameFilesystem
         /// Gets or sets the object's full path, setting changes the object's parent
         /// </summary>
         public virtual string Path { get; set; }
-        string IFileObject<VanillaT>.Path { get { return Path; } set { Path = value; } }
+        string IFileObject.Path { get { return Path; } set { Path = value; } }
         /// <summary>
         /// Gets or sets the object's name
         /// </summary>
         public virtual string Name { get; set; }
-        string IFileObject<VanillaT>.Name { get { return Name; } set { Name = value; } }
+        string IFileObject.Name { get { return Name; } set { Name = value; } }
         /// <summary>
         /// Gets the vanilla object
         /// </summary>
         public virtual VanillaT Object { get; internal set; }
-        VanillaT IFileObject<VanillaT>.Object => Object;
+        object IFileObject.Object => Object;
         /// <summary>
         /// Gets the object's parent
         /// </summary>
         public virtual object Parent { get { return parent; } internal set { parent = value; } }
-        object IFileObject<VanillaT>.Parent => Parent;
+        object IFileObject.Parent => Parent;
         /// <summary>
         /// Gets the index inside its parent's respective list
         /// </summary>
         public virtual int Index { get; internal set; }
-        int IFileObject<VanillaT>.Index => Index;
+        int IFileObject.Index => Index;
         /// <summary>
         /// Gets the root Filesystem the object is within
         /// </summary>
         public virtual Filesystem Root { get; }
-        Filesystem IFileObject<VanillaT>.Root => Root;
+        Filesystem IFileObject.Root => Root;
 
         public bool LogOperation(FileOpLogType t, params string[] inputArr)
         {
@@ -113,7 +113,7 @@ namespace Pathfinder.GameFilesystem
         }
     }
 
-    public interface IFileObject<VanillaT>
+    public interface IFileObject
     {
         /// <summary>
         /// Gets or sets the object's full path, setting changes the object's parent
@@ -126,7 +126,7 @@ namespace Pathfinder.GameFilesystem
         /// <summary>
         /// Gets the vanilla object
         /// </summary>
-        VanillaT Object { get; }
+        object Object { get; }
         /// <summary>
         /// Gets the object's parent
         /// </summary>

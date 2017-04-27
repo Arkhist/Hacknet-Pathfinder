@@ -6,20 +6,18 @@ using Pathfinder.Util;
 
 namespace Pathfinder.GameFilesystem
 {
-    public class Directory : FileObject<Folder, IFileObject<object>>, IEnumerable<IFileObject<object>>
+    public class Directory : FileObject<Folder, IFileObject>, IEnumerable<IFileObject>
     {
         private string path;
 
-        public Directory(Folder obj, IFileObject<object> parent) : base(obj, parent)
+        public Directory(Folder obj, IFileObject parent) : base(obj, parent)
         {
             var d = Parent as Directory;
             if (d == null)
                 Index = -1;
             else
-                Index = d.Object.folders.BinarySearch(Object);
+                Index = d.Object.folders.IndexOf(Object);
             path = Parent.Path + '/' + Name;
-
-            Cast = (FileObject<object>)(IFileObject<object>)this;
         }
 
         /// <summary>
@@ -56,7 +54,7 @@ namespace Pathfinder.GameFilesystem
             {
                 var d = Root.SeacrhForDirectory(value.Remove(value.LastIndexOf('/')));
                 if (d != null)
-                    Parent = d.Cast;
+                    Parent = d;
                 var name = value.Substring(value.LastIndexOf('/') + 1);
                 name = name.Length > 0 ? name : Name;
                 LogOperation(FileOpLogType.MoveFolder, name, Path, Parent.Path + '/' + Name);
@@ -98,7 +96,7 @@ namespace Pathfinder.GameFilesystem
         {
             var v = Object.searchForFolder(name);
             if (v != null)
-                return new Directory(v, Cast);
+                return new Directory(v, this);
             return null;
         }
 
@@ -111,7 +109,7 @@ namespace Pathfinder.GameFilesystem
             return res;
         }
 
-        public File SearchForDirectory(string path)
+        public File SearchForFile(string path)
         {
             var pList = path.Split('/').Skip(1);
             string p = null;
@@ -134,14 +132,14 @@ namespace Pathfinder.GameFilesystem
 
         public Directory GetDirectory(int index)
         {
-            return new Directory(Object.folders[index], Cast);
+            return new Directory(Object.folders[index], this);
         }
 
         public File CreateFile(string name, string data = null)
         {
             if (data == null)
                 data = "";
-            var r = new File(new FileEntry(name, data), this);
+            var r = new File(new FileEntry(data, name), this);
             r.LogOperation(FileOpLogType.CreateFile, data, Path);
             Object.files.Add(r.Object);
             return r;
@@ -166,7 +164,7 @@ namespace Pathfinder.GameFilesystem
 
         public Directory CreateDirectory(string name)
         {
-            var r = new Directory(new Folder(name), Cast);
+            var r = new Directory(new Folder(name), this);
             r.LogOperation(FileOpLogType.CreateFolder, Path);
             Object.folders.Add(r.Object);
             return r;
@@ -217,7 +215,7 @@ namespace Pathfinder.GameFilesystem
                 return null;
             d.LogOperation(FileOpLogType.MoveFolder, d.Name, Path, newDir.Path);
             Object.folders.RemoveAt(d.Index);
-            d.Parent = newDir.Cast;
+            d.Parent = newDir;
             d.Index = newDir.Object.folders.Count;
             newDir.Object.folders.Add(d.Object);
             d.Name = d.Name;
@@ -258,20 +256,19 @@ namespace Pathfinder.GameFilesystem
             return Object.folders.Exists(f => f.name == name);
         }
 
-        public FileObject<object> Cast { get; private set; }
-        public IFileObject<object> this[string name] => FindFile(name)?.Cast ?? FindDirectory(name)?.Cast;
+        public IFileObject this[string name] => (IFileObject)FindFile(name) ?? FindDirectory(name);
         public List<File> Files => Object.files.Select(f => new File(f, this)).ToList();
-        public List<Directory> Directories => Object.folders.Select(f => new Directory(f, Cast)).ToList();
+        public List<Directory> Directories => Object.folders.Select(f => new Directory(f, this)).ToList();
         public int FileCount => Object.files.Count;
         public int DirectoryCount => Object.folders.Count;
 
-        public IEnumerator<IFileObject<object>> GetEnumerator()
+        public IEnumerator<IFileObject> GetEnumerator()
         {
             foreach (var f in Object.files)
                 yield return new File(f, this).Cast;
 
             foreach (var f in Object.folders)
-                yield return new Directory(f, Cast).Cast;
+                yield return new Directory(f, this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

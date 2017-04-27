@@ -8,9 +8,8 @@ namespace Pathfinder.GameFilesystem
 
         public File(FileEntry vanila, Directory parent) : base(vanila, parent)
         {
-            Index = Parent.Object.files.BinarySearch(Object);
+            Index = Parent.Object.files.IndexOf(Object);
             path = Parent.Path + '/' + Name;
-            Cast = (FileObject<object>)(IFileObject<object>)this;
         }
 
         public sealed override string Name

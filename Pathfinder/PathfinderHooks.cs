@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.Util;
 using Pathfinder.GUI;
 using System.Linq;
+using Pathfinder.GameFilesystem;
 
 namespace Pathfinder
 {
@@ -173,8 +174,12 @@ namespace Pathfinder
                                                ref Hacknet.OS os,
                                                ref string[] args)
         {
+            GameFilesystem.File f = null;
+            if (finde >= 0)
+                f = os.thisComputer.GetFilesystem().Directory.FindDirectory(fol.name).GetFile(finde);
+
             var executableExecuteEvent =
-                new Event.ExecutableExecuteEvent(com, fol, finde, finde >= 0 ? fol.files[finde] : null, os, args);
+                new Event.ExecutableExecuteEvent(com, fol, finde, f, os, args);
             executableExecuteEvent.CallEvent();
             result = (int) executableExecuteEvent.Result;
             if (executableExecuteEvent.IsCancelled || result != -1)

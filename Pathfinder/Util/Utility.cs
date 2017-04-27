@@ -59,7 +59,7 @@ namespace Pathfinder.Util
             xmlString = ignoreValidXml ? xmlString : ConvertToValidXmlAttributeName(xmlString);
             if (!ignorePeriod && inputId.IndexOf('.') == -1)
                 xmlString = GetPreviousStackFrameIdentity(frameSkip) + "." + xmlString;
-            return inputId.IndexOf('.') != -1 ? inputId.Remove(inputId.LastIndexOf('.')) + xmlString : inputId;
+            return inputId.IndexOf('.') != -1 ? inputId.Remove(inputId.LastIndexOf('.')+1) + xmlString : inputId;
         }
 
         /// <summary>

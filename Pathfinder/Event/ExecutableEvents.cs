@@ -33,7 +33,8 @@ namespace Pathfinder.Event
     {
         public Folder Folder { get; private set; }
         public int FileIndex { get; private set; }
-        public FileEntry ExecutableFile { get; private set; }
+        public GameFilesystem.File File { get; private set; }
+        public FileEntry ExecutableFile => File.Object;
         public Executable.ExecutionResult Result { get; set; } = Executable.ExecutionResult.NotFound;
         public new string ExecutableName
         {
@@ -57,14 +58,14 @@ namespace Pathfinder.Event
         public Rectangle Location => default(Rectangle);
         [Obsolete("Does not pertain to normal executables")]
         public int TargetPort => -1;
-        public ExecutableExecuteEvent(Hacknet.Computer com, Folder fol, int finde, FileEntry file, Hacknet.OS os, string[] args)
+        public ExecutableExecuteEvent(Hacknet.Computer com, Folder fol, int finde, GameFilesystem.File file, Hacknet.OS os, string[] args)
             : base(com, os, args)
         {
             Folder = fol;
             FileIndex = finde;
-            ExecutableFile = file;
-            ExecutableName = file.name;
-            ExecutableData = file.data;
+            File = file;
+            ExecutableName = file.Name;
+            ExecutableData = file.Data;
         }
     }
 

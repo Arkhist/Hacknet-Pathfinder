@@ -48,7 +48,7 @@ namespace Pathfinder.Executable
             return dataLines.Length >= 3 && dataLines[1] == "ldloc.args"
                             && dataLines[2].StartsWith("call Pathfinder.Executable.Instance", StringComparison.Ordinal)
                             && dataLines[2].EndsWith("=" + dataLines[0] + "()", StringComparison.Ordinal)
-                            && idToDataCache.ContainsValue(dataLines[0]);
+                            && idToDataCache.ContainsKey(dataLines[0]);
         }
 
         /// <summary>

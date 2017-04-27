@@ -42,7 +42,7 @@ namespace Pathfinder.GameFilesystem
         {
             get
             {
-                return new Directory(Object.root, this as IFileObject<object>);
+                return new Directory(Object.root, this);
             }
         }
 
