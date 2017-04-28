@@ -67,22 +67,15 @@ namespace Pathfinder.GameFilesystem
         /// Gets the folder index inside the vanilla parent folder.
         /// </summary>
         /// <value>The folder index in the parent or <c>-1</c> if root directory.</value>
-        public sealed override int Index
-        {
-            get; internal set;
-        }
+        public sealed override int Index { get; internal set; }
 
         public sealed override Filesystem Root => Parent.Root;
 
         /// <summary>
-        /// Tries to cast the Parent to T
+        /// Casts the Parent FileObject to a Directory
         /// </summary>
-        /// <returns>The Parent as T or <c>null</c> if Parent isn't able to be casted to T.</returns>
-        /// <typeparam name="T">The type to cast Parent to.</typeparam>
-        public T CastParent<T>() where T : class
-        {
-            return Parent as T;
-        }
+        /// <value>The Parent as Directory</value>
+        public Directory ParentDirectory => (Directory)Parent;
 
         public File FindFile(string name)
         {
@@ -224,7 +217,7 @@ namespace Pathfinder.GameFilesystem
 
         public Directory MoveTo(Directory to)
         {
-            return CastParent<Directory>()?.MoveDirectory(this, to);
+            return ParentDirectory.MoveDirectory(this, to);
         }
 
         public bool Contains(File f)
