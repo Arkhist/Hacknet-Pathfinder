@@ -134,6 +134,7 @@
     <Compile Include="Pathfinder\GUI\Scrollbar.cs" />
     <Compile Include="Pathfinder\GUI\BaseInteractiveRectangle.cs" />
     <Compile Include="Pathfinder\GUI\DynamicRectangle.cs" />
+    <Compile Include="Pathfinder\Event\ModuleEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

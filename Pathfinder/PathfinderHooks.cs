@@ -73,7 +73,7 @@ namespace Pathfinder
             {
                 if (os.commandInvalid)
                     os.commandInvalid = false;
-                else if(commandSentEvent.StateChange != CommandDisplayStateChange.None)
+                else if (commandSentEvent.StateChange != CommandDisplayStateChange.None)
                 {
                     var state = commandSentEvent.State;
                     os.display.command = state;
@@ -181,7 +181,7 @@ namespace Pathfinder
             var executableExecuteEvent =
                 new Event.ExecutableExecuteEvent(com, fol, finde, f, os, args);
             executableExecuteEvent.CallEvent();
-            result = (int) executableExecuteEvent.Result;
+            result = (int)executableExecuteEvent.Result;
             if (executableExecuteEvent.IsCancelled || result != -1)
                 return true;
             return false;
@@ -237,7 +237,7 @@ namespace Pathfinder
             {
                 TimeSpan timeSpan = Settings.ExpireTime - DateTime.Now;
                 string text3;
-                if (timeSpan.TotalSeconds< 1.0)
+                if (timeSpan.TotalSeconds < 1.0)
                 {
                     text3 = LocaleTerms.Loc("TEST BUILD EXPIRED - EXECUTION DISABLED");
                     result = false;
@@ -256,7 +256,7 @@ namespace Pathfinder
             subtitle = drawMainMenuTitles.Subtitle;
 
             var c = (Color)titleColorField.GetValue(self);
-            FlickeringTextEffect.DrawLinedFlickeringText (
+            FlickeringTextEffect.DrawLinedFlickeringText(
                 dest,
                 mainTitle,
                 7f,
@@ -266,7 +266,7 @@ namespace Pathfinder
                 c,
                 2
             );
-            TextItem.doFontLabel (new Vector2(520f, 178f), subtitle, GuiData.smallfont, c * 0.5f, 600f, 26f, false);
+            TextItem.doFontLabel(new Vector2(520f, 178f), subtitle, GuiData.smallfont, c * 0.5f, 600f, 26f, false);
             Logger.Verbose("Finished Redrawing Main Menu Titles");
             return true;
         }
@@ -290,22 +290,40 @@ namespace Pathfinder
         {
             var leftMeasure = Vector2.Zero;
             if (Port.Instance.compToInst.ContainsKey(computer)) foreach (var i in Port.Instance.compToInst[computer])
-            {
-                rect.Y = self.y + 4;
-                lockPos.Y = rect.Y + 4;
-                self.spriteBatch.Draw(Utils.white, rect, i.Unlocked ? self.os.unlockedColor : self.os.lockedColor);
-                self.spriteBatch.Draw(i.Unlocked ? self.openLockSprite : self.lockSprite, lockPos, Color.White);
-                var portLeft = "Port#: " + i.Port.PortDisplay;
-                leftMeasure = GuiData.font.MeasureString(portLeft);
-                self.spriteBatch.DrawString(GuiData.font, portLeft, new Vector2(self.x, self.y + 3), Color.White);
-                var portRight = " - " + i.Port.PortName;
-                var rightMeasure = GuiData.smallfont.MeasureString(portRight);
-                var width = rect.Width - leftMeasure.X - 50f;
-                var single1 = Math.Min(1f, width / rightMeasure.X);
-                self.spriteBatch.DrawString(GuiData.smallfont, portRight, new Vector2(self.x + leftMeasure.X, self.y + 4),
-                                            Color.White, 0f, Vector2.Zero, single1, SpriteEffects.None, 0.8f);
-                self.y += 45;
-            }
+                {
+                    rect.Y = self.y + 4;
+                    lockPos.Y = rect.Y + 4;
+                    self.spriteBatch.Draw(Utils.white, rect, i.Unlocked ? self.os.unlockedColor : self.os.lockedColor);
+                    self.spriteBatch.Draw(i.Unlocked ? self.openLockSprite : self.lockSprite, lockPos, Color.White);
+                    var portLeft = "Port#: " + i.Port.PortDisplay;
+                    leftMeasure = GuiData.font.MeasureString(portLeft);
+                    self.spriteBatch.DrawString(GuiData.font, portLeft, new Vector2(self.x, self.y + 3), Color.White);
+                    var portRight = " - " + i.Port.PortName;
+                    var rightMeasure = GuiData.smallfont.MeasureString(portRight);
+                    var width = rect.Width - leftMeasure.X - 50f;
+                    var single1 = Math.Min(1f, width / rightMeasure.X);
+                    self.spriteBatch.DrawString(GuiData.smallfont, portRight, new Vector2(self.x + leftMeasure.X, self.y + 4),
+                                                Color.White, 0f, Vector2.Zero, single1, SpriteEffects.None, 0.8f);
+                    self.y += 45;
+                }
+        }
+
+        public static bool onDisplayModuleUpdate(Hacknet.DisplayModule self, ref float time)
+        {
+            var displayModuleUpdateEvent = new Event.DisplayModuleUpdateEvent(self, time);
+            displayModuleUpdateEvent.CallEvent();
+            if (displayModuleUpdateEvent.IsCancelled)
+                return true;
+            return false;
+        }
+
+        public static bool onDisplayModuleDraw(Hacknet.DisplayModule self, ref float time)
+        {
+            var displayModuleDrawEvent = new Event.DisplayModuleDrawEvent(self, time);
+            displayModuleDrawEvent.CallEvent();
+            if (displayModuleDrawEvent.IsCancelled)
+                return true;
+            return false;
         }
     }
 }

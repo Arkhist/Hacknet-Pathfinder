@@ -222,6 +222,16 @@ namespace PathfinderPatcher
                     localsID: new int[] { 0, 1, 10 }
                 );
 
+                ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("Update").InjectWith(
+					hooks.GetMethod("onDisplayModuleUpdate"),
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
+                );
+
+                ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("Draw").InjectWith(
+					hooks.GetMethod("onDisplayModuleDraw"),
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
+                );
+
                 ad?.Write("HacknetPathfinder.exe");
             }
             catch (Exception ex)
