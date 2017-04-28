@@ -163,7 +163,7 @@ namespace Pathfinder.Computer
 
         public static bool IsPortOpen(this Hacknet.Computer comp, PortType port)
         {
-            return port.GetWithin(comp)?.Unlocked == true;
+            return (port.GetWithin(comp)?.Unlocked).Equals(true);
         }
 
         public static void OpenPort(this Hacknet.Computer comp, PortType port, string ipFrom)
@@ -173,7 +173,7 @@ namespace Pathfinder.Computer
                 return;
             i.Unlocked |= !comp.silent;
             comp.log(ipFrom + " Opened Port#" + port.PortName + "/" + port.PortDisplay);
-            comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port.PortDisplay + " " + port.PortName);
+            comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
         }
 
         public static void ClosePort(this Hacknet.Computer comp, PortType port, string ipFrom)
@@ -185,7 +185,7 @@ namespace Pathfinder.Computer
             i.Unlocked &= comp.silent;
             if(wasOpen)
                 comp.log(ipFrom + " Closed Port#" + port.PortName + "/" + port.PortDisplay);
-            comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port.PortDisplay + " " + port.PortName);
+            comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
         }
     }
 }
