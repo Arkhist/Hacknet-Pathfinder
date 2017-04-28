@@ -21,10 +21,8 @@ namespace Pathfinder.Event
         {
             Computer = com;
             OS = os;
-            if(name != null)
-                ExecutableName = name;
-            if(data != null)
-                ExecutableData = data;
+            ExecutableName = name;
+            ExecutableData = data;
             Arguments = new List<string>(args ?? Utility.Array<string>.Empty);
         }
     }
@@ -34,22 +32,26 @@ namespace Pathfinder.Event
         public Folder Folder { get; private set; }
         public int FileIndex { get; private set; }
         public GameFilesystem.File File { get; private set; }
-        public FileEntry ExecutableFile => File.Object;
+        public FileEntry ExecutableFile => File?.Object;
         public Executable.ExecutionResult Result { get; set; } = Executable.ExecutionResult.NotFound;
         public new string ExecutableName
         {
-            get { return ExecutableFile.name; }
+            get { return ExecutableFile?.name; }
             set
             {
+                if (ExecutableFile == null || value == null)
+                    return;
                 ExecutableFile.name = value;
                 ((ExecutableEvent)this).ExecutableName = value;
             }
         }
         public new string ExecutableData
         {
-            get { return ExecutableFile.data; }
+            get { return ExecutableFile?.data; }
             set
             {
+                if (ExecutableFile == null || value == null)
+                    return;
                 ExecutableFile.data = value;
                 ((ExecutableEvent)this).ExecutableData = value;
             }
@@ -64,8 +66,8 @@ namespace Pathfinder.Event
             Folder = fol;
             FileIndex = finde;
             File = file;
-            ExecutableName = file.Name;
-            ExecutableData = file.Data;
+            ExecutableName = file?.Name;
+            ExecutableData = file?.Data;
         }
     }
 
