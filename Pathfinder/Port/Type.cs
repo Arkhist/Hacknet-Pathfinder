@@ -1,15 +1,15 @@
-﻿using System;
+using System;
 using Pathfinder.Util;
 
 namespace Pathfinder.Port
 {
-    public class PortType : IEquatable<PortType>, IEquatable<Instance>
+    public class Type : IEquatable<Type>, IEquatable<Instance>
     {
         public string PortName { get; private set; }
         public uint PortDisplay { get; private set; }
         public string PortId { get; internal set; }
 
-        public PortType(string portName, uint portDisplay)
+        public Type(string portName, uint portDisplay)
         {
             if (portName == null)
                 throw new ArgumentNullException(nameof(portName));
@@ -35,13 +35,13 @@ namespace Pathfinder.Port
         }
 
         public Instance GetWithin(Hacknet.Computer c) => Instance.GetInstanceIn(c, this);
-        public bool Equals(PortType other) => other != null
+        public bool Equals(Type other) => other != null
                                 && PortName == other.PortName
                                 && PortDisplay == other.PortDisplay
                                 && PortId == other.PortId;
         public bool Equals(Instance other) => Equals(other?.Port);
         public override string ToString() => string.Format("{0} {1}", PortDisplay, PortName);
-        public static PortType GetById(string portId)
+        public static Type GetById(string portId)
         {
             portId = Utility.GetId(portId);
             return Handler.GetPort(portId);

@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Pathfinder.Port
 {
-    public class Instance : IEquatable<PortType>, IEquatable<Instance>
+    public class Instance : IEquatable<Type>, IEquatable<Instance>
     {
         internal static Dictionary<Hacknet.Computer, List<Instance>> compToInst =
             new Dictionary<Hacknet.Computer, List<Instance>>();
 
-        public PortType Port { get; private set; }
+        public Type Port { get; private set; }
         public bool Unlocked { get; set; }
 
-        public Instance(PortType port, bool unlocked = false)
+        public Instance(Type port, bool unlocked = false)
         {
             if (port == null)
                 throw new ArgumentNullException(nameof(port));
@@ -38,7 +38,7 @@ namespace Pathfinder.Port
             return compToInst[c].Remove(ins);
         }
 
-        public static Instance GetInstanceIn(Hacknet.Computer c, PortType type)
+        public static Instance GetInstanceIn(Hacknet.Computer c, Type type)
         {
             Instance r = null;
             if (compToInst.ContainsKey(c))
@@ -49,7 +49,7 @@ namespace Pathfinder.Port
         public bool AssignTo(Hacknet.Computer c) => AssignTo(this, c);
         public bool RemoveFrom(Hacknet.Computer c) => RemoveFrom(this, c);
 
-        public bool Equals(PortType other) => other.Equals(this);
+        public bool Equals(Type other) => other.Equals(this);
         public bool Equals(Instance other) => Port.Equals(other) && Unlocked == other.Unlocked;
     }
 }

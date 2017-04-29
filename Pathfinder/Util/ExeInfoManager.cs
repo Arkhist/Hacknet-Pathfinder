@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Hacknet;
 
@@ -9,14 +10,43 @@ namespace Pathfinder.Util
         {
             public static ExecutableInfo Empty = new ExecutableInfo();
 
+            /// <summary>
+            /// Gets the port number for the info.
+            /// </summary>
             public int PortNumber { get; private set; }
-            public int Index { get; private set; }
+            /// <summary>
+            /// Gets the number within <see cref="PortExploits.exeNums"/>.
+            /// </summary>
+            public int Number { get; private set; }
+            /// <summary>
+            /// Gets the index within <see cref="PortExploits.exeNums"/>.
+            /// </summary>
             public int NumberIndex { get; private set; }
+            /// <summary>
+            /// Gets the executable name.
+            /// </summary>
             public string Name { get; private set; }
+            /// <summary>
+            /// Gets the name of the port service.
+            /// </summary>
             public string ServiceName { get; private set; }
+            /// <summary>
+            /// Gets a value indicating whether this <see cref="T:Pathfinder.Util.ExeInfoManager.ExecutableInfo"/> needs port.
+            /// </summary>
+            /// <value><c>true</c> if needs port; otherwise, <c>false</c>.</value>
             public bool NeedsPort { get; private set; }
+            /// <summary>
+            /// Gets the standard game data for the executable.
+            /// </summary>
             public string Data { get; private set; }
+            /// <summary>
+            /// Gets the local game data for the executable.
+            /// </summary>
             public string LocalData { get; private set; }
+            /// <summary>
+            /// Gets a value indicating whether this <see cref="T:Pathfinder.Util.ExeInfoManager.ExecutableInfo"/> is empty.
+            /// </summary>
+            /// <value><c>true</c> if is empty; otherwise, <c>false</c>.</value>
             public bool IsEmpty
             {
                 get
@@ -25,12 +55,15 @@ namespace Pathfinder.Util
                 }
             }
 
-            public ExecutableInfo(int pn, int i, int ni, string n, string sn, bool np, string d, string ld)
+            [Obsolete("Use Number")]
+            public int Index => Number;
+
+            public ExecutableInfo(int pn, int n, int ni, string na, string sn, bool np, string d, string ld)
             {
                 PortNumber = pn;
-                Index = i;
+                Number = n;
                 NumberIndex = ni;
-                Name = n;
+                Name = na;
                 ServiceName = sn;
                 NeedsPort = np;
                 Data = d;
@@ -40,7 +73,7 @@ namespace Pathfinder.Util
             public bool Equals(ExecutableInfo o)
             {
                 return o.PortNumber == PortNumber
-                        && o.Index == Index
+                        && o.Number == Number
                         && o.NumberIndex == NumberIndex
                         && o.Name == Name
                         && o.ServiceName == ServiceName
@@ -58,7 +91,7 @@ namespace Pathfinder.Util
 
             public override int GetHashCode()
             {
-                int hash = Index;
+                int hash = Number;
                 hash = (hash * 15) + NumberIndex;
                 hash = (hash * 15) + Name.GetHashCode();
                 hash = (hash * 15) + ServiceName.GetHashCode();

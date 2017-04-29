@@ -19,7 +19,7 @@
         public DisplayModuleUpdateEvent(Hacknet.DisplayModule module, float time) : base(module) { Time = time; }
     }
 
-    public class DisplayModuleDrawEvent : ModuleEvent
+    public class DisplayModuleDrawEvent : DisplayModuleEvent
     {
         public float Time { get; private set; }
         public DisplayModuleDrawEvent(Hacknet.DisplayModule module, float time) : base(module) { Time = time; }

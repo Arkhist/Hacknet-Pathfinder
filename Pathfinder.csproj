@@ -125,7 +125,7 @@
     <Compile Include="Pathfinder\NetworkMap\Extensions.cs" />
     <Compile Include="Pathfinder\Util\Updater.cs" />
     <Compile Include="Pathfinder\Util\JsonObject.cs" />
-    <Compile Include="Pathfinder\Port\PortType.cs" />
+    <Compile Include="Pathfinder\Port\Type.cs" />
     <Compile Include="Pathfinder\Port\Instance.cs" />
     <Compile Include="Pathfinder\Port\Handler.cs" />
     <Compile Include="Pathfinder\GUI\CommandDisplayState.cs" />

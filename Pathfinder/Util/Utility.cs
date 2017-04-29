@@ -8,8 +8,14 @@ namespace Pathfinder.Util
 {
     public static class Utility
     {
+        /// <summary>
+        /// Type specific Array Utilities
+        /// </summary>
         public static class Array<T>
         {
+            /// <summary>
+            /// An Empty Array of T
+            /// </summary>
             public static readonly T[] Empty = new T[0];
         }
 
@@ -90,9 +96,10 @@ namespace Pathfinder.Util
         }
 
         /// <summary>
-        /// Gets the current Computer the client is connected to.
+        /// Gets the current Computer the OS is active in.
         /// </summary>
-        /// <returns>The currently connected to Computer.</returns>
+        /// <returns>The currently active Computer.</returns>
+        /// <param name="os">The OS to get the current Computer, or equal to <see cref="Utility.GetClientOS"/> if <c>null</c>.</param>
         public static Hacknet.Computer GetCurrentComputer(Hacknet.OS os = null)
         {
             if (os == null)
@@ -100,9 +107,6 @@ namespace Pathfinder.Util
             return os?.connectedComp ?? os?.thisComputer;
         }
 
-        public static Hacknet.Computer GetCurrentComputer()
-        {
-            return GetCurrentComputer(null);
-        }
+        public static Hacknet.Computer GetCurrentComputer() => GetCurrentComputer(null);
     }
 }

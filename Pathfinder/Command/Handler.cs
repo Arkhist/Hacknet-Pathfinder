@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Hacknet;
 using Pathfinder.Event;
+using Pathfinder.OS;
 using Pathfinder.Util;
 
 namespace Pathfinder.Command
@@ -65,8 +66,7 @@ namespace Pathfinder.Command
                 }
                 catch (Exception ex)
                 {
-                    Logger.Error("Command {0} threw Execption: {1}", e.Arguments[0], ex);
-                    e.OS.write("Command " + e.Arguments[0] + " threw Exception: " + ex);
+                    e.OS.WriteF("Command {0} threw Exception:\n    {1}('{2}')", e.Arguments[0], ex.GetType().FullName, ex.Message);
                     throw ex;
                 }
             }

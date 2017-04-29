@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Pathfinder.Util;
 
 namespace Pathfinder.Port
 {
     public static class Handler
     {
-        private static Dictionary<string, PortType> idToPortType = new Dictionary<string, PortType>();
+        private static Dictionary<string, Type> idToPortType = new Dictionary<string, Type>();
 
-        public static bool AddPort(string portId, PortType port)
+        public static bool AddPort(string portId, Type port)
         {
             portId = Utility.GetId(portId);
             Logger.Verbose("Mod {0} attempting to register port [{1}] with id {2}",
@@ -19,10 +19,10 @@ namespace Pathfinder.Port
             return true;
         }
 
-        public static PortType GetPort(string id)
+        public static Type GetPort(string id)
         {
             id = Utility.GetId(id);
-            PortType p = null;
+            Type p = null;
             idToPortType.TryGetValue(id, out p);
             return p;
         }

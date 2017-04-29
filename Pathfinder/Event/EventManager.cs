@@ -104,7 +104,7 @@ namespace Pathfinder.Event
                     catch(Exception ex)
                     {
                         Logger.Error("Event Listener Call Failed");
-                        Logger.Error("Exception: ", ex);
+                        Logger.Error("Exception: {0}", ex);
                     }
                     if (pathfinderEvent.IsCancelled)
                         break;

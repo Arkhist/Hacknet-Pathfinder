@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Pathfinder.Computer;
 using Pathfinder.GameFilesystem;
 using Pathfinder.Util;
@@ -19,6 +20,8 @@ namespace TemplateMod
                 bin.CreateFile("derpy", "derpyderp");
             if (!bin.ContainsFile("derp.exe") && bin.CreateExecutableFile("derp.exe", "Template Mod.TempExe") != null)
                 os.write("TempExe added");
+            if(new Random().Next(1,100) > 50)
+                throw new System.Exception("throwing stuff");
             return false;
         }
     }

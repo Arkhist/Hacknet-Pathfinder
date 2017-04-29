@@ -56,11 +56,19 @@ namespace Pathfinder.OS
             return result;
         }
 
+        /// <summary>
+        /// Retrieves the currently active Computer according to the OS
+        /// </summary>
         public static Hacknet.Computer GetCurrentComputer(this Hacknet.OS os)
         {
             return Utility.GetCurrentComputer(os);
         }
 
+        /// <summary>
+        /// Writes to the terminal using standard C# formatting.
+        /// </summary>
+        /// <returns>The OS.</returns>
+        /// <param name="input">The input to format, zero index must be a formatable string.</param>
         public static Hacknet.OS WriteF(this Hacknet.OS os, params object[] input)
         {
             if (input.Length <= 0)
@@ -69,6 +77,11 @@ namespace Pathfinder.OS
             return os;
         }
 
+        /// <summary>
+        /// Writes single to the terminal using standard C# formatting.
+        /// </summary>
+        /// <returns>The OS.</returns>
+        /// <param name="input">The input to format, zero index must be a formatable string.</param>
         public static Hacknet.OS WriteSingleF(this Hacknet.OS os, params object[] input)
         {
             if(input.Length <= 0)
