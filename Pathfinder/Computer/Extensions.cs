@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Hacknet;
+using Microsoft.Xna.Framework;
 using Pathfinder.NetworkMap;
 using Pathfinder.Util;
 
@@ -77,12 +79,14 @@ namespace Pathfinder.Computer
         /// <returns><c>true</c>, if the link was added, <c>false</c> otherwise.</returns>
         /// <param name="comp">The Computer</param>
         /// <param name="newLink">The New link.</param>
-        /// <param name="netmap">The NetworkMap or the main client NetworkMap from <see cref="T:Utility.GetClientNetMap"/> if <c>null</c>.</param>
-        public static bool AddLink(this Hacknet.Computer comp, Hacknet.Computer newLink, Hacknet.NetworkMap netmap = null)
+        public static bool AddLink(this Hacknet.Computer comp, Hacknet.Computer newLink)
         {
-            if (netmap == null)
-                netmap = Utility.GetClientNetMap();
-            return netmap?.AddLink(comp, newLink) ?? false;
+            return comp.GetNetworkMap().AddLink(comp, newLink);
+        }
+
+        public static Hacknet.NetworkMap GetNetworkMap(this Hacknet.Computer comp)
+        {
+            return comp.os.netMap;
         }
 
         /// <summary>
@@ -330,6 +334,71 @@ namespace Pathfinder.Computer
         {
             id = Utility.GetId(id);
             comp.CloseModPort(Port.Handler.GetPort(id), ipFrom);
+        }
+
+        public static void AddEOSDevice(this Hacknet.Computer comp, Hacknet.Computer device)
+        {
+            if (comp.attatchedDeviceIDs == null)
+                comp.attatchedDeviceIDs = device.idName;
+            else
+                comp.attatchedDeviceIDs += ',' + device.idName;
+
+            if (!comp.GetNetworkMap().nodes.Contains(device))
+                comp.GetNetworkMap().nodes.Add(device);
+
+            device.AddLink(comp);
+        }
+
+        public static Hacknet.Computer CreateEOSDeviceOn(this Hacknet.Computer comp,
+                                                         string name = "Unregistered eOS Device",
+                                                         string ip = null,
+                                                         string icon = "ePhone",
+                                                         Vector2? location = null,
+                                                         string password = "alpine",
+                                                         List<int> vanillaPorts = null,
+                                                         int portCracksRequired = 2,
+                                                         Folder eosFolder = null,
+                                                         List<Port.Type> modPorts = null)
+        {
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
+            if (icon == null)
+                throw new ArgumentNullException(nameof(icon));
+            if (password == null)
+                throw new ArgumentNullException(nameof(password));
+
+            var c = new Hacknet.Computer(name, comp.idName + "_eos", location ??
+                                         comp.location + Corporation.getNearbyNodeOffset(comp.location,
+                                                                                          Utils.random.Next(12),
+                                                                                          12,
+                                                                                          comp.GetNetworkMap(),
+                                                                                          0f), 0, 5, comp.os);
+            c.icon = icon;
+            c.setAdminPassword(password);
+            vanillaPorts = vanillaPorts ?? new List<int>(new int[] { 22, 3659 });
+            foreach (var p in vanillaPorts)
+                c.AddVanillaPort(p);
+            if (modPorts != null) foreach (var p in modPorts)
+                c.AddModPort(p);
+            c.portsNeededForCrack = portCracksRequired;
+            if (eosFolder != null)
+                c.files.root.folders.Add(eosFolder);
+            else EOSComp.GenerateEOSFilesystem(c);
+            comp.AddEOSDevice(c);
+            return c;
+        }
+
+        public static Dictionary<string, Hacknet.Computer> GetEOSDevices(this Hacknet.Computer comp)
+        {
+            var res = new Dictionary<string, Hacknet.Computer>();
+            if (comp.attatchedDeviceIDs != null)
+                foreach (var id in comp.attatchedDeviceIDs.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                var c = comp.GetNetworkMap().GetComputerById(id);
+                if (c != null)
+                    res.Add(id, c);
+            }
+            return res;
         }
     }
 }

@@ -122,6 +122,11 @@ namespace Pathfinder.NetworkMap
             return netmap.nodes.Find(n => n.ip == ip);
         }
 
+        public static Hacknet.Computer GetComputerById(this Hacknet.NetworkMap netmap, string id)
+        {
+            return netmap.nodes.Find(n => n.idName == id);
+        }
+
         /// <summary>
         /// Adds a link to linkStart connecting to linkEnd.
         /// </summary>
