@@ -10,7 +10,7 @@ namespace Pathfinder.Mission
 
         public static bool AddMissionGoal(string goalId, IMissionGoal inter)
         {
-            goalId = Utility.GetPreviousStackFrameIdentity() + "." + Utility.GetId(goalId, true);
+            goalId = Utility.GetId(goalId, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission goal interface {1} with id {2}",
                            Utility.GetPreviousStackFrameIdentity(),
                            inter.GetType().FullName,
@@ -24,7 +24,7 @@ namespace Pathfinder.Mission
 
         public static bool AddMission(string missionId, IInterface inter)
         {
-            missionId = Utility.GetPreviousStackFrameIdentity() + "." + Utility.GetId(missionId, true);
+            missionId = Utility.GetId(missionId, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission interface {1} with id {2}",
                            Utility.GetPreviousStackFrameIdentity(),
                            inter.GetType().FullName,

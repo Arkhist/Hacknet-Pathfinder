@@ -13,8 +13,14 @@ namespace Pathfinder.GUI
             PathfinderModList
         }
 
-        private static Button modListButton = new Button(180, 600, 450, 40, "Pathfinder Mod List", MainMenu.buttonColor);
-        private static Button returnButton = new Button(180, 650, 250, 28, "Return", MainMenu.exitButtonColor);
+        private static Button modListButton = new Button(180, 600, 450, 40, "Pathfinder Mod List", MainMenu.buttonColor)
+        {
+            DrawFinish = (r) => { if (r.JustReleased) mainMenuState = MainMenuState.PathfinderModList; }
+        };
+        private static Button returnButton = new Button(180, 650, 250, 28, "Return", MainMenu.exitButtonColor)
+        {
+            DrawFinish = (r) => { if (r.JustReleased) mainMenuState = MainMenuState.GameHandled; }
+        };
 
         private static MainMenuState mainMenuState = MainMenuState.GameHandled;
 
@@ -26,8 +32,7 @@ namespace Pathfinder.GUI
 
             GameScreen baseS = e.MainMenu;
 
-            if (returnButton.Draw())
-                mainMenuState = MainMenuState.GameHandled;
+            returnButton.Draw();
 
             Gui.TextItem.doFontLabel(new Vector2(125f, 50), "Pathfinder Mod Load Order", GuiData.font, Color.White, 3.40282347E+38f, 3.40282347E+38f, false);
 
@@ -40,10 +45,6 @@ namespace Pathfinder.GUI
             }
         }
 
-        public static void drawPathfinderButtons(DrawMainMenuButtonsEvent e)
-        {
-            if (modListButton.Draw())
-                mainMenuState = MainMenuState.PathfinderModList;
-        }
+        public static void drawPathfinderButtons(DrawMainMenuButtonsEvent e) => modListButton.Draw();
     }
 }

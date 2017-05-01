@@ -325,5 +325,33 @@ namespace Pathfinder
                 return true;
             return false;
         }
+
+        public static bool onExtensionsMenuScreenDraw(Hacknet.Screens.ExtensionsMenuScreen self,
+                                                      ref Vector2 buttonPos,
+                                                      ref Rectangle dest,
+                                                      ref SpriteBatch sb,
+                                                      ref ScreenManager manager)
+        {
+            var drawExtensionMenuEvent = new Event.DrawExtensionMenuEvent(self, dest, sb, manager, buttonPos);
+            drawExtensionMenuEvent.CallEvent();
+            if (drawExtensionMenuEvent.IsCancelled)
+                return true;
+            return false;
+        }
+
+        public static bool onExtensionsMenuListDraw(Hacknet.Screens.ExtensionsMenuScreen self,
+                                                    out Vector2 result,
+                                                    ref Vector2 drawPos,
+                                                    ref Rectangle dest,
+                                                    ref SpriteBatch sb)
+        {
+            var drawExtensionMenuListEvent = new Event.DrawExtensionMenuListEvent(self, drawPos, dest, sb);
+            drawExtensionMenuListEvent.CallEvent();
+            result = drawExtensionMenuListEvent.ButtonPosition;
+            drawPos = result;
+            if (drawExtensionMenuListEvent.IsCancelled)
+                return true;
+            return false;
+        }
     }
 }

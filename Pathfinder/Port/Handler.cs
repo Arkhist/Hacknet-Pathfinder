@@ -9,7 +9,7 @@ namespace Pathfinder.Port
 
         public static bool AddPort(string portId, Type port)
         {
-            portId = Utility.GetId(portId);
+            portId = Utility.GetId(portId, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to register port [{1}] with id {2}",
                            Utility.GetPreviousStackFrameIdentity(), port, portId);
             if (idToPortType.ContainsKey(portId))

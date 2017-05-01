@@ -13,6 +13,9 @@ namespace Pathfinder.GUI
             Max = max;
             Min = min;
         }
+
+        public static explicit operator Vector2(MoveLine line) => new Vector2(line.Min, line.Max);
+        public static explicit operator MoveLine(Vector2 vec) => new MoveLine(vec.Y, vec.X);
     }
 
     public abstract class BaseDynamicRectangle : BaseInteractiveRectangle<float>
@@ -117,7 +120,7 @@ namespace Pathfinder.GUI
 
         public override void DoDraw()
         {
-            GuiData.spriteBatch.Draw(Utils.white, new Rectangle((int)MovedPosition.X, (int)MovedPosition.Y, (int)Width, (int)Height), (IsHeldDown) ? SelectedColor : DeselectedColor);
+            GuiData.spriteBatch.Draw(Utils.white, MovedPosition, new Vector2(Width, Height), (IsHeldDown) ? SelectedColor : DeselectedColor);
         }
     }
 }

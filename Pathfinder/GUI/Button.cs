@@ -47,7 +47,7 @@ namespace Pathfinder.GUI
                 }
                 Gui.RenderedRectangle.doRectangleOutline(X, Y, Width, Height, 1,
                                                      OnlyOutline ?
-                                                     Color : new Color?(GuiData.Default_Trans_Grey_Solid));
+                                                     Color : GuiData.Default_Trans_Grey_Solid);
             }
             else
                 GuiData.spriteBatch.Draw(Texture, rect, (IsActive) ? ((IsHeldDown) ? GuiData.Default_Unselected_Color : GuiData.Default_Lit_Backing_Color) : Color);

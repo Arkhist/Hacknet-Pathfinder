@@ -7,7 +7,7 @@ namespace TemplateMod
 {
     public class TemplateMod : Pathfinder.IPathfinderMod
     {
-        internal static Port.PortType p = new Port.PortType("TemplateName", 4);
+        internal static Port.Type p = new Port.Type("TemplateName", 4);
 
         public string Identifier => "Template Mod";
 

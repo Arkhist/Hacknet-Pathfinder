@@ -58,8 +58,10 @@ namespace Pathfinder.Util
         /// <param name="ignorePeriod">If set to <c>true</c> ignore period.</param>
         /// <param name="frameSkip">The frames to skip back to.</param>
         /// <param name="ignoreValidXml">If set to <c>true</c> ignore valid xml.</param>
-        public static string GetId(string inputId, bool ignorePeriod = false, int frameSkip = 3, bool ignoreValidXml = false)
+        public static string GetId(string inputId, bool ignorePeriod = false, int frameSkip = 3, bool ignoreValidXml = false, bool throwFindingPeriod = false)
         {
+            if (throwFindingPeriod && inputId.IndexOf('.') != -1)
+                throw new ArgumentException("inputId can't have a period in it", nameof(inputId));
             var xmlString = inputId.IndexOf('.') != -1 ? inputId.Substring(inputId.LastIndexOf('.') + 1) : inputId;
 
             xmlString = ignoreValidXml ? xmlString : ConvertToValidXmlAttributeName(xmlString);

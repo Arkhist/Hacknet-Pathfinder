@@ -20,7 +20,7 @@ namespace Pathfinder.Executable
         /// <param name="inter">The interface object.</param>
         public static bool AddExecutable(string id, IInterface inter)
         {
-            id = Utility.GetPreviousStackFrameIdentity() + "." + id;
+            id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod '{0}' is attempting to add executable interface {1} with id {2}",
                            Utility.GetPreviousStackFrameIdentity(),
                            inter.GetType().FullName,

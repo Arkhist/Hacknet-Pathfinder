@@ -92,6 +92,14 @@ namespace PathfinderPatcher
                     m.IsPublic = true;
                 }
 
+                type = ad.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen");
+                foreach (var m in type.Methods)
+                {
+                    if (!m.IsPrivate) continue;
+                    m.IsPrivate = false;
+                    m.IsPublic = true;
+                }
+
                 if (spitOutHacknetOnly)
                 {
                     ad?.Write("HacknetPathfinder.exe");
@@ -229,6 +237,19 @@ namespace PathfinderPatcher
 
                 ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("Draw").InjectWith(
 					hooks.GetMethod("onDisplayModuleDraw"),
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
+                );
+
+                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                ad.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen").GetMethod("Draw").InjectWith(
+                    hooks.GetMethod("onExtensionsMenuScreenDraw"),
+                    71,
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
+                    localsID: new int[]{ 3 }
+                );
+
+                ad.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen").GetMethod("DrawExtensionList").InjectWith(
+					hooks.GetMethod("onExtensionsMenuListDraw"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 

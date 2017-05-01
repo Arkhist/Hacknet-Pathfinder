@@ -135,6 +135,10 @@
     <Compile Include="Pathfinder\GUI\BaseInteractiveRectangle.cs" />
     <Compile Include="Pathfinder\GUI\DynamicRectangle.cs" />
     <Compile Include="Pathfinder\Event\ModuleEvents.cs" />
+    <Compile Include="Pathfinder\Extension\Info.cs" />
+    <Compile Include="Pathfinder\Extension\Handler.cs" />
+    <Compile Include="Pathfinder\Event\ExtensionMenuEvents.cs" />
+    <Compile Include="Pathfinder\GUI\SpriteBatchExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />
@@ -145,6 +149,7 @@
     <Folder Include="Pathfinder\Mission\" />
     <Folder Include="Pathfinder\NetworkMap\" />
     <Folder Include="Pathfinder\Port\" />
+    <Folder Include="Pathfinder\Extension\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

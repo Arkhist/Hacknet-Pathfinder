@@ -10,7 +10,7 @@ namespace Pathfinder.Daemon
 
         public static bool AddDaemon(string daemonId, IInterface inter)
         {
-            daemonId = Utility.GetPreviousStackFrameIdentity() + "." + Utility.GetId(daemonId, true);
+            daemonId = Utility.GetId(daemonId, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add daemon interface {1} with id {2}",
                            Utility.GetPreviousStackFrameIdentity(),
                            inter.GetType().FullName,

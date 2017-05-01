@@ -26,6 +26,7 @@ namespace Pathfinder.GUI
         public T Y { get; set; }
         public T Width { get; set; }
         public T Height { get; set; }
+
         public abstract bool HandleInteraction();
 
         public bool Contains(Point p) => Contains(X, Y, Width, Height, p);
@@ -41,6 +42,8 @@ namespace Pathfinder.GUI
 
     public abstract class BaseInteractiveRectangle<T> : BaseInteraction<T>
     {
+        public Action<BaseInteractiveRectangle<T>> DrawFinish { get; set; }
+
         protected BaseInteractiveRectangle(T x, T y, T width, T height) : base(x, y, width, height) {}
 
         public override bool HandleInteraction()
@@ -59,7 +62,10 @@ namespace Pathfinder.GUI
         public virtual bool Draw()
         {
             DoDraw();
-            return HandleInteraction();
+            var b = HandleInteraction();
+            if(DrawFinish != null)
+                DrawFinish(this);
+            return b;
         }
 
         public abstract void DoDraw();
