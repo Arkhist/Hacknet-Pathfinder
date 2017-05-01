@@ -100,6 +100,19 @@ namespace PathfinderPatcher
                     m.IsPublic = true;
                 }
 
+                foreach (var f in type.Fields)
+                {
+                    if (!f.IsPrivate) continue;
+                    f.IsPrivate = false;
+                    f.IsPublic = true;
+                }
+
+                foreach (var t in type.NestedTypes)
+                {
+                    t.IsPublic = true;
+                    t.IsNestedPublic = true;
+                }
+
                 if (spitOutHacknetOnly)
                 {
                     ad?.Write("HacknetPathfinder.exe");

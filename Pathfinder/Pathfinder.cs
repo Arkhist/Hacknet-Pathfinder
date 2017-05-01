@@ -49,6 +49,10 @@ namespace Pathfinder
             EventManager.RegisterListener<DrawMainMenuEvent>(PathfinderMainMenu.drawMainMenu);
             EventManager.RegisterListener<DrawMainMenuButtonsEvent>(PathfinderMainMenu.drawPathfinderButtons);
 
+            EventManager.RegisterListener<DrawExtensionMenuEvent>(Extension.Handler.ExtensionMenuListener);
+            EventManager.RegisterListener<DrawExtensionMenuListEvent>(Extension.Handler.ExtensionListMenuListener);
+            EventManager.RegisterListener<OSPostLoadContenEvent>(Extension.Handler.PostLoadForModExtensionsListener);
+
             EventManager.RegisterListener<ExecutableExecuteEvent>(Executable.Handler.ExecutableListener);
             EventManager.RegisterListener<CommandSentEvent>(Executable.Handler.ExecutableListInsertListener);
 
