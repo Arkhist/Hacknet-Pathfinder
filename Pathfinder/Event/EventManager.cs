@@ -15,29 +15,31 @@ namespace Pathfinder.Event
         /// </summary>
         /// <param name="pathfinderEventType">The PathfinderEvent Runtime Type to register for</param>
         /// <param name="listener">The listener function that will be executed on an event call</param>
-        /// <param name="methodName">Name to assign for debug purposes</param>
-        public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string methodName = null)
+        /// <param name="debugName">Name to assign for debug purposes</param>
+        public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string debugName = null)
         {
             if (!eventListeners.ContainsKey(pathfinderEventType))
             {
                 eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string>>());
             }
-            if (methodName == null)
-                methodName = "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
+            if (String.IsNullOrEmpty(debugName))
+                debugName = "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
                                        + listener.Method.DeclaringType.FullName + "." + listener.Method.Name;
-            eventListeners[pathfinderEventType].Add(new Tuple<Action<PathfinderEvent>, string>(listener, methodName));
+            eventListeners[pathfinderEventType].Add(new Tuple<Action<PathfinderEvent>, string>(listener, debugName));
         }
 
         /// <summary>
         /// Registers an event listener by compile time type.
         /// </summary>
         /// <param name="listener">The listener function that will be executed on an event call</param>
+        /// <param name="debugName">Name to assign for debug purposes</param>
         /// <typeparam name="T">The PathfinderEvent Compile time Type to listen for</typeparam>
-        public static void RegisterListener<T>(Action<T> listener) where T : PathfinderEvent
+        public static void RegisterListener<T>(Action<T> listener, string debugName = null) where T : PathfinderEvent
         {
             RegisterListener(typeof(T), (e) => listener.Invoke((T)e),
+                             String.IsNullOrEmpty(debugName) ?
                              "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
-                                       + listener.Method.DeclaringType.FullName + "." + listener.Method.Name);
+                                + listener.Method.DeclaringType.FullName + "." + listener.Method.Name : debugName);
         }
 
         /// <summary>
@@ -86,7 +88,7 @@ namespace Pathfinder.Event
         public static void CallEvent(PathfinderEvent pathfinderEvent)
         {
             var eventType = pathfinderEvent.GetType();
-            var log = (Logger.LogUpdates || !(pathfinderEvent is GameUpdateEvent));
+            var log = !Logger.IgnoreEventTypes.Contains(eventType);
             if(log)
                 Logger.Verbose("Event Type contains check '[{0}] {1}'", Path.GetFileName(eventType.Assembly.Location), eventType.FullName);
             if (eventListeners.ContainsKey(eventType))

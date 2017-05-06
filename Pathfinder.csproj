@@ -139,6 +139,7 @@
     <Compile Include="Pathfinder\Extension\Handler.cs" />
     <Compile Include="Pathfinder\Event\ExtensionMenuEvents.cs" />
     <Compile Include="Pathfinder\GUI\SpriteBatchExtensions.cs" />
+    <Compile Include="Pathfinder\Util\RetrieveType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

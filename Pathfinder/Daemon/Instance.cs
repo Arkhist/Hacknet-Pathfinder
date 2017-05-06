@@ -39,7 +39,7 @@ namespace Pathfinder.Daemon
             {
                 InterfaceId = id
             };
-            i.Interface.LoadInstance(i, objects);
+            i.Interface.LoadInstance(i, objects ?? new Dictionary<string, string>());
             return i;
         }
 

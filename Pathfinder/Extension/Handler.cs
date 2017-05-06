@@ -23,7 +23,7 @@ namespace Pathfinder.Extension
 
         private static GUI.Button returnButton = new GUI.Button(-1, -1, 450, 25, "Return to Main Menu", MainMenu.exitButtonColor)
         {
-            DrawFinish = r => ActiveInfo = null
+            DrawFinish = r => { ActiveInfo = null; buttonsLoaded = false; }
         };
         private static EMSState state;
         private static int tickWaits = -2;
@@ -99,7 +99,10 @@ namespace Pathfinder.Extension
                 else if (tickWaits > -1)
                     --tickWaits;
                 else
+                {
                     e.ExtensionMenuScreen.IsInPublishScreen = false;
+                    tickWaits = -2;
+                }
             }
             else
             {

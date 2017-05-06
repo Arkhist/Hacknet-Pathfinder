@@ -24,6 +24,7 @@ namespace Pathfinder.Util
         }
 
         const int MAX_LOG_SIZE = 100;
+        public static readonly List<Type> DEFAULT_IGNORE_EVENTS = new List<Type>(new Type[] { typeof(Event.GameUpdateEvent) });
 
         private static List<Tuple<LogLevel, string>> logHistory = new List<Tuple<LogLevel, string>>();
         private static LogLevel showFlags = LogLevel.Default;
@@ -39,7 +40,7 @@ namespace Pathfinder.Util
         /// <value>The log history for the past 100 log calls.</value>
         public static IList<Tuple<LogLevel, string>> LogHistory => logHistory.AsReadOnly();
 
-        public static bool LogUpdates { get; set; } = false;
+        public static List<Type> IgnoreEventTypes { get; set; } = DEFAULT_IGNORE_EVENTS;
 
         /// <summary>
         /// Adds flag(s) to this <see cref="T:Pathfinder.Util.Logger"/>'s flags.

@@ -10,6 +10,22 @@ namespace Pathfinder.Computer
     public static class Extensions
     {
         /// <summary>
+        /// Adds a modded daemon by interface id to the Computer.
+        /// </summary>
+        /// <returns>The modded daemon instance.</returns>
+        /// <param name="comp">The Computer</param>
+        /// <param name="interfaceId">Interface Identifier.</param>
+        /// <param name="input">The input for the LoadInstance interface function.</param>
+        public static Daemon.Instance AddModdedDaemon(this Hacknet.Computer comp,
+                                                      string interfaceId,
+                                                      Dictionary<string, string> input = null)
+        {
+            var i = Daemon.Instance.CreateInstance(interfaceId, comp, input);
+            comp.daemons.Add(i);
+            return i;
+        }
+
+        /// <summary>
         /// Retrieves a list of daemon of the exact type daemonType from comp
         /// </summary>
         public static List<Hacknet.Daemon> GetDaemonList(this Hacknet.Computer comp, Type daemonType)
@@ -84,6 +100,11 @@ namespace Pathfinder.Computer
             return comp.GetNetworkMap().AddLink(comp, newLink);
         }
 
+        /// <summary>
+        /// Gets the NetworkMap the computer is part of.
+        /// </summary>
+        /// <returns>The NetworkMap.</returns>
+        /// <param name="comp">The Computer</param>
         public static Hacknet.NetworkMap GetNetworkMap(this Hacknet.Computer comp)
         {
             return comp.os.netMap;
@@ -132,7 +153,8 @@ namespace Pathfinder.Computer
         /// <param name="comp">The Computer</param>
         /// <param name="port">The port type to add to the computer</param>
         /// <param name="unlocked">If set to <c>true</c> then sets the port to be unlocked.</param>
-        public static bool AddModPort(this Hacknet.Computer comp, Port.Type port, bool unlocked = false) => port.AssignTo(comp, unlocked);
+        public static bool AddModPort(this Hacknet.Computer comp, Port.Type port, bool unlocked = false) =>
+            port.AssignTo(comp, unlocked);
 
         /// <summary>
         /// Adds the mod port by port registry id.
@@ -183,7 +205,8 @@ namespace Pathfinder.Computer
         public static bool RemoveVanillaPort(this Hacknet.Computer comp, int portNum) =>
             comp.RemoveVanillaPort(ExeInfoManager.GetExecutableInfo(portNum));
 
-        public static bool RemoveModPort(this Hacknet.Computer comp, Port.Type port) => port.RemoveFrom(comp);
+        public static bool RemoveModPort(this Hacknet.Computer comp, Port.Type port) =>
+            port.RemoveFrom(comp);
 
         public static bool RemoveModPort(this Hacknet.Computer comp, string id)
         {
@@ -210,35 +233,33 @@ namespace Pathfinder.Computer
         /// </summary>
         /// <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
         /// <param name="info">The ExecutableInfo to search by.</param>
-        public static bool HasPort(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info) =>
+        public static bool HasVanilaPort(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info) =>
             comp.ports.Contains(info.PortNumber);
+
         /// <summary>
         /// Determines whether the Computer has a certain vanilla port.
         /// </summary>
         /// <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
         /// <param name="portName">The port name to search by.</param>
-        public static bool HasPort(this Hacknet.Computer comp, string portName) =>
-            comp.HasPort(ExeInfoManager.GetExecutableInfo(portName));
+        public static bool HasVanillaPort(this Hacknet.Computer comp, string portName) =>
+            comp.HasVanilaPort(ExeInfoManager.GetExecutableInfo(portName));
+
         /// <summary>
         /// Determines whether the Computer has a certain vanilla port.
         /// </summary>
         /// <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
         /// <param name="portNum">The port number to search by.</param>
-        public static bool HasPort(this Hacknet.Computer comp, int portNum) =>
-            comp.HasPort(ExeInfoManager.GetExecutableInfo(portNum));
-        /// <summary>
-        /// Determines whether the Computer has a certain mod port.
-        /// </summary>
-        /// <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
-        /// <param name="port">The port type to search by.</param>
-        public static bool HasPort(this Hacknet.Computer comp, Port.Type port) => port.GetWithin(comp) != null;
+        public static bool HasVanillaPort(this Hacknet.Computer comp, int portNum) =>
+            comp.HasVanilaPort(ExeInfoManager.GetExecutableInfo(portNum));
 
         /// <summary>
         /// Determines whether the Computer has a certain mod port.
         /// </summary>
         /// <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
         /// <param name="port">The port type to search by.</param>
-        public static bool HasModPort(this Hacknet.Computer comp, Port.Type port) => comp.HasPort(port);
+        public static bool HasModPort(this Hacknet.Computer comp, Port.Type port) =>
+            port.GetWithin(comp) != null;
+
         /// <summary>
         /// Determines whether the Computer has a certain mod port.
         /// </summary>
@@ -250,27 +271,60 @@ namespace Pathfinder.Computer
             return comp.HasModPort(Port.Handler.GetPort(id));
         }
 
-        public static bool IsPortOpen(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info)
+        /// <summary>
+        /// Determines whether the vanilla port is open.
+        /// </summary>
+        /// <returns><c>true</c>, if port open is open, <c>false</c> otherwise.</returns>
+        /// <param name="comp">The Computer</param>
+        /// <param name="info">The ExecutableInfo to search by</param>
+        public static bool IsVanillaPortOpen(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info)
         {
             var i = comp.ports.IndexOf(info.PortNumber);
             if (i < 0)
                 return false;
             return comp.portsOpen[i] >= 1;
         }
-        public static bool IsPortOpen(this Hacknet.Computer comp, string portName) =>
-            comp.IsPortOpen(ExeInfoManager.GetExecutableInfo(portName));
-        public static bool IsPortOpen(this Hacknet.Computer comp, int portNum) =>
-            comp.IsPortOpen(ExeInfoManager.GetExecutableInfo(portNum));
-        public static bool IsPortOpen(this Hacknet.Computer comp, Port.Type port) => (port.GetWithin(comp)?.Unlocked).Equals(true);
 
-        public static bool IsModPortOpen(this Hacknet.Computer comp, Port.Type port) => comp.IsPortOpen(port);
+        /// <summary>
+        /// Determines whether the vanilla port is open.
+        /// </summary>
+        /// <returns><c>true</c>, if port open is open, <c>false</c> otherwise.</returns>
+        /// <param name="comp">The Computer</param>
+        /// <param name="portName">The port name to search by</param>
+        public static bool IsVanillaPortOpen(this Hacknet.Computer comp, string portName) =>
+            comp.IsVanillaPortOpen(ExeInfoManager.GetExecutableInfo(portName));
+
+        /// <summary>
+        /// Determines whether the vanilla port is open.
+        /// </summary>
+        /// <returns><c>true</c>, if port open is open, <c>false</c> otherwise.</returns>
+        /// <param name="comp">The Computer</param>
+        /// <param name="portNum">The port number to search by</param>
+        public static bool IsVanillaPortOpen(this Hacknet.Computer comp, int portNum) =>
+            comp.IsVanillaPortOpen(ExeInfoManager.GetExecutableInfo(portNum));
+
+        /// <summary>
+        /// Determines whether the mod port is open.
+        /// </summary>
+        /// <returns><c>true</c>, if port open is open, <c>false</c> otherwise.</returns>
+        /// <param name="comp">The Computer</param>
+        /// <param name="port">The port type to find</param>
+        public static bool IsModPortOpen(this Hacknet.Computer comp, Port.Type port) =>
+            (port.GetWithin(comp)?.Unlocked).Equals(true);
+
+        /// <summary>
+        /// Determines whether the mod port is open.
+        /// </summary>
+        /// <returns><c>true</c>, if port open is open, <c>false</c> otherwise.</returns>
+        /// <param name="comp">The Computer</param>
+        /// <param name="id">The registered port id to search by</param>
         public static bool IsModPortOpen(this Hacknet.Computer comp, string id)
         {
             id = Utility.GetId(id);
             return comp.IsModPortOpen(Port.Handler.GetPort(id));
         }
 
-        public static void OpenPort(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom)
+        public static void OpenVanillaPort(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom)
         {
             var i = comp.ports.IndexOf(info.PortNumber);
             if (i < 0)
@@ -280,11 +334,14 @@ namespace Pathfinder.Computer
             comp.log(ipFrom + " Opened Port#" + info.PortNumber);
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + info.PortNumber);
         }
-        public static void OpenPort(this Hacknet.Computer comp, string portName, string ipFrom) =>
-            comp.OpenPort(ExeInfoManager.GetExecutableInfo(portName), ipFrom);
-        public static void OpenPort(this Hacknet.Computer comp, int portNum, string ipFrom) =>
-            comp.OpenPort(ExeInfoManager.GetExecutableInfo(portNum), ipFrom);
-        public static void OpenPort(this Hacknet.Computer comp, Port.Type port, string ipFrom)
+
+        public static void OpenVanillaPort(this Hacknet.Computer comp, string portName, string ipFrom) =>
+            comp.OpenVanillaPort(ExeInfoManager.GetExecutableInfo(portName), ipFrom);
+
+        public static void OpenVanillaPort(this Hacknet.Computer comp, int portNum, string ipFrom) =>
+            comp.OpenVanillaPort(ExeInfoManager.GetExecutableInfo(portNum), ipFrom);
+
+        public static void OpenModPort(this Hacknet.Computer comp, Port.Type port, string ipFrom)
         {
             var i = port.GetWithin(comp);
             if (i == null)
@@ -294,14 +351,13 @@ namespace Pathfinder.Computer
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
         }
 
-        public static void OpenModPort(this Hacknet.Computer comp, Port.Type port, string ipFrom) => comp.OpenPort(port, ipFrom);
         public static void OpenModPort(this Hacknet.Computer comp, string id, string ipFrom)
         {
             id = Utility.GetId(id);
             comp.OpenModPort(Port.Handler.GetPort(id), ipFrom);
         }
 
-        public static void ClosePort(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom)
+        public static void CloseVanillaPort(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom)
         {
             var i = comp.ports.IndexOf(info.PortNumber);
             if (i < 0)
@@ -313,10 +369,13 @@ namespace Pathfinder.Computer
                 comp.log(ipFrom + " Closes Port#" + info.PortNumber);
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + info.PortNumber);
         }
-        public static void ClosePort(this Hacknet.Computer comp, string portName, string ipFrom) =>
-            comp.ClosePort(ExeInfoManager.GetExecutableInfo(portName), ipFrom);
+
+        public static void CloseVanillaPort(this Hacknet.Computer comp, string portName, string ipFrom) =>
+            comp.CloseVanillaPort(ExeInfoManager.GetExecutableInfo(portName), ipFrom);
+
         public static void ClosePort(this Hacknet.Computer comp, int portNum, string ipFrom) =>
-            comp.ClosePort(ExeInfoManager.GetExecutableInfo(portNum), ipFrom);
+            comp.CloseVanillaPort(ExeInfoManager.GetExecutableInfo(portNum), ipFrom);
+
         public static void ClosePort(this Hacknet.Computer comp, Port.Type port, string ipFrom)
         {
             var i = port.GetWithin(comp);
@@ -329,7 +388,18 @@ namespace Pathfinder.Computer
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
         }
 
-        public static void CloseModPort(this Hacknet.Computer comp, Port.Type port, string ipFrom) => comp.ClosePort(port, ipFrom);
+        public static void CloseModPort(this Hacknet.Computer comp, Port.Type port, string ipFrom)
+        {
+            var i = port.GetWithin(comp);
+            if (i == null)
+                return;
+            var wasOpen = i.Unlocked;
+            i.Unlocked &= comp.silent;
+            if (wasOpen)
+                comp.log(ipFrom + " Closed Port#" + port.PortName + "/" + port.PortDisplay);
+            comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
+        }
+
         public static void CloseModPort(this Hacknet.Computer comp, string id, string ipFrom)
         {
             id = Utility.GetId(id);
@@ -388,17 +458,45 @@ namespace Pathfinder.Computer
             return c;
         }
 
-        public static Dictionary<string, Hacknet.Computer> GetEOSDevices(this Hacknet.Computer comp)
+        public static Dictionary<string, Hacknet.Computer> GetEOSDevicesBy(this Hacknet.Computer comp, RetrieveType retType)
         {
             var res = new Dictionary<string, Hacknet.Computer>();
             if (comp.attatchedDeviceIDs != null)
                 foreach (var id in comp.attatchedDeviceIDs.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 var c = comp.GetNetworkMap().GetComputerById(id);
-                if (c != null)
-                    res.Add(id, c);
+                    if (c != null)
+                    {
+                        switch (retType)
+                        {
+                        case RetrieveType.ID:
+                                res[id] = c;
+                                break;
+                        case RetrieveType.ADDRESS:
+                                res[c.ip] = c;
+                                break;
+                        case RetrieveType.NAME:
+                                res[c.name] = c;
+                                break;
+                        case RetrieveType.INDEX:
+                                res[c.GetNetworkMap().nodes.IndexOf(c).ToString()] = c;
+                                break;
+                        }
+                    }
             }
             return res;
         }
+
+        public static Dictionary<string, Hacknet.Computer> GetEOSDevicesById(this Hacknet.Computer comp) =>
+            comp.GetEOSDevicesBy(RetrieveType.ID);
+
+        public static Dictionary<string, Hacknet.Computer> GetEOSDevicesByIp(this Hacknet.Computer comp) =>
+            comp.GetEOSDevicesBy(RetrieveType.ADDRESS);
+
+        public static Dictionary<string, Hacknet.Computer> GetEOSDevicesByName(this Hacknet.Computer comp) =>
+            comp.GetEOSDevicesBy(RetrieveType.NAME);
+
+        public static Dictionary<string, Hacknet.Computer> GetEOSDevicesByIndex(this Hacknet.Computer comp) =>
+            comp.GetEOSDevicesBy(RetrieveType.INDEX);
     }
 }
