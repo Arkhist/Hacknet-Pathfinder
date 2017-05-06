@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Pathfinder.Util;
 
@@ -5,18 +6,38 @@ namespace Pathfinder.Port
 {
     public static class Handler
     {
-        private static Dictionary<string, Type> idToPortType = new Dictionary<string, Type>();
+        internal static Dictionary<string, Type> idToPortType = new Dictionary<string, Type>();
 
-        public static bool AddPort(string portId, Type port)
+        private static int modBacktrack = 3;
+
+        public static bool RegisterPort(string id, Type port)
         {
-            portId = Utility.GetId(portId, throwFindingPeriod: true);
+            id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to register port [{1}] with id {2}",
-                           Utility.GetPreviousStackFrameIdentity(), port, portId);
-            if (idToPortType.ContainsKey(portId))
+                           Utility.GetPreviousStackFrameIdentity(modBacktrack - 1), port, id);
+            if (idToPortType.ContainsKey(id))
                 return false;
-            port.PortId = portId;
-            idToPortType.Add(portId, port);
+            port.PortId = id;
+            idToPortType.Add(id, port);
             return true;
+        }
+
+        [Obsolete("Use RegisterPort")]
+        public static bool AddPort(string id, Type port)
+        {
+            modBacktrack += 1;
+            var b = RegisterPort(id, port);
+            modBacktrack = 3;
+            return b;
+        }
+
+        internal static bool UnregisterPort(string id)
+        {
+            id = Utility.GetId(id);
+            if (!idToPortType.ContainsKey(id))
+                return true;
+            idToPortType[id].PortId = null;
+            return idToPortType.Remove(id);
         }
 
         public static Type GetPort(string id)

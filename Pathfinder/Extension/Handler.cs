@@ -17,7 +17,7 @@ namespace Pathfinder.Extension
     {
         public static Info ActiveInfo { get; private set; }
 
-        private static Dictionary<string, Info> idToInfo = new Dictionary<string, Info>();
+        internal static Dictionary<string, Info> idToInfo = new Dictionary<string, Info>();
         private static Dictionary<string, Texture2D> idToLogo = new Dictionary<string, Texture2D>();
         private static Dictionary<string, GUI.Button> idToButton = new Dictionary<string, GUI.Button>();
 
@@ -49,6 +49,19 @@ namespace Pathfinder.Extension
             idToLogo.Add(id, t);
             idToButton.Add(id, new GUI.Button(-1, -1, 450, 50, extensionInfo.Name, Color.White));
             return true;
+        }
+
+        internal static bool UnregisterExtension(string id)
+        {
+            id = Utility.GetId(id);
+            if (!idToInfo.ContainsKey(id))
+                return true;
+
+            var info = idToInfo[id];
+            info.Id = null;
+            idToLogo.Remove(id);
+            idToButton.Remove(id);
+            return idToInfo.Remove(id);
         }
 
         private static void LoadButtons(DrawExtensionMenuListEvent e)

@@ -2,6 +2,8 @@
 using Gui = Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
+using Pathfinder.Util;
+using System.Collections.Generic;
 
 namespace Pathfinder.GUI
 {
@@ -22,29 +24,55 @@ namespace Pathfinder.GUI
             DrawFinish = (r) => { if (r.JustReleased) mainMenuState = MainMenuState.GameHandled; }
         };
 
+        private static Dictionary<string, Button> unloadButtons = new Dictionary<string, Button>();
+        private static bool buttonsPreped = false;
+
         private static MainMenuState mainMenuState = MainMenuState.GameHandled;
 
-        public static void drawMainMenu(DrawMainMenuEvent e)
+        private static void PrepareButtons(DrawMainMenuEvent e)
+        {
+            if (buttonsPreped)
+                return;
+            var ids = Pathfinder.LoadedModIdentifiers;
+            unloadButtons.Clear();
+            foreach (var id in ids)
+            {
+                unloadButtons[id] = new Button(-1, -1, 100, 30, "Unload")
+                {
+                    DrawFinish = r => { if (r.JustReleased) Pathfinder.UnloadMod(Pathfinder.GetMod(id)); }
+                };
+            }
+            buttonsPreped = true;
+        }
+
+        public static void DrawMainMenu(DrawMainMenuEvent e)
         {
             if (mainMenuState != MainMenuState.PathfinderModList)
                 return;
             e.IsCancelled = true;
 
+            PrepareButtons(e);
+
             GameScreen baseS = e.MainMenu;
 
             returnButton.Draw();
 
-            Gui.TextItem.doFontLabel(new Vector2(125f, 50), "Pathfinder Mod Load Order", GuiData.font, Color.White, 3.40282347E+38f, 3.40282347E+38f, false);
+            Gui.TextItem.doFontLabel(new Vector2(125f, 50), "Pathfinder Mod Load Order", GuiData.font, Color.White);
 
             float yPos = 120;
             int index = 0;
-            foreach (var modIdentifier in Pathfinder.LoadedModIdentifiers)
+            Button b;
+            foreach (var id in Pathfinder.LoadedModIdentifiers)
             {
-                Gui.TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + modIdentifier, GuiData.smallfont, Color.White, 3.40282347E+38f, 3.40282347E+38f, false);
+                b = unloadButtons[id];
+                b.X = 500;
+                b.Y = (int)yPos;
+                b.Draw();
+                Gui.TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + id, GuiData.smallfont, Color.White);
                 yPos += 30;
             }
         }
 
-        public static void drawPathfinderButtons(DrawMainMenuButtonsEvent e) => modListButton.Draw();
+        public static void DrawPathfinderButtons(DrawMainMenuButtonsEvent e) => modListButton.Draw();
     }
 }

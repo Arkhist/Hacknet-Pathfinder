@@ -7,8 +7,20 @@ namespace Pathfinder.Event
 {
     public static class EventManager
     {
-        private static Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string>>> eventListeners =
-            new Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string>>>();
+        internal static Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string>>> eventListeners =
+            new Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string>>>();
+
+        private static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string debugName, string modId)
+        {
+            if (!eventListeners.ContainsKey(pathfinderEventType))
+            {
+                eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string, string>>());
+            }
+            if (String.IsNullOrEmpty(debugName))
+                debugName = "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
+                                       + listener.Method.DeclaringType.FullName + "." + listener.Method.Name;
+            eventListeners[pathfinderEventType].Add(new Tuple<Action<PathfinderEvent>, string, string>(listener, debugName, modId));
+        }
 
         /// <summary>
         /// Registers an event listener by runtime type.
@@ -18,14 +30,7 @@ namespace Pathfinder.Event
         /// <param name="debugName">Name to assign for debug purposes</param>
         public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string debugName = null)
         {
-            if (!eventListeners.ContainsKey(pathfinderEventType))
-            {
-                eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string>>());
-            }
-            if (String.IsNullOrEmpty(debugName))
-                debugName = "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
-                                       + listener.Method.DeclaringType.FullName + "." + listener.Method.Name;
-            eventListeners[pathfinderEventType].Add(new Tuple<Action<PathfinderEvent>, string>(listener, debugName));
+            RegisterListener(pathfinderEventType, listener, debugName, Utility.GetPreviousStackFrameIdentity());
         }
 
         /// <summary>
@@ -39,7 +44,8 @@ namespace Pathfinder.Event
             RegisterListener(typeof(T), (e) => listener.Invoke((T)e),
                              String.IsNullOrEmpty(debugName) ?
                              "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
-                                + listener.Method.DeclaringType.FullName + "." + listener.Method.Name : debugName);
+                             + listener.Method.DeclaringType.FullName + "." + listener.Method.Name : debugName,
+                             Utility.GetPreviousStackFrameIdentity());
         }
 
         /// <summary>
@@ -51,7 +57,7 @@ namespace Pathfinder.Event
         {
             if (!eventListeners.ContainsKey(pathfinderEventType))
             {
-                eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string>>());
+                eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string, string>>());
             }
             var i = eventListeners[pathfinderEventType].FindIndex(l => l.Item1 == listener);
             eventListeners[pathfinderEventType].RemoveAt(i);
@@ -67,7 +73,7 @@ namespace Pathfinder.Event
             Type pathfinderEventType = typeof(T);
             if (!eventListeners.ContainsKey(pathfinderEventType))
             {
-                eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string>>());
+                eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string, string>>());
             }
             for (var i = eventListeners[pathfinderEventType].Count-1; i >= 0; i--)
             {

@@ -1,39 +1,76 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Pathfinder.Util;
 
 namespace Pathfinder.Mission
 {
     public static class Handler
     {
-        private static Dictionary<string, IMissionGoal> goals = new Dictionary<string, IMissionGoal>();
-        private static Dictionary<string, IInterface> missions = new Dictionary<string, IInterface>();
+        internal static Dictionary<string, IMissionGoal> goals = new Dictionary<string, IMissionGoal>();
+        internal static Dictionary<string, IInterface> missions = new Dictionary<string, IInterface>();
 
-        public static bool AddMissionGoal(string goalId, IMissionGoal inter)
+        private static int modBacktrack = 3;
+
+        public static bool RegisterMissionGoal(string id, IMissionGoal inter)
         {
-            goalId = Utility.GetId(goalId, throwFindingPeriod: true);
+            id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission goal interface {1} with id {2}",
                            Utility.GetPreviousStackFrameIdentity(),
                            inter.GetType().FullName,
-                           goalId);
-            if (goals.ContainsKey(goalId))
+                           id);
+            if (goals.ContainsKey(id))
                 return false;
-            
-            goals.Add(goalId, inter);
+
+            goals.Add(id, inter);
             return true;
         }
 
-        public static bool AddMission(string missionId, IInterface inter)
+        [Obsolete("Use RegisterMissionGoal")]
+        public static bool AddMissionGoal(string id, IMissionGoal inter)
         {
-            missionId = Utility.GetId(missionId, throwFindingPeriod: true);
+            modBacktrack += 1;
+            var b = RegisterMissionGoal(id, inter);
+            modBacktrack = 3;
+            return b;
+        }
+
+        internal static bool UnregisterMissionGoal(string id)
+        {
+            id = Utility.GetId(id);
+            if (!goals.ContainsKey(id))
+                return true;
+            return goals.Remove(id);
+        }
+
+        public static bool RegisterMission(string id, IInterface inter)
+        {
+            id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission interface {1} with id {2}",
                            Utility.GetPreviousStackFrameIdentity(),
                            inter.GetType().FullName,
-                           missionId);
-            if (goals.ContainsKey(missionId))
+                           id);
+            if (goals.ContainsKey(id))
                 return false;
 
-            missions.Add(missionId, inter);
+            missions.Add(id, inter);
             return true;
+        }
+
+        [Obsolete("Use RegisterMission")]
+        public static bool AddMission(string id, IInterface inter)
+        {
+            modBacktrack += 1;
+            var b = RegisterMission(id, inter);
+            modBacktrack = 3;
+            return b;
+        }
+
+        internal static bool UnregisterMission(string id)
+        {
+            id = Utility.GetId(id);
+            if (!missions.ContainsKey(id))
+                return true;
+            return missions.Remove(id);
         }
 
         public static bool ContainsMission(string id)

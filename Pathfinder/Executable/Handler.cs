@@ -9,8 +9,10 @@ namespace Pathfinder.Executable
 {
     public static class Handler
     {
-        private static Dictionary<string, IInterface> interfaces = new Dictionary<string, IInterface>();
+        internal static Dictionary<string, IInterface> idToInterface = new Dictionary<string, IInterface>();
         private static Dictionary<string, string> idToDataCache = new Dictionary<string, string>();
+
+        private static int modBacktrack = 3;
 
         /// <summary>
         /// Adds an executable interface by id.
@@ -18,23 +20,41 @@ namespace Pathfinder.Executable
         /// <returns><c>true</c>, if executable was added, <c>false</c> otherwise.</returns>
         /// <param name="id">The Executable Identifier to try and add.</param>
         /// <param name="inter">The interface object.</param>
-        public static bool AddExecutable(string id, IInterface inter)
+        public static bool RegisterExecutable(string id, IInterface inter)
         {
-            id = Utility.GetId(id, throwFindingPeriod: true);
+            id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
             Logger.Verbose("Mod '{0}' is attempting to add executable interface {1} with id {2}",
-                           Utility.GetPreviousStackFrameIdentity(),
+                           Utility.GetPreviousStackFrameIdentity(modBacktrack-1),
                            inter.GetType().FullName,
                            id);
-            if (interfaces.ContainsKey(id))
+            if (idToInterface.ContainsKey(id))
                 return false;
             var type = inter.GetType();
             var fileData = id + "\nldloc.args\ncall Pathfinder.Executable.Instance [" + type.Assembly.GetName().Name + ".dll]"
                                                      + type.FullName + "=" + id + "()";
             if (fileData.Length < 1 || idToDataCache.ContainsValue(fileData))
                 throw new ArgumentException("created data for '" + id + "' is not unique");
-            interfaces.Add(id, inter);
+            idToInterface.Add(id, inter);
             idToDataCache.Add(id, fileData);
             return true;
+        }
+
+        [Obsolete("Use RegisterExecutable")]
+        public static bool AddExecutable(string id, IInterface inter)
+        {
+            modBacktrack += 1;
+            var b = RegisterExecutable(id, inter);
+            modBacktrack = 3;
+            return b;
+        }
+
+        internal static bool UnregisterExecutable(string id)
+        {
+            id = Utility.GetId(id);
+            if (!idToInterface.ContainsKey(id))
+                return true;
+            idToDataCache.Remove(id);
+            return idToInterface.Remove(id);
         }
 
         /// <summary>
@@ -75,7 +95,7 @@ namespace Pathfinder.Executable
         /// <param name="inter">The Executable Interface</param>
         public static string GetStandardFileDataBy(IInterface inter)
         {
-            foreach (var pair in interfaces)
+            foreach (var pair in idToInterface)
                 if (pair.Value == inter)
                     return GetStandardFileDataBy(pair.Key);
             return null;
@@ -84,7 +104,7 @@ namespace Pathfinder.Executable
         internal static void ExecutableListener(ExecutableExecuteEvent e)
         {
             IInterface i;
-            if (IsFileDataForModExe(e.ExecutableFile.data) && interfaces.TryGetValue(e.ExecutableFile.data.Split('\n')[0], out i))
+            if (IsFileDataForModExe(e.ExecutableFile.data) && idToInterface.TryGetValue(e.ExecutableFile.data.Split('\n')[0], out i))
             {
                 int num = e.OS.ram.bounds.Y + RamModule.contentStartOffset;
                 foreach (var exe in e.OS.exes)

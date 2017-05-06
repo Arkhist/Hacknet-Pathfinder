@@ -7,10 +7,22 @@ namespace Pathfinder
     public static class CommandHandler
     {
         [Obsolete("Use Pathfinder.Command.Handler.AddCommand")]
-        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function) { return Handler.AddCommand(key, function); }
+        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function)
+        {
+            Handler.modBacktrack += 1;
+            return Handler.AddCommand(key, function);
+        }
         [Obsolete("Use Pathfinder.Command.Handler.AddCommand")]
-        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function, bool auto) { return Handler.AddCommand(key, function, auto); }
+        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function, bool auto)
+        {
+            Handler.modBacktrack += 1;
+            return Handler.AddCommand(key, function, auto);
+        }
         [Obsolete("Use Pathfinder.Command.Handler.AddCommand")]
-        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function, string des, bool auto) { return Handler.AddCommand(key, function, des, auto); }
+        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function, string des, bool auto)
+        {
+            Handler.modBacktrack += 1;
+            return Handler.AddCommand(key, function, des, auto);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Pathfinder.Event;
 using Pathfinder.Util;
 
@@ -6,32 +7,51 @@ namespace Pathfinder.Daemon
 {
     public static class Handler
     {
-        private static Dictionary<string, IInterface> interfaces = new Dictionary<string, IInterface>();
+        internal static Dictionary<string, IInterface> idToInterface = new Dictionary<string, IInterface>();
 
-        public static bool AddDaemon(string daemonId, IInterface inter)
+        private static int modBacktrack = 3;
+
+        public static bool RegisterDaemon(string id, IInterface inter)
         {
-            daemonId = Utility.GetId(daemonId, throwFindingPeriod: true);
+            id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add daemon interface {1} with id {2}",
-                           Utility.GetPreviousStackFrameIdentity(),
+                           Utility.GetPreviousStackFrameIdentity(modBacktrack-1),
                            inter.GetType().FullName,
-                           daemonId);
-            if (interfaces.ContainsKey(daemonId))
+                           id);
+            if (idToInterface.ContainsKey(id))
                 return false;
 
-            interfaces.Add(daemonId, inter);
+            idToInterface.Add(id, inter);
             return true;
+        }
+
+        [Obsolete("Use RegisterDaemon")]
+        public static bool AddDaemon(string id, IInterface inter)
+        {
+            modBacktrack += 1;
+            var b = RegisterDaemon(id, inter);
+            modBacktrack = 3;
+            return b;
+        }
+
+        internal static bool UnregisterDaemon(string id)
+        {
+            id = Utility.GetId(id);
+            if (!idToInterface.ContainsKey(id))
+                return true;
+            return idToInterface.Remove(id);
         }
 
         public static bool ContainsDaemon(string id)
         {
-            return interfaces.ContainsKey(Utility.GetId(id));
+            return idToInterface.ContainsKey(Utility.GetId(id));
         }
 
         public static IInterface GetDaemonById(string id)
         {
             id = Utility.GetId(id);
             IInterface i = null;
-            interfaces.TryGetValue(id, out i);
+            idToInterface.TryGetValue(id, out i);
             return i;
         }
 
@@ -39,7 +59,7 @@ namespace Pathfinder.Daemon
         {
             IInterface i;
             var id = e.Reader.GetAttribute("interfaceId");
-            if (id != null && interfaces.TryGetValue(id, out i))
+            if (id != null && idToInterface.TryGetValue(id, out i))
             {
                 var objs = new Dictionary<string, string>();
                 var storedObjects = e.Reader.GetAttribute("storedObjects")?.Split(' ');

@@ -48,8 +48,8 @@ namespace Pathfinder
 
             EventManager.RegisterListener<CommandSentEvent>(Command.Handler.CommandListener);
 
-            EventManager.RegisterListener<DrawMainMenuEvent>(PathfinderMainMenu.drawMainMenu);
-            EventManager.RegisterListener<DrawMainMenuButtonsEvent>(PathfinderMainMenu.drawPathfinderButtons);
+            EventManager.RegisterListener<DrawMainMenuEvent>(PathfinderMainMenu.DrawMainMenu);
+            EventManager.RegisterListener<DrawMainMenuButtonsEvent>(PathfinderMainMenu.DrawPathfinderButtons);
 
             EventManager.RegisterListener<DrawExtensionMenuEvent>(Extension.Handler.ExtensionMenuListener);
             EventManager.RegisterListener<DrawExtensionMenuListEvent>(Extension.Handler.ExtensionListMenuListener);
@@ -147,10 +147,7 @@ namespace Pathfinder
         /// </summary>
         /// <returns><c>true</c>, if mod is loaded, <c>false</c> otherwise.</returns>
         /// <param name="id">Mod Identifier.</param>
-        public static bool IsModLoaded(string id)
-        {
-            return id == "Pathfinder" || id == "Hacknet" || mods.ContainsKey(id);
-        }
+        public static bool IsModLoaded(string id) => id == "Pathfinder" || id == "Hacknet" || mods.ContainsKey(id);
 
         internal static IPathfinderMod GetModByAssembly(Assembly asm)
         {
@@ -162,6 +159,13 @@ namespace Pathfinder
             return null;
         }
 
+        internal static IPathfinderMod GetMod(string id)
+        {
+            IPathfinderMod mod;
+            mods.TryGetValue(id, out mod);
+            return mod;
+        }
+
         internal static void LoadModContent()
         {
             foreach (var mod in mods)
@@ -171,13 +175,7 @@ namespace Pathfinder
             }
         }
 
-        internal static List<string> LoadedModIdentifiers
-        {
-            get
-            {
-                return mods.Keys.ToList();
-            }
-        }
+        internal static List<string> LoadedModIdentifiers => mods.Keys.ToList();
 
         internal static void ManageSaveXml(OSSaveWriteEvent e)
         {
@@ -195,6 +193,46 @@ namespace Pathfinder
                 Logger.Verbose("Unloading mod '{0}'", mod.Key);
                 mod.Value.Unload();
             }
+        }
+
+        internal static void UnloadMod(IPathfinderMod mod)
+        {
+            if (mod == null) return;
+
+            string id = "";
+
+            for (var i = 0; ++i < Extension.Handler.idToInfo.Count; id = Extension.Handler.idToInfo.Keys.ElementAt(i))
+                if (id.IndexOf('.') != -1 && id.Remove(id.IndexOf('.')) == mod.Identifier)
+                    Extension.Handler.UnregisterExtension(id);
+
+            for (var i = 0; ++i < Executable.Handler.idToInterface.Count; id = Executable.Handler.idToInterface.Keys.ElementAt(i))
+                if (id.IndexOf('.') != -1 && id.Remove(id.IndexOf('.')) == mod.Identifier)
+                    Executable.Handler.UnregisterExecutable(id);
+
+            for (var i = 0; ++i < Daemon.Handler.idToInterface.Count; id = Daemon.Handler.idToInterface.Keys.ElementAt(i))
+                if (id.IndexOf('.') != -1 && id.Remove(id.IndexOf('.')) == mod.Identifier)
+                    Daemon.Handler.UnregisterDaemon(id);
+
+            //var pair = new KeyValuePair<string, Tuple<Func<Hacknet.OS, List<string>, bool>, string>>();
+            Command.Handler.commands.Where(pair => pair.Value.Item2 == mod.Identifier)
+                              .Select(pair => Command.Handler.UnregisterCommand(pair.Key));
+
+            for (var i = 0; ++i < Mission.Handler.goals.Count; id = Mission.Handler.goals.Keys.ElementAt(i))
+                if (id.IndexOf('.') != -1 && id.Remove(id.IndexOf('.')) == mod.Identifier)
+                    Mission.Handler.UnregisterMissionGoal(id);
+
+            for (var i = 0; ++i < Mission.Handler.missions.Count; id = Mission.Handler.missions.Keys.ElementAt(i))
+                if (id.IndexOf('.') != -1 && id.Remove(id.IndexOf('.')) == mod.Identifier)
+                    Mission.Handler.UnregisterMission(id);
+
+            var events = new List<Tuple<Action<PathfinderEvent>, string, string>>();
+            foreach (var v in EventManager.eventListeners.Values)
+                events.AddRange(v.FindAll(t => t.Item3 == mod.Identifier));
+            foreach (var e in events)
+                EventManager.UnregisterListener(e.Item1);
+
+            mod.Unload();
+            mods.Remove(mod.Identifier);
         }
 
         internal static void OverridePortHack(ExecutablePortExecuteEvent e)
