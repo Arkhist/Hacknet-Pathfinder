@@ -32,6 +32,8 @@ namespace Pathfinder
         public static readonly string ModFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                                                           + Path.DirectorySeparatorChar + "Mods";
 
+        public static readonly string DepFolderPath = ModFolderPath + Path.DirectorySeparatorChar + "deps";
+
         public static void init()
         {
             Logger.Verbose("Registering Pathfinder listeners");
@@ -79,7 +81,22 @@ namespace Pathfinder
             if (!Directory.Exists(ModFolderPath))
                 Directory.CreateDirectory(ModFolderPath);
 
-            foreach (string dll in Directory.GetFiles(ModFolderPath + separator, "*.dll"))
+            if (Directory.Exists(DepFolderPath))
+            {
+                foreach (var dll in Directory.GetFiles(DepFolderPath + separator, "*.dll"))
+                {
+                    try
+                    {
+                        Assembly.LoadFrom(dll);
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Error("Loading Dependency '{0}' failed: \n\t{1}", dll, e);
+                    }
+                }
+            }
+
+            foreach (var dll in Directory.GetFiles(ModFolderPath + separator, "*.dll"))
             {
                 try
                 {
