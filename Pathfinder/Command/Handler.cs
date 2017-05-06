@@ -36,6 +36,24 @@ namespace Pathfinder.Command
             return false;
         }
 
+        /// <summary>
+        /// Removes a command from the game.
+        /// </summary>
+        /// <param name="key">The key used to run the command.</param>
+        /// <returns><c>true</c>, if command was removed, <c>false</c> otherwise.</returns>
+        public static bool RemoveCommand(string key)
+        {
+            Logger.Verbose("Mod {0} is attempting to remove command {1}", Utility.GetPreviousStackFrameIdentity(), key);
+            if(commands.Remove(key))
+            {
+                Helpfile.help.Remove(Helpfile.help.Find(h => h.Contains(key)));
+                ProgramList.programs.Remove(key);
+                return true;
+            }
+
+            return false;
+        }
+
         [Obsolete("The second argument of function should be a list instead of an array")]
         public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function)
         {
