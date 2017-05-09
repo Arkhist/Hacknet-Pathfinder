@@ -72,7 +72,7 @@ namespace Pathfinder.Util
         public static void Log(LogLevel level, params object[] input)
         {
             Tuple<LogLevel, string> t;
-            var prefix = IncludeModId ? Pathfinder.CurrentMod.Identifier+ " " : "";
+            var prefix = IncludeModId ? Utility.ActiveModId + " " : "";
             if (input.Length > 1)
                 t = new Tuple<LogLevel, string>(level,
                                                 String.Format("{0}[{1}]: {2}",

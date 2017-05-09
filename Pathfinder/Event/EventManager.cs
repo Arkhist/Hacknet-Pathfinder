@@ -25,7 +25,7 @@ namespace Pathfinder.Event
             if (String.IsNullOrEmpty(debugName))
                 debugName = "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
                                        + listener.Method.DeclaringType.FullName + "." + listener.Method.Name;
-            eventListeners[pathfinderEventType].Add(new Tuple<Action<PathfinderEvent>, string, string>(listener, debugName, Pathfinder.CurrentMod.Identifier));
+            eventListeners[pathfinderEventType].Add(new Tuple<Action<PathfinderEvent>, string, string>(listener, debugName, Utility.ActiveModId));
         }
 
         /// <summary>

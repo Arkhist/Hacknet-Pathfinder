@@ -32,6 +32,8 @@ namespace Pathfinder.Util
             return input;
         }
 
+        public static string ActiveModId => Pathfinder.CurrentMod?.Identifier ?? "Pathfinder";
+
         /// <summary>
         /// Retrieves an identifier for the input.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Pathfinder.Util
 
             xmlString = ignoreValidXml ? xmlString : ConvertToValidXmlAttributeName(xmlString);
             if (!ignorePeriod && inputId.IndexOf('.') == -1)
-                xmlString = Pathfinder.CurrentMod.Identifier + "." + xmlString;
+                xmlString = ActiveModId + "." + xmlString;
             return inputId.IndexOf('.') != -1 ? inputId.Remove(inputId.LastIndexOf('.')+1) + xmlString : inputId;
         }
 

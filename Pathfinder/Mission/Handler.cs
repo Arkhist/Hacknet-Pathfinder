@@ -13,7 +13,7 @@ namespace Pathfinder.Mission
         {
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission goal interface {1} with id {2}",
-                           Pathfinder.CurrentMod.Identifier,
+                           Utility.ActiveModId,
                            inter.GetType().FullName,
                            id);
             if (goals.ContainsKey(id))
@@ -38,7 +38,7 @@ namespace Pathfinder.Mission
         {
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission interface {1} with id {2}",
-                           Pathfinder.CurrentMod.Identifier,
+                           Utility.ActiveModId,
                            inter.GetType().FullName,
                            id);
             if (goals.ContainsKey(id))

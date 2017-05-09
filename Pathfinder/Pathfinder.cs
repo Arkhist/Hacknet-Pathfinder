@@ -165,32 +165,30 @@ namespace Pathfinder
             if (mod == null) return;
 
             CurrentMod = mod;
-
             string id = "";
 
-            for (var i = 0; ++i < Extension.Handler.idToInfo.Count; id = Extension.Handler.idToInfo.Keys.ElementAt(i))
-                if (id.IndexOf('.') != -1 && id.Remove(id.IndexOf('.')) == mod.Identifier)
-                    Extension.Handler.UnregisterExtension(id);
+            foreach (var e in Extension.Handler.idToInfo.ToArray())
+                if (e.Key.IndexOf('.') != -1 && e.Key.Remove(id.IndexOf('.')) == mod.Identifier)
+                    Extension.Handler.UnregisterExtension(e.Key);
 
-            for (var i = 0; ++i < Executable.Handler.idToInterface.Count; id = Executable.Handler.idToInterface.Keys.ElementAt(i))
-                if (id.IndexOf('.') != -1 && id.Remove(id.IndexOf('.')) == mod.Identifier)
+            foreach (var e in Executable.Handler.idToInterface.ToArray())
+                if (e.Key.IndexOf('.') != -1 && id.Remove(id.IndexOf('.')) == mod.Identifier)
                     Executable.Handler.UnregisterExecutable(id);
 
-            for (var i = 0; ++i < Daemon.Handler.idToInterface.Count; id = Daemon.Handler.idToInterface.Keys.ElementAt(i))
-                if (id.IndexOf('.') != -1 && id.Remove(id.IndexOf('.')) == mod.Identifier)
-                    Daemon.Handler.UnregisterDaemon(id);
+            foreach (var d in Daemon.Handler.idToInterface.ToArray())
+                if (d.Key.IndexOf('.') != -1 && d.Key.Remove(d.Key.IndexOf('.')) == mod.Identifier)
+                    Daemon.Handler.UnregisterDaemon(d.Key);
 
-            //var pair = new KeyValuePair<string, Tuple<Func<Hacknet.OS, List<string>, bool>, string>>();
-            Command.Handler.commands.Where(pair => pair.Value.Item2 == mod.Identifier)
-                              .Select(pair => Command.Handler.UnregisterCommand(pair.Key));
+            foreach (var c in Command.Handler.modToCommands[mod.Identifier].ToArray())
+                Command.Handler.UnregisterCommand(c);
 
-            for (var i = 0; ++i < Mission.Handler.goals.Count; id = Mission.Handler.goals.Keys.ElementAt(i))
-                if (id.IndexOf('.') != -1 && id.Remove(id.IndexOf('.')) == mod.Identifier)
-                    Mission.Handler.UnregisterMissionGoal(id);
+            foreach (var g in Mission.Handler.goals.ToArray())
+                if (g.Key.IndexOf('.') != -1 && g.Key.Remove(g.Key.IndexOf('.')) == mod.Identifier)
+                    Mission.Handler.UnregisterMissionGoal(g.Key);
 
-            for (var i = 0; ++i < Mission.Handler.missions.Count; id = Mission.Handler.missions.Keys.ElementAt(i))
-                if (id.IndexOf('.') != -1 && id.Remove(id.IndexOf('.')) == mod.Identifier)
-                    Mission.Handler.UnregisterMission(id);
+            foreach (var m in Mission.Handler.missions.ToArray())
+                if (m.Key.IndexOf('.') != -1 && m.Key.Remove(m.Key.IndexOf('.')) == mod.Identifier)
+                    Mission.Handler.UnregisterMission(m.Key);
 
             var events = new List<Tuple<Action<PathfinderEvent>, string, string>>();
             foreach (var v in EventManager.eventListeners.Values)

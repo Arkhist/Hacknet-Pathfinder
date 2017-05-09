@@ -10,8 +10,9 @@ namespace Pathfinder.Command
 {
     public static class Handler
     {
-        internal static Dictionary<string, Tuple<Func<Hacknet.OS, List<string>, bool>, string>> commands =
-            new Dictionary<string, Tuple<Func<Hacknet.OS, List<string>, bool>, string>>();
+        internal static Dictionary<string, Func<Hacknet.OS, List<string>, bool>> commands =
+                    new Dictionary<string, Func<Hacknet.OS, List<string>, bool>>();
+        internal static Dictionary<string, List<string>> modToCommands = new Dictionary<string, List<string>>();
 
         private static Dictionary<string, string> help = new Dictionary<string, string>();
 
@@ -28,22 +29,28 @@ namespace Pathfinder.Command
                                       string description = null,
                                       bool autoComplete = false)
         {
-            Logger.Verbose("Mod {0} is attempting to add command {1}", Pathfinder.CurrentMod.Identifier, key);
+            Logger.Verbose("Mod {0} is attempting to add command {1}", Utility.ActiveModId, key);
             if (commands.ContainsKey(key))
                 return null;
-            commands.Add(key, new Tuple<Func<Hacknet.OS, List<string>, bool>, string>(function, Pathfinder.CurrentMod.Identifier));
+            commands.Add(key, function);
+            if(!modToCommands.ContainsKey(Utility.ActiveModId))
+                modToCommands.Add(Utility.ActiveModId, new List<string>());
+            modToCommands[Utility.ActiveModId].Add(key);
             if (description != null)
                 //Helpfile.help.Add(key + "\n    " + description);
                 help.Add(key, description);
             if(autoComplete && !ProgramList.programs.Contains(key))
                     ProgramList.programs.Add(key);
-            return Pathfinder.CurrentMod.Identifier + '.' + key;
+            return Utility.ActiveModId + '.' + key;
         }
 
         internal static bool UnregisterCommand(string key)
         {
+            Logger.Info("unreg 1 {0}", key);
             if (!commands.ContainsKey(key))
                 return true;
+            Logger.Info("unreg 2");
+            modToCommands[Utility.ActiveModId].Remove(key);
             help.Remove(key);
             ProgramList.programs.Remove(key);
             return commands.Remove(key);
@@ -68,13 +75,13 @@ namespace Pathfinder.Command
 
         internal static void CommandListener(CommandSentEvent e)
         {
-            Tuple<Func<Hacknet.OS, List<string>, bool>, string> f;
+            Func<Hacknet.OS, List<string>, bool> f;
             if (commands.TryGetValue(e.Arguments[0], out f))
             {
                 e.IsCancelled = true;
                 try
                 {
-                    e.Disconnects = f.Item1(e.OS, e.Arguments);
+                    e.Disconnects = f(e.OS, e.Arguments);
                 }
                 catch (Exception ex)
                 {

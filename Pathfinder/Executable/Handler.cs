@@ -22,7 +22,7 @@ namespace Pathfinder.Executable
         {
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod '{0}' is attempting to add executable interface {1} with id {2}",
-                           Pathfinder.CurrentMod.Identifier,
+                           Utility.ActiveModId,
                            inter.GetType().FullName,
                            id);
             if (idToInterface.ContainsKey(id))

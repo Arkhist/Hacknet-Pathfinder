@@ -13,7 +13,7 @@ namespace Pathfinder.Daemon
         {
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add daemon interface {1} with id {2}",
-                           Pathfinder.CurrentMod.Identifier,
+                           Utility.ActiveModId,
                            inter.GetType().FullName,
                            id);
             if (idToInterface.ContainsKey(id))

@@ -39,9 +39,17 @@ namespace Pathfinder.GUI
             unloadButtons.Clear();
             foreach (var id in ids)
             {
+                var mod = Pathfinder.GetMod(id);
+                var loc = mod.GetType().Assembly.Location;
                 unloadButtons[id] = new Button(-1, -1, 100, 30, "Unload")
                 {
-                    DrawFinish = r => { if (r.JustReleased) { Pathfinder.UnloadMod(Pathfinder.GetMod(id)); disabledModIds.Add(id); } }
+                    DrawFinish = r => {
+                        if (r.JustReleased)
+                        {
+                            Pathfinder.UnloadMod(mod);
+                            disabledModIds.Add(id);
+                        }
+                    }
                 };
                 reloadButtons[id] = new GUI.Button(-1, -1, 100, 30, "Load")
                 {
@@ -51,10 +59,10 @@ namespace Pathfinder.GUI
                         {
                             try
                             {
-                                Pathfinder.LoadMod(Pathfinder.GetMod(id).GetType().Assembly.Location, true);
+                                Pathfinder.LoadMod(loc, true);
+                                disabledModIds.Remove(id);
                             }
-                            catch (Exception) { }
-                            disabledModIds.Remove(id);
+                            catch (Exception) {}
                         }
                     }
                 };
@@ -93,7 +101,7 @@ namespace Pathfinder.GUI
 
             Gui.TextItem.doFontLabel(new Vector2(200, yPos), "Disabled Mods", GuiData.font, Color.White);
             yPos += 50;
-
+            index = 0;
             foreach (var id in disabledModIds)
             {
                 b = reloadButtons[id];
