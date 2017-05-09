@@ -15,7 +15,7 @@ using Pathfinder.Util;
 
 namespace Pathfinder
 {
-    static class Pathfinder
+    public static class Pathfinder
     {
         /*private static readonly Version AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
         public static readonly Version Version = new Version(AssemblyVersion.Major,AssemblyVersion.Minor,1);
@@ -28,11 +28,14 @@ namespace Pathfinder
 
         private static Dictionary<string, IPathfinderMod> mods = new Dictionary<string, IPathfinderMod>();
         //private static bool currentSaveMissingMods = false;
+        private static Dictionary<string, GUI.Button> unloadedMods = new Dictionary<string, GUI.Button>();
 
         public static readonly string ModFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                                                           + Path.DirectorySeparatorChar + "Mods";
 
         public static readonly string DepFolderPath = ModFolderPath + Path.DirectorySeparatorChar + "deps";
+
+        public static IPathfinderMod CurrentMod { get; private set; }
 
         public static void init()
         {
@@ -68,11 +71,6 @@ namespace Pathfinder
             LoadMods();
         }
 
-        public static void testEventListener(PathfinderEvent pathfinderEvent)
-        {
-            Console.WriteLine("HEY ! LISTEN !!");
-        }
-
         public static void LoadMods()
         {
             var separator = Path.DirectorySeparatorChar;
@@ -98,51 +96,12 @@ namespace Pathfinder
 
             foreach (var dll in Directory.GetFiles(ModFolderPath + separator, "*.dll"))
             {
-                try
-                {
-                    var modAssembly = Assembly.LoadFile(dll);
-                    Type modType = null;
-                    foreach (Type t in (modAssembly.GetExportedTypes().Where(t =>
-                                                                     t.IsClass && !t.IsAbstract
-                                                                     && typeof(IPathfinderMod).IsAssignableFrom(t))))
-                    {
-                        string name = null;
-                        try
-                        {
-                            modType = t;
-                            var modInstance = (IPathfinderMod)Activator.CreateInstance(modType);
-
-                            var methodInfo = modType.GetProperty("Identifier").GetGetMethod();
-                            if (methodInfo == null)
-                                throw new NotSupportedException("Method 'Identifier' doesn't exist, mod '"
-                                                                + Path.GetFileName(modAssembly.Location) + "' is invalid");
-                            name = ((string)methodInfo.Invoke(modInstance, null)).Trim();
-                            if (IsModLoaded(name))
-                                throw new ExceptionInvalidId("Mod identifier '" + name + "' is either already loaded or is reserved");
-                            if (name.Contains('.'))
-                                throw new ExceptionInvalidId("Mod identifier '" + name + "' contains a period, mod identifiers may not contain a period (.)");
-                            if (Char.IsDigit(name[0]))
-                                throw new ExceptionInvalidId("Mod identifier '" + name + "' starts with a digit, mod identifiers may not start with digits");
-                            Logger.Info("Loading mod '{0}'", name);
-
-                            mods.Add(name, modInstance);
-
-                            modInstance.Load();
-                        }
-                        catch (Exception ex)
-                        {
-                            Logger.Error("Mod '{0}' of file '{1}' failed to load:\n\t{2}", t.FullName, Path.GetFileName(dll), ex);
-                            if (mods.ContainsKey(name))
-                                mods.Remove(name);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error("Mod file '{0}' failed to load:\n\t{1}", Path.GetFileName(dll), ex);
-                }
+                LoadMod(dll);
             }
         }
+
+        private static IEnumerable<Type> GetModTypes(this Assembly asm) =>
+            asm.GetExportedTypes().Where(t =>  t.IsClass && !t.IsAbstract && typeof(IPathfinderMod).IsAssignableFrom(t));
 
         /// <summary>
         /// Determines whether a mod is loaded
@@ -172,8 +131,10 @@ namespace Pathfinder
         {
             foreach (var mod in mods)
             {
+                CurrentMod = mod.Value;
                 Logger.Verbose("Loading mod '{0}'s content", mod.Key);
                 mod.Value.LoadContent();
+                CurrentMod = null;
             }
         }
 
@@ -192,14 +153,18 @@ namespace Pathfinder
         {
             foreach (var mod in mods)
             {
+                CurrentMod = mod.Value;
                 Logger.Verbose("Unloading mod '{0}'", mod.Key);
                 mod.Value.Unload();
+                CurrentMod = null;
             }
         }
 
         internal static void UnloadMod(IPathfinderMod mod)
         {
             if (mod == null) return;
+
+            CurrentMod = mod;
 
             string id = "";
 
@@ -235,6 +200,59 @@ namespace Pathfinder
 
             mod.Unload();
             mods.Remove(mod.Identifier);
+            CurrentMod = null;
+        }
+
+        internal static IPathfinderMod LoadMod(Type modType)
+        {
+            string name = null;
+            IPathfinderMod modInstance = null;
+            try
+            {
+                modInstance = (IPathfinderMod)Activator.CreateInstance(modType);
+                CurrentMod = modInstance;
+                var methodInfo = modType.GetProperty("Identifier").GetGetMethod();
+                if (methodInfo == null)
+                    throw new NotSupportedException("Method 'Identifier' doesn't exist, mod '"
+                                                    + Path.GetFileName(modType.Assembly.Location) + "' is invalid");
+                name = ((string)methodInfo.Invoke(modInstance, null)).Trim();
+                if (IsModLoaded(name))
+                    throw new ExceptionInvalidId("Mod identifier '" + name + "' is either already loaded or is reserved");
+                if (name.Contains('.'))
+                    throw new ExceptionInvalidId("Mod identifier '" + name + "' contains a period, mod identifiers may not contain a period (.)");
+                if (Char.IsDigit(name[0]))
+                    throw new ExceptionInvalidId("Mod identifier '" + name + "' starts with a digit, mod identifiers may not start with digits");
+                Logger.Info("Loading mod '{0}'", name);
+
+                mods.Add(name, modInstance);
+
+                modInstance.Load();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Mod '{0}' of file '{1}' failed to load:\n\t{2}", modType.FullName, Path.GetFileName(modType.Assembly.Location), ex);
+                if (mods.ContainsKey(name))
+                    mods.Remove(name);
+            }
+            CurrentMod = null;
+            return modInstance;
+        }
+
+        internal static void LoadMod(string path, bool noCatch = false)
+        {
+            if (noCatch)
+                foreach (Type t in Assembly.LoadFile(path).GetModTypes())
+                   LoadMod(t);
+            else
+                try
+                {
+                    foreach (Type t in Assembly.LoadFile(path).GetModTypes())
+                        LoadMod(t);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error("Mod file '{0}' failed to load:\n\t{1}", Path.GetFileName(path), ex);
+                }
         }
 
         internal static void OverridePortHack(ExecutablePortExecuteEvent e)

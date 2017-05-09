@@ -9,13 +9,11 @@ namespace Pathfinder.Mission
         internal static Dictionary<string, IMissionGoal> goals = new Dictionary<string, IMissionGoal>();
         internal static Dictionary<string, IInterface> missions = new Dictionary<string, IInterface>();
 
-        private static int modBacktrack = 3;
-
         public static string RegisterMissionGoal(string id, IMissionGoal inter)
         {
-            id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
+            id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission goal interface {1} with id {2}",
-                           Utility.GetPreviousStackFrameIdentity(),
+                           Pathfinder.CurrentMod.Identifier,
                            inter.GetType().FullName,
                            id);
             if (goals.ContainsKey(id))
@@ -26,13 +24,7 @@ namespace Pathfinder.Mission
         }
 
         [Obsolete("Use RegisterMissionGoal")]
-        public static bool AddMissionGoal(string id, IMissionGoal inter)
-        {
-            modBacktrack += 1;
-            var b = RegisterMissionGoal(id, inter);
-            modBacktrack = 3;
-            return b != null;
-        }
+        public static bool AddMissionGoal(string id, IMissionGoal inter) => RegisterMissionGoal(id, inter) != null;
 
         internal static bool UnregisterMissionGoal(string id)
         {
@@ -44,9 +36,9 @@ namespace Pathfinder.Mission
 
         public static string RegisterMission(string id, IInterface inter)
         {
-            id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
+            id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission interface {1} with id {2}",
-                           Utility.GetPreviousStackFrameIdentity(),
+                           Pathfinder.CurrentMod.Identifier,
                            inter.GetType().FullName,
                            id);
             if (goals.ContainsKey(id))
@@ -57,13 +49,7 @@ namespace Pathfinder.Mission
         }
 
         [Obsolete("Use RegisterMission")]
-        public static bool AddMission(string id, IInterface inter)
-        {
-            modBacktrack += 1;
-            var b = RegisterMission(id, inter);
-            modBacktrack = 3;
-            return b != null;
-        }
+        public static bool AddMission(string id, IInterface inter) => RegisterMission(id, inter) != null;
 
         internal static bool UnregisterMission(string id)
         {

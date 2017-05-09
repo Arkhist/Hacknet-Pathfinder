@@ -10,7 +10,13 @@ namespace Pathfinder.Event
         internal static Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string>>> eventListeners =
             new Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string>>>();
 
-        private static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string debugName, string modId)
+        /// <summary>
+        /// Registers an event listener by runtime type.
+        /// </summary>
+        /// <param name="pathfinderEventType">The PathfinderEvent Runtime Type to register for</param>
+        /// <param name="listener">The listener function that will be executed on an event call</param>
+        /// <param name="debugName">Name to assign for debug purposes</param>
+        public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string debugName)
         {
             if (!eventListeners.ContainsKey(pathfinderEventType))
             {
@@ -19,18 +25,7 @@ namespace Pathfinder.Event
             if (String.IsNullOrEmpty(debugName))
                 debugName = "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
                                        + listener.Method.DeclaringType.FullName + "." + listener.Method.Name;
-            eventListeners[pathfinderEventType].Add(new Tuple<Action<PathfinderEvent>, string, string>(listener, debugName, modId));
-        }
-
-        /// <summary>
-        /// Registers an event listener by runtime type.
-        /// </summary>
-        /// <param name="pathfinderEventType">The PathfinderEvent Runtime Type to register for</param>
-        /// <param name="listener">The listener function that will be executed on an event call</param>
-        /// <param name="debugName">Name to assign for debug purposes</param>
-        public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string debugName = null)
-        {
-            RegisterListener(pathfinderEventType, listener, debugName, Utility.GetPreviousStackFrameIdentity());
+            eventListeners[pathfinderEventType].Add(new Tuple<Action<PathfinderEvent>, string, string>(listener, debugName, Pathfinder.CurrentMod.Identifier));
         }
 
         /// <summary>
@@ -44,8 +39,7 @@ namespace Pathfinder.Event
             RegisterListener(typeof(T), (e) => listener.Invoke((T)e),
                              String.IsNullOrEmpty(debugName) ?
                              "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
-                             + listener.Method.DeclaringType.FullName + "." + listener.Method.Name : debugName,
-                             Utility.GetPreviousStackFrameIdentity());
+                             + listener.Method.DeclaringType.FullName + "." + listener.Method.Name : debugName);
         }
 
         /// <summary>

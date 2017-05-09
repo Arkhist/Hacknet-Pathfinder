@@ -113,6 +113,14 @@ namespace PathfinderPatcher
                     t.IsNestedPublic = true;
                 }
 
+                type = ad.MainModule.GetType("Hacknet.Helpfile");
+                foreach (var f in type.Fields)
+                {
+                    if (!f.IsPrivate) continue;
+                    f.IsPrivate = false;
+                    f.IsAssembly = true;
+                }
+
                 if (spitOutHacknetOnly)
                 {
                     ad?.Write("HacknetPathfinder.exe");

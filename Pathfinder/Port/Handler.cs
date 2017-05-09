@@ -8,13 +8,10 @@ namespace Pathfinder.Port
     {
         internal static Dictionary<string, Type> idToPortType = new Dictionary<string, Type>();
 
-        private static int modBacktrack = 3;
-
         public static string RegisterPort(string id, Type port)
         {
-            id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
-            Logger.Verbose("Mod {0} attempting to register port [{1}] with id {2}",
-                           Utility.GetPreviousStackFrameIdentity(modBacktrack - 1), port, id);
+            id = Utility.GetId(id, throwFindingPeriod: true);
+            Logger.Verbose("Mod {0} attempting to register port [{1}] with id {2}", Pathfinder.CurrentMod.Identifier, port, id);
             if (idToPortType.ContainsKey(id))
                 return null;
             port.PortId = id;
@@ -23,13 +20,7 @@ namespace Pathfinder.Port
         }
 
         [Obsolete("Use RegisterPort")]
-        public static bool AddPort(string id, Type port)
-        {
-            modBacktrack += 1;
-            var b = RegisterPort(id, port);
-            modBacktrack = 3;
-            return b != null;
-        }
+        public static bool AddPort(string id, Type port) => RegisterPort(id, port) != null;
 
         internal static bool UnregisterPort(string id)
         {

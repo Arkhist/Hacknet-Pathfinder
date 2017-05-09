@@ -1,7 +1,5 @@
 ﻿#pragma warning disable RECS0137 // Method with optional parameter is hidden by overload
 using System;
-using System.Diagnostics;
-using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace Pathfinder.Util
@@ -22,22 +20,6 @@ namespace Pathfinder.Util
         private static Regex xmlAttribRegex = new Regex("[^a-zA-Z0-9_.]");
 
         /// <summary>
-        /// Gets the previous stack frame identity.
-        /// </summary>
-        /// <returns>The previous stack frame identity.</returns>
-        /// <param name="frameSkip">The frames to skip back to.</param>
-        public static string GetPreviousStackFrameIdentity(int frameSkip = 2)
-        {
-            var result = "";
-            var asm = new StackFrame(frameSkip).GetMethod().Module.Assembly;
-            if (asm == MethodBase.GetCurrentMethod().Module.Assembly)
-                result = "Pathfinder";
-            else
-                result = Pathfinder.GetModByAssembly(asm).Identifier;
-            return result;
-        }
-
-        /// <summary>
         /// Converts the input to a valid xml attribute name.
         /// </summary>
         /// <returns>A valid xml attribute name.</returns>
@@ -56,9 +38,8 @@ namespace Pathfinder.Util
         /// <returns>The resulting identifier.</returns>
         /// <param name="inputId">Input identifier.</param>
         /// <param name="ignorePeriod">If set to <c>true</c> ignore period.</param>
-        /// <param name="frameSkip">The frames to skip back to.</param>
         /// <param name="ignoreValidXml">If set to <c>true</c> ignore valid xml.</param>
-        public static string GetId(string inputId, bool ignorePeriod = false, int frameSkip = 3, bool ignoreValidXml = false, bool throwFindingPeriod = false)
+        public static string GetId(string inputId, bool ignorePeriod = false, bool ignoreValidXml = false, bool throwFindingPeriod = false)
         {
             if (throwFindingPeriod && inputId.IndexOf('.') != -1)
                 throw new ArgumentException("inputId can't have a period in it", nameof(inputId));
@@ -66,7 +47,7 @@ namespace Pathfinder.Util
 
             xmlString = ignoreValidXml ? xmlString : ConvertToValidXmlAttributeName(xmlString);
             if (!ignorePeriod && inputId.IndexOf('.') == -1)
-                xmlString = GetPreviousStackFrameIdentity(frameSkip) + "." + xmlString;
+                xmlString = Pathfinder.CurrentMod.Identifier + "." + xmlString;
             return inputId.IndexOf('.') != -1 ? inputId.Remove(inputId.LastIndexOf('.')+1) + xmlString : inputId;
         }
 

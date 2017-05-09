@@ -9,30 +9,21 @@ namespace Pathfinder.Daemon
     {
         internal static Dictionary<string, IInterface> idToInterface = new Dictionary<string, IInterface>();
 
-        private static int modBacktrack = 3;
-
         public static string RegisterDaemon(string id, IInterface inter)
         {
-            id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
+            id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add daemon interface {1} with id {2}",
-                           Utility.GetPreviousStackFrameIdentity(modBacktrack-1),
+                           Pathfinder.CurrentMod.Identifier,
                            inter.GetType().FullName,
                            id);
             if (idToInterface.ContainsKey(id))
                 return null;
-
             idToInterface.Add(id, inter);
             return id;
         }
 
         [Obsolete("Use RegisterDaemon")]
-        public static bool AddDaemon(string id, IInterface inter)
-        {
-            modBacktrack += 1;
-            var b = RegisterDaemon(id, inter);
-            modBacktrack = 3;
-            return b != null;
-        }
+        public static bool AddDaemon(string id, IInterface inter) => RegisterDaemon(id, inter) != null;
 
         internal static bool UnregisterDaemon(string id)
         {

@@ -12,8 +12,6 @@ namespace Pathfinder.Executable
         internal static Dictionary<string, IInterface> idToInterface = new Dictionary<string, IInterface>();
         private static Dictionary<string, string> idToDataCache = new Dictionary<string, string>();
 
-        private static int modBacktrack = 3;
-
         /// <summary>
         /// Adds an executable interface by id.
         /// </summary>
@@ -22,9 +20,9 @@ namespace Pathfinder.Executable
         /// <param name="inter">The interface object.</param>
         public static string RegisterExecutable(string id, IInterface inter)
         {
-            id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
+            id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod '{0}' is attempting to add executable interface {1} with id {2}",
-                           Utility.GetPreviousStackFrameIdentity(modBacktrack-1),
+                           Pathfinder.CurrentMod.Identifier,
                            inter.GetType().FullName,
                            id);
             if (idToInterface.ContainsKey(id))
@@ -40,13 +38,7 @@ namespace Pathfinder.Executable
         }
 
         [Obsolete("Use RegisterExecutable")]
-        public static bool AddExecutable(string id, IInterface inter)
-        {
-            modBacktrack += 1;
-            var b = RegisterExecutable(id, inter);
-            modBacktrack = 3;
-            return b != null;
-        }
+        public static bool AddExecutable(string id, IInterface inter) => RegisterExecutable(id, inter) != null;
 
         internal static bool UnregisterExecutable(string id)
         {

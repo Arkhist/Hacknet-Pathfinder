@@ -34,7 +34,7 @@ namespace Pathfinder.Extension
         {
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to register extension {1} with id {2}",
-                           Utility.GetPreviousStackFrameIdentity(),
+                           Pathfinder.CurrentMod.Identifier,
                            extensionInfo.GetType().FullName,
                            id);
             if (idToInfo.ContainsKey(id))
@@ -56,7 +56,6 @@ namespace Pathfinder.Extension
             id = Utility.GetId(id);
             if (!idToInfo.ContainsKey(id))
                 return true;
-
             var info = idToInfo[id];
             info.Id = null;
             idToLogo.Remove(id);
