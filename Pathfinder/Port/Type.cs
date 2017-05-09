@@ -40,7 +40,7 @@ namespace Pathfinder.Port
                                 && PortDisplay == other.PortDisplay
                                 && PortId == other.PortId;
         public bool Equals(Instance other) => Equals(other?.Port);
-        public override string ToString() => string.Format("{0} {1}", PortDisplay, PortName);
+        public override string ToString() => PortId ?? (PortDisplay + " " + PortName);
         public static Type GetById(string portId)
         {
             portId = Utility.GetId(portId);

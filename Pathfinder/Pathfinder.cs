@@ -118,9 +118,11 @@ namespace Pathfinder
                                                                 + Path.GetFileName(modAssembly.Location) + "' is invalid");
                             name = ((string)methodInfo.Invoke(modInstance, null)).Trim();
                             if (IsModLoaded(name))
-                                throw new ExceptionInvalidId("Mod with identifier '" + name + "' is either already loaded or is reserved");
+                                throw new ExceptionInvalidId("Mod identifier '" + name + "' is either already loaded or is reserved");
                             if (name.Contains('.'))
                                 throw new ExceptionInvalidId("Mod identifier '" + name + "' contains a period, mod identifiers may not contain a period (.)");
+                            if (Char.IsDigit(name[0]))
+                                throw new ExceptionInvalidId("Mod identifier '" + name + "' starts with a digit, mod identifiers may not start with digits");
                             Logger.Info("Loading mod '{0}'", name);
 
                             mods.Add(name, modInstance);

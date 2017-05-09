@@ -11,7 +11,7 @@ namespace Pathfinder.Mission
 
         private static int modBacktrack = 3;
 
-        public static bool RegisterMissionGoal(string id, IMissionGoal inter)
+        public static string RegisterMissionGoal(string id, IMissionGoal inter)
         {
             id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission goal interface {1} with id {2}",
@@ -19,10 +19,10 @@ namespace Pathfinder.Mission
                            inter.GetType().FullName,
                            id);
             if (goals.ContainsKey(id))
-                return false;
+                return null;
 
             goals.Add(id, inter);
-            return true;
+            return id;
         }
 
         [Obsolete("Use RegisterMissionGoal")]
@@ -31,7 +31,7 @@ namespace Pathfinder.Mission
             modBacktrack += 1;
             var b = RegisterMissionGoal(id, inter);
             modBacktrack = 3;
-            return b;
+            return b != null;
         }
 
         internal static bool UnregisterMissionGoal(string id)
@@ -42,7 +42,7 @@ namespace Pathfinder.Mission
             return goals.Remove(id);
         }
 
-        public static bool RegisterMission(string id, IInterface inter)
+        public static string RegisterMission(string id, IInterface inter)
         {
             id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission interface {1} with id {2}",
@@ -50,10 +50,10 @@ namespace Pathfinder.Mission
                            inter.GetType().FullName,
                            id);
             if (goals.ContainsKey(id))
-                return false;
+                return null;
 
             missions.Add(id, inter);
-            return true;
+            return id;
         }
 
         [Obsolete("Use RegisterMission")]
@@ -62,7 +62,7 @@ namespace Pathfinder.Mission
             modBacktrack += 1;
             var b = RegisterMission(id, inter);
             modBacktrack = 3;
-            return b;
+            return b != null;
         }
 
         internal static bool UnregisterMission(string id)

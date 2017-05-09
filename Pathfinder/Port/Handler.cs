@@ -10,16 +10,16 @@ namespace Pathfinder.Port
 
         private static int modBacktrack = 3;
 
-        public static bool RegisterPort(string id, Type port)
+        public static string RegisterPort(string id, Type port)
         {
             id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to register port [{1}] with id {2}",
                            Utility.GetPreviousStackFrameIdentity(modBacktrack - 1), port, id);
             if (idToPortType.ContainsKey(id))
-                return false;
+                return null;
             port.PortId = id;
             idToPortType.Add(id, port);
-            return true;
+            return id;
         }
 
         [Obsolete("Use RegisterPort")]
@@ -28,7 +28,7 @@ namespace Pathfinder.Port
             modBacktrack += 1;
             var b = RegisterPort(id, port);
             modBacktrack = 3;
-            return b;
+            return b != null;
         }
 
         internal static bool UnregisterPort(string id)

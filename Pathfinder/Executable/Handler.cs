@@ -17,10 +17,10 @@ namespace Pathfinder.Executable
         /// <summary>
         /// Adds an executable interface by id.
         /// </summary>
-        /// <returns><c>true</c>, if executable was added, <c>false</c> otherwise.</returns>
+        /// <returns>The full mod id if added to the game, <c>null</c> otherwise.</returns>
         /// <param name="id">The Executable Identifier to try and add.</param>
         /// <param name="inter">The interface object.</param>
-        public static bool RegisterExecutable(string id, IInterface inter)
+        public static string RegisterExecutable(string id, IInterface inter)
         {
             id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
             Logger.Verbose("Mod '{0}' is attempting to add executable interface {1} with id {2}",
@@ -28,7 +28,7 @@ namespace Pathfinder.Executable
                            inter.GetType().FullName,
                            id);
             if (idToInterface.ContainsKey(id))
-                return false;
+                return null;
             var type = inter.GetType();
             var fileData = id + "\nldloc.args\ncall Pathfinder.Executable.Instance [" + type.Assembly.GetName().Name + ".dll]"
                                                      + type.FullName + "=" + id + "()";
@@ -36,7 +36,7 @@ namespace Pathfinder.Executable
                 throw new ArgumentException("created data for '" + id + "' is not unique");
             idToInterface.Add(id, inter);
             idToDataCache.Add(id, fileData);
-            return true;
+            return id;
         }
 
         [Obsolete("Use RegisterExecutable")]
@@ -45,7 +45,7 @@ namespace Pathfinder.Executable
             modBacktrack += 1;
             var b = RegisterExecutable(id, inter);
             modBacktrack = 3;
-            return b;
+            return b != null;
         }
 
         internal static bool UnregisterExecutable(string id)

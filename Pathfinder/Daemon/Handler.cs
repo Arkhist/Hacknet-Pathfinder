@@ -11,7 +11,7 @@ namespace Pathfinder.Daemon
 
         private static int modBacktrack = 3;
 
-        public static bool RegisterDaemon(string id, IInterface inter)
+        public static string RegisterDaemon(string id, IInterface inter)
         {
             id = Utility.GetId(id, frameSkip: modBacktrack, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add daemon interface {1} with id {2}",
@@ -19,10 +19,10 @@ namespace Pathfinder.Daemon
                            inter.GetType().FullName,
                            id);
             if (idToInterface.ContainsKey(id))
-                return false;
+                return null;
 
             idToInterface.Add(id, inter);
-            return true;
+            return id;
         }
 
         [Obsolete("Use RegisterDaemon")]
@@ -31,7 +31,7 @@ namespace Pathfinder.Daemon
             modBacktrack += 1;
             var b = RegisterDaemon(id, inter);
             modBacktrack = 3;
-            return b;
+            return b != null;
         }
 
         internal static bool UnregisterDaemon(string id)

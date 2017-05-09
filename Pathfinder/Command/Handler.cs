@@ -17,25 +17,26 @@ namespace Pathfinder.Command
         /// <summary>
         /// Adds a command to the game.
         /// </summary>
-        /// <returns><c>true</c>, if command was added, <c>false</c> otherwise.</returns>
+        /// <returns>The full mod command id if added to the game, <c>null</c> otherwise</returns>
         /// <param name="key">The key used to run the command.</param>
         /// <param name="function">The function run when command is input.</param>
         /// <param name="description">A description to input when help is command is run (if not null).</param>
         /// <param name="autoComplete">If set to <c>true</c> then autocomplete for command is enabled.</param>
-        public static bool ResgisterCommand(string key,
+        public static string ResgisterCommand(string key,
                                       Func<Hacknet.OS, List<string>, bool> function,
                                       string description = null,
                                       bool autoComplete = false)
         {
             Logger.Verbose("Mod {0} is attempting to add command {1}", Utility.GetPreviousStackFrameIdentity(modBacktrack), key);
             if (commands.ContainsKey(key))
-                return false;
-            commands.Add(key, new Tuple<Func<Hacknet.OS, List<string>, bool>, string>(function, Utility.GetPreviousStackFrameIdentity()));
+                return null;
+            string modid = Utility.GetPreviousStackFrameIdentity(modBacktrack);
+            commands.Add(key, new Tuple<Func<Hacknet.OS, List<string>, bool>, string>(function, modid));
             if (description != null)
                 Helpfile.help.Add(key + "\n    " + description);
             if(autoComplete && !ProgramList.programs.Contains(key))
                     ProgramList.programs.Add(key);
-            return false;
+            return modid + '.' + key;
         }
 
         internal static bool UnregisterCommand(string key)
@@ -54,7 +55,7 @@ namespace Pathfinder.Command
             modBacktrack += 1;
             var b = ResgisterCommand(key, function, description, autoComplete);
             modBacktrack = 2;
-            return b;
+            return b != null;
         }
 
         [Obsolete("The second argument of function should be a list instead of an array")]

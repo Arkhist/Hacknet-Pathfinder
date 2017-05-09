@@ -30,7 +30,7 @@ namespace Pathfinder.Extension
         private static bool buttonsLoaded;
         private static bool modHandled;
 
-        public static bool RegisterExtension(string id, Info extensionInfo)
+        public static string RegisterExtension(string id, Info extensionInfo)
         {
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to register extension {1} with id {2}",
@@ -38,7 +38,7 @@ namespace Pathfinder.Extension
                            extensionInfo.GetType().FullName,
                            id);
             if (idToInfo.ContainsKey(id))
-                return false;
+                return null;
 
             extensionInfo.Id = id;
             idToInfo.Add(id, extensionInfo);
@@ -48,7 +48,7 @@ namespace Pathfinder.Extension
                     t = Texture2D.FromStream(Game1.getSingleton().GraphicsDevice, fs);
             idToLogo.Add(id, t);
             idToButton.Add(id, new GUI.Button(-1, -1, 450, 50, extensionInfo.Name, Color.White));
-            return true;
+            return id;
         }
 
         internal static bool UnregisterExtension(string id)
