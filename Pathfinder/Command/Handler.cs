@@ -22,7 +22,7 @@ namespace Pathfinder.Command
         /// <param name="function">The function run when command is input.</param>
         /// <param name="description">A description to input when help is command is run (if not null).</param>
         /// <param name="autoComplete">If set to <c>true</c> then autocomplete for command is enabled.</param>
-        public static string ResgisterCommand(string key,
+        public static string RegisterCommand(string key,
                                       Func<Hacknet.OS, List<string>, bool> function,
                                       string description = null,
                                       bool autoComplete = false)
@@ -53,7 +53,7 @@ namespace Pathfinder.Command
                                       bool autoComplete = false)
         {
             modBacktrack += 1;
-            var b = ResgisterCommand(key, function, description, autoComplete);
+            var b = RegisterCommand(key, function, description, autoComplete);
             modBacktrack = 2;
             return b != null;
         }
