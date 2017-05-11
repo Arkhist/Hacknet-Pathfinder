@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Pathfinder.Event;
 using Pathfinder.Util;
 
 namespace Pathfinder.Daemon
@@ -33,32 +32,16 @@ namespace Pathfinder.Daemon
             return idToInterface.Remove(id);
         }
 
-        public static bool ContainsDaemon(string id)
-        {
-            return idToInterface.ContainsKey(Utility.GetId(id));
-        }
+        public static bool ContainsDaemon(string id) => ContainsDaemon(ref id);
+        public static bool ContainsDaemon(ref string id) => idToInterface.ContainsKey(id = Utility.GetId(id));
 
-        public static IInterface GetDaemonById(string id)
+        public static IInterface GetDaemonById(string id) => GetDaemonById(ref id);
+        public static IInterface GetDaemonById(ref string id)
         {
             id = Utility.GetId(id);
             IInterface i = null;
             idToInterface.TryGetValue(id, out i);
             return i;
-        }
-
-        internal static void DaemonLoadListener(LoadComputerXmlReadEvent e)
-        {
-            IInterface i;
-            var id = e.Reader.GetAttribute("interfaceId");
-            if (id != null && idToInterface.TryGetValue(id, out i))
-            {
-                var objs = new Dictionary<string, string>();
-                var storedObjects = e.Reader.GetAttribute("storedObjects")?.Split(' ');
-                if (storedObjects != null)
-                    foreach (var s in storedObjects)
-                        objs[s.Remove(s.IndexOf('|'))] = s.Substring(s.IndexOf('|') + 1);
-                e.Computer.daemons.Add(Instance.CreateInstance(id, e.Computer, objs));
-            }
         }
     }
 }

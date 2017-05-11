@@ -83,7 +83,6 @@
     <Compile Include="Pathfinder\Event\MainMenuEvents.cs" />
     <Compile Include="Pathfinder\Event\EventManager.cs" />
     <Compile Include="Pathfinder\Event\PathfinderEvent.cs" />
-    <Compile Include="Pathfinder\GUI\PathfinderMainMenu.cs" />
     <Compile Include="Pathfinder\Pathfinder.cs" />
     <Compile Include="Pathfinder\PathfinderMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,8 +104,8 @@
     <Compile Include="Pathfinder\GameFilesystem\Extensions.cs" />
     <Compile Include="Pathfinder\Util\ExeInfoManager.cs" />
     <Compile Include="Pathfinder\Mission\MissionManager.cs" />
-    <Compile Include="Pathfinder\Mission\MissionGoalInstance.cs" />
-    <Compile Include="Pathfinder\Mission\MissionGoalInterface.cs" />
+    <Compile Include="Pathfinder\Mission\GoalInstance.cs" />
+    <Compile Include="Pathfinder\Mission\GoalInterface.cs" />
     <Compile Include="Pathfinder\Mission\Instance.cs" />
     <Compile Include="Pathfinder\Mission\Handler.cs" />
     <Compile Include="Pathfinder\Util\Utility.cs" />
@@ -140,6 +139,11 @@
     <Compile Include="Pathfinder\Event\ExtensionMenuEvents.cs" />
     <Compile Include="Pathfinder\GUI\SpriteBatchExtensions.cs" />
     <Compile Include="Pathfinder\Util\RetrieveType.cs" />
+    <Compile Include="Pathfinder\Internal\GUI\ModList.cs" />
+    <Compile Include="Pathfinder\Mission\MissionUtils.cs" />
+    <Compile Include="Pathfinder\Internal\HandlerListener.cs" />
+    <Compile Include="Pathfinder\Command\Help.cs" />
+    <Compile Include="Pathfinder\Internal\GUI\ModExtensionsUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />
@@ -151,6 +155,8 @@
     <Folder Include="Pathfinder\NetworkMap\" />
     <Folder Include="Pathfinder\Port\" />
     <Folder Include="Pathfinder\Extension\" />
+    <Folder Include="Pathfinder\Internal\" />
+    <Folder Include="Pathfinder\Internal\GUI\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

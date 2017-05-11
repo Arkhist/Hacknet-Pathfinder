@@ -64,6 +64,18 @@ namespace Pathfinder.OS
             return Utility.GetCurrentComputer(os);
         }
 
+        public static Hacknet.OS Write(this Hacknet.OS os, string write)
+        {
+            os.write(write);
+            return os;
+        }
+
+        public static Hacknet.OS WriteSingle(this Hacknet.OS os, string write)
+        {
+            os.writeSingle(write);
+            return os;
+        }
+
         /// <summary>
         /// Writes to the terminal using standard C# formatting.
         /// </summary>
@@ -73,8 +85,7 @@ namespace Pathfinder.OS
         {
             if (input.Length <= 0)
                 return os;
-            os.write(String.Format(input[0].ToString(), input.Length > 1 ? input.Skip(1).ToArray() : Utility.Array<object>.Empty));
-            return os;
+            return os.Write(String.Format(input[0].ToString(), input.Length > 1 ? input.Skip(1).ToArray() : Utility.Array<object>.Empty));
         }
 
         /// <summary>
@@ -86,8 +97,7 @@ namespace Pathfinder.OS
         {
             if(input.Length <= 0)
                 return os;
-            os.writeSingle(String.Format(input[0].ToString(), input.Length > 1 ? input.Skip(1).ToArray() : Utility.Array<object>.Empty));
-            return os;
+            return os.WriteSingle(String.Format(input[0].ToString(), input.Length > 1 ? input.Skip(1).ToArray() : Utility.Array<object>.Empty));
         }
     }
 }

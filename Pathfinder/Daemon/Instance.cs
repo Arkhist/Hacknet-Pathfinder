@@ -31,8 +31,7 @@ namespace Pathfinder.Daemon
                                               Hacknet.Computer computer,
                                               Dictionary<string, string> objects)
         {
-            id = Utility.GetId(id);
-            var inter = Handler.GetDaemonById(id);
+            var inter = Handler.GetDaemonById(ref id);
             if (inter == null)
                 return null;
             var i = new Instance(computer, inter.InitialServiceName, computer.os, inter)

@@ -6,10 +6,10 @@ namespace Pathfinder.Mission
 {
     public static class Handler
     {
-        internal static Dictionary<string, IMissionGoal> goals = new Dictionary<string, IMissionGoal>();
+        internal static Dictionary<string, IGoal> goals = new Dictionary<string, IGoal>();
         internal static Dictionary<string, IInterface> missions = new Dictionary<string, IInterface>();
 
-        public static string RegisterMissionGoal(string id, IMissionGoal inter)
+        public static string RegisterMissionGoal(string id, IGoal inter)
         {
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission goal interface {1} with id {2}",
@@ -24,7 +24,7 @@ namespace Pathfinder.Mission
         }
 
         [Obsolete("Use RegisterMissionGoal")]
-        public static bool AddMissionGoal(string id, IMissionGoal inter) => RegisterMissionGoal(id, inter) != null;
+        public static bool AddMissionGoal(string id, IGoal inter) => RegisterMissionGoal(id, inter) != null;
 
         internal static bool UnregisterMissionGoal(string id)
         {
@@ -59,18 +59,11 @@ namespace Pathfinder.Mission
             return missions.Remove(id);
         }
 
-        public static bool ContainsMission(string id)
-        {
-            return missions.ContainsKey(Utility.GetId(id));
-        }
+        public static bool ContainsMission(string id) => missions.ContainsKey(Utility.GetId(id));
+        public static bool ContainsMissionGoal(string id) => goals.ContainsKey(Utility.GetId(id));
 
-        public static bool ContainsMissionGoal(string id)
-        {
-            id = Utility.GetId(id);
-            return goals.ContainsKey(id);
-        }
-
-        public static IInterface GetMissionById(string id)
+        public static IInterface GetMissionById(string id) => GetMissionById(ref id);
+        public static IInterface GetMissionById(ref string id)
         {
             id = Utility.GetId(id);
             IInterface i;
@@ -79,11 +72,11 @@ namespace Pathfinder.Mission
             return null;
         }
 
-
-        public static IMissionGoal GetMissionGoalById(string id)
+        public static IGoal GetMissionGoalById(string id) => GetMissionGoalById(ref id);
+        public static IGoal GetMissionGoalById(ref string id)
         {
             id = Utility.GetId(id);
-            IMissionGoal i;
+            IGoal i;
             if (goals.TryGetValue(id, out i))
                 return i;
             return null;

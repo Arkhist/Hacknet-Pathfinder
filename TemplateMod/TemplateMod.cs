@@ -18,9 +18,9 @@ namespace TemplateMod
 
         public void LoadContent()
         {
-            Command.Handler.AddCommand("templateModVersion", Commands.TemplateModVersion, autoComplete: true);
-            Executable.Handler.AddExecutable("TempExe", new TempExe());
-            if (Port.Handler.AddPort("tempPort", p))
+            Command.Handler.RegisterCommand("templateModVersion", Commands.TemplateModVersion, autoComplete: true);
+            Executable.Handler.RegisterExecutable("TempExe", new TempExe());
+            if (Port.Handler.RegisterPort("tempPort", p) != null)
                 Logger.Info("added tempPort to game");
         }
 

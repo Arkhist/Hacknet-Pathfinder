@@ -21,6 +21,8 @@ namespace Pathfinder.Computer
                                                       Dictionary<string, string> input = null)
         {
             var i = Daemon.Instance.CreateInstance(interfaceId, comp, input);
+            if (i == null)
+                return null;
             comp.daemons.Add(i);
             return i;
         }
@@ -95,20 +97,15 @@ namespace Pathfinder.Computer
         /// <returns><c>true</c>, if the link was added, <c>false</c> otherwise.</returns>
         /// <param name="comp">The Computer</param>
         /// <param name="newLink">The New link.</param>
-        public static bool AddLink(this Hacknet.Computer comp, Hacknet.Computer newLink)
-        {
-            return comp.GetNetworkMap().AddLink(comp, newLink);
-        }
+        public static bool AddLink(this Hacknet.Computer comp, Hacknet.Computer newLink) =>
+            comp.GetNetworkMap().AddLink(comp, newLink);
 
         /// <summary>
         /// Gets the NetworkMap the computer is part of.
         /// </summary>
         /// <returns>The NetworkMap.</returns>
         /// <param name="comp">The Computer</param>
-        public static Hacknet.NetworkMap GetNetworkMap(this Hacknet.Computer comp)
-        {
-            return comp.os.netMap;
-        }
+        public static Hacknet.NetworkMap GetNetworkMap(this Hacknet.Computer comp) => comp.os.netMap;
 
         /// <summary>
         /// Adds a vanilla port by ExecutableInfo.
@@ -154,7 +151,7 @@ namespace Pathfinder.Computer
         /// <param name="port">The port type to add to the computer</param>
         /// <param name="unlocked">If set to <c>true</c> then sets the port to be unlocked.</param>
         public static bool AddModPort(this Hacknet.Computer comp, Port.Type port, bool unlocked = false) =>
-            port.AssignTo(comp, unlocked);
+            port?.AssignTo(comp, unlocked) == true;
 
         /// <summary>
         /// Adds the mod port by port registry id.
@@ -163,11 +160,8 @@ namespace Pathfinder.Computer
         /// <param name="comp">The Computer</param>
         /// <param name="id">The port's registry id to add to the computer</param>
         /// <param name="unlocked">If set to <c>true</c> then sets the port to be unlocked.</param>
-        public static bool AddModPort(this Hacknet.Computer comp, string id, bool unlocked = false)
-        {
-            id = Utility.GetId(id);
-            return comp.AddModPort(Port.Handler.GetPort(id), unlocked);
-        }
+        public static bool AddModPort(this Hacknet.Computer comp, string id, bool unlocked = false) =>
+            comp.AddModPort(Port.Handler.GetPort(id), unlocked);
 
         /// <summary>
         /// Removes a vanilla port by ExecutableInfo.
@@ -206,13 +200,10 @@ namespace Pathfinder.Computer
             comp.RemoveVanillaPort(ExeInfoManager.GetExecutableInfo(portNum));
 
         public static bool RemoveModPort(this Hacknet.Computer comp, Port.Type port) =>
-            port.RemoveFrom(comp);
+            port?.RemoveFrom(comp) == true;
 
-        public static bool RemoveModPort(this Hacknet.Computer comp, string id)
-        {
-            id = Utility.GetId(id);
-            return comp.RemoveModPort(Port.Handler.GetPort(id));
-        }
+        public static bool RemoveModPort(this Hacknet.Computer comp, string id) =>
+            comp.RemoveModPort(Port.Handler.GetPort(id));
 
         /// <summary>
         /// Gets a read-only list of modded ports.
@@ -265,11 +256,7 @@ namespace Pathfinder.Computer
         /// </summary>
         /// <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
         /// <param name="id">The registry port id to search by.</param>
-        public static bool HasModPort(this Hacknet.Computer comp, string id)
-        {
-            id = Utility.GetId(id);
-            return comp.HasModPort(Port.Handler.GetPort(id));
-        }
+        public static bool HasModPort(this Hacknet.Computer comp, string id) => comp.HasModPort(Port.Handler.GetPort(id));
 
         /// <summary>
         /// Determines whether the vanilla port is open.
@@ -310,7 +297,7 @@ namespace Pathfinder.Computer
         /// <param name="comp">The Computer</param>
         /// <param name="port">The port type to find</param>
         public static bool IsModPortOpen(this Hacknet.Computer comp, Port.Type port) =>
-            (port.GetWithin(comp)?.Unlocked).Equals(true);
+            port.GetWithin(comp)?.Unlocked == true;
 
         /// <summary>
         /// Determines whether the mod port is open.
@@ -318,11 +305,8 @@ namespace Pathfinder.Computer
         /// <returns><c>true</c>, if port open is open, <c>false</c> otherwise.</returns>
         /// <param name="comp">The Computer</param>
         /// <param name="id">The registered port id to search by</param>
-        public static bool IsModPortOpen(this Hacknet.Computer comp, string id)
-        {
-            id = Utility.GetId(id);
-            return comp.IsModPortOpen(Port.Handler.GetPort(id));
-        }
+        public static bool IsModPortOpen(this Hacknet.Computer comp, string id) =>
+            comp.IsModPortOpen(Port.Handler.GetPort(id));
 
         public static void OpenVanillaPort(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom)
         {
@@ -351,11 +335,8 @@ namespace Pathfinder.Computer
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
         }
 
-        public static void OpenModPort(this Hacknet.Computer comp, string id, string ipFrom)
-        {
-            id = Utility.GetId(id);
+        public static void OpenModPort(this Hacknet.Computer comp, string id, string ipFrom) =>
             comp.OpenModPort(Port.Handler.GetPort(id), ipFrom);
-        }
 
         public static void CloseVanillaPort(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom)
         {
@@ -400,11 +381,8 @@ namespace Pathfinder.Computer
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
         }
 
-        public static void CloseModPort(this Hacknet.Computer comp, string id, string ipFrom)
-        {
-            id = Utility.GetId(id);
+        public static void CloseModPort(this Hacknet.Computer comp, string id, string ipFrom) =>
             comp.CloseModPort(Port.Handler.GetPort(id), ipFrom);
-        }
 
         public static void AddEOSDevice(this Hacknet.Computer comp, Hacknet.Computer device)
         {

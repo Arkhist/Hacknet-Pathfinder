@@ -27,8 +27,7 @@ namespace Pathfinder
         }
 
         private static Dictionary<string, IPathfinderMod> mods = new Dictionary<string, IPathfinderMod>();
-        //private static bool currentSaveMissingMods = false;
-        private static Dictionary<string, GUI.Button> unloadedMods = new Dictionary<string, GUI.Button>();
+        private static List<string> unloadedMods = new List<string>();
 
         public static readonly string ModFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                                                           + Path.DirectorySeparatorChar + "Mods";
@@ -40,6 +39,7 @@ namespace Pathfinder
         public static void init()
         {
             Logger.Verbose("Registering Pathfinder listeners");
+
             /*var verStr = Updater.GetString("https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases/latest",
                                            "tag_name"); // Does not work, IDK
             if (Version.TryParse(verStr.Select(c => Char.IsDigit(c) || c == '.' ? c : (char)0).ToString(), out latestVersion)
@@ -49,17 +49,17 @@ namespace Pathfinder
             EventManager.RegisterListener<CommandSentEvent>(OverwriteProbe);
             EventManager.RegisterListener<ExecutablePortExecuteEvent>(OverridePortHack);
 
-            EventManager.RegisterListener<CommandSentEvent>(Command.Handler.CommandListener);
+            EventManager.RegisterListener<CommandSentEvent>(Internal.HandlerListener.CommandListener);
 
-            EventManager.RegisterListener<DrawMainMenuEvent>(PathfinderMainMenu.DrawMainMenu);
-            EventManager.RegisterListener<DrawMainMenuButtonsEvent>(PathfinderMainMenu.DrawPathfinderButtons);
+            EventManager.RegisterListener<DrawMainMenuEvent>(Internal.GUI.ModList.DrawModList);
+            EventManager.RegisterListener<DrawMainMenuButtonsEvent>(Internal.GUI.ModList.DrawModListButton);
 
-            EventManager.RegisterListener<DrawExtensionMenuEvent>(Extension.Handler.ExtensionMenuListener);
-            EventManager.RegisterListener<DrawExtensionMenuListEvent>(Extension.Handler.ExtensionListMenuListener);
-            EventManager.RegisterListener<OSPostLoadContenEvent>(Extension.Handler.PostLoadForModExtensionsListener);
+            EventManager.RegisterListener<DrawExtensionMenuEvent>(Internal.GUI.ModExtensionsUI.ExtensionMenuListener);
+            EventManager.RegisterListener<DrawExtensionMenuListEvent>(Internal.GUI.ModExtensionsUI.ExtensionListMenuListener);
+            EventManager.RegisterListener<OSPostLoadContenEvent>(Internal.GUI.ModExtensionsUI.PostLoadForModExtensionsListener);
 
-            EventManager.RegisterListener<ExecutableExecuteEvent>(Executable.Handler.ExecutableListener);
-            EventManager.RegisterListener<CommandSentEvent>(Executable.Handler.ExecutableListInsertListener);
+            EventManager.RegisterListener<ExecutableExecuteEvent>(Internal.HandlerListener.ExecutableListener);
+            EventManager.RegisterListener<CommandSentEvent>(Internal.HandlerListener.ExecutableListInsertListener);
 
             EventManager.RegisterListener<OSSaveWriteEvent>(ManageSaveXml);
 
@@ -80,24 +80,12 @@ namespace Pathfinder
                 Directory.CreateDirectory(ModFolderPath);
 
             if (Directory.Exists(DepFolderPath))
-            {
                 foreach (var dll in Directory.GetFiles(DepFolderPath + separator, "*.dll"))
-                {
-                    try
-                    {
-                        Assembly.LoadFrom(dll);
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.Error("Loading Dependency '{0}' failed: \n\t{1}", dll, e);
-                    }
-                }
-            }
+                    try { Assembly.LoadFrom(dll); }
+                    catch (Exception e) { Logger.Error("Loading Dependency '{0}' failed: \n\t{1}", dll, e); }
 
             foreach (var dll in Directory.GetFiles(ModFolderPath + separator, "*.dll"))
-            {
-                LoadMod(dll);
-            }
+                TryLoadMod(dll);
         }
 
         private static IEnumerable<Type> GetModTypes(this Assembly asm) =>
@@ -113,10 +101,8 @@ namespace Pathfinder
         internal static IPathfinderMod GetModByAssembly(Assembly asm)
         {
             foreach (var pair in mods)
-            {
                 if (pair.Value.GetType().Assembly == asm)
                     return pair.Value;
-            }
             return null;
         }
 
@@ -138,14 +124,16 @@ namespace Pathfinder
             }
         }
 
-        internal static List<string> LoadedModIdentifiers => mods.Keys.ToList();
+        public static List<string> LoadedModIdentifiers => mods.Keys.ToList();
+        public static List<string> UnloadedModIdentifiers => unloadedMods.ToList();
 
         internal static void ManageSaveXml(OSSaveWriteEvent e)
         {
             var i = e.SaveString.IndexOf("</HacknetSave>", StringComparison.Ordinal);
             string modListStr = "";
             foreach (var pair in mods)
-                modListStr += "\t<Mod assembly='" + Path.GetFileName(pair.Value.GetType().Assembly.Location) + "'>" + pair.Key + "</Mod>\n";
+                modListStr += "\t<Mod assembly='" + Path.GetFileName(pair.Value.GetType().Assembly.Location) + "'>"
+                                                        + pair.Key + "</Mod>\n";
             e.SaveString = e.SaveString.Insert(i, "\n<PathfinderMods>\n" + modListStr + "</PathfinderMods>\n");
         }
 
@@ -197,6 +185,7 @@ namespace Pathfinder
                 EventManager.UnregisterListener(e.Item1);
 
             mod.Unload();
+            unloadedMods.Add(mod.Identifier);
             mods.Remove(mod.Identifier);
             CurrentMod = null;
         }
@@ -236,21 +225,16 @@ namespace Pathfinder
             return modInstance;
         }
 
-        internal static void LoadMod(string path, bool noCatch = false)
+        internal static void LoadMod(string path)
         {
-            if (noCatch)
-                foreach (Type t in Assembly.LoadFile(path).GetModTypes())
-                   LoadMod(t);
-            else
-                try
-                {
-                    foreach (Type t in Assembly.LoadFile(path).GetModTypes())
-                        LoadMod(t);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error("Mod file '{0}' failed to load:\n\t{1}", Path.GetFileName(path), ex);
-                }
+            foreach (Type t in Assembly.LoadFile(path).GetModTypes())
+                unloadedMods.Remove(LoadMod(t).Identifier);
+        }
+
+        internal static void TryLoadMod(string path)
+        {
+            try { LoadMod(path); }
+            catch (Exception ex) { Logger.Error("Mod file '{0}' failed to load:\n\t{1}", Path.GetFileName(path), ex); }
         }
 
         internal static void OverridePortHack(ExecutablePortExecuteEvent e)
