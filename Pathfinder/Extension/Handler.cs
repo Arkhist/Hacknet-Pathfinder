@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Hacknet;
 using Microsoft.Xna.Framework;
@@ -17,6 +18,9 @@ namespace Pathfinder.Extension
 
         public static string RegisterExtension(string id, Info extensionInfo)
         {
+            if (Pathfinder.CurrentMod == null)
+                throw new InvalidOperationException("RegisterExtension can not be called outside of mod loading.\nMod Blame: "
+                                                    + Utility.GetPreviousStackFrameIdentity());
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to register extension {1} with id {2}",
                            Utility.ActiveModId,

@@ -17,6 +17,9 @@ namespace Pathfinder.Executable
         /// <param name="inter">The interface object.</param>
         public static string RegisterExecutable(string id, IInterface inter)
         {
+            if (Pathfinder.CurrentMod == null)
+                throw new InvalidOperationException("RegisterExecutable can not be called outside of mod loading.\nMod Blame: "
+                                                    + Utility.GetPreviousStackFrameIdentity());
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod '{0}' is attempting to add executable interface {1} with id {2}",
                            Utility.ActiveModId,

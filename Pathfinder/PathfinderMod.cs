@@ -44,7 +44,7 @@ namespace Pathfinder
         {
             get
             {
-                if(modContent == null)
+                if (modContent == null)
                     modContent = new ModContent(Identifier, TexturePath, SoundPath, MusicPath);
                 return modContent;
             }
@@ -65,5 +65,14 @@ namespace Pathfinder
         /// Called when the mod is being unloaded
         /// </summary>
         public abstract void Unload();
+    }
+
+    public class ModPlaceholder : IPathfinderMod
+    {
+        public ModPlaceholder(string id) { Identifier = id; }
+        public string Identifier { get; }
+        public void Load() {}
+        public void LoadContent() {}
+        public void Unload() {}
     }
 }

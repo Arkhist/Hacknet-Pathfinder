@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using System.IO;
@@ -37,7 +37,7 @@ namespace Pathfinder
                 }
             }
             Logger.Verbose("Initializing Pathfinder");
-            Pathfinder.init();
+            Pathfinder.Initialize();
             var startUpEvent = new Event.StartUpEvent(args);
             startUpEvent.CallEvent();
             if (startUpEvent.IsCancelled)

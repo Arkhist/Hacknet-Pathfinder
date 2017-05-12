@@ -1,5 +1,7 @@
 ﻿#pragma warning disable RECS0137 // Method with optional parameter is hidden by overload
 using System;
+using System.Diagnostics;
+using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace Pathfinder.Util
@@ -50,35 +52,26 @@ namespace Pathfinder.Util
             xmlString = ignoreValidXml ? xmlString : ConvertToValidXmlAttributeName(xmlString);
             if (!ignorePeriod && inputId.IndexOf('.') == -1)
                 xmlString = ActiveModId + "." + xmlString;
-            return inputId.IndexOf('.') != -1 ? inputId.Remove(inputId.LastIndexOf('.')+1) + xmlString : inputId;
+            return inputId.IndexOf('.') != -1 ? inputId.Remove(inputId.LastIndexOf('.') + 1) + xmlString : inputId;
         }
 
         /// <summary>
         /// Gets the current client OS.
         /// </summary>
         /// <returns>The client's current OS.</returns>
-        public static Hacknet.OS GetClientOS()
-        {
-            return Hacknet.OS.currentInstance;
-        }
+        public static Hacknet.OS GetClientOS() => Hacknet.OS.currentInstance;
 
         /// <summary>
         /// Gets the current client's Computer.
         /// </summary>
         /// <returns>The client's Current Computer.</returns>
-        public static Hacknet.Computer GetClientComputer()
-        {
-            return GetClientOS().thisComputer;
-        }
+        public static Hacknet.Computer GetClientComputer() => GetClientOS().thisComputer;
 
         /// <summary>
         /// Gets the current client's NetworkMap for the current client OS.
         /// </summary>
         /// <returns>The client's current Network Map.</returns>
-        public static Hacknet.NetworkMap GetClientNetMap()
-        {
-            return GetClientOS()?.netMap;
-        }
+        public static Hacknet.NetworkMap GetClientNetMap() => GetClientOS()?.netMap;
 
         /// <summary>
         /// Gets the current Computer the OS is active in.
@@ -93,5 +86,18 @@ namespace Pathfinder.Util
         }
 
         public static Hacknet.Computer GetCurrentComputer() => GetCurrentComputer(null);
+
+        internal static string GetPreviousStackFrameIdentity(int frameSkip = 2)
+        {
+            var result = "";
+            var asm = new StackFrame(frameSkip).GetMethod().Module.Assembly;
+            if (asm == MethodBase.GetCurrentMethod().Module.Assembly)
+                result = "Pathfinder";
+            else if (asm == typeof(Hacknet.Program).Assembly)
+                result = "Hacknet";
+            else
+                result = Pathfinder.GetModByAssembly(asm).Identifier;
+            return result;
+        }
     }
 }

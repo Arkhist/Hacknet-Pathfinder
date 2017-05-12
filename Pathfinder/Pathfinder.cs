@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 using Hacknet;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
-using Pathfinder.Computer;
 using Pathfinder.Event;
-using Pathfinder.GUI;
-using Pathfinder.OS;
 using Pathfinder.Util;
 
 namespace Pathfinder
@@ -21,10 +17,7 @@ namespace Pathfinder
         public static readonly Version Version = new Version(AssemblyVersion.Major,AssemblyVersion.Minor,1);
         private static Version latestVersion;*/
 
-        class ExceptionInvalidId : ArgumentException
-        {
-            public ExceptionInvalidId(string msg) : base(msg) { }
-        }
+        class InvalidIdException : ArgumentException { public InvalidIdException(string msg) : base(msg) {} }
 
         private static Dictionary<string, IPathfinderMod> mods = new Dictionary<string, IPathfinderMod>();
         private static List<string> unloadedMods = new List<string>();
@@ -36,7 +29,16 @@ namespace Pathfinder
 
         public static IPathfinderMod CurrentMod { get; private set; }
 
-        public static void init()
+        internal static Dictionary<string, IPathfinderMod> OperationalMods => mods.Where(pair => !(pair.Value is ModPlaceholder))
+                                                                                  .ToDictionary(pair => pair.Key, pair => pair.Value);
+
+        static Pathfinder()
+        {
+            mods.Add("Hacknet", new ModPlaceholder("Hacknet"));
+            mods.Add("Pathfinder", new ModPlaceholder("Pathfinder"));
+        }
+
+        internal static void Initialize()
         {
             Logger.Verbose("Registering Pathfinder listeners");
 
@@ -46,8 +48,8 @@ namespace Pathfinder
                && latestVersion > Version)
                 EventManager.RegisterListener<DrawMainMenuEvent>(DrawNewReleaseGraphic);*/
 
-            EventManager.RegisterListener<CommandSentEvent>(OverwriteProbe);
-            EventManager.RegisterListener<ExecutablePortExecuteEvent>(OverridePortHack);
+            EventManager.RegisterListener<CommandSentEvent>(Internal.ExecutionOverride.OverwriteProbe);
+            EventManager.RegisterListener<ExecutablePortExecuteEvent>(Internal.ExecutionOverride.OverridePortHack);
 
             EventManager.RegisterListener<CommandSentEvent>(Internal.HandlerListener.CommandListener);
 
@@ -71,7 +73,7 @@ namespace Pathfinder
             LoadMods();
         }
 
-        public static void LoadMods()
+        internal static void LoadMods()
         {
             var separator = Path.DirectorySeparatorChar;
 
@@ -88,7 +90,7 @@ namespace Pathfinder
                 TryLoadMod(dll);
         }
 
-        private static IEnumerable<Type> GetModTypes(this Assembly asm) =>
+        internal static IEnumerable<Type> GetModTypes(this Assembly asm) =>
             asm.GetExportedTypes().Where(t =>  t.IsClass && !t.IsAbstract && typeof(IPathfinderMod).IsAssignableFrom(t));
 
         /// <summary>
@@ -96,7 +98,42 @@ namespace Pathfinder
         /// </summary>
         /// <returns><c>true</c>, if mod is loaded, <c>false</c> otherwise.</returns>
         /// <param name="id">Mod Identifier.</param>
-        public static bool IsModLoaded(string id) => id == "Pathfinder" || id == "Hacknet" || mods.ContainsKey(id);
+        public static bool IsModLoaded(string id) => mods.ContainsKey(id);
+
+        public static bool IsModIdentifierValid(string id, bool shouldThrowReason = false)
+        {
+            if (String.IsNullOrEmpty(id))
+            {
+                if (shouldThrowReason)
+                    throw new InvalidIdException("Mod Idenfitier '" + id + "' is null or empty");
+                return false;
+            }
+            if (IsModLoaded(id))
+            {
+                if (shouldThrowReason)
+                    throw new InvalidIdException("Mod Idenfitier '" + id + "' has already been loaded");
+                return false;
+            }
+            if (id.Contains('.'))
+            {
+                if (shouldThrowReason)
+                    throw new InvalidIdException("Mod Idenfitier '" + id + "' contains a period");
+                return false;
+            }
+            if (Char.IsDigit(id[0]))
+            {
+                if (shouldThrowReason)
+                    throw new InvalidIdException("Mod Idenfitier '" + id + "' starts with a digit");
+                return false;
+            }
+            if (id.IndexOfAny(Path.GetInvalidFileNameChars()) != -1 || id.IndexOfAny(Path.GetInvalidPathChars()) != -1)
+            {
+                if (shouldThrowReason)
+                    throw new InvalidIdException("Mod Idenfitier '" + id + "' contains invalid path characters");
+                return false;
+            }
+            return true;
+        }
 
         internal static IPathfinderMod GetModByAssembly(Assembly asm)
         {
@@ -115,7 +152,7 @@ namespace Pathfinder
 
         internal static void LoadModContent()
         {
-            foreach (var mod in mods)
+            foreach (var mod in OperationalMods)
             {
                 CurrentMod = mod.Value;
                 Logger.Verbose("Loading mod '{0}'s content", mod.Key);
@@ -124,14 +161,14 @@ namespace Pathfinder
             }
         }
 
-        public static List<string> LoadedModIdentifiers => mods.Keys.ToList();
+        public static List<string> LoadedModIdentifiers => OperationalMods.Keys.ToList();
         public static List<string> UnloadedModIdentifiers => unloadedMods.ToList();
 
         internal static void ManageSaveXml(OSSaveWriteEvent e)
         {
             var i = e.SaveString.IndexOf("</HacknetSave>", StringComparison.Ordinal);
             string modListStr = "";
-            foreach (var pair in mods)
+            foreach (var pair in OperationalMods)
                 modListStr += "\t<Mod assembly='" + Path.GetFileName(pair.Value.GetType().Assembly.Location) + "'>"
                                                         + pair.Key + "</Mod>\n";
             e.SaveString = e.SaveString.Insert(i, "\n<PathfinderMods>\n" + modListStr + "</PathfinderMods>\n");
@@ -139,7 +176,7 @@ namespace Pathfinder
 
         internal static void UnloadMods(GameUnloadEvent e)
         {
-            foreach (var mod in mods)
+            foreach (var mod in OperationalMods)
             {
                 CurrentMod = mod.Value;
                 Logger.Verbose("Unloading mod '{0}'", mod.Key);
@@ -150,7 +187,7 @@ namespace Pathfinder
 
         internal static void UnloadMod(IPathfinderMod mod)
         {
-            if (mod == null) return;
+            if (mod == null || mod is ModPlaceholder) return;
 
             CurrentMod = mod;
             string id = "";
@@ -200,15 +237,11 @@ namespace Pathfinder
                 CurrentMod = modInstance;
                 var methodInfo = modType.GetProperty("Identifier").GetGetMethod();
                 if (methodInfo == null)
-                    throw new NotSupportedException("Method 'Identifier' doesn't exist, mod '"
+                    throw new NotSupportedException("Get Property 'Identifier' doesn't exist, mod '"
                                                     + Path.GetFileName(modType.Assembly.Location) + "' is invalid");
                 name = ((string)methodInfo.Invoke(modInstance, null)).Trim();
-                if (IsModLoaded(name))
-                    throw new ExceptionInvalidId("Mod identifier '" + name + "' is either already loaded or is reserved");
-                if (name.Contains('.'))
-                    throw new ExceptionInvalidId("Mod identifier '" + name + "' contains a period, mod identifiers may not contain a period (.)");
-                if (Char.IsDigit(name[0]))
-                    throw new ExceptionInvalidId("Mod identifier '" + name + "' starts with a digit, mod identifiers may not start with digits");
+                if (IsModIdentifierValid(name, true))
+                    return null;
                 Logger.Info("Loading mod '{0}'", name);
 
                 mods.Add(name, modInstance);
@@ -235,75 +268,6 @@ namespace Pathfinder
         {
             try { LoadMod(path); }
             catch (Exception ex) { Logger.Error("Mod file '{0}' failed to load:\n\t{1}", Path.GetFileName(path), ex); }
-        }
-
-        internal static void OverridePortHack(ExecutablePortExecuteEvent e)
-        {
-            if (e.Arguments[0].ToLower() == "porthack")
-            {
-                e.IsCancelled = true;
-                var os = e.OS;
-                var cComp = os.connectedComp;
-                bool canRun = false;
-                bool firewallActive = false;
-                if (cComp != null)
-                {
-                    int num2 = 0;
-                    for (int i = 0; i < cComp.portsOpen.Count; i++)
-                        num2 += os.connectedComp.portsOpen[i];
-                    foreach (var p in cComp.GetModdedPortList())
-                        num2 += p.Unlocked ? 1 : 0;
-                    canRun |= num2 > cComp.portsNeededForCrack;
-                    if (cComp.firewall != null && !cComp.firewall.solved)
-                    {
-                        firewallActive |= canRun;
-                        canRun = false;
-                    }
-                }
-                if (canRun)
-                    os.addExe(new PortHackExe(e.Destination, os));
-                else if (firewallActive)
-                    os.write(LocaleTerms.Loc("Target Machine Rejecting Syndicated UDP Traffic") + " -\n" + LocaleTerms.Loc("Bypass Firewall to allow unrestricted traffic"));
-                else
-                    os.write(LocaleTerms.Loc("Too Few Open Ports to Run") + " - \n" + LocaleTerms.Loc("Open Additional Ports on Target Machine") + "\n");
-            }
-        }
-
-        internal static void OverwriteProbe(CommandSentEvent e)
-        {
-            if (e.Arguments[0].ToLower() == "probe" || e.Arguments[0].ToLower() == "nmap")
-            {
-                e.IsCancelled = true;
-                e.StateChange = CommandDisplayStateChange.Probe;
-                var os = e.OS;
-                int i;
-                var c = os.GetCurrentComputer();
-                os.write(string.Concat("Probing ", c.ip, "...\n"));
-                for (i = 0; i < 10; i++)
-                {
-                    Thread.Sleep(80);
-                    os.writeSingle(".");
-                }
-                os.write("\nProbe Complete - Open ports:\n");
-                os.write("---------------------------------");
-                if (Port.Instance.compToInst.ContainsKey(c)) foreach (var ins in Port.Instance.compToInst[c])
-                {
-                    os.write("Port#: " + ins.Port.PortDisplay + " - " + ins.Port.PortName + (ins.Unlocked ? "OPEN" : ""));
-                    Thread.Sleep(120);
-                }
-                for (i = 0; i < c.ports.Count; i++)
-                {
-                    os.write("Port#: " + c.GetDisplayPortNumberFromCodePort(c.ports[i]) + "  -  " + PortExploits.services[c.ports[i]]
-                            + (c.portsOpen[i] > 0 ? " : OPEN" : ""));
-                    Thread.Sleep(120);
-                }
-                os.write("---------------------------------");
-                os.write("Open Ports Required for Crack : " + Math.Max(c.portsNeededForCrack + 1, 0));
-                if (c.hasProxy)
-                    os.write("Proxy Detected : " + (c.proxyActive ? "ACTIVE" : "INACTIVE"));
-                if (c.firewall != null)
-                    os.write("Firewall Detected : " + (c.firewall.solved ? "SOLVED" : "ACTIVE"));
-            }
         }
 
         internal static void DrawNewReleaseGraphic(DrawMainMenuEvent e)

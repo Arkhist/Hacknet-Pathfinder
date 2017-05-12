@@ -10,6 +10,9 @@ namespace Pathfinder.Daemon
 
         public static string RegisterDaemon(string id, IInterface inter)
         {
+            if (Pathfinder.CurrentMod == null)
+                throw new InvalidOperationException("RegisterDaemon can not be called outside of mod loading.\nMod Blame: "
+                                                    + Utility.GetPreviousStackFrameIdentity());
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add daemon interface {1} with id {2}",
                            Utility.ActiveModId,

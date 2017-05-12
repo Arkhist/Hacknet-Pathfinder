@@ -26,6 +26,9 @@ namespace Pathfinder.Command
                                              string description = null,
                                              bool autoComplete = false)
         {
+            if (Pathfinder.CurrentMod == null)
+                throw new InvalidOperationException("RegisterCommand can not be called outside of mod loading.\nMod Blame: "
+                                                    + Utility.GetPreviousStackFrameIdentity());
             Logger.Verbose("Mod {0} is attempting to add command {1}", Utility.ActiveModId, key);
             if (commands.ContainsKey(key))
                 return null;

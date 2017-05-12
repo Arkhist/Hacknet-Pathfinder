@@ -11,6 +11,9 @@ namespace Pathfinder.Mission
 
         public static string RegisterMissionGoal(string id, IGoal inter)
         {
+            if (Pathfinder.CurrentMod == null)
+                throw new InvalidOperationException("RegisterMissionGoal can not be called outside of mod loading.\nMod Blame: "
+                                                    + Utility.GetPreviousStackFrameIdentity());
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission goal interface {1} with id {2}",
                            Utility.ActiveModId,
@@ -36,6 +39,9 @@ namespace Pathfinder.Mission
 
         public static string RegisterMission(string id, IInterface inter)
         {
+            if (Pathfinder.CurrentMod == null)
+                throw new InvalidOperationException("RegisterMission can not be called outside of mod loading.\nMod Blame: "
+                                                    + Utility.GetPreviousStackFrameIdentity());
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to add mission interface {1} with id {2}",
                            Utility.ActiveModId,

@@ -10,6 +10,9 @@ namespace Pathfinder.Port
 
         public static string RegisterPort(string id, Type port)
         {
+            if (Pathfinder.CurrentMod == null)
+                throw new InvalidOperationException("RegisterPort can not be called outside of mod loading.\nMod Blame: "
+                                                    + Utility.GetPreviousStackFrameIdentity());
             id = Utility.GetId(id, throwFindingPeriod: true);
             Logger.Verbose("Mod {0} attempting to register port [{1}] with id {2}", Utility.ActiveModId, port, id);
             if (idToPortType.ContainsKey(id))
