@@ -46,7 +46,7 @@ namespace Pathfinder.Util
         public static string GetId(string inputId, bool ignorePeriod = false, bool ignoreValidXml = false, bool throwFindingPeriod = false)
         {
             if (throwFindingPeriod && inputId.IndexOf('.') != -1)
-                throw new ArgumentException("inputId can't have a period in it", nameof(inputId));
+                throw new ArgumentException("Can't have a period in it", nameof(inputId));
             var xmlString = inputId.IndexOf('.') != -1 ? inputId.Substring(inputId.LastIndexOf('.') + 1) : inputId;
 
             xmlString = ignoreValidXml ? xmlString : ConvertToValidXmlAttributeName(xmlString);
@@ -59,19 +59,25 @@ namespace Pathfinder.Util
         /// Gets the current client OS.
         /// </summary>
         /// <returns>The client's current OS.</returns>
-        public static Hacknet.OS GetClientOS() => Hacknet.OS.currentInstance;
+        public static Hacknet.OS ClientOS => Hacknet.OS.currentInstance;
+        [Obsolete("Use ClientOS Property")]
+        public static Hacknet.OS GetClientOS() => ClientOS;
 
         /// <summary>
         /// Gets the current client's Computer.
         /// </summary>
         /// <returns>The client's Current Computer.</returns>
-        public static Hacknet.Computer GetClientComputer() => GetClientOS().thisComputer;
+        public static Hacknet.Computer ClientComputer => ClientOS.thisComputer;
+        [Obsolete("Use ClientComputer Property")]
+        public static Hacknet.Computer GetClientComputer() => ClientComputer;
 
         /// <summary>
         /// Gets the current client's NetworkMap for the current client OS.
         /// </summary>
         /// <returns>The client's current Network Map.</returns>
-        public static Hacknet.NetworkMap GetClientNetMap() => GetClientOS()?.netMap;
+        public static Hacknet.NetworkMap ClientNetworkMap => ClientOS?.netMap;
+        [Obsolete("Use ClientNetworkMap Property")]
+        public static Hacknet.NetworkMap GetClientNetMap() => ClientNetworkMap;
 
         /// <summary>
         /// Gets the current Computer the OS is active in.
@@ -81,11 +87,13 @@ namespace Pathfinder.Util
         public static Hacknet.Computer GetCurrentComputer(Hacknet.OS os = null)
         {
             if (os == null)
-                os = GetClientOS();
+                os = ClientOS;
             return os?.connectedComp ?? os?.thisComputer;
         }
 
-        public static Hacknet.Computer GetCurrentComputer() => GetCurrentComputer(null);
+        public static Hacknet.Computer CurrentComputer => GetCurrentComputer(null);
+        [Obsolete("Use CurrentComputer Property")]
+        public static Hacknet.Computer GetCurrentComputer() => CurrentComputer;
 
         internal static string GetPreviousStackFrameIdentity(int frameSkip = 2)
         {

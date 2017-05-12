@@ -74,7 +74,7 @@ namespace Pathfinder.GameFilesystem
         public string IPAccess { get; set; } = null;
         public bool ShouldLogMultiplayer { get; set; } = true;
 
-        public static Filesystem PrimaryFilesystem => Utility.GetClientComputer();
+        public static Filesystem PrimaryFilesystem => Utility.ClientComputer;
 
         public static implicit operator Filesystem(Hacknet.Computer c)
         {

@@ -130,7 +130,7 @@ namespace Pathfinder.Mission
             if ((t = Interface.OnEnd(this)) != null)
                 this.addEndFunction(t.Item2, t.Item1);
 
-            var os = Utility.GetClientOS();
+            var os = Utility.ClientOS;
             os.branchMissions.Clear();
             if (this.nextMission.StartsWith("Pathfinder:", StringComparison.Ordinal))
             {

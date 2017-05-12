@@ -240,7 +240,7 @@ namespace Pathfinder
                     throw new NotSupportedException("Get Property 'Identifier' doesn't exist, mod '"
                                                     + Path.GetFileName(modType.Assembly.Location) + "' is invalid");
                 name = ((string)methodInfo.Invoke(modInstance, null)).Trim();
-                if (IsModIdentifierValid(name, true))
+                if (!IsModIdentifierValid(name, true))
                     return null;
                 Logger.Info("Loading mod '{0}'", name);
 
@@ -261,7 +261,7 @@ namespace Pathfinder
         internal static void LoadMod(string path)
         {
             foreach (Type t in Assembly.LoadFile(path).GetModTypes())
-                unloadedMods.Remove(LoadMod(t).Identifier);
+                unloadedMods.Remove(LoadMod(t)?.Identifier);
         }
 
         internal static void TryLoadMod(string path)
