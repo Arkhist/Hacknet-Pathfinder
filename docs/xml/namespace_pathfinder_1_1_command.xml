@@ -3,6 +3,7 @@
   <compounddef id="namespace_pathfinder_1_1_command" kind="namespace" language="C#">
     <compoundname>Pathfinder::Command</compoundname>
     <innerclass refid="class_pathfinder_1_1_command_1_1_handler" prot="public">Pathfinder::Command::Handler</innerclass>
+    <innerclass refid="class_pathfinder_1_1_command_1_1_help" prot="public">Pathfinder::Command::Help</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

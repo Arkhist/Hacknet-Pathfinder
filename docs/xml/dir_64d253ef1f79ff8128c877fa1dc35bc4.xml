@@ -8,8 +8,10 @@
     <innerfile refid="_computer_events_8cs">ComputerEvents.cs</innerfile>
     <innerfile refid="_event_manager_8cs">EventManager.cs</innerfile>
     <innerfile refid="_executable_events_8cs">ExecutableEvents.cs</innerfile>
+    <innerfile refid="_extension_menu_events_8cs">ExtensionMenuEvents.cs</innerfile>
     <innerfile refid="_game_events_8cs">GameEvents.cs</innerfile>
     <innerfile refid="_main_menu_events_8cs">MainMenuEvents.cs</innerfile>
+    <innerfile refid="_module_events_8cs">ModuleEvents.cs</innerfile>
     <innerfile refid="_o_s_events_8cs">OSEvents.cs</innerfile>
     <innerfile refid="_pathfinder_event_8cs">PathfinderEvent.cs</innerfile>
     <innerfile refid="_program_events_8cs">ProgramEvents.cs</innerfile>

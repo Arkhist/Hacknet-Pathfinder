@@ -58,32 +58,32 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="225">
+      <node id="346">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="224">
+      <node id="345">
         <label>Pathfinder.Event.NetworkMapLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event"/>
-        <childnode refid="225" relation="public-inheritance">
+        <childnode refid="346" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="227">
+      <node id="348">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="226">
+      <node id="347">
         <label>Pathfinder.Event.NetworkMapLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event"/>
-        <childnode refid="227" relation="public-inheritance">
+        <childnode refid="348" relation="public-inheritance">
         </childnode>
-        <childnode refid="228" relation="usage">
+        <childnode refid="349" relation="usage">
           <edgelabel>NetMapInstance</edgelabel>
         </childnode>
       </node>
-      <node id="228">
+      <node id="349">
         <label>Hacknet</label>
       </node>
     </collaborationgraph>

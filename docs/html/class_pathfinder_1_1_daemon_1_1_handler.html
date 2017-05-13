@@ -90,19 +90,26 @@ $(document).ready(function(){initNavTree('class_pathfinder_1_1_daemon_1_1_handle
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a2fbb3f752fe50261f7d5fd3d784a38c7"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_daemon_1_1_handler.html#a2fbb3f752fe50261f7d5fd3d784a38c7">AddDaemon</a> (string daemonId, <a class="el" href="interface_pathfinder_1_1_daemon_1_1_i_interface.html">IInterface</a> inter)</td></tr>
-<tr class="separator:a2fbb3f752fe50261f7d5fd3d784a38c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44ee1cb75865d7c31428ffaec269e9d5"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_daemon_1_1_handler.html#a44ee1cb75865d7c31428ffaec269e9d5">RegisterDaemon</a> (string id, <a class="el" href="interface_pathfinder_1_1_daemon_1_1_i_interface.html">IInterface</a> inter)</td></tr>
+<tr class="memdesc:a44ee1cb75865d7c31428ffaec269e9d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a daemon interface.  <a href="#a44ee1cb75865d7c31428ffaec269e9d5">More...</a><br /></td></tr>
+<tr class="separator:a44ee1cb75865d7c31428ffaec269e9d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7a0a3c312e6e37d8a81acbbfeddd068"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_daemon_1_1_handler.html#ae7a0a3c312e6e37d8a81acbbfeddd068">AddDaemon</a> (string id, <a class="el" href="interface_pathfinder_1_1_daemon_1_1_i_interface.html">IInterface</a> inter)</td></tr>
+<tr class="separator:ae7a0a3c312e6e37d8a81acbbfeddd068"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acde19a6a94d142a5106b9697b0062e19"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_daemon_1_1_handler.html#acde19a6a94d142a5106b9697b0062e19">ContainsDaemon</a> (string id)</td></tr>
 <tr class="separator:acde19a6a94d142a5106b9697b0062e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaa1f9f19525d270b7b282ecf6b33c52"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_daemon_1_1_handler.html#acaa1f9f19525d270b7b282ecf6b33c52">ContainsDaemon</a> (ref string id)</td></tr>
+<tr class="separator:acaa1f9f19525d270b7b282ecf6b33c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6fe93befa456f655c6bd259407143ab"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="interface_pathfinder_1_1_daemon_1_1_i_interface.html">IInterface</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_daemon_1_1_handler.html#ac6fe93befa456f655c6bd259407143ab">GetDaemonById</a> (string id)</td></tr>
 <tr class="separator:ac6fe93befa456f655c6bd259407143ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ed3dc3b18a2fe06d02ab9526ccaab51"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="interface_pathfinder_1_1_daemon_1_1_i_interface.html">IInterface</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_daemon_1_1_handler.html#a0ed3dc3b18a2fe06d02ab9526ccaab51">GetDaemonById</a> (ref string id)</td></tr>
+<tr class="separator:a0ed3dc3b18a2fe06d02ab9526ccaab51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="_daemon_2_handler_8cs_source.html#l00007">7</a> of file <a class="el" href="_daemon_2_handler_8cs_source.html">Handler.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2fbb3f752fe50261f7d5fd3d784a38c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2fbb3f752fe50261f7d5fd3d784a38c7">&#9670;&nbsp;</a></span>AddDaemon()</h2>
+<a id="ae7a0a3c312e6e37d8a81acbbfeddd068"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7a0a3c312e6e37d8a81acbbfeddd068">&#9670;&nbsp;</a></span>AddDaemon()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -114,7 +121,7 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname">static bool Pathfinder.Daemon.Handler.AddDaemon </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>daemonId</em>, </td>
+          <td class="paramname"><em>id</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -135,12 +142,10 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_daemon_2_handler_8cs_source.html#l00011">11</a> of file <a class="el" href="_daemon_2_handler_8cs_source.html">Handler.cs</a>.</p>
-
 </div>
 </div>
 <a id="acde19a6a94d142a5106b9697b0062e19"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acde19a6a94d142a5106b9697b0062e19">&#9670;&nbsp;</a></span>ContainsDaemon()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acde19a6a94d142a5106b9697b0062e19">&#9670;&nbsp;</a></span>ContainsDaemon() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,12 +168,36 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_daemon_2_handler_8cs_source.html#l00025">25</a> of file <a class="el" href="_daemon_2_handler_8cs_source.html">Handler.cs</a>.</p>
+</div>
+</div>
+<a id="acaa1f9f19525d270b7b282ecf6b33c52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaa1f9f19525d270b7b282ecf6b33c52">&#9670;&nbsp;</a></span>ContainsDaemon() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool Pathfinder.Daemon.Handler.ContainsDaemon </td>
+          <td>(</td>
+          <td class="paramtype">ref string&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <a id="ac6fe93befa456f655c6bd259407143ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6fe93befa456f655c6bd259407143ab">&#9670;&nbsp;</a></span>GetDaemonById()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6fe93befa456f655c6bd259407143ab">&#9670;&nbsp;</a></span>GetDaemonById() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,7 +220,81 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_daemon_2_handler_8cs_source.html#l00030">30</a> of file <a class="el" href="_daemon_2_handler_8cs_source.html">Handler.cs</a>.</p>
+</div>
+</div>
+<a id="a0ed3dc3b18a2fe06d02ab9526ccaab51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ed3dc3b18a2fe06d02ab9526ccaab51">&#9670;&nbsp;</a></span>GetDaemonById() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="interface_pathfinder_1_1_daemon_1_1_i_interface.html">IInterface</a> Pathfinder.Daemon.Handler.GetDaemonById </td>
+          <td>(</td>
+          <td class="paramtype">ref string&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_daemon_2_handler_8cs_source.html#l00048">48</a> of file <a class="el" href="_daemon_2_handler_8cs_source.html">Handler.cs</a>.</p>
+
+</div>
+</div>
+<a id="a44ee1cb75865d7c31428ffaec269e9d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44ee1cb75865d7c31428ffaec269e9d5">&#9670;&nbsp;</a></span>RegisterDaemon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string Pathfinder.Daemon.Handler.RegisterDaemon </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_pathfinder_1_1_daemon_1_1_i_interface.html">IInterface</a>&#160;</td>
+          <td class="paramname"><em>inter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Registers a daemon interface. </p>
+<dl class="section return"><dt>Returns</dt><dd>The daemon's full id if added to the game, <code>null</code> otherwise.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The daemon interface id to insert.</td></tr>
+    <tr><td class="paramname">inter</td><td>The interface to add.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_daemon_2_handler_8cs_source.html#l00017">17</a> of file <a class="el" href="_daemon_2_handler_8cs_source.html">Handler.cs</a>.</p>
 
 </div>
 </div>
@@ -204,7 +307,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_pathfinder.html">Pathfinder</a></li><li class="navelem"><a class="el" href="namespace_pathfinder_1_1_daemon.html">Daemon</a></li><li class="navelem"><a class="el" href="class_pathfinder_1_1_daemon_1_1_handler.html">Handler</a></li>
-    <li class="footer">Generated on Sun Apr 23 2017 21:36:52 for Pathfinder Hacknet by
+    <li class="footer">Generated on Sat May 13 2017 17:10:30 for Pathfinder Hacknet by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

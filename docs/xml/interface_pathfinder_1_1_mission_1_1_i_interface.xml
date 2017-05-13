@@ -197,13 +197,13 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="150">
+      <node id="240">
         <label>Pathfinder.Mission.Interface</label>
         <link refid="class_pathfinder_1_1_mission_1_1_interface"/>
-        <childnode refid="149" relation="public-inheritance">
+        <childnode refid="239" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="149">
+      <node id="239">
         <label>Pathfinder.Mission.IInterface</label>
         <link refid="interface_pathfinder_1_1_mission_1_1_i_interface"/>
       </node>

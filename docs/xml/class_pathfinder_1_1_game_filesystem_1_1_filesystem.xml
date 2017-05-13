@@ -107,7 +107,7 @@
         <definition>Filesystem Pathfinder.GameFilesystem.Filesystem.PrimaryFilesystem</definition>
         <argsstring></argsstring>
         <name>PrimaryFilesystem</name>
-        <initializer>=&gt; Utility.GetClientComputer()</initializer>
+        <initializer>=&gt; Utility.ClientComputer</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -194,28 +194,28 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="104">
+      <node id="181">
         <label>FileObject&lt; FileSystem, Hacknet.Computer &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
-      <node id="103">
+      <node id="180">
         <label>Pathfinder.GameFilesystem.Filesystem</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem"/>
-        <childnode refid="104" relation="public-inheritance">
+        <childnode refid="181" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="106">
+      <node id="183">
         <label>FileObject&lt; FileSystem, Hacknet.Computer &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
-      <node id="105">
+      <node id="182">
         <label>Pathfinder.GameFilesystem.Filesystem</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem"/>
-        <childnode refid="106" relation="public-inheritance">
+        <childnode refid="183" relation="public-inheritance">
         </childnode>
-        <childnode refid="105" relation="usage">
+        <childnode refid="182" relation="usage">
           <edgelabel>Root</edgelabel>
           <edgelabel>PrimaryFilesystem</edgelabel>
         </childnode>

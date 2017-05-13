@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('class_pathfinder_1_1_pathfinder.html',
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#properties">Properties</a> &#124;
 <a href="class_pathfinder_1_1_pathfinder-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Pathfinder.Pathfinder Class Reference</div>  </div>
@@ -92,27 +93,37 @@ $(document).ready(function(){initNavTree('class_pathfinder_1_1_pathfinder.html',
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a75f4ee96351cc236574dfc70257dacf6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder.html#a75f4ee96351cc236574dfc70257dacf6">init</a> ()</td></tr>
-<tr class="separator:a75f4ee96351cc236574dfc70257dacf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa436098d04f1c8c68d9958f96683854d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder.html#aa436098d04f1c8c68d9958f96683854d">testEventListener</a> (<a class="el" href="class_pathfinder_1_1_event_1_1_pathfinder_event.html">PathfinderEvent</a> pathfinderEvent)</td></tr>
-<tr class="separator:aa436098d04f1c8c68d9958f96683854d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8befc39dfe9684cc9c161673ddc11b9a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder.html#a8befc39dfe9684cc9c161673ddc11b9a">LoadMods</a> ()</td></tr>
-<tr class="separator:a8befc39dfe9684cc9c161673ddc11b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc639f84cf2cd72f7cdda86ce024a96f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder.html#adc639f84cf2cd72f7cdda86ce024a96f">IsModLoaded</a> (string id)</td></tr>
 <tr class="memdesc:adc639f84cf2cd72f7cdda86ce024a96f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether a mod is loaded  <a href="#adc639f84cf2cd72f7cdda86ce024a96f">More...</a><br /></td></tr>
 <tr class="separator:adc639f84cf2cd72f7cdda86ce024a96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6745176855e49c9e563859bfd5fae9f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder.html#aa6745176855e49c9e563859bfd5fae9f">IsModIdentifierValid</a> (string id, bool shouldThrowReason=false)</td></tr>
+<tr class="memdesc:aa6745176855e49c9e563859bfd5fae9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether a mod identifier is valid  <a href="#aa6745176855e49c9e563859bfd5fae9f">More...</a><br /></td></tr>
+<tr class="separator:aa6745176855e49c9e563859bfd5fae9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a4a40ebde9837989722ebe094d69ec096"><td class="memItemLeft" align="right" valign="top">static readonly string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder.html#a4a40ebde9837989722ebe094d69ec096">ModFolderPath</a></td></tr>
 <tr class="separator:a4a40ebde9837989722ebe094d69ec096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb64d3cae21f1be1af30958e8034892d"><td class="memItemLeft" align="right" valign="top">static readonly string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder.html#afb64d3cae21f1be1af30958e8034892d">DepFolderPath</a> = <a class="el" href="class_pathfinder_1_1_pathfinder.html#a4a40ebde9837989722ebe094d69ec096">ModFolderPath</a> + Path.DirectorySeparatorChar + &quot;deps&quot;</td></tr>
+<tr class="separator:afb64d3cae21f1be1af30958e8034892d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf68e7c2fc870dbd0700c287f99ba819"><td class="memItemLeft" align="right" valign="top">static List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder.html#acf68e7c2fc870dbd0700c287f99ba819">LoadedModIdentifiers</a> =&gt; OperationalMods.Keys.ToList()</td></tr>
+<tr class="memdesc:acf68e7c2fc870dbd0700c287f99ba819"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the loaded mod identifiers.  <a href="#acf68e7c2fc870dbd0700c287f99ba819">More...</a><br /></td></tr>
+<tr class="separator:acf68e7c2fc870dbd0700c287f99ba819"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d313db2dac1f92752c17ea49a7b31d3"><td class="memItemLeft" align="right" valign="top">static List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder.html#a7d313db2dac1f92752c17ea49a7b31d3">UnloadedModIdentifiers</a> =&gt; unloadedMods.ToList()</td></tr>
+<tr class="memdesc:a7d313db2dac1f92752c17ea49a7b31d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the unloaded mod identifiers.  <a href="#a7d313db2dac1f92752c17ea49a7b31d3">More...</a><br /></td></tr>
+<tr class="separator:a7d313db2dac1f92752c17ea49a7b31d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a66742dc9ae5c678ec73ed67643027f4a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="interface_pathfinder_1_1_i_pathfinder_mod.html">IPathfinderMod</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder.html#a66742dc9ae5c678ec73ed67643027f4a">CurrentMod</a><code> [get]</code></td></tr>
+<tr class="separator:a66742dc9ae5c678ec73ed67643027f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="_pathfinder_8cs_source.html#l00014">14</a> of file <a class="el" href="_pathfinder_8cs_source.html">Pathfinder.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a75f4ee96351cc236574dfc70257dacf6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75f4ee96351cc236574dfc70257dacf6">&#9670;&nbsp;</a></span>init()</h2>
+<a id="aa6745176855e49c9e563859bfd5fae9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6745176855e49c9e563859bfd5fae9f">&#9670;&nbsp;</a></span>IsModIdentifierValid()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -121,10 +132,21 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void Pathfinder.Pathfinder.init </td>
+          <td class="memname">static bool Pathfinder.Pathfinder.IsModIdentifierValid </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>shouldThrowReason</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -134,7 +156,17 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_8cs_source.html#l00031">31</a> of file <a class="el" href="_pathfinder_8cs_source.html">Pathfinder.cs</a>.</p>
+<p>Determines whether a mod identifier is valid </p>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code>, if mod identifier is valid, <code>false</code> otherwise.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The Mod Identifier.</td></tr>
+    <tr><td class="paramname">shouldThrowReason</td><td>If set to <code>true</code> then this method will throw.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_pathfinder_8cs_source.html#l00109">109</a> of file <a class="el" href="_pathfinder_8cs_source.html">Pathfinder.cs</a>.</p>
 
 </div>
 </div>
@@ -171,66 +203,60 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_8cs_source.html#l00123">123</a> of file <a class="el" href="_pathfinder_8cs_source.html">Pathfinder.cs</a>.</p>
-
-</div>
-</div>
-<a id="a8befc39dfe9684cc9c161673ddc11b9a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8befc39dfe9684cc9c161673ddc11b9a">&#9670;&nbsp;</a></span>LoadMods()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void Pathfinder.Pathfinder.LoadMods </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_pathfinder_8cs_source.html#l00063">63</a> of file <a class="el" href="_pathfinder_8cs_source.html">Pathfinder.cs</a>.</p>
-
-</div>
-</div>
-<a id="aa436098d04f1c8c68d9958f96683854d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa436098d04f1c8c68d9958f96683854d">&#9670;&nbsp;</a></span>testEventListener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void Pathfinder.Pathfinder.testEventListener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_pathfinder_1_1_event_1_1_pathfinder_event.html">PathfinderEvent</a>&#160;</td>
-          <td class="paramname"><em>pathfinderEvent</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_pathfinder_8cs_source.html#l00058">58</a> of file <a class="el" href="_pathfinder_8cs_source.html">Pathfinder.cs</a>.</p>
-
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="afb64d3cae21f1be1af30958e8034892d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb64d3cae21f1be1af30958e8034892d">&#9670;&nbsp;</a></span>DepFolderPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly string Pathfinder.Pathfinder.DepFolderPath = <a class="el" href="class_pathfinder_1_1_pathfinder.html#a4a40ebde9837989722ebe094d69ec096">ModFolderPath</a> + Path.DirectorySeparatorChar + &quot;deps&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_pathfinder_8cs_source.html#l00028">28</a> of file <a class="el" href="_pathfinder_8cs_source.html">Pathfinder.cs</a>.</p>
+
+</div>
+</div>
+<a id="acf68e7c2fc870dbd0700c287f99ba819"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf68e7c2fc870dbd0700c287f99ba819">&#9670;&nbsp;</a></span>LoadedModIdentifiers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;string&gt; Pathfinder.Pathfinder.LoadedModIdentifiers =&gt; OperationalMods.Keys.ToList()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the loaded mod identifiers. </p>
+<p>The loaded mod identifiers.</p>
+
+<p class="definition">Definition at line <a class="el" href="_pathfinder_8cs_source.html#l00174">174</a> of file <a class="el" href="_pathfinder_8cs_source.html">Pathfinder.cs</a>.</p>
+
+</div>
+</div>
 <a id="a4a40ebde9837989722ebe094d69ec096"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4a40ebde9837989722ebe094d69ec096">&#9670;&nbsp;</a></span>ModFolderPath</h2>
 
@@ -251,7 +277,59 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)</div><div class="line">                                                          + Path.DirectorySeparatorChar + <span class="stringliteral">&quot;Mods&quot;</span></div></div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="_pathfinder_8cs_source.html#l00028">28</a> of file <a class="el" href="_pathfinder_8cs_source.html">Pathfinder.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_8cs_source.html#l00025">25</a> of file <a class="el" href="_pathfinder_8cs_source.html">Pathfinder.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7d313db2dac1f92752c17ea49a7b31d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d313db2dac1f92752c17ea49a7b31d3">&#9670;&nbsp;</a></span>UnloadedModIdentifiers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;string&gt; Pathfinder.Pathfinder.UnloadedModIdentifiers =&gt; unloadedMods.ToList()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the unloaded mod identifiers. </p>
+<p>The unloaded mod identifiers.</p>
+
+<p class="definition">Definition at line <a class="el" href="_pathfinder_8cs_source.html#l00180">180</a> of file <a class="el" href="_pathfinder_8cs_source.html">Pathfinder.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="a66742dc9ae5c678ec73ed67643027f4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66742dc9ae5c678ec73ed67643027f4a">&#9670;&nbsp;</a></span>CurrentMod</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_pathfinder_1_1_i_pathfinder_mod.html">IPathfinderMod</a> Pathfinder.Pathfinder.CurrentMod</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_pathfinder_8cs_source.html#l00030">30</a> of file <a class="el" href="_pathfinder_8cs_source.html">Pathfinder.cs</a>.</p>
 
 </div>
 </div>
@@ -264,7 +342,7 @@ Static Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_pathfinder.html">Pathfinder</a></li><li class="navelem"><a class="el" href="class_pathfinder_1_1_pathfinder.html">Pathfinder</a></li>
-    <li class="footer">Generated on Sun Apr 23 2017 21:36:52 for Pathfinder Hacknet by
+    <li class="footer">Generated on Sat May 13 2017 17:10:30 for Pathfinder Hacknet by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

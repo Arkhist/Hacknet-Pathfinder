@@ -100,6 +100,12 @@ namespace Pathfinder
         /// <param name="id">Mod Identifier.</param>
         public static bool IsModLoaded(string id) => mods.ContainsKey(id);
 
+        /// <summary>
+        /// Determines whether a mod identifier is valid
+        /// </summary>
+        /// <returns><c>true</c>, if mod identifier is valid, <c>false</c> otherwise.</returns>
+        /// <param name="id">The Mod Identifier.</param>
+        /// <param name="shouldThrowReason">If set to <c>true</c> then this method will throw.</param>
         public static bool IsModIdentifierValid(string id, bool shouldThrowReason = false)
         {
             if (String.IsNullOrEmpty(id))
@@ -161,7 +167,16 @@ namespace Pathfinder
             }
         }
 
+        /// <summary>
+        /// Gets the loaded mod identifiers.
+        /// </summary>
+        /// <value>The loaded mod identifiers.</value>
         public static List<string> LoadedModIdentifiers => OperationalMods.Keys.ToList();
+
+        /// <summary>
+        /// Gets the unloaded mod identifiers.
+        /// </summary>
+        /// <value>The unloaded mod identifiers.</value>
         public static List<string> UnloadedModIdentifiers => unloadedMods.ToList();
 
         internal static void ManageSaveXml(OSSaveWriteEvent e)

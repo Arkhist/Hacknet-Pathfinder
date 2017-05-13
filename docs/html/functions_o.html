@@ -85,13 +85,13 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 <h3><a id="index_o"></a>- o -</h3><ul>
 <li>Object
 : <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file_object.html#a67415660ebb0f770e47ce9026dd3680c">Pathfinder.GameFilesystem.FileObject&lt; VanillaT &gt;</a>
-, <a class="el" href="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object.html#a82994257875c4186b22ecef90c5397bf">Pathfinder.GameFilesystem.IFileObject&lt; VanillaT &gt;</a>
+, <a class="el" href="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object.html#affd6dc66a714188e215eea48e7e65f5f">Pathfinder.GameFilesystem.IFileObject</a>
 </li>
 <li>OnAdd()
-: <a class="el" href="class_pathfinder_1_1_mission_1_1_mission_goal_instance.html#a0f22a69d1b6e0d5a885502c5d910af22">Pathfinder.Mission.MissionGoalInstance</a>
+: <a class="el" href="class_pathfinder_1_1_mission_1_1_goal_instance.html#a4ea89f3bc9aa9b41c6cdf3d4f218b5a5">Pathfinder.Mission.GoalInstance</a>
 </li>
 <li>onCommandSent()
-: <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a34a5b631f3ce6e51926e1f47d17b8ceb">Pathfinder.PathfinderHooks</a>
+: <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a4baf67078ff22249fc121b39c8ffeb9c">Pathfinder.PathfinderHooks</a>
 </li>
 <li>OnComplete()
 : <a class="el" href="interface_pathfinder_1_1_executable_1_1_i_interface.html#a417e90638e72cbe0b86e0c648684378a">Pathfinder.Executable.IInterface</a>
@@ -105,6 +105,12 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 : <a class="el" href="interface_pathfinder_1_1_daemon_1_1_i_interface.html#ac07fdf4b8cd51b9ed5ea5941a642e26f">Pathfinder.Daemon.IInterface</a>
 , <a class="el" href="class_pathfinder_1_1_daemon_1_1_interface.html#a0c37c430caab99193c577932d600fb0d">Pathfinder.Daemon.Interface</a>
 </li>
+<li>onDisplayModuleDraw()
+: <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a565cdd3a620bac908aa92532588d22cb">Pathfinder.PathfinderHooks</a>
+</li>
+<li>onDisplayModuleUpdate()
+: <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a6be1e9dc07c00137f08ff53681ac810e">Pathfinder.PathfinderHooks</a>
+</li>
 <li>onDrawMainMenuTitles()
 : <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#afd8f11882aa51778c376286a2c7e2b3d">Pathfinder.PathfinderHooks</a>
 </li>
@@ -114,6 +120,12 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 </li>
 <li>onExecutableExecute()
 : <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#aebc40e199251e0d0ec95dec2bb6239a8">Pathfinder.PathfinderHooks</a>
+</li>
+<li>onExtensionsMenuListDraw()
+: <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#af5071ba9a13f6a2119bb92aa48528507">Pathfinder.PathfinderHooks</a>
+</li>
+<li>onExtensionsMenuScreenDraw()
+: <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#aa8ce089b2a69e7e86f0efe9499feeb34">Pathfinder.PathfinderHooks</a>
 </li>
 <li>onGameUnloadContent()
 : <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#ae7f2ebfb0b0d0027fd5b3d098bfa6d0d">Pathfinder.PathfinderHooks</a>
@@ -148,6 +160,9 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 <li>onLoadSession()
 : <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#adeb1045c54b7cd3d4173d3c7b14fc016">Pathfinder.PathfinderHooks</a>
 </li>
+<li>OnlyOutline
+: <a class="el" href="class_pathfinder_1_1_g_u_i_1_1_button.html#a0931750e308a7f4e0458f72a60aa56d5">Pathfinder.GUI.Button</a>
+</li>
 <li>onMain()
 : <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#ab1edc04c1d1b258c5fa7e9d91cf71652">Pathfinder.PathfinderHooks</a>
 </li>
@@ -163,6 +178,9 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 </li>
 <li>onPortExecutableExecute()
 : <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a15629e7518416723a7996e920c4211d1">Pathfinder.PathfinderHooks</a>
+</li>
+<li>onPortNameDraw()
+: <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a87ea13e22496034e0ff7899c0308b9a7">Pathfinder.PathfinderHooks</a>
 </li>
 <li>onPostLoadSession()
 : <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#af90993239a81c449261fa4095796b7da">Pathfinder.PathfinderHooks</a>
@@ -181,8 +199,23 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 : <a class="el" href="interface_pathfinder_1_1_daemon_1_1_i_interface.html#a353a70ffb34cb15e42c48443144251a4">Pathfinder.Daemon.IInterface</a>
 , <a class="el" href="class_pathfinder_1_1_daemon_1_1_interface.html#a8f1e53fd15c3d6a904041e0c1268b37f">Pathfinder.Daemon.Interface</a>
 </li>
+<li>OpenModPort()
+: <a class="el" href="class_pathfinder_1_1_computer_1_1_extensions.html#afc2dbde25683525633d3aa3e81a6fc96">Pathfinder.Computer.Extensions</a>
+</li>
+<li>OpenVanillaPort()
+: <a class="el" href="class_pathfinder_1_1_computer_1_1_extensions.html#a2a027f7a504370f2328601ac9809b9bf">Pathfinder.Computer.Extensions</a>
+</li>
 <li>operator Filesystem()
 : <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#a191277e8f7df7ea2a5f3d0346374d5ba">Pathfinder.GameFilesystem.Filesystem</a>
+</li>
+<li>operator MoveLine()
+: <a class="el" href="struct_pathfinder_1_1_g_u_i_1_1_move_line.html#ac93ddb2db34c154db2adcbab528788dd">Pathfinder.GUI.MoveLine</a>
+</li>
+<li>operator Vector2()
+: <a class="el" href="struct_pathfinder_1_1_g_u_i_1_1_move_line.html#adc1961c59f4a043a7dfd8e701d9fa58b">Pathfinder.GUI.MoveLine</a>
+</li>
+<li>OriginalClickPosition
+: <a class="el" href="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle.html#a80f9bb4b86fde06f522788998b06bb90">Pathfinder.GUI.DynamicRectangle</a>
 </li>
 <li>OS
 : <a class="el" href="class_pathfinder_1_1_event_1_1_executable_event.html#a3821192b81da6ca72c15a9e8c40ca934">Pathfinder.Event.ExecutableEvent</a>
@@ -210,13 +243,19 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 <li>OSSaveWriteEvent()
 : <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_save_write_event.html#a7d289a69d9232b562286b6c668ed4abb">Pathfinder.Event.OSSaveWriteEvent</a>
 </li>
+<li>OverridePortHack()
+: <a class="el" href="class_pathfinder_1_1_internal_1_1_execution_override.html#a5a2b01d6604bf5ddbe404c45ccd33481">Pathfinder.Internal.ExecutionOverride</a>
+</li>
+<li>OverwriteProbe()
+: <a class="el" href="class_pathfinder_1_1_internal_1_1_execution_override.html#a91c9932483f95c35d462973596ecedbe">Pathfinder.Internal.ExecutionOverride</a>
+</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Apr 23 2017 21:36:52 for Pathfinder Hacknet by
+    <li class="footer">Generated on Sat May 13 2017 17:10:30 for Pathfinder Hacknet by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

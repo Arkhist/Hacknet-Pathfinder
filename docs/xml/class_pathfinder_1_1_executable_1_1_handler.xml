@@ -2,12 +2,12 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="class_pathfinder_1_1_executable_1_1_handler" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Executable::Handler</compoundname>
-      <sectiondef kind="private-static-attrib">
-      <memberdef kind="variable" id="class_pathfinder_1_1_executable_1_1_handler_1a2730b7ba6d9ea4e409ce26c8e7e0bb53" prot="private" static="yes" mutable="no">
+      <sectiondef kind="package-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_executable_1_1_handler_1ad8cad0a76b50463c9fa2fdef5cbdc625" prot="package" static="yes" mutable="no">
         <type>Dictionary&lt; string, <ref refid="interface_pathfinder_1_1_executable_1_1_i_interface" kindref="compound">IInterface</ref> &gt;</type>
-        <definition>Dictionary&lt;string, IInterface&gt; Pathfinder.Executable.Handler.interfaces</definition>
+        <definition>Dictionary&lt;string, IInterface&gt; Pathfinder.Executable.Handler.idToInterface</definition>
         <argsstring></argsstring>
-        <name>interfaces</name>
+        <name>idToInterface</name>
         <initializer>= new Dictionary&lt;string, <ref refid="interface_pathfinder_1_1_executable_1_1_i_interface" kindref="compound">IInterface</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
@@ -15,8 +15,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="12" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="12" bodyend="-1"/>
+        <location file="Pathfinder/Executable/Handler.cs" line="9" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="9" bodyend="-1"/>
       </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
       <memberdef kind="variable" id="class_pathfinder_1_1_executable_1_1_handler_1a13bdf9542c7ddf8b2ce53a8987467aa9" prot="private" static="yes" mutable="no">
         <type>Dictionary&lt; string, string &gt;</type>
         <definition>Dictionary&lt;string, string&gt; Pathfinder.Executable.Handler.idToDataCache</definition>
@@ -29,15 +31,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="13" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="13" bodyend="-1"/>
+        <location file="Pathfinder/Executable/Handler.cs" line="10" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="10" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1aeea60860961b9af31162b6e28ef6f41a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>static bool Pathfinder.Executable.Handler.AddExecutable</definition>
+      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1ad54f06a107407f1f0c8e225587c265de" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Executable.Handler.RegisterExecutable</definition>
         <argsstring>(string id, IInterface inter)</argsstring>
-        <name>AddExecutable</name>
+        <name>RegisterExecutable</name>
         <param>
           <type>string</type>
           <declname>id</declname>
@@ -49,7 +51,7 @@
         <briefdescription>
 <para>Adds an executable interface by id. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if executable was added, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
+<para><simplesect kind="return"><para>The full mod id if added to the game, <computeroutput>null</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>id</parametername>
@@ -68,7 +70,28 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="21" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="21" bodyend="38"/>
+        <location file="Pathfinder/Executable/Handler.cs" line="18" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="18" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1aeea60860961b9af31162b6e28ef6f41a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Executable.Handler.AddExecutable</definition>
+        <argsstring>(string id, IInterface inter)</argsstring>
+        <name>AddExecutable</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_pathfinder_1_1_executable_1_1_i_interface" kindref="compound">IInterface</ref></type>
+          <declname>inter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Executable/Handler.cs" line="41" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1a9b8e34a0bc16ae4000b78cd534886783" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -94,7 +117,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="45" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="45" bodyend="52"/>
+        <location file="Pathfinder/Executable/Handler.cs" line="57" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="57" bodyend="64"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1a03d09fcc2079a242d5e0f19a0eef8cb3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>string</type>
@@ -132,7 +155,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="60" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="60" bodyend="69"/>
+        <location file="Pathfinder/Executable/Handler.cs" line="72" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="72" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1ac5ace69a2f4b3dbf962df8073f2cc23b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>string</type>
@@ -158,18 +181,18 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="76" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="76" bodyend="82"/>
+        <location file="Pathfinder/Executable/Handler.cs" line="88" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="88" bodyend="94"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1a03a962b359ad3b4801d7cb646f42aa6b" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void Pathfinder.Executable.Handler.ExecutableListener</definition>
-        <argsstring>(ExecutableExecuteEvent e)</argsstring>
-        <name>ExecutableListener</name>
+      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1acc6b67def274cdda7606f461987108b3" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Executable.Handler.UnregisterExecutable</definition>
+        <argsstring>(string id)</argsstring>
+        <name>UnregisterExecutable</name>
         <param>
-          <type><ref refid="class_pathfinder_1_1_event_1_1_executable_execute_event" kindref="compound">ExecutableExecuteEvent</ref></type>
-          <declname>e</declname>
+          <type>string</type>
+          <declname>id</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -177,40 +200,23 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="84" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="84" bodyend="96"/>
-      </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1a91c0fe3762decdc0778e9243c16331c2" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void Pathfinder.Executable.Handler.ExecutableListInsertListener</definition>
-        <argsstring>(CommandSentEvent e)</argsstring>
-        <name>ExecutableListInsertListener</name>
-        <param>
-          <type><ref refid="class_pathfinder_1_1_event_1_1_command_sent_event" kindref="compound">CommandSentEvent</ref></type>
-          <declname>e</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="98" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="98" bodyend="128"/>
+        <location file="Pathfinder/Executable/Handler.cs" line="43" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="43" bodyend="50"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Executable/Handler.cs" line="11" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="10" bodyend="129"/>
+    <location file="Pathfinder/Executable/Handler.cs" line="8" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="7" bodyend="95"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_executable_1_1_handler_1aeea60860961b9af31162b6e28ef6f41a" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>AddExecutable</name></member>
-      <member refid="class_pathfinder_1_1_executable_1_1_handler_1a03a962b359ad3b4801d7cb646f42aa6b" prot="package" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>ExecutableListener</name></member>
-      <member refid="class_pathfinder_1_1_executable_1_1_handler_1a91c0fe3762decdc0778e9243c16331c2" prot="package" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>ExecutableListInsertListener</name></member>
       <member refid="class_pathfinder_1_1_executable_1_1_handler_1a03d09fcc2079a242d5e0f19a0eef8cb3" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>GetStandardFileDataBy</name></member>
       <member refid="class_pathfinder_1_1_executable_1_1_handler_1ac5ace69a2f4b3dbf962df8073f2cc23b" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>GetStandardFileDataBy</name></member>
       <member refid="class_pathfinder_1_1_executable_1_1_handler_1a13bdf9542c7ddf8b2ce53a8987467aa9" prot="private" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>idToDataCache</name></member>
-      <member refid="class_pathfinder_1_1_executable_1_1_handler_1a2730b7ba6d9ea4e409ce26c8e7e0bb53" prot="private" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>interfaces</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_handler_1ad8cad0a76b50463c9fa2fdef5cbdc625" prot="package" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>idToInterface</name></member>
       <member refid="class_pathfinder_1_1_executable_1_1_handler_1a9b8e34a0bc16ae4000b78cd534886783" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>IsFileDataForModExe</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_handler_1ad54f06a107407f1f0c8e225587c265de" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>RegisterExecutable</name></member>
+      <member refid="class_pathfinder_1_1_executable_1_1_handler_1acc6b67def274cdda7606f461987108b3" prot="package" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>UnregisterExecutable</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

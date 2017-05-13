@@ -63,43 +63,43 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="43">
+      <node id="110">
         <label>Pathfinder.Event.DrawMainMenuTitlesEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event"/>
-        <childnode refid="44" relation="public-inheritance">
+        <childnode refid="111" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="45">
+      <node id="112">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="44">
+      <node id="111">
         <label>MainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="45" relation="public-inheritance">
+        <childnode refid="112" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="46">
+      <node id="113">
         <label>Pathfinder.Event.DrawMainMenuTitlesEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event"/>
-        <childnode refid="47" relation="public-inheritance">
+        <childnode refid="114" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="48">
+      <node id="115">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="49">
+      <node id="116">
         <label>Hacknet</label>
       </node>
-      <node id="47">
+      <node id="114">
         <label>MainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="48" relation="public-inheritance">
+        <childnode refid="115" relation="public-inheritance">
         </childnode>
-        <childnode refid="49" relation="usage">
+        <childnode refid="116" relation="usage">
           <edgelabel>MainMenuInstance</edgelabel>
         </childnode>
       </node>

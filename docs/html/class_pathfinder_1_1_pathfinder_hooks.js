@@ -1,8 +1,12 @@
 var class_pathfinder_1_1_pathfinder_hooks =
 [
-    [ "onCommandSent", "class_pathfinder_1_1_pathfinder_hooks.html#a34a5b631f3ce6e51926e1f47d17b8ceb", null ],
+    [ "onCommandSent", "class_pathfinder_1_1_pathfinder_hooks.html#a4baf67078ff22249fc121b39c8ffeb9c", null ],
+    [ "onDisplayModuleDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a565cdd3a620bac908aa92532588d22cb", null ],
+    [ "onDisplayModuleUpdate", "class_pathfinder_1_1_pathfinder_hooks.html#a6be1e9dc07c00137f08ff53681ac810e", null ],
     [ "onDrawMainMenuTitles", "class_pathfinder_1_1_pathfinder_hooks.html#afd8f11882aa51778c376286a2c7e2b3d", null ],
     [ "onExecutableExecute", "class_pathfinder_1_1_pathfinder_hooks.html#aebc40e199251e0d0ec95dec2bb6239a8", null ],
+    [ "onExtensionsMenuListDraw", "class_pathfinder_1_1_pathfinder_hooks.html#af5071ba9a13f6a2119bb92aa48528507", null ],
+    [ "onExtensionsMenuScreenDraw", "class_pathfinder_1_1_pathfinder_hooks.html#aa8ce089b2a69e7e86f0efe9499feeb34", null ],
     [ "onGameUnloadContent", "class_pathfinder_1_1_pathfinder_hooks.html#ae7f2ebfb0b0d0027fd5b3d098bfa6d0d", null ],
     [ "onGameUpdate", "class_pathfinder_1_1_pathfinder_hooks.html#a400fd38e22eb1d75dfdc6e32c62056cb", null ],
     [ "onLoadComputer", "class_pathfinder_1_1_pathfinder_hooks.html#a3af9e93fca94e3e5f34e8957d3037827", null ],
@@ -14,6 +18,7 @@ var class_pathfinder_1_1_pathfinder_hooks =
     [ "onMainMenuButtonsDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a22723a402af6d601ecc3e59ccac70cd9", null ],
     [ "onMainMenuDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a7d223357d5480b066fee3aac4fd53eff", null ],
     [ "onPortExecutableExecute", "class_pathfinder_1_1_pathfinder_hooks.html#a15629e7518416723a7996e920c4211d1", null ],
+    [ "onPortNameDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a87ea13e22496034e0ff7899c0308b9a7", null ],
     [ "onPostLoadSession", "class_pathfinder_1_1_pathfinder_hooks.html#af90993239a81c449261fa4095796b7da", null ],
     [ "onSaveFile", "class_pathfinder_1_1_pathfinder_hooks.html#a0d799b7cdbdc80ae7a6dbbb87cac7855", null ],
     [ "onSaveWrite", "class_pathfinder_1_1_pathfinder_hooks.html#a32509072e9be046299145b6d09cb6fbc", null ]

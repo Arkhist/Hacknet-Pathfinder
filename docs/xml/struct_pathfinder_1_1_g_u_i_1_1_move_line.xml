@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="struct_pathfinder_1_1_g_u_i_1_1_move_line" kind="struct" language="C#" prot="public">
+    <compoundname>Pathfinder::GUI::MoveLine</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="struct_pathfinder_1_1_g_u_i_1_1_move_line_1a5d3c72398a8414d0369a0458681bb4c8" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float Pathfinder.GUI.MoveLine.Max</definition>
+        <argsstring></argsstring>
+        <name>Max</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="9" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_pathfinder_1_1_g_u_i_1_1_move_line_1aca77ffae38329b141b6dc43960a7d1fb" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float Pathfinder.GUI.MoveLine.Min</definition>
+        <argsstring></argsstring>
+        <name>Min</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="10" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_pathfinder_1_1_g_u_i_1_1_move_line_1a7f5abcf399560687e1ac9b6f81e35a99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.GUI.MoveLine.MoveLine</definition>
+        <argsstring>(float max=0, float min=0)</argsstring>
+        <name>MoveLine</name>
+        <param>
+          <type>float</type>
+          <declname>max</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>min</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="11" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="11" bodyend="15"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="struct_pathfinder_1_1_g_u_i_1_1_move_line_1adc1961c59f4a043a7dfd8e701d9fa58b" prot="public" static="yes" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type>static</type>
+        <definition>static Pathfinder.GUI.MoveLine.operator Vector2</definition>
+        <argsstring>(MoveLine line)</argsstring>
+        <name>operator Vector2</name>
+        <param>
+          <type><ref refid="struct_pathfinder_1_1_g_u_i_1_1_move_line" kindref="compound">MoveLine</ref></type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="17" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_pathfinder_1_1_g_u_i_1_1_move_line_1ac93ddb2db34c154db2adcbab528788dd" prot="public" static="yes" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type>static</type>
+        <definition>static Pathfinder.GUI.MoveLine.operator MoveLine</definition>
+        <argsstring>(Vector2 vec)</argsstring>
+        <name>operator MoveLine</name>
+        <param>
+          <type>Vector2</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="18" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/GUI/DynamicRectangle.cs" line="8" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="7" bodyend="19"/>
+    <listofallmembers>
+      <member refid="struct_pathfinder_1_1_g_u_i_1_1_move_line_1a5d3c72398a8414d0369a0458681bb4c8" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::MoveLine</scope><name>Max</name></member>
+      <member refid="struct_pathfinder_1_1_g_u_i_1_1_move_line_1aca77ffae38329b141b6dc43960a7d1fb" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::MoveLine</scope><name>Min</name></member>
+      <member refid="struct_pathfinder_1_1_g_u_i_1_1_move_line_1a7f5abcf399560687e1ac9b6f81e35a99" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::MoveLine</scope><name>MoveLine</name></member>
+      <member refid="struct_pathfinder_1_1_g_u_i_1_1_move_line_1ac93ddb2db34c154db2adcbab528788dd" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::MoveLine</scope><name>operator MoveLine</name></member>
+      <member refid="struct_pathfinder_1_1_g_u_i_1_1_move_line_1adc1961c59f4a043a7dfd8e701d9fa58b" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::MoveLine</scope><name>operator Vector2</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

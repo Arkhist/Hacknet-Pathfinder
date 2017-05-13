@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespace_pathfinder_1_1_internal_1_1_g_u_i" kind="namespace" language="C#">
+    <compoundname>Pathfinder::Internal::GUI</compoundname>
+    <innerclass refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i" prot="public">Pathfinder::Internal::GUI::ModExtensionsUI</innerclass>
+    <innerclass refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list" prot="public">Pathfinder::Internal::GUI::ModList</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="15" column="1"/>
+  </compounddef>
+</doxygen>

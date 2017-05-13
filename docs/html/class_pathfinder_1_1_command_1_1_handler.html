@@ -81,6 +81,7 @@ $(document).ready(function(){initNavTree('class_pathfinder_1_1_command_1_1_handl
 
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_pathfinder_1_1_command_1_1_handler-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -88,10 +89,17 @@ $(document).ready(function(){initNavTree('class_pathfinder_1_1_command_1_1_handl
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a2a554560d17cb4f32735115a9efde193"><td class="memItemLeft" align="right" valign="top">delegate bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#a2a554560d17cb4f32735115a9efde193">CommandFunc</a> (Hacknet.OS os, List&lt; string &gt; args)</td></tr>
+<tr class="separator:a2a554560d17cb4f32735115a9efde193"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ae2ba76254891fa9ac9e40a874028e709"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#ae2ba76254891fa9ac9e40a874028e709">RegisterCommand</a> (string key, <a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#a2a554560d17cb4f32735115a9efde193">CommandFunc</a> function, string description=null, bool autoComplete=false)</td></tr>
+<tr class="memdesc:ae2ba76254891fa9ac9e40a874028e709"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a command to the game.  <a href="#ae2ba76254891fa9ac9e40a874028e709">More...</a><br /></td></tr>
+<tr class="separator:ae2ba76254891fa9ac9e40a874028e709"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e1314b9193ca69471aabbb4c1c37a75"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#a1e1314b9193ca69471aabbb4c1c37a75">AddCommand</a> (string key, Func&lt; Hacknet.OS, List&lt; string &gt;, bool &gt; function, string description=null, bool autoComplete=false)</td></tr>
-<tr class="memdesc:a1e1314b9193ca69471aabbb4c1c37a75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a command to the game.  <a href="#a1e1314b9193ca69471aabbb4c1c37a75">More...</a><br /></td></tr>
 <tr class="separator:a1e1314b9193ca69471aabbb4c1c37a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d65fa66db7779a37ab893fff72f4a1b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#a5d65fa66db7779a37ab893fff72f4a1b">AddCommand</a> (string key, Func&lt; Hacknet.OS, string[], bool &gt; function)</td></tr>
 <tr class="separator:a5d65fa66db7779a37ab893fff72f4a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,20 +158,6 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adds a command to the game. </p>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code>, if command was added, <code>false</code> otherwise.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>The key used to run the command.</td></tr>
-    <tr><td class="paramname">function</td><td>The function run when command is input.</td></tr>
-    <tr><td class="paramname">description</td><td>A description to input when help is command is run (if not null).</td></tr>
-    <tr><td class="paramname">autoComplete</td><td>If set to <code>true</code> then autocomplete for command is enabled.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="_command_2_handler_8cs_source.html#l00022">22</a> of file <a class="el" href="_command_2_handler_8cs_source.html">Handler.cs</a>.</p>
-
 </div>
 </div>
 <a id="a5d65fa66db7779a37ab893fff72f4a1b"></a>
@@ -199,8 +193,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_command_2_handler_8cs_source.html#l00039">39</a> of file <a class="el" href="_command_2_handler_8cs_source.html">Handler.cs</a>.</p>
 
 </div>
 </div>
@@ -243,8 +235,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_command_2_handler_8cs_source.html#l00045">45</a> of file <a class="el" href="_command_2_handler_8cs_source.html">Handler.cs</a>.</p>
 
 </div>
 </div>
@@ -294,7 +284,95 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_command_2_handler_8cs_source.html#l00051">51</a> of file <a class="el" href="_command_2_handler_8cs_source.html">Handler.cs</a>.</p>
+</div>
+</div>
+<a id="a2a554560d17cb4f32735115a9efde193"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a554560d17cb4f32735115a9efde193">&#9670;&nbsp;</a></span>CommandFunc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">delegate bool Pathfinder.Command.Handler.CommandFunc </td>
+          <td>(</td>
+          <td class="paramtype">Hacknet.OS&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae2ba76254891fa9ac9e40a874028e709"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2ba76254891fa9ac9e40a874028e709">&#9670;&nbsp;</a></span>RegisterCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string Pathfinder.Command.Handler.RegisterCommand </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#a2a554560d17cb4f32735115a9efde193">CommandFunc</a>&#160;</td>
+          <td class="paramname"><em>function</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>description</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>autoComplete</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a command to the game. </p>
+<dl class="section return"><dt>Returns</dt><dd>The full mod command id if added to the game, <code>null</code> otherwise</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key used to run the command.</td></tr>
+    <tr><td class="paramname">function</td><td>The function run when command is input.</td></tr>
+    <tr><td class="paramname">description</td><td>A description to input when help is command is run (if not null).</td></tr>
+    <tr><td class="paramname">autoComplete</td><td>If set to <code>true</code> then autocomplete for command is enabled.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_command_2_handler_8cs_source.html#l00024">24</a> of file <a class="el" href="_command_2_handler_8cs_source.html">Handler.cs</a>.</p>
 
 </div>
 </div>
@@ -307,7 +385,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_pathfinder.html">Pathfinder</a></li><li class="navelem"><a class="el" href="namespace_pathfinder_1_1_command.html">Command</a></li><li class="navelem"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html">Handler</a></li>
-    <li class="footer">Generated on Sun Apr 23 2017 21:36:52 for Pathfinder Hacknet by
+    <li class="footer">Generated on Sat May 13 2017 17:10:30 for Pathfinder Hacknet by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

@@ -43,32 +43,32 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="12">
+      <node id="40">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="13">
+      <node id="41">
         <label>Pathfinder.Event.LoadComputerXmlReadEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event"/>
-        <childnode refid="11" relation="public-inheritance">
+        <childnode refid="39" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="11">
+      <node id="39">
         <label>Pathfinder.Event.ComputerEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_computer_event"/>
-        <childnode refid="12" relation="public-inheritance">
+        <childnode refid="40" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="15">
+      <node id="43">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="14">
+      <node id="42">
         <label>Pathfinder.Event.ComputerEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_computer_event"/>
-        <childnode refid="15" relation="public-inheritance">
+        <childnode refid="43" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

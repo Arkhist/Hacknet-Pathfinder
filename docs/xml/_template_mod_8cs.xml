@@ -4,6 +4,7 @@
     <compoundname>TemplateMod.cs</compoundname>
     <innernamespace refid="namespace_command">Command</innernamespace>
     <innernamespace refid="namespace_executable">Executable</innernamespace>
+    <innernamespace refid="namespace_port">Port</innernamespace>
       <sectiondef kind="typedef">
       <memberdef kind="typedef" id="_template_mod_8cs_1ab7b05c4941e9c4745552c4656909b691" prot="public" static="no">
         <type>Pathfinder.Command</type>
@@ -31,6 +32,19 @@
         </inbodydescription>
         <location file="TemplateMod/TemplateMod.cs" line="3" column="1" bodyfile="TemplateMod/TemplateMod.cs" bodystart="3" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="typedef" id="_template_mod_8cs_1a54a9af565dc18a3a7459c33576287652" prot="public" static="no">
+        <type>Pathfinder.Port</type>
+        <definition>using Port =  Pathfinder.Port</definition>
+        <argsstring></argsstring>
+        <name>Port</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="TemplateMod/TemplateMod.cs" line="4" column="1" bodyfile="TemplateMod/TemplateMod.cs" bodystart="4" bodyend="-1"/>
+      </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -40,41 +54,46 @@
 <codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.<ref refid="namespace_pathfinder_1_1_util" kindref="compound">Util</ref>;</highlight></codeline>
 <codeline lineno="2" refid="_template_mod_8cs_1ab7b05c4941e9c4745552c4656909b691" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_command" kindref="compound">Command</ref><sp/>=<sp/><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.<ref refid="namespace_pathfinder_1_1_command" kindref="compound">Command</ref>;</highlight></codeline>
 <codeline lineno="3" refid="_template_mod_8cs_1a72bbc6558fd5aab33bc405ca36d0df9e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_executable" kindref="compound">Executable</ref><sp/>=<sp/><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.<ref refid="namespace_pathfinder_1_1_executable" kindref="compound">Executable</ref>;</highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_template_mod" kindref="compound">TemplateMod</ref></highlight></codeline>
-<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="namespace_template_mod" kindref="compound">TemplateMod</ref><sp/>:<sp/><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.IPathfinderMod</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>Identifier<sp/>=&gt;<sp/></highlight><highlight class="stringliteral">&quot;Template<sp/>Mod&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Load()</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_pathfinder_1_1_util_1_1_logger" kindref="compound">Logger</ref>.<ref refid="class_pathfinder_1_1_util_1_1_logger_1aacfc0d30763fd5bebd00239d6e125d49" kindref="member">Verbose</ref>(</highlight><highlight class="stringliteral">&quot;Loading<sp/>Template<sp/>Mod&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LoadContent()</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_command" kindref="compound">Command</ref>.Handler.AddCommand(</highlight><highlight class="stringliteral">&quot;templateModVersion&quot;</highlight><highlight class="normal">,<sp/>Commands.TemplateModVersion,<sp/>autoComplete:<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_executable" kindref="compound">Executable</ref>.Handler.AddExecutable(</highlight><highlight class="stringliteral">&quot;TempExe&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>TempExe());</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Unload()</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_pathfinder_1_1_util_1_1_logger" kindref="compound">Logger</ref>.<ref refid="class_pathfinder_1_1_util_1_1_logger_1aacfc0d30763fd5bebd00239d6e125d49" kindref="member">Verbose</ref>(</highlight><highlight class="stringliteral">&quot;Unloading<sp/>Template<sp/>Mod&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="4" refid="_template_mod_8cs_1a54a9af565dc18a3a7459c33576287652" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_port" kindref="compound">Port</ref><sp/>=<sp/><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.<ref refid="namespace_pathfinder_1_1_port" kindref="compound">Port</ref>;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_template_mod" kindref="compound">TemplateMod</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="namespace_template_mod" kindref="compound">TemplateMod</ref><sp/>:<sp/><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.IPathfinderMod</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">internal</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="namespace_port" kindref="compound">Port</ref>.Type<sp/>p<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="namespace_port" kindref="compound">Port</ref>.Type(</highlight><highlight class="stringliteral">&quot;TemplateName&quot;</highlight><highlight class="normal">,<sp/>4);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>Identifier<sp/>=&gt;<sp/></highlight><highlight class="stringliteral">&quot;Template<sp/>Mod&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Load()</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_pathfinder_1_1_util_1_1_logger" kindref="compound">Logger</ref>.<ref refid="class_pathfinder_1_1_util_1_1_logger_1aacfc0d30763fd5bebd00239d6e125d49" kindref="member">Verbose</ref>(</highlight><highlight class="stringliteral">&quot;Loading<sp/>Template<sp/>Mod&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LoadContent()</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_command" kindref="compound">Command</ref>.Handler.RegisterCommand(</highlight><highlight class="stringliteral">&quot;templateModVersion&quot;</highlight><highlight class="normal">,<sp/>Commands.TemplateModVersion,<sp/>autoComplete:<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_executable" kindref="compound">Executable</ref>.Handler.RegisterExecutable(</highlight><highlight class="stringliteral">&quot;TempExe&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>TempExe());</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="namespace_port" kindref="compound">Port</ref>.Handler.RegisterPort(</highlight><highlight class="stringliteral">&quot;tempPort&quot;</highlight><highlight class="normal">,<sp/>p)<sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_pathfinder_1_1_util_1_1_logger" kindref="compound">Logger</ref>.<ref refid="class_pathfinder_1_1_util_1_1_logger_1af769ccfd040a22871c3520e92995fa1b" kindref="member">Info</ref>(</highlight><highlight class="stringliteral">&quot;added<sp/>tempPort<sp/>to<sp/>game&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">TempExe<sp/>:<sp/><ref refid="namespace_executable" kindref="compound">Executable</ref>.Interface</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Unload()</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>Identifier<sp/>=&gt;<sp/></highlight><highlight class="stringliteral">&quot;TempExe&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">?<sp/>Update(<ref refid="namespace_executable" kindref="compound">Executable</ref>.Instance<sp/>instance,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>time)</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_pathfinder_1_1_util_1_1_logger" kindref="compound">Logger</ref>.<ref refid="class_pathfinder_1_1_util_1_1_logger_1aacfc0d30763fd5bebd00239d6e125d49" kindref="member">Verbose</ref>(</highlight><highlight class="stringliteral">&quot;TempExe&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_pathfinder_1_1_util_1_1_logger" kindref="compound">Logger</ref>.<ref refid="class_pathfinder_1_1_util_1_1_logger_1aacfc0d30763fd5bebd00239d6e125d49" kindref="member">Verbose</ref>(</highlight><highlight class="stringliteral">&quot;Unloading<sp/>Template<sp/>Mod&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">TempExe<sp/>:<sp/><ref refid="namespace_executable" kindref="compound">Executable</ref>.Interface</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>Identifier<sp/>=&gt;<sp/></highlight><highlight class="stringliteral">&quot;TempExe&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">?<sp/>Update(<ref refid="namespace_executable" kindref="compound">Executable</ref>.Instance<sp/>instance,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>time)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_pathfinder_1_1_util_1_1_logger" kindref="compound">Logger</ref>.<ref refid="class_pathfinder_1_1_util_1_1_logger_1aacfc0d30763fd5bebd00239d6e125d49" kindref="member">Verbose</ref>(</highlight><highlight class="stringliteral">&quot;TempExe&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="TemplateMod/TemplateMod.cs"/>
   </compounddef>

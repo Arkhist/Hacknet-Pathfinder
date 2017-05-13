@@ -2,18 +2,19 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="namespace_pathfinder_1_1_mission" kind="namespace" language="C#">
     <compoundname>Pathfinder::Mission</compoundname>
+    <innerclass refid="class_pathfinder_1_1_mission_1_1_goal_impl" prot="public">Pathfinder::Mission::GoalImpl</innerclass>
+    <innerclass refid="class_pathfinder_1_1_mission_1_1_goal_instance" prot="public">Pathfinder::Mission::GoalInstance</innerclass>
     <innerclass refid="class_pathfinder_1_1_mission_1_1_handler" prot="public">Pathfinder::Mission::Handler</innerclass>
+    <innerclass refid="interface_pathfinder_1_1_mission_1_1_i_goal" prot="public">Pathfinder::Mission::IGoal</innerclass>
     <innerclass refid="interface_pathfinder_1_1_mission_1_1_i_interface" prot="public">Pathfinder::Mission::IInterface</innerclass>
-    <innerclass refid="interface_pathfinder_1_1_mission_1_1_i_mission_goal" prot="public">Pathfinder::Mission::IMissionGoal</innerclass>
     <innerclass refid="class_pathfinder_1_1_mission_1_1_instance" prot="public">Pathfinder::Mission::Instance</innerclass>
     <innerclass refid="class_pathfinder_1_1_mission_1_1_interface" prot="public">Pathfinder::Mission::Interface</innerclass>
-    <innerclass refid="class_pathfinder_1_1_mission_1_1_mission_goal_impl" prot="public">Pathfinder::Mission::MissionGoalImpl</innerclass>
-    <innerclass refid="class_pathfinder_1_1_mission_1_1_mission_goal_instance" prot="public">Pathfinder::Mission::MissionGoalInstance</innerclass>
     <innerclass refid="class_pathfinder_1_1_mission_1_1_mission_manager" prot="public">Pathfinder::Mission::MissionManager</innerclass>
+    <innerclass refid="class_pathfinder_1_1_mission_1_1_mission_utils" prot="public">Pathfinder::Mission::MissionUtils</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Mission/Handler.cs" line="5" column="1"/>
+    <location file="Pathfinder/Mission/GoalInstance.cs" line="6" column="1"/>
   </compounddef>
 </doxygen>

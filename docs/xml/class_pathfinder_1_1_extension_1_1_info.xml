@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_extension_1_1_info" kind="class" language="C#" prot="public" abstract="yes">
+    <compoundname>Pathfinder::Extension::Info</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1a52fcbde3ba7cea14845e0c62e198bded" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Extension.Info.Id</definition>
+        <argsstring></argsstring>
+        <name>Id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="8" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1abddac60ddfacb4ab0429dea88e5cdfe4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>abstract string</type>
+        <definition>abstract string Pathfinder.Extension.Info.Name</definition>
+        <argsstring></argsstring>
+        <name>Name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="9" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1a9986a4abcb29b60475296c2612901e6e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>abstract string</type>
+        <definition>abstract string Pathfinder.Extension.Info.Description</definition>
+        <argsstring></argsstring>
+        <name>Description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="10" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1a153ebbb643028d56295121296785b52e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>abstract string</type>
+        <definition>abstract string Pathfinder.Extension.Info.LogoPath</definition>
+        <argsstring></argsstring>
+        <name>LogoPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="11" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1abcd435da318c553abc95e11df8ab3f52" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>abstract bool</type>
+        <definition>abstract bool Pathfinder.Extension.Info.AllowSaves</definition>
+        <argsstring></argsstring>
+        <name>AllowSaves</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="12" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_extension_1_1_info_1a5dde7055eaec9030111e40574acbf1d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Pathfinder.Extension.Info.Construct</definition>
+        <argsstring>(Hacknet.OS os)</argsstring>
+        <name>Construct</name>
+        <param>
+          <type>Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="13" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Extension/Info.cs" line="7" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="6" bodyend="14"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1abcd435da318c553abc95e11df8ab3f52" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>AllowSaves</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1a5dde7055eaec9030111e40574acbf1d7" prot="public" virt="pure-virtual"><scope>Pathfinder::Extension::Info</scope><name>Construct</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1a9986a4abcb29b60475296c2612901e6e" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>Description</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1a52fcbde3ba7cea14845e0c62e198bded" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>Id</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1a153ebbb643028d56295121296785b52e" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>LogoPath</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1abddac60ddfacb4ab0429dea88e5cdfe4" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>Name</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

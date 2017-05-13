@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/File.cs" line="16" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="17" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/File.cs" line="15" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="16" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_file_1a2611697af53f7740f524ae8db89b8651" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>sealed override int</type>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/File.cs" line="31" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="32" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/File.cs" line="30" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_file_1a4f5d79b9a6e92d662c9e759afd38441c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>override string</type>
@@ -56,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/File.cs" line="38" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="39" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/File.cs" line="37" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_file_1af683f9a133f6e176a971a85c1dfab0de" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>string</type>
@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/File.cs" line="58" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="59" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/File.cs" line="57" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="58" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_file_1a0d164f88c76532d949b585428fd6948c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>int</type>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/File.cs" line="71" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="72" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/File.cs" line="70" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_file_1a54081accd395035618e372cbe43fbb81" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>string</type>
@@ -95,7 +95,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/File.cs" line="89" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="89" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/File.cs" line="88" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_file_1a3472029e976f928e1822dfc026be0e70" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_object" kindref="compound">FileObject</ref>&lt; object &gt;</type>
@@ -108,7 +108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/File.cs" line="91" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="92" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/File.cs" line="90" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="91" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -124,7 +124,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/File.cs" line="36" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="36" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/File.cs" line="35" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="35" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -147,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/File.cs" line="9" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="9" bodyend="14"/>
+        <location file="Pathfinder/GameFilesystem/File.cs" line="9" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="9" bodyend="13"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_1a759f8e3f40bee6ee654823b94987dd5a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -160,7 +160,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/File.cs" line="84" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="84" bodyend="87"/>
+        <location file="Pathfinder/GameFilesystem/File.cs" line="83" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="83" bodyend="86"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_1a9913e6a5e54363f87340fc65ed599efd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file" kindref="compound">File</ref></type>
@@ -177,7 +177,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/File.cs" line="96" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="96" bodyend="99"/>
+        <location file="Pathfinder/GameFilesystem/File.cs" line="95" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="95" bodyend="98"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -185,47 +185,47 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="89">
+      <node id="166">
         <label>Pathfinder.GameFilesystem.File</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file"/>
-        <childnode refid="90" relation="public-inheritance">
+        <childnode refid="167" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="90">
+      <node id="167">
         <label>FileObject&lt; FileEntry, Directory &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="91">
+      <node id="168">
         <label>Pathfinder.GameFilesystem.File</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file"/>
-        <childnode refid="92" relation="public-inheritance">
+        <childnode refid="169" relation="public-inheritance">
         </childnode>
-        <childnode refid="93" relation="usage">
+        <childnode refid="170" relation="usage">
           <edgelabel>Root</edgelabel>
         </childnode>
       </node>
-      <node id="94">
+      <node id="171">
         <label>FileObject&lt; FileSystem, Hacknet.Computer &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
-      <node id="92">
+      <node id="169">
         <label>FileObject&lt; FileEntry, Directory &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
-      <node id="93">
+      <node id="170">
         <label>Pathfinder.GameFilesystem.Filesystem</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem"/>
-        <childnode refid="94" relation="public-inheritance">
+        <childnode refid="171" relation="public-inheritance">
         </childnode>
-        <childnode refid="93" relation="usage">
+        <childnode refid="170" relation="usage">
           <edgelabel>Root</edgelabel>
           <edgelabel>PrimaryFilesystem</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/GameFilesystem/File.cs" line="6" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="5" bodyend="100"/>
+    <location file="Pathfinder/GameFilesystem/File.cs" line="6" column="1" bodyfile="Pathfinder/GameFilesystem/File.cs" bodystart="5" bodyend="99"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_1a3472029e976f928e1822dfc026be0e70" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::File</scope><name>Cast</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_1af683f9a133f6e176a971a85c1dfab0de" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::File</scope><name>Data</name></member>

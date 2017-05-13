@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['warn',['WARN',['../class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696a32bd8a1db2275458673903bdb84cb277',1,'Pathfinder::Util::Logger']]]
+  ['startupsuccess',['StartupSuccess',['../namespace_pathfinder_1_1_executable.html#aaa2b3756d0b9a290663bfdca556fb475a5a505009b7fa84e920ee7d59ae4b61b9',1,'Pathfinder::Executable']]]
 ];

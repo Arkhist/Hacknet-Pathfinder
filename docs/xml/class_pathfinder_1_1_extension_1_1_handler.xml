@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_extension_1_1_handler" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Extension::Handler</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_handler_1aa07ee87ff29fc51ce633896c5d96705f" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_pathfinder_1_1_extension_1_1_info" kindref="compound">Info</ref></type>
+        <definition>Info Pathfinder.Extension.Handler.ActiveInfo</definition>
+        <argsstring></argsstring>
+        <name>ActiveInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Handler.cs" line="13" column="1" bodyfile="Pathfinder/Extension/Handler.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_extension_1_1_handler_1a7c8765c114cad7b7e7adcfb3088dc8ac" prot="package" static="yes" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="class_pathfinder_1_1_extension_1_1_info" kindref="compound">Info</ref> &gt;</type>
+        <definition>Dictionary&lt;string, Info&gt; Pathfinder.Extension.Handler.idToInfo</definition>
+        <argsstring></argsstring>
+        <name>idToInfo</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="class_pathfinder_1_1_extension_1_1_info" kindref="compound">Info</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Handler.cs" line="15" column="1" bodyfile="Pathfinder/Extension/Handler.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_extension_1_1_handler_1a5c2072cafa6b73fa3cd28cd288326c9e" prot="package" static="yes" mutable="no">
+        <type>Dictionary&lt; string, Texture2D &gt;</type>
+        <definition>Dictionary&lt;string, Texture2D&gt; Pathfinder.Extension.Handler.idToLogo</definition>
+        <argsstring></argsstring>
+        <name>idToLogo</name>
+        <initializer>= new Dictionary&lt;string, Texture2D&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Handler.cs" line="16" column="1" bodyfile="Pathfinder/Extension/Handler.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_extension_1_1_handler_1ab79a222621ba275284b59702821220d3" prot="package" static="yes" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">GUI.Button</ref> &gt;</type>
+        <definition>Dictionary&lt;string, GUI.Button&gt; Pathfinder.Extension.Handler.idToButton</definition>
+        <argsstring></argsstring>
+        <name>idToButton</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">GUI.Button</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Handler.cs" line="17" column="1" bodyfile="Pathfinder/Extension/Handler.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_extension_1_1_handler_1a4a5fdec834a4b1b367ab7aa3c1b9d3ae" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Extension.Handler.RegisterExtension</definition>
+        <argsstring>(string id, Info extensionInfo)</argsstring>
+        <name>RegisterExtension</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_extension_1_1_info" kindref="compound">Info</ref></type>
+          <declname>extensionInfo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Handler.cs" line="19" column="1" bodyfile="Pathfinder/Extension/Handler.cs" bodystart="19" bodyend="41"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_extension_1_1_handler_1a73816c31d79d32959cda1a3edbdc3f82" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Extension.Handler.UnregisterExtension</definition>
+        <argsstring>(string id)</argsstring>
+        <name>UnregisterExtension</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Handler.cs" line="43" column="1" bodyfile="Pathfinder/Extension/Handler.cs" bodystart="43" bodyend="53"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Extension/Handler.cs" line="12" column="1" bodyfile="Pathfinder/Extension/Handler.cs" bodystart="11" bodyend="54"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_extension_1_1_handler_1aa07ee87ff29fc51ce633896c5d96705f" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Handler</scope><name>ActiveInfo</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_handler_1ab79a222621ba275284b59702821220d3" prot="package" virt="non-virtual"><scope>Pathfinder::Extension::Handler</scope><name>idToButton</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_handler_1a7c8765c114cad7b7e7adcfb3088dc8ac" prot="package" virt="non-virtual"><scope>Pathfinder::Extension::Handler</scope><name>idToInfo</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_handler_1a5c2072cafa6b73fa3cd28cd288326c9e" prot="package" virt="non-virtual"><scope>Pathfinder::Extension::Handler</scope><name>idToLogo</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_handler_1a4a5fdec834a4b1b367ab7aa3c1b9d3ae" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Handler</scope><name>RegisterExtension</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_handler_1a73816c31d79d32959cda1a3edbdc3f82" prot="package" virt="non-virtual"><scope>Pathfinder::Extension::Handler</scope><name>UnregisterExtension</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::GUI::DynamicRectangle</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle" prot="public" virt="non-virtual">Pathfinder.GUI.BaseDynamicRectangle</basecompoundref>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a80f9bb4b86fde06f522788998b06bb90" prot="protected" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 Pathfinder.GUI.DynamicRectangle.OriginalClickPosition</definition>
+        <argsstring></argsstring>
+        <name>OriginalClickPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="41" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1acae620b199681040136c05f4f2125a61" prot="protected" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 Pathfinder.GUI.DynamicRectangle.ClickPositionOffset</definition>
+        <argsstring></argsstring>
+        <name>ClickPositionOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="42" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1af5bdeb979ca4ba2690ab46d78d3aa6b6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.GUI.DynamicRectangle.IsDragging</definition>
+        <argsstring></argsstring>
+        <name>IsDragging</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="44" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a3fd9a64fa5ebbbcec0ff12f9c7322092" prot="public" static="no" mutable="no">
+        <type>override bool</type>
+        <definition>override bool Pathfinder.GUI.DynamicRectangle.IsActive</definition>
+        <argsstring></argsstring>
+        <name>IsActive</name>
+        <initializer>=&gt; Contains(GuiData.getMousePoint())</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="82" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a8768240cc6335cf26ebbf818b30c0867" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.GUI.DynamicRectangle.DynamicRectangle</definition>
+        <argsstring>(float x, float y, float width, float height)</argsstring>
+        <name>DynamicRectangle</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="46" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a22aa38b42b766f10c628a77a4aaef390" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.GUI.DynamicRectangle.DynamicRectangle</definition>
+        <argsstring>(float x, float y, float width, float height, Color? selected, Color? deselected=null, float selectableBorder=-1, bool xMove=true, bool yMove=true)</argsstring>
+        <name>DynamicRectangle</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>Color?</type>
+          <declname>selected</declname>
+        </param>
+        <param>
+          <type>Color?</type>
+          <declname>deselected</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>selectableBorder</declname>
+          <defval>-1</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>xMove</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>yMove</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="47" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="47" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a622894bf52b34b88f250009d1a2c0950" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.GUI.DynamicRectangle.DynamicRectangle</definition>
+        <argsstring>(float x, float y, float width, float height, Color? selected, Color? deselected, float selectableBorder, MoveLine? xbound, MoveLine? ybound=null)</argsstring>
+        <name>DynamicRectangle</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>Color?</type>
+          <declname>selected</declname>
+        </param>
+        <param>
+          <type>Color?</type>
+          <declname>deselected</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>selectableBorder</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_pathfinder_1_1_g_u_i_1_1_move_line" kindref="compound">MoveLine</ref>?</type>
+          <declname>xbound</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_pathfinder_1_1_g_u_i_1_1_move_line" kindref="compound">MoveLine</ref>?</type>
+          <declname>ybound</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="67" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="67" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a557b220cc7631405255bd4bfe9704974" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override bool</type>
+        <definition>override bool Pathfinder.GUI.DynamicRectangle.Draw</definition>
+        <argsstring>()</argsstring>
+        <name>Draw</name>
+        <reimplements refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a0746af665136c20f31dc2b8194573193">Draw</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="84" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="84" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1aebc8cc98c95e19193ca5e1c39b52e850" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Pathfinder.GUI.DynamicRectangle.DoDraw</definition>
+        <argsstring>()</argsstring>
+        <name>DoDraw</name>
+        <reimplements refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a968d26475d9ba99f7d1416f7605408eb">DoDraw</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/DynamicRectangle.cs" line="121" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="121" bodyend="124"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="119">
+        <label>BaseInteractiveRectangle&lt; float &gt;</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
+      </node>
+      <node id="118">
+        <label>BaseDynamicRectangle</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle"/>
+        <childnode refid="119" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="117">
+        <label>Pathfinder.GUI.DynamicRectangle</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle"/>
+        <childnode refid="118" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="122">
+        <label>BaseInteractiveRectangle&lt; float &gt;</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
+      </node>
+      <node id="121">
+        <label>BaseDynamicRectangle</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle"/>
+        <childnode refid="122" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="120">
+        <label>Pathfinder.GUI.DynamicRectangle</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle"/>
+        <childnode refid="121" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/GUI/DynamicRectangle.cs" line="40" column="1" bodyfile="Pathfinder/GUI/DynamicRectangle.cs" bodystart="39" bodyend="125"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle_1a475fb01d4dde3e3c8f7c873ca408ed5c" prot="protected" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>BaseDynamicRectangle</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a97499babf4182dab76805bdb57ba9db3" prot="protected" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>BaseInteractiveRectangle</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1acae620b199681040136c05f4f2125a61" prot="protected" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>ClickPositionOffset</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle_1ac88067ccd5472d5de46b4962a1f77690" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>DeselectedColor</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1aebc8cc98c95e19193ca5e1c39b52e850" prot="public" virt="virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>DoDraw</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a557b220cc7631405255bd4bfe9704974" prot="public" virt="virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>Draw</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a48cb15650f493753f1f897b33b17f8b8" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>DrawFinish</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a8768240cc6335cf26ebbf818b30c0867" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>DynamicRectangle</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a22aa38b42b766f10c628a77a4aaef390" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>DynamicRectangle</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a622894bf52b34b88f250009d1a2c0950" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>DynamicRectangle</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1aaadd2d752ccef9f1590438e353e5cb4b" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>HandleInteraction</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle_1a36df90d72590aa873816dec8a84c926b" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>InBorder</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a3fd9a64fa5ebbbcec0ff12f9c7322092" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>IsActive</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1af5bdeb979ca4ba2690ab46d78d3aa6b6" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>IsDragging</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle_1a75c5a7f2d4b786628ad7d5ec08e2c534" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>MovedPosition</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a80f9bb4b86fde06f522788998b06bb90" prot="protected" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>OriginalClickPosition</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle_1af64f56d11288f6a3abcf32c8ad04c5f1" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>SelectableBorder</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle_1a6353b57bdb780b15e0eb4ab8a7dc70cf" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>SelectedColor</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle_1ae0fe0fcdfa2248349be3ea06521d97ab" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>XBound</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle_1aae0c9990774fc36071bd1ab0adb58a0c" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::DynamicRectangle</scope><name>YBound</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

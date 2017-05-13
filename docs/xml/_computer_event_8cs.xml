@@ -4,8 +4,6 @@
     <compoundname>ComputerEvent.cs</compoundname>
     <innerclass refid="class_pathfinder_1_1_event_1_1_computer_event" prot="public">Pathfinder::Event::ComputerEvent</innerclass>
     <innernamespace refid="namespace_pathfinder_1_1_event">Pathfinder::Event</innernamespace>
-    <innernamespace refid="namespace_system_1_1_linq">System::Linq</innernamespace>
-    <innernamespace refid="namespace_system_1_1_text">System::Text</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

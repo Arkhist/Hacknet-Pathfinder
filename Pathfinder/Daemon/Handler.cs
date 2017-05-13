@@ -8,6 +8,12 @@ namespace Pathfinder.Daemon
     {
         internal static Dictionary<string, IInterface> idToInterface = new Dictionary<string, IInterface>();
 
+        /// <summary>
+        /// Registers a daemon interface.
+        /// </summary>
+        /// <returns>The daemon's full id if added to the game, <c>null</c> otherwise.</returns>
+        /// <param name="id">The daemon interface id to insert.</param>
+        /// <param name="inter">The interface to add.</param>
         public static string RegisterDaemon(string id, IInterface inter)
         {
             if (Pathfinder.CurrentMod == null)

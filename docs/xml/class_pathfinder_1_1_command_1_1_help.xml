@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_command_1_1_help" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Command::Help</compoundname>
+      <sectiondef kind="package-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_command_1_1_help_1a4d811e044dbc3202068ebce58120ac94" prot="package" static="yes" mutable="no">
+        <type>Dictionary&lt; string, string &gt;</type>
+        <definition>Dictionary&lt;string, string&gt; Pathfinder.Command.Help.help</definition>
+        <argsstring></argsstring>
+        <name>help</name>
+        <initializer>= new Dictionary&lt;string, string&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Help.cs" line="9" column="1" bodyfile="Pathfinder/Command/Help.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_command_1_1_help_1a1da9fe1c6968425c039930f9cbe3d165" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int Pathfinder.Command.Help.PageCount</definition>
+        <argsstring></argsstring>
+        <name>PageCount</name>
+        <initializer>=&gt; Helpfile.getNumberOfPages() + (help.Count / Helpfile.ITEMS_PER_PAGE + 1)</initializer>
+        <briefdescription>
+<para>Gets the help page count. </para>        </briefdescription>
+        <detaileddescription>
+<para>The help page count.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Help.cs" line="15" column="1" bodyfile="Pathfinder/Command/Help.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_help_1ae273aa2e6e2be1569b45273edb68354d" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Command.Help.GenerateString</definition>
+        <argsstring>(string cmd, string description)</argsstring>
+        <name>GenerateString</name>
+        <param>
+          <type>string</type>
+          <declname>cmd</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>description</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Help.cs" line="17" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_help_1a893757cd9d3333761f41150dc0ed1c10" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Command.Help.GenerateString</definition>
+        <argsstring>(KeyValuePair&lt; string, string &gt; pair)</argsstring>
+        <name>GenerateString</name>
+        <param>
+          <type>KeyValuePair&lt; string, string &gt;</type>
+          <declname>pair</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Help.cs" line="18" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_help_1abfd1201e9c6ee8ae43268edbe386b79a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Command.Help.GetStringFor</definition>
+        <argsstring>(string cmd)</argsstring>
+        <name>GetStringFor</name>
+        <param>
+          <type>string</type>
+          <declname>cmd</declname>
+        </param>
+        <briefdescription>
+<para>Gets the help string for a command. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The resulting help string or <computeroutput>null</computeroutput> if it doesn&apos;t exist.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cmd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_command" kindref="compound">Command</ref> key.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Help.cs" line="25" column="1" bodyfile="Pathfinder/Command/Help.cs" bodystart="25" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_help_1af0722ae0ce87c3aa0aef61a1d4fb3aaf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Command.Help.GetPageString</definition>
+        <argsstring>(int page=0)</argsstring>
+        <name>GetPageString</name>
+        <param>
+          <type>int</type>
+          <declname>page</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Gets the help string for a page. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The string for a page.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>page</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The page to get the string for.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Help.cs" line="37" column="1" bodyfile="Pathfinder/Command/Help.cs" bodystart="37" bodyend="58"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Command/Help.cs" line="8" column="1" bodyfile="Pathfinder/Command/Help.cs" bodystart="7" bodyend="59"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_command_1_1_help_1ae273aa2e6e2be1569b45273edb68354d" prot="private" virt="non-virtual"><scope>Pathfinder::Command::Help</scope><name>GenerateString</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_help_1a893757cd9d3333761f41150dc0ed1c10" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Help</scope><name>GenerateString</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_help_1af0722ae0ce87c3aa0aef61a1d4fb3aaf" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Help</scope><name>GetPageString</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_help_1abfd1201e9c6ee8ae43268edbe386b79a" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Help</scope><name>GetStringFor</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_help_1a4d811e044dbc3202068ebce58120ac94" prot="package" virt="non-virtual"><scope>Pathfinder::Command::Help</scope><name>help</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_help_1a1da9fe1c6968425c039930f9cbe3d165" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Help</scope><name>PageCount</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

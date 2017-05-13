@@ -4,6 +4,7 @@
     <compoundname>Pathfinder/Command</compoundname>
     <innerfile refid="_command_handler_8cs">CommandHandler.cs</innerfile>
     <innerfile refid="_command_2_handler_8cs">Handler.cs</innerfile>
+    <innerfile refid="_help_8cs">Help.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

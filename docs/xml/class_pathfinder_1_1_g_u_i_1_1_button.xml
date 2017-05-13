@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_g_u_i_1_1_button" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::GUI::Button</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_g_u_i_1_1_base_button" prot="public" virt="non-virtual">Pathfinder.GUI.BaseButton</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_g_u_i_1_1_button_1a11f9e6bc56d971bebabf1a108f03e03d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.GUI.Button.ForceNoColorTag</definition>
+        <argsstring></argsstring>
+        <name>ForceNoColorTag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/Button.cs" line="25" column="1" bodyfile="Pathfinder/GUI/Button.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_g_u_i_1_1_button_1a0931750e308a7f4e0458f72a60aa56d5" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.GUI.Button.OnlyOutline</definition>
+        <argsstring></argsstring>
+        <name>OnlyOutline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/Button.cs" line="26" column="1" bodyfile="Pathfinder/GUI/Button.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_g_u_i_1_1_button_1ac06d8877c53b8fbf314030e414adb042" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.GUI.Button.SmallButton</definition>
+        <argsstring></argsstring>
+        <name>SmallButton</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/Button.cs" line="27" column="1" bodyfile="Pathfinder/GUI/Button.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_button_1a3d72a728fb3745cdb31dd1fc37e9d98c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.GUI.Button.Button</definition>
+        <argsstring>(Rectangle shape, string text, Color? color=null)</argsstring>
+        <name>Button</name>
+        <param>
+          <type>Rectangle</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_g_u_i_1_1_base_button_1ac6d246fab3b69c1deee8e544b31da4b1" kindref="member">Color</ref>?</type>
+          <declname>color</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/Button.cs" line="29" column="1" bodyfile="Pathfinder/GUI/Button.cs" bodystart="29" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_button_1a9f2dd6e4488011999740722a62aa12af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.GUI.Button.Button</definition>
+        <argsstring>(Point position, Point size, string text, Color? color=null)</argsstring>
+        <name>Button</name>
+        <param>
+          <type>Point</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>Point</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_g_u_i_1_1_base_button_1ac6d246fab3b69c1deee8e544b31da4b1" kindref="member">Color</ref>?</type>
+          <declname>color</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/Button.cs" line="31" column="1" bodyfile="Pathfinder/GUI/Button.cs" bodystart="31" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_button_1ab9cf7e5c7d84d3b4d839cf114e4e8edf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.GUI.Button.Button</definition>
+        <argsstring>(int x, int y, int width, int height, string text, Color? color=null)</argsstring>
+        <name>Button</name>
+        <param>
+          <type>int</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_g_u_i_1_1_base_button_1ac6d246fab3b69c1deee8e544b31da4b1" kindref="member">Color</ref>?</type>
+          <declname>color</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/Button.cs" line="33" column="1" bodyfile="Pathfinder/GUI/Button.cs" bodystart="33" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_button_1ac9ce333f6f27ad526d93987b1748e996" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Pathfinder.GUI.Button.DoDraw</definition>
+        <argsstring>()</argsstring>
+        <name>DoDraw</name>
+        <reimplements refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a968d26475d9ba99f7d1416f7605408eb">DoDraw</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/Button.cs" line="36" column="1" bodyfile="Pathfinder/GUI/Button.cs" bodystart="36" bodyend="74"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="24">
+        <label>Pathfinder.GUI.Button</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_button"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>BaseInteractiveRectangle&lt; int &gt;</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
+      </node>
+      <node id="25">
+        <label>BaseButton</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_base_button"/>
+        <childnode refid="26" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="27">
+        <label>Pathfinder.GUI.Button</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_button"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>BaseInteractiveRectangle&lt; int &gt;</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
+      </node>
+      <node id="28">
+        <label>BaseButton</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_base_button"/>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/GUI/Button.cs" line="24" column="1" bodyfile="Pathfinder/GUI/Button.cs" bodystart="23" bodyend="75"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_button_1a7b99c908f1d6c4b682fd97f4896fa04f" prot="protected" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>BaseButton</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a97499babf4182dab76805bdb57ba9db3" prot="protected" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>BaseInteractiveRectangle</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_button_1a3d72a728fb3745cdb31dd1fc37e9d98c" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>Button</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_button_1a9f2dd6e4488011999740722a62aa12af" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>Button</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_button_1ab9cf7e5c7d84d3b4d839cf114e4e8edf" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>Button</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_button_1ac6d246fab3b69c1deee8e544b31da4b1" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>Color</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_button_1ac9ce333f6f27ad526d93987b1748e996" prot="public" virt="virtual"><scope>Pathfinder::GUI::Button</scope><name>DoDraw</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a0746af665136c20f31dc2b8194573193" prot="public" virt="virtual"><scope>Pathfinder::GUI::Button</scope><name>Draw</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a48cb15650f493753f1f897b33b17f8b8" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>DrawFinish</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_button_1a11f9e6bc56d971bebabf1a108f03e03d" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>ForceNoColorTag</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1aaadd2d752ccef9f1590438e353e5cb4b" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>HandleInteraction</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_button_1a0931750e308a7f4e0458f72a60aa56d5" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>OnlyOutline</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_button_1ac06d8877c53b8fbf314030e414adb042" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>SmallButton</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_button_1ac6eb9aef6a17614f1e8b39611b12a6bd" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>Text</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_button_1aff0bb7f5389bfcb807e3a6c8c2f03950" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::Button</scope><name>Texture</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

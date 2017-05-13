@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::GUI::BaseScrollbar</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle" prot="public" virt="non-virtual">Pathfinder.GUI.BaseInteractiveRectangle&lt; int &gt;</basecompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_g_u_i_1_1_scrollbar" prot="public" virt="non-virtual">Pathfinder.GUI.Scrollbar</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1a4f6e6d0146ff6f554b7b93837de27094" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int Pathfinder.GUI.BaseScrollbar.ContentSize</definition>
+        <argsstring></argsstring>
+        <name>ContentSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/Scrollbar.cs" line="10" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1a2e3274d66112d69940c6b94ab0aa7843" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float Pathfinder.GUI.BaseScrollbar.CurrentScroll</definition>
+        <argsstring></argsstring>
+        <name>CurrentScroll</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/Scrollbar.cs" line="11" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1ad495962a728c6f68bf43fb9e50e9bbc2" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.GUI.BaseScrollbar.Vertical</definition>
+        <argsstring></argsstring>
+        <name>Vertical</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/Scrollbar.cs" line="12" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1a89fb81855bebfe4ba0bf43012b68ae38" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.GUI.BaseScrollbar.BaseScrollbar</definition>
+        <argsstring>(int x, int y, int width, int height, int contentSize, float scroll, bool vertical)</argsstring>
+        <name>BaseScrollbar</name>
+        <param>
+          <type>int</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>contentSize</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>scroll</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>vertical</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/Scrollbar.cs" line="14" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="14" bodyend="20"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1ae590c7fcad04ddbaae205e82f0407375" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>float</type>
+        <definition>virtual float Pathfinder.GUI.BaseScrollbar.DrawScroll</definition>
+        <argsstring>()</argsstring>
+        <name>DrawScroll</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/Scrollbar.cs" line="22" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="22" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="21">
+        <label>Pathfinder.GUI.Scrollbar</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_scrollbar"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>Pathfinder.GUI.BaseScrollbar</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>BaseInteractiveRectangle&lt; int &gt;</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="22">
+        <label>Pathfinder.GUI.BaseScrollbar</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar"/>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>BaseInteractiveRectangle&lt; int &gt;</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/GUI/Scrollbar.cs" line="9" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="8" bodyend="27"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a97499babf4182dab76805bdb57ba9db3" prot="protected" virt="non-virtual"><scope>Pathfinder::GUI::BaseScrollbar</scope><name>BaseInteractiveRectangle</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1a89fb81855bebfe4ba0bf43012b68ae38" prot="protected" virt="non-virtual"><scope>Pathfinder::GUI::BaseScrollbar</scope><name>BaseScrollbar</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1a4f6e6d0146ff6f554b7b93837de27094" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseScrollbar</scope><name>ContentSize</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1a2e3274d66112d69940c6b94ab0aa7843" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseScrollbar</scope><name>CurrentScroll</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a968d26475d9ba99f7d1416f7605408eb" prot="public" virt="pure-virtual"><scope>Pathfinder::GUI::BaseScrollbar</scope><name>DoDraw</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a0746af665136c20f31dc2b8194573193" prot="public" virt="virtual"><scope>Pathfinder::GUI::BaseScrollbar</scope><name>Draw</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a48cb15650f493753f1f897b33b17f8b8" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseScrollbar</scope><name>DrawFinish</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1ae590c7fcad04ddbaae205e82f0407375" prot="public" virt="virtual"><scope>Pathfinder::GUI::BaseScrollbar</scope><name>DrawScroll</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1aaadd2d752ccef9f1590438e353e5cb4b" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseScrollbar</scope><name>HandleInteraction</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1ad495962a728c6f68bf43fb9e50e9bbc2" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseScrollbar</scope><name>Vertical</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -97,8 +97,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:ab1edc04c1d1b258c5fa7e9d91cf71652"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04b88abfa1d10dfc986251fd4b9bb7c7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a04b88abfa1d10dfc986251fd4b9bb7c7">onLoadContent</a> (Game1 self)</td></tr>
 <tr class="separator:a04b88abfa1d10dfc986251fd4b9bb7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34a5b631f3ce6e51926e1f47d17b8ceb"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a34a5b631f3ce6e51926e1f47d17b8ceb">onCommandSent</a> (out bool disconnects, object osObj, string[] arguments)</td></tr>
-<tr class="separator:a34a5b631f3ce6e51926e1f47d17b8ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4baf67078ff22249fc121b39c8ffeb9c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a4baf67078ff22249fc121b39c8ffeb9c">onCommandSent</a> (out bool disconnects, ref bool returnFlag, object osObj, string[] arguments)</td></tr>
+<tr class="separator:a4baf67078ff22249fc121b39c8ffeb9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adeb1045c54b7cd3d4173d3c7b14fc016"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#adeb1045c54b7cd3d4173d3c7b14fc016">onLoadSession</a> (Hacknet.OS self)</td></tr>
 <tr class="separator:adeb1045c54b7cd3d4173d3c7b14fc016"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af90993239a81c449261fa4095796b7da"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#af90993239a81c449261fa4095796b7da">onPostLoadSession</a> (Hacknet.OS self)</td></tr>
@@ -127,15 +127,25 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:ae7f2ebfb0b0d0027fd5b3d098bfa6d0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a400fd38e22eb1d75dfdc6e32c62056cb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a400fd38e22eb1d75dfdc6e32c62056cb">onGameUpdate</a> (Game1 self, ref GameTime time)</td></tr>
 <tr class="separator:a400fd38e22eb1d75dfdc6e32c62056cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ea13e22496034e0ff7899c0308b9a7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a87ea13e22496034e0ff7899c0308b9a7">onPortNameDraw</a> (Hacknet.DisplayModule self, ref Rectangle rect, ref Hacknet.Computer computer, ref Vector2 lockPos)</td></tr>
+<tr class="separator:a87ea13e22496034e0ff7899c0308b9a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6be1e9dc07c00137f08ff53681ac810e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a6be1e9dc07c00137f08ff53681ac810e">onDisplayModuleUpdate</a> (Hacknet.DisplayModule self, ref float time)</td></tr>
+<tr class="separator:a6be1e9dc07c00137f08ff53681ac810e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a565cdd3a620bac908aa92532588d22cb"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a565cdd3a620bac908aa92532588d22cb">onDisplayModuleDraw</a> (Hacknet.DisplayModule self, ref float time)</td></tr>
+<tr class="separator:a565cdd3a620bac908aa92532588d22cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8ce089b2a69e7e86f0efe9499feeb34"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#aa8ce089b2a69e7e86f0efe9499feeb34">onExtensionsMenuScreenDraw</a> (Hacknet.Screens.ExtensionsMenuScreen self, ref Vector2 buttonPos, ref Rectangle dest, ref SpriteBatch sb, ref ScreenManager manager)</td></tr>
+<tr class="separator:aa8ce089b2a69e7e86f0efe9499feeb34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5071ba9a13f6a2119bb92aa48528507"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#af5071ba9a13f6a2119bb92aa48528507">onExtensionsMenuListDraw</a> (Hacknet.Screens.ExtensionsMenuScreen self, out Vector2 result, ref Vector2 drawPos, ref Rectangle dest, ref SpriteBatch sb)</td></tr>
+<tr class="separator:af5071ba9a13f6a2119bb92aa48528507"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Function hooks for the <a class="el" href="class_pathfinder_1_1_pathfinder.html">Pathfinder</a> mod system </p>
 <p>Place all functions to be hooked into Hacknet here </p>
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00018">18</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00021">21</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a34a5b631f3ce6e51926e1f47d17b8ceb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34a5b631f3ce6e51926e1f47d17b8ceb">&#9670;&nbsp;</a></span>onCommandSent()</h2>
+<a id="a4baf67078ff22249fc121b39c8ffeb9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4baf67078ff22249fc121b39c8ffeb9c">&#9670;&nbsp;</a></span>onCommandSent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -148,6 +158,12 @@ Static Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">out bool&#160;</td>
           <td class="paramname"><em>disconnects</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref bool&#160;</td>
+          <td class="paramname"><em>returnFlag</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -174,7 +190,83 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00059">59</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00062">62</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+
+</div>
+</div>
+<a id="a565cdd3a620bac908aa92532588d22cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a565cdd3a620bac908aa92532588d22cb">&#9670;&nbsp;</a></span>onDisplayModuleDraw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool Pathfinder.PathfinderHooks.onDisplayModuleDraw </td>
+          <td>(</td>
+          <td class="paramtype">Hacknet.DisplayModule&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref float&#160;</td>
+          <td class="paramname"><em>time</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00320">320</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6be1e9dc07c00137f08ff53681ac810e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6be1e9dc07c00137f08ff53681ac810e">&#9670;&nbsp;</a></span>onDisplayModuleUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool Pathfinder.PathfinderHooks.onDisplayModuleUpdate </td>
+          <td>(</td>
+          <td class="paramtype">Hacknet.DisplayModule&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref float&#160;</td>
+          <td class="paramname"><em>time</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00311">311</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -218,7 +310,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00206">206</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00227">227</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -286,7 +378,119 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00152">152</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00169">169</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+
+</div>
+</div>
+<a id="af5071ba9a13f6a2119bb92aa48528507"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5071ba9a13f6a2119bb92aa48528507">&#9670;&nbsp;</a></span>onExtensionsMenuListDraw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool Pathfinder.PathfinderHooks.onExtensionsMenuListDraw </td>
+          <td>(</td>
+          <td class="paramtype">Hacknet.Screens.ExtensionsMenuScreen&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out Vector2&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref Vector2&#160;</td>
+          <td class="paramname"><em>drawPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref Rectangle&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref SpriteBatch&#160;</td>
+          <td class="paramname"><em>sb</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00342">342</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa8ce089b2a69e7e86f0efe9499feeb34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8ce089b2a69e7e86f0efe9499feeb34">&#9670;&nbsp;</a></span>onExtensionsMenuScreenDraw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool Pathfinder.PathfinderHooks.onExtensionsMenuScreenDraw </td>
+          <td>(</td>
+          <td class="paramtype">Hacknet.Screens.ExtensionsMenuScreen&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref Vector2&#160;</td>
+          <td class="paramname"><em>buttonPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref Rectangle&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref SpriteBatch&#160;</td>
+          <td class="paramname"><em>sb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref ScreenManager&#160;</td>
+          <td class="paramname"><em>manager</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00329">329</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -314,7 +518,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00253">253</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00274">274</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -352,7 +556,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00259">259</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00280">280</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -408,7 +612,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00187">187</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00208">208</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -436,7 +640,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00050">50</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00053">53</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -464,7 +668,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00142">142</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00159">159</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -508,7 +712,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00113">113</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00130">130</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -536,7 +740,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00074">74</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00091">91</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -564,7 +768,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00020">20</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00023">23</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -592,7 +796,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00106">106</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00123">123</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -630,7 +834,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00091">91</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00108">108</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -698,7 +902,57 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00169">169</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00190">190</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+
+</div>
+</div>
+<a id="a87ea13e22496034e0ff7899c0308b9a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ea13e22496034e0ff7899c0308b9a7">&#9670;&nbsp;</a></span>onPortNameDraw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Pathfinder.PathfinderHooks.onPortNameDraw </td>
+          <td>(</td>
+          <td class="paramtype">Hacknet.DisplayModule&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref Rectangle&#160;</td>
+          <td class="paramname"><em>rect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref Hacknet.Computer&#160;</td>
+          <td class="paramname"><em>computer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref Vector2&#160;</td>
+          <td class="paramname"><em>lockPos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00286">286</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -726,7 +980,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00084">84</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00101">101</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -764,7 +1018,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00123">123</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00140">140</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -808,7 +1062,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00134">134</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_pathfinder_hooks_8cs_source.html#l00151">151</a> of file <a class="el" href="_pathfinder_hooks_8cs_source.html">PathfinderHooks.cs</a>.</p>
 
 </div>
 </div>
@@ -821,7 +1075,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_pathfinder.html">Pathfinder</a></li><li class="navelem"><a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html">PathfinderHooks</a></li>
-    <li class="footer">Generated on Sun Apr 23 2017 21:36:52 for Pathfinder Hacknet by
+    <li class="footer">Generated on Sat May 13 2017 17:10:30 for Pathfinder Hacknet by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

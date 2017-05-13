@@ -4,6 +4,8 @@
     <compoundname>Pathfinder</compoundname>
     <innerclass refid="class_pathfinder_1_1_command_handler" prot="public">Pathfinder::CommandHandler</innerclass>
     <innerclass refid="interface_pathfinder_1_1_i_pathfinder_mod" prot="public">Pathfinder::IPathfinderMod</innerclass>
+    <innerclass refid="class_pathfinder_1_1_load_order_attribute" prot="public">Pathfinder::LoadOrderAttribute</innerclass>
+    <innerclass refid="class_pathfinder_1_1_mod_placeholder" prot="public">Pathfinder::ModPlaceholder</innerclass>
     <innerclass refid="class_pathfinder_1_1_pathfinder" prot="public">Pathfinder::Pathfinder</innerclass>
     <innerclass refid="class_pathfinder_1_1_pathfinder_hooks" prot="public">Pathfinder::PathfinderHooks</innerclass>
     <innerclass refid="class_pathfinder_1_1_pathfinder_mod" prot="public">Pathfinder::PathfinderMod</innerclass>
@@ -12,11 +14,14 @@
     <innernamespace refid="namespace_pathfinder_1_1_daemon">Pathfinder::Daemon</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_event">Pathfinder::Event</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_executable">Pathfinder::Executable</innernamespace>
+    <innernamespace refid="namespace_pathfinder_1_1_extension">Pathfinder::Extension</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_game_filesystem">Pathfinder::GameFilesystem</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_g_u_i">Pathfinder::GUI</innernamespace>
+    <innernamespace refid="namespace_pathfinder_1_1_internal">Pathfinder::Internal</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_mission">Pathfinder::Mission</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_network_map">Pathfinder::NetworkMap</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_o_s">Pathfinder::OS</innernamespace>
+    <innernamespace refid="namespace_pathfinder_1_1_port">Pathfinder::Port</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_util">Pathfinder::Util</innernamespace>
     <briefdescription>
     </briefdescription>

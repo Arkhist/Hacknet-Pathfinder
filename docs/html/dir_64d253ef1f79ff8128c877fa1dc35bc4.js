@@ -21,6 +21,11 @@ var dir_64d253ef1f79ff8128c877fa1dc35bc4 =
       [ "ExecutableExecuteEvent", "class_pathfinder_1_1_event_1_1_executable_execute_event.html", "class_pathfinder_1_1_event_1_1_executable_execute_event" ],
       [ "ExecutablePortExecuteEvent", "class_pathfinder_1_1_event_1_1_executable_port_execute_event.html", "class_pathfinder_1_1_event_1_1_executable_port_execute_event" ]
     ] ],
+    [ "ExtensionMenuEvents.cs", "_extension_menu_events_8cs.html", [
+      [ "ExtensionMenuEvent", "class_pathfinder_1_1_event_1_1_extension_menu_event.html", "class_pathfinder_1_1_event_1_1_extension_menu_event" ],
+      [ "DrawExtensionMenuEvent", "class_pathfinder_1_1_event_1_1_draw_extension_menu_event.html", "class_pathfinder_1_1_event_1_1_draw_extension_menu_event" ],
+      [ "DrawExtensionMenuListEvent", "class_pathfinder_1_1_event_1_1_draw_extension_menu_list_event.html", "class_pathfinder_1_1_event_1_1_draw_extension_menu_list_event" ]
+    ] ],
     [ "GameEvents.cs", "_game_events_8cs.html", [
       [ "GameEvent", "class_pathfinder_1_1_event_1_1_game_event.html", "class_pathfinder_1_1_event_1_1_game_event" ],
       [ "GameLoadContentEvent", "class_pathfinder_1_1_event_1_1_game_load_content_event.html", "class_pathfinder_1_1_event_1_1_game_load_content_event" ],
@@ -32,6 +37,12 @@ var dir_64d253ef1f79ff8128c877fa1dc35bc4 =
       [ "DrawMainMenuEvent", "class_pathfinder_1_1_event_1_1_draw_main_menu_event.html", "class_pathfinder_1_1_event_1_1_draw_main_menu_event" ],
       [ "DrawMainMenuButtonsEvent", "class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event.html", "class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event" ],
       [ "DrawMainMenuTitlesEvent", "class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html", "class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event" ]
+    ] ],
+    [ "ModuleEvents.cs", "_module_events_8cs.html", [
+      [ "ModuleEvent", "class_pathfinder_1_1_event_1_1_module_event.html", "class_pathfinder_1_1_event_1_1_module_event" ],
+      [ "DisplayModuleEvent", "class_pathfinder_1_1_event_1_1_display_module_event.html", "class_pathfinder_1_1_event_1_1_display_module_event" ],
+      [ "DisplayModuleUpdateEvent", "class_pathfinder_1_1_event_1_1_display_module_update_event.html", "class_pathfinder_1_1_event_1_1_display_module_update_event" ],
+      [ "DisplayModuleDrawEvent", "class_pathfinder_1_1_event_1_1_display_module_draw_event.html", "class_pathfinder_1_1_event_1_1_display_module_draw_event" ]
     ] ],
     [ "OSEvents.cs", "_o_s_events_8cs.html", [
       [ "OSEvent", "class_pathfinder_1_1_event_1_1_o_s_event.html", "class_pathfinder_1_1_event_1_1_o_s_event" ],

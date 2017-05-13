@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_internal_1_1_execution_override" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Internal::ExecutionOverride</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_execution_override_1a5a2b01d6604bf5ddbe404c45ccd33481" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.ExecutionOverride.OverridePortHack</definition>
+        <argsstring>(ExecutablePortExecuteEvent e)</argsstring>
+        <name>OverridePortHack</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_executable_port_execute_event" kindref="compound">ExecutablePortExecuteEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/ExecutionOverride.cs" line="13" column="1" bodyfile="Pathfinder/Internal/ExecutionOverride.cs" bodystart="13" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_execution_override_1a91c9932483f95c35d462973596ecedbe" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.ExecutionOverride.OverwriteProbe</definition>
+        <argsstring>(CommandSentEvent e)</argsstring>
+        <name>OverwriteProbe</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_command_sent_event" kindref="compound">CommandSentEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/ExecutionOverride.cs" line="49" column="1" bodyfile="Pathfinder/Internal/ExecutionOverride.cs" bodystart="49" bodyend="84"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Internal/ExecutionOverride.cs" line="12" column="1" bodyfile="Pathfinder/Internal/ExecutionOverride.cs" bodystart="11" bodyend="85"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_internal_1_1_execution_override_1a5a2b01d6604bf5ddbe404c45ccd33481" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::ExecutionOverride</scope><name>OverridePortHack</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_execution_override_1a91c9932483f95c35d462973596ecedbe" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::ExecutionOverride</scope><name>OverwriteProbe</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

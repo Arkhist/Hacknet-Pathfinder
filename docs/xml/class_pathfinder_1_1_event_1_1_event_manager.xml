@@ -2,14 +2,14 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="class_pathfinder_1_1_event_1_1_event_manager" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Event::EventManager</compoundname>
-      <sectiondef kind="private-static-attrib">
-      <memberdef kind="variable" id="class_pathfinder_1_1_event_1_1_event_manager_1a827bc77c922cef7addce464c63b7804b" prot="private" static="yes" mutable="no">
-        <type>Dictionary&lt; Type, List&lt; Tuple&lt; Action&lt; <ref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" kindref="compound">PathfinderEvent</ref> &gt;, string &gt; &gt; &gt;</type>
-        <definition>Dictionary&lt;Type, List&lt;Tuple&lt;Action&lt;PathfinderEvent&gt;, string&gt; &gt; &gt; Pathfinder.Event.EventManager.eventListeners</definition>
+      <sectiondef kind="package-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_event_1_1_event_manager_1aefb7cf46a3a0dae40da64eefdcf0d404" prot="package" static="yes" mutable="no">
+        <type>Dictionary&lt; Type, List&lt; Tuple&lt; Action&lt; <ref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" kindref="compound">PathfinderEvent</ref> &gt;, string, string &gt; &gt; &gt;</type>
+        <definition>Dictionary&lt;Type, List&lt;Tuple&lt;Action&lt;PathfinderEvent&gt;, string, string&gt; &gt; &gt; Pathfinder.Event.EventManager.eventListeners</definition>
         <argsstring></argsstring>
         <name>eventListeners</name>
         <initializer>=
-            new Dictionary&lt;Type, List&lt;Tuple&lt;Action&lt;<ref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" kindref="compound">PathfinderEvent</ref>&gt;, string&gt;&gt;&gt;()</initializer>
+            new Dictionary&lt;Type, List&lt;Tuple&lt;Action&lt;<ref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" kindref="compound">PathfinderEvent</ref>&gt;, string, string&gt;&gt;&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -20,10 +20,10 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_event_manager_1af0ec26c6d4f442f64e8fa60477d28b81" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_event_manager_1aefb155bde81fda79e6390e9a9541e72b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Event.EventManager.RegisterListener</definition>
-        <argsstring>(Type pathfinderEventType, Action&lt; PathfinderEvent &gt; listener, string methodName=null)</argsstring>
+        <argsstring>(Type pathfinderEventType, Action&lt; PathfinderEvent &gt; listener, string debugName)</argsstring>
         <name>RegisterListener</name>
         <param>
           <type>Type</type>
@@ -35,8 +35,7 @@
         </param>
         <param>
           <type>string</type>
-          <declname>methodName</declname>
-          <defval>null</defval>
+          <declname>debugName</declname>
         </param>
         <briefdescription>
 <para>Registers an event listener by runtime type. </para>        </briefdescription>
@@ -57,7 +56,7 @@
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>methodName</parametername>
+<parametername>debugName</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Name to assign for debug purposes</para></parameterdescription>
@@ -68,14 +67,19 @@
         </inbodydescription>
         <location file="Pathfinder/Event/EventManager.cs" line="19" column="1" bodyfile="Pathfinder/Event/EventManager.cs" bodystart="19" bodyend="29"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_event_manager_1a50c099a9b275c14ec0ddcbdd125ee16f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_event_manager_1afddae98e1ee28e3eaff3fb447c42c374" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Event.EventManager.RegisterListener&lt; T &gt;</definition>
-        <argsstring>(Action&lt; T &gt; listener)</argsstring>
+        <argsstring>(Action&lt; T &gt; listener, string debugName=null)</argsstring>
         <name>RegisterListener&lt; T &gt;</name>
         <param>
           <type>Action&lt; T &gt;</type>
           <declname>listener</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>debugName</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
 <para>Registers an event listener by compile time type. </para>        </briefdescription>
@@ -86,6 +90,13 @@
 </parameternamelist>
 <parameterdescription>
 <para>The listener function that will be executed on an event call</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>debugName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name to assign for debug purposes</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <parameterlist kind="templateparam"><parameteritem>
@@ -99,7 +110,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/EventManager.cs" line="36" column="1" bodyfile="Pathfinder/Event/EventManager.cs" bodystart="36" bodyend="41"/>
+        <location file="Pathfinder/Event/EventManager.cs" line="37" column="1" bodyfile="Pathfinder/Event/EventManager.cs" bodystart="37" bodyend="43"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_event_manager_1a42972b3abb0b3d901ae52fbb25c621ed" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -135,7 +146,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/EventManager.cs" line="48" column="1" bodyfile="Pathfinder/Event/EventManager.cs" bodystart="48" bodyend="56"/>
+        <location file="Pathfinder/Event/EventManager.cs" line="50" column="1" bodyfile="Pathfinder/Event/EventManager.cs" bodystart="50" bodyend="58"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_event_manager_1a31a5ca4c476e8a791925d93fe00a6985" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -168,7 +179,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/EventManager.cs" line="63" column="1" bodyfile="Pathfinder/Event/EventManager.cs" bodystart="63" bodyend="80"/>
+        <location file="Pathfinder/Event/EventManager.cs" line="65" column="1" bodyfile="Pathfinder/Event/EventManager.cs" bodystart="65" bodyend="82"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_event_manager_1a5262ffac1faf4da6d91ae234ad5eef03" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -193,19 +204,19 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/EventManager.cs" line="86" column="1" bodyfile="Pathfinder/Event/EventManager.cs" bodystart="86" bodyend="107"/>
+        <location file="Pathfinder/Event/EventManager.cs" line="88" column="1" bodyfile="Pathfinder/Event/EventManager.cs" bodystart="88" bodyend="115"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Event/EventManager.cs" line="9" column="1" bodyfile="Pathfinder/Event/EventManager.cs" bodystart="8" bodyend="108"/>
+    <location file="Pathfinder/Event/EventManager.cs" line="9" column="1" bodyfile="Pathfinder/Event/EventManager.cs" bodystart="8" bodyend="116"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_event_manager_1a5262ffac1faf4da6d91ae234ad5eef03" prot="public" virt="non-virtual"><scope>Pathfinder::Event::EventManager</scope><name>CallEvent</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_event_manager_1a827bc77c922cef7addce464c63b7804b" prot="private" virt="non-virtual"><scope>Pathfinder::Event::EventManager</scope><name>eventListeners</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_event_manager_1af0ec26c6d4f442f64e8fa60477d28b81" prot="public" virt="non-virtual"><scope>Pathfinder::Event::EventManager</scope><name>RegisterListener</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_event_manager_1a50c099a9b275c14ec0ddcbdd125ee16f" prot="public" virt="non-virtual"><scope>Pathfinder::Event::EventManager</scope><name>RegisterListener&lt; T &gt;</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_event_manager_1aefb7cf46a3a0dae40da64eefdcf0d404" prot="package" virt="non-virtual"><scope>Pathfinder::Event::EventManager</scope><name>eventListeners</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_event_manager_1aefb155bde81fda79e6390e9a9541e72b" prot="public" virt="non-virtual"><scope>Pathfinder::Event::EventManager</scope><name>RegisterListener</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_event_manager_1afddae98e1ee28e3eaff3fb447c42c374" prot="public" virt="non-virtual"><scope>Pathfinder::Event::EventManager</scope><name>RegisterListener&lt; T &gt;</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_event_manager_1a42972b3abb0b3d901ae52fbb25c621ed" prot="public" virt="non-virtual"><scope>Pathfinder::Event::EventManager</scope><name>UnregisterListener</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_event_manager_1a31a5ca4c476e8a791925d93fe00a6985" prot="public" virt="non-virtual"><scope>Pathfinder::Event::EventManager</scope><name>UnregisterListener&lt; T &gt;</name></member>
     </listofallmembers>

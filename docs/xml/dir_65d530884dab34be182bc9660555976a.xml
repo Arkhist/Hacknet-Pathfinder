@@ -6,6 +6,7 @@
     <innerfile refid="_exe_info_manager_8cs">ExeInfoManager.cs</innerfile>
     <innerfile refid="_json_object_8cs">JsonObject.cs</innerfile>
     <innerfile refid="_logger_8cs">Logger.cs</innerfile>
+    <innerfile refid="_retrieve_type_8cs">RetrieveType.cs</innerfile>
     <innerfile refid="_sound_system_8cs">SoundSystem.cs</innerfile>
     <innerfile refid="_updater_8cs">Updater.cs</innerfile>
     <innerfile refid="_utility_8cs">Utility.cs</innerfile>

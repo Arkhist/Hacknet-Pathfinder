@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_event_1_1_display_module_update_event" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Event::DisplayModuleUpdateEvent</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_event_1_1_display_module_event" prot="public" virt="non-virtual">Pathfinder.Event.DisplayModuleEvent</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_display_module_update_event_1aa5bae8b97833341d8e5a8efe67ea79e2" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>float</type>
+        <definition>float Pathfinder.Event.DisplayModuleUpdateEvent.Time</definition>
+        <argsstring></argsstring>
+        <name>Time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ModuleEvents.cs" line="18" column="1" bodyfile="Pathfinder/Event/ModuleEvents.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_display_module_update_event_1a5510a821b00218ed93d5125e6befe4f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Event.DisplayModuleUpdateEvent.DisplayModuleUpdateEvent</definition>
+        <argsstring>(Hacknet.DisplayModule module, float time)</argsstring>
+        <name>DisplayModuleUpdateEvent</name>
+        <param>
+          <type>Hacknet.DisplayModule</type>
+          <declname>module</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ModuleEvents.cs" line="19" column="1" bodyfile="Pathfinder/Event/ModuleEvents.cs" bodystart="19" bodyend="19"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="76">
+        <label>DisplayModuleEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_display_module_event"/>
+        <childnode refid="77" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="78">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="77">
+        <label>ModuleEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_module_event"/>
+        <childnode refid="78" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="75">
+        <label>Pathfinder.Event.DisplayModuleUpdateEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_display_module_update_event"/>
+        <childnode refid="76" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="80">
+        <label>DisplayModuleEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_display_module_event"/>
+        <childnode refid="81" relation="public-inheritance">
+        </childnode>
+        <childnode refid="83" relation="usage">
+          <edgelabel>Module</edgelabel>
+        </childnode>
+      </node>
+      <node id="82">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="83">
+        <label>Hacknet</label>
+      </node>
+      <node id="81">
+        <label>ModuleEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_module_event"/>
+        <childnode refid="82" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="79">
+        <label>Pathfinder.Event.DisplayModuleUpdateEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_display_module_update_event"/>
+        <childnode refid="80" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Event/ModuleEvents.cs" line="17" column="1" bodyfile="Pathfinder/Event/ModuleEvents.cs" bodystart="16" bodyend="20"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DisplayModuleUpdateEvent</scope><name>CallEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_display_module_event_1ab97978a69805869607374476f006884a" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DisplayModuleUpdateEvent</scope><name>DisplayModule</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_display_module_event_1aa8176e07327ff491e6dbc560d42c0154" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DisplayModuleUpdateEvent</scope><name>DisplayModuleEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_display_module_update_event_1a5510a821b00218ed93d5125e6befe4f9" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DisplayModuleUpdateEvent</scope><name>DisplayModuleUpdateEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DisplayModuleUpdateEvent</scope><name>IsCancelled</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_display_module_event_1a282ce4eba3073b8a58fe2a5304aadf79" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DisplayModuleUpdateEvent</scope><name>Module</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_module_event_1ad835cd5e4dfc757547e9add2e2eecb8f" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DisplayModuleUpdateEvent</scope><name>ModuleEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_display_module_update_event_1aa5bae8b97833341d8e5a8efe67ea79e2" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DisplayModuleUpdateEvent</scope><name>Time</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

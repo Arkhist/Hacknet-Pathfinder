@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/ExeInfoManager.cs" line="74" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="74" bodyend="-1"/>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="107" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="107" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="package-static-func">
@@ -35,7 +35,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/ExeInfoManager.cs" line="76" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="76" bodyend="91"/>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="109" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="109" bodyend="124"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/ExeInfoManager.cs" line="93" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="93" bodyend="99"/>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="126" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="126" bodyend="132"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_exe_info_manager_1ad7e5e3c7d00e175baddaf29412a31f44" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info" kindref="compound">ExecutableInfo</ref></type>
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/ExeInfoManager.cs" line="101" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="101" bodyend="108"/>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="134" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="134" bodyend="141"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_exe_info_manager_1a933366d771546e3c6ffdf178bd6b123a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; <ref refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info" kindref="compound">ExecutableInfo</ref> &gt;</type>
@@ -84,14 +84,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/ExeInfoManager.cs" line="110" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="110" bodyend="116"/>
+        <location file="Pathfinder/Util/ExeInfoManager.cs" line="143" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="143" bodyend="149"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Util/ExeInfoManager.cs" line="7" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="6" bodyend="117"/>
+    <location file="Pathfinder/Util/ExeInfoManager.cs" line="8" column="1" bodyfile="Pathfinder/Util/ExeInfoManager.cs" bodystart="7" bodyend="150"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_util_1_1_exe_info_manager_1ae37ee0af06892afa5a837a326abfea03" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager</scope><name>GetExecutableInfo</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_exe_info_manager_1ad7e5e3c7d00e175baddaf29412a31f44" prot="public" virt="non-virtual"><scope>Pathfinder::Util::ExeInfoManager</scope><name>GetExecutableInfo</name></member>

@@ -2,22 +2,22 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="class_pathfinder_1_1_mission_1_1_handler" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Mission::Handler</compoundname>
-      <sectiondef kind="private-static-attrib">
-      <memberdef kind="variable" id="class_pathfinder_1_1_mission_1_1_handler_1aeb9c69920de94c4567ff91dc97311e2e" prot="private" static="yes" mutable="no">
-        <type>Dictionary&lt; string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_mission_goal" kindref="compound">IMissionGoal</ref> &gt;</type>
-        <definition>Dictionary&lt;string, IMissionGoal&gt; Pathfinder.Mission.Handler.goals</definition>
+      <sectiondef kind="package-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_mission_1_1_handler_1a5d5f8597c7eb2e8b3072328334496275" prot="package" static="yes" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_goal" kindref="compound">IGoal</ref> &gt;</type>
+        <definition>Dictionary&lt;string, IGoal&gt; Pathfinder.Mission.Handler.goals</definition>
         <argsstring></argsstring>
         <name>goals</name>
-        <initializer>= new Dictionary&lt;string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_mission_goal" kindref="compound">IMissionGoal</ref>&gt;()</initializer>
+        <initializer>= new Dictionary&lt;string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_goal" kindref="compound">IGoal</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Handler.cs" line="8" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="8" bodyend="-1"/>
+        <location file="Pathfinder/Mission/Handler.cs" line="9" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="9" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_pathfinder_1_1_mission_1_1_handler_1a524ef901b97c75640e2a182f2d004950" prot="private" static="yes" mutable="no">
+      <memberdef kind="variable" id="class_pathfinder_1_1_mission_1_1_handler_1a524ef901b97c75640e2a182f2d004950" prot="package" static="yes" mutable="no">
         <type>Dictionary&lt; string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_interface" kindref="compound">IInterface</ref> &gt;</type>
         <definition>Dictionary&lt;string, IInterface&gt; Pathfinder.Mission.Handler.missions</definition>
         <argsstring></argsstring>
@@ -29,21 +29,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Handler.cs" line="9" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="9" bodyend="-1"/>
+        <location file="Pathfinder/Mission/Handler.cs" line="10" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="10" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a6cfeecf338423ccac7e5164c6a4992d7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>static bool Pathfinder.Mission.Handler.AddMissionGoal</definition>
-        <argsstring>(string goalId, IMissionGoal inter)</argsstring>
-        <name>AddMissionGoal</name>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a09cf6c1de0456221f23a7b9a2a11c3e7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Mission.Handler.RegisterMissionGoal</definition>
+        <argsstring>(string id, IGoal inter)</argsstring>
+        <name>RegisterMissionGoal</name>
         <param>
           <type>string</type>
-          <declname>goalId</declname>
+          <declname>id</declname>
         </param>
         <param>
-          <type><ref refid="interface_pathfinder_1_1_mission_1_1_i_mission_goal" kindref="compound">IMissionGoal</ref></type>
+          <type><ref refid="interface_pathfinder_1_1_mission_1_1_i_goal" kindref="compound">IGoal</ref></type>
           <declname>inter</declname>
         </param>
         <briefdescription>
@@ -52,16 +52,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Handler.cs" line="11" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="11" bodyend="23"/>
+        <location file="Pathfinder/Mission/Handler.cs" line="12" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="12" bodyend="27"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1af0c295b74c788e16b885ff4c01909c98" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a610ec86bf2c70f6c491118a88d88a326" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
-        <definition>static bool Pathfinder.Mission.Handler.AddMission</definition>
-        <argsstring>(string missionId, IInterface inter)</argsstring>
-        <name>AddMission</name>
+        <definition>static bool Pathfinder.Mission.Handler.AddMissionGoal</definition>
+        <argsstring>(string id, IGoal inter)</argsstring>
+        <name>AddMissionGoal</name>
         <param>
           <type>string</type>
-          <declname>missionId</declname>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_pathfinder_1_1_mission_1_1_i_goal" kindref="compound">IGoal</ref></type>
+          <declname>inter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Handler.cs" line="30" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a57b5b047a24911b2bdc2d323d7427a27" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Mission.Handler.RegisterMission</definition>
+        <argsstring>(string id, IInterface inter)</argsstring>
+        <name>RegisterMission</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
         </param>
         <param>
           <type><ref refid="interface_pathfinder_1_1_mission_1_1_i_interface" kindref="compound">IInterface</ref></type>
@@ -73,9 +94,30 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Handler.cs" line="25" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="25" bodyend="37"/>
+        <location file="Pathfinder/Mission/Handler.cs" line="40" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="40" bodyend="55"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a9a9e5219b1c40b9e42127632dc3f4c6d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1af6d3d3d6178b96d5e99059a3813f4202" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Mission.Handler.AddMission</definition>
+        <argsstring>(string id, IInterface inter)</argsstring>
+        <name>AddMission</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_pathfinder_1_1_mission_1_1_i_interface" kindref="compound">IInterface</ref></type>
+          <declname>inter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Handler.cs" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a9a9e5219b1c40b9e42127632dc3f4c6d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>static bool Pathfinder.Mission.Handler.ContainsMission</definition>
         <argsstring>(string id)</argsstring>
@@ -90,9 +132,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Handler.cs" line="39" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="39" bodyend="42"/>
+        <location file="Pathfinder/Mission/Handler.cs" line="68" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a6d4d9df715f151c98fc49263df879763" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a6d4d9df715f151c98fc49263df879763" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>static bool Pathfinder.Mission.Handler.ContainsMissionGoal</definition>
         <argsstring>(string id)</argsstring>
@@ -107,9 +149,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Handler.cs" line="44" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="44" bodyend="48"/>
+        <location file="Pathfinder/Mission/Handler.cs" line="69" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a4345130b22811b7a429d4db611d3ca1c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a4345130b22811b7a429d4db611d3ca1c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="interface_pathfinder_1_1_mission_1_1_i_interface" kindref="compound">IInterface</ref></type>
         <definition>static IInterface Pathfinder.Mission.Handler.GetMissionById</definition>
         <argsstring>(string id)</argsstring>
@@ -124,11 +166,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Handler.cs" line="50" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="50" bodyend="57"/>
+        <location file="Pathfinder/Mission/Handler.cs" line="71" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a7c1591ece559b9b0e0051c5bea7c9e94" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="interface_pathfinder_1_1_mission_1_1_i_mission_goal" kindref="compound">IMissionGoal</ref></type>
-        <definition>static IMissionGoal Pathfinder.Mission.Handler.GetMissionGoalById</definition>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1acdbb3d9ba9dd6fb5903fde55ff1d9d5c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="interface_pathfinder_1_1_mission_1_1_i_interface" kindref="compound">IInterface</ref></type>
+        <definition>static IInterface Pathfinder.Mission.Handler.GetMissionById</definition>
+        <argsstring>(ref string id)</argsstring>
+        <name>GetMissionById</name>
+        <param>
+          <type>ref string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Handler.cs" line="72" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="72" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1ac7fe24f67a1c42a80a409627703a4488" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="interface_pathfinder_1_1_mission_1_1_i_goal" kindref="compound">IGoal</ref></type>
+        <definition>static IGoal Pathfinder.Mission.Handler.GetMissionGoalById</definition>
         <argsstring>(string id)</argsstring>
         <name>GetMissionGoalById</name>
         <param>
@@ -141,23 +200,82 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Handler.cs" line="60" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="60" bodyend="67"/>
+        <location file="Pathfinder/Mission/Handler.cs" line="81" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1ae9b486eacbcdfda1311eafcdb6723f4a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="interface_pathfinder_1_1_mission_1_1_i_goal" kindref="compound">IGoal</ref></type>
+        <definition>static IGoal Pathfinder.Mission.Handler.GetMissionGoalById</definition>
+        <argsstring>(ref string id)</argsstring>
+        <name>GetMissionGoalById</name>
+        <param>
+          <type>ref string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Handler.cs" line="82" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="82" bodyend="89"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a50b1033a2f6a0c9b242f0cf8d27223d7" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Mission.Handler.UnregisterMissionGoal</definition>
+        <argsstring>(string id)</argsstring>
+        <name>UnregisterMissionGoal</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Handler.cs" line="32" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="32" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_handler_1a3f41e19d647c09212031a815765dd6e7" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Mission.Handler.UnregisterMission</definition>
+        <argsstring>(string id)</argsstring>
+        <name>UnregisterMission</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/Handler.cs" line="60" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="60" bodyend="66"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Mission/Handler.cs" line="7" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="6" bodyend="68"/>
+    <location file="Pathfinder/Mission/Handler.cs" line="8" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="7" bodyend="90"/>
     <listofallmembers>
-      <member refid="class_pathfinder_1_1_mission_1_1_handler_1af0c295b74c788e16b885ff4c01909c98" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>AddMission</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a6cfeecf338423ccac7e5164c6a4992d7" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>AddMissionGoal</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1af6d3d3d6178b96d5e99059a3813f4202" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>AddMission</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a610ec86bf2c70f6c491118a88d88a326" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>AddMissionGoal</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_handler_1a9a9e5219b1c40b9e42127632dc3f4c6d" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>ContainsMission</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_handler_1a6d4d9df715f151c98fc49263df879763" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>ContainsMissionGoal</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_handler_1a4345130b22811b7a429d4db611d3ca1c" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>GetMissionById</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a7c1591ece559b9b0e0051c5bea7c9e94" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>GetMissionGoalById</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_handler_1aeb9c69920de94c4567ff91dc97311e2e" prot="private" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>goals</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a524ef901b97c75640e2a182f2d004950" prot="private" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>missions</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1acdbb3d9ba9dd6fb5903fde55ff1d9d5c" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>GetMissionById</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1ac7fe24f67a1c42a80a409627703a4488" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>GetMissionGoalById</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1ae9b486eacbcdfda1311eafcdb6723f4a" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>GetMissionGoalById</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a5d5f8597c7eb2e8b3072328334496275" prot="package" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>goals</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a524ef901b97c75640e2a182f2d004950" prot="package" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>missions</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a57b5b047a24911b2bdc2d323d7427a27" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>RegisterMission</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a09cf6c1de0456221f23a7b9a2a11c3e7" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>RegisterMissionGoal</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a3f41e19d647c09212031a815765dd6e7" prot="package" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>UnregisterMission</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a50b1033a2f6a0c9b242f0cf8d27223d7" prot="package" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>UnregisterMissionGoal</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

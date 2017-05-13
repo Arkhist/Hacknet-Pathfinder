@@ -34,6 +34,10 @@ namespace Pathfinder.Util
             return input;
         }
 
+        /// <summary>
+        /// Gets the active mod's identifier.
+        /// </summary>
+        /// <value>The active mod identifier or Pathfinder if there is no active mod.</value>
         public static string ActiveModId => Pathfinder.CurrentMod?.Identifier ?? "Pathfinder";
 
         /// <summary>
@@ -91,6 +95,10 @@ namespace Pathfinder.Util
             return os?.connectedComp ?? os?.thisComputer;
         }
 
+        /// <summary>
+        /// Gets the current Computer the client is connected to.
+        /// </summary>
+        /// <value>The current Computer.</value>
         public static Hacknet.Computer CurrentComputer => GetCurrentComputer(null);
         [Obsolete("Use CurrentComputer Property")]
         public static Hacknet.Computer GetCurrentComputer() => CurrentComputer;

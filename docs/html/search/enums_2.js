@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loglevel',['LogLevel',['../class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696',1,'Pathfinder::Util::Logger']]]
+  ['fileoplogtype',['FileOpLogType',['../namespace_pathfinder_1_1_game_filesystem.html#a03dead9151c6fa847caa5f40346a6a6a',1,'Pathfinder::GameFilesystem']]]
 ];

@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_event_1_1_extension_menu_event" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Event::ExtensionMenuEvent</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" prot="public" virt="non-virtual">Pathfinder.Event.PathfinderEvent</basecompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_event" prot="public" virt="non-virtual">Pathfinder.Event.DrawExtensionMenuEvent</derivedcompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_list_event" prot="public" virt="non-virtual">Pathfinder.Event.DrawExtensionMenuListEvent</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_extension_menu_event_1af09f1e71578ac3419e8df05caab73add" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>ExtensionsMenuScreen</type>
+        <definition>ExtensionsMenuScreen Pathfinder.Event.ExtensionMenuEvent.ExtensionMenuScreen</definition>
+        <argsstring></argsstring>
+        <name>ExtensionMenuScreen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ExtensionMenuEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/ExtensionMenuEvents.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_extension_menu_event_1a3940943c918e371746a4b45fc4ddaf93" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>Rectangle</type>
+        <definition>Rectangle Pathfinder.Event.ExtensionMenuEvent.Rectangle</definition>
+        <argsstring></argsstring>
+        <name>Rectangle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ExtensionMenuEvents.cs" line="11" column="1" bodyfile="Pathfinder/Event/ExtensionMenuEvents.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_extension_menu_event_1afb9e0f2db31a53309f41d0143843ea78" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>SpriteBatch</type>
+        <definition>SpriteBatch Pathfinder.Event.ExtensionMenuEvent.SpriteBatch</definition>
+        <argsstring></argsstring>
+        <name>SpriteBatch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ExtensionMenuEvents.cs" line="12" column="1" bodyfile="Pathfinder/Event/ExtensionMenuEvents.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_extension_menu_event_1ab5cfe8abc74c1738906753216a2fec6f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>Vector2</type>
+        <definition>Vector2 Pathfinder.Event.ExtensionMenuEvent.ButtonPosition</definition>
+        <argsstring></argsstring>
+        <name>ButtonPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ExtensionMenuEvents.cs" line="13" column="1" bodyfile="Pathfinder/Event/ExtensionMenuEvents.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_extension_menu_event_1a81d5f061c5d80e079ac79b47b2ffbab3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Event.ExtensionMenuEvent.ExtensionMenuEvent</definition>
+        <argsstring>(ExtensionsMenuScreen screen, Rectangle rect, SpriteBatch sprite, Vector2 buttonPos)</argsstring>
+        <name>ExtensionMenuEvent</name>
+        <param>
+          <type>ExtensionsMenuScreen</type>
+          <declname>screen</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_extension_menu_event_1a3940943c918e371746a4b45fc4ddaf93" kindref="member">Rectangle</ref></type>
+          <declname>rect</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_extension_menu_event_1afb9e0f2db31a53309f41d0143843ea78" kindref="member">SpriteBatch</ref></type>
+          <declname>sprite</declname>
+        </param>
+        <param>
+          <type>Vector2</type>
+          <declname>buttonPos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ExtensionMenuEvents.cs" line="14" column="1" bodyfile="Pathfinder/Event/ExtensionMenuEvents.cs" bodystart="14" bodyend="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="153">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="155">
+        <label>Pathfinder.Event.DrawExtensionMenuListEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_list_event"/>
+        <childnode refid="152" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="152">
+        <label>Pathfinder.Event.ExtensionMenuEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_extension_menu_event"/>
+        <childnode refid="153" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="154">
+        <label>Pathfinder.Event.DrawExtensionMenuEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_event"/>
+        <childnode refid="152" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="157">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="156">
+        <label>Pathfinder.Event.ExtensionMenuEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_extension_menu_event"/>
+        <childnode refid="157" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Event/ExtensionMenuEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/ExtensionMenuEvents.cs" bodystart="8" bodyend="21"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_event_1_1_extension_menu_event_1ab5cfe8abc74c1738906753216a2fec6f" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExtensionMenuEvent</scope><name>ButtonPosition</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExtensionMenuEvent</scope><name>CallEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_extension_menu_event_1a81d5f061c5d80e079ac79b47b2ffbab3" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExtensionMenuEvent</scope><name>ExtensionMenuEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_extension_menu_event_1af09f1e71578ac3419e8df05caab73add" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExtensionMenuEvent</scope><name>ExtensionMenuScreen</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExtensionMenuEvent</scope><name>IsCancelled</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_extension_menu_event_1a3940943c918e371746a4b45fc4ddaf93" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExtensionMenuEvent</scope><name>Rectangle</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_extension_menu_event_1afb9e0f2db31a53309f41d0143843ea78" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExtensionMenuEvent</scope><name>SpriteBatch</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

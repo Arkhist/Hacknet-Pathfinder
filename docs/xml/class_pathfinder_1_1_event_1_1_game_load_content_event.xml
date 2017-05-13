@@ -27,38 +27,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="116">
+      <node id="193">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="114">
+      <node id="191">
         <label>Pathfinder.Event.GameLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_load_content_event"/>
-        <childnode refid="115" relation="public-inheritance">
+        <childnode refid="192" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="115">
+      <node id="192">
         <label>GameEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_event"/>
-        <childnode refid="116" relation="public-inheritance">
+        <childnode refid="193" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="119">
+      <node id="196">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="117">
+      <node id="194">
         <label>Pathfinder.Event.GameLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_load_content_event"/>
-        <childnode refid="118" relation="public-inheritance">
+        <childnode refid="195" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="118">
+      <node id="195">
         <label>GameEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_event"/>
-        <childnode refid="119" relation="public-inheritance">
+        <childnode refid="196" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

@@ -3,7 +3,7 @@
   <compounddef id="class_pathfinder_1_1_command_handler" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::CommandHandler</compoundname>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_command_handler_1a73d08d6a12a99dca28e2727602ea4ee5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_command_handler_1a73d08d6a12a99dca28e2727602ea4ee5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>static bool Pathfinder.CommandHandler.AddCommand</definition>
         <argsstring>(string key, Func&lt; Hacknet.OS, string[], bool &gt; function)</argsstring>
@@ -22,9 +22,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Command/CommandHandler.cs" line="10" column="1" bodyfile="Pathfinder/Command/CommandHandler.cs" bodystart="10" bodyend="10"/>
+        <location file="Pathfinder/Command/CommandHandler.cs" line="10" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_command_handler_1ad68b685666ad37611cf14c038cf8f104" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_command_handler_1ad68b685666ad37611cf14c038cf8f104" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>static bool Pathfinder.CommandHandler.AddCommand</definition>
         <argsstring>(string key, Func&lt; Hacknet.OS, string[], bool &gt; function, bool auto)</argsstring>
@@ -47,9 +47,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Command/CommandHandler.cs" line="12" column="1" bodyfile="Pathfinder/Command/CommandHandler.cs" bodystart="12" bodyend="12"/>
+        <location file="Pathfinder/Command/CommandHandler.cs" line="12" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_command_handler_1aa80c56cf7ebe143572fe26b771653fef" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_command_handler_1aa80c56cf7ebe143572fe26b771653fef" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>static bool Pathfinder.CommandHandler.AddCommand</definition>
         <argsstring>(string key, Func&lt; Hacknet.OS, string[], bool &gt; function, string des, bool auto)</argsstring>
@@ -76,14 +76,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Command/CommandHandler.cs" line="14" column="1" bodyfile="Pathfinder/Command/CommandHandler.cs" bodystart="14" bodyend="14"/>
+        <location file="Pathfinder/Command/CommandHandler.cs" line="15" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Command/CommandHandler.cs" line="8" column="1" bodyfile="Pathfinder/Command/CommandHandler.cs" bodystart="7" bodyend="15"/>
+    <location file="Pathfinder/Command/CommandHandler.cs" line="8" column="1" bodyfile="Pathfinder/Command/CommandHandler.cs" bodystart="7" bodyend="17"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_command_handler_1a73d08d6a12a99dca28e2727602ea4ee5" prot="public" virt="non-virtual"><scope>Pathfinder::CommandHandler</scope><name>AddCommand</name></member>
       <member refid="class_pathfinder_1_1_command_handler_1ad68b685666ad37611cf14c038cf8f104" prot="public" virt="non-virtual"><scope>Pathfinder::CommandHandler</scope><name>AddCommand</name></member>

@@ -101,11 +101,18 @@ namespace Pathfinder.Computer
             comp.GetNetworkMap().AddLink(comp, newLink);
 
         /// <summary>
+        /// Gets the OS the current computer is on.
+        /// </summary>
+        /// <returns>The OS.</returns>
+        /// <param name="comp">The Computer</param>
+        public static Hacknet.OS GetOS(this Hacknet.Computer comp) => comp.os;
+
+        /// <summary>
         /// Gets the NetworkMap the computer is part of.
         /// </summary>
         /// <returns>The NetworkMap.</returns>
         /// <param name="comp">The Computer</param>
-        public static Hacknet.NetworkMap GetNetworkMap(this Hacknet.Computer comp) => comp.os.netMap;
+        public static Hacknet.NetworkMap GetNetworkMap(this Hacknet.Computer comp) => comp.GetOS().netMap;
 
         /// <summary>
         /// Adds a vanilla port by ExecutableInfo.
@@ -308,6 +315,12 @@ namespace Pathfinder.Computer
         public static bool IsModPortOpen(this Hacknet.Computer comp, string id) =>
             comp.IsModPortOpen(Port.Handler.GetPort(id));
 
+        /// <summary>
+        /// Opens a vanilla port.
+        /// </summary>
+        /// <param name="comp">The Computer.</param>
+        /// <param name="info">The ExecutableInfo to search for.</param>
+        /// <param name="ipFrom">The IP responsible for the change.</param>
         public static void OpenVanillaPort(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom)
         {
             var i = comp.ports.IndexOf(info.PortNumber);
@@ -315,26 +328,52 @@ namespace Pathfinder.Computer
                 return;
             if (!comp.silent)
                 comp.portsOpen[i] = 1;
-            comp.log(ipFrom + " Opened Port#" + info.PortNumber);
+            if(!String.IsNullOrEmpty(ipFrom))
+                comp.log(ipFrom + " Opened Port#" + info.PortNumber);
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + info.PortNumber);
         }
 
+        /// <summary>
+        /// Opens a vanilla port.
+        /// </summary>
+        /// <param name="comp">The Computer.</param>
+        /// <param name="portName">The port name to search for.</param>
+        /// <param name="ipFrom">The IP responsible for the change.</param>
         public static void OpenVanillaPort(this Hacknet.Computer comp, string portName, string ipFrom) =>
             comp.OpenVanillaPort(ExeInfoManager.GetExecutableInfo(portName), ipFrom);
 
+        /// <summary>
+        /// Opens a vanilla port.
+        /// </summary>
+        /// <param name="comp">The Computer.</param>
+        /// <param name="portNum">The port number to search for.</param>
+        /// <param name="ipFrom">The IP responsible for the change.</param>
         public static void OpenVanillaPort(this Hacknet.Computer comp, int portNum, string ipFrom) =>
             comp.OpenVanillaPort(ExeInfoManager.GetExecutableInfo(portNum), ipFrom);
 
+        /// <summary>
+        /// Opens a mod port.
+        /// </summary>
+        /// <param name="comp">The Computer.</param>
+        /// <param name="port">The Type to search for.</param>
+        /// <param name="ipFrom">The IP responsible for the change.</param>
         public static void OpenModPort(this Hacknet.Computer comp, Port.Type port, string ipFrom)
         {
             var i = port.GetWithin(comp);
             if (i == null)
                 return;
             i.Unlocked |= !comp.silent;
-            comp.log(ipFrom + " Opened Port#" + port.PortName + "/" + port.PortDisplay);
+            if(!String.IsNullOrEmpty(ipFrom))
+                comp.log(ipFrom + " Opened Port#" + port.PortName + "/" + port.PortDisplay);
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
         }
 
+        /// <summary>
+        /// Opens a mod port.
+        /// </summary>
+        /// <param name="comp">The Computer.</param>
+        /// <param name="id">The Type id to search for.</param>
+        /// <param name="ipFrom">The IP responsible for the change.</param>
         public static void OpenModPort(this Hacknet.Computer comp, string id, string ipFrom) =>
             comp.OpenModPort(Port.Handler.GetPort(id), ipFrom);
 
@@ -346,7 +385,7 @@ namespace Pathfinder.Computer
             var wasOpen = comp.portsOpen[i] >= 1;
             if (!comp.silent)
                 comp.portsOpen[i] = 0;
-            if (wasOpen)
+            if (wasOpen && !String.IsNullOrEmpty(ipFrom))
                 comp.log(ipFrom + " Closes Port#" + info.PortNumber);
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + info.PortNumber);
         }
@@ -354,20 +393,8 @@ namespace Pathfinder.Computer
         public static void CloseVanillaPort(this Hacknet.Computer comp, string portName, string ipFrom) =>
             comp.CloseVanillaPort(ExeInfoManager.GetExecutableInfo(portName), ipFrom);
 
-        public static void ClosePort(this Hacknet.Computer comp, int portNum, string ipFrom) =>
+        public static void CloseVanillaPort(this Hacknet.Computer comp, int portNum, string ipFrom) =>
             comp.CloseVanillaPort(ExeInfoManager.GetExecutableInfo(portNum), ipFrom);
-
-        public static void ClosePort(this Hacknet.Computer comp, Port.Type port, string ipFrom)
-        {
-            var i = port.GetWithin(comp);
-            if (i == null)
-                return;
-            var wasOpen = i.Unlocked;
-            i.Unlocked &= comp.silent;
-            if (wasOpen)
-                comp.log(ipFrom + " Closed Port#" + port.PortName + "/" + port.PortDisplay);
-            comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
-        }
 
         public static void CloseModPort(this Hacknet.Computer comp, Port.Type port, string ipFrom)
         {
@@ -376,7 +403,7 @@ namespace Pathfinder.Computer
                 return;
             var wasOpen = i.Unlocked;
             i.Unlocked &= comp.silent;
-            if (wasOpen)
+            if (wasOpen & !String.IsNullOrEmpty(ipFrom))
                 comp.log(ipFrom + " Closed Port#" + port.PortName + "/" + port.PortDisplay);
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
         }

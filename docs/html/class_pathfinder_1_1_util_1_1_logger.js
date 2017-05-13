@@ -22,6 +22,8 @@ var class_pathfinder_1_1_util_1_1_logger =
     [ "SetFlags", "class_pathfinder_1_1_util_1_1_logger.html#a7f338bc62ac55ab6a2a34760dbc9fb0e", null ],
     [ "Verbose", "class_pathfinder_1_1_util_1_1_logger.html#aacfc0d30763fd5bebd00239d6e125d49", null ],
     [ "Warn", "class_pathfinder_1_1_util_1_1_logger.html#af3b73844726d014ccd4367a8b3248701", null ],
+    [ "DEFAULT_IGNORE_EVENTS", "class_pathfinder_1_1_util_1_1_logger.html#aa5f405b2efb2135d23589fd4aaa84793", null ],
     [ "LogHistory", "class_pathfinder_1_1_util_1_1_logger.html#aa5a0d9741bde195c6c7e8c38717c1072", null ],
+    [ "IgnoreEventTypes", "class_pathfinder_1_1_util_1_1_logger.html#a7589512acab152dc1741a286e952ecdf", null ],
     [ "IncludeModId", "class_pathfinder_1_1_util_1_1_logger.html#ad550296f254a8fdf3c31dc6d7965e2e1", null ]
 ];

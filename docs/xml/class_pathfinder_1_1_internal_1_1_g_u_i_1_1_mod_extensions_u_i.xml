@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Internal::GUI::ModExtensionsUI</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1a71e5e543f8b17017319fa18dab039e5b" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref></type>
+        <definition>Button Pathfinder.Internal.GUI.ModExtensionsUI.returnButton</definition>
+        <argsstring></argsstring>
+        <name>returnButton</name>
+        <initializer>= new <ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref>(-1, -1, 450, 25, &quot;Return to Main Menu&quot;, MainMenu.exitButtonColor)
+        {
+            DrawFinish = r =&gt; { <ref refid="class_pathfinder_1_1_extension_1_1_handler_1aa07ee87ff29fc51ce633896c5d96705f" kindref="member">Extension.Handler.ActiveInfo</ref> = null; buttonsLoaded = false; }
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="18" column="1" bodyfile="Pathfinder/Internal/GUI/ModExtensionsUI.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1aacb3889d37576e2d44c2f35b8c0453e0" prot="private" static="yes" mutable="no">
+        <type><ref refid="_mod_extensions_u_i_8cs_1a4856390f56f0177c9ac53303b0030240" kindref="member">EMSState</ref></type>
+        <definition>EMSState Pathfinder.Internal.GUI.ModExtensionsUI.state</definition>
+        <argsstring></argsstring>
+        <name>state</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="22" column="1" bodyfile="Pathfinder/Internal/GUI/ModExtensionsUI.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1aa1a353e8632847900b2ce682ff6adfbf" prot="private" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int Pathfinder.Internal.GUI.ModExtensionsUI.tickWaits</definition>
+        <argsstring></argsstring>
+        <name>tickWaits</name>
+        <initializer>= -2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="23" column="1" bodyfile="Pathfinder/Internal/GUI/ModExtensionsUI.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1a67e8ed3a0f749580fa7f45134bb359ea" prot="private" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Internal.GUI.ModExtensionsUI.buttonsLoaded</definition>
+        <argsstring></argsstring>
+        <name>buttonsLoaded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="24" column="1" bodyfile="Pathfinder/Internal/GUI/ModExtensionsUI.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1a7517fd32aca372ec147f124330a8953d" prot="private" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Internal.GUI.ModExtensionsUI.modHandled</definition>
+        <argsstring></argsstring>
+        <name>modHandled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="25" column="1" bodyfile="Pathfinder/Internal/GUI/ModExtensionsUI.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1adbe9f9480a06c455c600562542886a3e" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.GUI.ModExtensionsUI.LoadButtons</definition>
+        <argsstring>(ref Vector2 pos, ExtensionsMenuScreen ms)</argsstring>
+        <name>LoadButtons</name>
+        <param>
+          <type>ref Vector2</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>ExtensionsMenuScreen</type>
+          <declname>ms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="27" column="1" bodyfile="Pathfinder/Internal/GUI/ModExtensionsUI.cs" bodystart="27" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1a50c5435b675eb5aa3fe300ca3b430f5b" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.GUI.ModExtensionsUI.DrawModExtensionInfo</definition>
+        <argsstring>(SpriteBatch sb, ref Vector2 pos, Rectangle rect, ExtensionsMenuScreen ms)</argsstring>
+        <name>DrawModExtensionInfo</name>
+        <param>
+          <type>SpriteBatch</type>
+          <declname>sb</declname>
+        </param>
+        <param>
+          <type>ref Vector2</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Rectangle</type>
+          <declname>rect</declname>
+        </param>
+        <param>
+          <type>ExtensionsMenuScreen</type>
+          <declname>ms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="47" column="1" bodyfile="Pathfinder/Internal/GUI/ModExtensionsUI.cs" bodystart="47" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1aef4b7c7aff6a1a5bd43e77a29f70f1ae" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.GUI.ModExtensionsUI.DrawUserScreenModExtensionInfo</definition>
+        <argsstring>(SpriteBatch sb, Rectangle rect, ExtensionsMenuScreen ms)</argsstring>
+        <name>DrawUserScreenModExtensionInfo</name>
+        <param>
+          <type>SpriteBatch</type>
+          <declname>sb</declname>
+        </param>
+        <param>
+          <type>Rectangle</type>
+          <declname>rect</declname>
+        </param>
+        <param>
+          <type>ExtensionsMenuScreen</type>
+          <declname>ms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="144" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1ae1abfc5a52df542e4cc4c35066cb608f" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.GUI.ModExtensionsUI.ExtensionMenuListener</definition>
+        <argsstring>(DrawExtensionMenuEvent e)</argsstring>
+        <name>ExtensionMenuListener</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_event" kindref="compound">DrawExtensionMenuEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="147" column="1" bodyfile="Pathfinder/Internal/GUI/ModExtensionsUI.cs" bodystart="147" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1aad01b22767c1147df9383c959ca01400" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.GUI.ModExtensionsUI.ExtensionListMenuListener</definition>
+        <argsstring>(DrawExtensionMenuListEvent e)</argsstring>
+        <name>ExtensionListMenuListener</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_list_event" kindref="compound">DrawExtensionMenuListEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="177" column="1" bodyfile="Pathfinder/Internal/GUI/ModExtensionsUI.cs" bodystart="177" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1a061343b358ffacff890095c74de7fc4f" prot="package" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.GUI.ModExtensionsUI.PostLoadForModExtensionsListener</definition>
+        <argsstring>(OSPostLoadContenEvent e)</argsstring>
+        <name>PostLoadForModExtensionsListener</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_o_s_post_load_conten_event" kindref="compound">OSPostLoadContenEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="189" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Internal/GUI/ModExtensionsUI.cs" line="17" column="1" bodyfile="Pathfinder/Internal/GUI/ModExtensionsUI.cs" bodystart="16" bodyend="190"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1a67e8ed3a0f749580fa7f45134bb359ea" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModExtensionsUI</scope><name>buttonsLoaded</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1a50c5435b675eb5aa3fe300ca3b430f5b" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModExtensionsUI</scope><name>DrawModExtensionInfo</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1aef4b7c7aff6a1a5bd43e77a29f70f1ae" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModExtensionsUI</scope><name>DrawUserScreenModExtensionInfo</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1aad01b22767c1147df9383c959ca01400" prot="package" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModExtensionsUI</scope><name>ExtensionListMenuListener</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1ae1abfc5a52df542e4cc4c35066cb608f" prot="package" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModExtensionsUI</scope><name>ExtensionMenuListener</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1adbe9f9480a06c455c600562542886a3e" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModExtensionsUI</scope><name>LoadButtons</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1a7517fd32aca372ec147f124330a8953d" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModExtensionsUI</scope><name>modHandled</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1a061343b358ffacff890095c74de7fc4f" prot="package" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModExtensionsUI</scope><name>PostLoadForModExtensionsListener</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1a71e5e543f8b17017319fa18dab039e5b" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModExtensionsUI</scope><name>returnButton</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1aacb3889d37576e2d44c2f35b8c0453e0" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModExtensionsUI</scope><name>state</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i_1aa1a353e8632847900b2ce682ff6adfbf" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModExtensionsUI</scope><name>tickWaits</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -15,7 +15,34 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/CommandEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="9" bodyend="-1"/>
+        <location file="Pathfinder/Event/CommandEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_command_sent_event_1a52aa94e27f5a0c9f632abc94f99e90c5" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="namespace_pathfinder_1_1_g_u_i_1af6f9ab3f00d3218d4771fe469c10ad4c" kindref="member">CommandDisplayStateChange</ref></type>
+        <definition>CommandDisplayStateChange Pathfinder.Event.CommandSentEvent.StateChange</definition>
+        <argsstring></argsstring>
+        <name>StateChange</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/CommandEvents.cs" line="11" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_command_sent_event_1a9e6fa831728bf162d728f0a169afcd5c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Event.CommandSentEvent.State</definition>
+        <argsstring></argsstring>
+        <name>State</name>
+        <initializer>= CommandDisplayStateChange.None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/CommandEvents.cs" line="12" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="13" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_command_sent_event_1a88be71dc1510de7945eeefd1c45f4537" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
         <type>List&lt; string &gt;</type>
@@ -28,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/CommandEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="10" bodyend="-1"/>
+        <location file="Pathfinder/Event/CommandEvents.cs" line="26" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="26" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -44,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/CommandEvents.cs" line="12" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="12" bodyend="-1"/>
+        <location file="Pathfinder/Event/CommandEvents.cs" line="28" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="28" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -67,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/CommandEvents.cs" line="13" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="13" bodyend="17"/>
+        <location file="Pathfinder/Event/CommandEvents.cs" line="29" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="29" bodyend="32"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -75,48 +102,48 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="5">
+      <node id="33">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="6" relation="public-inheritance">
+        <childnode refid="34" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
+      <node id="34">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="4">
+      <node id="32">
         <label>Pathfinder.Event.CommandSentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_command_sent_event"/>
-        <childnode refid="5" relation="public-inheritance">
+        <childnode refid="33" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="8">
+      <node id="36">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="9" relation="public-inheritance">
+        <childnode refid="37" relation="public-inheritance">
         </childnode>
-        <childnode refid="10" relation="usage">
+        <childnode refid="38" relation="usage">
           <edgelabel>OsInstance</edgelabel>
         </childnode>
       </node>
-      <node id="9">
+      <node id="37">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="10">
+      <node id="38">
         <label>Hacknet</label>
       </node>
-      <node id="7">
+      <node id="35">
         <label>Pathfinder.Event.CommandSentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_command_sent_event"/>
-        <childnode refid="8" relation="public-inheritance">
+        <childnode refid="36" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/CommandEvents.cs" line="8" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="7" bodyend="18"/>
+    <location file="Pathfinder/Event/CommandEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="8" bodyend="33"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1a81a926e9ac9b118bf0834ef3339eee22" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>Args</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1a88be71dc1510de7945eeefd1c45f4537" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>Arguments</name></member>
@@ -127,6 +154,8 @@
       <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1a59c0db53d1a98f303716f74f9ae844e5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>OS</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1afbed2fcd726a384a8baf01375de0e96c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>OSEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1ac373c93e4c8c30fd9efc814c74e89c99" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>OsInstance</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1a9e6fa831728bf162d728f0a169afcd5c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>State</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1a52aa94e27f5a0c9f632abc94f99e90c5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>StateChange</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

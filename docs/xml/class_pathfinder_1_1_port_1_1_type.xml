@@ -1,0 +1,244 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_port_1_1_type" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Port::Type</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IEquatable&lt; Type &gt;</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IEquatable&lt; Instance &gt;</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_port_1_1_type_1ab38ac401192483df868ba3a0939f352e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Port.Type.PortName</definition>
+        <argsstring></argsstring>
+        <name>PortName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Port/Type.cs" line="8" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_port_1_1_type_1a5e15297ce649dea2c971b9c5dbbe1cb0" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>uint</type>
+        <definition>uint Pathfinder.Port.Type.PortDisplay</definition>
+        <argsstring></argsstring>
+        <name>PortDisplay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Port/Type.cs" line="9" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_port_1_1_type_1a756021d5d4088e7c5e8d8e667b8a51a6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Port.Type.PortId</definition>
+        <argsstring></argsstring>
+        <name>PortId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Port/Type.cs" line="10" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1adb4d2d7de970c11570edcca399750afe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Port.Type.Type</definition>
+        <argsstring>(string portName, uint portDisplay)</argsstring>
+        <name>Type</name>
+        <param>
+          <type>string</type>
+          <declname>portName</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>portDisplay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Port/Type.cs" line="12" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="12" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1a9d1f6db3d6c0a3a03c23139e4ffbd785" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Pathfinder.Port.Type.AssignTo</definition>
+        <argsstring>(Hacknet.Computer c, bool unlocked=false)</argsstring>
+        <name>AssignTo</name>
+        <param>
+          <type>Hacknet.Computer</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>unlocked</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Port/Type.cs" line="20" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="20" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1a9a6f04d976c7e1c25581fc3407045902" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Pathfinder.Port.Type.RemoveFrom</definition>
+        <argsstring>(Hacknet.Computer c)</argsstring>
+        <name>RemoveFrom</name>
+        <param>
+          <type>Hacknet.Computer</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Port/Type.cs" line="29" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="29" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1a88fdec950d9f3726ed951ef14e0e6be8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_port_1_1_instance" kindref="compound">Instance</ref></type>
+        <definition>Instance Pathfinder.Port.Type.GetWithin</definition>
+        <argsstring>(Hacknet.Computer c)</argsstring>
+        <name>GetWithin</name>
+        <param>
+          <type>Hacknet.Computer</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Port/Type.cs" line="37" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1af64dbdcaa94b3e8b28ba959c9ac63c7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Pathfinder.Port.Type.Equals</definition>
+        <argsstring>(Type other)</argsstring>
+        <name>Equals</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_port_1_1_type" kindref="compound">Type</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Port/Type.cs" line="38" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1a1db2851b3a1757a693c74bad549f6f69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Pathfinder.Port.Type.Equals</definition>
+        <argsstring>(Instance other)</argsstring>
+        <name>Equals</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_port_1_1_instance" kindref="compound">Instance</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Port/Type.cs" line="42" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1a45574e92a76ee4f834480dc64c927b0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string Pathfinder.Port.Type.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Port/Type.cs" line="43" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1a8e353c9be9f70958a74370ac79db2e29" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_port_1_1_type" kindref="compound">Type</ref></type>
+        <definition>static Type Pathfinder.Port.Type.GetById</definition>
+        <argsstring>(string portId)</argsstring>
+        <name>GetById</name>
+        <param>
+          <type>string</type>
+          <declname>portId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Port/Type.cs" line="44" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="453">
+        <label>IEquatable&lt; Type &gt;</label>
+      </node>
+      <node id="454">
+        <label>IEquatable&lt; Instance &gt;</label>
+      </node>
+      <node id="452">
+        <label>Pathfinder.Port.Type</label>
+        <link refid="class_pathfinder_1_1_port_1_1_type"/>
+        <childnode refid="453" relation="public-inheritance">
+        </childnode>
+        <childnode refid="454" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="456">
+        <label>IEquatable&lt; Type &gt;</label>
+      </node>
+      <node id="457">
+        <label>IEquatable&lt; Instance &gt;</label>
+      </node>
+      <node id="455">
+        <label>Pathfinder.Port.Type</label>
+        <link refid="class_pathfinder_1_1_port_1_1_type"/>
+        <childnode refid="456" relation="public-inheritance">
+        </childnode>
+        <childnode refid="457" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Port/Type.cs" line="7" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="6" bodyend="45"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_port_1_1_type_1a9d1f6db3d6c0a3a03c23139e4ffbd785" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>AssignTo</name></member>
+      <member refid="class_pathfinder_1_1_port_1_1_type_1af64dbdcaa94b3e8b28ba959c9ac63c7b" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>Equals</name></member>
+      <member refid="class_pathfinder_1_1_port_1_1_type_1a1db2851b3a1757a693c74bad549f6f69" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>Equals</name></member>
+      <member refid="class_pathfinder_1_1_port_1_1_type_1a8e353c9be9f70958a74370ac79db2e29" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>GetById</name></member>
+      <member refid="class_pathfinder_1_1_port_1_1_type_1a88fdec950d9f3726ed951ef14e0e6be8" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>GetWithin</name></member>
+      <member refid="class_pathfinder_1_1_port_1_1_type_1a5e15297ce649dea2c971b9c5dbbe1cb0" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>PortDisplay</name></member>
+      <member refid="class_pathfinder_1_1_port_1_1_type_1a756021d5d4088e7c5e8d8e667b8a51a6" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>PortId</name></member>
+      <member refid="class_pathfinder_1_1_port_1_1_type_1ab38ac401192483df868ba3a0939f352e" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>PortName</name></member>
+      <member refid="class_pathfinder_1_1_port_1_1_type_1a9a6f04d976c7e1c25581fc3407045902" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>RemoveFrom</name></member>
+      <member refid="class_pathfinder_1_1_port_1_1_type_1a45574e92a76ee4f834480dc64c927b0e" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>ToString</name></member>
+      <member refid="class_pathfinder_1_1_port_1_1_type_1adb4d2d7de970c11570edcca399750afe" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>Type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

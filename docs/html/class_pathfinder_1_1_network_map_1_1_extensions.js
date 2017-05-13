@@ -8,6 +8,7 @@ var class_pathfinder_1_1_network_map_1_1_extensions =
     [ "DiscoverNodesByIps", "class_pathfinder_1_1_network_map_1_1_extensions.html#ad88b4f52e9de002d3344def683e01d63", null ],
     [ "DiscoverNodesByNames", "class_pathfinder_1_1_network_map_1_1_extensions.html#a1fda33284080c5168af862a8ce774ddb", null ],
     [ "GetComputer", "class_pathfinder_1_1_network_map_1_1_extensions.html#ad42cba32aa6668a182e0bb31ead13521", null ],
+    [ "GetComputerById", "class_pathfinder_1_1_network_map_1_1_extensions.html#aa435118a6ae335786fb10aaf6196b2c3", null ],
     [ "GetComputerByIp", "class_pathfinder_1_1_network_map_1_1_extensions.html#af65ecfb0d821b87834e993a8d66675c0", null ],
     [ "GetComputerByName", "class_pathfinder_1_1_network_map_1_1_extensions.html#aadb3225440fd0262e44948476a3ca6b3", null ]
 ];

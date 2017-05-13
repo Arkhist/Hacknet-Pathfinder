@@ -61,49 +61,49 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="206">
+      <node id="316">
         <label>Pathfinder.Event.DrawMainMenuButtonsEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event"/>
-        <childnode refid="204" relation="public-inheritance">
+        <childnode refid="314" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="207">
+      <node id="317">
         <label>Pathfinder.Event.DrawMainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_event"/>
-        <childnode refid="204" relation="public-inheritance">
+        <childnode refid="314" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="208">
+      <node id="318">
         <label>Pathfinder.Event.DrawMainMenuTitlesEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event"/>
-        <childnode refid="204" relation="public-inheritance">
+        <childnode refid="314" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="205">
+      <node id="315">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="204">
+      <node id="314">
         <label>Pathfinder.Event.MainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="205" relation="public-inheritance">
+        <childnode refid="315" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="210">
+      <node id="320">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="211">
+      <node id="321">
         <label>Hacknet</label>
       </node>
-      <node id="209">
+      <node id="319">
         <label>Pathfinder.Event.MainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="210" relation="public-inheritance">
+        <childnode refid="320" relation="public-inheritance">
         </childnode>
-        <childnode refid="211" relation="usage">
+        <childnode refid="321" relation="usage">
           <edgelabel>MainMenuInstance</edgelabel>
         </childnode>
       </node>

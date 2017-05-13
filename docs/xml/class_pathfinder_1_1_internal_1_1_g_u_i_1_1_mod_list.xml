@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Internal::GUI::ModList</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a251dba354b6651e51ad266b649a8baf9" prot="private" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Internal.GUI.ModList.GameHandled</definition>
+        <argsstring></argsstring>
+        <name>GameHandled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="13" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a8e870d347bdfe51824a10b763cba3e72" prot="private" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Internal.GUI.ModList.ButtonsWerePrepared</definition>
+        <argsstring></argsstring>
+        <name>ButtonsWerePrepared</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="14" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1af861dc66f32ec90a037bd0b737438f81" prot="private" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Dictionary&lt; string, <ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref> &gt;</type>
+        <definition>Dictionary&lt;string, Button&gt; Pathfinder.Internal.GUI.ModList.LoadButtons</definition>
+        <argsstring></argsstring>
+        <name>LoadButtons</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="22" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a0cdcbeacf4881ebed8de0bfce026e781" prot="private" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Dictionary&lt; string, <ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref> &gt;</type>
+        <definition>Dictionary&lt;string, Button&gt; Pathfinder.Internal.GUI.ModList.UnloadButtons</definition>
+        <argsstring></argsstring>
+        <name>UnloadButtons</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="23" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a2e53fd78215d8bbf08aa9629e71e2072" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref></type>
+        <definition>Button Pathfinder.Internal.GUI.ModList.modListButton</definition>
+        <argsstring></argsstring>
+        <name>modListButton</name>
+        <initializer>= new <ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref>(180, 600, 450, 40, &quot;Pathfinder Mod List&quot;, MainMenu.buttonColor)
+        { DrawFinish = (r) =&gt; GameHandled &amp;= !r.JustReleased }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="16" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a97968817d104deb0f2e438b79138d365" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref></type>
+        <definition>Button Pathfinder.Internal.GUI.ModList.returnButton</definition>
+        <argsstring></argsstring>
+        <name>returnButton</name>
+        <initializer>= new <ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref>(180, 650, 250, 28, &quot;Return&quot;, MainMenu.exitButtonColor)
+        { DrawFinish = (r) =&gt; GameHandled |= r.JustReleased }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="19" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a18c7f5d190ee708b0ec5ce774ea53121" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.GUI.ModList.PrepareButtons</definition>
+        <argsstring>()</argsstring>
+        <name>PrepareButtons</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="25" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="25" bodyend="50"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1ae190c2c8902c495e5ba375fea33ec6a3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.GUI.ModList.DrawModList</definition>
+        <argsstring>(DrawMainMenuEvent e)</argsstring>
+        <name>DrawModList</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_draw_main_menu_event" kindref="compound">DrawMainMenuEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="52" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="52" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1abe745cfd437652d8c599eba49c035781" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.GUI.ModList.DrawModListButton</definition>
+        <argsstring>(DrawMainMenuButtonsEvent e)</argsstring>
+        <name>DrawModListButton</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event" kindref="compound">DrawMainMenuButtonsEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="89" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Internal/GUI/ModList.cs" line="12" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="11" bodyend="90"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a8e870d347bdfe51824a10b763cba3e72" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModList</scope><name>ButtonsWerePrepared</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1ae190c2c8902c495e5ba375fea33ec6a3" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModList</scope><name>DrawModList</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1abe745cfd437652d8c599eba49c035781" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModList</scope><name>DrawModListButton</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a251dba354b6651e51ad266b649a8baf9" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModList</scope><name>GameHandled</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1af861dc66f32ec90a037bd0b737438f81" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModList</scope><name>LoadButtons</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a2e53fd78215d8bbf08aa9629e71e2072" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModList</scope><name>modListButton</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a18c7f5d190ee708b0ec5ce774ea53121" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModList</scope><name>PrepareButtons</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a97968817d104deb0f2e438b79138d365" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModList</scope><name>returnButton</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a0cdcbeacf4881ebed8de0bfce026e781" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModList</scope><name>UnloadButtons</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

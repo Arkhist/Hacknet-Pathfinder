@@ -63,67 +63,67 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="230">
+      <node id="351">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="235">
+      <node id="356">
         <label>Pathfinder.Event.OSSaveFileEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event"/>
-        <childnode refid="229" relation="public-inheritance">
+        <childnode refid="350" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="234">
+      <node id="355">
         <label>Pathfinder.Event.OSPostLoadContenEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_post_load_conten_event"/>
-        <childnode refid="229" relation="public-inheritance">
+        <childnode refid="350" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="232">
+      <node id="353">
         <label>Pathfinder.Event.OSLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event"/>
-        <childnode refid="229" relation="public-inheritance">
+        <childnode refid="350" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="231">
+      <node id="352">
         <label>Pathfinder.Event.CommandSentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_command_sent_event"/>
-        <childnode refid="229" relation="public-inheritance">
+        <childnode refid="350" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="233">
+      <node id="354">
         <label>Pathfinder.Event.OSLoadSaveFileEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event"/>
-        <childnode refid="229" relation="public-inheritance">
+        <childnode refid="350" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="236">
+      <node id="357">
         <label>Pathfinder.Event.OSSaveWriteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_save_write_event"/>
-        <childnode refid="235" relation="public-inheritance">
+        <childnode refid="356" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="229">
+      <node id="350">
         <label>Pathfinder.Event.OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="230" relation="public-inheritance">
+        <childnode refid="351" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="238">
+      <node id="359">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="239">
+      <node id="360">
         <label>Hacknet</label>
       </node>
-      <node id="237">
+      <node id="358">
         <label>Pathfinder.Event.OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="238" relation="public-inheritance">
+        <childnode refid="359" relation="public-inheritance">
         </childnode>
-        <childnode refid="239" relation="usage">
+        <childnode refid="360" relation="usage">
           <edgelabel>OsInstance</edgelabel>
         </childnode>
       </node>

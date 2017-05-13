@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['directories',['Directories',['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#aba9a0ff76d741285d4820ef957e0affe',1,'Pathfinder::GameFilesystem::Directory']]],
-  ['directorycount',['DirectoryCount',['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#aa058dabe3080d142dc82fef3681ca1fb',1,'Pathfinder::GameFilesystem::Directory']]]
+  ['clickpositionoffset',['ClickPositionOffset',['../class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle.html#acae620b199681040136c05f4f2125a61',1,'Pathfinder::GUI::DynamicRectangle']]],
+  ['clientcomputer',['ClientComputer',['../class_pathfinder_1_1_util_1_1_utility.html#a391ca6ebd90f658afe070baea5049dfa',1,'Pathfinder::Util::Utility']]],
+  ['clientnetworkmap',['ClientNetworkMap',['../class_pathfinder_1_1_util_1_1_utility.html#a78d3804724a5dcd91a5449ec648b09c0',1,'Pathfinder::Util::Utility']]],
+  ['clientos',['ClientOS',['../class_pathfinder_1_1_util_1_1_utility.html#a76906f5cd3901e82fd4f66842090a82e',1,'Pathfinder::Util::Utility']]],
+  ['currentcomputer',['CurrentComputer',['../class_pathfinder_1_1_util_1_1_utility.html#a3e284b53efd6e797d8d6f8dfd50dc945',1,'Pathfinder::Util::Utility']]]
 ];

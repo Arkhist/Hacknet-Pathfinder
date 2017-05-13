@@ -1,7 +1,7 @@
 var class_pathfinder_1_1_mission_1_1_instance =
 [
     [ "ActivateSuppressedStartFunctionIfPresent", "class_pathfinder_1_1_mission_1_1_instance.html#a738a926afaf5b0cf6e3f1d50fb0db6f6", null ],
-    [ "AddGoal", "class_pathfinder_1_1_mission_1_1_instance.html#a318b80aa663153babe851388e5e87a18", null ],
+    [ "AddGoal", "class_pathfinder_1_1_mission_1_1_instance.html#ad8c7ad14ba26ef19c1e71317a585340e", null ],
     [ "AddGoal", "class_pathfinder_1_1_mission_1_1_instance.html#a98eeda94de223360edd22a5f7a91277b", null ],
     [ "CreateInstance", "class_pathfinder_1_1_mission_1_1_instance.html#ae1e219f75322eea9d3bbb05c036d2ab0", null ],
     [ "finish", "class_pathfinder_1_1_mission_1_1_instance.html#ad9353660feefc6e95c7aa381d5c33900", null ],

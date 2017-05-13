@@ -408,6 +408,27 @@
         </inbodydescription>
         <location file="Pathfinder/NetworkMap/Extensions.cs" line="120" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="120" bodyend="123"/>
       </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_network_map_1_1_extensions_1aa435118a6ae335786fb10aaf6196b2c3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Hacknet.Computer</type>
+        <definition>static Hacknet.Computer Pathfinder.NetworkMap.Extensions.GetComputerById</definition>
+        <argsstring>(this Hacknet.NetworkMap netmap, string id)</argsstring>
+        <name>GetComputerById</name>
+        <param>
+          <type>this Hacknet.NetworkMap</type>
+          <declname>netmap</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="125" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="125" bodyend="128"/>
+      </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_network_map_1_1_extensions_1a400d4d1732a4547592c9c935914d2846" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>static bool Pathfinder.NetworkMap.Extensions.AddLink</definition>
@@ -454,14 +475,14 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/NetworkMap/Extensions.cs" line="132" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="132" bodyend="139"/>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="137" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="137" bodyend="144"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/NetworkMap/Extensions.cs" line="7" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="6" bodyend="140"/>
+    <location file="Pathfinder/NetworkMap/Extensions.cs" line="7" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="6" bodyend="145"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_network_map_1_1_extensions_1a400d4d1732a4547592c9c935914d2846" prot="public" virt="non-virtual"><scope>Pathfinder::NetworkMap::Extensions</scope><name>AddLink</name></member>
       <member refid="class_pathfinder_1_1_network_map_1_1_extensions_1a682c9e1976cb2234388d168da1f7c3fd" prot="public" virt="non-virtual"><scope>Pathfinder::NetworkMap::Extensions</scope><name>DiscoverNode</name></member>
@@ -471,6 +492,7 @@
       <member refid="class_pathfinder_1_1_network_map_1_1_extensions_1ad88b4f52e9de002d3344def683e01d63" prot="public" virt="non-virtual"><scope>Pathfinder::NetworkMap::Extensions</scope><name>DiscoverNodesByIps</name></member>
       <member refid="class_pathfinder_1_1_network_map_1_1_extensions_1a1fda33284080c5168af862a8ce774ddb" prot="public" virt="non-virtual"><scope>Pathfinder::NetworkMap::Extensions</scope><name>DiscoverNodesByNames</name></member>
       <member refid="class_pathfinder_1_1_network_map_1_1_extensions_1ad42cba32aa6668a182e0bb31ead13521" prot="public" virt="non-virtual"><scope>Pathfinder::NetworkMap::Extensions</scope><name>GetComputer</name></member>
+      <member refid="class_pathfinder_1_1_network_map_1_1_extensions_1aa435118a6ae335786fb10aaf6196b2c3" prot="public" virt="non-virtual"><scope>Pathfinder::NetworkMap::Extensions</scope><name>GetComputerById</name></member>
       <member refid="class_pathfinder_1_1_network_map_1_1_extensions_1af65ecfb0d821b87834e993a8d66675c0" prot="public" virt="non-virtual"><scope>Pathfinder::NetworkMap::Extensions</scope><name>GetComputerByIp</name></member>
       <member refid="class_pathfinder_1_1_network_map_1_1_extensions_1aadb3225440fd0262e44948476a3ca6b3" prot="public" virt="non-virtual"><scope>Pathfinder::NetworkMap::Extensions</scope><name>GetComputerByName</name></member>
     </listofallmembers>

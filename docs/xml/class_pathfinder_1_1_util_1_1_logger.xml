@@ -102,6 +102,36 @@
         <location file="Pathfinder/Util/Logger.cs" line="26" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="26" bodyend="-1"/>
       </memberdef>
       </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_logger_1aa5f405b2efb2135d23589fd4aaa84793" prot="public" static="yes" mutable="no">
+        <type>readonly List&lt; Type &gt;</type>
+        <definition>readonly List&lt;Type&gt; Pathfinder.Util.Logger.DEFAULT_IGNORE_EVENTS</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_IGNORE_EVENTS</name>
+        <initializer>= new List&lt;Type&gt;(new Type[] { typeof(<ref refid="class_pathfinder_1_1_event_1_1_game_update_event" kindref="compound">Event.GameUpdateEvent</ref>) })</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Logger.cs" line="27" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_logger_1aa5a0d9741bde195c6c7e8c38717c1072" prot="public" static="yes" mutable="no">
+        <type>IList&lt; Tuple&lt; <ref refid="class_pathfinder_1_1_util_1_1_logger_1a3eae0eba87ff6f0f6d570de47f7ba696" kindref="member">LogLevel</ref>, string &gt; &gt;</type>
+        <definition>IList&lt;Tuple&lt;LogLevel, string&gt; &gt; Pathfinder.Util.Logger.LogHistory</definition>
+        <argsstring></argsstring>
+        <name>LogHistory</name>
+        <initializer>=&gt; logHistory.AsReadOnly()</initializer>
+        <briefdescription>
+<para>Gets the log history. </para>        </briefdescription>
+        <detaileddescription>
+<para>The log history for the past 100 log calls.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Logger.cs" line="39" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
       <sectiondef kind="private-static-attrib">
       <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_logger_1a600066f8364872327071d50b0c86189e" prot="private" static="yes" mutable="no">
         <type>List&lt; Tuple&lt; <ref refid="class_pathfinder_1_1_util_1_1_logger_1a3eae0eba87ff6f0f6d570de47f7ba696" kindref="member">LogLevel</ref>, string &gt; &gt;</type>
@@ -144,27 +174,24 @@
 <para><computeroutput>true</computeroutput> if mod identifier should be included; otherwise, <computeroutput>false</computeroutput>.</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="35" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="35" bodyend="-1"/>
+        <location file="Pathfinder/Util/Logger.cs" line="34" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="34" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-attrib">
-      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_logger_1aa5a0d9741bde195c6c7e8c38717c1072" prot="public" static="yes" mutable="no">
-        <type>IList&lt; Tuple&lt; <ref refid="class_pathfinder_1_1_util_1_1_logger_1a3eae0eba87ff6f0f6d570de47f7ba696" kindref="member">LogLevel</ref>, string &gt; &gt;</type>
-        <definition>IList&lt;Tuple&lt;LogLevel, string&gt; &gt; Pathfinder.Util.Logger.LogHistory</definition>
+      <memberdef kind="property" id="class_pathfinder_1_1_util_1_1_logger_1a7589512acab152dc1741a286e952ecdf" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>List&lt; Type &gt;</type>
+        <definition>List&lt;Type&gt; Pathfinder.Util.Logger.IgnoreEventTypes</definition>
         <argsstring></argsstring>
-        <name>LogHistory</name>
-        <initializer>=&gt; logHistory.AsReadOnly()</initializer>
+        <name>IgnoreEventTypes</name>
         <briefdescription>
-<para>Gets the log history. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para>The log history for the past 100 log calls.</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="Pathfinder/Util/Logger.cs" line="40" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="40" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1a2db057b4d5404a7452a9b39565155af8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1a2db057b4d5404a7452a9b39565155af8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Util.Logger.AddFlag</definition>
         <argsstring>(LogLevel levels)</argsstring>
@@ -187,9 +214,9 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="46" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="46" bodyend="49"/>
+        <location file="Pathfinder/Util/Logger.cs" line="46" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1a7f338bc62ac55ab6a2a34760dbc9fb0e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1a7f338bc62ac55ab6a2a34760dbc9fb0e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Util.Logger.SetFlags</definition>
         <argsstring>(LogLevel levels)</argsstring>
@@ -212,9 +239,9 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="55" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="55" bodyend="58"/>
+        <location file="Pathfinder/Util/Logger.cs" line="52" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1a10ef4c8c1b26ed2c157515b15b4f5e26" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1a10ef4c8c1b26ed2c157515b15b4f5e26" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Util.Logger.RemoveFlag</definition>
         <argsstring>(LogLevel levels)</argsstring>
@@ -237,9 +264,9 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="64" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="64" bodyend="67"/>
+        <location file="Pathfinder/Util/Logger.cs" line="58" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1aa54681470c278daf891d3c0ac93a83dd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1aa54681470c278daf891d3c0ac93a83dd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>static bool Pathfinder.Util.Logger.HasFlag</definition>
         <argsstring>(LogLevel level)</argsstring>
@@ -263,7 +290,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="74" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="74" bodyend="77"/>
+        <location file="Pathfinder/Util/Logger.cs" line="65" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1adaabf1d1d6c22138715eab328fc78070" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -299,9 +326,9 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="84" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="84" bodyend="104"/>
+        <location file="Pathfinder/Util/Logger.cs" line="72" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="72" bodyend="92"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1aacfc0d30763fd5bebd00239d6e125d49" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1aacfc0d30763fd5bebd00239d6e125d49" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Util.Logger.Verbose</definition>
         <argsstring>(params object[] input)</argsstring>
@@ -324,9 +351,9 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="110" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="110" bodyend="113"/>
+        <location file="Pathfinder/Util/Logger.cs" line="98" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1a2b4ae592077ee8362e351c791b3c946f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1a2b4ae592077ee8362e351c791b3c946f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Util.Logger.Debug</definition>
         <argsstring>(params object[] input)</argsstring>
@@ -349,9 +376,9 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="119" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="119" bodyend="122"/>
+        <location file="Pathfinder/Util/Logger.cs" line="104" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1af769ccfd040a22871c3520e92995fa1b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1af769ccfd040a22871c3520e92995fa1b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Util.Logger.Info</definition>
         <argsstring>(params object[] input)</argsstring>
@@ -374,9 +401,9 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="128" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="128" bodyend="131"/>
+        <location file="Pathfinder/Util/Logger.cs" line="110" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1af3b73844726d014ccd4367a8b3248701" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1af3b73844726d014ccd4367a8b3248701" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Util.Logger.Warn</definition>
         <argsstring>(params object[] input)</argsstring>
@@ -399,9 +426,9 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="137" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="137" bodyend="140"/>
+        <location file="Pathfinder/Util/Logger.cs" line="116" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1ad965a1bd7951117393a9d82ab9c4799a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1ad965a1bd7951117393a9d82ab9c4799a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Util.Logger.Error</definition>
         <argsstring>(params object[] input)</argsstring>
@@ -424,9 +451,9 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="146" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="146" bodyend="149"/>
+        <location file="Pathfinder/Util/Logger.cs" line="122" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1a2d30f28e11e27ef74836283c5a9f6747" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1a2d30f28e11e27ef74836283c5a9f6747" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Util.Logger.Fatal</definition>
         <argsstring>(params object[] input)</argsstring>
@@ -449,20 +476,22 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="155" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="155" bodyend="158"/>
+        <location file="Pathfinder/Util/Logger.cs" line="128" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Util/Logger.cs" line="8" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="7" bodyend="159"/>
+    <location file="Pathfinder/Util/Logger.cs" line="8" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="7" bodyend="129"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_util_1_1_logger_1a2db057b4d5404a7452a9b39565155af8" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Logger</scope><name>AddFlag</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_logger_1a2b4ae592077ee8362e351c791b3c946f" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Logger</scope><name>Debug</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_logger_1aa5f405b2efb2135d23589fd4aaa84793" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Logger</scope><name>DEFAULT_IGNORE_EVENTS</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_logger_1ad965a1bd7951117393a9d82ab9c4799a" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Logger</scope><name>Error</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_logger_1a2d30f28e11e27ef74836283c5a9f6747" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Logger</scope><name>Fatal</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_logger_1aa54681470c278daf891d3c0ac93a83dd" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Logger</scope><name>HasFlag</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_logger_1a7589512acab152dc1741a286e952ecdf" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Logger</scope><name>IgnoreEventTypes</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_logger_1ad550296f254a8fdf3c31dc6d7965e2e1" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Logger</scope><name>IncludeModId</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_logger_1af769ccfd040a22871c3520e92995fa1b" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Logger</scope><name>Info</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_logger_1adaabf1d1d6c22138715eab328fc78070" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Logger</scope><name>Log</name></member>

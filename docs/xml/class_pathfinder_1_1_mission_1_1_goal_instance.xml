@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_mission_1_1_goal_instance" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Mission::GoalInstance</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MisisonGoal</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a701ce80de4cdc1168ee77fc6a20cc88e" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, Tuple&lt; bool, object &gt; &gt;</type>
+        <definition>Dictionary&lt;string, Tuple&lt;bool, object&gt; &gt; Pathfinder.Mission.GoalInstance.keyToObject</definition>
+        <argsstring></argsstring>
+        <name>keyToObject</name>
+        <initializer>= new Dictionary&lt;string, Tuple&lt;bool, object&gt;&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="9" column="1" bodyfile="Pathfinder/Mission/GoalInstance.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a338e1e33ee716d9b23af0c3e8a58f4ce" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>Hacknet.ActiveMission</type>
+        <definition>Hacknet.ActiveMission Pathfinder.Mission.GoalInstance.Mission</definition>
+        <argsstring></argsstring>
+        <name>Mission</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="11" column="1" bodyfile="Pathfinder/Mission/GoalInstance.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a69fc48913c8c43c6d08e2718200b3b8f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="interface_pathfinder_1_1_mission_1_1_i_goal" kindref="compound">IGoal</ref></type>
+        <definition>IGoal Pathfinder.Mission.GoalInstance.Interface</definition>
+        <argsstring></argsstring>
+        <name>Interface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="12" column="1" bodyfile="Pathfinder/Mission/GoalInstance.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a1adcb9f8ed4600d92a9c66048daac96c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Mission.GoalInstance.InterfaceId</definition>
+        <argsstring></argsstring>
+        <name>InterfaceId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="13" column="1" bodyfile="Pathfinder/Mission/GoalInstance.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a83af5165517521e8567140394b1e0a92" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>object</type>
+        <definition>object Pathfinder.Mission.GoalInstance.this[string key]</definition>
+        <argsstring></argsstring>
+        <name>this[string key]</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="26" column="1" bodyfile="Pathfinder/Mission/GoalInstance.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a24c1360f8a56965a2425ae1734d42319" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Mission.GoalInstance.SaveString</definition>
+        <argsstring></argsstring>
+        <name>SaveString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="80" column="1" bodyfile="Pathfinder/Mission/GoalInstance.cs" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a405bb9dd4f2c50e2615b35e6149aa8e7" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Mission.GoalInstance.GoalInstance</definition>
+        <argsstring>(IGoal inter)</argsstring>
+        <name>GoalInstance</name>
+        <param>
+          <type><ref refid="interface_pathfinder_1_1_mission_1_1_i_goal" kindref="compound">IGoal</ref></type>
+          <declname>inter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="15" column="1" bodyfile="Pathfinder/Mission/GoalInstance.cs" bodystart="15" bodyend="15"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_goal_instance_1af0971add60c54ad6d4ef6ca816419b36" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_mission_1_1_goal_instance" kindref="compound">GoalInstance</ref></type>
+        <definition>static GoalInstance Pathfinder.Mission.GoalInstance.CreateInstance</definition>
+        <argsstring>(string id)</argsstring>
+        <name>CreateInstance</name>
+        <param>
+          <type>string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="17" column="1" bodyfile="Pathfinder/Mission/GoalInstance.cs" bodystart="17" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_goal_instance_1acc408085d88ef92b27b3d7770c67770a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>object</type>
+        <definition>object Pathfinder.Mission.GoalInstance.GetInstanceData</definition>
+        <argsstring>(string key)</argsstring>
+        <name>GetInstanceData</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="43" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a7323ff42e6a7d6c16484ec46a80371bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>T</type>
+        <definition>T Pathfinder.Mission.GoalInstance.GetInstanceData&lt; T &gt;</definition>
+        <argsstring>(string key)</argsstring>
+        <name>GetInstanceData&lt; T &gt;</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="44" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a7b66a044c8de491c435de03b0e1b0c04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Pathfinder.Mission.GoalInstance.IsInstanceSaveable</definition>
+        <argsstring>(string key)</argsstring>
+        <name>IsInstanceSaveable</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="46" column="1" bodyfile="Pathfinder/Mission/GoalInstance.cs" bodystart="46" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a88760c3c71debc40ec5e5a94ddbe957e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Pathfinder.Mission.GoalInstance.SetInstanceData</definition>
+        <argsstring>(string key, object val, bool shouldSave=false)</argsstring>
+        <name>SetInstanceData</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>shouldSave</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="55" column="1" bodyfile="Pathfinder/Mission/GoalInstance.cs" bodystart="55" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a4e064852e75eac713acf4faaa9885460" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Mission.GoalInstance.SetInstanceDataSaveable</definition>
+        <argsstring>(string key, bool shouldSave)</argsstring>
+        <name>SetInstanceDataSaveable</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>shouldSave</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="63" column="1" bodyfile="Pathfinder/Mission/GoalInstance.cs" bodystart="63" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_goal_instance_1af5a85977de3c75f444f3e7bd33897bdc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool Pathfinder.Mission.GoalInstance.isComplete</definition>
+        <argsstring>(List&lt; string &gt; additionalDetails=null)</argsstring>
+        <name>isComplete</name>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>additionalDetails</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="74" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a08ba9d71920845f4cd8e5fa0d153635c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void Pathfinder.Mission.GoalInstance.reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="76" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a055e9885857ba9a4d66a2923be2cd8e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string Pathfinder.Mission.GoalInstance.TestCompletable</definition>
+        <argsstring>()</argsstring>
+        <name>TestCompletable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="77" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_goal_instance_1a4ea89f3bc9aa9b41c6cdf3d4f218b5a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.Mission.GoalInstance.OnAdd</definition>
+        <argsstring>(Hacknet.ActiveMission mission)</argsstring>
+        <name>OnAdd</name>
+        <param>
+          <type>Hacknet.ActiveMission</type>
+          <declname>mission</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/GoalInstance.cs" line="78" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="214">
+        <label>Hacknet::Mission::MisisonGoal</label>
+      </node>
+      <node id="213">
+        <label>Pathfinder.Mission.GoalInstance</label>
+        <link refid="class_pathfinder_1_1_mission_1_1_goal_instance"/>
+        <childnode refid="214" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="216">
+        <label>Hacknet::Mission::MisisonGoal</label>
+      </node>
+      <node id="215">
+        <label>Pathfinder.Mission.GoalInstance</label>
+        <link refid="class_pathfinder_1_1_mission_1_1_goal_instance"/>
+        <childnode refid="216" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Mission/GoalInstance.cs" line="8" column="1" bodyfile="Pathfinder/Mission/GoalInstance.cs" bodystart="7" bodyend="90"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1af0971add60c54ad6d4ef6ca816419b36" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>CreateInstance</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1acc408085d88ef92b27b3d7770c67770a" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>GetInstanceData</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a7323ff42e6a7d6c16484ec46a80371bb" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>GetInstanceData&lt; T &gt;</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a405bb9dd4f2c50e2615b35e6149aa8e7" prot="package" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>GoalInstance</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a69fc48913c8c43c6d08e2718200b3b8f" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>Interface</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a1adcb9f8ed4600d92a9c66048daac96c" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>InterfaceId</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1af5a85977de3c75f444f3e7bd33897bdc" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>isComplete</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a7b66a044c8de491c435de03b0e1b0c04" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>IsInstanceSaveable</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a701ce80de4cdc1168ee77fc6a20cc88e" prot="private" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>keyToObject</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a338e1e33ee716d9b23af0c3e8a58f4ce" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>Mission</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a4ea89f3bc9aa9b41c6cdf3d4f218b5a5" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>OnAdd</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a08ba9d71920845f4cd8e5fa0d153635c" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>reset</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a24c1360f8a56965a2425ae1734d42319" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>SaveString</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a88760c3c71debc40ec5e5a94ddbe957e" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>SetInstanceData</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a4e064852e75eac713acf4faaa9885460" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>SetInstanceDataSaveable</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a055e9885857ba9a4d66a2923be2cd8e6" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>TestCompletable</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_goal_instance_1a83af5165517521e8567140394b1e0a92" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::GoalInstance</scope><name>this[string key]</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

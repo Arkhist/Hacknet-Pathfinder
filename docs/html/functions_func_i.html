@@ -86,9 +86,6 @@ $(document).ready(function(){initNavTree('functions_func_i.html','');});
 <li>Info()
 : <a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#af769ccfd040a22871c3520e92995fa1b">Pathfinder.Util.Logger</a>
 </li>
-<li>init()
-: <a class="el" href="class_pathfinder_1_1_pathfinder.html#a75f4ee96351cc236574dfc70257dacf6">Pathfinder.Pathfinder</a>
-</li>
 <li>InitFiles()
 : <a class="el" href="interface_pathfinder_1_1_daemon_1_1_i_interface.html#a36390848d57e87a9ec1ce2312fb16477">Pathfinder.Daemon.IInterface</a>
 </li>
@@ -100,36 +97,49 @@ $(document).ready(function(){initNavTree('functions_func_i.html','');});
 </li>
 <li>Instance()
 : <a class="el" href="class_pathfinder_1_1_executable_1_1_instance.html#a0ae080d33031df52737f1145b4b86ad9">Pathfinder.Executable.Instance</a>
+, <a class="el" href="class_pathfinder_1_1_port_1_1_instance.html#a19d706c395ba957b302f295773e69537">Pathfinder.Port.Instance</a>
 </li>
 <li>InstanceOverrideDisplay()
 : <a class="el" href="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display.html#a79ba3a5c640f6dddbff1e60fe7cebe41">Pathfinder.Executable.Instance.InstanceOverrideDisplay</a>
 </li>
 <li>IsComplete()
-: <a class="el" href="interface_pathfinder_1_1_mission_1_1_i_interface.html#a6cacb91eac2e5f80ab6a3ed5475c38e1">Pathfinder.Mission.IInterface</a>
-, <a class="el" href="interface_pathfinder_1_1_mission_1_1_i_mission_goal.html#a6cbb2d5d1582c2a4439a1fccf147173b">Pathfinder.Mission.IMissionGoal</a>
+: <a class="el" href="class_pathfinder_1_1_mission_1_1_goal_impl.html#a66b31b6749b69768a3072ca373adbe08">Pathfinder.Mission.GoalImpl</a>
+</li>
+<li>isComplete()
+: <a class="el" href="class_pathfinder_1_1_mission_1_1_goal_instance.html#af5a85977de3c75f444f3e7bd33897bdc">Pathfinder.Mission.GoalInstance</a>
+</li>
+<li>IsComplete()
+: <a class="el" href="interface_pathfinder_1_1_mission_1_1_i_goal.html#a4f34b018b95e79f9c80ea446a6fa8850">Pathfinder.Mission.IGoal</a>
+, <a class="el" href="interface_pathfinder_1_1_mission_1_1_i_interface.html#a6cacb91eac2e5f80ab6a3ed5475c38e1">Pathfinder.Mission.IInterface</a>
 </li>
 <li>isComplete()
 : <a class="el" href="class_pathfinder_1_1_mission_1_1_instance.html#aad8a24d4e4337f3f8765712f719b6b4f">Pathfinder.Mission.Instance</a>
 </li>
 <li>IsComplete()
 : <a class="el" href="class_pathfinder_1_1_mission_1_1_interface.html#a077f96503ea54b541e5a9b7d6834ac2b">Pathfinder.Mission.Interface</a>
-, <a class="el" href="class_pathfinder_1_1_mission_1_1_mission_goal_impl.html#a0b3819ded86e9934669457b4090f3e4b">Pathfinder.Mission.MissionGoalImpl</a>
-</li>
-<li>isComplete()
-: <a class="el" href="class_pathfinder_1_1_mission_1_1_mission_goal_instance.html#a560b5ddc20b9858539e9df9daafceab4">Pathfinder.Mission.MissionGoalInstance</a>
 </li>
 <li>IsFileDataForModExe()
 : <a class="el" href="class_pathfinder_1_1_executable_1_1_handler.html#a9b8e34a0bc16ae4000b78cd534886783">Pathfinder.Executable.Handler</a>
 </li>
 <li>IsInstanceSaveable()
 : <a class="el" href="class_pathfinder_1_1_daemon_1_1_instance.html#a0ebc30b92578de61d055950aa37586c3">Pathfinder.Daemon.Instance</a>
+, <a class="el" href="class_pathfinder_1_1_mission_1_1_goal_instance.html#a7b66a044c8de491c435de03b0e1b0c04">Pathfinder.Mission.GoalInstance</a>
 , <a class="el" href="class_pathfinder_1_1_mission_1_1_instance.html#a91df79b1f57b59d77acff29899704f8a">Pathfinder.Mission.Instance</a>
+</li>
+<li>IsModIdentifierValid()
+: <a class="el" href="class_pathfinder_1_1_pathfinder.html#aa6745176855e49c9e563859bfd5fae9f">Pathfinder.Pathfinder</a>
 </li>
 <li>IsModLoaded()
 : <a class="el" href="class_pathfinder_1_1_pathfinder.html#adc639f84cf2cd72f7cdda86ce024a96f">Pathfinder.Pathfinder</a>
 </li>
+<li>IsModPortOpen()
+: <a class="el" href="class_pathfinder_1_1_computer_1_1_extensions.html#a4c2128ebd60671a831e00162e9b4fc17">Pathfinder.Computer.Extensions</a>
+</li>
 <li>IsOverrideActive()
 : <a class="el" href="interface_pathfinder_1_1_executable_1_1_i_main_display_override.html#ad65cabfd1cbadc1d542a2a5f14c2af2d">Pathfinder.Executable.IMainDisplayOverride</a>
+</li>
+<li>IsVanillaPortOpen()
+: <a class="el" href="class_pathfinder_1_1_computer_1_1_extensions.html#ad4cbb71164884e71e26a7f01a0ccf8de">Pathfinder.Computer.Extensions</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -137,7 +147,7 @@ $(document).ready(function(){initNavTree('functions_func_i.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Apr 23 2017 21:36:52 for Pathfinder Hacknet by
+    <li class="footer">Generated on Sat May 13 2017 17:10:30 for Pathfinder Hacknet by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

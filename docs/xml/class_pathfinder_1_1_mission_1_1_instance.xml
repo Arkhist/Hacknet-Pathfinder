@@ -18,12 +18,12 @@
         </inbodydescription>
         <location file="Pathfinder/Mission/Instance.cs" line="13" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="13" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_pathfinder_1_1_mission_1_1_instance_1a18e837dc9d65afe9b8eb17fb19c60137" prot="private" static="no" mutable="no">
-        <type>List&lt; <ref refid="class_pathfinder_1_1_mission_1_1_mission_goal_instance" kindref="compound">MissionGoalInstance</ref> &gt;</type>
-        <definition>List&lt;MissionGoalInstance&gt; Pathfinder.Mission.Instance.moddedGoals</definition>
+      <memberdef kind="variable" id="class_pathfinder_1_1_mission_1_1_instance_1ab884af32ae74027bb739f50fadf4dd7f" prot="private" static="no" mutable="no">
+        <type>List&lt; MisisonGoal &gt;</type>
+        <definition>List&lt;MisisonGoal&gt; Pathfinder.Mission.Instance.dynamicGoals</definition>
         <argsstring></argsstring>
-        <name>moddedGoals</name>
-        <initializer>= new List&lt;<ref refid="class_pathfinder_1_1_mission_1_1_mission_goal_instance" kindref="compound">MissionGoalInstance</ref>&gt;()</initializer>
+        <name>dynamicGoals</name>
+        <initializer>= new List&lt;MisisonGoal&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="16" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="17" bodyend="-1"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="16" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="16" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_instance_1acc3734520fd48db00bb0efd09d5d91ef" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
         <type>string</type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="21" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="22" bodyend="-1"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="17" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="17" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_instance_1a9c388722e28543bba19b8f6ca333bd28" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>Hacknet.Computer</type>
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="26" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="27" bodyend="-1"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="18" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="18" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_instance_1a4ed96fe23b5d41815fc9caa722bb425b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>Hacknet.Computer</type>
@@ -84,7 +84,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="31" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="32" bodyend="-1"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="19" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="19" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_instance_1a859cff169ded02f8ca0965b9ecd0a52d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>object</type>
@@ -97,7 +97,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="70" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="71" bodyend="-1"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="54" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="55" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="package-func">
@@ -126,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="36" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="36" bodyend="49"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="21" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="21" bodyend="34"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -159,7 +159,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="51" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="51" bodyend="68"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="36" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="36" bodyend="52"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1a622b9b7f0dea776cab101a39399566ce" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_mission_1_1_instance" kindref="compound">Instance</ref></type>
@@ -176,11 +176,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="236" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="236" bodyend="339"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="211" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="211" bodyend="309"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1acd3adaf8a284546fa5cbcf432d50a1bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1acd3adaf8a284546fa5cbcf432d50a1bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>object</type>
         <definition>object Pathfinder.Mission.Instance.GetInstanceData</definition>
         <argsstring>(string key)</argsstring>
@@ -195,9 +195,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="87" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="87" bodyend="90"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="71" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1a5e66490378fdaa0dcfbe622f936c81a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1a5e66490378fdaa0dcfbe622f936c81a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>T</type>
         <definition>T Pathfinder.Mission.Instance.GetInstanceData&lt; T &gt;</definition>
         <argsstring>(string key)</argsstring>
@@ -212,7 +212,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="92" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="92" bodyend="95"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="72" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1a91df79b1f57b59d77acff29899704f8a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -229,7 +229,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="97" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="97" bodyend="104"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="74" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="74" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1a56d538255aa40d363aab772c33827e71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -255,7 +255,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="106" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="106" bodyend="112"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="83" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="83" bodyend="89"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1adf33dee824e0eb2f35618ccf4708b698" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -276,15 +276,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="114" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="114" bodyend="123"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="91" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="91" bodyend="100"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1a318b80aa663153babe851388e5e87a18" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1ad8c7ad14ba26ef19c1e71317a585340e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_mission_1_1_instance" kindref="compound">Instance</ref></type>
         <definition>Instance Pathfinder.Mission.Instance.AddGoal</definition>
-        <argsstring>(MissionGoalInstance goal)</argsstring>
+        <argsstring>(MisisonGoal goal)</argsstring>
         <name>AddGoal</name>
         <param>
-          <type><ref refid="class_pathfinder_1_1_mission_1_1_mission_goal_instance" kindref="compound">MissionGoalInstance</ref></type>
+          <type>MisisonGoal</type>
           <declname>goal</declname>
         </param>
         <briefdescription>
@@ -293,7 +293,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="125" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="125" bodyend="131"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="102" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="102" bodyend="110"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1a98eeda94de223360edd22a5f7a91277b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_mission_1_1_instance" kindref="compound">Instance</ref></type>
@@ -310,7 +310,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="133" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="133" bodyend="138"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="112" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="112" bodyend="117"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1a738a926afaf5b0cf6e3f1d50fb0db6f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>override void</type>
@@ -323,7 +323,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="140" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="140" bodyend="146"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="119" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="119" bodyend="125"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1ad9353660feefc6e95c7aa381d5c33900" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>override void</type>
@@ -336,7 +336,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="148" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="148" bodyend="180"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="127" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="127" bodyend="159"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1aad8a24d4e4337f3f8765712f719b6b4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>override bool</type>
@@ -354,7 +354,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="182" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="182" bodyend="192"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="161" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="161" bodyend="171"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1a82507a30749308df5ac6e94a710b9cfa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>override void</type>
@@ -371,7 +371,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="194" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="194" bodyend="198"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="173" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="173" bodyend="177"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1a948c4b7e751752d1584b35db79f7cb8f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>override string</type>
@@ -384,7 +384,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="200" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="200" bodyend="228"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="179" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="179" bodyend="203"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1ae6ac4481f9587f943cbdecf73edc45df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>override void</type>
@@ -401,7 +401,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/Instance.cs" line="230" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="230" bodyend="234"/>
+        <location file="Pathfinder/Mission/Instance.cs" line="205" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="205" bodyend="209"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -409,34 +409,35 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="163">
+      <node id="253">
         <label>ActiveMission</label>
       </node>
-      <node id="162">
+      <node id="252">
         <label>Pathfinder.Mission.Instance</label>
         <link refid="class_pathfinder_1_1_mission_1_1_instance"/>
-        <childnode refid="163" relation="public-inheritance">
+        <childnode refid="253" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="165">
+      <node id="255">
         <label>ActiveMission</label>
       </node>
-      <node id="164">
+      <node id="254">
         <label>Pathfinder.Mission.Instance</label>
         <link refid="class_pathfinder_1_1_mission_1_1_instance"/>
-        <childnode refid="165" relation="public-inheritance">
+        <childnode refid="255" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Mission/Instance.cs" line="12" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="11" bodyend="340"/>
+    <location file="Pathfinder/Mission/Instance.cs" line="12" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="11" bodyend="310"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a738a926afaf5b0cf6e3f1d50fb0db6f6" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>ActivateSuppressedStartFunctionIfPresent</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_instance_1a318b80aa663153babe851388e5e87a18" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>AddGoal</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_instance_1ad8c7ad14ba26ef19c1e71317a585340e" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>AddGoal</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a98eeda94de223360edd22a5f7a91277b" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>AddGoal</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a4ed96fe23b5d41815fc9caa722bb425b" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>AgentComputer</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1ae1e219f75322eea9d3bbb05c036d2ab0" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>CreateInstance</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_instance_1ab884af32ae74027bb739f50fadf4dd7f" prot="private" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>dynamicGoals</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1ad9353660feefc6e95c7aa381d5c33900" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>finish</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1acd3adaf8a284546fa5cbcf432d50a1bb" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>GetInstanceData</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a5e66490378fdaa0dcfbe622f936c81a6" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>GetInstanceData&lt; T &gt;</name></member>
@@ -449,7 +450,6 @@
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a15059471eb4cd1c35265cfc3c9f21b54" prot="private" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>keyToObject</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a622b9b7f0dea776cab101a39399566ce" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>Load</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a9c388722e28543bba19b8f6ca333bd28" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>MissionComputer</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_instance_1a18e837dc9d65afe9b8eb17fb19c60137" prot="private" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>moddedGoals</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1ae6ac4481f9587f943cbdecf73edc45df" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>sendEmail</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a56d538255aa40d363aab772c33827e71" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>SetInstanceData</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1adf33dee824e0eb2f35618ccf4708b698" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>SetInstanceDataSaveable</name></member>

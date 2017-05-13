@@ -4,6 +4,11 @@
     <compoundname>Pathfinder::Event</compoundname>
     <innerclass refid="class_pathfinder_1_1_event_1_1_command_sent_event" prot="public">Pathfinder::Event::CommandSentEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_computer_event" prot="public">Pathfinder::Event::ComputerEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_display_module_draw_event" prot="public">Pathfinder::Event::DisplayModuleDrawEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_display_module_event" prot="public">Pathfinder::Event::DisplayModuleEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_display_module_update_event" prot="public">Pathfinder::Event::DisplayModuleUpdateEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_event" prot="public">Pathfinder::Event::DrawExtensionMenuEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_list_event" prot="public">Pathfinder::Event::DrawExtensionMenuListEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event" prot="public">Pathfinder::Event::DrawMainMenuButtonsEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_draw_main_menu_event" prot="public">Pathfinder::Event::DrawMainMenuEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event" prot="public">Pathfinder::Event::DrawMainMenuTitlesEvent</innerclass>
@@ -11,12 +16,14 @@
     <innerclass refid="class_pathfinder_1_1_event_1_1_executable_event" prot="public">Pathfinder::Event::ExecutableEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_executable_execute_event" prot="public">Pathfinder::Event::ExecutableExecuteEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_executable_port_execute_event" prot="public">Pathfinder::Event::ExecutablePortExecuteEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_extension_menu_event" prot="public">Pathfinder::Event::ExtensionMenuEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_game_event" prot="public">Pathfinder::Event::GameEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_game_load_content_event" prot="public">Pathfinder::Event::GameLoadContentEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_game_unload_event" prot="public">Pathfinder::Event::GameUnloadEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_game_update_event" prot="public">Pathfinder::Event::GameUpdateEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event" prot="public">Pathfinder::Event::LoadComputerXmlReadEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_main_menu_event" prot="public">Pathfinder::Event::MainMenuEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_module_event" prot="public">Pathfinder::Event::ModuleEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event" prot="public">Pathfinder::Event::NetworkMapLoadContentEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_event" prot="public">Pathfinder::Event::OSEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event" prot="public">Pathfinder::Event::OSLoadContentEvent</innerclass>

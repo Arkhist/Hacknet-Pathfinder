@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_internal_1_1_handler_listener" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Internal::HandlerListener</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_handler_listener_1ad4649376655a04765d6cd78e89f53e30" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.HandlerListener.CommandListener</definition>
+        <argsstring>(CommandSentEvent e)</argsstring>
+        <name>CommandListener</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_command_sent_event" kindref="compound">CommandSentEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/HandlerListener.cs" line="12" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="12" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_handler_listener_1aa2904ab36ea7d4ff518c6d5d2b6d6b86" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.HandlerListener.DaemonLoadListener</definition>
+        <argsstring>(LoadComputerXmlReadEvent e)</argsstring>
+        <name>DaemonLoadListener</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event" kindref="compound">LoadComputerXmlReadEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/HandlerListener.cs" line="57" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="57" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_handler_listener_1ae177d097255e60bff9c12684d354e3f1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.HandlerListener.ExecutableListener</definition>
+        <argsstring>(ExecutableExecuteEvent e)</argsstring>
+        <name>ExecutableListener</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_executable_execute_event" kindref="compound">ExecutableExecuteEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/HandlerListener.cs" line="72" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="72" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_handler_listener_1a3569e9263109d9ff5bf42d62e30a4e79" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.HandlerListener.ExecutableListInsertListener</definition>
+        <argsstring>(CommandSentEvent e)</argsstring>
+        <name>ExecutableListInsertListener</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_command_sent_event" kindref="compound">CommandSentEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/HandlerListener.cs" line="87" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="87" bodyend="117"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Internal/HandlerListener.cs" line="11" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="10" bodyend="118"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_internal_1_1_handler_listener_1ad4649376655a04765d6cd78e89f53e30" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::HandlerListener</scope><name>CommandListener</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_handler_listener_1aa2904ab36ea7d4ff518c6d5d2b6d6b86" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::HandlerListener</scope><name>DaemonLoadListener</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_handler_listener_1ae177d097255e60bff9c12684d354e3f1" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::HandlerListener</scope><name>ExecutableListener</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_handler_listener_1a3569e9263109d9ff5bf42d62e30a4e79" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::HandlerListener</scope><name>ExecutableListInsertListener</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

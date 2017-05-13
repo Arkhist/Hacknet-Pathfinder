@@ -2,7 +2,12 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="dir_bd697b4361d2d489464e497758307d1e" kind="dir">
     <compoundname>Pathfinder/GUI</compoundname>
-    <innerfile refid="_pathfinder_main_menu_8cs">PathfinderMainMenu.cs</innerfile>
+    <innerfile refid="_base_interactive_rectangle_8cs">BaseInteractiveRectangle.cs</innerfile>
+    <innerfile refid="_button_8cs">Button.cs</innerfile>
+    <innerfile refid="_command_display_state_8cs">CommandDisplayState.cs</innerfile>
+    <innerfile refid="_dynamic_rectangle_8cs">DynamicRectangle.cs</innerfile>
+    <innerfile refid="_scrollbar_8cs">Scrollbar.cs</innerfile>
+    <innerfile refid="_sprite_batch_extensions_8cs">SpriteBatchExtensions.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

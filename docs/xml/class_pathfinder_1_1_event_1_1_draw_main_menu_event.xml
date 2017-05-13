@@ -46,43 +46,43 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="36">
+      <node id="103">
         <label>Pathfinder.Event.DrawMainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_event"/>
-        <childnode refid="37" relation="public-inheritance">
+        <childnode refid="104" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="38">
+      <node id="105">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="37">
+      <node id="104">
         <label>MainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="38" relation="public-inheritance">
+        <childnode refid="105" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="39">
+      <node id="106">
         <label>Pathfinder.Event.DrawMainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_event"/>
-        <childnode refid="40" relation="public-inheritance">
+        <childnode refid="107" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="41">
+      <node id="108">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="42">
+      <node id="109">
         <label>Hacknet</label>
       </node>
-      <node id="40">
+      <node id="107">
         <label>MainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="41" relation="public-inheritance">
+        <childnode refid="108" relation="public-inheritance">
         </childnode>
-        <childnode refid="42" relation="usage">
+        <childnode refid="109" relation="usage">
           <edgelabel>MainMenuInstance</edgelabel>
         </childnode>
       </node>

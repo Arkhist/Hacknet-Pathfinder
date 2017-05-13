@@ -8,11 +8,20 @@ namespace Pathfinder.Command
     {
         internal static Dictionary<string, string> help = new Dictionary<string, string>();
 
+        /// <summary>
+        /// Gets the help page count.
+        /// </summary>
+        /// <value>The help page count.</value>
         public static int PageCount => Helpfile.getNumberOfPages() + (help.Count / Helpfile.ITEMS_PER_PAGE + 1);
 
         private static string GenerateString(string cmd, string description) => cmd + "\n    " + description;
         public static string GenerateString(KeyValuePair<string, string> pair) => GenerateString(pair.Key, pair.Value);
 
+        /// <summary>
+        /// Gets the help string for a command.
+        /// </summary>
+        /// <returns>The resulting help string or <c>null</c> if it doesn't exist.</returns>
+        /// <param name="cmd">The Command key.</param>
         public static string GetStringFor(string cmd)
         {
             if (!help.ContainsKey(cmd))
@@ -20,6 +29,11 @@ namespace Pathfinder.Command
             return GenerateString(cmd, help[cmd]);
         }
 
+        /// <summary>
+        /// Gets the help string for a page.
+        /// </summary>
+        /// <returns>The string for a page.</returns>
+        /// <param name="page">The page to get the string for.</param>
         public static string GetPageString(int page = 0)
         {
             if (Helpfile.LoadedLanguage != Settings.ActiveLocale)

@@ -36,24 +36,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="17">
+      <node id="45">
         <label>WebClient</label>
       </node>
-      <node id="16">
+      <node id="44">
         <label>Pathfinder.Util.CustomWebClient</label>
         <link refid="class_pathfinder_1_1_util_1_1_custom_web_client"/>
-        <childnode refid="17" relation="public-inheritance">
+        <childnode refid="45" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="19">
+      <node id="47">
         <label>WebClient</label>
       </node>
-      <node id="18">
+      <node id="46">
         <label>Pathfinder.Util.CustomWebClient</label>
         <link refid="class_pathfinder_1_1_util_1_1_custom_web_client"/>
-        <childnode refid="19" relation="public-inheritance">
+        <childnode refid="47" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
