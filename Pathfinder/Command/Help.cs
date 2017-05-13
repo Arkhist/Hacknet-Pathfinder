@@ -32,7 +32,7 @@ namespace Pathfinder.Command
             sb.Append(Helpfile.prefix.Replace("[PAGENUM]", page.ToString()).Replace("[TOTALPAGES]", PageCount.ToString()));
             int count = num;
             var enumer = help.GetEnumerator();
-            while (count < Helpfile.help.Count + help.count && count < num + Helpfile.ITEMS_PER_PAGE)
+            while (count < Helpfile.help.Count + help.Count && count < num + Helpfile.ITEMS_PER_PAGE)
             {
                 if (count < Helpfile.help.Count)
                     sb.Append((count == 0 ? " " : "") + Helpfile.help[count] + "\n  \n ");
