@@ -4,10 +4,8 @@ namespace Pathfinder.GameFilesystem
 {
     public static class Extensions
     {
-        public static bool ContainsFolder(this Folder folder, string name)
-        {
-            return folder.searchForFolder(name) != null;
-        }
+        public static bool ContainsFolder(this Folder folder, string name) =>
+            folder.searchForFolder(name) != null;
 
         public static Folder MakeFolder(this Folder folder, string path)
         {
@@ -22,15 +20,10 @@ namespace Pathfinder.GameFilesystem
             return fholder;
         }
 
-        public static Folder MakeFolder(this FileSystem fs, string path)
-        {
-            return fs.root.MakeFolder(path);
-        }
+        public static Folder MakeFolder(this FileSystem fs, string path) =>
+            fs.root.MakeFolder(path);
 
-        public static Filesystem GetFilesystem(this Hacknet.Computer computer)
-        {
-            return computer;
-        }
+        public static Filesystem GetFilesystem(this Hacknet.Computer computer) => computer;
 
         public static Directory GetDirectoryAtDepth(this Hacknet.OS os, int depth)
         {
@@ -47,9 +40,7 @@ namespace Pathfinder.GameFilesystem
             return dir;
         }
 
-        public static Directory GetCurrentDirectory(this Hacknet.OS os)
-        {
-            return GetDirectoryAtDepth(os, os.navigationPath.Count);
-        }
+        public static Directory GetCurrentDirectory(this Hacknet.OS os) =>
+            GetDirectoryAtDepth(os, os.navigationPath.Count);
     }
 }

@@ -3,7 +3,7 @@
   <compounddef id="class_pathfinder_1_1_game_filesystem_1_1_extensions" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::GameFilesystem::Extensions</compoundname>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a35979df9043fddabfbefbfb2a5f97d86" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a35979df9043fddabfbefbfb2a5f97d86" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>static bool Pathfinder.GameFilesystem.Extensions.ContainsFolder</definition>
         <argsstring>(this Folder folder, string name)</argsstring>
@@ -22,7 +22,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="7" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="7" bodyend="10"/>
+        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="7" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a057d54005c7c83b3411cf03c08b10bb4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Folder</type>
@@ -43,9 +43,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="12" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="12" bodyend="23"/>
+        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="10" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="10" bodyend="21"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a6f9fbff6a19ac473c42a42e8b3aeb204" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a6f9fbff6a19ac473c42a42e8b3aeb204" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Folder</type>
         <definition>static Folder Pathfinder.GameFilesystem.Extensions.MakeFolder</definition>
         <argsstring>(this FileSystem fs, string path)</argsstring>
@@ -64,9 +64,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="25" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="25" bodyend="28"/>
+        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="23" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a59be22288105daa5b60545866327eae3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a59be22288105daa5b60545866327eae3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem" kindref="compound">Filesystem</ref></type>
         <definition>static Filesystem Pathfinder.GameFilesystem.Extensions.GetFilesystem</definition>
         <argsstring>(this Hacknet.Computer computer)</argsstring>
@@ -81,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="30" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="30" bodyend="33"/>
+        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="26" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a3e1d4091a7bdc8ade57467aee5bfbc2c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
@@ -102,9 +102,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="35" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="35" bodyend="48"/>
+        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="28" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="28" bodyend="41"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a9005b534185336ca73c69effc8a0fe4c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a9005b534185336ca73c69effc8a0fe4c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
         <definition>static Directory Pathfinder.GameFilesystem.Extensions.GetCurrentDirectory</definition>
         <argsstring>(this Hacknet.OS os)</argsstring>
@@ -119,14 +119,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="50" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="50" bodyend="53"/>
+        <location file="Pathfinder/GameFilesystem/Extensions.cs" line="43" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/GameFilesystem/Extensions.cs" line="6" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="5" bodyend="54"/>
+    <location file="Pathfinder/GameFilesystem/Extensions.cs" line="6" column="1" bodyfile="Pathfinder/GameFilesystem/Extensions.cs" bodystart="5" bodyend="45"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a35979df9043fddabfbefbfb2a5f97d86" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Extensions</scope><name>ContainsFolder</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a9005b534185336ca73c69effc8a0fe4c" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Extensions</scope><name>GetCurrentDirectory</name></member>

@@ -101,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="252" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="252" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="223" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="223" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1ae4e6c7c56f155c65887ac89ea33c6966" prot="public" static="no" mutable="no">
         <type>List&lt; <ref refid="class_pathfinder_1_1_game_filesystem_1_1_file" kindref="compound">File</ref> &gt;</type>
@@ -115,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="253" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="253" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="224" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="224" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1aba9a0ff76d741285d4820ef957e0affe" prot="public" static="no" mutable="no">
         <type>List&lt; <ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref> &gt;</type>
@@ -129,7 +129,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="254" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="254" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="225" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="225" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1ac5177b6ca780d3020ac76421ab8f2651" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -143,7 +143,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="255" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="255" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="226" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="226" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1aa058dabe3080d142dc82fef3681ca1fb" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -157,7 +157,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="256" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="256" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="227" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="227" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -250,7 +250,7 @@
         </inbodydescription>
         <location file="Pathfinder/GameFilesystem/Directory.cs" line="105" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="105" bodyend="119"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1af4b4500fc5fed3a06caeb15722a1e14e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1af4b4500fc5fed3a06caeb15722a1e14e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file" kindref="compound">File</ref></type>
         <definition>File Pathfinder.GameFilesystem.Directory.GetFile</definition>
         <argsstring>(int index)</argsstring>
@@ -265,9 +265,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="121" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="121" bodyend="124"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="121" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1aa553f4b04a0f81bcf3b6090fcc896524" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1aa553f4b04a0f81bcf3b6090fcc896524" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
         <definition>Directory Pathfinder.GameFilesystem.Directory.GetDirectory</definition>
         <argsstring>(int index)</argsstring>
@@ -282,7 +282,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="126" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="126" bodyend="129"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="124" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a37e5becd1b34d0b4f371845103513179" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file" kindref="compound">File</ref></type>
@@ -304,9 +304,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="131" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="131" bodyend="139"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="127" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="127" bodyend="135"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a625f8401423b069a9649ee46d4b34ab5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a625f8401423b069a9649ee46d4b34ab5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file" kindref="compound">File</ref></type>
         <definition>File Pathfinder.GameFilesystem.Directory.CreateFile</definition>
         <argsstring>(string name, Executable.IInterface exeInterface)</argsstring>
@@ -325,9 +325,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="141" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="141" bodyend="144"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="137" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a88640a8b7f846c78400033f82f0d9316" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a88640a8b7f846c78400033f82f0d9316" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file" kindref="compound">File</ref></type>
         <definition>File Pathfinder.GameFilesystem.Directory.CreateExecutableFile</definition>
         <argsstring>(string name, string exeId)</argsstring>
@@ -346,9 +346,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="146" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="146" bodyend="151"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="140" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1acbc965f3f35d16bdadc17d8336b6f648" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1acbc965f3f35d16bdadc17d8336b6f648" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file" kindref="compound">File</ref></type>
         <definition>File Pathfinder.GameFilesystem.Directory.CreateExecutableFile</definition>
         <argsstring>(string name, int vanillaIndex)</argsstring>
@@ -367,7 +367,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="153" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="153" bodyend="156"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="143" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a772d9f319a094cf61f5113c1058e8fec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
@@ -384,9 +384,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="158" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="158" bodyend="164"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="146" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="146" bodyend="152"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a8fdcbcf6d19f409edf126a6716b29633" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a8fdcbcf6d19f409edf126a6716b29633" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool Pathfinder.GameFilesystem.Directory.RemoveFile</definition>
         <argsstring>(string name)</argsstring>
@@ -401,7 +401,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="166" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="166" bodyend="169"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="154" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a2edb9f010d03c77886e8c0057d0e05e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -418,9 +418,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="171" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="171" bodyend="177"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="156" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="156" bodyend="162"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a17b04e366382b96695046c4be0e1229d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a17b04e366382b96695046c4be0e1229d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool Pathfinder.GameFilesystem.Directory.RemoveDirectory</definition>
         <argsstring>(string name)</argsstring>
@@ -435,7 +435,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="179" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="179" bodyend="182"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="164" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a5a30aeb285391a1159957b3047acb1e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -452,7 +452,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="184" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="184" bodyend="190"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="166" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="166" bodyend="172"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a0c4c77a11c3446c49a683c4761f660f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file" kindref="compound">File</ref></type>
@@ -473,7 +473,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="192" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="192" bodyend="203"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="174" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="174" bodyend="185"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1ad512a59f06c84b2dd7ac6fa0a8f1e041" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
@@ -494,9 +494,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="205" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="205" bodyend="216"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="187" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="187" bodyend="198"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a9f95b6a104bcee09b9fa6bcd2a149254" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a9f95b6a104bcee09b9fa6bcd2a149254" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
         <definition>Directory Pathfinder.GameFilesystem.Directory.MoveTo</definition>
         <argsstring>(Directory to)</argsstring>
@@ -511,9 +511,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="218" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="218" bodyend="221"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="200" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1ab3912b96d28f566b4e68e382868f6fd3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1ab3912b96d28f566b4e68e382868f6fd3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool Pathfinder.GameFilesystem.Directory.Contains</definition>
         <argsstring>(File f)</argsstring>
@@ -528,9 +528,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="223" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="223" bodyend="226"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="201" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1aaae0c0d3cbdaa14509d6cb594cd13cee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1aaae0c0d3cbdaa14509d6cb594cd13cee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool Pathfinder.GameFilesystem.Directory.Contains</definition>
         <argsstring>(Directory d)</argsstring>
@@ -545,7 +545,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="228" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="228" bodyend="231"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="202" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a4272ab9ef94ed985319ea0aad2ef2f83" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -568,7 +568,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="233" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="233" bodyend="243"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="204" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="204" bodyend="214"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a526ae8373982b1e19bba3cdd1b8a4059" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -585,7 +585,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="245" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="245" bodyend="250"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="216" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="216" bodyend="221"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a541e2ba5bda3ef98cdee84b8b7d6c41c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>IEnumerator&lt; <ref refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object" kindref="compound">IFileObject</ref> &gt;</type>
@@ -598,11 +598,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="258" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="258" bodyend="265"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="229" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="229" bodyend="236"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a4e25f40d36f401b32f9e444165bd4c8a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_directory_1a4e25f40d36f401b32f9e444165bd4c8a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>IEnumerator IEnumerable.</type>
         <definition>IEnumerator IEnumerable. Pathfinder.GameFilesystem.Directory.GetEnumerator</definition>
         <argsstring>()</argsstring>
@@ -613,7 +613,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Directory.cs" line="267" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="267" bodyend="270"/>
+        <location file="Pathfinder/GameFilesystem/Directory.cs" line="238" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -681,7 +681,7 @@
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/GameFilesystem/Directory.cs" line="10" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="9" bodyend="271"/>
+    <location file="Pathfinder/GameFilesystem/Directory.cs" line="10" column="1" bodyfile="Pathfinder/GameFilesystem/Directory.cs" bodystart="9" bodyend="239"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_directory_1ab3912b96d28f566b4e68e382868f6fd3" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Directory</scope><name>Contains</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_directory_1aaae0c0d3cbdaa14509d6cb594cd13cee" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Directory</scope><name>Contains</name></member>

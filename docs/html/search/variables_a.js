@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['originalclickposition',['OriginalClickPosition',['../class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle.html#a80f9bb4b86fde06f522788998b06bb90',1,'Pathfinder::GUI::DynamicRectangle']]],
-  ['osinstance',['OsInstance',['../class_pathfinder_1_1_event_1_1_executable_event.html#a05892b7df74393296d2dda651881b6a8',1,'Pathfinder.Event.ExecutableEvent.OsInstance()'],['../class_pathfinder_1_1_event_1_1_o_s_event.html#ac373c93e4c8c30fd9efc814c74e89c99',1,'Pathfinder.Event.OSEvent.OsInstance()']]]
+  ['needsproxyaccess',['NeedsProxyAccess',['../class_pathfinder_1_1_executable_1_1_interface.html#a457cf96887d406f4374ab5ac01fba777',1,'Pathfinder::Executable::Interface']]],
+  ['netmapinstance',['NetMapInstance',['../class_pathfinder_1_1_event_1_1_network_map_load_content_event.html#a19dd3a686dff35b8b58b3383b0e50234',1,'Pathfinder::Event::NetworkMapLoadContentEvent']]]
 ];

@@ -36,8 +36,8 @@ var NAVTREEINDEX =
 "_base_interactive_rectangle_8cs.html",
 "class_pathfinder_1_1_daemon_1_1_handler.html#ac6fe93befa456f655c6bd259407143ab",
 "class_pathfinder_1_1_g_u_i_1_1_button.html#a9f2dd6e4488011999740722a62aa12af",
-"class_pathfinder_1_1_pathfinder_mod.html#ac984316a35cdb7b15c8d5068857d1574",
-"namespace_pathfinder_1_1_game_filesystem.html"
+"class_pathfinder_1_1_pathfinder_mod.html#ad2d60d27fc3d514a34b092ea4034c012",
+"namespace_pathfinder_1_1_internal.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

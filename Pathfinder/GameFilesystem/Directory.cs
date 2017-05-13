@@ -118,15 +118,11 @@ namespace Pathfinder.GameFilesystem
             return res;
         }
 
-        public File GetFile(int index)
-        {
-            return new File(Object.files[index], this);
-        }
+        public File GetFile(int index) =>
+            new File(Object.files[index], this);
 
-        public Directory GetDirectory(int index)
-        {
-            return new Directory(Object.folders[index], this);
-        }
+        public Directory GetDirectory(int index) =>
+            new Directory(Object.folders[index], this);
 
         public File CreateFile(string name, string data = null)
         {
@@ -138,22 +134,14 @@ namespace Pathfinder.GameFilesystem
             return r;
         }
 
-        public File CreateFile(string name, Executable.IInterface exeInterface)
-        {
-            return CreateFile(name, Executable.Handler.GetStandardFileDataBy(exeInterface));
-        }
+        public File CreateFile(string name, Executable.IInterface exeInterface) =>
+            CreateFile(name, Executable.Handler.GetStandardFileDataBy(exeInterface));
 
-        public File CreateExecutableFile(string name, string exeId)
-        {
-            return CreateFile(name,
-                              ExeInfoManager.GetExecutableInfo(exeId).Data
-                              ?? Executable.Handler.GetStandardFileDataBy(exeId, true));
-        }
+        public File CreateExecutableFile(string name, string exeId) =>
+            CreateFile(name, ExeInfoManager.GetExecutableInfo(exeId).Data ?? Executable.Handler.GetStandardFileDataBy(exeId, true));
 
-        public File CreateExecutableFile(string name, int vanillaIndex)
-        {
-            return CreateFile(name, ExeInfoManager.GetExecutableInfo(vanillaIndex).Data);
-        }
+        public File CreateExecutableFile(string name, int vanillaIndex) =>
+            CreateFile(name, ExeInfoManager.GetExecutableInfo(vanillaIndex).Data);
 
         public Directory CreateDirectory(string name)
         {
@@ -163,10 +151,7 @@ namespace Pathfinder.GameFilesystem
             return r;
         }
 
-        public bool RemoveFile(string name)
-        {
-            return RemoveFile(FindFile(name));
-        }
+        public bool RemoveFile(string name) => RemoveFile(FindFile(name));
 
         public bool RemoveFile(File f)
         {
@@ -176,10 +161,7 @@ namespace Pathfinder.GameFilesystem
             return Object.files.Remove(f.Object);
         }
 
-        public bool RemoveDirectory(string name)
-        {
-            return RemoveDirectory(FindDirectory(name));
-        }
+        public bool RemoveDirectory(string name) => RemoveDirectory(FindDirectory(name));
 
         public bool RemoveDirectory(Directory d)
         {
@@ -215,20 +197,9 @@ namespace Pathfinder.GameFilesystem
             return d;
         }
 
-        public Directory MoveTo(Directory to)
-        {
-            return ParentDirectory.MoveDirectory(this, to);
-        }
-
-        public bool Contains(File f)
-        {
-            return Object.files.Contains(f?.Object);
-        }
-
-        public bool Contains(Directory d)
-        {
-            return Object.folders.Contains(d?.Object);
-        }
+        public Directory MoveTo(Directory to) => ParentDirectory.MoveDirectory(this, to);
+        public bool Contains(File f) => Object.files.Contains(f?.Object);
+        public bool Contains(Directory d) => Object.folders.Contains(d?.Object);
 
         public bool ContainsFile(string name = null, string data = null)
         {
@@ -236,7 +207,7 @@ namespace Pathfinder.GameFilesystem
                 return Object.files.Count > 1;
             if (name == null)
                 return Object.containsFileWithData(data);
-            else if (data == null)
+            if (data == null)
                 return Object.containsFile(name);
             else
                 return Object.files.Exists(f => f.name == name && f.data == data);
@@ -258,15 +229,12 @@ namespace Pathfinder.GameFilesystem
         public IEnumerator<IFileObject> GetEnumerator()
         {
             foreach (var f in Object.files)
-                yield return new File(f, this).Cast;
+                yield return new File(f, this);
 
             foreach (var f in Object.folders)
                 yield return new Directory(f, this);
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

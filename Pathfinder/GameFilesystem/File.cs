@@ -27,10 +27,7 @@ namespace Pathfinder.GameFilesystem
             }
         }
 
-        public sealed override int Index
-        {
-            get; internal set;
-        }
+        public sealed override int Index { get; internal set; }
 
         public sealed override Filesystem Root => Parent.Root;
 
@@ -80,21 +77,8 @@ namespace Pathfinder.GameFilesystem
             }
         }
 
-        public void UpdateFileSize()
-        {
-            Size = Data.Length * 8;
-        }
-
-        public string Head { get { return Object.head(); } }
-
-        public FileObject<object> Cast
-        {
-            get; private set;
-        }
-
-        public File MoveTo(Directory to)
-        {
-            return Parent.MoveFile(this, to);
-        }
+        public void UpdateFileSize() => Size = Data.Length * 8;
+        public string Head => Object.head();
+        public File MoveTo(Directory to) => Parent.MoveFile(this, to);
     }
 }

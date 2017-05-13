@@ -317,9 +317,8 @@
     <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_1a4f5d79b9a6e92d662c9e759afd38441c" kind="property"><name>Path</name></member>
     <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_1af683f9a133f6e176a971a85c1dfab0de" kind="property"><name>Data</name></member>
     <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_1a0d164f88c76532d949b585428fd6948c" kind="property"><name>Size</name></member>
-    <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_1a54081accd395035618e372cbe43fbb81" kind="property"><name>Head</name></member>
-    <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_1a3472029e976f928e1822dfc026be0e70" kind="property"><name>Cast</name></member>
     <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_1aee6cf4f931a9ba66c65e11e0e267cd2c" kind="variable"><name>Root</name></member>
+    <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_1a54081accd395035618e372cbe43fbb81" kind="variable"><name>Head</name></member>
     <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_1a03568f06a25e9834895e61ae25f0a992" kind="function"><name>File</name></member>
     <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_1a759f8e3f40bee6ee654823b94987dd5a" kind="function"><name>UpdateFileSize</name></member>
     <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_1a9913e6a5e54363f87340fc65ed599efd" kind="function"><name>MoveTo</name></member>
