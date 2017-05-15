@@ -22,6 +22,40 @@ namespace Pathfinder.Internal.GUI
         private static Dictionary<string, Button> LoadButtons { get; } = new Dictionary<string, Button>();
         private static Dictionary<string, Button> UnloadButtons { get; } = new Dictionary<string, Button>();
 
+        private static DynamicRectangle s = new DynamicRectangle(50, 50, 100, 100);
+
+        private static ScrollPanel panel = new ScrollPanel(190, 110, 900, 500)
+        {
+            OnlyOutline = true,
+            ExtraDraw = p =>
+            {
+                float yPos = 120-p.Scrollbar.CurrentScroll;
+                int index = 0;
+                foreach (var id in Pathfinder.LoadedModIdentifiers)
+                {
+                    UnloadButtons[id].X = 500;
+                    UnloadButtons[id].Y = (int)yPos;
+                    UnloadButtons[id].Draw();
+                    Gui.TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + id, GuiData.smallfont, Color.White);
+                    yPos += 30;
+                }
+
+                if (Pathfinder.UnloadedModIdentifiers.Count < 1)
+                    return;
+                Gui.TextItem.doFontLabel(new Vector2(200, yPos), "Disabled Mods", GuiData.font, Color.White);
+                yPos += 50;
+                index = 0;
+                foreach (var id in Pathfinder.UnloadedModIdentifiers)
+                {
+                    LoadButtons[id].X = 500;
+                    LoadButtons[id].Y = (int)yPos;
+                    LoadButtons[id].Draw();
+                    Gui.TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + id, GuiData.smallfont, Color.White);
+                    yPos += 30;
+                }
+            }
+        };
+
         private static void PrepareButtons()
         {
             if (ButtonsWerePrepared)
@@ -55,35 +89,12 @@ namespace Pathfinder.Internal.GUI
                 return;
             e.IsCancelled = true;
 
-            PrepareButtons();
+			PrepareButtons();
             GameScreen baseS = e.MainMenu;
             returnButton.Draw();
             Gui.TextItem.doFontLabel(new Vector2(125f, 50), "Pathfinder Mod Load Order", GuiData.font, Color.White);
-
-            float yPos = 120;
-            int index = 0;
-            foreach (var id in Pathfinder.LoadedModIdentifiers)
-            {
-                UnloadButtons[id].X = 500;
-                UnloadButtons[id].Y = (int)yPos;
-                UnloadButtons[id].Draw();
-                Gui.TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + id, GuiData.smallfont, Color.White);
-                yPos += 30;
-            }
-
-            if (Pathfinder.UnloadedModIdentifiers.Count < 1)
-                return;
-            Gui.TextItem.doFontLabel(new Vector2(200, yPos), "Disabled Mods", GuiData.font, Color.White);
-            yPos += 50;
-            index = 0;
-            foreach (var id in Pathfinder.UnloadedModIdentifiers)
-            {
-                LoadButtons[id].X = 500;
-                LoadButtons[id].Y = (int)yPos;
-                LoadButtons[id].Draw();
-                Gui.TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + id, GuiData.smallfont, Color.White);
-                yPos += 30;
-            }
+            s.Draw();
+            panel.Draw();
         }
 
         public static void DrawModListButton(DrawMainMenuButtonsEvent e) => modListButton.Draw();

@@ -145,6 +145,7 @@
     <Compile Include="Pathfinder\Command\Help.cs" />
     <Compile Include="Pathfinder\Internal\GUI\ModExtensionsUI.cs" />
     <Compile Include="Pathfinder\Internal\ExecutionOverride.cs" />
+    <Compile Include="Pathfinder\GUI\ScrollPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

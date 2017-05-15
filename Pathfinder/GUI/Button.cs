@@ -7,7 +7,7 @@ using Gui = Hacknet.Gui;
 
 namespace Pathfinder.GUI
 {
-    public abstract class BaseButton : BaseInteractiveRectangle<int>
+    public abstract class BaseButton : BaseInteractiveRectangle
     {
         public string Text { get; set; }
         public Color Color { get; set; }
@@ -16,7 +16,7 @@ namespace Pathfinder.GUI
         protected BaseButton(int x, int y, int width, int height, string text, Color? color = null) : base(x, y, width, height)
         {
             Text = text;
-            Color = color.HasValue ? color.Value : GuiData.Default_Trans_Grey_Strong;
+            Color = color ?? GuiData.Default_Trans_Grey_Strong;
         }
     }
 
@@ -46,8 +46,7 @@ namespace Pathfinder.GUI
                     GuiData.spriteBatch.Draw(Utils.white, rect, Color);
                 }
                 Gui.RenderedRectangle.doRectangleOutline(X, Y, Width, Height, 1,
-                                                     OnlyOutline ?
-                                                     Color : GuiData.Default_Trans_Grey_Solid);
+                                                         OnlyOutline ? Color : GuiData.Default_Trans_Grey_Solid);
             }
             else
                 GuiData.spriteBatch.Draw(Texture, rect, (IsActive) ? ((IsHeldDown) ? GuiData.Default_Unselected_Color : GuiData.Default_Lit_Backing_Color) : Color);

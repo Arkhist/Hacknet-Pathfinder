@@ -15,7 +15,7 @@ namespace Pathfinder.GUI
                                 float layerDepth = 0,
                                 Rectangle? destRect = null)
         {
-            sb.Draw(tex, position, destRect, color ?? Color.White, rotation, position + (dimensions / 2), dimensions, effects, layerDepth);
+            sb.Draw(tex, position, destRect, color ?? Color.White, rotation, new Vector2(0), dimensions, effects, layerDepth);
         }
     }
 }

@@ -18,21 +18,21 @@ namespace Pathfinder.GUI
         public static explicit operator MoveLine(Vector2 vec) => new MoveLine(vec.Y, vec.X);
     }
 
-    public abstract class BaseDynamicRectangle : BaseInteractiveRectangle<float>
+    public abstract class BaseDynamicRectangle : BaseInteractiveRectangle
     {
         public Color SelectedColor { get; set; } = GuiData.Default_Selected_Color;
         public Color DeselectedColor { get; set; } = GuiData.Default_Unselected_Color;
-        public float SelectableBorder { get; set; } = -1;
+        public float SelectableBorder { get; set; }
         public MoveLine? XBound { get; set; } = new MoveLine(3.40282347E+38f, -3.40282347E+38f);
         public MoveLine? YBound { get; set; } = new MoveLine(3.40282347E+38f, -3.40282347E+38f);
 
         public Vector2 MovedPosition { get; protected set; }
 
-        protected BaseDynamicRectangle(float x, float y, float width, float height) : base(x, y, width, height) {}
+        protected BaseDynamicRectangle(int x, int y, int width, int height) : base(x, y, width, height) {}
 
-        public bool InBorder => Contains(X + SelectableBorder, Y + SelectableBorder,
-                                         SelectableBorder < 0 ? 0 : Width - 2f * SelectableBorder,
-                                         SelectableBorder < 0 ? 0 : Height - 2f * SelectableBorder,
+        public bool InBorder => Contains((int)(X + Math.Max(0, SelectableBorder)), (int)(Y + Math.Max(0, SelectableBorder)),
+                                         (int)(SelectableBorder < 0 ? 0 : Width - 2f * SelectableBorder),
+                                         (int)(SelectableBorder < 0 ? 0 : Height - 2f * SelectableBorder),
                                          GuiData.getMousePoint());
     }
 
@@ -43,11 +43,11 @@ namespace Pathfinder.GUI
 
         public bool IsDragging { get; set; }
 
-        public DynamicRectangle(float x, float y, float width, float height) : base(x, y, width, height) { }
-        public DynamicRectangle(float x,
-                                float y,
-                                float width,
-                                float height,
+        public DynamicRectangle(int x, int y, int width, int height) : base(x, y, width, height) { }
+        public DynamicRectangle(int x,
+                                int y,
+                                int width,
+                                int height,
                                 Color? selected,
                                 Color? deselected = null,
                                 float selectableBorder = -1,
@@ -64,10 +64,10 @@ namespace Pathfinder.GUI
             if (!yMove)
                 YBound = null;
         }
-        public DynamicRectangle(float x,
-                                float y,
-                                float width,
-                                float height,
+        public DynamicRectangle(int x,
+                                int y,
+                                int width,
+                                int height,
                                 Color? selected,
                                 Color? deselected,
                                 float selectableBorder,
@@ -91,8 +91,6 @@ namespace Pathfinder.GUI
                     if (GuiData.mouseWasPressed())
                     {
                         OriginalClickPosition = GuiData.getMousePos();
-                        OriginalClickPosition.X -= X;
-                        OriginalClickPosition.Y -= Y;
                         ClickPositionOffset = new Vector2(OriginalClickPosition.X - X, OriginalClickPosition.Y - Y);
                     }
                 }
@@ -102,12 +100,12 @@ namespace Pathfinder.GUI
                 float mvx = MovedPosition.X, mvy = MovedPosition.Y;
                 if (XBound.HasValue)
                 {
-                    mvx = GuiData.mouse.X - X - OriginalClickPosition.X;
-                    mvx = Math.Min(Math.Max(Y + mvx, XBound.Value.Min), XBound.Value.Max) - X;
+                    mvx = GuiData.mouse.X - X - ClickPositionOffset.X;
+                    mvx = Math.Min(Math.Max(X + mvx, XBound.Value.Min), XBound.Value.Max) - X;
                 }
                 if (YBound.HasValue)
                 {
-                    mvy = GuiData.mouse.Y - Y - OriginalClickPosition.Y;
+                    mvy = GuiData.mouse.Y - Y - ClickPositionOffset.Y;
                     mvy = Math.Min(Math.Max(Y + mvy, YBound.Value.Min), YBound.Value.Max) - Y;
                 }
                 MovedPosition = new Vector2(mvx, mvy);

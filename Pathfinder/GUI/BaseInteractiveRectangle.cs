@@ -6,9 +6,9 @@ using Gui = Hacknet.Gui;
 
 namespace Pathfinder.GUI
 {
-    public abstract class BaseInteraction<T>
+    public abstract class BaseInteraction
     {
-        protected BaseInteraction(T x, T y, T width, T height)
+        protected BaseInteraction(int x, int y, int width, int height)
         {
             X = x;
             Y = y;
@@ -22,29 +22,31 @@ namespace Pathfinder.GUI
                                                && !Gui.Button.DisableIfAnotherIsActive) && !IsReleased;
         public virtual bool JustReleased { get; protected set; }
         public virtual bool WasHeld { get; protected set; }
-        public T X { get; set; }
-        public T Y { get; set; }
-        public T Width { get; set; }
-        public T Height { get; set; }
-
-        public abstract bool HandleInteraction();
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
 
         public bool Contains(Point p) => Contains(X, Y, Width, Height, p);
 
-        public static bool Contains(T x, T y, T width, T height, Point p)
+        public static bool Contains(int x, int y, int width, int height, Point p)
         {
             return Convert.ToDouble(x) <= p.X
                           && p.X < Convert.ToDouble(x) + Convert.ToDouble(width)
                           && Convert.ToDouble(y) <= p.Y
                           && p.Y < Convert.ToDouble(y) + Convert.ToDouble(height);
         }
+
+        public abstract bool Draw();
+        public abstract void DoDraw();
+        public abstract bool HandleInteraction();
     }
 
-    public abstract class BaseInteractiveRectangle<T> : BaseInteraction<T>
+    public abstract class BaseInteractiveRectangle : BaseInteraction
     {
-        public Action<BaseInteractiveRectangle<T>> DrawFinish { get; set; }
+        public Action<BaseInteractiveRectangle> DrawFinish { get; set; }
 
-        protected BaseInteractiveRectangle(T x, T y, T width, T height) : base(x, y, width, height) {}
+        protected BaseInteractiveRectangle(int x, int y, int width, int height) : base(x, y, width, height) {}
 
         public override bool HandleInteraction()
         {
@@ -59,7 +61,7 @@ namespace Pathfinder.GUI
             return JustReleased;
         }
 
-        public virtual bool Draw()
+        public override bool Draw()
         {
             DoDraw();
             var b = HandleInteraction();
@@ -67,7 +69,5 @@ namespace Pathfinder.GUI
                 DrawFinish(this);
             return b;
         }
-
-        public abstract void DoDraw();
     }
 }

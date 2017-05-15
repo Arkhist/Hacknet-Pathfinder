@@ -1,11 +1,10 @@
 ﻿using System;
 using Hacknet;
-using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 
 namespace Pathfinder.GUI
 {
-    public abstract class BaseScrollbar : BaseInteractiveRectangle<int>
+    public abstract class BaseScrollbar : BaseInteractiveRectangle
     {
         public int ContentSize { get; set; }
         public float CurrentScroll { get; set; }
@@ -54,10 +53,10 @@ namespace Pathfinder.GUI
             float drawQuo = drawSize / ContentSize * drawSize;
             float scroll = CurrentScroll / diff;
 
-            Draggable.X = Vertical ? X : X + (scroll * (drawSize - drawQuo));
-            Draggable.Y = !Vertical ? Y : Y + (scroll * (drawSize - drawQuo));
-            Draggable.Width = Vertical ? Width : drawQuo;
-            Draggable.Height = !Vertical ? Height : drawQuo;
+            Draggable.X = (int)(Vertical ? X : X + (scroll * (drawSize - drawQuo)));
+            Draggable.Y = (int)(!Vertical ? Y : Y + (scroll * (drawSize - drawQuo)));
+            Draggable.Width = (int)(Vertical ? Width : drawQuo);
+            Draggable.Height = (int)(!Vertical ? Height : drawQuo);
             Draggable.SelectableBorder = Vertical ? Width : Height;
             Draggable.XBound = null;
             Draggable.YBound = null;
