@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using Mono.Cecil;
+using Mono.Cecil.Cil;
 using Mono.Cecil.Inject;
 
 namespace PathfinderPatcher
@@ -33,6 +35,8 @@ namespace PathfinderPatcher
 
                 // Opens Hacknet.exe, mods it, and then HacknetPathfinder.dll's Assembly
                 ad = LoadAssembly(exeDir + "Hacknet.exe");
+
+                var fna = LoadAssembly(exeDir + "FNA.dll");
 
                 ad.AddAssemblyAttribute<InternalsVisibleToAttribute>("Pathfinder");
                 ad.RemoveInternals();
@@ -121,6 +125,36 @@ namespace PathfinderPatcher
                     f.IsAssembly = true;
                 }
 
+                var v2 = ad.MainModule.ImportReference(fna.MainModule.GetType("Microsoft.Xna.Framework.Vector2"));
+
+                type = ad.MainModule.GetType("Hacknet.Computer");
+                type.AddRefConstructor(type.GetMethod(".ctor"),
+                new TypeReference[] {
+                    ad.MainModule.TypeSystem.String,
+                    ad.MainModule.TypeSystem.String,
+                    v2,
+                    ad.MainModule.TypeSystem.Int32,
+                    ad.MainModule.TypeSystem.Byte
+                },
+                new Instruction[] {
+                    Instruction.Create(OpCodes.Ldsfld, ad.MainModule.GetType("Hacknet.OS").GetField("currentInstance"))
+                });
+
+                type.AddRefConstructor(type.GetMethod(".ctor", ad.MainModule.TypeSystem.String,
+                                                      ad.MainModule.TypeSystem.String,
+                                                      v2,
+                                                      ad.MainModule.TypeSystem.Int32,
+                                                      ad.MainModule.TypeSystem.Byte),
+                new TypeReference[] {
+                    ad.MainModule.TypeSystem.String,
+                    ad.MainModule.TypeSystem.String,
+                    ad.MainModule.ImportReference(fna.MainModule.GetType("Microsoft.Xna.Framework.Vector2")),
+                    ad.MainModule.TypeSystem.Int32
+                },
+                new Instruction[] {
+                    Instruction.Create(OpCodes.Ldc_I4_0)
+                });
+
                 if (spitOutHacknetOnly)
                 {
                     ad?.Write("HacknetPathfinder.exe");
@@ -187,7 +221,7 @@ namespace PathfinderPatcher
                 );
 
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("writeSaveGame").InjectWith(
-					hooks.GetMethod("onSaveWrite"),
+                    hooks.GetMethod("onSaveWrite"),
                     -5,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals | InjectFlags.PassParametersVal,
                     localsID: new int[] { 0 }
@@ -217,7 +251,7 @@ namespace PathfinderPatcher
 
                 // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("launchExecutable").InjectWith(
-					hooks.GetMethod("onPortExecutableExecute"),
+                    hooks.GetMethod("onPortExecutableExecute"),
                     44,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
                     localsID: new int[] { 2 }
@@ -238,7 +272,7 @@ namespace PathfinderPatcher
                 );
 
                 ad.MainModule.GetType("Hacknet.Game1").GetMethod("Update").InjectWith(
-					hooks.GetMethod("onGameUpdate"),
+                    hooks.GetMethod("onGameUpdate"),
                     -5,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef
                 );
@@ -252,12 +286,12 @@ namespace PathfinderPatcher
                 );
 
                 ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("Update").InjectWith(
-					hooks.GetMethod("onDisplayModuleUpdate"),
+                    hooks.GetMethod("onDisplayModuleUpdate"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 
                 ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("Draw").InjectWith(
-					hooks.GetMethod("onDisplayModuleDraw"),
+                    hooks.GetMethod("onDisplayModuleDraw"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 
@@ -266,11 +300,11 @@ namespace PathfinderPatcher
                     hooks.GetMethod("onExtensionsMenuScreenDraw"),
                     71,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
-                    localsID: new int[]{ 3 }
+                    localsID: new int[] { 3 }
                 );
 
                 ad.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen").GetMethod("DrawExtensionList").InjectWith(
-					hooks.GetMethod("onExtensionsMenuListDraw"),
+                    hooks.GetMethod("onExtensionsMenuListDraw"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 
@@ -278,7 +312,14 @@ namespace PathfinderPatcher
             }
             catch (Exception ex)
             {
-                ad?.Write("HacknetPathfinder.exe");
+                try
+                {
+                    ad?.Write("HacknetPathfinder.exe");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Writing problem: " + e);
+                }
                 Console.Write(ex);
                 Console.WriteLine("Press enter to end...");
                 Console.ReadLine();
@@ -350,6 +391,27 @@ namespace PathfinderPatcher
                 throw;
             }
             return result.Assembly;
+        }
+
+        public static MethodDefinition AddRefConstructor(this TypeDefinition type,
+                                                         MethodReference mref,
+                                                         IEnumerable<TypeReference> args,
+                                                         IEnumerable<Instruction> extraInstructions = null)
+        {
+            var methodAttributes = MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName;
+            var method = new MethodDefinition(".ctor", methodAttributes, type.Module.TypeSystem.Void);
+            foreach (var a in args)
+                method.Parameters.Add(new ParameterDefinition(a));
+            method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+            int i = 0;
+            foreach (var a in args)
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg, method.Parameters[i++]));
+            if (extraInstructions != null) foreach (var inst in extraInstructions)
+                method.Body.Instructions.Add(inst);
+            method.Body.Instructions.Add(Instruction.Create(OpCodes.Call, mref));
+            method.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
+            type.Methods.Add(method);
+            return method;
         }
     }
 }
