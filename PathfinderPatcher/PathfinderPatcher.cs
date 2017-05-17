@@ -155,6 +155,37 @@ namespace PathfinderPatcher
                     Instruction.Create(OpCodes.Ldc_I4_0)
                 });
 
+                type = ad.MainModule.GetType("Hacknet.OS");
+                foreach (var f in type.Fields)
+                {
+                    if (f.Name == "introTextModule") f.IsPublic = true;
+                    if (!f.IsPrivate) continue;
+                    f.IsPrivate = false;
+                    f.IsAssembly = true;
+                }
+                foreach (var m in type.Methods)
+                {
+                    if (!m.IsPrivate) continue;
+                    m.IsPrivate = false;
+                    m.IsAssembly = true;
+                }
+
+                type = ad.MainModule.GetType("Hacknet.ComputerLoader");
+                foreach (var f in type.Fields)
+                {
+                    if (!f.IsPrivate) continue;
+                    f.IsPrivate = false;
+                    f.IsAssembly = true;
+                }
+
+                type = ad.MainModule.GetType("Hacknet.IntroTextModule");
+                foreach (var f in type.Fields)
+                {
+                    if (!f.IsPrivate) continue;
+                    f.IsPrivate = false;
+                    f.IsPublic = true;
+                }
+
                 if (spitOutHacknetOnly)
                 {
                     ad?.Write("HacknetPathfinder.exe");

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Pathfinder.Util;
 
 namespace Pathfinder.Event
@@ -9,5 +8,14 @@ namespace Pathfinder.Event
     {
         public List<string> MainArguments { get; private set; }
         public StartUpEvent(string[] args) { MainArguments = new List<string>(args ?? Utility.Array<string>.Empty); }
+        public string this[int index]
+        {
+            get
+            {
+                if (MainArguments.Count >= index)
+                    return "";
+                return MainArguments[index];
+            }
+        }
     }
 }

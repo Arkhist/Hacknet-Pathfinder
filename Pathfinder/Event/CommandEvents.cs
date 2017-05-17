@@ -30,5 +30,15 @@ namespace Pathfinder.Event
         {
             Arguments = new List<string>(args ?? Utility.Array<string>.Empty);
         }
+
+        public string this[int index]
+        {
+            get
+            {
+                if (Arguments.Count >= index)
+                    return "";
+                return Arguments[index];
+            }
+        }
     }
 }

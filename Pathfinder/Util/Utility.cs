@@ -3,6 +3,8 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Threading;
+using Hacknet;
 
 namespace Pathfinder.Util
 {
@@ -19,7 +21,10 @@ namespace Pathfinder.Util
             public static readonly T[] Empty = new T[0];
         }
 
+        private static Random pathfinderRng = new Random();
         private static Regex xmlAttribRegex = new Regex("[^a-zA-Z0-9_.]");
+
+        public static int? HaltOffset = 0;
 
         /// <summary>
         /// Converts the input to a valid xml attribute name.
@@ -55,7 +60,7 @@ namespace Pathfinder.Util
 
             xmlString = ignoreValidXml ? xmlString : ConvertToValidXmlAttributeName(xmlString);
             if (!ignorePeriod && inputId.IndexOf('.') == -1)
-                xmlString = ActiveModId + "." + xmlString;
+                return ActiveModId + "." + xmlString;
             return inputId.IndexOf('.') != -1 ? inputId.Remove(inputId.LastIndexOf('.') + 1) + xmlString : inputId;
         }
 
@@ -103,6 +108,17 @@ namespace Pathfinder.Util
         [Obsolete("Use CurrentComputer Property")]
         public static Hacknet.Computer GetCurrentComputer() => CurrentComputer;
 
+        public static int GenerateRandomIPSection(Random rand = null) => (rand??pathfinderRng).Next(254) + 1;
+        public static string GenerateRandomIP(Random rand = null) =>
+            GenerateRandomIPSection(rand) + "." + GenerateRandomIPSection(rand)
+                + "." + GenerateRandomIPSection(rand) + "." + GenerateRandomIPSection(rand);
+
+        public static void HaltThread(int ms, bool ignoreDebugGoFast = false)
+        {
+            if ((!HaltOffset.HasValue && HaltOffset < ms) || (!ignoreDebugGoFast && Utils.DebugGoFast()))
+                Thread.Sleep(ms + (HaltOffset ?? 0));
+        }
+
         internal static string GetPreviousStackFrameIdentity(int frameSkip = 2)
         {
             var result = "";
@@ -114,6 +130,13 @@ namespace Pathfinder.Util
             else
                 result = Pathfinder.GetModByAssembly(asm).Identifier;
             return result;
+        }
+
+        public static T GetPossibleFirstAttribute<T>(this MethodInfo info, bool inherit = false) where T : System.Attribute
+        {
+            if (info.GetCustomAttributes(inherit).Length > 0)
+                return info.GetCustomAttributes(typeof(T), inherit)[0] as T;
+            return null;
         }
     }
 }

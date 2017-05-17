@@ -145,6 +145,9 @@
     <Compile Include="Pathfinder\Command\Help.cs" />
     <Compile Include="Pathfinder\Internal\GUI\ModExtensionsUI.cs" />
     <Compile Include="Pathfinder\Internal\ExecutionOverride.cs" />
+    <Compile Include="Pathfinder\Internal\PlaceholderExtensionInfo.cs" />
+    <Compile Include="Pathfinder\Util\Attribute\EventPriorityAttribute.cs" />
+    <Compile Include="Pathfinder\Util\Attribute\LoadOrderAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />
@@ -158,6 +161,7 @@
     <Folder Include="Pathfinder\Extension\" />
     <Folder Include="Pathfinder\Internal\" />
     <Folder Include="Pathfinder\Internal\GUI\" />
+    <Folder Include="Pathfinder\Util\Attribute\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

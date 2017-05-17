@@ -42,7 +42,16 @@ namespace Pathfinder.Internal.GUI
                 {
                     DrawFinish = r =>
                     {
-                        if (r.JustReleased) try { Pathfinder.LoadMod(loc); } catch (Exception) {}
+                        if (r.JustReleased)
+                            try
+                            {
+                                Exception e;
+                                foreach (var m in Pathfinder.LoadMod(loc, out e))
+                                {
+                                    if (e != null) throw e;
+                                    m.LoadContent();
+                                }
+                            } catch (Exception) {}
                     }
                 };
             }

@@ -347,8 +347,8 @@ namespace Pathfinder
         {
             var drawExtensionMenuListEvent = new Event.DrawExtensionMenuListEvent(self, drawPos, dest, sb);
             drawExtensionMenuListEvent.CallEvent();
-            result = drawExtensionMenuListEvent.ButtonPosition;
-            drawPos = result;
+            drawPos = drawExtensionMenuListEvent.ButtonPosition;
+            result = drawPos;
             if (drawExtensionMenuListEvent.IsCancelled)
                 return true;
             return false;

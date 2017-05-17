@@ -27,7 +27,7 @@ namespace Pathfinder
 
         public static readonly string DepFolderPath = ModFolderPath + Path.DirectorySeparatorChar + "deps";
 
-        public static IPathfinderMod CurrentMod { get; private set; }
+        public static IPathfinderMod CurrentMod { get; internal set; }
 
         internal static Dictionary<string, IPathfinderMod> OperationalMods => mods.Where(pair => !(pair.Value is ModPlaceholder))
                                                                                   .ToDictionary(pair => pair.Key, pair => pair.Value);
@@ -58,7 +58,7 @@ namespace Pathfinder
 
             EventManager.RegisterListener<DrawExtensionMenuEvent>(Internal.GUI.ModExtensionsUI.ExtensionMenuListener);
             EventManager.RegisterListener<DrawExtensionMenuListEvent>(Internal.GUI.ModExtensionsUI.ExtensionListMenuListener);
-            EventManager.RegisterListener<OSPostLoadContenEvent>(Internal.GUI.ModExtensionsUI.PostLoadForModExtensionsListener);
+            EventManager.RegisterListener<OSLoadContentEvent>(Internal.GUI.ModExtensionsUI.LoadContentForModExtensionListener);
 
             EventManager.RegisterListener<ExecutableExecuteEvent>(Internal.HandlerListener.ExecutableListener);
             EventManager.RegisterListener<CommandSentEvent>(Internal.HandlerListener.ExecutableListInsertListener);
@@ -205,15 +205,14 @@ namespace Pathfinder
             if (mod == null || mod is ModPlaceholder) return;
 
             CurrentMod = mod;
-            string id = "";
 
             foreach (var e in Extension.Handler.idToInfo.ToArray())
-                if (e.Key.IndexOf('.') != -1 && e.Key.Remove(id.IndexOf('.')) == mod.Identifier)
+                if (e.Key.IndexOf('.') != -1 && e.Key.Remove(e.Key.IndexOf('.')) == mod.Identifier)
                     Extension.Handler.UnregisterExtension(e.Key);
 
             foreach (var e in Executable.Handler.idToInterface.ToArray())
-                if (e.Key.IndexOf('.') != -1 && id.Remove(id.IndexOf('.')) == mod.Identifier)
-                    Executable.Handler.UnregisterExecutable(id);
+                if (e.Key.IndexOf('.') != -1 && e.Key.Remove(e.Key.IndexOf('.')) == mod.Identifier)
+                    Executable.Handler.UnregisterExecutable(e.Key);
 
             foreach (var d in Daemon.Handler.idToInterface.ToArray())
                 if (d.Key.IndexOf('.') != -1 && d.Key.Remove(d.Key.IndexOf('.')) == mod.Identifier)
@@ -230,7 +229,7 @@ namespace Pathfinder
                 if (m.Key.IndexOf('.') != -1 && m.Key.Remove(m.Key.IndexOf('.')) == mod.Identifier)
                     Mission.Handler.UnregisterMission(m.Key);
 
-            var events = new List<Tuple<Action<PathfinderEvent>, string, string>>();
+            var events = new List<Tuple<Action<PathfinderEvent>, string, string, int>>();
             foreach (var v in EventManager.eventListeners.Values)
                 events.AddRange(v.FindAll(t => t.Item3 == mod.Identifier));
             foreach (var e in events)
@@ -273,15 +272,26 @@ namespace Pathfinder
             return modInstance;
         }
 
-        internal static void LoadMod(string path)
+        internal static List<IPathfinderMod> LoadMod(string path, out Exception e)
         {
+            var result = new List<IPathfinderMod>();
             foreach (Type t in Assembly.LoadFile(path).GetModTypes())
-                unloadedMods.Remove(LoadMod(t)?.Identifier);
+            {
+                try
+                {
+                    var mod = LoadMod(t);
+                    unloadedMods.Remove(mod?.Identifier);
+                    result.Add(mod);
+                }
+                catch(Exception ex) { e = ex; return result; }
+            }
+            e = null;
+            return result;
         }
 
         internal static void TryLoadMod(string path)
         {
-            try { LoadMod(path); }
+            try { Exception e; LoadMod(path, out e); throw e; }
             catch (Exception ex) { Logger.Error("Mod file '{0}' failed to load:\n\t{1}", Path.GetFileName(path), ex); }
         }
 

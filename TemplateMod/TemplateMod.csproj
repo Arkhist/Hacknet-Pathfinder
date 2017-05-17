@@ -48,6 +48,9 @@
       <HintPath>..\bin\Release\Pathfinder.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="FNA">
+      <HintPath>..\lib\FNA.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands.cs" />

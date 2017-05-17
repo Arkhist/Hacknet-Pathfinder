@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Threading;
 using Hacknet;
+using Hacknet.Extensions;
+using Microsoft.Xna.Framework.Input;
 using Pathfinder.Computer;
 using Pathfinder.Event;
 using Pathfinder.GUI;
 using Pathfinder.OS;
+using Pathfinder.Util;
 
 namespace Pathfinder.Internal
 {
@@ -12,7 +15,7 @@ namespace Pathfinder.Internal
     {
         public static void OverridePortHack(ExecutablePortExecuteEvent e)
         {
-            if (e.Arguments[0].ToLower() == "porthack")
+            if (e[0].ToLower() == "porthack")
             {
                 e.IsCancelled = true;
                 var os = e.OS;
@@ -48,7 +51,7 @@ namespace Pathfinder.Internal
 
         public static void OverwriteProbe(CommandSentEvent e)
         {
-            if (e.Arguments[0].ToLower() == "probe" || e.Arguments[0].ToLower() == "nmap")
+            if (e[0].ToLower() == "probe" || e[0].ToLower() == "nmap")
             {
                 e.IsCancelled = true;
                 e.StateChange = CommandDisplayStateChange.Probe;
@@ -80,6 +83,165 @@ namespace Pathfinder.Internal
                     os.WriteF("Proxy Detected : {0}", (c.proxyActive ? "ACTIVE" : "INACTIVE"));
                 if (c.firewall != null)
                     os.WriteF("Firewall Detected : {0}", (c.firewall.solved ? "SOLVED" : "ACTIVE"));
+            }
+        }
+
+        private static bool wasRecursed;
+        public static void OverrideFirstTimeInit(CommandSentEvent e)
+        {
+            if (Extension.Handler.ActiveInfo != null
+                && e[0] == "FirstTimeInitdswhupwnemfdsiuoewnmdsmffdjsklanfeebfjkalnbmsdakj")
+            {
+                var os = e.OS;
+                var num = Settings.isConventionDemo ? 80 : 200;
+                var num2 = Settings.isConventionDemo ? 150 : 300;
+                var doTut = e[1] == "StartTutorial";
+                if (doTut)
+                {
+                    os.display.visible = false;
+                    os.ram.visible = false;
+                    os.netMap.visible = false;
+                    os.terminal.visible = true;
+                    os.mailicon.isEnabled = false;
+                    if (os.hubServerAlertsIcon != null)
+                    {
+                        os.hubServerAlertsIcon.IsEnabled = false;
+                    }
+                }
+                if (Settings.debugCommandsEnabled && GuiData.getKeyboadState().IsKeyDown(Keys.LeftAlt))
+                    num2 = (num = 1);
+                Programs.typeOut("Initializing .", os, 50);
+                Programs.doDots(7, num + 100, os);
+                Programs.typeOut("Loading modules.", os, 50);
+                Programs.doDots(5, num, os);
+                os.writeSingle("Complete");
+                Utility.HaltThread(num2);
+                Programs.typeOut("Loading nodes.", os, 50);
+                Programs.doDots(5, num, os);
+                os.writeSingle("Complete");
+                Utility.HaltThread(num2);
+                Programs.typeOut("Reticulating splines.", os, 50);
+                Programs.doDots(5, num - 50, os);
+                os.writeSingle("Complete");
+                Utility.HaltThread(num2);
+                if (os.crashModule.BootLoadErrors.Length > 0)
+                {
+                    Programs.typeOut("\n------ " + LocaleTerms.Loc("BOOT ERRORS DETECTED") + " ------", os, 50);
+                    Utility.HaltThread(200);
+                    string[] array = os.crashModule.BootLoadErrors.Split(Utils.newlineDelim, StringSplitOptions.RemoveEmptyEntries);
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        Programs.typeOut(array[i], os, 50);
+                        Utility.HaltThread(100, true);
+                    }
+                    Programs.typeOut("---------------------------------\n", os, 50);
+                    Utility.HaltThread(200, true);
+                }
+                Programs.typeOut("\n--Initialization Complete--\n", os, 50);
+                GuiData.getFilteredKeys();
+                os.inputEnabled = true;
+                Utility.HaltThread(num2 + 100);
+                if (!doTut)
+                {
+                    Programs.typeOut(LocaleTerms.Loc("For A Command List, type \"help\""), os, 50);
+                    Utility.HaltThread(num2 + 100);
+                }
+                os.write("");
+                Utility.HaltThread(num2);
+                os.write("");
+                Utility.HaltThread(num2);
+                os.write("");
+                Utility.HaltThread(num2);
+                os.write("\n");
+                if (doTut)
+                {
+                    os.write(LocaleTerms.Loc("Launching Tutorial..."));
+                    os.launchExecutable("Tutorial.exe", PortExploits.crackExeData[1], -1, null, null);
+                    Settings.initShowsTutorial = false;
+                    AdvancedTutorial advancedTutorial = null;
+                    for (int i = 0; i < os.exes.Count; i++)
+                    {
+                        advancedTutorial = (os.exes[i] as AdvancedTutorial);
+                        if (advancedTutorial != null)
+                            break;
+                    }
+                    if (advancedTutorial != null)
+                        advancedTutorial.CanActivateFirstStep = false;
+                    int num3 = 100;
+                    for (int i = 0; i < num3; i++)
+                    {
+                        double num4 = (double)i / num3;
+                        if (Utils.random.NextDouble() < num4)
+                        {
+                            os.ram.visible = true;
+                            os.netMap.visible = false;
+                            os.terminal.visible = false;
+                        }
+                        else
+                        {
+                            os.ram.visible = false;
+                            os.netMap.visible = false;
+                            os.terminal.visible = true;
+                        }
+                        Utility.HaltThread(16, true);
+                    }
+                    os.ram.visible = true;
+                    os.netMap.visible = false;
+                    os.terminal.visible = false;
+                    if (advancedTutorial != null)
+                        advancedTutorial.CanActivateFirstStep = true;
+                }
+                else
+                {
+                    os.runCommand("connect " + os.thisComputer.ip);
+                    if (doTut && !Hacknet.OS.WillLoadSave && !os.Flags.HasFlag("ExtensionFirstBootComplete"))
+                    {
+                        ExtensionLoader.SendStartingEmailForActiveExtensionNextFrame(os);
+                        float num5 = 2.2f;
+                        int num3 = (int)(60f * num5);
+                        for (int i = 0; i < num3; i++)
+                        {
+                            double num4 = (double)i / num3;
+                            os.ram.visible = (Utils.random.NextDouble() < num4);
+                            os.netMap.visible = (Utils.random.NextDouble() < num4);
+                            os.display.visible = (Utils.random.NextDouble() < num4);
+                            Utility.HaltThread(16, true);
+                        }
+                        os.terminal.visible = true;
+                        os.display.visible = true;
+                        os.netMap.visible = true;
+                        os.ram.visible = true;
+                        os.terminal.visible = true;
+                        os.display.inputLocked = false;
+                        os.netMap.inputLocked = false;
+                        os.ram.inputLocked = false;
+                        os.Flags.AddFlag("ExtensionFirstBootComplete");
+                    }
+                }
+                Utility.HaltThread(500, true);
+                if (wasRecursed)
+                {
+                    os.ram.visible = true;
+                    os.ram.inputLocked = false;
+                    os.display.visible = true;
+                    os.display.inputLocked = false;
+                    os.netMap.visible = true;
+                    os.netMap.inputLocked = false;
+                }
+                else if (doTut)
+                {
+                    os.ram.visible = true;
+                    os.ram.inputLocked = false;
+                    os.display.visible = true;
+                    os.display.inputLocked = false;
+                    os.netMap.visible = true;
+                    os.netMap.inputLocked = false;
+                }
+                else if (!os.ram.visible)
+                {
+                    wasRecursed = true;
+                    OverrideFirstTimeInit(e);
+                }
             }
         }
     }
