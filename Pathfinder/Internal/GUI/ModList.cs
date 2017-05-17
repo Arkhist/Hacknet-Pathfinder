@@ -48,7 +48,7 @@ namespace Pathfinder.Internal.GUI
                                 Exception e;
                                 foreach (var m in Pathfinder.LoadMod(loc, out e))
                                 {
-                                    if (e != null) throw e;
+                                    if (e != null) break;
                                     m.LoadContent();
                                 }
                             } catch (Exception) {}
@@ -73,8 +73,7 @@ namespace Pathfinder.Internal.GUI
             int index = 0;
             foreach (var id in Pathfinder.LoadedModIdentifiers)
             {
-                UnloadButtons[id].X = 500;
-                UnloadButtons[id].Y = (int)yPos;
+                UnloadButtons[id].Position = new Vector2(500, yPos);
                 UnloadButtons[id].Draw();
                 Gui.TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + id, GuiData.smallfont, Color.White);
                 yPos += 30;
@@ -87,8 +86,7 @@ namespace Pathfinder.Internal.GUI
             index = 0;
             foreach (var id in Pathfinder.UnloadedModIdentifiers)
             {
-                LoadButtons[id].X = 500;
-                LoadButtons[id].Y = (int)yPos;
+                LoadButtons[id].Position = new Vector2(500, yPos);
                 LoadButtons[id].Draw();
                 Gui.TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + id, GuiData.smallfont, Color.White);
                 yPos += 30;

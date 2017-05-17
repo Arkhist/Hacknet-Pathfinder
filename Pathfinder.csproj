@@ -148,6 +148,8 @@
     <Compile Include="Pathfinder\Internal\PlaceholderExtensionInfo.cs" />
     <Compile Include="Pathfinder\Util\Attribute\EventPriorityAttribute.cs" />
     <Compile Include="Pathfinder\Util\Attribute\LoadOrderAttribute.cs" />
+    <Compile Include="Pathfinder\Util\Vector.cs" />
+    <Compile Include="Pathfinder\Util\ConvertAny.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

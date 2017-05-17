@@ -2,6 +2,7 @@
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Pathfinder.Util;
 using Gui = Hacknet.Gui;
 
 namespace Pathfinder.GUI
@@ -26,6 +27,24 @@ namespace Pathfinder.GUI
         public T Y { get; set; }
         public T Width { get; set; }
         public T Height { get; set; }
+
+        public Vector2<T> Position
+        {
+            get { return new Vector2<T>(X, Y); }
+            set { X = value.X; Y = value.Y; }
+        }
+
+        public Vector2<T> Size
+        {
+            get { return new Vector2<T>(Width, Height); }
+            set { Width = value.X; Height = value.Y; }
+        }
+
+        public Vector4<T> Rectangle
+        {
+            get { return new Vector4<T>(X, Y, Width, Height); }
+            set { X = value.X; Y = value.Y; Width = value.Z; Height = value.W; }
+        }
 
         public abstract bool HandleInteraction();
 

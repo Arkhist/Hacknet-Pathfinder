@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Hacknet;
+using Hacknet.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.Util;
@@ -11,6 +12,11 @@ namespace Pathfinder.Extension
     public static class Handler
     {
         public static Info ActiveInfo { get; internal set; }
+        public static ExtensionInfo ActiveExtension
+        {
+            get { return ExtensionLoader.ActiveExtensionInfo; }
+            set { ExtensionLoader.ActiveExtensionInfo = value; }
+        }
 
         internal static Dictionary<string, Info> idToInfo = new Dictionary<string, Info>();
         internal static Dictionary<string, Texture2D> idToLogo = new Dictionary<string, Texture2D>();

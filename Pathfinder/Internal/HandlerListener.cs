@@ -25,7 +25,7 @@ namespace Pathfinder.Internal
                     throw ex;
                 }
             }
-            else if (e.Arguments[0].ToLower() == "help" || e.Arguments[0].ToLower() == "man" || e.Arguments[0] == "?")
+            else if (e[0].ToLower() == "help" || e[0].ToLower() == "man" || e[0] == "?")
             {
                 e.IsCancelled = true;
                 int page = 0;
@@ -86,7 +86,7 @@ namespace Pathfinder.Internal
 
         public static void ExecutableListInsertListener(CommandSentEvent e)
         {
-            if (e.Arguments[0].Equals("exe"))
+            if (e[0] == "exe")
             {
                 e.IsCancelled = true;
                 e.Disconnects = false;

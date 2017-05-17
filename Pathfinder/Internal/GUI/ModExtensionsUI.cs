@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using Hacknet;
 using Hacknet.Effects;
-using Hacknet.Extensions;
 using Hacknet.Factions;
 using Hacknet.Misc;
 using Hacknet.Modules.Overlays;
@@ -50,7 +49,7 @@ namespace Pathfinder.Internal.GUI
                     {
                         Extension.Handler.ActiveInfo = Extension.Handler.idToInfo[pair.Key];
                         ms.ExtensionInfoToShow = new PlaceholderExtensionInfo(Extension.Handler.ActiveInfo);
-                        ExtensionLoader.ActiveExtensionInfo = ms.ExtensionInfoToShow;
+                        Extension.Handler.ActiveExtension = ms.ExtensionInfoToShow;
                         ms.ReportOverride = null;
                         ms.SaveScreen.ProjectName = Extension.Handler.ActiveInfo.Name;
                         SaveFileManager.Init();
@@ -190,8 +189,7 @@ namespace Pathfinder.Internal.GUI
                 var v = e.ButtonPosition;
                 e.IsCancelled = true;
                 e.ButtonPosition = e.ExtensionMenuScreen.DrawExtensionList(e.ButtonPosition, e.Rectangle, e.SpriteBatch);
-                returnButton.X = (int)e.ButtonPosition.X;
-                returnButton.Y = (int)e.ButtonPosition.Y;
+                returnButton.Position = e.ButtonPosition;
                 if (returnButton.Draw())
                     e.ExtensionMenuScreen.ExitExtensionsScreen();
             }
