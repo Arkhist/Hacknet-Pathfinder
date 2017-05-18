@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 using Pathfinder.GUI;
+using Pathfinder.Util;
 using Gui = Hacknet.Gui;
 
 namespace Pathfinder.Internal.GUI
@@ -43,15 +45,24 @@ namespace Pathfinder.Internal.GUI
                     DrawFinish = r =>
                     {
                         if (r.JustReleased)
+                        {
+                            Type modType = null;
                             try
                             {
-                                Exception e;
-                                foreach (var m in Pathfinder.LoadMod(loc, out e))
-                                {
-                                    if (e != null) break;
-                                    m.LoadContent();
-                                }
-                            } catch (Exception) {}
+                                var loadedMod = Pathfinder.LoadMod(loc, id)[0];
+                                modType = loadedMod.GetType();
+                                Pathfinder.CurrentMod = loadedMod;
+                                loadedMod?.LoadContent();
+                                Pathfinder.CurrentMod = null;
+                            }
+                            catch (Exception e)
+                            {
+                                Logger.Error("Mod '{0}' of file '{1}' failed to load:\n\t{2}",
+                                             modType.FullName,
+                                             Path.GetFileName(modType.Assembly.Location),
+                                             e);
+                            }
+                        }
                     }
                 };
             }

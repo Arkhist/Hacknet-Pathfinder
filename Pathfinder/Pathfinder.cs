@@ -241,57 +241,55 @@ namespace Pathfinder
             CurrentMod = null;
         }
 
-        internal static IPathfinderMod LoadMod(Type modType)
+        internal static IPathfinderMod CreateMod(Type modType) => (IPathfinderMod)Activator.CreateInstance(modType);
+
+        internal static IPathfinderMod LoadMod(IPathfinderMod mod)
         {
+            if (mod == null) return null;
+            var modType = mod.GetType();
             string name = null;
-            IPathfinderMod modInstance = null;
             try
             {
-                modInstance = (IPathfinderMod)Activator.CreateInstance(modType);
-                CurrentMod = modInstance;
-                var methodInfo = modType.GetProperty("Identifier").GetGetMethod();
-                if (methodInfo == null)
-                    throw new NotSupportedException("Get Property 'Identifier' doesn't exist, mod '"
-                                                    + Path.GetFileName(modType.Assembly.Location) + "' is invalid");
-                name = ((string)methodInfo.Invoke(modInstance, null)).Trim();
+                CurrentMod = mod;
+                name = mod.Identifier.Trim();
                 if (!IsModIdentifierValid(name, true))
                     return null;
                 Logger.Info("Loading mod '{0}'", name);
 
-                mods.Add(name, modInstance);
+                mods.Add(name, mod);
 
-                modInstance.Load();
+                mod.Load();
             }
             catch (Exception ex)
             {
                 Logger.Error("Mod '{0}' of file '{1}' failed to load:\n\t{2}", modType.FullName, Path.GetFileName(modType.Assembly.Location), ex);
-                if (mods.ContainsKey(name))
-                    mods.Remove(name);
+                UnloadMod(mod);
+                unloadedMods.Remove(mod.Identifier);
+                return null;
             }
             CurrentMod = null;
-            return modInstance;
+            return mod;
         }
 
-        internal static List<IPathfinderMod> LoadMod(string path, out Exception e)
+        internal static IPathfinderMod LoadMod(Type modType) => LoadMod(CreateMod(modType));
+
+        internal static List<IPathfinderMod> LoadMod(string path, string modId = null)
         {
             var result = new List<IPathfinderMod>();
             foreach (Type t in Assembly.LoadFile(path).GetModTypes())
             {
-                try
-                {
-                    var mod = LoadMod(t);
-                    unloadedMods.Remove(mod?.Identifier);
-                    result.Add(mod);
-                }
-                catch(Exception ex) { e = ex; return result; }
+                var mod = CreateMod(t);
+                if (modId != null && mod?.Identifier != modId) continue;
+                LoadMod(mod);
+                unloadedMods.Remove(mod?.Identifier);
+                result.Add(mod);
             }
-            e = null;
             return result;
         }
 
         internal static void TryLoadMod(string path)
         {
-            try { Exception e; LoadMod(path, out e); throw e; }
+            try { LoadMod(path); }
             catch (Exception ex) { Logger.Error("Mod file '{0}' failed to load:\n\t{1}", Path.GetFileName(path), ex); }
         }
 
