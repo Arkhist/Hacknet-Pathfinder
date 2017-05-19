@@ -8,6 +8,8 @@ using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 using Pathfinder.Util;
+using Pathfinder.Util.Attribute;
+using ALoadOrderAttribute = Pathfinder.Util.Attribute.LoadOrderAttribute;
 
 namespace Pathfinder
 {
@@ -19,8 +21,9 @@ namespace Pathfinder
 
         class InvalidIdException : ArgumentException { public InvalidIdException(string msg) : base(msg) {} }
 
-        private static Dictionary<string, IPathfinderMod> mods = new Dictionary<string, IPathfinderMod>();
-        private static List<string> unloadedMods = new List<string>();
+        private static Dictionary<string, IPathfinderMod> LoadedMods = new Dictionary<string, IPathfinderMod>();
+        private static List<string> UnloadedModIds = new List<string>();
+        private static Dictionary<string, List<IPathfinderMod>> ModIdReliance = new Dictionary<string, List<IPathfinderMod>>();
 
         public static readonly string ModFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                                                           + Path.DirectorySeparatorChar + "Mods";
@@ -29,13 +32,13 @@ namespace Pathfinder
 
         public static IPathfinderMod CurrentMod { get; internal set; }
 
-        internal static Dictionary<string, IPathfinderMod> OperationalMods => mods.Where(pair => !(pair.Value is ModPlaceholder))
+        internal static Dictionary<string, IPathfinderMod> OperationalMods => LoadedMods.Where(pair => !(pair.Value is ModPlaceholder))
                                                                                   .ToDictionary(pair => pair.Key, pair => pair.Value);
 
         static Pathfinder()
         {
-            mods.Add("Hacknet", new ModPlaceholder("Hacknet"));
-            mods.Add("Pathfinder", new ModPlaceholder("Pathfinder"));
+            LoadedMods.Add("Hacknet", new ModPlaceholder("Hacknet"));
+            LoadedMods.Add("Pathfinder", new ModPlaceholder("Pathfinder"));
         }
 
         internal static void Initialize()
@@ -48,7 +51,7 @@ namespace Pathfinder
                && latestVersion > Version)
                 EventManager.RegisterListener<DrawMainMenuEvent>(DrawNewReleaseGraphic);*/
 
-            EventManager.RegisterListener<CommandSentEvent>(Internal.ExecutionOverride.OverwriteProbe);
+            EventManager.RegisterListener<CommandSentEvent>(Internal.ExecutionOverride.OverrideCommands);
             EventManager.RegisterListener<ExecutablePortExecuteEvent>(Internal.ExecutionOverride.OverridePortHack);
 
             EventManager.RegisterListener<CommandSentEvent>(Internal.HandlerListener.CommandListener);
@@ -61,7 +64,6 @@ namespace Pathfinder
             EventManager.RegisterListener<OSLoadContentEvent>(Internal.GUI.ModExtensionsUI.LoadContentForModExtensionListener);
 
             EventManager.RegisterListener<ExecutableExecuteEvent>(Internal.HandlerListener.ExecutableListener);
-            EventManager.RegisterListener<CommandSentEvent>(Internal.HandlerListener.ExecutableListInsertListener);
 
             EventManager.RegisterListener<OSSaveWriteEvent>(ManageSaveXml);
 
@@ -87,7 +89,7 @@ namespace Pathfinder
                     catch (Exception e) { Logger.Error("Loading Dependency '{0}' failed: \n\t{1}", dll, e); }
 
             foreach (var dll in Directory.GetFiles(ModFolderPath + separator, "*.dll"))
-                TryLoadMod(dll);
+                TryLoadMods(dll);
         }
 
         internal static IEnumerable<Type> GetModTypes(this Assembly asm) =>
@@ -98,7 +100,7 @@ namespace Pathfinder
         /// </summary>
         /// <returns><c>true</c>, if mod is loaded, <c>false</c> otherwise.</returns>
         /// <param name="id">Mod Identifier.</param>
-        public static bool IsModLoaded(string id) => mods.ContainsKey(id);
+        public static bool IsModLoaded(string id) => LoadedMods.ContainsKey(id);
 
         /// <summary>
         /// Determines whether a mod identifier is valid
@@ -143,7 +145,7 @@ namespace Pathfinder
 
         internal static IPathfinderMod GetModByAssembly(Assembly asm)
         {
-            foreach (var pair in mods)
+            foreach (var pair in LoadedMods)
                 if (pair.Value.GetType().Assembly == asm)
                     return pair.Value;
             return null;
@@ -152,7 +154,7 @@ namespace Pathfinder
         internal static IPathfinderMod GetMod(string id)
         {
             IPathfinderMod mod;
-            mods.TryGetValue(id, out mod);
+            LoadedMods.TryGetValue(id, out mod);
             return mod;
         }
 
@@ -177,7 +179,7 @@ namespace Pathfinder
         /// Gets the unloaded mod identifiers.
         /// </summary>
         /// <value>The unloaded mod identifiers.</value>
-        public static List<string> UnloadedModIdentifiers => unloadedMods.ToList();
+        public static List<string> UnloadedModIdentifiers => UnloadedModIds.ToList();
 
         internal static void ManageSaveXml(OSSaveWriteEvent e)
         {
@@ -205,39 +207,51 @@ namespace Pathfinder
             if (mod == null || mod is ModPlaceholder) return;
 
             CurrentMod = mod;
+            var name = Utility.ActiveModId;
 
-            foreach (var e in Extension.Handler.idToInfo.ToArray())
-                if (e.Key.IndexOf('.') != -1 && e.Key.Remove(e.Key.IndexOf('.')) == mod.Identifier)
+            var attrib = mod.GetType().GetFirstAttribute<ALoadOrderAttribute>();
+            if (attrib != null)
+                foreach (var ident in attrib.afterIds)
+                {
+                    var id = ident.GetCleanId();
+                    if (LoadedMods.ContainsKey(id)
+                        && LoadedMods[id].GetType().GetFirstAttribute<AllowOrderUnloadAttribute>()?.Allowed == true)
+                        UnloadMod(LoadedMods[id]);
+                }
+
+            foreach (var e in Extension.Handler.ModExtensions.ToArray())
+                if (e.Key.IndexOf('.') != -1 && e.Key.Remove(e.Key.IndexOf('.')) == name)
                     Extension.Handler.UnregisterExtension(e.Key);
 
-            foreach (var e in Executable.Handler.idToInterface.ToArray())
-                if (e.Key.IndexOf('.') != -1 && e.Key.Remove(e.Key.IndexOf('.')) == mod.Identifier)
+            foreach (var e in Executable.Handler.ModExecutables.ToArray())
+                if (e.Key.IndexOf('.') != -1 && e.Key.Remove(e.Key.IndexOf('.')) == name)
                     Executable.Handler.UnregisterExecutable(e.Key);
 
-            foreach (var d in Daemon.Handler.idToInterface.ToArray())
-                if (d.Key.IndexOf('.') != -1 && d.Key.Remove(d.Key.IndexOf('.')) == mod.Identifier)
+            foreach (var d in Daemon.Handler.ModDaemons.ToArray())
+                if (d.Key.IndexOf('.') != -1 && d.Key.Remove(d.Key.IndexOf('.')) == name)
                     Daemon.Handler.UnregisterDaemon(d.Key);
 
-            foreach (var c in Command.Handler.modToCommands[mod.Identifier].ToArray())
+            foreach (var c in Command.Handler.ModIdToCommandKeyList[name].ToArray())
                 Command.Handler.UnregisterCommand(c);
 
-            foreach (var g in Mission.Handler.goals.ToArray())
-                if (g.Key.IndexOf('.') != -1 && g.Key.Remove(g.Key.IndexOf('.')) == mod.Identifier)
+            foreach (var g in Mission.Handler.ModGoals.ToArray())
+                if (g.Key.IndexOf('.') != -1 && g.Key.Remove(g.Key.IndexOf('.')) == name)
                     Mission.Handler.UnregisterMissionGoal(g.Key);
 
-            foreach (var m in Mission.Handler.missions.ToArray())
-                if (m.Key.IndexOf('.') != -1 && m.Key.Remove(m.Key.IndexOf('.')) == mod.Identifier)
+            foreach (var m in Mission.Handler.ModMissions.ToArray())
+                if (m.Key.IndexOf('.') != -1 && m.Key.Remove(m.Key.IndexOf('.')) == name)
                     Mission.Handler.UnregisterMission(m.Key);
 
             var events = new List<Tuple<Action<PathfinderEvent>, string, string, int>>();
             foreach (var v in EventManager.eventListeners.Values)
-                events.AddRange(v.FindAll(t => t.Item3 == mod.Identifier));
-            foreach (var e in events)
-                EventManager.UnregisterListener(e.Item1);
+                events.AddRange(v.FindAll(t => t.Item3 == name));
+            foreach(var list in EventManager.eventListeners.ToArray())
+                foreach (var e in events)
+                    list.Value.Remove(e);
 
             mod.Unload();
-            unloadedMods.Add(mod.Identifier);
-            mods.Remove(mod.Identifier);
+            UnloadedModIds.Add(name);
+            LoadedMods.Remove(name);
             CurrentMod = null;
         }
 
@@ -247,24 +261,52 @@ namespace Pathfinder
         {
             if (mod == null) return null;
             var modType = mod.GetType();
-            string name = null;
+            var attrib = modType.GetFirstAttribute<ALoadOrderAttribute>();
+            string name = mod.GetCleanId();
+            if (attrib != null)
+            {
+                foreach (var pair in ModIdReliance.ToArray())
+                {
+                    var i = pair.Value.FindIndex(m => m.GetCleanId() == name);
+                    if (i != -1)
+                        ModIdReliance[pair.Key][i] = mod;
+                }
+                foreach (var id in attrib.beforeIds)
+                {
+                    if (!ModIdReliance.ContainsKey(id.GetCleanId()))
+                        ModIdReliance.Add(id, new List<IPathfinderMod>());
+                    if(!ModIdReliance[id].Contains(mod))
+                        ModIdReliance[id].Add(mod);
+                }
+                foreach (var id in attrib.afterIds)
+                {
+                    if (!ModIdReliance.ContainsKey(name))
+                        ModIdReliance.Add(name, new List<IPathfinderMod>());
+                    if(ModIdReliance[name].FindIndex(m => m.GetCleanId() == id.GetCleanId()) != -1)
+                        ModIdReliance[name].Add(new ModPlaceholder(id.GetCleanId()));
+                }
+                if (attrib.beforeIds.Count > 0)
+                    return mod;
+            }
             try
             {
-                CurrentMod = mod;
-                name = mod.Identifier.Trim();
                 if (!IsModIdentifierValid(name, true))
-                    return null;
+                    return null; // never reached due to throw
                 Logger.Info("Loading mod '{0}'", name);
-
-                mods.Add(name, mod);
-
+                UnloadedModIds.Remove(name);
+                LoadedMods.Add(name, mod);
+                CurrentMod = mod;
                 mod.Load();
+                if (ModIdReliance.ContainsKey(name))
+                    foreach (var internalMod in ModIdReliance[name])
+                        LoadMod(internalMod);
             }
             catch (Exception ex)
             {
                 Logger.Error("Mod '{0}' of file '{1}' failed to load:\n\t{2}", modType.FullName, Path.GetFileName(modType.Assembly.Location), ex);
                 UnloadMod(mod);
-                unloadedMods.Remove(mod.Identifier);
+                UnloadedModIds.Remove(name);
+                CurrentMod = null;
                 return null;
             }
             CurrentMod = null;
@@ -273,23 +315,24 @@ namespace Pathfinder
 
         internal static IPathfinderMod LoadMod(Type modType) => LoadMod(CreateMod(modType));
 
-        internal static List<IPathfinderMod> LoadMod(string path, string modId = null)
+
+        internal static List<IPathfinderMod> LoadMods(string path, string modId = null)
         {
             var result = new List<IPathfinderMod>();
             foreach (Type t in Assembly.LoadFile(path).GetModTypes())
             {
                 var mod = CreateMod(t);
-                if (modId != null && mod?.Identifier != modId) continue;
+                if (modId != null && mod?.Identifier.Trim() != modId) continue;
                 LoadMod(mod);
-                unloadedMods.Remove(mod?.Identifier);
+                UnloadedModIds.Remove(mod?.Identifier.Trim());
                 result.Add(mod);
             }
             return result;
         }
 
-        internal static void TryLoadMod(string path)
+        internal static void TryLoadMods(string path)
         {
-            try { LoadMod(path); }
+            try { LoadMods(path); }
             catch (Exception ex) { Logger.Error("Mod file '{0}' failed to load:\n\t{1}", Path.GetFileName(path), ex); }
         }
 

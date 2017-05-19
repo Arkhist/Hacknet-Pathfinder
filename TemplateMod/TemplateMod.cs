@@ -50,7 +50,10 @@ namespace TemplateMod
 
         public void LoadContent()
         {
-            Logger.Info("command {0} added", Command.Handler.RegisterCommand("templateModVersion", Commands.TemplateModVersion, autoComplete: true));
+            Logger.Info("command {0} added", Command.Handler.RegisterCommand("templateModVersion",
+                                                                             Commands.TemplateModVersion,
+                                                                             "does some stuff",
+                                                                             true));
             Executable.Handler.RegisterExecutable("TempExe", new TempExe());
             if (Port.Handler.RegisterPort("tempPort", p) != null)
                 Logger.Info("added tempPort to game");

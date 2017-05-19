@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Pathfinder.Util;
 
@@ -6,8 +6,8 @@ namespace Pathfinder.Mission
 {
     public static class Handler
     {
-        internal static Dictionary<string, IGoal> goals = new Dictionary<string, IGoal>();
-        internal static Dictionary<string, IInterface> missions = new Dictionary<string, IInterface>();
+        internal static Dictionary<string, IGoal> ModGoals = new Dictionary<string, IGoal>();
+        internal static Dictionary<string, IInterface> ModMissions = new Dictionary<string, IInterface>();
 
         public static string RegisterMissionGoal(string id, IGoal inter)
         {
@@ -19,10 +19,10 @@ namespace Pathfinder.Mission
                            Utility.ActiveModId,
                            inter.GetType().FullName,
                            id);
-            if (goals.ContainsKey(id))
+            if (ModGoals.ContainsKey(id))
                 return null;
 
-            goals.Add(id, inter);
+            ModGoals.Add(id, inter);
             return id;
         }
 
@@ -32,9 +32,9 @@ namespace Pathfinder.Mission
         internal static bool UnregisterMissionGoal(string id)
         {
             id = Utility.GetId(id);
-            if (!goals.ContainsKey(id))
+            if (!ModGoals.ContainsKey(id))
                 return true;
-            return goals.Remove(id);
+            return ModGoals.Remove(id);
         }
 
         public static string RegisterMission(string id, IInterface inter)
@@ -47,10 +47,10 @@ namespace Pathfinder.Mission
                            Utility.ActiveModId,
                            inter.GetType().FullName,
                            id);
-            if (goals.ContainsKey(id))
+            if (ModGoals.ContainsKey(id))
                 return null;
 
-            missions.Add(id, inter);
+            ModMissions.Add(id, inter);
             return id;
         }
 
@@ -60,20 +60,20 @@ namespace Pathfinder.Mission
         internal static bool UnregisterMission(string id)
         {
             id = Utility.GetId(id);
-            if (!missions.ContainsKey(id))
+            if (!ModMissions.ContainsKey(id))
                 return true;
-            return missions.Remove(id);
+            return ModMissions.Remove(id);
         }
 
-        public static bool ContainsMission(string id) => missions.ContainsKey(Utility.GetId(id));
-        public static bool ContainsMissionGoal(string id) => goals.ContainsKey(Utility.GetId(id));
+        public static bool ContainsMission(string id) => ModMissions.ContainsKey(Utility.GetId(id));
+        public static bool ContainsMissionGoal(string id) => ModGoals.ContainsKey(Utility.GetId(id));
 
         public static IInterface GetMissionById(string id) => GetMissionById(ref id);
         public static IInterface GetMissionById(ref string id)
         {
             id = Utility.GetId(id);
             IInterface i;
-            if (missions.TryGetValue(id, out i))
+            if (ModMissions.TryGetValue(id, out i))
                 return i;
             return null;
         }
@@ -83,7 +83,7 @@ namespace Pathfinder.Mission
         {
             id = Utility.GetId(id);
             IGoal i;
-            if (goals.TryGetValue(id, out i))
+            if (ModGoals.TryGetValue(id, out i))
                 return i;
             return null;
         }

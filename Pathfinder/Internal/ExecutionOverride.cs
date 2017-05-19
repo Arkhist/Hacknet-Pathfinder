@@ -49,7 +49,7 @@ namespace Pathfinder.Internal
             }
         }
 
-        public static void OverwriteProbe(CommandSentEvent e)
+        public static void OverrideCommands(CommandSentEvent e)
         {
             if (e[0].ToLower() == "probe" || e[0].ToLower() == "nmap")
             {
@@ -67,7 +67,7 @@ namespace Pathfinder.Internal
                 os.Write("\nProbe Complete - Open ports:\n").Write("---------------------------------");
                 if (Port.Instance.compToInst.ContainsKey(c)) foreach (var ins in Port.Instance.compToInst[c])
                 {
-                    os.WriteF("Port#: {0} - {1}{2}",ins.Port.PortDisplay, ins.Port.PortName, (ins.Unlocked ? "OPEN" : ""));
+                    os.WriteF("Port#: {0} - {1}{2}", ins.Port.PortDisplay, ins.Port.PortName, (ins.Unlocked ? "OPEN" : ""));
                     Thread.Sleep(120);
                 }
                 for (i = 0; i < c.ports.Count; i++)
@@ -83,6 +83,61 @@ namespace Pathfinder.Internal
                     os.WriteF("Proxy Detected : {0}", (c.proxyActive ? "ACTIVE" : "INACTIVE"));
                 if (c.firewall != null)
                     os.WriteF("Firewall Detected : {0}", (c.firewall.solved ? "SOLVED" : "ACTIVE"));
+            }
+            if (e[0].ToLower() == "help" || e[0].ToLower() == "man" || e[0] == "?")
+            {
+                e.IsCancelled = true;
+                int page = 0;
+                if (e.Arguments.Count > 1)
+                {
+                    try
+                    {
+                        page = Convert.ToInt32(e[1]);
+                        if (page > Command.Help.PageCount)
+                        {
+                            e.OS.Write("Invalid Page Number - Displaying First Page");
+                            page = 0;
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        e.OS.Write("Invalid Page Number");
+                    }
+                    catch (OverflowException)
+                    {
+                        e.OS.Write("Invalid Page Number");
+                    }
+                }
+                e.OS.Write(Command.Help.GetPageString(page));
+                e.Disconnects = false;
+            }
+            if (e[0] == "exe")
+            {
+                e.IsCancelled = true;
+                e.Disconnects = false;
+                var os = e.OS;
+                var folder = os.thisComputer.files.root.searchForFolder("bin");
+                os.write("Available Executables:\n");
+                os.write("PortHack");
+                os.write("ForkBomb");
+                os.write("Shell");
+                os.write("Tutorial");
+                foreach (var file in folder.files)
+                {
+                    bool alreadyHandled = false;
+                    var name = file.name.Contains(".") ? file.name.Remove(file.name.LastIndexOf('.')) : file.name;
+                    foreach (var num in PortExploits.exeNums)
+                        if (file.data == PortExploits.crackExeData[num]
+                            || file.data == PortExploits.crackExeDataLocalRNG[num])
+                        {
+                            os.write(name);
+                            alreadyHandled = true;
+                            break;
+                        }
+                    if (!alreadyHandled && Executable.Handler.IsFileDataForModExe(file.data))
+                        os.write(name);
+                }
+                os.write(" ");
             }
         }
 

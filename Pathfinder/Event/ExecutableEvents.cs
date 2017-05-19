@@ -30,7 +30,7 @@ namespace Pathfinder.Event
         {
             get
             {
-                if (Arguments.Count >= index)
+                if (Arguments.Count <= index)
                     return "";
                 return Arguments[index];
             }

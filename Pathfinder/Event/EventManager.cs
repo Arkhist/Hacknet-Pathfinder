@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Pathfinder.Util;
@@ -32,7 +32,7 @@ namespace Pathfinder.Event
         public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string debugName = null)
         {
             RegisterListener(pathfinderEventType, listener, debugName,
-                             listener.Method.GetPossibleFirstAttribute<EventPriorityAttribute>()?.Priority ?? 0);
+                             listener.Method.GetFirstAttribute<EventPriorityAttribute>()?.Priority ?? 0);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Pathfinder.Event
                              String.IsNullOrEmpty(debugName) ?
                              "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
                              + listener.Method.DeclaringType.FullName + "." + listener.Method.Name : debugName,
-                             listener.Method.GetPossibleFirstAttribute<EventPriorityAttribute>()?.Priority ?? 0);
+                             listener.Method.GetFirstAttribute<EventPriorityAttribute>()?.Priority ?? 0);
         }
 
         /// <summary>
@@ -58,8 +58,9 @@ namespace Pathfinder.Event
         public static void UnregisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener)
         {
             if (!eventListeners.ContainsKey(pathfinderEventType))
-                eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string, string, int>>());
+                return;
             var i = eventListeners[pathfinderEventType].FindIndex(l => l.Item1 == listener);
+            if (i == -1) return;
             eventListeners[pathfinderEventType].RemoveAt(i);
         }
 
@@ -72,13 +73,13 @@ namespace Pathfinder.Event
         {
             Type pathfinderEventType = typeof(T);
             if (!eventListeners.ContainsKey(pathfinderEventType))
-                eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string, string, int>>());
+                return;
             for (var i = eventListeners[pathfinderEventType].Count-1; i >= 0; i--)
             {
                 var l = eventListeners[pathfinderEventType][i];
                 try
                 {
-                    if(l.Item1.Method.Module.ResolveMethod(listener.Method.MetadataToken).Equals(listener.Method))
+                    if (l.Item1.Method.Module.ResolveMethod(listener.Method.MetadataToken).Equals(listener.Method))
                         eventListeners[pathfinderEventType].Remove(l);
                 }
                 catch (Exception) {}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Hacknet;
@@ -46,11 +46,10 @@ namespace Pathfinder.Internal.GUI
                     {
                         if (r.JustReleased)
                         {
-                            Type modType = null;
+                            var modType = mod.GetType();
                             try
                             {
-                                var loadedMod = Pathfinder.LoadMod(loc, id)[0];
-                                modType = loadedMod.GetType();
+                                var loadedMod = Pathfinder.LoadMod(modType);
                                 Pathfinder.CurrentMod = loadedMod;
                                 loadedMod?.LoadContent();
                                 Pathfinder.CurrentMod = null;

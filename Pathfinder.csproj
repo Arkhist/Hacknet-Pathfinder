@@ -150,6 +150,7 @@
     <Compile Include="Pathfinder\Util\Attribute\LoadOrderAttribute.cs" />
     <Compile Include="Pathfinder\Util\Vector.cs" />
     <Compile Include="Pathfinder\Util\ConvertAny.cs" />
+    <Compile Include="Pathfinder\Util\Attribute\AllowOrderUnloadAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

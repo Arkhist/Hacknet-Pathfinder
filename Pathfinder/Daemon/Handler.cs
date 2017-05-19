@@ -6,7 +6,7 @@ namespace Pathfinder.Daemon
 {
     public static class Handler
     {
-        internal static Dictionary<string, IInterface> idToInterface = new Dictionary<string, IInterface>();
+        internal static Dictionary<string, IInterface> ModDaemons = new Dictionary<string, IInterface>();
 
         /// <summary>
         /// Registers a daemon interface.
@@ -24,9 +24,9 @@ namespace Pathfinder.Daemon
                            Utility.ActiveModId,
                            inter.GetType().FullName,
                            id);
-            if (idToInterface.ContainsKey(id))
+            if (ModDaemons.ContainsKey(id))
                 return null;
-            idToInterface.Add(id, inter);
+            ModDaemons.Add(id, inter);
             return id;
         }
 
@@ -36,20 +36,20 @@ namespace Pathfinder.Daemon
         internal static bool UnregisterDaemon(string id)
         {
             id = Utility.GetId(id);
-            if (!idToInterface.ContainsKey(id))
+            if (!ModDaemons.ContainsKey(id))
                 return true;
-            return idToInterface.Remove(id);
+            return ModDaemons.Remove(id);
         }
 
         public static bool ContainsDaemon(string id) => ContainsDaemon(ref id);
-        public static bool ContainsDaemon(ref string id) => idToInterface.ContainsKey(id = Utility.GetId(id));
+        public static bool ContainsDaemon(ref string id) => ModDaemons.ContainsKey(id = Utility.GetId(id));
 
         public static IInterface GetDaemonById(string id) => GetDaemonById(ref id);
         public static IInterface GetDaemonById(ref string id)
         {
             id = Utility.GetId(id);
             IInterface i = null;
-            idToInterface.TryGetValue(id, out i);
+            ModDaemons.TryGetValue(id, out i);
             return i;
         }
     }

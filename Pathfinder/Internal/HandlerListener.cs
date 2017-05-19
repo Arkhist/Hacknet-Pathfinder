@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 using Pathfinder.OS;
+using Pathfinder.Util;
 
 namespace Pathfinder.Internal
 {
@@ -12,7 +13,8 @@ namespace Pathfinder.Internal
         public static void CommandListener(CommandSentEvent e)
         {
             Command.Handler.CommandFunc f;
-            if (Command.Handler.commands.TryGetValue(e.Arguments[0], out f))
+            Logger.Info("command {0} {1}", e[0], e.Arguments.Count);
+            if (Command.Handler.ModCommands.TryGetValue(e[0], out f))
             {
                 e.IsCancelled = true;
                 try
@@ -25,40 +27,13 @@ namespace Pathfinder.Internal
                     throw ex;
                 }
             }
-            else if (e[0].ToLower() == "help" || e[0].ToLower() == "man" || e[0] == "?")
-            {
-                e.IsCancelled = true;
-                int page = 0;
-                if (e.Arguments.Count > 1)
-                {
-                    try
-                    {
-                        page = Convert.ToInt32(e.Arguments[1]);
-                        if (page > Command.Help.PageCount)
-                        {
-                            e.OS.Write("Invalid Page Number - Displaying First Page");
-                            page = 0;
-                        }
-                    }
-                    catch (FormatException)
-                    {
-                        e.OS.Write("Invalid Page Number");
-                    }
-                    catch (OverflowException)
-                    {
-                        e.OS.Write("Invalid Page Number");
-                    }
-                }
-                e.OS.Write(Command.Help.GetPageString(page));
-                e.Disconnects = false;
-            }
         }
 
         public static void DaemonLoadListener(LoadComputerXmlReadEvent e)
         {
             Daemon.IInterface i;
             var id = e.Reader.GetAttribute("interfaceId");
-            if (id != null && Daemon.Handler.idToInterface.TryGetValue(id, out i))
+            if (id != null && Daemon.Handler.ModDaemons.TryGetValue(id, out i))
             {
                 var objs = new Dictionary<string, string>();
                 var storedObjects = e.Reader.GetAttribute("storedObjects")?.Split(' ');
@@ -71,48 +46,16 @@ namespace Pathfinder.Internal
 
         public static void ExecutableListener(ExecutableExecuteEvent e)
         {
-            Executable.IInterface i;
+            Tuple<Executable.IInterface, string> tuple;
             if (Executable.Handler.IsFileDataForModExe(e.ExecutableFile.data)
-                && Executable.Handler.idToInterface.TryGetValue(e.ExecutableFile.data.Split('\n')[0], out i))
+                && Executable.Handler.ModExecutables.TryGetValue(e.ExecutableFile.data.Split('\n')[0], out tuple))
             {
                 int num = e.OS.ram.bounds.Y + RamModule.contentStartOffset;
                 foreach (var exe in e.OS.exes)
                     num += exe.bounds.Height;
                 var location = new Rectangle(e.OS.ram.bounds.X, num, RamModule.MODULE_WIDTH, (int)Hacknet.OS.EXE_MODULE_HEIGHT);
-                e.OS.addExe(Executable.Instance.CreateInstance(i, e.ExecutableFile, e.OS, e.Arguments, location));
+                e.OS.addExe(Executable.Instance.CreateInstance(tuple.Item1, e.ExecutableFile, e.OS, e.Arguments, location));
                 e.Result = Executable.ExecutionResult.StartupSuccess;
-            }
-        }
-
-        public static void ExecutableListInsertListener(CommandSentEvent e)
-        {
-            if (e[0] == "exe")
-            {
-                e.IsCancelled = true;
-                e.Disconnects = false;
-                var os = e.OS;
-                var folder = os.thisComputer.files.root.searchForFolder("bin");
-                os.write("Available Executables:\n");
-                os.write("PortHack");
-                os.write("ForkBomb");
-                os.write("Shell");
-                os.write("Tutorial");
-                foreach (var file in folder.files)
-                {
-                    bool alreadyHandled = false;
-                    var name = file.name.Contains(".") ? file.name.Remove(file.name.LastIndexOf('.')) : file.name;
-                    foreach (var num in PortExploits.exeNums)
-                        if (file.data == PortExploits.crackExeData[num]
-                            || file.data == PortExploits.crackExeDataLocalRNG[num])
-                        {
-                            os.write(name);
-                            alreadyHandled = true;
-                            break;
-                        }
-                    if (!alreadyHandled && Executable.Handler.IsFileDataForModExe(file.data))
-                        os.write(name);
-                }
-                os.write(" ");
             }
         }
     }

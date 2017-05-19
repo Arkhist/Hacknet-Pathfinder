@@ -10,8 +10,8 @@ namespace Pathfinder.Command
     {
         public delegate bool CommandFunc(Hacknet.OS os, List<string> args);
 
-        internal static Dictionary<string, CommandFunc> commands = new Dictionary<string, CommandFunc>();
-        internal static Dictionary<string, List<string>> modToCommands = new Dictionary<string, List<string>>();
+        internal static Dictionary<string, CommandFunc> ModCommands = new Dictionary<string, CommandFunc>();
+        internal static Dictionary<string, List<string>> ModIdToCommandKeyList = new Dictionary<string, List<string>>();
 
         /// <summary>
         /// Adds a command to the game.
@@ -30,12 +30,12 @@ namespace Pathfinder.Command
                 throw new InvalidOperationException("RegisterCommand can not be called outside of mod loading.\nMod Blame: "
                                                     + Utility.GetPreviousStackFrameIdentity());
             Logger.Verbose("Mod {0} is attempting to add command {1}", Utility.ActiveModId, key);
-            if (commands.ContainsKey(key))
+            if (ModCommands.ContainsKey(key))
                 return null;
-            commands.Add(key, function);
-            if (!modToCommands.ContainsKey(Utility.ActiveModId))
-                modToCommands.Add(Utility.ActiveModId, new List<string>());
-            modToCommands[Utility.ActiveModId].Add(key);
+            ModCommands.Add(key, function);
+            if (!ModIdToCommandKeyList.ContainsKey(Utility.ActiveModId))
+                ModIdToCommandKeyList.Add(Utility.ActiveModId, new List<string>());
+            ModIdToCommandKeyList[Utility.ActiveModId].Add(key);
             if (description != null)
                 //Helpfile.help.Add(key + "\n    " + description);
                 Help.help.Add(key, description);
@@ -53,12 +53,12 @@ namespace Pathfinder.Command
 
         internal static bool UnregisterCommand(string key)
         {
-            if (!commands.ContainsKey(key))
+            if (!ModCommands.ContainsKey(key))
                 return true;
-            modToCommands[Utility.ActiveModId].Remove(key);
+            ModIdToCommandKeyList[Utility.ActiveModId].Remove(key);
             Help.help.Remove(key);
             ProgramList.programs.Remove(key);
-            return commands.Remove(key);
+            return ModCommands.Remove(key);
         }
 
         [Obsolete("Use RegisterCommand")]

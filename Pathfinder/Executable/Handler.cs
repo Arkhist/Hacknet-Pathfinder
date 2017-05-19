@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Linq;
 using System.Collections.Generic;
 using Pathfinder.Util;
 
@@ -6,8 +7,8 @@ namespace Pathfinder.Executable
 {
     public static class Handler
     {
-        internal static Dictionary<string, IInterface> idToInterface = new Dictionary<string, IInterface>();
-        private static Dictionary<string, string> idToDataCache = new Dictionary<string, string>();
+        internal static Dictionary<string, Tuple<IInterface, string>> ModExecutables =
+            new Dictionary<string, Tuple<IInterface, string>>();
 
         /// <summary>
         /// Adds an executable interface by id.
@@ -25,15 +26,14 @@ namespace Pathfinder.Executable
                            Utility.ActiveModId,
                            inter.GetType().FullName,
                            id);
-            if (idToInterface.ContainsKey(id))
+            if (ModExecutables.ContainsKey(id))
                 return null;
             var type = inter.GetType();
             var fileData = id + "\nldloc.args\ncall Pathfinder.Executable.Instance [" + type.Assembly.GetName().Name + ".dll]"
                                                      + type.FullName + "=" + id + "()";
-            if (fileData.Length < 1 || idToDataCache.ContainsValue(fileData))
+            if (fileData.Length < 1 || ModExecutables.Any(pair => pair.Value.Item2 == fileData))
                 throw new ArgumentException("created data for '" + id + "' is not unique");
-            idToInterface.Add(id, inter);
-            idToDataCache.Add(id, fileData);
+            ModExecutables.Add(id, new Tuple<IInterface, string>(inter, fileData));
             return id;
         }
 
@@ -43,10 +43,9 @@ namespace Pathfinder.Executable
         internal static bool UnregisterExecutable(string id)
         {
             id = Utility.GetId(id);
-            if (!idToInterface.ContainsKey(id))
+            if (!ModExecutables.ContainsKey(id))
                 return true;
-            idToDataCache.Remove(id);
-            return idToInterface.Remove(id);
+            return ModExecutables.Remove(id);
         }
 
         /// <summary>
@@ -60,7 +59,7 @@ namespace Pathfinder.Executable
             return dataLines.Length >= 3 && dataLines[1] == "ldloc.args"
                             && dataLines[2].StartsWith("call Pathfinder.Executable.Instance", StringComparison.Ordinal)
                             && dataLines[2].EndsWith("=" + dataLines[0] + "()", StringComparison.Ordinal)
-                            && idToDataCache.ContainsKey(dataLines[0]);
+                            && ModExecutables.Any(pair => pair.Value.Item2 == dataLines[0]);
         }
 
         /// <summary>
@@ -74,9 +73,9 @@ namespace Pathfinder.Executable
             if (requiresModId && id.IndexOf('.') == -1)
                 throw new ArgumentException("must contain a mod id and delimter (.)", nameof(id));
             id = Utility.GetId(id, requiresModId, true);
-            string result;
-            if (idToDataCache.TryGetValue(id, out result))
-                return result;
+            Tuple<IInterface, string> result;
+            if (ModExecutables.TryGetValue(id, out result))
+                return result.Item2;
             return null;
         }
 
@@ -87,7 +86,7 @@ namespace Pathfinder.Executable
         /// <param name="inter">The Executable Interface</param>
         public static string GetStandardFileDataBy(IInterface inter)
         {
-            foreach (var pair in idToInterface)
+            foreach (var pair in ModExecutables)
                 if (pair.Value == inter)
                     return GetStandardFileDataBy(pair.Key);
             return null;

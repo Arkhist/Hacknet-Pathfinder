@@ -43,7 +43,10 @@ namespace Pathfinder.Util
         /// Gets the active mod's identifier.
         /// </summary>
         /// <value>The active mod identifier or Pathfinder if there is no active mod.</value>
-        public static string ActiveModId => Pathfinder.CurrentMod?.Identifier ?? "Pathfinder";
+        public static string ActiveModId => Pathfinder.CurrentMod?.GetCleanId() ?? "Pathfinder";
+
+        public static string GetCleanId(this string id) => id.Trim();
+        public static string GetCleanId(this IPathfinderMod mod) => mod.Identifier.GetCleanId();
 
         /// <summary>
         /// Retrieves an identifier for the input.
@@ -108,7 +111,7 @@ namespace Pathfinder.Util
         [Obsolete("Use CurrentComputer Property")]
         public static Hacknet.Computer GetCurrentComputer() => CurrentComputer;
 
-        public static int GenerateRandomIPSection(Random rand = null) => (rand??pathfinderRng).Next(254) + 1;
+        public static int GenerateRandomIPSection(Random rand = null) => (rand ?? pathfinderRng).Next(254) + 1;
         public static string GenerateRandomIP(Random rand = null) =>
             GenerateRandomIPSection(rand) + "." + GenerateRandomIPSection(rand)
                 + "." + GenerateRandomIPSection(rand) + "." + GenerateRandomIPSection(rand);
@@ -132,10 +135,17 @@ namespace Pathfinder.Util
             return result;
         }
 
-        public static T GetPossibleFirstAttribute<T>(this MethodInfo info, bool inherit = false) where T : System.Attribute
+        public static T GetFirstAttribute<T>(this MethodInfo info, bool inherit = false) where T : System.Attribute
         {
             if (info.GetCustomAttributes(inherit).Length > 0)
                 return info.GetCustomAttributes(typeof(T), inherit)[0] as T;
+            return null;
+        }
+
+        public static T GetFirstAttribute<T>(this Type type, bool inherit = false) where T : System.Attribute
+        {
+            if (type.GetCustomAttributes(inherit).Length > 0)
+                return type.GetCustomAttributes(typeof(T), inherit)[0] as T;
             return null;
         }
     }

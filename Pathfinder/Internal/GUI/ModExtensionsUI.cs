@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Hacknet;
@@ -39,15 +39,14 @@ namespace Pathfinder.Internal.GUI
 
         private static void LoadButtons(ref Vector2 pos, ExtensionsMenuScreen ms)
         {
-            foreach (var pair in Extension.Handler.idToButton)
+            foreach (var pair in Extension.Handler.ModExtensions)
             {
-                pair.Value.X = (int)pos.X;
-                pair.Value.Y = (int)pos.Y;
-                pair.Value.DrawFinish = r =>
+                pair.Value.Item3.Position = pos;
+                pair.Value.Item3.DrawFinish = r =>
                 {
                     if (r.JustReleased)
                     {
-                        Extension.Handler.ActiveInfo = Extension.Handler.idToInfo[pair.Key];
+                        Extension.Handler.ActiveInfo = Extension.Handler.ModExtensions[pair.Key].Item1;
                         ms.ExtensionInfoToShow = new PlaceholderExtensionInfo(Extension.Handler.ActiveInfo);
                         Extension.Handler.ActiveExtension = ms.ExtensionInfoToShow;
                         ms.ReportOverride = null;
@@ -72,8 +71,8 @@ namespace Pathfinder.Internal.GUI
                 num = 120;
             var dest2 = new Rectangle((int)pos.X, (int)pos.Y, num, num);
             var texture = ms.DefaultModImage;
-            if (Extension.Handler.idToLogo[Extension.Handler.ActiveInfo.Id] != null)
-                texture = Extension.Handler.idToLogo[Extension.Handler.ActiveInfo.Id];
+            if (Extension.Handler.ModExtensions[Extension.Handler.ActiveInfo.Id].Item2 != null)
+                texture = Extension.Handler.ModExtensions[Extension.Handler.ActiveInfo.Id].Item2;
             FlickeringTextEffect.DrawFlickeringSprite(sb, dest2, texture, 2f, 0.5f, null, Color.White);
             var position = pos + new Vector2(num + 40f, 20f);
             var num2 = rect.Width - (pos.X - rect.X);
@@ -219,14 +218,14 @@ namespace Pathfinder.Internal.GUI
         internal static void ExtensionListMenuListener(DrawExtensionMenuListEvent e)
         {
             var pos = e.ButtonPosition;
-            if (Extension.Handler.idToButton.Count > 0 && !buttonsLoaded)
+            if (Extension.Handler.ModExtensions.Count > 0 && !buttonsLoaded)
                 LoadButtons(ref pos, e.ExtensionMenuScreen);
             pos.Y += 55;
             e.ButtonPosition = pos;
 
             if (e.ExtensionMenuScreen.HasLoaded)
-                foreach (var pair in Extension.Handler.idToButton)
-                    pair.Value.Draw();
+                foreach (var pair in Extension.Handler.ModExtensions)
+                    pair.Value.Item3.Draw();
         }
 
         [EventPriority(-100)]

@@ -12,7 +12,8 @@ namespace Pathfinder.Command
         /// Gets the help page count.
         /// </summary>
         /// <value>The help page count.</value>
-        public static int PageCount => Helpfile.getNumberOfPages() + (help.Count / Helpfile.ITEMS_PER_PAGE + 1);
+        public static int PageCount => HelpCount / Helpfile.ITEMS_PER_PAGE + 1;
+        public static int HelpCount => Helpfile.help.Count + help.Count;
 
         private static string GenerateString(string cmd, string description) => cmd + "\n    " + description;
         public static string GenerateString(KeyValuePair<string, string> pair) => GenerateString(pair.Key, pair.Value);
@@ -40,19 +41,20 @@ namespace Pathfinder.Command
                 Helpfile.init();
             if (page == 0) page = 1;
             int num = (page - 1) * Helpfile.ITEMS_PER_PAGE;
-            if (num >= Helpfile.help.Count + help.Count)
+            if (num >= HelpCount)
                 num = 0;
             var sb = new StringBuilder();
             sb.Append(Helpfile.prefix.Replace("[PAGENUM]", page.ToString()).Replace("[TOTALPAGES]", PageCount.ToString()));
-            int count = num;
+            int position = num;
             var enumer = help.GetEnumerator();
-            while (count < Helpfile.help.Count + help.Count && count < num + Helpfile.ITEMS_PER_PAGE)
+            while (position < num + Helpfile.ITEMS_PER_PAGE)
             {
-                if (count < Helpfile.help.Count)
-                    sb.Append((count == 0 ? " " : "") + Helpfile.help[count] + "\n  \n ");
+                if (position < Helpfile.help.Count)
+                    sb.Append("-" + Helpfile.help[position] + "\n  \n");
                 else if (enumer.MoveNext())
-                    sb.Append((count == 0 ? " " : "") + GenerateString(enumer.Current) + "\n  \n ");
-                count++;
+                    sb.Append("-" + GenerateString(enumer.Current) + "\n  \n");
+                else break;
+                position++;
             }
             return sb.Append("\n" + Helpfile.postfix).ToString();
         }

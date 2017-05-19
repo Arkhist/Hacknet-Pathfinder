@@ -12,7 +12,7 @@ namespace Pathfinder.Event
         {
             get
             {
-                if (MainArguments.Count >= index)
+                if (MainArguments.Count <= index)
                     return "";
                 return MainArguments[index];
             }

@@ -18,9 +18,8 @@ namespace Pathfinder.Extension
             set { ExtensionLoader.ActiveExtensionInfo = value; }
         }
 
-        internal static Dictionary<string, Info> idToInfo = new Dictionary<string, Info>();
-        internal static Dictionary<string, Texture2D> idToLogo = new Dictionary<string, Texture2D>();
-        internal static Dictionary<string, GUI.Button> idToButton = new Dictionary<string, GUI.Button>();
+        internal static Dictionary<string, Tuple<Info, Texture2D, GUI.Button>> ModExtensions =
+                                                                         new Dictionary<string, Tuple<Info, Texture2D, GUI.Button>>();
 
         public static string RegisterExtension(string id, Info extensionInfo)
         {
@@ -32,30 +31,27 @@ namespace Pathfinder.Extension
                            Utility.ActiveModId,
                            extensionInfo.GetType().FullName,
                            id);
-            if (idToInfo.ContainsKey(id))
+            if (ModExtensions.ContainsKey(id))
                 return null;
 
             extensionInfo.Id = id;
-            idToInfo.Add(id, extensionInfo);
             Texture2D t = null;
             if (File.Exists(extensionInfo.LogoPath))
                 using (var fs = File.OpenRead(extensionInfo.LogoPath))
                     t = Texture2D.FromStream(Game1.getSingleton().GraphicsDevice, fs);
-            idToLogo.Add(id, t);
-            idToButton.Add(id, new GUI.Button(-1, -1, 450, 50, extensionInfo.Name, Color.White));
+            ModExtensions.Add(id, new Tuple<Info, Texture2D, GUI.Button>(extensionInfo, t,
+                                                                    new GUI.Button(-1, -1, 450, 50, extensionInfo.Name, Color.White)));
             return id;
         }
 
         internal static bool UnregisterExtension(string id)
         {
             id = Utility.GetId(id);
-            if (!idToInfo.ContainsKey(id))
+            if (!ModExtensions.ContainsKey(id))
                 return true;
-            var info = idToInfo[id];
-            info.Id = null;
-            idToLogo.Remove(id);
-            idToButton.Remove(id);
-            return idToInfo.Remove(id);
+            var info = ModExtensions[id];
+            info.Item1.Id = null;
+            return ModExtensions.Remove(id);
         }
     }
 }
