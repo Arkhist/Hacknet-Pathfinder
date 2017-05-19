@@ -4,7 +4,6 @@ using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 using Pathfinder.OS;
-using Pathfinder.Util;
 
 namespace Pathfinder.Internal
 {
@@ -13,7 +12,6 @@ namespace Pathfinder.Internal
         public static void CommandListener(CommandSentEvent e)
         {
             Command.Handler.CommandFunc f;
-            Logger.Info("command {0} {1}", e[0], e.Arguments.Count);
             if (Command.Handler.ModCommands.TryGetValue(e[0], out f))
             {
                 e.IsCancelled = true;
