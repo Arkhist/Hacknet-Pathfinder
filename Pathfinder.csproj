@@ -151,6 +151,10 @@
     <Compile Include="Pathfinder\Util\Vector.cs" />
     <Compile Include="Pathfinder\Util\ConvertAny.cs" />
     <Compile Include="Pathfinder\Util\Attribute\AllowOrderUnloadAttribute.cs" />
+    <Compile Include="Pathfinder\Event\OptionsMenuEvents.cs" />
+    <Compile Include="Pathfinder\Util\Attribute\ModOptionsAttribute.cs" />
+    <Compile Include="Pathfinder\GUI\ModOptions\AbstractOptions.cs" />
+    <Compile Include="Pathfinder\GUI\ModOptions\BasicOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />
@@ -165,6 +169,7 @@
     <Folder Include="Pathfinder\Internal\" />
     <Folder Include="Pathfinder\Internal\GUI\" />
     <Folder Include="Pathfinder\Util\Attribute\" />
+    <Folder Include="Pathfinder\GUI\ModOptions\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

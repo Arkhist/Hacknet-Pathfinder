@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
@@ -186,6 +187,16 @@ namespace PathfinderPatcher
                     f.IsPublic = true;
                 }
 
+                type = ad.MainModule.GetType("Hacknet.OptionsMenu");
+                foreach (var f in type.Fields)
+                {
+                    if (!f.IsPrivate) continue;
+                    f.IsPrivate = false;
+                    f.IsPublic = true;
+                }
+
+                ad.ReadonlyAllUppercased();
+
                 if (spitOutHacknetOnly)
                 {
                     ad?.Write("HacknetPathfinder.exe");
@@ -339,6 +350,29 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 
+                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("Draw").InjectWith(
+                    hooks.GetMethod("onOptionsMenuDraw"),
+                    40,
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
+                );
+
+                ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("LoadContent").InjectWith(
+					hooks.GetMethod("onOptionsMenuLoadContent"),
+                    -1,
+                    flags: InjectFlags.PassInvokingInstance
+                );
+
+                ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("Update").InjectWith(
+					hooks.GetMethod("onOptionsMenuUpdate"),
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
+                );
+
+                ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("apply").InjectWith(
+                    hooks.GetMethod("onOptionsApply"),
+                    flags: InjectFlags.PassInvokingInstance
+                );
+
                 ad?.Write("HacknetPathfinder.exe");
             }
             catch (Exception ex)
@@ -379,7 +413,7 @@ namespace PathfinderPatcher
 
         internal static void RemoveInternals(this AssemblyDefinition ad)
         {
-            foreach (TypeDefinition type in ad.MainModule.Types)
+            foreach (var type in ad.MainModule.Types)
             {
                 if (type.IsNotPublic)
                     type.IsNotPublic = false;
@@ -390,6 +424,17 @@ namespace PathfinderPatcher
                     foreach (FieldDefinition field in type.Fields)
                         if (field.IsPublic)
                             field.IsAssembly = false;*/
+            }
+        }
+
+        public static void ReadonlyAllUppercased(this AssemblyDefinition ad)
+        {
+            foreach (var type in ad.MainModule.Types)
+            {
+                if (type.HasFields)
+                    foreach (var f in type.Fields)
+                        if (f.IsPublic && f.IsStatic && f.Name.All(s => char.IsUpper(s) || s == '_'))
+                            f.IsInitOnly = true;
             }
         }
 

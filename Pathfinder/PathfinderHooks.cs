@@ -353,5 +353,39 @@ namespace Pathfinder
                 return true;
             return false;
         }
+
+        public static bool onOptionsMenuDraw(Hacknet.OptionsMenu self, ref GameTime time)
+        {
+            var optionsMenuDrawEvent = new Event.OptionsMenuDrawEvent(self, time);
+            optionsMenuDrawEvent.CallEvent();
+            if (optionsMenuDrawEvent.IsCancelled)
+            {
+                GuiData.endDraw();
+                PostProcessor.end();
+                return true;
+            }
+            return false;
+        }
+
+        public static void onOptionsMenuLoadContent(Hacknet.OptionsMenu self)
+        {
+            var optionsMenuLoadContentEvent = new Event.OptionsMenuLoadContentEvent(self);
+            optionsMenuLoadContentEvent.CallEvent();
+        }
+
+        public static bool onOptionsMenuUpdate(Hacknet.OptionsMenu self, ref GameTime time, ref bool notFocused, ref bool isCovered)
+        {
+            var optionsMenuUpdateEvent = new Event.OptionsMenuUpdateEvent(self, time, notFocused, isCovered);
+            optionsMenuUpdateEvent.CallEvent();
+            if (optionsMenuUpdateEvent.IsCancelled)
+                return true;
+            return false;
+        }
+
+        public static void onOptionsApply(Hacknet.OptionsMenu self)
+        {
+            var optionsMenuApplyEvent = new Event.OptionsMenuApplyEvent(self);
+            optionsMenuApplyEvent.CallEvent();
+        }
     }
 }
