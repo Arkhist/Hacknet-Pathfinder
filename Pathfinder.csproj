@@ -57,6 +57,7 @@
         </Command>
       </CustomCommands>
     </CustomCommands>
+    <NoWarn>0649</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
