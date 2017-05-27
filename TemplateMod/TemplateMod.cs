@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Pathfinder.Event;
 using Pathfinder.Util.Attribute;
+using CommandFunc = Pathfinder.Command.Handler.CommandFunc;
 
 namespace TemplateMod
 {
@@ -51,7 +52,7 @@ namespace TemplateMod
         public void LoadContent()
         {
             Logger.Info("command {0} added", Command.Handler.RegisterCommand("templateModVersion",
-                                                                             Commands.TemplateModVersion,
+                                                                             (CommandFunc)Commands.TemplateModVersion,
                                                                              "does some stuff",
                                                                              true));
             Executable.Handler.RegisterExecutable("TempExe", new TempExe());

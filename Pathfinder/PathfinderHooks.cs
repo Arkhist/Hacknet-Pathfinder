@@ -142,9 +142,7 @@ namespace Pathfinder
             var saveFileEvent = new Event.OSSaveFileEvent(self, filename);
             saveFileEvent.CallEvent();
             if (saveFileEvent.IsCancelled)
-            {
                 return true;
-            }
             return false;
         }
 

@@ -4,6 +4,7 @@ using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 using Pathfinder.OS;
+using ModOptions = Pathfinder.GUI.ModOptions;
 
 namespace Pathfinder.Internal
 {
@@ -55,6 +56,32 @@ namespace Pathfinder.Internal
                 e.OS.addExe(Executable.Instance.CreateInstance(tuple.Item1, e.ExecutableFile, e.OS, e.Arguments, location));
                 e.Result = Executable.ExecutionResult.StartupSuccess;
             }
+        }
+
+        public static void OptionsMenuLoadContentListener(OptionsMenuLoadContentEvent e)
+        {
+            foreach (var o in ModOptions.Handler.ModOptions)
+                o.Value.LoadContent(e.OptionsMenu);
+        }
+
+        public static void OptionsMenuApplyListener(OptionsMenuApplyEvent e)
+        {
+            foreach (var o in ModOptions.Handler.ModOptions)
+                o.Value.Apply(e.OptionsMenu);
+        }
+
+        public static void OptionsMenuUpdateListener(OptionsMenuUpdateEvent e)
+        {
+            foreach (var o in ModOptions.Handler.ModOptions)
+                o.Value.Update(e.OptionsMenu, e.GameTime, e.ScreenNotFocused, e.ScreenIsCovered);
+        }
+
+        private static string selected;
+        public static void OptionsMenuDrawListener(OptionsMenuDrawEvent e)
+        {
+            if (selected == null || !ModOptions.Handler.ModOptions.ContainsKey(selected)) return;
+            e.IsCancelled = true;
+            ModOptions.Handler.ModOptions[selected].Draw(e.OptionsMenu, e.GameTime);
         }
     }
 }

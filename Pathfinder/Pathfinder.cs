@@ -63,6 +63,11 @@ namespace Pathfinder
             EventManager.RegisterListener<DrawExtensionMenuListEvent>(Internal.GUI.ModExtensionsUI.ExtensionListMenuListener);
             EventManager.RegisterListener<OSLoadContentEvent>(Internal.GUI.ModExtensionsUI.LoadContentForModExtensionListener);
 
+            EventManager.RegisterListener<OptionsMenuLoadContentEvent>(Internal.HandlerListener.OptionsMenuLoadContentListener);
+            EventManager.RegisterListener<OptionsMenuDrawEvent>(Internal.HandlerListener.OptionsMenuDrawListener);
+            EventManager.RegisterListener<OptionsMenuApplyEvent>(Internal.HandlerListener.OptionsMenuApplyListener);
+            EventManager.RegisterListener<OptionsMenuUpdateEvent>(Internal.HandlerListener.OptionsMenuUpdateListener);
+
             EventManager.RegisterListener<ExecutableExecuteEvent>(Internal.HandlerListener.ExecutableListener);
 
             EventManager.RegisterListener<OSSaveWriteEvent>(ManageSaveXml);
@@ -249,6 +254,8 @@ namespace Pathfinder
                 foreach (var e in events)
                     list.Value.Remove(e);
 
+            GUI.ModOptions.Handler.ModOptions.Remove(name);
+
             mod.Unload();
             UnloadedModIds.Add(name);
             LoadedMods.Remove(name);
@@ -297,6 +304,7 @@ namespace Pathfinder
                 LoadedMods.Add(name, mod);
                 CurrentMod = mod;
                 mod.Load();
+                GUI.ModOptions.Handler.LoadFor(mod);
                 if (ModIdReliance.ContainsKey(name))
                     foreach (var internalMod in ModIdReliance[name])
                         LoadMod(internalMod);

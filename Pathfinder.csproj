@@ -155,6 +155,7 @@
     <Compile Include="Pathfinder\Util\Attribute\ModOptionsAttribute.cs" />
     <Compile Include="Pathfinder\GUI\ModOptions\AbstractOptions.cs" />
     <Compile Include="Pathfinder\GUI\ModOptions\BasicOptions.cs" />
+    <Compile Include="Pathfinder\GUI\ModOptions\Handler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

@@ -4,12 +4,11 @@ using Microsoft.Xna.Framework;
 
 namespace Pathfinder.GUI.ModOptions
 {
-    public abstract class AbstractOptions
+    public interface AbstractOptions
     {
-        public OptionsMenu OptionsMenu { get; internal set; }
-        public abstract void LoadContent();
-        public abstract void Draw(GameTime time);
-        public abstract void Update(GameTime time, bool notFocused, bool covered);
-        public abstract void Apply();
+        void LoadContent(OptionsMenu menu);
+        void Draw(OptionsMenu menu, GameTime time);
+        void Update(OptionsMenu menu, GameTime time, bool notFocused, bool covered);
+        void Apply(OptionsMenu menu);
     }
 }
