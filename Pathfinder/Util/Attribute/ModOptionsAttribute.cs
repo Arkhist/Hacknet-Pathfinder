@@ -3,6 +3,9 @@ using Pathfinder.GUI.ModOptions;
 
 namespace Pathfinder.Util.Attribute
 {
+    /// <summary>
+    /// Mod options attribute which allows assignment of a derived <see cref="AbstractOptions"/> class for a mod.
+    /// </summary>
     public class ModOptionsAttribute : System.Attribute
     {
         public Type ModOptionsType { get; }

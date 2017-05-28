@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace Pathfinder.Util.Attribute
 {
+    /// <summary>
+    /// Load order attribute for designating mod load orders. (in case of mod reliance or relation)
+    /// </summary>
     public class LoadOrderAttribute : System.Attribute
     {
         internal List<string> beforeIds;

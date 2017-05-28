@@ -195,8 +195,6 @@ namespace PathfinderPatcher
                     f.IsPublic = true;
                 }
 
-                ad.ReadonlyAllUppercased();
-
                 if (spitOutHacknetOnly)
                 {
                     ad?.Write("HacknetPathfinder.exe");
@@ -424,17 +422,6 @@ namespace PathfinderPatcher
                     foreach (FieldDefinition field in type.Fields)
                         if (field.IsPublic)
                             field.IsAssembly = false;*/
-            }
-        }
-
-        public static void ReadonlyAllUppercased(this AssemblyDefinition ad)
-        {
-            foreach (var type in ad.MainModule.Types)
-            {
-                if (type.HasFields)
-                    foreach (var f in type.Fields)
-                        if (f.IsPublic && f.IsStatic && f.Name.All(s => char.IsUpper(s) || s == '_'))
-                            f.IsInitOnly = true;
             }
         }
 
