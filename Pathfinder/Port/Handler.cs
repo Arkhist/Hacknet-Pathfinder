@@ -6,19 +6,22 @@ namespace Pathfinder.Port
 {
     public static class Handler
     {
-        internal static Dictionary<string, Type> idToPortType = new Dictionary<string, Type>();
+        internal static Dictionary<string, Type> PortTypes = new Dictionary<string, Type>();
 
         public static string RegisterPort(string id, Type port)
         {
-            if (Pathfinder.CurrentMod == null)
-                throw new InvalidOperationException("RegisterPort can not be called outside of mod loading.\nMod Blame: "
-                                                    + Utility.GetPreviousStackFrameIdentity());
-            id = Utility.GetId(id, throwFindingPeriod: true);
-            Logger.Verbose("Mod {0} attempting to register port [{1}] with id {2}", Utility.ActiveModId, port, id);
-            if (idToPortType.ContainsKey(id))
+            if (Pathfinder.CurrentMod == null && !Extension.Handler.CanRegister)
+                throw new InvalidOperationException("RegisterPort can not be called outside of mod or extension loading.");
+            id = Pathfinder.CurrentMod != null ? Utility.GetId(id, throwFindingPeriod: true) : Extension.Handler.ActiveInfo.Id+"."+id;
+            Logger.Verbose("{0} {1} is attempting to add port type [{2}] with id {3}",
+                           Pathfinder.CurrentMod != null ? "Mod" : "Extension",
+                           Pathfinder.CurrentMod?.GetCleanId() ?? Extension.Handler.ActiveInfo.Id,
+                           port,
+                           id);
+            if (PortTypes.ContainsKey(id))
                 return null;
             port.PortId = id;
-            idToPortType.Add(id, port);
+            PortTypes.Add(id, port);
             return id;
         }
 
@@ -28,17 +31,17 @@ namespace Pathfinder.Port
         internal static bool UnregisterPort(string id)
         {
             id = Utility.GetId(id);
-            if (!idToPortType.ContainsKey(id))
+            if (!PortTypes.ContainsKey(id))
                 return true;
-            idToPortType[id].PortId = null;
-            return idToPortType.Remove(id);
+            PortTypes[id].PortId = null;
+            return PortTypes.Remove(id);
         }
 
         public static Type GetPort(string id)
         {
             id = Utility.GetId(id);
             Type p = null;
-            idToPortType.TryGetValue(id, out p);
+            PortTypes.TryGetValue(id, out p);
             return p;
         }
     }

@@ -11,12 +11,12 @@ namespace Pathfinder.Mission
 
         public static string RegisterMissionGoal(string id, IGoal inter)
         {
-            if (Pathfinder.CurrentMod == null)
-                throw new InvalidOperationException("RegisterMissionGoal can not be called outside of mod loading.\nMod Blame: "
-                                                    + Utility.GetPreviousStackFrameIdentity());
-            id = Utility.GetId(id, throwFindingPeriod: true);
-            Logger.Verbose("Mod {0} attempting to add mission goal interface {1} with id {2}",
-                           Utility.ActiveModId,
+            if (Pathfinder.CurrentMod == null && !Extension.Handler.CanRegister)
+                throw new InvalidOperationException("RegisterMissionGoal can not be called outside of mod or extension loading.");
+            id = Pathfinder.CurrentMod != null ? Utility.GetId(id, throwFindingPeriod: true) : Extension.Handler.ActiveInfo.Id+"."+id;
+            Logger.Verbose("{0} {1} attempting to add mission goal interface {2} with id {3}",
+                           Pathfinder.CurrentMod != null ? "Mod" : "Extension",
+                           Pathfinder.CurrentMod?.GetCleanId() ?? Extension.Handler.ActiveInfo.Id,
                            inter.GetType().FullName,
                            id);
             if (ModGoals.ContainsKey(id))
@@ -39,12 +39,12 @@ namespace Pathfinder.Mission
 
         public static string RegisterMission(string id, IInterface inter)
         {
-            if (Pathfinder.CurrentMod == null)
-                throw new InvalidOperationException("RegisterMission can not be called outside of mod loading.\nMod Blame: "
-                                                    + Utility.GetPreviousStackFrameIdentity());
-            id = Utility.GetId(id, throwFindingPeriod: true);
-            Logger.Verbose("Mod {0} attempting to add mission interface {1} with id {2}",
-                           Utility.ActiveModId,
+            if (Pathfinder.CurrentMod == null && !Extension.Handler.CanRegister)
+                throw new InvalidOperationException("RegisterMission can not be called outside of mod or extension loading.");
+            id = Pathfinder.CurrentMod != null ? Utility.GetId(id, throwFindingPeriod: true) : Extension.Handler.ActiveInfo.Id+"."+id;
+            Logger.Verbose("{0} {1} attempting to add mission interface {2} with id {3}",
+                           Pathfinder.CurrentMod != null ? "Mod" : "Extension",
+                           Pathfinder.CurrentMod?.GetCleanId() ?? Extension.Handler.ActiveInfo.Id,
                            inter.GetType().FullName,
                            id);
             if (ModGoals.ContainsKey(id))

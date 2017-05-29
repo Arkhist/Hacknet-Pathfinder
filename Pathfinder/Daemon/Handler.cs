@@ -16,12 +16,12 @@ namespace Pathfinder.Daemon
         /// <param name="inter">The interface to add.</param>
         public static string RegisterDaemon(string id, IInterface inter)
         {
-            if (Pathfinder.CurrentMod == null)
-                throw new InvalidOperationException("RegisterDaemon can not be called outside of mod loading.\nMod Blame: "
-                                                    + Utility.GetPreviousStackFrameIdentity());
-            id = Utility.GetId(id, throwFindingPeriod: true);
-            Logger.Verbose("Mod {0} attempting to add daemon interface {1} with id {2}",
-                           Utility.ActiveModId,
+            if (Pathfinder.CurrentMod == null && !Extension.Handler.CanRegister)
+                throw new InvalidOperationException("RegisterDaemon can not be called outside of mod or extension loading.");
+            id = Pathfinder.CurrentMod != null ? Utility.GetId(id, throwFindingPeriod: true) : Extension.Handler.ActiveInfo.Id+"."+id;
+            Logger.Verbose("{0} {1} attempting to add daemon interface {2} with id {3}",
+                           Pathfinder.CurrentMod != null ? "Mod" : "Extension",
+                           Pathfinder.CurrentMod?.GetCleanId() ?? Extension.Handler.ActiveInfo.Id,
                            inter.GetType().FullName,
                            id);
             if (ModDaemons.ContainsKey(id))

@@ -1,9 +1,22 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using Pathfinder.Event;
 
 namespace Pathfinder.Extension
 {
     public abstract class Info
     {
+        internal Dictionary<string, Tuple<Command.Handler.CommandFunc, string, bool>> commands =
+            new Dictionary<string, Tuple<Command.Handler.CommandFunc, string, bool>>();
+        internal Dictionary<string, Daemon.IInterface> daemons = new Dictionary<string, Daemon.IInterface>();
+        internal Dictionary<string, Executable.IInterface> executables = new Dictionary<string, Executable.IInterface>();
+        internal Dictionary<string, Mission.IInterface> missions = new Dictionary<string, Mission.IInterface>();
+        internal Dictionary<string, Mission.IGoal> goals = new Dictionary<string, Mission.IGoal>();
+        internal Dictionary<string, Port.Type> ports = new Dictionary<string, Port.Type>();
+        internal Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string, int>>> eventListeners =
+            new Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string, int>>>();
+
         /// <summary>
         /// Gets the extension identifier.
         /// </summary>
@@ -45,5 +58,6 @@ namespace Pathfinder.Extension
         /// <param name="os">The Os.</param>
         /// <param name="loadingStream">The Loading stream.</param>
         public virtual void OnLoad(Hacknet.OS os, Stream loadingStream) {}
+        public virtual void OnUnload(Hacknet.OS os) {}
     }
 }

@@ -11,13 +11,19 @@ namespace Pathfinder.Event
         internal static Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string, int>>> eventListeners =
             new Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string, int>>>();
 
-        private static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string debugName = null, int priority = 0)
+        public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string debugName = null, int priority = 0)
         {
+            if (Utility.GetPreviousStackFrameIdentity() != "Pathfinder" && (Pathfinder.CurrentMod == null && !Extension.Handler.CanRegister))
+                throw new InvalidOperationException("RegisterListener can not be called outside of mod or extension loading.\nMod Blame: "
+                                                    + Utility.GetPreviousStackFrameIdentity());
             if (!eventListeners.ContainsKey(pathfinderEventType))
                 eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string, string, int>>());
+            var name = Pathfinder.CurrentMod?.GetCleanId() ?? Extension.Handler.ActiveInfo?.Id ?? "Pathfinder";
             if (String.IsNullOrEmpty(debugName))
                 debugName = "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
                                        + listener.Method.DeclaringType.FullName + "." + listener.Method.Name;
+            Logger.Verbose("{0} {1} is attempting to add event listener {2} with priority {3}",
+                           Pathfinder.CurrentMod != null ? "Mod" : "Extension", name, debugName, priority);
             var list = eventListeners[pathfinderEventType];
             list.Add(new Tuple<Action<PathfinderEvent>, string, string, int>(listener, debugName, Utility.ActiveModId, priority));
             list.Sort((x, y) => y.Item4 - x.Item4);

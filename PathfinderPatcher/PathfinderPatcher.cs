@@ -234,6 +234,12 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance
                 );
 
+                ad.MainModule.GetType("Hacknet.OS").GetMethod("UnloadContent").InjectWith(
+					hooks.GetMethod("onUnloadSession"),
+                    -1,
+                    flags: InjectFlags.PassInvokingInstance
+                );
+
                 // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
                 ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("Draw").InjectWith(
                     hooks.GetMethod("onMainMenuDraw"),

@@ -1,5 +1,4 @@
 using System;
-using Pathfinder.Util;
 
 namespace Pathfinder.Port
 {
@@ -20,7 +19,7 @@ namespace Pathfinder.Port
         public bool AssignTo(Hacknet.Computer c, bool unlocked = false)
         {
             var i = GetWithin(c);
-            if(i == null)
+            if (i == null)
                 return new Instance(this, unlocked).AssignTo(c);
             i.Unlocked = unlocked;
             return false;

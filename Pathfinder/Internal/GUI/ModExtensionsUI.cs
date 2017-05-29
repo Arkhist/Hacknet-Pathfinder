@@ -162,8 +162,7 @@ namespace Pathfinder.Internal.GUI
             ms.CreateNewAccountForExtension_UserAndPass = (n, p) =>
             {
                 Hacknet.OS.WillLoadSave = false;
-                if(m != null)
-                    MainMenu.CreateNewAccountForExtensionAndStart(n, p, m.ScreenManager, m, ms);
+                MainMenu.CreateNewAccountForExtensionAndStart(n, p, m.ScreenManager, m, ms);
             };
             ms.LoadAccountForExtension_FileAndUsername = (userFile, username) =>
             {
@@ -175,8 +174,7 @@ namespace Pathfinder.Internal.GUI
                     SaveGameUserName = userFile,
                     SaveUserAccountName = username
                 };
-                if(m != null)
-                    m.ScreenManager.AddScreen(o);
+                m.ScreenManager.AddScreen(o);
             };
             ms.SaveScreen.Draw(sb, new Rectangle(rect.X, rect.Y + rect.Height / 4, rect.Width, (int)(rect.Height * 0.8f)));
         }
@@ -218,9 +216,12 @@ namespace Pathfinder.Internal.GUI
         internal static void ExtensionListMenuListener(DrawExtensionMenuListEvent e)
         {
             var pos = e.ButtonPosition;
-            if (Extension.Handler.ModExtensions.Count > 0 && !buttonsLoaded)
-                LoadButtons(ref pos, e.ExtensionMenuScreen);
-            pos.Y += 55;
+            if (Extension.Handler.ModExtensions.Count > 0)
+            {
+                if (!buttonsLoaded)
+                    LoadButtons(ref pos, e.ExtensionMenuScreen);
+                pos.Y += 55;
+            }
             e.ButtonPosition = pos;
 
             if (e.ExtensionMenuScreen.HasLoaded)
@@ -364,7 +365,7 @@ namespace Pathfinder.Internal.GUI
                 os.beepSound = os.content.Load<SoundEffect>("SFX/beep");
                 os.mailicon = new MailIcon(os, new Vector2(0f, 0f));
                 os.mailicon.pos.X = viewport.Width - os.mailicon.getWidth() - 2;
-                os.hubServerAlertsIcon = new HubServerAlertsIcon(os.content, "dhs", 
+                os.hubServerAlertsIcon = new HubServerAlertsIcon(os.content, "dhs",
                                                                  new string[] { "@channel", "@" + os.defaultUser.name }
                                                                 );
                 os.hubServerAlertsIcon.Init(os);
@@ -442,10 +443,21 @@ namespace Pathfinder.Internal.GUI
                     stream = e.OS.ForceLoadOverrideStream;
                 else
                     stream = SaveFileManager.GetSaveReadStream(e.OS.SaveGameUserName);
+                Extension.Handler.LoadExtension(Extension.Handler.ActiveInfo.Id);
                 Extension.Handler.ActiveInfo.OnLoad(e.OS, stream);
             }
             else
+            {
+                Extension.Handler.CanRegister = true;
                 Extension.Handler.ActiveInfo.OnConstruct(e.OS);
+                Extension.Handler.CanRegister = false;
+            }
+        }
+
+        public static void UnloadContentForModExtensionListener(OSUnloadContentEvent e)
+        {
+            Extension.Handler.UnloadExtension(Extension.Handler.ActiveInfo.Id);
+            Extension.Handler.ActiveInfo.OnUnload(e.OS);
         }
     }
 }

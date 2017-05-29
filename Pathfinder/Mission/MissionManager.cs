@@ -11,22 +11,24 @@ namespace Pathfinder.Mission
     {
         public static MissionListingServer CreateMissionListingDaemon(this Hacknet.Computer c,
                                                                       string serviceName,
-                                                                      string logoPath,
+                                                                      string logoPath = null,
                                                                       bool isPublic = false,
                                                                       bool isAssigner = false,
                                                                       Hacknet.OS os = null)
         {
             var s = new MissionListingServer(c, serviceName, serviceName, os ?? Utility.ClientOS, isPublic, isAssigner);
-            try
-            {
-                using (var fs = File.OpenRead(logoPath))
-                    s.logo = Texture2D.FromStream(GuiData.spriteBatch.GraphicsDevice, fs);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Loading file " + logoPath + " failed: " + e);
-                s.logo = os.content.Load<Texture2D>("Sprites/Academic_Logo");
-            }
+            if(!String.IsNullOrEmpty(logoPath))
+                try
+                {
+                    using (var fs = File.OpenRead(logoPath))
+                        s.logo = Texture2D.FromStream(GuiData.spriteBatch.GraphicsDevice, fs);
+                }
+                catch (Exception e)
+                {
+                    Logger.Error("Loading file {0} failed: {1}", logoPath, e);
+                    s.logo = os.content.Load<Texture2D>("Sprites/Academic_Logo");
+                }
+            else s.logo = os.content.Load<Texture2D>("Sprites/Academic_Logo");
             c.daemons.Add(s);
             return s;
         }

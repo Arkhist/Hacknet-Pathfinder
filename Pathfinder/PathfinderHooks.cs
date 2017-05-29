@@ -104,6 +104,12 @@ namespace Pathfinder
             postLoadSessionEvent.CallEvent();
         }
 
+        public static void onUnloadSession(Hacknet.OS self)
+        {
+            var unloadSessionEvent = new Event.OSUnloadContentEvent(self);
+            unloadSessionEvent.CallEvent();
+        }
+
         // Hook location : MainMenu.Draw()
         public static bool onMainMenuDraw(MainMenu self, GameTime gameTime)
         {

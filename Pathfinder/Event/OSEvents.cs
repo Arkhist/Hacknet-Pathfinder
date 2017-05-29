@@ -22,6 +22,11 @@ namespace Pathfinder.Event
         public OSPostLoadContenEvent(Hacknet.OS os) : base(os) { }
     }
 
+    public class OSUnloadContentEvent : OSEvent
+    {
+        public OSUnloadContentEvent(Hacknet.OS os) : base(os) { }
+    }
+
     public class OSLoadSaveFileEvent : OSEvent
     {
         public XmlReader Reader { get; private set; }
@@ -38,18 +43,12 @@ namespace Pathfinder.Event
     public class OSSaveFileEvent : OSEvent
     {
         public string Filename { get; private set; }
-        public OSSaveFileEvent(Hacknet.OS os, string fnam) : base(os)
-        {
-            Filename = fnam;
-        }
+        public OSSaveFileEvent(Hacknet.OS os, string fnam) : base(os) { Filename = fnam; }
     }
 
     public class OSSaveWriteEvent : OSSaveFileEvent
     {
         public string SaveString { get; set; }
-        public OSSaveWriteEvent(Hacknet.OS os, string fnam, string saveStr) : base(os, fnam)
-        {
-            SaveString = saveStr;
-        }
+        public OSSaveWriteEvent(Hacknet.OS os, string fnam, string saveStr) : base(os, fnam) { SaveString = saveStr; }
     }
 }

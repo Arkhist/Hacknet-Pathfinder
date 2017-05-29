@@ -26,22 +26,23 @@ namespace Pathfinder.Command
                                              string description = null,
                                              bool autoComplete = false)
         {
-            if (Pathfinder.CurrentMod == null)
-                throw new InvalidOperationException("RegisterCommand can not be called outside of mod loading.\nMod Blame: "
-                                                    + Utility.GetPreviousStackFrameIdentity());
-            Logger.Verbose("Mod {0} is attempting to add command {1}", Utility.ActiveModId, key);
+            if (Pathfinder.CurrentMod == null && !Extension.Handler.CanRegister)
+                throw new InvalidOperationException("RegisterCommand can not be called outside of mod or extension loading.");
+            var id = Pathfinder.CurrentMod?.GetCleanId() ?? Extension.Handler.ActiveInfo.Id;
+            Logger.Verbose("{0} {1} is attempting to add command {2}",
+                           Pathfinder.CurrentMod != null ? "Mod" : "Extension", id, key);
             if (ModCommands.ContainsKey(key))
                 return null;
             ModCommands.Add(key, function);
-            if (!ModIdToCommandKeyList.ContainsKey(Utility.ActiveModId))
-                ModIdToCommandKeyList.Add(Utility.ActiveModId, new List<string>());
-            ModIdToCommandKeyList[Utility.ActiveModId].Add(key);
+            if (!ModIdToCommandKeyList.ContainsKey(id))
+                ModIdToCommandKeyList.Add(id, new List<string>());
+            ModIdToCommandKeyList[id].Add(key);
             if (description != null)
                 //Helpfile.help.Add(key + "\n    " + description);
                 Help.help.Add(key, description);
             if (autoComplete && !ProgramList.programs.Contains(key))
                 ProgramList.programs.Add(key);
-            return Utility.ActiveModId + '.' + key;
+            return id + '.' + key;
         }
 
         [Obsolete("Use CommandFunc Register, usually needs a simple recompile")]

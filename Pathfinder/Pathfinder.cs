@@ -62,6 +62,7 @@ namespace Pathfinder
             EventManager.RegisterListener<DrawExtensionMenuEvent>(Internal.GUI.ModExtensionsUI.ExtensionMenuListener);
             EventManager.RegisterListener<DrawExtensionMenuListEvent>(Internal.GUI.ModExtensionsUI.ExtensionListMenuListener);
             EventManager.RegisterListener<OSLoadContentEvent>(Internal.GUI.ModExtensionsUI.LoadContentForModExtensionListener);
+            EventManager.RegisterListener<OSUnloadContentEvent>(Internal.GUI.ModExtensionsUI.UnloadContentForModExtensionListener);
 
             EventManager.RegisterListener<OptionsMenuLoadContentEvent>(Internal.HandlerListener.OptionsMenuLoadContentListener);
             EventManager.RegisterListener<OptionsMenuDrawEvent>(Internal.HandlerListener.OptionsMenuDrawListener);
@@ -167,11 +168,12 @@ namespace Pathfinder
         {
             foreach (var mod in OperationalMods)
             {
+                if (mod.Value is ModPlaceholder) continue;
                 CurrentMod = mod.Value;
                 Logger.Verbose("Loading mod '{0}'s content", mod.Key);
                 mod.Value.LoadContent();
-                CurrentMod = null;
             }
+            CurrentMod = null;
         }
 
         /// <summary>
@@ -247,6 +249,10 @@ namespace Pathfinder
                 if (m.Key.IndexOf('.') != -1 && m.Key.Remove(m.Key.IndexOf('.')) == name)
                     Mission.Handler.UnregisterMission(m.Key);
 
+            foreach (var p in Port.Handler.PortTypes.ToArray())
+                if (p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name)
+                    Port.Handler.UnregisterPort(p.Key);
+
             var events = new List<Tuple<Action<PathfinderEvent>, string, string, int>>();
             foreach (var v in EventManager.eventListeners.Values)
                 events.AddRange(v.FindAll(t => t.Item3 == name));
@@ -300,10 +306,10 @@ namespace Pathfinder
                 if (!IsModIdentifierValid(name, true))
                     return null; // never reached due to throw
                 Logger.Info("Loading mod '{0}'", name);
-                UnloadedModIds.Remove(name);
-                LoadedMods.Add(name, mod);
                 CurrentMod = mod;
                 mod.Load();
+                UnloadedModIds.Remove(name);
+                LoadedMods.Add(name, mod);
                 GUI.ModOptions.Handler.LoadFor(mod);
                 if (ModIdReliance.ContainsKey(name))
                     foreach (var internalMod in ModIdReliance[name])
@@ -330,9 +336,9 @@ namespace Pathfinder
             foreach (Type t in Assembly.LoadFile(path).GetModTypes())
             {
                 var mod = CreateMod(t);
-                if (modId != null && mod?.Identifier.Trim() != modId) continue;
+                if (modId != null && mod?.GetCleanId() != modId) continue;
                 LoadMod(mod);
-                UnloadedModIds.Remove(mod?.Identifier.Trim());
+                UnloadedModIds.Remove(mod?.GetCleanId());
                 result.Add(mod);
             }
             return result;
