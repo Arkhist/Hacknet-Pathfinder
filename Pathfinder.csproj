@@ -60,6 +60,10 @@
     <NoWarn>0649</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HacknetPathfinder, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\HacknetPathfinder.exe</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="AlienFXManagedWrapper3.5">
       <HintPath>lib\AlienFXManagedWrapper3.5.dll</HintPath>
@@ -71,10 +75,6 @@
     </Reference>
     <Reference Include="Steamworks.NET">
       <HintPath>lib\Steamworks.NET.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="HacknetPathfinder">
-      <HintPath>lib\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.XML" />
@@ -158,21 +158,7 @@
     <Compile Include="Pathfinder\GUI\ModOptions\BasicOptions.cs" />
     <Compile Include="Pathfinder\GUI\ModOptions\Handler.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pathfinder\Computer\" />
-    <Folder Include="Pathfinder\OS\" />
-    <Folder Include="Pathfinder\Util\" />
-    <Folder Include="Pathfinder\Util\File\" />
-    <Folder Include="Pathfinder\GameFilesystem\" />
-    <Folder Include="Pathfinder\Mission\" />
-    <Folder Include="Pathfinder\NetworkMap\" />
-    <Folder Include="Pathfinder\Port\" />
-    <Folder Include="Pathfinder\Extension\" />
-    <Folder Include="Pathfinder\Internal\" />
-    <Folder Include="Pathfinder\Internal\GUI\" />
-    <Folder Include="Pathfinder\Util\Attribute\" />
-    <Folder Include="Pathfinder\GUI\ModOptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
