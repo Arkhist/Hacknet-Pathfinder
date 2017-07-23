@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Pathfinder.ModManager;
 using Pathfinder.Util;
 using Pathfinder.Util.Attribute;
 
@@ -113,9 +114,9 @@ namespace Pathfinder.Event
                     {
                         if(log)
                             Logger.Verbose("Attempting Event Listener call '{0}'", listener.Item2);
-                        Pathfinder.CurrentMod = Pathfinder.GetMod(listener.Item3);
+                        Manager.CurrentMod = Manager.GetLoadedMod(listener.Item3);
                         listener.Item1(pathfinderEvent);
-                        Pathfinder.CurrentMod = null;
+                        Manager.CurrentMod = null;
                     }
                     catch(Exception ex)
                     {

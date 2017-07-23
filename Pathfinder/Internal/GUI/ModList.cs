@@ -5,6 +5,8 @@ using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 using Pathfinder.GUI;
+using Pathfinder.ModManager;
+using Pathfinder.ModManager.Attribute;
 using Pathfinder.Util;
 using Gui = Hacknet.Gui;
 
@@ -34,11 +36,11 @@ namespace Pathfinder.Internal.GUI
             LoadButtons.Clear();
             foreach (var id in modIds)
             {
-                var mod = Pathfinder.GetMod(id);
+                var mod = Manager.GetLoadedMod(id);
                 var loc = mod.GetType().Assembly.Location;
                 UnloadButtons[id] = new Button(-1, -1, 100, 30, "Unload")
                 {
-                    DrawFinish = r => { if (r.JustReleased) Pathfinder.UnloadMod(mod); }
+                    DrawFinish = r => { if (r.JustReleased) Manager.UnloadMod(mod); }
                 };
                 LoadButtons[id] = new Button(-1, -1, 100, 30, "Load")
                 {
@@ -49,10 +51,10 @@ namespace Pathfinder.Internal.GUI
                             var modType = mod.GetType();
                             try
                             {
-                                var loadedMod = Pathfinder.LoadMod(modType);
-                                Pathfinder.CurrentMod = loadedMod;
+                                var loadedMod = Manager.LoadMod(modType);
+                                Manager.CurrentMod = loadedMod;
                                 loadedMod?.LoadContent();
-                                Pathfinder.CurrentMod = null;
+                                Manager.CurrentMod = null;
                             }
                             catch (Exception e)
                             {
@@ -79,13 +81,18 @@ namespace Pathfinder.Internal.GUI
             returnButton.Draw();
             Gui.TextItem.doFontLabel(new Vector2(125f, 50), "Pathfinder Mod Load Order", GuiData.font, Color.White);
 
-            float yPos = 120;
-            int index = 0;
+            var yPos = 120f;
+            var index = 0;
+            string title = null;
             foreach (var id in Pathfinder.LoadedModIdentifiers)
             {
                 UnloadButtons[id].Position = new Vector2(500, yPos);
                 UnloadButtons[id].Draw();
-                Gui.TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + id, GuiData.smallfont, Color.White);
+                title = Manager.GetLoadedMod(id).GetType().GetFirstAttribute<TitleAttribute>()?.Title;
+                Gui.TextItem.doFontLabel(new Vector2(200f, yPos),
+                                         (++index) + ". " + (title != null ? title + " | " : "") + id,
+                                         GuiData.smallfont,
+                                         Color.White);
                 yPos += 30;
             }
 

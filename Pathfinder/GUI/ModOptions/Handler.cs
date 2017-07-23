@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Pathfinder.ModManager;
 using Pathfinder.Util;
 using Pathfinder.Util.Attribute;
 
@@ -9,7 +10,7 @@ namespace Pathfinder.GUI.ModOptions
     {
         public static Dictionary<string, AbstractOptions> ModOptions = new Dictionary<string, AbstractOptions>();
 
-        public static void LoadFor(IPathfinderMod mod)
+        public static void LoadFor(IMod mod)
         {
             var optionType = mod.GetType().GetFirstAttribute<ModOptionsAttribute>()?.ModOptionsType;
             if (optionType == null) return;

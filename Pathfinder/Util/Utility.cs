@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Hacknet;
+using Pathfinder.ModManager;
 
 namespace Pathfinder.Util
 {
@@ -46,7 +47,7 @@ namespace Pathfinder.Util
         public static string ActiveModId => Pathfinder.CurrentMod?.GetCleanId() ?? "Pathfinder";
 
         public static string GetCleanId(this string id) => id.Trim();
-        public static string GetCleanId(this IPathfinderMod mod) => mod.Identifier.GetCleanId();
+        public static string GetCleanId(this IMod mod) => mod.Identifier.GetCleanId();
 
         /// <summary>
         /// Retrieves an identifier for the input.
@@ -131,7 +132,7 @@ namespace Pathfinder.Util
             else if (asm == typeof(Hacknet.Program).Assembly)
                 result = "Hacknet";
             else
-                result = Pathfinder.GetModByAssembly(asm).Identifier;
+                result =  asm.GetFirstMod()?.GetCleanId();
             return result;
         }
 

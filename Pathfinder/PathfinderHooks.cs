@@ -11,6 +11,7 @@ using Pathfinder.Util;
 using Pathfinder.GUI;
 using System.Linq;
 using Pathfinder.GameFilesystem;
+using Pathfinder.ModManager;
 
 namespace Pathfinder
 {
@@ -53,7 +54,7 @@ namespace Pathfinder
         public static void onLoadContent(Game1 self)
         {
             Logger.Verbose("Loading Pathfinder content");
-            Pathfinder.LoadModContent();
+            Manager.LoadModContent();
             var loadContentEvent = new Event.GameLoadContentEvent(self);
             loadContentEvent.CallEvent();
         }
