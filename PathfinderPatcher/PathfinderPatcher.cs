@@ -308,7 +308,7 @@ namespace PathfinderPatcher
                     hooks.GetMethod("onLoadComputer"),
                     197,
                     flags: InjectFlags.PassParametersVal | InjectFlags.PassLocals,
-                    localsID: new int[] { 0, 2 }
+                    localsID: new int[] { 34, 1 }
                 );
 
                 ad.MainModule.GetType("Hacknet.Game1").GetMethod("UnloadContent").InjectWith(
