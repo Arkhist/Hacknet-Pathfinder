@@ -22,7 +22,9 @@ namespace Pathfinder.ModManager
 
         public static IMod CurrentMod { get; internal set; }
         public static Dictionary<string, IMod> OperationalMods => LoadedMods
+#pragma warning disable CS0618 // Type or member is obsolete
             .Where(pair => !(pair.Value is Placeholder || pair.Value is ModPlaceholder))
+#pragma warning restore CS0618 // Type or member is obsolete
             .ToDictionary(pair => pair.Key, pair => pair.Value);
 
         public static IEnumerable<Type> GetModTypes(this Assembly asm) =>

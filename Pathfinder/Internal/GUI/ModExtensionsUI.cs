@@ -456,8 +456,11 @@ namespace Pathfinder.Internal.GUI
 
         public static void UnloadContentForModExtensionListener(OSUnloadContentEvent e)
         {
-            Extension.Handler.UnloadExtension(Extension.Handler.ActiveInfo.Id);
-            Extension.Handler.ActiveInfo.OnUnload(e.OS);
+            if (Extension.Handler.ActiveInfo != null)
+            {
+                Extension.Handler.UnloadExtension(Extension.Handler.ActiveInfo.Id);
+                Extension.Handler.ActiveInfo.OnUnload(e.OS);
+            }
         }
     }
 }

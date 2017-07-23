@@ -210,12 +210,13 @@ namespace Pathfinder
             return false;
         }
 
-        public static void onLoadComputer(ref Hacknet.Computer createdComputer,
-                                          ref XmlReader reader,
+        public static void onLoadComputer(ref XmlReader reader,
                                           string filename,
                                           bool preventAddingToNetmap,
                                           bool preventInitDaemons)
         {
+            var createdComputer = (Hacknet.Computer)Type.GetType("Hacknet.ComputerLoader/<>c__DisplayClass4")
+                                                        .GetField("c", BindingFlags.Static).GetValue(null);
             var loadComputerEvent = new Event.LoadComputerXmlReadEvent(createdComputer,
                                                                 reader,
                                                                 filename,

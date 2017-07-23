@@ -195,6 +195,8 @@ namespace PathfinderPatcher
                     f.IsPublic = true;
                 }
 
+                ad.MainModule.GetType("Hacknet.ComputerLoader").ChangeAccess("<>c__DisplayClass4", makeVirtual: false, makeAssignable: false);
+
                 if (spitOutHacknetOnly)
                 {
                     ad?.Write("HacknetPathfinder.exe");
@@ -306,9 +308,9 @@ namespace PathfinderPatcher
                 // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
                 ad.MainModule.GetType("Hacknet.ComputerLoader").GetMethod("loadComputer").InjectWith(
                     hooks.GetMethod("onLoadComputer"),
-                    197,
+                    266,
                     flags: InjectFlags.PassParametersVal | InjectFlags.PassLocals,
-                    localsID: new int[] { 34, 1 }
+                    localsID: new int[] { 1 }
                 );
 
                 ad.MainModule.GetType("Hacknet.Game1").GetMethod("UnloadContent").InjectWith(
