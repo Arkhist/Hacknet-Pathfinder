@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Game::OS::Extensions</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a08d55d853112988b8a69f26110d47d3c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; ExeModule &gt;</type>
+        <definition>static List&lt;ExeModule&gt; Pathfinder.Game.OS.Extensions.GetExesFor</definition>
+        <argsstring>(this Hacknet.OS os, Type instanceType)</argsstring>
+        <name>GetExesFor</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>instanceType</declname>
+        </param>
+        <briefdescription>
+<para>Only retrieves the <ref refid="namespace_pathfinder_1_1_game_1_1_o_s" kindref="compound">OS</ref>&apos;s exes of the specifed type. Use Extensions.GetExesFor(Hacknet.OS) to get inherited types </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="14" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="14" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a210838cd29e560ada42c3356f4b5f710" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; T &gt;</type>
+        <definition>static List&lt;T&gt; Pathfinder.Game.OS.Extensions.GetExesFor&lt; T &gt;</definition>
+        <argsstring>(this Hacknet.OS os)</argsstring>
+        <name>GetExesFor&lt; T &gt;</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves all exes derived from T on the <ref refid="namespace_pathfinder_1_1_game_1_1_o_s" kindref="compound">OS</ref>, Use Extensions.GetExesFor(Hacknet.OS, Type) to get only singular types </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="26" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="26" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ac553c7d9ed908a25fcab8091f82e4e9d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Executable.Instance &gt;</type>
+        <definition>static List&lt;Executable.Instance&gt; Pathfinder.Game.OS.Extensions.GetModExeInterfaceFor</definition>
+        <argsstring>(this Hacknet.OS os, Type interfaceType)</argsstring>
+        <name>GetModExeInterfaceFor</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>interfaceType</declname>
+        </param>
+        <briefdescription>
+<para>Only retrieves the <ref refid="namespace_pathfinder_1_1_game_1_1_o_s" kindref="compound">OS</ref>&apos;s modded exes of the specifed interface. Use Extensions.GetModExeInterfaceFor(Hacknet.OS) to get inherited types </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="38" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="38" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a6cb7772226d053dcecf32b85fb8bf66d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Executable.Instance &gt;</type>
+        <definition>static List&lt;Executable.Instance&gt; Pathfinder.Game.OS.Extensions.GetModExeInterfaceFor&lt; T &gt;</definition>
+        <argsstring>(this Hacknet.OS os)</argsstring>
+        <name>GetModExeInterfaceFor&lt; T &gt;</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves all modded exe interfaces derived from T on the <ref refid="namespace_pathfinder_1_1_game_1_1_o_s" kindref="compound">OS</ref>, Use Extensions.GetModExeInterfaceFor(Hacknet.OS, Type) to get only singular types </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="50" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="50" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a3c7dc4252ef9aa625353a05831412ed6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Hacknet.Computer</type>
+        <definition>static Hacknet.Computer Pathfinder.Game.OS.Extensions.GetCurrentComputer</definition>
+        <argsstring>(this Hacknet.OS os)</argsstring>
+        <name>GetCurrentComputer</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the currently active <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> according to the <ref refid="namespace_pathfinder_1_1_game_1_1_o_s" kindref="compound">OS</ref> </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="62" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="62" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a1c379f092ec7cc44aeb12a3aed8e5183" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Hacknet.OS</type>
+        <definition>static Hacknet.OS Pathfinder.Game.OS.Extensions.Write</definition>
+        <argsstring>(this Hacknet.OS os, string write)</argsstring>
+        <name>Write</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>write</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="67" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="67" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a7e8a53fd0198cf29bad63ed30eccb3f7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Hacknet.OS</type>
+        <definition>static Hacknet.OS Pathfinder.Game.OS.Extensions.WriteSingle</definition>
+        <argsstring>(this Hacknet.OS os, string write)</argsstring>
+        <name>WriteSingle</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>write</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="73" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="73" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a98be3beba4f665b17dadc1b8a95279b8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Hacknet.OS</type>
+        <definition>static Hacknet.OS Pathfinder.Game.OS.Extensions.WriteF</definition>
+        <argsstring>(this Hacknet.OS os, params object[] input)</argsstring>
+        <name>WriteF</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>params object []</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Writes to the terminal using standard C# formatting. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The <ref refid="namespace_pathfinder_1_1_game_1_1_o_s" kindref="compound">OS</ref>.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input to format, zero index must be a formatable string.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="84" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="84" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ab2a6df6aa04ecd7745ee89f1a6f2e103" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Hacknet.OS</type>
+        <definition>static Hacknet.OS Pathfinder.Game.OS.Extensions.WriteSingleF</definition>
+        <argsstring>(this Hacknet.OS os, params object[] input)</argsstring>
+        <name>WriteSingleF</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>params object []</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Writes single to the terminal using standard C# formatting. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The <ref refid="namespace_pathfinder_1_1_game_1_1_o_s" kindref="compound">OS</ref>.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input to format, zero index must be a formatable string.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="96" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="96" bodyend="101"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Game/OS/Extensions.cs" line="10" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="9" bodyend="102"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a3c7dc4252ef9aa625353a05831412ed6" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetCurrentComputer</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a08d55d853112988b8a69f26110d47d3c" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetExesFor</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a210838cd29e560ada42c3356f4b5f710" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetExesFor&lt; T &gt;</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ac553c7d9ed908a25fcab8091f82e4e9d" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetModExeInterfaceFor</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a6cb7772226d053dcecf32b85fb8bf66d" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetModExeInterfaceFor&lt; T &gt;</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a1c379f092ec7cc44aeb12a3aed8e5183" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>Write</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a98be3beba4f665b17dadc1b8a95279b8" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>WriteF</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a7e8a53fd0198cf29bad63ed30eccb3f7" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>WriteSingle</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ab2a6df6aa04ecd7745ee89f1a6f2e103" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>WriteSingleF</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

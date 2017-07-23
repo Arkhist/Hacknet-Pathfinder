@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespace_pathfinder_1_1_util_1_1_attribute" kind="namespace" language="C#">
+    <compoundname>Pathfinder::Util::Attribute</compoundname>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_attribute_1_1_allow_order_unload_attribute" prot="public">Pathfinder::Util::Attribute::AllowOrderUnloadAttribute</innerclass>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_attribute_1_1_event_priority_attribute" prot="public">Pathfinder::Util::Attribute::EventPriorityAttribute</innerclass>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute" prot="public">Pathfinder::Util::Attribute::LoadOrderAttribute</innerclass>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute" prot="public">Pathfinder::Util::Attribute::ModOptionsAttribute</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Util/Attribute/AllowOrderUnloadAttribute.cs" line="2" column="1"/>
+  </compounddef>
+</doxygen>

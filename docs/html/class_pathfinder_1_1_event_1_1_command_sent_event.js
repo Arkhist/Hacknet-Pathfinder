@@ -5,5 +5,6 @@ var class_pathfinder_1_1_event_1_1_command_sent_event =
     [ "Arguments", "class_pathfinder_1_1_event_1_1_command_sent_event.html#a88be71dc1510de7945eeefd1c45f4537", null ],
     [ "Disconnects", "class_pathfinder_1_1_event_1_1_command_sent_event.html#ab5531469ac72423f211f8216e710910c", null ],
     [ "State", "class_pathfinder_1_1_event_1_1_command_sent_event.html#a9e6fa831728bf162d728f0a169afcd5c", null ],
-    [ "StateChange", "class_pathfinder_1_1_event_1_1_command_sent_event.html#a52aa94e27f5a0c9f632abc94f99e90c5", null ]
+    [ "StateChange", "class_pathfinder_1_1_event_1_1_command_sent_event.html#a52aa94e27f5a0c9f632abc94f99e90c5", null ],
+    [ "this[int index]", "class_pathfinder_1_1_event_1_1_command_sent_event.html#a9e75b1a07282da6151e45f9d9c69aa5a", null ]
 ];

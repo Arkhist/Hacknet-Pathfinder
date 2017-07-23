@@ -38,7 +38,7 @@
         <argsstring>(Rectangle shape, int contentSize, float scroll=0, bool vertical=true)</argsstring>
         <name>Scrollbar</name>
         <param>
-          <type>Rectangle</type>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
           <declname>shape</declname>
         </param>
         <param>
@@ -161,38 +161,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="438">
+      <node id="568">
         <label>Pathfinder.GUI.Scrollbar</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_scrollbar"/>
-        <childnode refid="439" relation="public-inheritance">
+        <childnode refid="569" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="440">
+      <node id="570">
         <label>BaseInteractiveRectangle&lt; int &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
       </node>
-      <node id="439">
+      <node id="569">
         <label>BaseScrollbar</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar"/>
-        <childnode refid="440" relation="public-inheritance">
+        <childnode refid="570" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="441">
+      <node id="571">
         <label>Pathfinder.GUI.Scrollbar</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_scrollbar"/>
-        <childnode refid="442" relation="public-inheritance">
+        <childnode refid="572" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="443">
+      <node id="573">
         <label>BaseInteractiveRectangle&lt; int &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
       </node>
-      <node id="442">
+      <node id="572">
         <label>BaseScrollbar</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar"/>
-        <childnode refid="443" relation="public-inheritance">
+        <childnode refid="573" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

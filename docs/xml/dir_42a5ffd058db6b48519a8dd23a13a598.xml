@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_42a5ffd058db6b48519a8dd23a13a598" kind="dir">
+    <compoundname>Pathfinder/Game</compoundname>
+    <innerdir refid="dir_8e35258e086f8b22d94a217f884f7b61">Pathfinder/Game/Computer</innerdir>
+    <innerdir refid="dir_4c6e7ed8cd3c12e095faff90eeb5db9b">Pathfinder/Game/NetworkMap</innerdir>
+    <innerdir refid="dir_4b0a75306c0f97320feaff032eac47ed">Pathfinder/Game/OS</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Game/"/>
+  </compounddef>
+</doxygen>

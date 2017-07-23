@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_event_1_1_options_menu_event" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Event::OptionsMenuEvent</compoundname>
+    <basecompoundref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" prot="public" virt="non-virtual">Pathfinder.Event.PathfinderEvent</basecompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_event_1_1_options_menu_apply_event" prot="public" virt="non-virtual">Pathfinder.Event.OptionsMenuApplyEvent</derivedcompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_event_1_1_options_menu_draw_event" prot="public" virt="non-virtual">Pathfinder.Event.OptionsMenuDrawEvent</derivedcompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_event_1_1_options_menu_load_content_event" prot="public" virt="non-virtual">Pathfinder.Event.OptionsMenuLoadContentEvent</derivedcompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_event_1_1_options_menu_update_event" prot="public" virt="non-virtual">Pathfinder.Event.OptionsMenuUpdateEvent</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_options_menu_event_1ae2fa102bacdd0a270ea797432c1b17d4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>OptionsMenu</type>
+        <definition>OptionsMenu Pathfinder.Event.OptionsMenuEvent.OptionsMenu</definition>
+        <argsstring></argsstring>
+        <name>OptionsMenu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/OptionsMenuEvents.cs" line="8" column="1" bodyfile="Pathfinder/Event/OptionsMenuEvents.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_options_menu_event_1acc924b8528f50958587ce30593376736" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Event.OptionsMenuEvent.OptionsMenuEvent</definition>
+        <argsstring>(OptionsMenu menu)</argsstring>
+        <name>OptionsMenuEvent</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_options_menu_event_1ae2fa102bacdd0a270ea797432c1b17d4" kindref="member">OptionsMenu</ref></type>
+          <declname>menu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/OptionsMenuEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/OptionsMenuEvents.cs" bodystart="9" bodyend="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="432">
+        <label>Pathfinder.Event.OptionsMenuApplyEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_options_menu_apply_event"/>
+        <childnode refid="430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="431">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="433">
+        <label>Pathfinder.Event.OptionsMenuDrawEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_options_menu_draw_event"/>
+        <childnode refid="430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="434">
+        <label>Pathfinder.Event.OptionsMenuLoadContentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_options_menu_load_content_event"/>
+        <childnode refid="430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="430">
+        <label>Pathfinder.Event.OptionsMenuEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_options_menu_event"/>
+        <childnode refid="431" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="435">
+        <label>Pathfinder.Event.OptionsMenuUpdateEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_options_menu_update_event"/>
+        <childnode refid="430" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="437">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="436">
+        <label>Pathfinder.Event.OptionsMenuEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_options_menu_event"/>
+        <childnode refid="437" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Event/OptionsMenuEvents.cs" line="7" column="1" bodyfile="Pathfinder/Event/OptionsMenuEvents.cs" bodystart="6" bodyend="10"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OptionsMenuEvent</scope><name>CallEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OptionsMenuEvent</scope><name>IsCancelled</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_options_menu_event_1ae2fa102bacdd0a270ea797432c1b17d4" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OptionsMenuEvent</scope><name>OptionsMenu</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_options_menu_event_1acc924b8528f50958587ce30593376736" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OptionsMenuEvent</scope><name>OptionsMenuEvent</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

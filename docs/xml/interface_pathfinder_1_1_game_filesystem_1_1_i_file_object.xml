@@ -88,13 +88,13 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="234">
+      <node id="268">
         <label>Pathfinder.GameFilesystem.FileObject&lt; VanillaT &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
-        <childnode refid="233" relation="public-inheritance">
+        <childnode refid="267" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="233">
+      <node id="267">
         <label>Pathfinder.GameFilesystem.IFileObject</label>
         <link refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object"/>
       </node>

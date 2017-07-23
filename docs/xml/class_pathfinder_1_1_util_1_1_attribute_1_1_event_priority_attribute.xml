@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_util_1_1_attribute_1_1_event_priority_attribute" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::Attribute::EventPriorityAttribute</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Attribute</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_util_1_1_attribute_1_1_event_priority_attribute_1aa7435d91a9f32ed23081106cf0276416" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int Pathfinder.Util.Attribute.EventPriorityAttribute.Priority</definition>
+        <argsstring></argsstring>
+        <name>Priority</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Attribute/EventPriorityAttribute.cs" line="8" column="1" bodyfile="Pathfinder/Util/Attribute/EventPriorityAttribute.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_attribute_1_1_event_priority_attribute_1a3fff3b973dab1cf888097fd2a09cc89c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Util.Attribute.EventPriorityAttribute.EventPriorityAttribute</definition>
+        <argsstring>(int priority)</argsstring>
+        <name>EventPriorityAttribute</name>
+        <param>
+          <type>int</type>
+          <declname>priority</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Attribute/EventPriorityAttribute.cs" line="9" column="1" bodyfile="Pathfinder/Util/Attribute/EventPriorityAttribute.cs" bodystart="9" bodyend="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="namespace_pathfinder_1_1_event" kindref="compound">Event</ref> priority attribute for designating event listener call order. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="146">
+        <label>Pathfinder.Util.Attribute.EventPriorityAttribute</label>
+        <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_event_priority_attribute"/>
+        <childnode refid="147" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="147">
+        <label>System::Attribute</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="148">
+        <label>Pathfinder.Util.Attribute.EventPriorityAttribute</label>
+        <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_event_priority_attribute"/>
+        <childnode refid="149" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="149">
+        <label>System::Attribute</label>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Util/Attribute/EventPriorityAttribute.cs" line="7" column="1" bodyfile="Pathfinder/Util/Attribute/EventPriorityAttribute.cs" bodystart="6" bodyend="10"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_util_1_1_attribute_1_1_event_priority_attribute_1a3fff3b973dab1cf888097fd2a09cc89c" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Attribute::EventPriorityAttribute</scope><name>EventPriorityAttribute</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_attribute_1_1_event_priority_attribute_1aa7435d91a9f32ed23081106cf0276416" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Attribute::EventPriorityAttribute</scope><name>Priority</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

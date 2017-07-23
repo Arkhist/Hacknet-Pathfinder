@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_util_1_1_vector1" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::Vector1</compoundname>
+    <derivedcompoundref refid="class_pathfinder_1_1_util_1_1_vector2" prot="public" virt="non-virtual">Pathfinder.Util.Vector2&lt; T &gt;</derivedcompoundref>
+    <templateparamlist>
+      <param>
+        <type>T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_util_1_1_vector1_1a581170fe773de895b0cf6fdf30dae1bd" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>T</type>
+        <definition>T Pathfinder.Util.Vector1&lt; T &gt;.X</definition>
+        <argsstring></argsstring>
+        <name>X</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Vector.cs" line="10" column="1" bodyfile="Pathfinder/Util/Vector.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_vector1_1aa69a24acd43817ba452378af36c55868" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Util.Vector1&lt; T &gt;.Vector1</definition>
+        <argsstring>(T x)</argsstring>
+        <name>Vector1</name>
+        <param>
+          <type>T</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Vector.cs" line="11" column="1" bodyfile="Pathfinder/Util/Vector.cs" bodystart="11" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_vector1_1a38af55f07b641480e84c22058019f6b8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T2</type>
+        <definition>static T2 Pathfinder.Util.Vector1&lt; T &gt;.Convert&lt; T2 &gt;</definition>
+        <argsstring>(T c)</argsstring>
+        <name>Convert&lt; T2 &gt;</name>
+        <param>
+          <type>T</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Vector.cs" line="12" column="1" bodyfile="Pathfinder/Util/Vector.cs" bodystart="12" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_vector1_1a45e8c61bcd3c7d8455cd346aca3f4b01" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T Pathfinder.Util.Vector1&lt; T &gt;.Convert&lt; T2 &gt;</definition>
+        <argsstring>(T2 c)</argsstring>
+        <name>Convert&lt; T2 &gt;</name>
+        <param>
+          <type>T2</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Vector.cs" line="18" column="1" bodyfile="Pathfinder/Util/Vector.cs" bodystart="18" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="599">
+        <label>Pathfinder::Util::Vector3&lt; T &gt;</label>
+        <link refid="class_pathfinder_1_1_util_1_1_vector3"/>
+        <childnode refid="598" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="597">
+        <label>Pathfinder.Util.Vector1&lt; T &gt;</label>
+        <link refid="class_pathfinder_1_1_util_1_1_vector1"/>
+      </node>
+      <node id="600">
+        <label>Pathfinder::Util::Vector4&lt; T &gt;</label>
+        <link refid="class_pathfinder_1_1_util_1_1_vector4"/>
+        <childnode refid="599" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="598">
+        <label>Pathfinder::Util::Vector2&lt; T &gt;</label>
+        <link refid="class_pathfinder_1_1_util_1_1_vector2"/>
+        <childnode refid="597" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="Pathfinder/Util/Vector.cs" line="9" column="1" bodyfile="Pathfinder/Util/Vector.cs" bodystart="8" bodyend="24"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_util_1_1_vector1_1a38af55f07b641480e84c22058019f6b8" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Vector1</scope><name>Convert&lt; T2 &gt;</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_vector1_1a45e8c61bcd3c7d8455cd346aca3f4b01" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Vector1</scope><name>Convert&lt; T2 &gt;</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_vector1_1aa69a24acd43817ba452378af36c55868" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Vector1</scope><name>Vector1</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_vector1_1a581170fe773de895b0cf6fdf30dae1bd" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Vector1</scope><name>X</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

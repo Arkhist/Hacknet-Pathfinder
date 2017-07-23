@@ -3,12 +3,12 @@
   <compounddef id="class_pathfinder_1_1_command_1_1_handler" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Command::Handler</compoundname>
       <sectiondef kind="package-static-attrib">
-      <memberdef kind="variable" id="class_pathfinder_1_1_command_1_1_handler_1aea0cf8ad0782e3ab1d0a0159b85a708c" prot="package" static="yes" mutable="no">
-        <type>Dictionary&lt; string, <ref refid="class_pathfinder_1_1_command_1_1_handler_1a2a554560d17cb4f32735115a9efde193" kindref="member">CommandFunc</ref> &gt;</type>
-        <definition>Dictionary&lt;string, CommandFunc&gt; Pathfinder.Command.Handler.commands</definition>
+      <memberdef kind="variable" id="class_pathfinder_1_1_command_1_1_handler_1a7c0e2c59eeeeba062d91e3a74d0021a8" prot="package" static="yes" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="_template_mod_8cs_1aa6c08473aebff88f007cf89ee6c15123" kindref="member">CommandFunc</ref> &gt;</type>
+        <definition>Dictionary&lt;string, CommandFunc&gt; Pathfinder.Command.Handler.ModCommands</definition>
         <argsstring></argsstring>
-        <name>commands</name>
-        <initializer>= new Dictionary&lt;string, <ref refid="class_pathfinder_1_1_command_1_1_handler_1a2a554560d17cb4f32735115a9efde193" kindref="member">CommandFunc</ref>&gt;()</initializer>
+        <name>ModCommands</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="_template_mod_8cs_1aa6c08473aebff88f007cf89ee6c15123" kindref="member">CommandFunc</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -17,11 +17,11 @@
         </inbodydescription>
         <location file="Pathfinder/Command/Handler.cs" line="13" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="13" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_pathfinder_1_1_command_1_1_handler_1a5950ac903a095d7ec78544cc8178e626" prot="package" static="yes" mutable="no">
+      <memberdef kind="variable" id="class_pathfinder_1_1_command_1_1_handler_1ae5933bbb6f98e287d2517a29a8be230c" prot="package" static="yes" mutable="no">
         <type>Dictionary&lt; string, List&lt; string &gt; &gt;</type>
-        <definition>Dictionary&lt;string, List&lt;string&gt; &gt; Pathfinder.Command.Handler.modToCommands</definition>
+        <definition>Dictionary&lt;string, List&lt;string&gt; &gt; Pathfinder.Command.Handler.ModIdToCommandKeyList</definition>
         <argsstring></argsstring>
-        <name>modToCommands</name>
+        <name>ModIdToCommandKeyList</name>
         <initializer>= new Dictionary&lt;string, List&lt;string&gt;&gt;()</initializer>
         <briefdescription>
         </briefdescription>
@@ -66,7 +66,7 @@
           <declname>key</declname>
         </param>
         <param>
-          <type><ref refid="class_pathfinder_1_1_command_1_1_handler_1a2a554560d17cb4f32735115a9efde193" kindref="member">CommandFunc</ref></type>
+          <type><ref refid="_template_mod_8cs_1aa6c08473aebff88f007cf89ee6c15123" kindref="member">CommandFunc</ref></type>
           <declname>function</declname>
         </param>
         <param>
@@ -115,7 +115,38 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Command/Handler.cs" line="24" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="24" bodyend="45"/>
+        <location file="Pathfinder/Command/Handler.cs" line="24" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="24" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_handler_1abf1b582e5eac97152f0ec2ba6ef70f04" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Command.Handler.RegisterCommand</definition>
+        <argsstring>(string key, Func&lt; Hacknet.OS, List&lt; string &gt;, bool &gt; function, string description=null, bool autoComplete=false)</argsstring>
+        <name>RegisterCommand</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Func&lt; Hacknet.OS, List&lt; string &gt;, bool &gt;</type>
+          <declname>function</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>description</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>autoComplete</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Command/Handler.cs" line="49" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_handler_1a1e1314b9193ca69471aabbb4c1c37a75" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -146,7 +177,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Command/Handler.cs" line="65" column="1"/>
+        <location file="Pathfinder/Command/Handler.cs" line="66" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_handler_1a5d65fa66db7779a37ab893fff72f4a1b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -167,7 +198,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Command/Handler.cs" line="72" column="1"/>
+        <location file="Pathfinder/Command/Handler.cs" line="73" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_handler_1a5d356bef792c1a84c85c0f36b133b8e9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -192,7 +223,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Command/Handler.cs" line="75" column="1"/>
+        <location file="Pathfinder/Command/Handler.cs" line="76" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_handler_1a44ba6003ea9105440128ab0ed399527a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -221,41 +252,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Command/Handler.cs" line="78" column="1"/>
+        <location file="Pathfinder/Command/Handler.cs" line="79" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_handler_1abf1b582e5eac97152f0ec2ba6ef70f04" prot="package" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>string</type>
-        <definition>static string Pathfinder.Command.Handler.RegisterCommand</definition>
-        <argsstring>(string key, Func&lt; Hacknet.OS, List&lt; string &gt;, bool &gt; function, string description=null, bool autoComplete=false)</argsstring>
-        <name>RegisterCommand</name>
-        <param>
-          <type>string</type>
-          <declname>key</declname>
-        </param>
-        <param>
-          <type>Func&lt; Hacknet.OS, List&lt; string &gt;, bool &gt;</type>
-          <declname>function</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>description</declname>
-          <defval>null</defval>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>autoComplete</declname>
-          <defval>false</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="Pathfinder/Command/Handler.cs" line="48" column="1"/>
-      </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_command_1_1_handler_1a8a1f9cc635fa33135068ca40abf02d2e" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>static bool Pathfinder.Command.Handler.UnregisterCommand</definition>
@@ -271,24 +271,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Command/Handler.cs" line="54" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="54" bodyend="62"/>
+        <location file="Pathfinder/Command/Handler.cs" line="55" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="55" bodyend="63"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Command/Handler.cs" line="10" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="9" bodyend="80"/>
+    <location file="Pathfinder/Command/Handler.cs" line="10" column="1" bodyfile="Pathfinder/Command/Handler.cs" bodystart="9" bodyend="81"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_command_1_1_handler_1a1e1314b9193ca69471aabbb4c1c37a75" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>AddCommand</name></member>
       <member refid="class_pathfinder_1_1_command_1_1_handler_1a5d65fa66db7779a37ab893fff72f4a1b" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>AddCommand</name></member>
       <member refid="class_pathfinder_1_1_command_1_1_handler_1a5d356bef792c1a84c85c0f36b133b8e9" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>AddCommand</name></member>
       <member refid="class_pathfinder_1_1_command_1_1_handler_1a44ba6003ea9105440128ab0ed399527a" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>AddCommand</name></member>
       <member refid="class_pathfinder_1_1_command_1_1_handler_1a2a554560d17cb4f32735115a9efde193" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>CommandFunc</name></member>
-      <member refid="class_pathfinder_1_1_command_1_1_handler_1aea0cf8ad0782e3ab1d0a0159b85a708c" prot="package" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>commands</name></member>
-      <member refid="class_pathfinder_1_1_command_1_1_handler_1a5950ac903a095d7ec78544cc8178e626" prot="package" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>modToCommands</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_handler_1a7c0e2c59eeeeba062d91e3a74d0021a8" prot="package" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>ModCommands</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_handler_1ae5933bbb6f98e287d2517a29a8be230c" prot="package" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>ModIdToCommandKeyList</name></member>
       <member refid="class_pathfinder_1_1_command_1_1_handler_1ae2ba76254891fa9ac9e40a874028e709" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>RegisterCommand</name></member>
-      <member refid="class_pathfinder_1_1_command_1_1_handler_1abf1b582e5eac97152f0ec2ba6ef70f04" prot="package" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>RegisterCommand</name></member>
+      <member refid="class_pathfinder_1_1_command_1_1_handler_1abf1b582e5eac97152f0ec2ba6ef70f04" prot="public" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>RegisterCommand</name></member>
       <member refid="class_pathfinder_1_1_command_1_1_handler_1a8a1f9cc635fa33135068ca40abf02d2e" prot="package" virt="non-virtual"><scope>Pathfinder::Command::Handler</scope><name>UnregisterCommand</name></member>
     </listofallmembers>
   </compounddef>

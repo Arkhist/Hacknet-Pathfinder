@@ -3,11 +3,11 @@
   <compounddef id="class_pathfinder_1_1_mission_1_1_handler" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Mission::Handler</compoundname>
       <sectiondef kind="package-static-attrib">
-      <memberdef kind="variable" id="class_pathfinder_1_1_mission_1_1_handler_1a5d5f8597c7eb2e8b3072328334496275" prot="package" static="yes" mutable="no">
+      <memberdef kind="variable" id="class_pathfinder_1_1_mission_1_1_handler_1a3c1c25d1b6fb6ec087192ccb0dad3261" prot="package" static="yes" mutable="no">
         <type>Dictionary&lt; string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_goal" kindref="compound">IGoal</ref> &gt;</type>
-        <definition>Dictionary&lt;string, IGoal&gt; Pathfinder.Mission.Handler.goals</definition>
+        <definition>Dictionary&lt;string, IGoal&gt; Pathfinder.Mission.Handler.ModGoals</definition>
         <argsstring></argsstring>
-        <name>goals</name>
+        <name>ModGoals</name>
         <initializer>= new Dictionary&lt;string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_goal" kindref="compound">IGoal</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
@@ -17,11 +17,11 @@
         </inbodydescription>
         <location file="Pathfinder/Mission/Handler.cs" line="9" column="1" bodyfile="Pathfinder/Mission/Handler.cs" bodystart="9" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_pathfinder_1_1_mission_1_1_handler_1a524ef901b97c75640e2a182f2d004950" prot="package" static="yes" mutable="no">
+      <memberdef kind="variable" id="class_pathfinder_1_1_mission_1_1_handler_1aff4cb2824669b613654009df2d895df2" prot="package" static="yes" mutable="no">
         <type>Dictionary&lt; string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_interface" kindref="compound">IInterface</ref> &gt;</type>
-        <definition>Dictionary&lt;string, IInterface&gt; Pathfinder.Mission.Handler.missions</definition>
+        <definition>Dictionary&lt;string, IInterface&gt; Pathfinder.Mission.Handler.ModMissions</definition>
         <argsstring></argsstring>
-        <name>missions</name>
+        <name>ModMissions</name>
         <initializer>= new Dictionary&lt;string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_interface" kindref="compound">IInterface</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
@@ -270,8 +270,8 @@
       <member refid="class_pathfinder_1_1_mission_1_1_handler_1acdbb3d9ba9dd6fb5903fde55ff1d9d5c" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>GetMissionById</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_handler_1ac7fe24f67a1c42a80a409627703a4488" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>GetMissionGoalById</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_handler_1ae9b486eacbcdfda1311eafcdb6723f4a" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>GetMissionGoalById</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a5d5f8597c7eb2e8b3072328334496275" prot="package" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>goals</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a524ef901b97c75640e2a182f2d004950" prot="package" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>missions</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1a3c1c25d1b6fb6ec087192ccb0dad3261" prot="package" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>ModGoals</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_handler_1aff4cb2824669b613654009df2d895df2" prot="package" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>ModMissions</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_handler_1a57b5b047a24911b2bdc2d323d7427a27" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>RegisterMission</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_handler_1a09cf6c1de0456221f23a7b9a2a11c3e7" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>RegisterMissionGoal</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_handler_1a3f41e19d647c09212031a815765dd6e7" prot="package" virt="non-virtual"><scope>Pathfinder::Mission::Handler</scope><name>UnregisterMission</name></member>

@@ -4,7 +4,7 @@
     <compoundname>Pathfinder::Event::NetworkMapLoadContentEvent</compoundname>
     <basecompoundref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" prot="public" virt="non-virtual">Pathfinder.Event.PathfinderEvent</basecompoundref>
       <sectiondef kind="property">
-      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1af2ff4aea9af5d492762baf0ce7a82c26" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_network_map_load_content_event_1af2ff4aea9af5d492762baf0ce7a82c26" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>Hacknet.NetworkMap</type>
         <definition>Hacknet.NetworkMap Pathfinder.Event.NetworkMapLoadContentEvent.NetMap</definition>
         <argsstring></argsstring>
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/BasicEvents.cs" line="8" column="1" bodyfile="Pathfinder/Event/BasicEvents.cs" bodystart="8" bodyend="-1"/>
+        <location file="Pathfinder/Event/BasicEvents.cs" line="7" column="1" bodyfile="Pathfinder/Event/BasicEvents.cs" bodystart="7" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/BasicEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/BasicEvents.cs" bodystart="10" bodyend="-1"/>
+        <location file="Pathfinder/Event/BasicEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/BasicEvents.cs" bodystart="9" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/BasicEvents.cs" line="11" column="1" bodyfile="Pathfinder/Event/BasicEvents.cs" bodystart="11" bodyend="11"/>
+        <location file="Pathfinder/Event/BasicEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/BasicEvents.cs" bodystart="10" bodyend="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -58,36 +58,36 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="346">
+      <node id="414">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="345">
+      <node id="413">
         <label>Pathfinder.Event.NetworkMapLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event"/>
-        <childnode refid="346" relation="public-inheritance">
+        <childnode refid="414" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="348">
+      <node id="416">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="347">
+      <node id="415">
         <label>Pathfinder.Event.NetworkMapLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event"/>
-        <childnode refid="348" relation="public-inheritance">
+        <childnode refid="416" relation="public-inheritance">
         </childnode>
-        <childnode refid="349" relation="usage">
+        <childnode refid="417" relation="usage">
           <edgelabel>NetMapInstance</edgelabel>
         </childnode>
       </node>
-      <node id="349">
+      <node id="417">
         <label>Hacknet</label>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/BasicEvents.cs" line="7" column="1" bodyfile="Pathfinder/Event/BasicEvents.cs" bodystart="6" bodyend="12"/>
+    <location file="Pathfinder/Event/BasicEvents.cs" line="6" column="1" bodyfile="Pathfinder/Event/BasicEvents.cs" bodystart="5" bodyend="11"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::NetworkMapLoadContentEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::NetworkMapLoadContentEvent</scope><name>IsCancelled</name></member>

@@ -48,7 +48,7 @@
           <declname>instance</declname>
         </param>
         <param>
-          <type>Rectangle</type>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
           <declname>bounds</declname>
         </param>
         <param>
@@ -175,13 +175,13 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="246">
+      <node id="280">
         <label>Pathfinder.Daemon.Interface</label>
         <link refid="class_pathfinder_1_1_daemon_1_1_interface"/>
-        <childnode refid="245" relation="public-inheritance">
+        <childnode refid="279" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="245">
+      <node id="279">
         <label>Pathfinder.Daemon.IInterface</label>
         <link refid="interface_pathfinder_1_1_daemon_1_1_i_interface"/>
       </node>

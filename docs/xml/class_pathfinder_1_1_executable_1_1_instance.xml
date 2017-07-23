@@ -82,7 +82,7 @@
         <argsstring>(Rectangle loc, Hacknet.OS os, List&lt; string &gt; args, FileEntry executionFile, IInterface exeInterface)</argsstring>
         <name>Instance</name>
         <param>
-          <type>Rectangle</type>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
           <declname>loc</declname>
         </param>
         <param>
@@ -318,7 +318,7 @@
           <declname>args</declname>
         </param>
         <param>
-          <type>Rectangle</type>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
           <declname>loc</declname>
         </param>
         <briefdescription>
@@ -364,30 +364,30 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="262">
+      <node id="298">
         <label>Pathfinder.Executable.Instance</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance"/>
-        <childnode refid="263" relation="public-inheritance">
+        <childnode refid="299" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="263">
+      <node id="299">
         <label>ExeModule</label>
       </node>
-      <node id="264">
+      <node id="300">
         <label>Pathfinder.Executable.Instance.InstanceOverrideDisplay</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display"/>
-        <childnode refid="262" relation="public-inheritance">
+        <childnode refid="298" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="265">
+      <node id="301">
         <label>Pathfinder.Executable.Instance</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance"/>
-        <childnode refid="266" relation="public-inheritance">
+        <childnode refid="302" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="266">
+      <node id="302">
         <label>ExeModule</label>
       </node>
     </collaborationgraph>

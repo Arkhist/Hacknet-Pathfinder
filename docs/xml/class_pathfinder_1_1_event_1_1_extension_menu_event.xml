@@ -20,7 +20,7 @@
         <location file="Pathfinder/Event/ExtensionMenuEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/ExtensionMenuEvents.cs" bodystart="10" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_extension_menu_event_1a3940943c918e371746a4b45fc4ddaf93" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
-        <type>Rectangle</type>
+        <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
         <definition>Rectangle Pathfinder.Event.ExtensionMenuEvent.Rectangle</definition>
         <argsstring></argsstring>
         <name>Rectangle</name>
@@ -70,7 +70,7 @@
           <declname>screen</declname>
         </param>
         <param>
-          <type><ref refid="class_pathfinder_1_1_event_1_1_extension_menu_event_1a3940943c918e371746a4b45fc4ddaf93" kindref="member">Rectangle</ref></type>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
           <declname>rect</declname>
         </param>
         <param>
@@ -95,38 +95,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="153">
+      <node id="179">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="155">
+      <node id="181">
         <label>Pathfinder.Event.DrawExtensionMenuListEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_list_event"/>
-        <childnode refid="152" relation="public-inheritance">
+        <childnode refid="178" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="152">
+      <node id="178">
         <label>Pathfinder.Event.ExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_extension_menu_event"/>
-        <childnode refid="153" relation="public-inheritance">
+        <childnode refid="179" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="154">
+      <node id="180">
         <label>Pathfinder.Event.DrawExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_event"/>
-        <childnode refid="152" relation="public-inheritance">
+        <childnode refid="178" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="157">
+      <node id="183">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="156">
+      <node id="182">
         <label>Pathfinder.Event.ExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_extension_menu_event"/>
-        <childnode refid="157" relation="public-inheritance">
+        <childnode refid="183" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

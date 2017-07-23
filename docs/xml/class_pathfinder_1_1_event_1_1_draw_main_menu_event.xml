@@ -46,43 +46,43 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="103">
+      <node id="124">
         <label>Pathfinder.Event.DrawMainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_event"/>
-        <childnode refid="104" relation="public-inheritance">
+        <childnode refid="125" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="105">
+      <node id="126">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="104">
+      <node id="125">
         <label>MainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="105" relation="public-inheritance">
+        <childnode refid="126" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="106">
+      <node id="127">
         <label>Pathfinder.Event.DrawMainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_event"/>
-        <childnode refid="107" relation="public-inheritance">
+        <childnode refid="128" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="108">
+      <node id="129">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="109">
+      <node id="130">
         <label>Hacknet</label>
       </node>
-      <node id="107">
+      <node id="128">
         <label>MainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="108" relation="public-inheritance">
+        <childnode refid="129" relation="public-inheritance">
         </childnode>
-        <childnode refid="109" relation="usage">
+        <childnode refid="130" relation="usage">
           <edgelabel>MainMenuInstance</edgelabel>
         </childnode>
       </node>

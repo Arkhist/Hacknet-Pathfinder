@@ -161,6 +161,9 @@
     <Compile Include="Pathfinder\PathfinderMod.cs" />
     <Compile Include="Pathfinder\ModManager\Manager.cs" />
     <Compile Include="Pathfinder\ModManager\Attribute\Attributes.cs" />
+    <Compile Include="Pathfinder\Game\Computer\Extensions.cs" />
+    <Compile Include="Pathfinder\Game\NetworkMap\Extensions.cs" />
+    <Compile Include="Pathfinder\Game\OS\Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />
@@ -178,6 +181,10 @@
     <Folder Include="Pathfinder\GUI\ModOptions\" />
     <Folder Include="Pathfinder\ModManager\" />
     <Folder Include="Pathfinder\ModManager\Attribute\" />
+    <Folder Include="Pathfinder\Game\" />
+    <Folder Include="Pathfinder\Game\Computer\" />
+    <Folder Include="Pathfinder\Game\NetworkMap\" />
+    <Folder Include="Pathfinder\Game\OS\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

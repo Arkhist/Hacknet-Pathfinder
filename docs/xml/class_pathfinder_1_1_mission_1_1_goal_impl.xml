@@ -68,25 +68,25 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="209">
+      <node id="241">
         <label>Pathfinder.Mission.GoalImpl</label>
         <link refid="class_pathfinder_1_1_mission_1_1_goal_impl"/>
-        <childnode refid="210" relation="public-inheritance">
+        <childnode refid="242" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="210">
+      <node id="242">
         <label>IGoal</label>
         <link refid="interface_pathfinder_1_1_mission_1_1_i_goal"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="211">
+      <node id="243">
         <label>Pathfinder.Mission.GoalImpl</label>
         <link refid="class_pathfinder_1_1_mission_1_1_goal_impl"/>
-        <childnode refid="212" relation="public-inheritance">
+        <childnode refid="244" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="212">
+      <node id="244">
         <label>IGoal</label>
         <link refid="interface_pathfinder_1_1_mission_1_1_i_goal"/>
       </node>

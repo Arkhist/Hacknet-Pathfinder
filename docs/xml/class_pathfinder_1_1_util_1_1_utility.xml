@@ -4,6 +4,20 @@
     <compoundname>Pathfinder::Util::Utility</compoundname>
     <innerclass refid="class_pathfinder_1_1_util_1_1_utility_1_1_array" prot="public">Pathfinder::Util::Utility::Array</innerclass>
       <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1ac18d023311d783a0cd844f0def43c49f" prot="private" static="yes" mutable="no">
+        <type>Random</type>
+        <definition>Random Pathfinder.Util.Utility.pathfinderRng</definition>
+        <argsstring></argsstring>
+        <name>pathfinderRng</name>
+        <initializer>= new Random()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="25" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1ad71662557bf33ea7f96789246152440e" prot="private" static="yes" mutable="no">
         <type>Regex</type>
         <definition>Regex Pathfinder.Util.Utility.xmlAttribRegex</definition>
@@ -16,23 +30,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="22" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="22" bodyend="-1"/>
+        <location file="Pathfinder/Util/Utility.cs" line="26" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="26" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1a080150d60f2ae63ddca5f21784f681e0" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int Pathfinder.Util.Utility.HaltOffset</definition>
+        <argsstring></argsstring>
+        <name>HaltOffset</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="28" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1a03d9c7906a78775a1b07990c750f22fc" prot="public" static="yes" mutable="no">
         <type>string</type>
         <definition>string Pathfinder.Util.Utility.ActiveModId</definition>
         <argsstring></argsstring>
         <name>ActiveModId</name>
-        <initializer>=&gt; <ref refid="class_pathfinder_1_1_pathfinder_1a66742dc9ae5c678ec73ed67643027f4a" kindref="member">Pathfinder.CurrentMod</ref>?.Identifier ?? &quot;Pathfinder&quot;</initializer>
+        <initializer>=&gt; <ref refid="class_pathfinder_1_1_pathfinder_1afd4dd9898d2edd374d29e51e59e71918" kindref="member">Pathfinder.CurrentMod</ref>?.<ref refid="class_pathfinder_1_1_util_1_1_utility_1a79c4ef263212530a86cc044f37284284" kindref="member">GetCleanId</ref>() ?? &quot;Pathfinder&quot;</initializer>
         <briefdescription>
 <para>Gets the active mod&apos;s identifier. </para>        </briefdescription>
         <detaileddescription>
 <para>The active mod identifier or <ref refid="class_pathfinder_1_1_pathfinder" kindref="compound">Pathfinder</ref> if there is no active mod.</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="41" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="41" bodyend="-1"/>
+        <location file="Pathfinder/Util/Utility.cs" line="47" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="47" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1a76906f5cd3901e82fd4f66842090a82e" prot="public" static="yes" mutable="no">
         <type>Hacknet.OS</type>
@@ -47,7 +75,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="66" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="66" bodyend="-1"/>
+        <location file="Pathfinder/Util/Utility.cs" line="75" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="75" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1a391ca6ebd90f658afe070baea5049dfa" prot="public" static="yes" mutable="no">
         <type>Hacknet.Computer</type>
@@ -62,7 +90,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="74" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="74" bodyend="-1"/>
+        <location file="Pathfinder/Util/Utility.cs" line="83" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="83" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1a78d3804724a5dcd91a5449ec648b09c0" prot="public" static="yes" mutable="no">
         <type>Hacknet.NetworkMap</type>
@@ -77,7 +105,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="82" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="82" bodyend="-1"/>
+        <location file="Pathfinder/Util/Utility.cs" line="91" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="91" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1a3e284b53efd6e797d8d6f8dfd50dc945" prot="public" static="yes" mutable="no">
         <type>Hacknet.Computer</type>
@@ -91,7 +119,7 @@
 <para>The current <ref refid="namespace_pathfinder_1_1_computer" kindref="compound">Computer</ref>.</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="102" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="102" bodyend="-1"/>
+        <location file="Pathfinder/Util/Utility.cs" line="111" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="111" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -119,7 +147,41 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="29" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="29" bodyend="35"/>
+        <location file="Pathfinder/Util/Utility.cs" line="35" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="35" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a79c4ef263212530a86cc044f37284284" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Util.Utility.GetCleanId</definition>
+        <argsstring>(this string id)</argsstring>
+        <name>GetCleanId</name>
+        <param>
+          <type>this string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="49" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1af8ff1ad3abf69ca64a95201c5d67a111" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Util.Utility.GetCleanId</definition>
+        <argsstring>(this IMod mod)</argsstring>
+        <name>GetCleanId</name>
+        <param>
+          <type>this <ref refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod" kindref="compound">IMod</ref></type>
+          <declname>mod</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="50" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1ac5ccd2583f65e51dbea1ed6088be0d14" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>string</type>
@@ -174,7 +236,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="50" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="50" bodyend="60"/>
+        <location file="Pathfinder/Util/Utility.cs" line="59" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="59" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a0bf7e9763485523e55c7bc0c053d64f5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.OS</type>
@@ -187,7 +249,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="68" column="1"/>
+        <location file="Pathfinder/Util/Utility.cs" line="77" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a39f234cf157a8731f04b3a5cd72c4095" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -200,7 +262,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="76" column="1"/>
+        <location file="Pathfinder/Util/Utility.cs" line="85" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1ae82fa135fd32ea463792474334864d41" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.NetworkMap</type>
@@ -213,7 +275,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="84" column="1"/>
+        <location file="Pathfinder/Util/Utility.cs" line="93" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a93ac7e49b676b567b9d3cb1601911cf0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -240,7 +302,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="91" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="91" bodyend="96"/>
+        <location file="Pathfinder/Util/Utility.cs" line="100" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="100" bodyend="105"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a081ad9358b2f563ace650268a7869bdb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -253,7 +315,109 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="104" column="1"/>
+        <location file="Pathfinder/Util/Utility.cs" line="113" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a70301f889c371b3549b0425d1ca6a148" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Pathfinder.Util.Utility.GenerateRandomIPSection</definition>
+        <argsstring>(Random rand=null)</argsstring>
+        <name>GenerateRandomIPSection</name>
+        <param>
+          <type>Random</type>
+          <declname>rand</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="115" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a618af1ec66399a7c5b0344d03325a1df" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Util.Utility.GenerateRandomIP</definition>
+        <argsstring>(Random rand=null)</argsstring>
+        <name>GenerateRandomIP</name>
+        <param>
+          <type>Random</type>
+          <declname>rand</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="116" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1aec1cb6730bee9d355f750f275de1221b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Util.Utility.HaltThread</definition>
+        <argsstring>(int ms, bool ignoreDebugGoFast=false)</argsstring>
+        <name>HaltThread</name>
+        <param>
+          <type>int</type>
+          <declname>ms</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>ignoreDebugGoFast</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="120" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="120" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1acd9c8556134b84d3565d5d3f5a5f39e1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T Pathfinder.Util.Utility.GetFirstAttribute&lt; T &gt;</definition>
+        <argsstring>(this MethodInfo info, bool inherit=false)</argsstring>
+        <name>GetFirstAttribute&lt; T &gt;</name>
+        <param>
+          <type>this MethodInfo</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>inherit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="139" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="139" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1ad657ed312ff0be70d0556ee0c050c984" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T Pathfinder.Util.Utility.GetFirstAttribute&lt; T &gt;</definition>
+        <argsstring>(this Type type, bool inherit=false)</argsstring>
+        <name>GetFirstAttribute&lt; T &gt;</name>
+        <param>
+          <type>this Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>inherit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Utility.cs" line="146" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="146" bodyend="151"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="package-static-func">
@@ -273,7 +437,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="106" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="106" bodyend="117"/>
+        <location file="Pathfinder/Util/Utility.cs" line="126" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="126" bodyend="137"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -281,13 +445,13 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="462">
+      <node id="596">
         <label>Hacknet</label>
       </node>
-      <node id="461">
+      <node id="595">
         <label>Pathfinder.Util.Utility</label>
         <link refid="class_pathfinder_1_1_util_1_1_utility"/>
-        <childnode refid="462" relation="usage">
+        <childnode refid="596" relation="usage">
           <edgelabel>ClientNetworkMap</edgelabel>
           <edgelabel>ClientOS</edgelabel>
           <edgelabel>CurrentComputer</edgelabel>
@@ -295,7 +459,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Util/Utility.cs" line="10" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="9" bodyend="118"/>
+    <location file="Pathfinder/Util/Utility.cs" line="13" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="12" bodyend="152"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a03d9c7906a78775a1b07990c750f22fc" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ActiveModId</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a391ca6ebd90f658afe070baea5049dfa" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ClientComputer</name></member>
@@ -303,13 +467,22 @@
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a76906f5cd3901e82fd4f66842090a82e" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ClientOS</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a357eda9e4e9b509912046ccc5ba928bb" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ConvertToValidXmlAttributeName</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a3e284b53efd6e797d8d6f8dfd50dc945" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>CurrentComputer</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1a618af1ec66399a7c5b0344d03325a1df" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GenerateRandomIP</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1a70301f889c371b3549b0425d1ca6a148" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GenerateRandomIPSection</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1a79c4ef263212530a86cc044f37284284" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetCleanId</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1af8ff1ad3abf69ca64a95201c5d67a111" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetCleanId</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a39f234cf157a8731f04b3a5cd72c4095" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetClientComputer</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1ae82fa135fd32ea463792474334864d41" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetClientNetMap</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a0bf7e9763485523e55c7bc0c053d64f5" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetClientOS</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a93ac7e49b676b567b9d3cb1601911cf0" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetCurrentComputer</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a081ad9358b2f563ace650268a7869bdb" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetCurrentComputer</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1acd9c8556134b84d3565d5d3f5a5f39e1" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetFirstAttribute&lt; T &gt;</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1ad657ed312ff0be70d0556ee0c050c984" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetFirstAttribute&lt; T &gt;</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1ac5ccd2583f65e51dbea1ed6088be0d14" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetId</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a2226c43ab09a5d67e844b616defb1ec2" prot="package" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetPreviousStackFrameIdentity</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1a080150d60f2ae63ddca5f21784f681e0" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>HaltOffset</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1aec1cb6730bee9d355f750f275de1221b" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>HaltThread</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1ac18d023311d783a0cd844f0def43c49f" prot="private" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>pathfinderRng</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1ad71662557bf33ea7f96789246152440e" prot="private" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>xmlAttribRegex</name></member>
     </listofallmembers>
   </compounddef>

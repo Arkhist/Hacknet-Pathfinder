@@ -4,7 +4,6 @@
     <compoundname>Instance.cs</compoundname>
     <innerclass refid="class_pathfinder_1_1_mission_1_1_instance" prot="public">Pathfinder::Mission::Instance</innerclass>
     <innernamespace refid="namespace_pathfinder_1_1_mission">Pathfinder::Mission</innernamespace>
-    <innernamespace refid="namespace_hacknet_1_1_extensions">Hacknet::Extensions</innernamespace>
     <innernamespace refid="namespace_hacknet_1_1_mission">Hacknet::Mission</innernamespace>
     <briefdescription>
     </briefdescription>

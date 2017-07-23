@@ -57,6 +57,19 @@
         </inbodydescription>
         <location file="Pathfinder/Event/CommandEvents.cs" line="26" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="26" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_command_sent_event_1a9e75b1a07282da6151e45f9d9c69aa5a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Event.CommandSentEvent.this[int index]</definition>
+        <argsstring></argsstring>
+        <name>this[int index]</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/CommandEvents.cs" line="34" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="class_pathfinder_1_1_event_1_1_command_sent_event_1a81a926e9ac9b118bf0834ef3339eee22" prot="public" static="no" mutable="no">
@@ -102,48 +115,48 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="33">
+      <node id="48">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="34" relation="public-inheritance">
+        <childnode refid="49" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="34">
+      <node id="49">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="32">
+      <node id="47">
         <label>Pathfinder.Event.CommandSentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_command_sent_event"/>
-        <childnode refid="33" relation="public-inheritance">
+        <childnode refid="48" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="36">
+      <node id="51">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="37" relation="public-inheritance">
+        <childnode refid="52" relation="public-inheritance">
         </childnode>
-        <childnode refid="38" relation="usage">
+        <childnode refid="53" relation="usage">
           <edgelabel>OsInstance</edgelabel>
         </childnode>
       </node>
-      <node id="37">
+      <node id="52">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="38">
+      <node id="53">
         <label>Hacknet</label>
       </node>
-      <node id="35">
+      <node id="50">
         <label>Pathfinder.Event.CommandSentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_command_sent_event"/>
-        <childnode refid="36" relation="public-inheritance">
+        <childnode refid="51" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/CommandEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="8" bodyend="33"/>
+    <location file="Pathfinder/Event/CommandEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/CommandEvents.cs" bodystart="8" bodyend="43"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1a81a926e9ac9b118bf0834ef3339eee22" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>Args</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1a88be71dc1510de7945eeefd1c45f4537" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>Arguments</name></member>
@@ -156,6 +169,7 @@
       <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1ac373c93e4c8c30fd9efc814c74e89c99" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>OsInstance</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1a9e6fa831728bf162d728f0a169afcd5c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>State</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1a52aa94e27f5a0c9f632abc94f99e90c5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>StateChange</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_command_sent_event_1a9e75b1a07282da6151e45f9d9c69aa5a" prot="public" virt="non-virtual"><scope>Pathfinder::Event::CommandSentEvent</scope><name>this[int index]</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

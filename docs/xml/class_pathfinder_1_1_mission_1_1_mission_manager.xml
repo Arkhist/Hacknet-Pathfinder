@@ -3,10 +3,10 @@
   <compounddef id="class_pathfinder_1_1_mission_1_1_mission_manager" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Mission::MissionManager</compoundname>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a9b3654a57182013913078034747f4881" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1ab80007a432428a57346a528ee321270d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>MissionListingServer</type>
         <definition>static MissionListingServer Pathfinder.Mission.MissionManager.CreateMissionListingDaemon</definition>
-        <argsstring>(this Hacknet.Computer c, string serviceName, string logoPath, bool isPublic=false, bool isAssigner=false, Hacknet.OS os=null)</argsstring>
+        <argsstring>(this Hacknet.Computer c, string serviceName, string logoPath=null, bool isPublic=false, bool isAssigner=false, Hacknet.OS os=null)</argsstring>
         <name>CreateMissionListingDaemon</name>
         <param>
           <type>this Hacknet.Computer</type>
@@ -19,6 +19,7 @@
         <param>
           <type>string</type>
           <declname>logoPath</declname>
+          <defval>null</defval>
         </param>
         <param>
           <type>bool</type>
@@ -41,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/MissionManager.cs" line="12" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="12" bodyend="32"/>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="12" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="12" bodyend="34"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a820241fc02c5b01d15ef863fe9f7e433" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>MissionListingServer</type>
@@ -62,7 +63,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/MissionManager.cs" line="34" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="34" bodyend="38"/>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="36" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="36" bodyend="40"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1afbfe2fd3ecb5ed53f205e356368f03e0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>MissionListingServer</type>
@@ -83,7 +84,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/MissionManager.cs" line="40" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="40" bodyend="44"/>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="42" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="42" bodyend="46"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a3249fcfd617228b0c145986ca6b22db9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>MissionListingServer</type>
@@ -104,7 +105,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/MissionManager.cs" line="46" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="46" bodyend="50"/>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="48" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="48" bodyend="52"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1ae056454d364f859b6ddd9dfa5eac1c82" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>MissionListingServer</type>
@@ -125,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/MissionManager.cs" line="52" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="52" bodyend="56"/>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="54" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="54" bodyend="58"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1ab87dd245a2f379b7e667027d0e9fe230" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>MissionListingServer</type>
@@ -151,7 +152,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/MissionManager.cs" line="58" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="58" bodyend="65"/>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="60" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="60" bodyend="67"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a42bd646f03743a4fdcd4598798e50e4f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>MissionHubServer</type>
@@ -177,7 +178,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/MissionManager.cs" line="67" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="67" bodyend="72"/>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="69" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="69" bodyend="74"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a76d33e08811a6ed0c40300607ce5d57b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>MissionHubServer</type>
@@ -198,7 +199,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/MissionManager.cs" line="74" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="74" bodyend="78"/>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="76" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="76" bodyend="80"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1ac57bb178f11a195254d43d0842730f23" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>MissionHubServer</type>
@@ -219,7 +220,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/MissionManager.cs" line="80" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="80" bodyend="84"/>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="82" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="82" bodyend="86"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a0e303561ee82526bdc95e1d8f81dafb8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>MissionHubServer</type>
@@ -255,19 +256,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/MissionManager.cs" line="86" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="86" bodyend="103"/>
+        <location file="Pathfinder/Mission/MissionManager.cs" line="88" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="88" bodyend="105"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Mission/MissionManager.cs" line="11" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="10" bodyend="104"/>
+    <location file="Pathfinder/Mission/MissionManager.cs" line="11" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="10" bodyend="106"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1ab87dd245a2f379b7e667027d0e9fe230" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>AddMission</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a0e303561ee82526bdc95e1d8f81dafb8" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>AddMission</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a42bd646f03743a4fdcd4598798e50e4f" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>CreateMissionHubDaemon</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a9b3654a57182013913078034747f4881" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>CreateMissionListingDaemon</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1ab80007a432428a57346a528ee321270d" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>CreateMissionListingDaemon</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1afbfe2fd3ecb5ed53f205e356368f03e0" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>SetGroupName</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1ac57bb178f11a195254d43d0842730f23" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>SetGroupName</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a3249fcfd617228b0c145986ca6b22db9" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>SetListingTitle</name></member>

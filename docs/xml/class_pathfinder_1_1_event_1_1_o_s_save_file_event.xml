@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/OSEvents.cs" line="40" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="40" bodyend="-1"/>
+        <location file="Pathfinder/Event/OSEvents.cs" line="45" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="45" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -39,7 +39,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/OSEvents.cs" line="41" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="41" bodyend="44"/>
+        <location file="Pathfinder/Event/OSEvents.cs" line="46" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="46" bodyend="46"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -47,54 +47,54 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="383">
+      <node id="484">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="384" relation="public-inheritance">
+        <childnode refid="485" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="384">
+      <node id="485">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="382">
+      <node id="483">
         <label>Pathfinder.Event.OSSaveFileEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event"/>
-        <childnode refid="383" relation="public-inheritance">
+        <childnode refid="484" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="385">
+      <node id="486">
         <label>Pathfinder.Event.OSSaveWriteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_save_write_event"/>
-        <childnode refid="382" relation="public-inheritance">
+        <childnode refid="483" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="387">
+      <node id="488">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="388" relation="public-inheritance">
+        <childnode refid="489" relation="public-inheritance">
         </childnode>
-        <childnode refid="389" relation="usage">
+        <childnode refid="490" relation="usage">
           <edgelabel>OsInstance</edgelabel>
         </childnode>
       </node>
-      <node id="388">
+      <node id="489">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="389">
+      <node id="490">
         <label>Hacknet</label>
       </node>
-      <node id="386">
+      <node id="487">
         <label>Pathfinder.Event.OSSaveFileEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event"/>
-        <childnode refid="387" relation="public-inheritance">
+        <childnode refid="488" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/OSEvents.cs" line="39" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="38" bodyend="45"/>
+    <location file="Pathfinder/Event/OSEvents.cs" line="44" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="43" bodyend="47"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event_1a1a7c9d85a617f8c63f21e6c72ca9b300" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>Filename</name></member>

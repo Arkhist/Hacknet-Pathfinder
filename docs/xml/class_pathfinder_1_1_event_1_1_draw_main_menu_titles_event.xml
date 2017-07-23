@@ -63,43 +63,43 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="110">
+      <node id="131">
         <label>Pathfinder.Event.DrawMainMenuTitlesEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event"/>
-        <childnode refid="111" relation="public-inheritance">
+        <childnode refid="132" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="112">
+      <node id="133">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="111">
+      <node id="132">
         <label>MainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="112" relation="public-inheritance">
+        <childnode refid="133" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="113">
+      <node id="134">
         <label>Pathfinder.Event.DrawMainMenuTitlesEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event"/>
-        <childnode refid="114" relation="public-inheritance">
+        <childnode refid="135" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="115">
+      <node id="136">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="116">
+      <node id="137">
         <label>Hacknet</label>
       </node>
-      <node id="114">
+      <node id="135">
         <label>MainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="115" relation="public-inheritance">
+        <childnode refid="136" relation="public-inheritance">
         </childnode>
-        <childnode refid="116" relation="usage">
+        <childnode refid="137" relation="usage">
           <edgelabel>MainMenuInstance</edgelabel>
         </childnode>
       </node>

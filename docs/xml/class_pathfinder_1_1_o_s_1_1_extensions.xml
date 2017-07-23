@@ -22,7 +22,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/OS/Extensions.cs" line="14" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="14" bodyend="21"/>
+        <location file="Pathfinder/OS/Extensions.cs" line="15" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="15" bodyend="22"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_o_s_1_1_extensions_1a16b906e987fed24868b83f396b7c3981" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; T &gt;</type>
@@ -39,7 +39,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/OS/Extensions.cs" line="26" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="26" bodyend="33"/>
+        <location file="Pathfinder/OS/Extensions.cs" line="27" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="27" bodyend="34"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_o_s_1_1_extensions_1a8c1146c3e85cf109a3a22a91ffca1309" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; Executable.Instance &gt;</type>
@@ -60,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/OS/Extensions.cs" line="38" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="38" bodyend="45"/>
+        <location file="Pathfinder/OS/Extensions.cs" line="39" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="39" bodyend="46"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_o_s_1_1_extensions_1abab4d3e2ab3b3162b5444bfa68ad7deb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; Executable.Instance &gt;</type>
@@ -77,7 +77,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/OS/Extensions.cs" line="50" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="50" bodyend="57"/>
+        <location file="Pathfinder/OS/Extensions.cs" line="51" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="51" bodyend="58"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_o_s_1_1_extensions_1a451464eaee9d6ba599c954b983f948ee" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -94,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/OS/Extensions.cs" line="62" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="62" bodyend="65"/>
+        <location file="Pathfinder/OS/Extensions.cs" line="63" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="63" bodyend="66"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_o_s_1_1_extensions_1a557100b7b1f03ce98e5fd85757060db7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.OS</type>
@@ -115,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/OS/Extensions.cs" line="67" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="67" bodyend="71"/>
+        <location file="Pathfinder/OS/Extensions.cs" line="68" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="68" bodyend="72"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_o_s_1_1_extensions_1a7daecfea5dc7b8dd5a5ad1a04dd0d90f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.OS</type>
@@ -136,7 +136,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/OS/Extensions.cs" line="73" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="73" bodyend="77"/>
+        <location file="Pathfinder/OS/Extensions.cs" line="74" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="74" bodyend="78"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_o_s_1_1_extensions_1ac8def64f44609db44b0942509d4cff6b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.OS</type>
@@ -166,7 +166,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/OS/Extensions.cs" line="84" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="84" bodyend="89"/>
+        <location file="Pathfinder/OS/Extensions.cs" line="85" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="85" bodyend="90"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_o_s_1_1_extensions_1a49fc34b5d9e4cf399f742dbf47a99ae9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.OS</type>
@@ -196,14 +196,14 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/OS/Extensions.cs" line="96" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="96" bodyend="101"/>
+        <location file="Pathfinder/OS/Extensions.cs" line="97" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="97" bodyend="102"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/OS/Extensions.cs" line="10" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="9" bodyend="102"/>
+    <location file="Pathfinder/OS/Extensions.cs" line="11" column="1" bodyfile="Pathfinder/OS/Extensions.cs" bodystart="10" bodyend="103"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_o_s_1_1_extensions_1a451464eaee9d6ba599c954b983f948ee" prot="public" virt="non-virtual"><scope>Pathfinder::OS::Extensions</scope><name>GetCurrentComputer</name></member>
       <member refid="class_pathfinder_1_1_o_s_1_1_extensions_1a4950c4d2a55107114b2dd8dc6880bb6d" prot="public" virt="non-virtual"><scope>Pathfinder::OS::Extensions</scope><name>GetExesFor</name></member>

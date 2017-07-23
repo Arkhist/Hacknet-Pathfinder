@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_basic_options" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::GUI::ModOptions::BasicOptions</compoundname>
+    <basecompoundref refid="interface_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_abstract_options" prot="public" virt="non-virtual">Pathfinder.GUI.ModOptions.AbstractOptions</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_basic_options_1ab523dc57c0ec9267523bd23ac5d1517e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.GUI.ModOptions.BasicOptions.Apply</definition>
+        <argsstring>(OptionsMenu menu)</argsstring>
+        <name>Apply</name>
+        <reimplements refid="interface_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_abstract_options_1a5b5111ee71e122693a8c36fee1373a48">Apply</reimplements>
+        <param>
+          <type>OptionsMenu</type>
+          <declname>menu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/ModOptions/BasicOptions.cs" line="8" column="1" bodyfile="Pathfinder/GUI/ModOptions/BasicOptions.cs" bodystart="8" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_basic_options_1ad0ee414370f2f62f3bcd008d1447b584" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.GUI.ModOptions.BasicOptions.Draw</definition>
+        <argsstring>(OptionsMenu menu, GameTime time)</argsstring>
+        <name>Draw</name>
+        <reimplements refid="interface_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_abstract_options_1af2baeb51bb85d747132aeaca43167831">Draw</reimplements>
+        <param>
+          <type>OptionsMenu</type>
+          <declname>menu</declname>
+        </param>
+        <param>
+          <type>GameTime</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/ModOptions/BasicOptions.cs" line="9" column="1" bodyfile="Pathfinder/GUI/ModOptions/BasicOptions.cs" bodystart="9" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_basic_options_1a201d083844ef78b488f3f399318c1e28" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.GUI.ModOptions.BasicOptions.LoadContent</definition>
+        <argsstring>(OptionsMenu menu)</argsstring>
+        <name>LoadContent</name>
+        <reimplements refid="interface_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_abstract_options_1a243d35087814752964d811aa947b06bd">LoadContent</reimplements>
+        <param>
+          <type>OptionsMenu</type>
+          <declname>menu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/ModOptions/BasicOptions.cs" line="10" column="1" bodyfile="Pathfinder/GUI/ModOptions/BasicOptions.cs" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_basic_options_1af1155ffe6dfe9090ca1b116514620f38" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.GUI.ModOptions.BasicOptions.Update</definition>
+        <argsstring>(OptionsMenu menu, GameTime time, bool notFocused, bool covered)</argsstring>
+        <name>Update</name>
+        <reimplements refid="interface_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_abstract_options_1a301ac8e58040d19cbdd4deefbcd860af">Update</reimplements>
+        <param>
+          <type>OptionsMenu</type>
+          <declname>menu</declname>
+        </param>
+        <param>
+          <type>GameTime</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>notFocused</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>covered</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GUI/ModOptions/BasicOptions.cs" line="11" column="1" bodyfile="Pathfinder/GUI/ModOptions/BasicOptions.cs" bodystart="11" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="36">
+        <label>AbstractOptions</label>
+        <link refid="interface_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_abstract_options"/>
+      </node>
+      <node id="35">
+        <label>Pathfinder.GUI.ModOptions.BasicOptions</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_basic_options"/>
+        <childnode refid="36" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="38">
+        <label>AbstractOptions</label>
+        <link refid="interface_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_abstract_options"/>
+      </node>
+      <node id="37">
+        <label>Pathfinder.GUI.ModOptions.BasicOptions</label>
+        <link refid="class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_basic_options"/>
+        <childnode refid="38" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/GUI/ModOptions/BasicOptions.cs" line="7" column="1" bodyfile="Pathfinder/GUI/ModOptions/BasicOptions.cs" bodystart="6" bodyend="12"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_basic_options_1ab523dc57c0ec9267523bd23ac5d1517e" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::ModOptions::BasicOptions</scope><name>Apply</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_basic_options_1ad0ee414370f2f62f3bcd008d1447b584" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::ModOptions::BasicOptions</scope><name>Draw</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_basic_options_1a201d083844ef78b488f3f399318c1e28" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::ModOptions::BasicOptions</scope><name>LoadContent</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_basic_options_1af1155ffe6dfe9090ca1b116514620f38" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::ModOptions::BasicOptions</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

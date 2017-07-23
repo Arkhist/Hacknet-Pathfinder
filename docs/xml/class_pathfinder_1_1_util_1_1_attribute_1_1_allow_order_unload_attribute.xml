@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_util_1_1_attribute_1_1_allow_order_unload_attribute" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::Attribute::AllowOrderUnloadAttribute</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Attribute</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_util_1_1_attribute_1_1_allow_order_unload_attribute_1a17d0508086600aeef62fbbe389b84f47" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Util.Attribute.AllowOrderUnloadAttribute.Allowed</definition>
+        <argsstring></argsstring>
+        <name>Allowed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Attribute/AllowOrderUnloadAttribute.cs" line="8" column="1" bodyfile="Pathfinder/Util/Attribute/AllowOrderUnloadAttribute.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_attribute_1_1_allow_order_unload_attribute_1a3046e988794b9b2424eacad34e5d9a58" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.Util.Attribute.AllowOrderUnloadAttribute.AllowOrderUnloadAttribute</definition>
+        <argsstring>(bool allowed=true)</argsstring>
+        <name>AllowOrderUnloadAttribute</name>
+        <param>
+          <type>bool</type>
+          <declname>allowed</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Attribute/AllowOrderUnloadAttribute.cs" line="9" column="1" bodyfile="Pathfinder/Util/Attribute/AllowOrderUnloadAttribute.cs" bodystart="9" bodyend="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Allow order unload attribute for allowing load order to be responsible for unloading the mod. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="7">
+        <label>Pathfinder.Util.Attribute.AllowOrderUnloadAttribute</label>
+        <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_allow_order_unload_attribute"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>System::Attribute</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="9">
+        <label>Pathfinder.Util.Attribute.AllowOrderUnloadAttribute</label>
+        <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_allow_order_unload_attribute"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>System::Attribute</label>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Util/Attribute/AllowOrderUnloadAttribute.cs" line="7" column="1" bodyfile="Pathfinder/Util/Attribute/AllowOrderUnloadAttribute.cs" bodystart="6" bodyend="10"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_util_1_1_attribute_1_1_allow_order_unload_attribute_1a17d0508086600aeef62fbbe389b84f47" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Attribute::AllowOrderUnloadAttribute</scope><name>Allowed</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_attribute_1_1_allow_order_unload_attribute_1a3046e988794b9b2424eacad34e5d9a58" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Attribute::AllowOrderUnloadAttribute</scope><name>AllowOrderUnloadAttribute</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

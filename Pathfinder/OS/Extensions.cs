@@ -6,6 +6,7 @@ using Pathfinder.Util;
 
 namespace Pathfinder.OS
 {
+    [Obsolete("Use Pathfinder.Game.OS.Extensions")]
     public static class Extensions
     {
         /// <summary>

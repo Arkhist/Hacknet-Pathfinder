@@ -2,6 +2,21 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="class_pathfinder_1_1_internal_1_1_execution_override" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Internal::ExecutionOverride</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_internal_1_1_execution_override_1aa7ee8fd6da93a8a2c1c1b73a96cb9a77" prot="private" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Internal.ExecutionOverride.wasRecursed</definition>
+        <argsstring></argsstring>
+        <name>wasRecursed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/ExecutionOverride.cs" line="144" column="1" bodyfile="Pathfinder/Internal/ExecutionOverride.cs" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
       <sectiondef kind="public-static-func">
       <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_execution_override_1a5a2b01d6604bf5ddbe404c45ccd33481" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -18,13 +33,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/ExecutionOverride.cs" line="13" column="1" bodyfile="Pathfinder/Internal/ExecutionOverride.cs" bodystart="13" bodyend="47"/>
+        <location file="Pathfinder/Internal/ExecutionOverride.cs" line="16" column="1" bodyfile="Pathfinder/Internal/ExecutionOverride.cs" bodystart="16" bodyend="50"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_execution_override_1a91c9932483f95c35d462973596ecedbe" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_execution_override_1ae7e04fb4e381334a8fe9cb6c92456687" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>static void Pathfinder.Internal.ExecutionOverride.OverwriteProbe</definition>
+        <definition>static void Pathfinder.Internal.ExecutionOverride.OverrideCommands</definition>
         <argsstring>(CommandSentEvent e)</argsstring>
-        <name>OverwriteProbe</name>
+        <name>OverrideCommands</name>
         <param>
           <type><ref refid="class_pathfinder_1_1_event_1_1_command_sent_event" kindref="compound">CommandSentEvent</ref></type>
           <declname>e</declname>
@@ -35,17 +50,36 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/ExecutionOverride.cs" line="49" column="1" bodyfile="Pathfinder/Internal/ExecutionOverride.cs" bodystart="49" bodyend="84"/>
+        <location file="Pathfinder/Internal/ExecutionOverride.cs" line="52" column="1" bodyfile="Pathfinder/Internal/ExecutionOverride.cs" bodystart="52" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_execution_override_1a5099be43a535566265cbb4ad38df5955" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.ExecutionOverride.OverrideFirstTimeInit</definition>
+        <argsstring>(CommandSentEvent e)</argsstring>
+        <name>OverrideFirstTimeInit</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_event_1_1_command_sent_event" kindref="compound">CommandSentEvent</ref></type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/ExecutionOverride.cs" line="145" column="1" bodyfile="Pathfinder/Internal/ExecutionOverride.cs" bodystart="145" bodyend="301"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Internal/ExecutionOverride.cs" line="12" column="1" bodyfile="Pathfinder/Internal/ExecutionOverride.cs" bodystart="11" bodyend="85"/>
+    <location file="Pathfinder/Internal/ExecutionOverride.cs" line="15" column="1" bodyfile="Pathfinder/Internal/ExecutionOverride.cs" bodystart="14" bodyend="302"/>
     <listofallmembers>
+      <member refid="class_pathfinder_1_1_internal_1_1_execution_override_1ae7e04fb4e381334a8fe9cb6c92456687" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::ExecutionOverride</scope><name>OverrideCommands</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_execution_override_1a5099be43a535566265cbb4ad38df5955" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::ExecutionOverride</scope><name>OverrideFirstTimeInit</name></member>
       <member refid="class_pathfinder_1_1_internal_1_1_execution_override_1a5a2b01d6604bf5ddbe404c45ccd33481" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::ExecutionOverride</scope><name>OverridePortHack</name></member>
-      <member refid="class_pathfinder_1_1_internal_1_1_execution_override_1a91c9932483f95c35d462973596ecedbe" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::ExecutionOverride</scope><name>OverwriteProbe</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_execution_override_1aa7ee8fd6da93a8a2c1c1b73a96cb9a77" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::ExecutionOverride</scope><name>wasRecursed</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

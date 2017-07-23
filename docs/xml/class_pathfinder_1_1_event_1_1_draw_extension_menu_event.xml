@@ -29,7 +29,7 @@
           <declname>screen</declname>
         </param>
         <param>
-          <type><ref refid="class_pathfinder_1_1_event_1_1_extension_menu_event_1a3940943c918e371746a4b45fc4ddaf93" kindref="member">Rectangle</ref></type>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
           <declname>rect</declname>
         </param>
         <param>
@@ -58,38 +58,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="86">
+      <node id="107">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="84">
+      <node id="105">
         <label>Pathfinder.Event.DrawExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_event"/>
-        <childnode refid="85" relation="public-inheritance">
+        <childnode refid="106" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="85">
+      <node id="106">
         <label>ExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_extension_menu_event"/>
-        <childnode refid="86" relation="public-inheritance">
+        <childnode refid="107" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="89">
+      <node id="110">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="87">
+      <node id="108">
         <label>Pathfinder.Event.DrawExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_event"/>
-        <childnode refid="88" relation="public-inheritance">
+        <childnode refid="109" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="88">
+      <node id="109">
         <label>ExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_extension_menu_event"/>
-        <childnode refid="89" relation="public-inheritance">
+        <childnode refid="110" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

@@ -3,11 +3,11 @@
   <compounddef id="class_pathfinder_1_1_port_1_1_handler" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Port::Handler</compoundname>
       <sectiondef kind="package-static-attrib">
-      <memberdef kind="variable" id="class_pathfinder_1_1_port_1_1_handler_1af69575c77ed87464ad36cd41b6fb8b24" prot="package" static="yes" mutable="no">
+      <memberdef kind="variable" id="class_pathfinder_1_1_port_1_1_handler_1a0019fb3a0fe6d53e0abe657407f493d9" prot="package" static="yes" mutable="no">
         <type>Dictionary&lt; string, <ref refid="class_pathfinder_1_1_port_1_1_type" kindref="compound">Type</ref> &gt;</type>
-        <definition>Dictionary&lt;string, Type&gt; Pathfinder.Port.Handler.idToPortType</definition>
+        <definition>Dictionary&lt;string, Type&gt; Pathfinder.Port.Handler.PortTypes</definition>
         <argsstring></argsstring>
-        <name>idToPortType</name>
+        <name>PortTypes</name>
         <initializer>= new Dictionary&lt;string, <ref refid="class_pathfinder_1_1_port_1_1_type" kindref="compound">Type</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
@@ -38,7 +38,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Handler.cs" line="11" column="1" bodyfile="Pathfinder/Port/Handler.cs" bodystart="11" bodyend="23"/>
+        <location file="Pathfinder/Port/Handler.cs" line="11" column="1" bodyfile="Pathfinder/Port/Handler.cs" bodystart="11" bodyend="26"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_handler_1a4a39c88bda43dd29be83429e39661840" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Handler.cs" line="26" column="1"/>
+        <location file="Pathfinder/Port/Handler.cs" line="29" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_handler_1a990f615ac5916e70fdc5c8bdbcda5996" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_port_1_1_type" kindref="compound">Type</ref></type>
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Handler.cs" line="37" column="1" bodyfile="Pathfinder/Port/Handler.cs" bodystart="37" bodyend="43"/>
+        <location file="Pathfinder/Port/Handler.cs" line="40" column="1" bodyfile="Pathfinder/Port/Handler.cs" bodystart="40" bodyend="46"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="package-static-func">
@@ -95,18 +95,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Handler.cs" line="28" column="1" bodyfile="Pathfinder/Port/Handler.cs" bodystart="28" bodyend="35"/>
+        <location file="Pathfinder/Port/Handler.cs" line="31" column="1" bodyfile="Pathfinder/Port/Handler.cs" bodystart="31" bodyend="38"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Port/Handler.cs" line="8" column="1" bodyfile="Pathfinder/Port/Handler.cs" bodystart="7" bodyend="44"/>
+    <location file="Pathfinder/Port/Handler.cs" line="8" column="1" bodyfile="Pathfinder/Port/Handler.cs" bodystart="7" bodyend="47"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_port_1_1_handler_1a4a39c88bda43dd29be83429e39661840" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Handler</scope><name>AddPort</name></member>
       <member refid="class_pathfinder_1_1_port_1_1_handler_1a990f615ac5916e70fdc5c8bdbcda5996" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Handler</scope><name>GetPort</name></member>
-      <member refid="class_pathfinder_1_1_port_1_1_handler_1af69575c77ed87464ad36cd41b6fb8b24" prot="package" virt="non-virtual"><scope>Pathfinder::Port::Handler</scope><name>idToPortType</name></member>
+      <member refid="class_pathfinder_1_1_port_1_1_handler_1a0019fb3a0fe6d53e0abe657407f493d9" prot="package" virt="non-virtual"><scope>Pathfinder::Port::Handler</scope><name>PortTypes</name></member>
       <member refid="class_pathfinder_1_1_port_1_1_handler_1a02d0d3a2e4f4a64be0b2d18f08f34d91" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Handler</scope><name>RegisterPort</name></member>
       <member refid="class_pathfinder_1_1_port_1_1_handler_1a2a8c1b895d0052044ab3f87f107c2a2e" prot="package" virt="non-virtual"><scope>Pathfinder::Port::Handler</scope><name>UnregisterPort</name></member>
     </listofallmembers>

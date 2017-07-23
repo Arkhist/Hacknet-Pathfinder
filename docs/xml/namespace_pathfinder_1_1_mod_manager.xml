@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespace_pathfinder_1_1_mod_manager" kind="namespace" language="C#">
+    <compoundname>Pathfinder::ModManager</compoundname>
+    <innerclass refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod" prot="public">Pathfinder::ModManager::IMod</innerclass>
+    <innerclass refid="class_pathfinder_1_1_mod_manager_1_1_manager" prot="public">Pathfinder::ModManager::Manager</innerclass>
+    <innerclass refid="class_pathfinder_1_1_mod_manager_1_1_mod" prot="public">Pathfinder::ModManager::Mod</innerclass>
+    <innerclass refid="class_pathfinder_1_1_mod_manager_1_1_placeholder" prot="public">Pathfinder::ModManager::Placeholder</innerclass>
+    <innernamespace refid="namespace_pathfinder_1_1_mod_manager_1_1_attribute">Pathfinder::ModManager::Attribute</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="[generated]" line="1" column="1"/>
+  </compounddef>
+</doxygen>

@@ -173,41 +173,41 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="166">
+      <node id="198">
         <label>Pathfinder.GameFilesystem.File</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file"/>
-        <childnode refid="167" relation="public-inheritance">
+        <childnode refid="199" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="167">
+      <node id="199">
         <label>FileObject&lt; FileEntry, Directory &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="168">
+      <node id="200">
         <label>Pathfinder.GameFilesystem.File</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file"/>
-        <childnode refid="169" relation="public-inheritance">
+        <childnode refid="201" relation="public-inheritance">
         </childnode>
-        <childnode refid="170" relation="usage">
+        <childnode refid="202" relation="usage">
           <edgelabel>Root</edgelabel>
         </childnode>
       </node>
-      <node id="171">
+      <node id="203">
         <label>FileObject&lt; FileSystem, Hacknet.Computer &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
-      <node id="169">
+      <node id="201">
         <label>FileObject&lt; FileEntry, Directory &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
-      <node id="170">
+      <node id="202">
         <label>Pathfinder.GameFilesystem.Filesystem</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem"/>
-        <childnode refid="171" relation="public-inheritance">
+        <childnode refid="203" relation="public-inheritance">
         </childnode>
-        <childnode refid="170" relation="usage">
+        <childnode refid="202" relation="usage">
           <edgelabel>Root</edgelabel>
           <edgelabel>PrimaryFilesystem</edgelabel>
         </childnode>

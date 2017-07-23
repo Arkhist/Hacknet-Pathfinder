@@ -20,14 +20,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Utility.cs" line="19" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="19" bodyend="-1"/>
+        <location file="Pathfinder/Util/Utility.cs" line="22" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="22" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>Type specific <ref refid="class_pathfinder_1_1_util_1_1_utility_1_1_array" kindref="compound">Array</ref> Utilities </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Util/Utility.cs" line="15" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="14" bodyend="20"/>
+    <location file="Pathfinder/Util/Utility.cs" line="18" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="17" bodyend="23"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1_1_array_1a08a3e616b98a5258a9195e849e36e3c4" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility::Array</scope><name>Empty</name></member>
     </listofallmembers>

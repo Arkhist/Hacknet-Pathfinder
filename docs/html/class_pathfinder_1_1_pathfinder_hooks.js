@@ -9,7 +9,7 @@ var class_pathfinder_1_1_pathfinder_hooks =
     [ "onExtensionsMenuScreenDraw", "class_pathfinder_1_1_pathfinder_hooks.html#aa8ce089b2a69e7e86f0efe9499feeb34", null ],
     [ "onGameUnloadContent", "class_pathfinder_1_1_pathfinder_hooks.html#ae7f2ebfb0b0d0027fd5b3d098bfa6d0d", null ],
     [ "onGameUpdate", "class_pathfinder_1_1_pathfinder_hooks.html#a400fd38e22eb1d75dfdc6e32c62056cb", null ],
-    [ "onLoadComputer", "class_pathfinder_1_1_pathfinder_hooks.html#a3af9e93fca94e3e5f34e8957d3037827", null ],
+    [ "onLoadComputer", "class_pathfinder_1_1_pathfinder_hooks.html#afaf66e25c2db7f3f7f13e7eb0c4d79c7", null ],
     [ "onLoadContent", "class_pathfinder_1_1_pathfinder_hooks.html#a04b88abfa1d10dfc986251fd4b9bb7c7", null ],
     [ "onLoadNetmapContent", "class_pathfinder_1_1_pathfinder_hooks.html#acc58756e50c83bdf3a58c151cc15856e", null ],
     [ "onLoadSaveFile", "class_pathfinder_1_1_pathfinder_hooks.html#a2147d4acd050711b4e3af3f3e54f604a", null ],
@@ -17,9 +17,14 @@ var class_pathfinder_1_1_pathfinder_hooks =
     [ "onMain", "class_pathfinder_1_1_pathfinder_hooks.html#ab1edc04c1d1b258c5fa7e9d91cf71652", null ],
     [ "onMainMenuButtonsDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a22723a402af6d601ecc3e59ccac70cd9", null ],
     [ "onMainMenuDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a7d223357d5480b066fee3aac4fd53eff", null ],
+    [ "onOptionsApply", "class_pathfinder_1_1_pathfinder_hooks.html#a8eab001a65ee6cd55c4a09bb13ba3663", null ],
+    [ "onOptionsMenuDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a6d2b26ee04eb7464c6abe32136fff5f5", null ],
+    [ "onOptionsMenuLoadContent", "class_pathfinder_1_1_pathfinder_hooks.html#ac657dd3e688c7f21ba42523318ce95bc", null ],
+    [ "onOptionsMenuUpdate", "class_pathfinder_1_1_pathfinder_hooks.html#a57dff19ecf2eb437b3164d91114a089a", null ],
     [ "onPortExecutableExecute", "class_pathfinder_1_1_pathfinder_hooks.html#a15629e7518416723a7996e920c4211d1", null ],
     [ "onPortNameDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a87ea13e22496034e0ff7899c0308b9a7", null ],
     [ "onPostLoadSession", "class_pathfinder_1_1_pathfinder_hooks.html#af90993239a81c449261fa4095796b7da", null ],
     [ "onSaveFile", "class_pathfinder_1_1_pathfinder_hooks.html#a0d799b7cdbdc80ae7a6dbbb87cac7855", null ],
-    [ "onSaveWrite", "class_pathfinder_1_1_pathfinder_hooks.html#a32509072e9be046299145b6d09cb6fbc", null ]
+    [ "onSaveWrite", "class_pathfinder_1_1_pathfinder_hooks.html#a32509072e9be046299145b6d09cb6fbc", null ],
+    [ "onUnloadSession", "class_pathfinder_1_1_pathfinder_hooks.html#a0a45eb9a30f1506e6ea0b40ec82f5742", null ]
 ];

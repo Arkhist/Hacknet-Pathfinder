@@ -252,37 +252,37 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="175">
+      <node id="207">
         <label>IFileObject</label>
         <link refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object"/>
       </node>
-      <node id="174">
+      <node id="206">
         <label>Pathfinder.GameFilesystem.FileObject&lt; VanillaT &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
-        <childnode refid="175" relation="public-inheritance">
+        <childnode refid="207" relation="public-inheritance">
         </childnode>
-        <childnode refid="176" relation="public-inheritance">
+        <childnode refid="208" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="176">
+      <node id="208">
         <label>FileObject&lt; VanillaT &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="178">
+      <node id="210">
         <label>IFileObject</label>
         <link refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object"/>
       </node>
-      <node id="177">
+      <node id="209">
         <label>Pathfinder.GameFilesystem.FileObject&lt; VanillaT &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
-        <childnode refid="178" relation="public-inheritance">
+        <childnode refid="210" relation="public-inheritance">
         </childnode>
-        <childnode refid="179" relation="public-inheritance">
+        <childnode refid="211" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="179">
+      <node id="211">
         <label>FileObject&lt; VanillaT &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>

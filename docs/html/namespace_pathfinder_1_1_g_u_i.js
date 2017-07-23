@@ -1,5 +1,6 @@
 var namespace_pathfinder_1_1_g_u_i =
 [
+    [ "ModOptions", "namespace_pathfinder_1_1_g_u_i_1_1_mod_options.html", "namespace_pathfinder_1_1_g_u_i_1_1_mod_options" ],
     [ "BaseButton", "class_pathfinder_1_1_g_u_i_1_1_base_button.html", "class_pathfinder_1_1_g_u_i_1_1_base_button" ],
     [ "BaseDynamicRectangle", "class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle.html", "class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle" ],
     [ "BaseInteraction", "class_pathfinder_1_1_g_u_i_1_1_base_interaction.html", "class_pathfinder_1_1_g_u_i_1_1_base_interaction" ],

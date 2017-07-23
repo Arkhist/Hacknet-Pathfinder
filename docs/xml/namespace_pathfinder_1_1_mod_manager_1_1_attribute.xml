@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespace_pathfinder_1_1_mod_manager_1_1_attribute" kind="namespace" language="C#">
+    <compoundname>Pathfinder::ModManager::Attribute</compoundname>
+    <innerclass refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_additional_info_attribute" prot="public">Pathfinder::ModManager::Attribute::AdditionalInfoAttribute</innerclass>
+    <innerclass refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_description_attribute" prot="public">Pathfinder::ModManager::Attribute::DescriptionAttribute</innerclass>
+    <innerclass refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_title_attribute" prot="public">Pathfinder::ModManager::Attribute::TitleAttribute</innerclass>
+    <innerclass refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_version_attribute" prot="public">Pathfinder::ModManager::Attribute::VersionAttribute</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="5" column="1"/>
+  </compounddef>
+</doxygen>

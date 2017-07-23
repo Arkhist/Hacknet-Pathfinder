@@ -2,38 +2,14 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="class_pathfinder_1_1_extension_1_1_info" kind="class" language="C#" prot="public" abstract="yes">
     <compoundname>Pathfinder::Extension::Info</compoundname>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1a52fcbde3ba7cea14845e0c62e198bded" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
-        <type>string</type>
-        <definition>string Pathfinder.Extension.Info.Id</definition>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_extension_1_1_info_1aa8ee694dee7f937f4fd140ae6a4c6aed" prot="package" static="no" mutable="no">
+        <type>Dictionary&lt; string, Tuple&lt; <ref refid="class_pathfinder_1_1_command_1_1_handler_1a2a554560d17cb4f32735115a9efde193" kindref="member">Command.Handler.CommandFunc</ref>, string, bool &gt; &gt;</type>
+        <definition>Dictionary&lt;string, Tuple&lt;Command.Handler.CommandFunc, string, bool&gt; &gt; Pathfinder.Extension.Info.commands</definition>
         <argsstring></argsstring>
-        <name>Id</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="Pathfinder/Extension/Info.cs" line="8" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="8" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1abddac60ddfacb4ab0429dea88e5cdfe4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>abstract string</type>
-        <definition>abstract string Pathfinder.Extension.Info.Name</definition>
-        <argsstring></argsstring>
-        <name>Name</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="Pathfinder/Extension/Info.cs" line="9" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="9" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1a9986a4abcb29b60475296c2612901e6e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>abstract string</type>
-        <definition>abstract string Pathfinder.Extension.Info.Description</definition>
-        <argsstring></argsstring>
-        <name>Description</name>
+        <name>commands</name>
+        <initializer>=
+            new Dictionary&lt;string, Tuple&lt;<ref refid="class_pathfinder_1_1_command_1_1_handler_1a2a554560d17cb4f32735115a9efde193" kindref="member">Command.Handler.CommandFunc</ref>, string, bool&gt;&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -42,24 +18,12 @@
         </inbodydescription>
         <location file="Pathfinder/Extension/Info.cs" line="10" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="10" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1a153ebbb643028d56295121296785b52e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>abstract string</type>
-        <definition>abstract string Pathfinder.Extension.Info.LogoPath</definition>
+      <memberdef kind="variable" id="class_pathfinder_1_1_extension_1_1_info_1ade418bddb305faefafa370db4c78d2fc" prot="package" static="no" mutable="no">
+        <type>Dictionary&lt; string, Daemon.IInterface &gt;</type>
+        <definition>Dictionary&lt;string, Daemon.IInterface&gt; Pathfinder.Extension.Info.daemons</definition>
         <argsstring></argsstring>
-        <name>LogoPath</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="Pathfinder/Extension/Info.cs" line="11" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="11" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1abcd435da318c553abc95e11df8ab3f52" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>abstract bool</type>
-        <definition>abstract bool Pathfinder.Extension.Info.AllowSaves</definition>
-        <argsstring></argsstring>
-        <name>AllowSaves</name>
+        <name>daemons</name>
+        <initializer>= new Dictionary&lt;string, Daemon.IInterface&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -68,13 +32,228 @@
         </inbodydescription>
         <location file="Pathfinder/Extension/Info.cs" line="12" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="12" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_extension_1_1_info_1a2668bdb5e04eab52e3f23f8a86eac685" prot="package" static="no" mutable="no">
+        <type>Dictionary&lt; string, Executable.IInterface &gt;</type>
+        <definition>Dictionary&lt;string, Executable.IInterface&gt; Pathfinder.Extension.Info.executables</definition>
+        <argsstring></argsstring>
+        <name>executables</name>
+        <initializer>= new Dictionary&lt;string, Executable.IInterface&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="13" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_extension_1_1_info_1a225da65e1db915289123c98b8e833d01" prot="package" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_interface" kindref="compound">Mission.IInterface</ref> &gt;</type>
+        <definition>Dictionary&lt;string, Mission.IInterface&gt; Pathfinder.Extension.Info.missions</definition>
+        <argsstring></argsstring>
+        <name>missions</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_interface" kindref="compound">Mission.IInterface</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="14" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_extension_1_1_info_1a19a6c2cbd393d2ea0cdf7ec2244bc596" prot="package" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_goal" kindref="compound">Mission.IGoal</ref> &gt;</type>
+        <definition>Dictionary&lt;string, Mission.IGoal&gt; Pathfinder.Extension.Info.goals</definition>
+        <argsstring></argsstring>
+        <name>goals</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="interface_pathfinder_1_1_mission_1_1_i_goal" kindref="compound">Mission.IGoal</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="15" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_extension_1_1_info_1af3842ce2e0d101b75cc3f56d7705bfbc" prot="package" static="no" mutable="no">
+        <type>Dictionary&lt; string, Port.Type &gt;</type>
+        <definition>Dictionary&lt;string, Port.Type&gt; Pathfinder.Extension.Info.ports</definition>
+        <argsstring></argsstring>
+        <name>ports</name>
+        <initializer>= new Dictionary&lt;string, Port.Type&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="16" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_extension_1_1_info_1a240e93abd977d8e5110062a6c9a557d8" prot="package" static="no" mutable="no">
+        <type>Dictionary&lt; Type, List&lt; Tuple&lt; Action&lt; <ref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" kindref="compound">PathfinderEvent</ref> &gt;, string, string, int &gt; &gt; &gt;</type>
+        <definition>Dictionary&lt;Type, List&lt;Tuple&lt;Action&lt;PathfinderEvent&gt;, string, string, int&gt; &gt; &gt; Pathfinder.Extension.Info.eventListeners</definition>
+        <argsstring></argsstring>
+        <name>eventListeners</name>
+        <initializer>=
+            new Dictionary&lt;Type, List&lt;Tuple&lt;Action&lt;<ref refid="class_pathfinder_1_1_event_1_1_pathfinder_event" kindref="compound">PathfinderEvent</ref>&gt;, string, string, int&gt;&gt;&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="17" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1a52fcbde3ba7cea14845e0c62e198bded" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Extension.Info.Id</definition>
+        <argsstring></argsstring>
+        <name>Id</name>
+        <briefdescription>
+<para>Gets the extension identifier. </para>        </briefdescription>
+        <detaileddescription>
+<para>The identifier.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="24" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1abddac60ddfacb4ab0429dea88e5cdfe4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>abstract string</type>
+        <definition>abstract string Pathfinder.Extension.Info.Name</definition>
+        <argsstring></argsstring>
+        <name>Name</name>
+        <briefdescription>
+<para>Gets the extension&apos;s name. </para>        </briefdescription>
+        <detaileddescription>
+<para>The name.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="34" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1a9986a4abcb29b60475296c2612901e6e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>abstract string</type>
+        <definition>abstract string Pathfinder.Extension.Info.Description</definition>
+        <argsstring></argsstring>
+        <name>Description</name>
+        <briefdescription>
+<para>Gets the extension&apos;s description. </para>        </briefdescription>
+        <detaileddescription>
+<para>The description.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="39" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1a153ebbb643028d56295121296785b52e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>abstract string</type>
+        <definition>abstract string Pathfinder.Extension.Info.LogoPath</definition>
+        <argsstring></argsstring>
+        <name>LogoPath</name>
+        <briefdescription>
+<para>Gets the extension&apos;s logo path. (if it does not exist or is null, chooses the default logo) </para>        </briefdescription>
+        <detaileddescription>
+<para>The logo path.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="44" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_extension_1_1_info_1abcd435da318c553abc95e11df8ab3f52" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>abstract bool</type>
+        <definition>abstract bool Pathfinder.Extension.Info.AllowSaves</definition>
+        <argsstring></argsstring>
+        <name>AllowSaves</name>
+        <briefdescription>
+<para>Gets a value indicating whether this T:Pathfinder.Extension.Info allows saves. </para>        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>true</computeroutput> if allows saves; otherwise, <computeroutput>false</computeroutput>.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="49" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_extension_1_1_info_1a138fe399651d13e770e2cb81628d4201" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Extension.Info.IsActive</definition>
+        <argsstring></argsstring>
+        <name>IsActive</name>
+        <initializer>=&gt; this == <ref refid="class_pathfinder_1_1_extension_1_1_handler_1aa07ee87ff29fc51ce633896c5d96705f" kindref="member">Handler.ActiveInfo</ref></initializer>
+        <briefdescription>
+<para>Gets a value indicating whether this T:Pathfinder.Extension.Info is active. </para>        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>true</computeroutput> if is active; otherwise, <computeroutput>false</computeroutput>.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="29" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_extension_1_1_info_1a5dde7055eaec9030111e40574acbf1d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_extension_1_1_info_1a373b8219bc7c1b62b690aecb1bbbec49" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>abstract void</type>
-        <definition>abstract void Pathfinder.Extension.Info.Construct</definition>
+        <definition>abstract void Pathfinder.Extension.Info.OnConstruct</definition>
         <argsstring>(Hacknet.OS os)</argsstring>
-        <name>Construct</name>
+        <name>OnConstruct</name>
+        <param>
+          <type>Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+<para>Executes on extension construction. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Os.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="54" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_extension_1_1_info_1a5447d768d5c79bc8b85de72e42dcf35f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Pathfinder.Extension.Info.OnLoad</definition>
+        <argsstring>(Hacknet.OS os, Stream loadingStream)</argsstring>
+        <name>OnLoad</name>
+        <param>
+          <type>Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>Stream</type>
+          <declname>loadingStream</declname>
+        </param>
+        <briefdescription>
+<para>Executes on extension loading. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Os.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>loadingStream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Loading stream.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Extension/Info.cs" line="60" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="60" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_extension_1_1_info_1a1af044730691677c59c1eac61695a39d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Pathfinder.Extension.Info.OnUnload</definition>
+        <argsstring>(Hacknet.OS os)</argsstring>
+        <name>OnUnload</name>
         <param>
           <type>Hacknet.OS</type>
           <declname>os</declname>
@@ -85,21 +264,31 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Extension/Info.cs" line="13" column="1"/>
+        <location file="Pathfinder/Extension/Info.cs" line="61" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="61" bodyend="61"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Extension/Info.cs" line="7" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="6" bodyend="14"/>
+    <location file="Pathfinder/Extension/Info.cs" line="9" column="1" bodyfile="Pathfinder/Extension/Info.cs" bodystart="8" bodyend="62"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_extension_1_1_info_1abcd435da318c553abc95e11df8ab3f52" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>AllowSaves</name></member>
-      <member refid="class_pathfinder_1_1_extension_1_1_info_1a5dde7055eaec9030111e40574acbf1d7" prot="public" virt="pure-virtual"><scope>Pathfinder::Extension::Info</scope><name>Construct</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1aa8ee694dee7f937f4fd140ae6a4c6aed" prot="package" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>commands</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1ade418bddb305faefafa370db4c78d2fc" prot="package" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>daemons</name></member>
       <member refid="class_pathfinder_1_1_extension_1_1_info_1a9986a4abcb29b60475296c2612901e6e" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>Description</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1a240e93abd977d8e5110062a6c9a557d8" prot="package" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>eventListeners</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1a2668bdb5e04eab52e3f23f8a86eac685" prot="package" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>executables</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1a19a6c2cbd393d2ea0cdf7ec2244bc596" prot="package" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>goals</name></member>
       <member refid="class_pathfinder_1_1_extension_1_1_info_1a52fcbde3ba7cea14845e0c62e198bded" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>Id</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1a138fe399651d13e770e2cb81628d4201" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>IsActive</name></member>
       <member refid="class_pathfinder_1_1_extension_1_1_info_1a153ebbb643028d56295121296785b52e" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>LogoPath</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1a225da65e1db915289123c98b8e833d01" prot="package" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>missions</name></member>
       <member refid="class_pathfinder_1_1_extension_1_1_info_1abddac60ddfacb4ab0429dea88e5cdfe4" prot="public" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>Name</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1a373b8219bc7c1b62b690aecb1bbbec49" prot="public" virt="pure-virtual"><scope>Pathfinder::Extension::Info</scope><name>OnConstruct</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1a5447d768d5c79bc8b85de72e42dcf35f" prot="public" virt="virtual"><scope>Pathfinder::Extension::Info</scope><name>OnLoad</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1a1af044730691677c59c1eac61695a39d" prot="public" virt="virtual"><scope>Pathfinder::Extension::Info</scope><name>OnUnload</name></member>
+      <member refid="class_pathfinder_1_1_extension_1_1_info_1af3842ce2e0d101b75cc3f56d7705bfbc" prot="package" virt="non-virtual"><scope>Pathfinder::Extension::Info</scope><name>ports</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

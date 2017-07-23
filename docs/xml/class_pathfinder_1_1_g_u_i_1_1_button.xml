@@ -51,7 +51,7 @@
         <argsstring>(Rectangle shape, string text, Color? color=null)</argsstring>
         <name>Button</name>
         <param>
-          <type>Rectangle</type>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
           <declname>shape</declname>
         </param>
         <param>
@@ -159,38 +159,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="24">
+      <node id="39">
         <label>Pathfinder.GUI.Button</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_button"/>
-        <childnode refid="25" relation="public-inheritance">
+        <childnode refid="40" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="26">
+      <node id="41">
         <label>BaseInteractiveRectangle&lt; int &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
       </node>
-      <node id="25">
+      <node id="40">
         <label>BaseButton</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_button"/>
-        <childnode refid="26" relation="public-inheritance">
+        <childnode refid="41" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="27">
+      <node id="42">
         <label>Pathfinder.GUI.Button</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_button"/>
-        <childnode refid="28" relation="public-inheritance">
+        <childnode refid="43" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="29">
+      <node id="44">
         <label>BaseInteractiveRectangle&lt; int &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
       </node>
-      <node id="28">
+      <node id="43">
         <label>BaseButton</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_button"/>
-        <childnode refid="29" relation="public-inheritance">
+        <childnode refid="44" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

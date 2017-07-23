@@ -15,10 +15,12 @@
     <innernamespace refid="namespace_pathfinder_1_1_event">Pathfinder::Event</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_executable">Pathfinder::Executable</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_extension">Pathfinder::Extension</innernamespace>
+    <innernamespace refid="namespace_pathfinder_1_1_game">Pathfinder::Game</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_game_filesystem">Pathfinder::GameFilesystem</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_g_u_i">Pathfinder::GUI</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_internal">Pathfinder::Internal</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_mission">Pathfinder::Mission</innernamespace>
+    <innernamespace refid="namespace_pathfinder_1_1_mod_manager">Pathfinder::ModManager</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_network_map">Pathfinder::NetworkMap</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_o_s">Pathfinder::OS</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_port">Pathfinder::Port</innernamespace>

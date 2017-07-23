@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Type.cs" line="8" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="8" bodyend="-1"/>
+        <location file="Pathfinder/Port/Type.cs" line="7" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="7" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_port_1_1_type_1a5e15297ce649dea2c971b9c5dbbe1cb0" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
         <type>uint</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Type.cs" line="9" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="9" bodyend="-1"/>
+        <location file="Pathfinder/Port/Type.cs" line="8" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="8" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_port_1_1_type_1a756021d5d4088e7c5e8d8e667b8a51a6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>string</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Type.cs" line="10" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="10" bodyend="-1"/>
+        <location file="Pathfinder/Port/Type.cs" line="9" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="9" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -65,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Type.cs" line="12" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="12" bodyend="18"/>
+        <location file="Pathfinder/Port/Type.cs" line="11" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="11" bodyend="17"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1a9d1f6db3d6c0a3a03c23139e4ffbd785" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -87,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Type.cs" line="20" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="20" bodyend="27"/>
+        <location file="Pathfinder/Port/Type.cs" line="19" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="19" bodyend="26"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1a9a6f04d976c7e1c25581fc3407045902" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -104,7 +104,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Type.cs" line="29" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="29" bodyend="35"/>
+        <location file="Pathfinder/Port/Type.cs" line="28" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="28" bodyend="34"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1a88fdec950d9f3726ed951ef14e0e6be8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_port_1_1_instance" kindref="compound">Instance</ref></type>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Type.cs" line="37" column="1"/>
+        <location file="Pathfinder/Port/Type.cs" line="36" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1af64dbdcaa94b3e8b28ba959c9ac63c7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -138,7 +138,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Type.cs" line="38" column="1"/>
+        <location file="Pathfinder/Port/Type.cs" line="37" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1a1db2851b3a1757a693c74bad549f6f69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -155,7 +155,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Type.cs" line="42" column="1"/>
+        <location file="Pathfinder/Port/Type.cs" line="41" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_port_1_1_type_1a45574e92a76ee4f834480dc64c927b0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>override string</type>
@@ -168,7 +168,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Type.cs" line="43" column="1"/>
+        <location file="Pathfinder/Port/Type.cs" line="42" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -187,7 +187,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Port/Type.cs" line="44" column="1"/>
+        <location file="Pathfinder/Port/Type.cs" line="43" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -195,38 +195,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="453">
+      <node id="587">
         <label>IEquatable&lt; Type &gt;</label>
       </node>
-      <node id="454">
+      <node id="588">
         <label>IEquatable&lt; Instance &gt;</label>
       </node>
-      <node id="452">
+      <node id="586">
         <label>Pathfinder.Port.Type</label>
         <link refid="class_pathfinder_1_1_port_1_1_type"/>
-        <childnode refid="453" relation="public-inheritance">
+        <childnode refid="587" relation="public-inheritance">
         </childnode>
-        <childnode refid="454" relation="public-inheritance">
+        <childnode refid="588" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="456">
+      <node id="590">
         <label>IEquatable&lt; Type &gt;</label>
       </node>
-      <node id="457">
+      <node id="591">
         <label>IEquatable&lt; Instance &gt;</label>
       </node>
-      <node id="455">
+      <node id="589">
         <label>Pathfinder.Port.Type</label>
         <link refid="class_pathfinder_1_1_port_1_1_type"/>
-        <childnode refid="456" relation="public-inheritance">
+        <childnode refid="590" relation="public-inheritance">
         </childnode>
-        <childnode refid="457" relation="public-inheritance">
+        <childnode refid="591" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Port/Type.cs" line="7" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="6" bodyend="45"/>
+    <location file="Pathfinder/Port/Type.cs" line="6" column="1" bodyfile="Pathfinder/Port/Type.cs" bodystart="5" bodyend="44"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_port_1_1_type_1a9d1f6db3d6c0a3a03c23139e4ffbd785" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>AssignTo</name></member>
       <member refid="class_pathfinder_1_1_port_1_1_type_1af64dbdcaa94b3e8b28ba959c9ac63c7b" prot="public" virt="non-virtual"><scope>Pathfinder::Port::Type</scope><name>Equals</name></member>

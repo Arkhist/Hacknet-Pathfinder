@@ -27,44 +27,44 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="362">
+      <node id="463">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="363" relation="public-inheritance">
+        <childnode refid="464" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="363">
+      <node id="464">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="361">
+      <node id="462">
         <label>Pathfinder.Event.OSLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event"/>
-        <childnode refid="362" relation="public-inheritance">
+        <childnode refid="463" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="365">
+      <node id="466">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="366" relation="public-inheritance">
+        <childnode refid="467" relation="public-inheritance">
         </childnode>
-        <childnode refid="367" relation="usage">
+        <childnode refid="468" relation="usage">
           <edgelabel>OsInstance</edgelabel>
         </childnode>
       </node>
-      <node id="366">
+      <node id="467">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="367">
+      <node id="468">
         <label>Hacknet</label>
       </node>
-      <node id="364">
+      <node id="465">
         <label>Pathfinder.Event.OSLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event"/>
-        <childnode refid="365" relation="public-inheritance">
+        <childnode refid="466" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

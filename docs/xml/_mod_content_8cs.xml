@@ -5,7 +5,6 @@
     <innerclass refid="class_pathfinder_1_1_util_1_1_file_1_1_mod_content" prot="public">Pathfinder::Util::File::ModContent</innerclass>
     <innernamespace refid="namespace_pathfinder_1_1_util_1_1_file">Pathfinder::Util::File</innernamespace>
     <innernamespace refid="namespace_i_o">IO</innernamespace>
-    <innernamespace refid="namespace_microsoft_1_1_xna_1_1_framework_1_1_audio">Microsoft::Xna::Framework::Audio</innernamespace>
       <sectiondef kind="typedef">
       <memberdef kind="typedef" id="_mod_content_8cs_1a1e16ef9663a7a2a193931a6b5604e7d9" prot="public" static="no">
         <type>System.IO</type>

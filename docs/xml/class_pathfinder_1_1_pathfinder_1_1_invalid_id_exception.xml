@@ -27,22 +27,22 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="292">
+      <node id="334">
         <label>ArgumentException</label>
       </node>
-      <node id="291">
+      <node id="333">
         <label>Pathfinder.Pathfinder.InvalidIdException</label>
-        <childnode refid="292" relation="public-inheritance">
+        <childnode refid="334" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="294">
+      <node id="336">
         <label>ArgumentException</label>
       </node>
-      <node id="293">
+      <node id="335">
         <label>Pathfinder.Pathfinder.InvalidIdException</label>
-        <childnode refid="294" relation="public-inheritance">
+        <childnode refid="336" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

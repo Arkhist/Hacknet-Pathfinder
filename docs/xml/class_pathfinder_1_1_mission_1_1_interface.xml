@@ -197,25 +197,25 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="283">
+      <node id="325">
         <label>Pathfinder.Mission.Interface</label>
         <link refid="class_pathfinder_1_1_mission_1_1_interface"/>
-        <childnode refid="284" relation="public-inheritance">
+        <childnode refid="326" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="284">
+      <node id="326">
         <label>IInterface</label>
         <link refid="interface_pathfinder_1_1_mission_1_1_i_interface"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="285">
+      <node id="327">
         <label>Pathfinder.Mission.Interface</label>
         <link refid="class_pathfinder_1_1_mission_1_1_interface"/>
-        <childnode refid="286" relation="public-inheritance">
+        <childnode refid="328" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="286">
+      <node id="328">
         <label>IInterface</label>
         <link refid="interface_pathfinder_1_1_mission_1_1_i_interface"/>
       </node>

@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/OSEvents.cs" line="27" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="27" bodyend="-1"/>
+        <location file="Pathfinder/Event/OSEvents.cs" line="32" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="32" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event_1a52aee1e458346f4a75a7479d19789c7d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
         <type>Stream</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/OSEvents.cs" line="30" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="30" bodyend="-1"/>
+        <location file="Pathfinder/Event/OSEvents.cs" line="35" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="35" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/OSEvents.cs" line="29" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="29" bodyend="-1"/>
+        <location file="Pathfinder/Event/OSEvents.cs" line="34" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="34" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/OSEvents.cs" line="31" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="31" bodyend="35"/>
+        <location file="Pathfinder/Event/OSEvents.cs" line="36" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="36" bodyend="40"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -79,48 +79,48 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="369">
+      <node id="470">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="370" relation="public-inheritance">
+        <childnode refid="471" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="370">
+      <node id="471">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="368">
+      <node id="469">
         <label>Pathfinder.Event.OSLoadSaveFileEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event"/>
-        <childnode refid="369" relation="public-inheritance">
+        <childnode refid="470" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="372">
+      <node id="473">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="373" relation="public-inheritance">
+        <childnode refid="474" relation="public-inheritance">
         </childnode>
-        <childnode refid="374" relation="usage">
+        <childnode refid="475" relation="usage">
           <edgelabel>OsInstance</edgelabel>
         </childnode>
       </node>
-      <node id="373">
+      <node id="474">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="374">
+      <node id="475">
         <label>Hacknet</label>
       </node>
-      <node id="371">
+      <node id="472">
         <label>Pathfinder.Event.OSLoadSaveFileEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event"/>
-        <childnode refid="372" relation="public-inheritance">
+        <childnode refid="473" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/OSEvents.cs" line="26" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="25" bodyend="36"/>
+    <location file="Pathfinder/Event/OSEvents.cs" line="31" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="30" bodyend="41"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadSaveFileEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadSaveFileEvent</scope><name>IsCancelled</name></member>

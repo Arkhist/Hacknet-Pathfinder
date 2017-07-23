@@ -5,6 +5,7 @@
     <innerdir refid="dir_68b6425690f10c091b50155436f36181">Pathfinder/Internal/GUI</innerdir>
     <innerfile refid="_execution_override_8cs">ExecutionOverride.cs</innerfile>
     <innerfile refid="_handler_listener_8cs">HandlerListener.cs</innerfile>
+    <innerfile refid="_placeholder_extension_info_8cs">PlaceholderExtensionInfo.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

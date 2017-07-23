@@ -50,7 +50,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/NetworkMap/Extensions.cs" line="15" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="15" bodyend="27"/>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="17" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="17" bodyend="29"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_network_map_1_1_extensions_1a200a157f7e30c46b5a0dd543bc1aacdd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -99,7 +99,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/NetworkMap/Extensions.cs" line="36" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="36" bodyend="39"/>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="38" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="38" bodyend="41"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_network_map_1_1_extensions_1a1fef0cb4631dbb16b956035a1c2b3eda" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -148,7 +148,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/NetworkMap/Extensions.cs" line="48" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="48" bodyend="51"/>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="50" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="50" bodyend="53"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_network_map_1_1_extensions_1a99a653b039e99338370e9bea96d986bf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; bool &gt;</type>
@@ -197,7 +197,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/NetworkMap/Extensions.cs" line="60" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="60" bodyend="66"/>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="62" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="62" bodyend="68"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_network_map_1_1_extensions_1a1fda33284080c5168af862a8ce774ddb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; bool &gt;</type>
@@ -246,7 +246,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/NetworkMap/Extensions.cs" line="75" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="75" bodyend="78"/>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="77" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="77" bodyend="80"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_network_map_1_1_extensions_1ad88b4f52e9de002d3344def683e01d63" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; bool &gt;</type>
@@ -295,7 +295,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/NetworkMap/Extensions.cs" line="87" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="87" bodyend="90"/>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="89" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="89" bodyend="92"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_network_map_1_1_extensions_1ad42cba32aa6668a182e0bb31ead13521" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -332,7 +332,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/NetworkMap/Extensions.cs" line="98" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="98" bodyend="101"/>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="100" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="100" bodyend="103"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_network_map_1_1_extensions_1aadb3225440fd0262e44948476a3ca6b3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -369,7 +369,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/NetworkMap/Extensions.cs" line="109" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="109" bodyend="112"/>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="111" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="111" bodyend="114"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_network_map_1_1_extensions_1af65ecfb0d821b87834e993a8d66675c0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -406,7 +406,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/NetworkMap/Extensions.cs" line="120" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="120" bodyend="123"/>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="122" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="122" bodyend="125"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_network_map_1_1_extensions_1aa435118a6ae335786fb10aaf6196b2c3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -427,7 +427,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/NetworkMap/Extensions.cs" line="125" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="125" bodyend="128"/>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="127" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="127" bodyend="130"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_network_map_1_1_extensions_1a400d4d1732a4547592c9c935914d2846" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -475,14 +475,14 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/NetworkMap/Extensions.cs" line="137" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="137" bodyend="144"/>
+        <location file="Pathfinder/NetworkMap/Extensions.cs" line="139" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="139" bodyend="146"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/NetworkMap/Extensions.cs" line="7" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="6" bodyend="145"/>
+    <location file="Pathfinder/NetworkMap/Extensions.cs" line="9" column="1" bodyfile="Pathfinder/NetworkMap/Extensions.cs" bodystart="8" bodyend="147"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_network_map_1_1_extensions_1a400d4d1732a4547592c9c935914d2846" prot="public" virt="non-virtual"><scope>Pathfinder::NetworkMap::Extensions</scope><name>AddLink</name></member>
       <member refid="class_pathfinder_1_1_network_map_1_1_extensions_1a682c9e1976cb2234388d168da1f7c3fd" prot="public" virt="non-virtual"><scope>Pathfinder::NetworkMap::Extensions</scope><name>DiscoverNode</name></member>

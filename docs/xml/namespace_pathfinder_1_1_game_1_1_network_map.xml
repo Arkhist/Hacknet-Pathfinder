@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespace_pathfinder_1_1_game_1_1_network_map" kind="namespace" language="C#">
+    <compoundname>Pathfinder::Game::NetworkMap</compoundname>
+    <innerclass refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions" prot="public">Pathfinder::Game::NetworkMap::Extensions</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="5" column="1"/>
+  </compounddef>
+</doxygen>

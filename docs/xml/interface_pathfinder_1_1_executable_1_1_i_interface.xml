@@ -247,14 +247,14 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="242">
+      <node id="276">
         <label>Pathfinder.Executable.IInterface</label>
         <link refid="interface_pathfinder_1_1_executable_1_1_i_interface"/>
       </node>
-      <node id="243">
+      <node id="277">
         <label>Pathfinder.Executable.Interface</label>
         <link refid="class_pathfinder_1_1_executable_1_1_interface"/>
-        <childnode refid="242" relation="public-inheritance">
+        <childnode refid="276" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>

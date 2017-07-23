@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespace_pathfinder_1_1_game_1_1_computer" kind="namespace" language="C#">
+    <compoundname>Pathfinder::Game::Computer</compoundname>
+    <innerclass refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions" prot="public">Pathfinder::Game::Computer::Extensions</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Game/Computer/Extensions.cs" line="9" column="1"/>
+  </compounddef>
+</doxygen>

@@ -3,11 +3,11 @@
   <compounddef id="class_pathfinder_1_1_daemon_1_1_handler" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Daemon::Handler</compoundname>
       <sectiondef kind="package-static-attrib">
-      <memberdef kind="variable" id="class_pathfinder_1_1_daemon_1_1_handler_1af5b2302d301fd0d47e4eeb82ca7ea041" prot="package" static="yes" mutable="no">
+      <memberdef kind="variable" id="class_pathfinder_1_1_daemon_1_1_handler_1a5a17e774c11324f1abd36c91fff26c3a" prot="package" static="yes" mutable="no">
         <type>Dictionary&lt; string, <ref refid="interface_pathfinder_1_1_daemon_1_1_i_interface" kindref="compound">IInterface</ref> &gt;</type>
-        <definition>Dictionary&lt;string, IInterface&gt; Pathfinder.Daemon.Handler.idToInterface</definition>
+        <definition>Dictionary&lt;string, IInterface&gt; Pathfinder.Daemon.Handler.ModDaemons</definition>
         <argsstring></argsstring>
-        <name>idToInterface</name>
+        <name>ModDaemons</name>
         <initializer>= new Dictionary&lt;string, <ref refid="interface_pathfinder_1_1_daemon_1_1_i_interface" kindref="compound">IInterface</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
@@ -176,7 +176,7 @@
       <member refid="class_pathfinder_1_1_daemon_1_1_handler_1acaa1f9f19525d270b7b282ecf6b33c52" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>ContainsDaemon</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_handler_1ac6fe93befa456f655c6bd259407143ab" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>GetDaemonById</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_handler_1a0ed3dc3b18a2fe06d02ab9526ccaab51" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>GetDaemonById</name></member>
-      <member refid="class_pathfinder_1_1_daemon_1_1_handler_1af5b2302d301fd0d47e4eeb82ca7ea041" prot="package" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>idToInterface</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_handler_1a5a17e774c11324f1abd36c91fff26c3a" prot="package" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>ModDaemons</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_handler_1a44ee1cb75865d7c31428ffaec269e9d5" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>RegisterDaemon</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_handler_1ac7239b0eb9eb9cbb6351fa5fe726656a" prot="package" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>UnregisterDaemon</name></member>
     </listofallmembers>

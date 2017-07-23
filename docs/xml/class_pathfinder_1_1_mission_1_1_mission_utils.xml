@@ -18,16 +18,34 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Mission/MissionUtils.cs" line="9" column="1" bodyfile="Pathfinder/Mission/MissionUtils.cs" bodystart="9" bodyend="21"/>
+        <location file="Pathfinder/Mission/MissionUtils.cs" line="10" column="1" bodyfile="Pathfinder/Mission/MissionUtils.cs" bodystart="10" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_utils_1a9154f184d0c4884425a2b614b10bf30e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MisisonGoal</type>
+        <definition>static MisisonGoal Pathfinder.Mission.MissionUtils.LoadFromSaveString</definition>
+        <argsstring>(string str)</argsstring>
+        <name>LoadFromSaveString</name>
+        <param>
+          <type>string</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Mission/MissionUtils.cs" line="29" column="1" bodyfile="Pathfinder/Mission/MissionUtils.cs" bodystart="29" bodyend="46"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Mission/MissionUtils.cs" line="8" column="1" bodyfile="Pathfinder/Mission/MissionUtils.cs" bodystart="7" bodyend="22"/>
+    <location file="Pathfinder/Mission/MissionUtils.cs" line="9" column="1" bodyfile="Pathfinder/Mission/MissionUtils.cs" bodystart="8" bodyend="47"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_mission_1_1_mission_utils_1a5ebc0f4f49197f1c97fb08bcb90394de" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionUtils</scope><name>GenerateSaveStringFor</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_utils_1a9154f184d0c4884425a2b614b10bf30e" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionUtils</scope><name>LoadFromSaveString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

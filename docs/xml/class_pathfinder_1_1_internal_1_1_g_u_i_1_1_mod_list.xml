@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/GUI/ModList.cs" line="13" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="13" bodyend="-1"/>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="17" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="17" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a8e870d347bdfe51824a10b763cba3e72" prot="private" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>bool</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/GUI/ModList.cs" line="14" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="14" bodyend="-1"/>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="18" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="18" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1af861dc66f32ec90a037bd0b737438f81" prot="private" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>Dictionary&lt; string, <ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref> &gt;</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/GUI/ModList.cs" line="22" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="22" bodyend="-1"/>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="26" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="26" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a0cdcbeacf4881ebed8de0bfce026e781" prot="private" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>Dictionary&lt; string, <ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref> &gt;</type>
@@ -55,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/GUI/ModList.cs" line="23" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="23" bodyend="-1"/>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="27" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="27" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-static-attrib">
@@ -64,7 +64,7 @@
         <definition>Button Pathfinder.Internal.GUI.ModList.modListButton</definition>
         <argsstring></argsstring>
         <name>modListButton</name>
-        <initializer>= new <ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref>(180, 600, 450, 40, &quot;Pathfinder Mod List&quot;, MainMenu.buttonColor)
+        <initializer>= new <ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref>(180, 600, 450, 40, &quot;Pathfinder <ref refid="class_pathfinder_1_1_mod_manager_1_1_mod" kindref="compound">Mod</ref> List&quot;, MainMenu.buttonColor)
         { DrawFinish = (r) =&gt; GameHandled &amp;= !r.JustReleased }</initializer>
         <briefdescription>
         </briefdescription>
@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/GUI/ModList.cs" line="16" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="16" bodyend="-1"/>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="20" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="20" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a97968817d104deb0f2e438b79138d365" prot="private" static="yes" mutable="no">
         <type><ref refid="class_pathfinder_1_1_g_u_i_1_1_button" kindref="compound">Button</ref></type>
@@ -87,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/GUI/ModList.cs" line="19" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="19" bodyend="-1"/>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="23" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="23" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-static-func">
@@ -102,7 +102,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/GUI/ModList.cs" line="25" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="25" bodyend="50"/>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="29" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="29" bodyend="71"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/GUI/ModList.cs" line="52" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="52" bodyend="87"/>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="73" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="73" bodyend="111"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1abe745cfd437652d8c599eba49c035781" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -138,14 +138,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/GUI/ModList.cs" line="89" column="1"/>
+        <location file="Pathfinder/Internal/GUI/ModList.cs" line="113" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Internal/GUI/ModList.cs" line="12" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="11" bodyend="90"/>
+    <location file="Pathfinder/Internal/GUI/ModList.cs" line="16" column="1" bodyfile="Pathfinder/Internal/GUI/ModList.cs" bodystart="15" bodyend="114"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1a8e870d347bdfe51824a10b763cba3e72" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModList</scope><name>ButtonsWerePrepared</name></member>
       <member refid="class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_list_1ae190c2c8902c495e5ba375fea33ec6a3" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::GUI::ModList</scope><name>DrawModList</name></member>

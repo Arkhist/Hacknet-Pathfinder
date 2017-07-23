@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="interface_pathfinder_1_1_mod_manager_1_1_i_mod" kind="interface" language="C#" prot="public">
+    <compoundname>Pathfinder::ModManager::IMod</compoundname>
+    <derivedcompoundref refid="interface_pathfinder_1_1_i_pathfinder_mod" prot="public" virt="non-virtual">Pathfinder.IPathfinderMod</derivedcompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_mod_manager_1_1_mod" prot="public" virt="non-virtual">Pathfinder.ModManager.Mod</derivedcompoundref>
+    <derivedcompoundref refid="class_pathfinder_1_1_mod_manager_1_1_placeholder" prot="public" virt="non-virtual">Pathfinder.ModManager.Placeholder</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1a6b02b35017029548fc1616ec0b64c4fa" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.ModManager.IMod.Identifier</definition>
+        <argsstring></argsstring>
+        <name>Identifier</name>
+        <briefdescription>
+<para>Retrieves the <ref refid="class_pathfinder_1_1_mod_manager_1_1_mod" kindref="compound">Mod</ref>&apos;s identifier. </para>        </briefdescription>
+        <detaileddescription>
+<para>The <ref refid="class_pathfinder_1_1_mod_manager_1_1_mod" kindref="compound">Mod</ref>&apos;s identifier</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/ModManager/Mod.cs" line="12" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1a70000bce950678bda95460a05b922247" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.ModManager.IMod.Load</definition>
+        <argsstring>()</argsstring>
+        <name>Load</name>
+        <reimplementedby refid="class_pathfinder_1_1_mod_manager_1_1_mod_1a17138c29cf0d19325107ae10e128b9e7">Load</reimplementedby>
+        <reimplementedby refid="class_pathfinder_1_1_mod_manager_1_1_placeholder_1a82d085a2ffe5762ef3cf62939d1b35c9">Load</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/ModManager/Mod.cs" line="13" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1a1c56b83b37eb42b8bc8f67948d8850b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.ModManager.IMod.LoadContent</definition>
+        <argsstring>()</argsstring>
+        <name>LoadContent</name>
+        <reimplementedby refid="class_pathfinder_1_1_mod_manager_1_1_mod_1ae21f6608194039aa6f7320314a6d68ea">LoadContent</reimplementedby>
+        <reimplementedby refid="class_pathfinder_1_1_mod_manager_1_1_placeholder_1a2e973e7255be714eb9ff20884ffaa5d6">LoadContent</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/ModManager/Mod.cs" line="14" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1abd2edc19398718a168a57b8726b41360" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Pathfinder.ModManager.IMod.Unload</definition>
+        <argsstring>()</argsstring>
+        <name>Unload</name>
+        <reimplementedby refid="class_pathfinder_1_1_mod_manager_1_1_mod_1a83e028edb8a35a05a78d7c54737fbc5e">Unload</reimplementedby>
+        <reimplementedby refid="class_pathfinder_1_1_mod_manager_1_1_placeholder_1a5b47820adbf7220bdcb7c2bc18025477">Unload</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/ModManager/Mod.cs" line="15" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="287">
+        <label>Pathfinder.PathfinderMod</label>
+        <link refid="class_pathfinder_1_1_pathfinder_mod"/>
+        <childnode refid="285" relation="public-inheritance">
+        </childnode>
+        <childnode refid="289" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="286">
+        <label>Pathfinder.ModPlaceholder</label>
+        <link refid="class_pathfinder_1_1_mod_placeholder"/>
+        <childnode refid="285" relation="public-inheritance">
+        </childnode>
+        <childnode refid="290" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="290">
+        <label>Pathfinder.ModManager.Placeholder</label>
+        <link refid="class_pathfinder_1_1_mod_manager_1_1_placeholder"/>
+        <childnode refid="284" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="289">
+        <label>Pathfinder.ModManager.Mod</label>
+        <link refid="class_pathfinder_1_1_mod_manager_1_1_mod"/>
+        <childnode refid="284" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="288">
+        <label>TemplateMod.TemplateMod</label>
+        <childnode refid="285" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="284">
+        <label>Pathfinder.ModManager.IMod</label>
+        <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
+      </node>
+      <node id="285">
+        <label>Pathfinder.IPathfinderMod</label>
+        <link refid="interface_pathfinder_1_1_i_pathfinder_mod"/>
+        <childnode refid="284" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="Pathfinder/ModManager/Mod.cs" line="7" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="6" bodyend="16"/>
+    <listofallmembers>
+      <member refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1a6b02b35017029548fc1616ec0b64c4fa" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::IMod</scope><name>Identifier</name></member>
+      <member refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1a70000bce950678bda95460a05b922247" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::IMod</scope><name>Load</name></member>
+      <member refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1a1c56b83b37eb42b8bc8f67948d8850b1" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::IMod</scope><name>LoadContent</name></member>
+      <member refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1abd2edc19398718a168a57b8726b41360" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::IMod</scope><name>Unload</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

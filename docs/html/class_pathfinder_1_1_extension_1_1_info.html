@@ -82,6 +82,7 @@ $(document).ready(function(){initNavTree('class_pathfinder_1_1_extension_1_1_inf
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="class_pathfinder_1_1_extension_1_1_info-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -91,28 +92,45 @@ $(document).ready(function(){initNavTree('class_pathfinder_1_1_extension_1_1_inf
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5dde7055eaec9030111e40574acbf1d7"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_extension_1_1_info.html#a5dde7055eaec9030111e40574acbf1d7">Construct</a> (Hacknet.OS os)</td></tr>
-<tr class="separator:a5dde7055eaec9030111e40574acbf1d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a373b8219bc7c1b62b690aecb1bbbec49"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_extension_1_1_info.html#a373b8219bc7c1b62b690aecb1bbbec49">OnConstruct</a> (Hacknet.OS os)</td></tr>
+<tr class="memdesc:a373b8219bc7c1b62b690aecb1bbbec49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes on extension construction.  <a href="#a373b8219bc7c1b62b690aecb1bbbec49">More...</a><br /></td></tr>
+<tr class="separator:a373b8219bc7c1b62b690aecb1bbbec49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5447d768d5c79bc8b85de72e42dcf35f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_extension_1_1_info.html#a5447d768d5c79bc8b85de72e42dcf35f">OnLoad</a> (Hacknet.OS os, Stream loadingStream)</td></tr>
+<tr class="memdesc:a5447d768d5c79bc8b85de72e42dcf35f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes on extension loading.  <a href="#a5447d768d5c79bc8b85de72e42dcf35f">More...</a><br /></td></tr>
+<tr class="separator:a5447d768d5c79bc8b85de72e42dcf35f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1af044730691677c59c1eac61695a39d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_extension_1_1_info.html#a1af044730691677c59c1eac61695a39d">OnUnload</a> (Hacknet.OS os)</td></tr>
+<tr class="separator:a1af044730691677c59c1eac61695a39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a138fe399651d13e770e2cb81628d4201"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_extension_1_1_info.html#a138fe399651d13e770e2cb81628d4201">IsActive</a> =&gt; this == <a class="el" href="class_pathfinder_1_1_extension_1_1_handler.html#aa07ee87ff29fc51ce633896c5d96705f">Handler.ActiveInfo</a></td></tr>
+<tr class="memdesc:a138fe399651d13e770e2cb81628d4201"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this T:Pathfinder.Extension.Info is active.  <a href="#a138fe399651d13e770e2cb81628d4201">More...</a><br /></td></tr>
+<tr class="separator:a138fe399651d13e770e2cb81628d4201"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a52fcbde3ba7cea14845e0c62e198bded"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_extension_1_1_info.html#a52fcbde3ba7cea14845e0c62e198bded">Id</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a52fcbde3ba7cea14845e0c62e198bded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the extension identifier.  <a href="#a52fcbde3ba7cea14845e0c62e198bded">More...</a><br /></td></tr>
 <tr class="separator:a52fcbde3ba7cea14845e0c62e198bded"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abddac60ddfacb4ab0429dea88e5cdfe4"><td class="memItemLeft" align="right" valign="top">abstract string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_extension_1_1_info.html#abddac60ddfacb4ab0429dea88e5cdfe4">Name</a><code> [get]</code></td></tr>
+<tr class="memdesc:abddac60ddfacb4ab0429dea88e5cdfe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the extension's name.  <a href="#abddac60ddfacb4ab0429dea88e5cdfe4">More...</a><br /></td></tr>
 <tr class="separator:abddac60ddfacb4ab0429dea88e5cdfe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9986a4abcb29b60475296c2612901e6e"><td class="memItemLeft" align="right" valign="top">abstract string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_extension_1_1_info.html#a9986a4abcb29b60475296c2612901e6e">Description</a><code> [get]</code></td></tr>
+<tr class="memdesc:a9986a4abcb29b60475296c2612901e6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the extension's description.  <a href="#a9986a4abcb29b60475296c2612901e6e">More...</a><br /></td></tr>
 <tr class="separator:a9986a4abcb29b60475296c2612901e6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a153ebbb643028d56295121296785b52e"><td class="memItemLeft" align="right" valign="top">abstract string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_extension_1_1_info.html#a153ebbb643028d56295121296785b52e">LogoPath</a><code> [get]</code></td></tr>
+<tr class="memdesc:a153ebbb643028d56295121296785b52e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the extension's logo path. (if it does not exist or is null, chooses the default logo)  <a href="#a153ebbb643028d56295121296785b52e">More...</a><br /></td></tr>
 <tr class="separator:a153ebbb643028d56295121296785b52e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abcd435da318c553abc95e11df8ab3f52"><td class="memItemLeft" align="right" valign="top">abstract bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_extension_1_1_info.html#abcd435da318c553abc95e11df8ab3f52">AllowSaves</a><code> [get]</code></td></tr>
+<tr class="memdesc:abcd435da318c553abc95e11df8ab3f52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this T:Pathfinder.Extension.Info allows saves.  <a href="#abcd435da318c553abc95e11df8ab3f52">More...</a><br /></td></tr>
 <tr class="separator:abcd435da318c553abc95e11df8ab3f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00006">6</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00008">8</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5dde7055eaec9030111e40574acbf1d7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5dde7055eaec9030111e40574acbf1d7">&#9670;&nbsp;</a></span>Construct()</h2>
+<a id="a373b8219bc7c1b62b690aecb1bbbec49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a373b8219bc7c1b62b690aecb1bbbec49">&#9670;&nbsp;</a></span>OnConstruct()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -121,7 +139,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">abstract void Pathfinder.Extension.Info.Construct </td>
+          <td class="memname">abstract void Pathfinder.Extension.Info.OnConstruct </td>
           <td>(</td>
           <td class="paramtype">Hacknet.OS&#160;</td>
           <td class="paramname"><em>os</em></td><td>)</td>
@@ -134,6 +152,109 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Executes on extension construction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>The Os.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5447d768d5c79bc8b85de72e42dcf35f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5447d768d5c79bc8b85de72e42dcf35f">&#9670;&nbsp;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Pathfinder.Extension.Info.OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">Hacknet.OS&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Stream&#160;</td>
+          <td class="paramname"><em>loadingStream</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Executes on extension loading. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>The Os.</td></tr>
+    <tr><td class="paramname">loadingStream</td><td>The Loading stream.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00060">60</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1af044730691677c59c1eac61695a39d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1af044730691677c59c1eac61695a39d">&#9670;&nbsp;</a></span>OnUnload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Pathfinder.Extension.Info.OnUnload </td>
+          <td>(</td>
+          <td class="paramtype">Hacknet.OS&#160;</td>
+          <td class="paramname"><em>os</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00061">61</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a138fe399651d13e770e2cb81628d4201"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a138fe399651d13e770e2cb81628d4201">&#9670;&nbsp;</a></span>IsActive</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pathfinder.Extension.Info.IsActive =&gt; this == <a class="el" href="class_pathfinder_1_1_extension_1_1_handler.html#aa07ee87ff29fc51ce633896c5d96705f">Handler.ActiveInfo</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets a value indicating whether this T:Pathfinder.Extension.Info is active. </p>
+<p><code>true</code> if is active; otherwise, <code>false</code>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00029">29</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
 
 </div>
 </div>
@@ -158,7 +279,10 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00012">12</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
+<p>Gets a value indicating whether this T:Pathfinder.Extension.Info allows saves. </p>
+<p><code>true</code> if allows saves; otherwise, <code>false</code>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00049">49</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
 
 </div>
 </div>
@@ -182,7 +306,10 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00010">10</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
+<p>Gets the extension's description. </p>
+<p>The description.</p>
+
+<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00039">39</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
 
 </div>
 </div>
@@ -206,7 +333,10 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00008">8</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
+<p>Gets the extension identifier. </p>
+<p>The identifier.</p>
+
+<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00024">24</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
 
 </div>
 </div>
@@ -230,7 +360,10 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00011">11</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
+<p>Gets the extension's logo path. (if it does not exist or is null, chooses the default logo) </p>
+<p>The logo path.</p>
+
+<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00044">44</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
 
 </div>
 </div>
@@ -254,7 +387,10 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00009">9</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
+<p>Gets the extension's name. </p>
+<p>The name.</p>
+
+<p class="definition">Definition at line <a class="el" href="_info_8cs_source.html#l00034">34</a> of file <a class="el" href="_info_8cs_source.html">Info.cs</a>.</p>
 
 </div>
 </div>
@@ -267,7 +403,7 @@ Properties</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_pathfinder.html">Pathfinder</a></li><li class="navelem"><a class="el" href="namespace_pathfinder_1_1_extension.html">Extension</a></li><li class="navelem"><a class="el" href="class_pathfinder_1_1_extension_1_1_info.html">Info</a></li>
-    <li class="footer">Generated on Sat May 13 2017 17:28:46 for Pathfinder Hacknet by
+    <li class="footer">Generated on Sun Jul 23 2017 16:51:46 for Pathfinder Hacknet by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

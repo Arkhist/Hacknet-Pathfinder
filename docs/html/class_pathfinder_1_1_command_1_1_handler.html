@@ -96,9 +96,11 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ae2ba76254891fa9ac9e40a874028e709"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#ae2ba76254891fa9ac9e40a874028e709">RegisterCommand</a> (string key, <a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#a2a554560d17cb4f32735115a9efde193">CommandFunc</a> function, string description=null, bool autoComplete=false)</td></tr>
+<tr class="memitem:ae2ba76254891fa9ac9e40a874028e709"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#ae2ba76254891fa9ac9e40a874028e709">RegisterCommand</a> (string key, <a class="el" href="_template_mod_8cs.html#aa6c08473aebff88f007cf89ee6c15123">CommandFunc</a> function, string description=null, bool autoComplete=false)</td></tr>
 <tr class="memdesc:ae2ba76254891fa9ac9e40a874028e709"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a command to the game.  <a href="#ae2ba76254891fa9ac9e40a874028e709">More...</a><br /></td></tr>
 <tr class="separator:ae2ba76254891fa9ac9e40a874028e709"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf1b582e5eac97152f0ec2ba6ef70f04"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#abf1b582e5eac97152f0ec2ba6ef70f04">RegisterCommand</a> (string key, Func&lt; Hacknet.OS, List&lt; string &gt;, bool &gt; function, string description=null, bool autoComplete=false)</td></tr>
+<tr class="separator:abf1b582e5eac97152f0ec2ba6ef70f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e1314b9193ca69471aabbb4c1c37a75"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#a1e1314b9193ca69471aabbb4c1c37a75">AddCommand</a> (string key, Func&lt; Hacknet.OS, List&lt; string &gt;, bool &gt; function, string description=null, bool autoComplete=false)</td></tr>
 <tr class="separator:a1e1314b9193ca69471aabbb4c1c37a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d65fa66db7779a37ab893fff72f4a1b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#a5d65fa66db7779a37ab893fff72f4a1b">AddCommand</a> (string key, Func&lt; Hacknet.OS, string[], bool &gt; function)</td></tr>
@@ -315,7 +317,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="ae2ba76254891fa9ac9e40a874028e709"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2ba76254891fa9ac9e40a874028e709">&#9670;&nbsp;</a></span>RegisterCommand()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2ba76254891fa9ac9e40a874028e709">&#9670;&nbsp;</a></span>RegisterCommand() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -332,7 +334,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html#a2a554560d17cb4f32735115a9efde193">CommandFunc</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_template_mod_8cs.html#aa6c08473aebff88f007cf89ee6c15123">CommandFunc</a>&#160;</td>
           <td class="paramname"><em>function</em>, </td>
         </tr>
         <tr>
@@ -376,6 +378,54 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="abf1b582e5eac97152f0ec2ba6ef70f04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf1b582e5eac97152f0ec2ba6ef70f04">&#9670;&nbsp;</a></span>RegisterCommand() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string Pathfinder.Command.Handler.RegisterCommand </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; Hacknet.OS, List&lt; string &gt;, bool &gt;&#160;</td>
+          <td class="paramname"><em>function</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>description</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>autoComplete</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Pathfinder/Command/<a class="el" href="_command_2_handler_8cs_source.html">Handler.cs</a></li>
 </ul>
@@ -385,7 +435,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_pathfinder.html">Pathfinder</a></li><li class="navelem"><a class="el" href="namespace_pathfinder_1_1_command.html">Command</a></li><li class="navelem"><a class="el" href="class_pathfinder_1_1_command_1_1_handler.html">Handler</a></li>
-    <li class="footer">Generated on Sat May 13 2017 17:28:46 for Pathfinder Hacknet by
+    <li class="footer">Generated on Sun Jul 23 2017 16:51:45 for Pathfinder Hacknet by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

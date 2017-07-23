@@ -30,7 +30,7 @@
           <declname>instance</declname>
         </param>
         <param>
-          <type>Rectangle</type>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
           <declname>dest</declname>
         </param>
         <param>

@@ -90,31 +90,31 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="4">
+      <node id="15">
         <label>Pathfinder.GUI.Button</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_button"/>
-        <childnode refid="2" relation="public-inheritance">
+        <childnode refid="13" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="2">
+      <node id="13">
         <label>Pathfinder.GUI.BaseButton</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_button"/>
-        <childnode refid="3" relation="public-inheritance">
+        <childnode refid="14" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
+      <node id="14">
         <label>BaseInteractiveRectangle&lt; int &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="5">
+      <node id="16">
         <label>Pathfinder.GUI.BaseButton</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_button"/>
-        <childnode refid="6" relation="public-inheritance">
+        <childnode refid="17" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
+      <node id="17">
         <label>BaseInteractiveRectangle&lt; int &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
       </node>

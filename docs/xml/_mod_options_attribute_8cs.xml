@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="_mod_options_attribute_8cs" kind="file" language="C#">
+    <compoundname>ModOptionsAttribute.cs</compoundname>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute" prot="public">Pathfinder::Util::Attribute::ModOptionsAttribute</innerclass>
+    <innernamespace refid="namespace_pathfinder_1_1_util_1_1_attribute">Pathfinder::Util::Attribute</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_system" kindref="compound">System</ref>;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.<ref refid="namespace_pathfinder_1_1_g_u_i" kindref="compound">GUI</ref>.<ref refid="namespace_pathfinder_1_1_g_u_i_1_1_mod_options" kindref="compound">ModOptions</ref>;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.Util.Attribute</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9" refid="class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute" kindref="compound">ModOptionsAttribute</ref><sp/>:<sp/><ref refid="namespace_system" kindref="compound">System</ref>.Attribute</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="11" refid="class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute_1ac1f45bba8df9b021c8c239b98148728c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Type<sp/>ModOptionsType<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="12" refid="class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute_1a9eb8ee30e83c3448a52eb73414153148" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute_1a9eb8ee30e83c3448a52eb73414153148" kindref="member">ModOptionsAttribute</ref>(Type<sp/>type)</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ModOptionsType<sp/>=<sp/>type;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!ModOptionsType.IsAssignableFrom(typeof(<ref refid="interface_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_abstract_options" kindref="compound">AbstractOptions</ref>)))</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ArgumentException(</highlight><highlight class="stringliteral">&quot;must<sp/>point<sp/>to<sp/>a<sp/>derivative<sp/>of<sp/>AbstractOptions&quot;</highlight><highlight class="normal">,<sp/>nameof(type));</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18" refid="class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute_1a70e4f304af02cf96b688b33b2caccd3d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute_1a70e4f304af02cf96b688b33b2caccd3d" kindref="member">ModOptionsAttribute</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>name)<sp/>:<sp/>this(Type.GetType(name,<sp/>true,<sp/>false))<sp/>{}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Pathfinder/Util/Attribute/ModOptionsAttribute.cs"/>
+  </compounddef>
+</doxygen>

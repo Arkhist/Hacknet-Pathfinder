@@ -1,7 +1,9 @@
 var searchData=
 [
   ['savestring',['SaveString',['../class_pathfinder_1_1_event_1_1_o_s_save_write_event.html#a0cc2e7e389b9c7321e9f79dab1c99af7',1,'Pathfinder.Event.OSSaveWriteEvent.SaveString()'],['../class_pathfinder_1_1_mission_1_1_goal_instance.html#a24c1360f8a56965a2425ae1734d42319',1,'Pathfinder.Mission.GoalInstance.SaveString()']]],
+  ['screeniscovered',['ScreenIsCovered',['../class_pathfinder_1_1_event_1_1_options_menu_update_event.html#ad0e41f3e69e1f7a834ed38b93cd6431e',1,'Pathfinder::Event::OptionsMenuUpdateEvent']]],
   ['screenmanager',['ScreenManager',['../class_pathfinder_1_1_event_1_1_draw_extension_menu_event.html#ae3824441cccedf344c8e2aa852c51926',1,'Pathfinder::Event::DrawExtensionMenuEvent']]],
+  ['screennotfocused',['ScreenNotFocused',['../class_pathfinder_1_1_event_1_1_options_menu_update_event.html#a030943501b818d32df801cee0c6b8cb3',1,'Pathfinder::Event::OptionsMenuUpdateEvent']]],
   ['scrollbar',['Scrollbar',['../class_pathfinder_1_1_g_u_i_1_1_scrollbar.html',1,'Pathfinder.GUI.Scrollbar'],['../class_pathfinder_1_1_g_u_i_1_1_scrollbar.html#a0b29b1122264f4846151040fb6316b58',1,'Pathfinder.GUI.Scrollbar.Scrollbar(Rectangle shape, int contentSize, float scroll=0, bool vertical=true)'],['../class_pathfinder_1_1_g_u_i_1_1_scrollbar.html#a94e6599155d6cfdd72c0a84a5867728c',1,'Pathfinder.GUI.Scrollbar.Scrollbar(Point position, Point size, int contentSize, float scroll=0, bool vertical=true)'],['../class_pathfinder_1_1_g_u_i_1_1_scrollbar.html#a55ff38ec5e3e90f57c1312a38902d0a2',1,'Pathfinder.GUI.Scrollbar.Scrollbar(int x, int y, int width, int height, int contentSize, float scroll=0, bool vertical=true)']]],
   ['scrollbar_2ecs',['Scrollbar.cs',['../_scrollbar_8cs.html',1,'']]],
   ['seacrhfordirectory',['SeacrhForDirectory',['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#a82672e4a62df5f20266c8481edb77f43',1,'Pathfinder.GameFilesystem.Directory.SeacrhForDirectory()'],['../class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#a7e9b72d960fd9f2bd7a03fcda08b25e5',1,'Pathfinder.GameFilesystem.Filesystem.SeacrhForDirectory()']]],
@@ -18,10 +20,10 @@ var searchData=
   ['setstate',['SetState',['../class_pathfinder_1_1_mission_1_1_mission_manager.html#ae056454d364f859b6ddd9dfa5eac1c82',1,'Pathfinder::Mission::MissionManager']]],
   ['setthemecolor',['SetThemeColor',['../class_pathfinder_1_1_mission_1_1_mission_manager.html#a820241fc02c5b01d15ef863fe9f7e433',1,'Pathfinder.Mission.MissionManager.SetThemeColor(this MissionListingServer s, Color color)'],['../class_pathfinder_1_1_mission_1_1_mission_manager.html#a76d33e08811a6ed0c40300607ce5d57b',1,'Pathfinder.Mission.MissionManager.SetThemeColor(this MissionHubServer s, Color color)']]],
   ['shouldlogmultiplayer',['ShouldLogMultiplayer',['../class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#afcf736453f2b3bc1271cc4b8f29e250d',1,'Pathfinder::GameFilesystem::Filesystem']]],
-  ['size',['Size',['../class_pathfinder_1_1_game_filesystem_1_1_file.html#a0d164f88c76532d949b585428fd6948c',1,'Pathfinder::GameFilesystem::File']]],
+  ['size',['Size',['../class_pathfinder_1_1_game_filesystem_1_1_file.html#a0d164f88c76532d949b585428fd6948c',1,'Pathfinder.GameFilesystem.File.Size()'],['../class_pathfinder_1_1_g_u_i_1_1_base_interaction.html#aa4ddf7e2d716271455bcec7c2df55ecb',1,'Pathfinder.GUI.BaseInteraction.Size()']]],
   ['smallbutton',['SmallButton',['../class_pathfinder_1_1_g_u_i_1_1_button.html#ac06d8877c53b8fbf314030e414adb042',1,'Pathfinder::GUI::Button']]],
   ['soundmuted',['SoundMuted',['../class_pathfinder_1_1_util_1_1_sound_system.html#aacb22ecc5014b78e1471c46c156d0c37',1,'Pathfinder::Util::SoundSystem']]],
-  ['soundpath',['SoundPath',['../class_pathfinder_1_1_pathfinder_mod.html#ad2d60d27fc3d514a34b092ea4034c012',1,'Pathfinder::PathfinderMod']]],
+  ['soundpath',['SoundPath',['../class_pathfinder_1_1_mod_manager_1_1_mod.html#a1e61e3a863e94f65f0d21da8cc4cdf96',1,'Pathfinder::ModManager::Mod']]],
   ['soundsystem',['SoundSystem',['../class_pathfinder_1_1_util_1_1_sound_system.html',1,'Pathfinder::Util']]],
   ['soundsystem_2ecs',['SoundSystem.cs',['../_sound_system_8cs.html',1,'']]],
   ['soundvolume',['SoundVolume',['../class_pathfinder_1_1_util_1_1_sound_system.html#abfb8c7ce5c636baf251ecb7b7ef8cdf6',1,'Pathfinder::Util::SoundSystem']]],

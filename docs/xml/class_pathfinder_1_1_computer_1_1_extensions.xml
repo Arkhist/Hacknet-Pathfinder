@@ -4,7 +4,7 @@
     <compoundname>Pathfinder::Computer::Extensions</compoundname>
       <sectiondef kind="public-static-func">
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a9663f4c86bcc2b83f18b16e9fb465d93" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref></type>
+        <type>Daemon.Instance</type>
         <definition>static Daemon.Instance Pathfinder.Computer.Extensions.AddModdedDaemon</definition>
         <argsstring>(this Hacknet.Computer comp, string interfaceId, Dictionary&lt; string, string &gt; input=null)</argsstring>
         <name>AddModdedDaemon</name>
@@ -50,10 +50,10 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="19" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="19" bodyend="28"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="20" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="20" bodyend="29"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1aa2c97089d9fc50540db645007115f750" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>List&lt; Hacknet.Daemon &gt;</type>
+        <type>List&lt; <ref refid="_template_mod_8cs_1afbb0d8e10828a139d097cbde897543b0" kindref="member">Hacknet.Daemon</ref> &gt;</type>
         <definition>static List&lt;Hacknet.Daemon&gt; Pathfinder.Computer.Extensions.GetDaemonList</definition>
         <argsstring>(this Hacknet.Computer comp, Type daemonType)</argsstring>
         <name>GetDaemonList</name>
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="33" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="33" bodyend="40"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="34" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="34" bodyend="41"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a3ba426e804aa8193d0377bd208bd366c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; T &gt;</type>
@@ -88,10 +88,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="45" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="45" bodyend="52"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="46" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="46" bodyend="53"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a9f1841e770f51b0c5122adfa706532aa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref></type>
+        <type>Daemon.Instance</type>
         <definition>static Daemon.Instance Pathfinder.Computer.Extensions.GetModdedDaemon</definition>
         <argsstring>(this Hacknet.Computer comp, Type modInterface)</argsstring>
         <name>GetModdedDaemon</name>
@@ -109,10 +109,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="57" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="57" bodyend="60"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="58" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="58" bodyend="61"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a78532a9f582a9e462ca8c24b59ab0f6a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref></type>
+        <type>Daemon.Instance</type>
         <definition>static Daemon.Instance Pathfinder.Computer.Extensions.GetModdedDaemon&lt; T &gt;</definition>
         <argsstring>(this Hacknet.Computer comp)</argsstring>
         <name>GetModdedDaemon&lt; T &gt;</name>
@@ -126,10 +126,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="65" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="65" bodyend="68"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="66" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="66" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1ac8157a64c5099db20bd18b509530cfbd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>List&lt; <ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref> &gt;</type>
+        <type>List&lt; Daemon.Instance &gt;</type>
         <definition>static List&lt;Daemon.Instance&gt; Pathfinder.Computer.Extensions.GetModdedDaemonList</definition>
         <argsstring>(this Hacknet.Computer comp, Type modInterface)</argsstring>
         <name>GetModdedDaemonList</name>
@@ -147,10 +147,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="73" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="73" bodyend="80"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="74" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="74" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a86f6cc392fc0bd16a3cf7b2a8a008eea" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>List&lt; <ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref> &gt;</type>
+        <type>List&lt; Daemon.Instance &gt;</type>
         <definition>static List&lt;Daemon.Instance&gt; Pathfinder.Computer.Extensions.GetModdedDaemonList&lt; T &gt;</definition>
         <argsstring>(this Hacknet.Computer comp)</argsstring>
         <name>GetModdedDaemonList&lt; T &gt;</name>
@@ -164,7 +164,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="85" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="85" bodyend="92"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="86" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="86" bodyend="93"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1af2c740d0e822631511763202dd71afc8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -201,7 +201,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="100" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="101" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a511c9fe0de5354be6ab9fb712afd50af" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.OS</type>
@@ -227,7 +227,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="108" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="109" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1aec7d3a27320b97e530bd9ed454becada" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.NetworkMap</type>
@@ -253,7 +253,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="115" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="116" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1aefcbc8dcee385b6713f90d487ad5b77e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -302,7 +302,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="124" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="124" bodyend="131"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="125" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="125" bodyend="132"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1ae5d2dc0d90a8661774d85929d7dc5caa" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -351,7 +351,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="140" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="141" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a5d3c1be50a173b0629c525a39ebcc0d3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -400,7 +400,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="150" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="151" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1ab7b34de17568871fe108843452bd1606" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -449,7 +449,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="160" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="161" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1aba2356ee5a7e8072da8b229f95eff081" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -498,7 +498,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="170" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="171" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a256c4c281d0bc968e027ecdcaf912021" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -535,7 +535,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="179" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="179" bodyend="189"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="180" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="180" bodyend="190"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a6041c4d433ba8ff90d7ad3839481b628" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -572,7 +572,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="197" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="198" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1ac6eb80005331e2560ff078d70c43268c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -609,7 +609,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="206" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="207" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a8edf4bfb5908df49be1d5a6a50f5ddc2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -630,7 +630,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="209" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="210" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1ade0b10cacc3c2d62a83b2e1e09958401" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -651,7 +651,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="212" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="213" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a851f4d6c1cbddd17ead16ab635a2bdd3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>IList&lt; Port.Instance &gt;</type>
@@ -677,7 +677,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="220" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="220" bodyend="227"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="221" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="221" bodyend="228"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a417596a499455d9dd4355cf6d755b926" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -707,7 +707,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="234" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="235" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1ac1508f11a94f54f7b4bb09fd9f8c2e94" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -737,7 +737,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="242" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="243" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a2936e66b27d6cee159864e18bc429c6f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -767,7 +767,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="250" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="251" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a23b5acecf0d874a3c2e247105873c861" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -797,7 +797,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="258" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="259" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a76b581c942e544d02dac84de7dea7166" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -827,7 +827,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="266" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="267" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1ad4cbb71164884e71e26a7f01a0ccf8de" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -864,7 +864,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="274" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="274" bodyend="280"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="275" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="275" bodyend="281"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a70ba047143b897eaf5b9c1b0b05b715b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -901,7 +901,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="288" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="289" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1aaf6937e7f4cfc510783d478af717fdc7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -938,7 +938,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="297" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="298" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a4c2128ebd60671a831e00162e9b4fc17" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -975,7 +975,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="306" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="307" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a345bee49c976119d041ce36de8ac93fa" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1012,7 +1012,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="315" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="316" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1acb048d8a79191b5fa55e9c3241ada02b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1059,7 +1059,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="324" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="324" bodyend="334"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="325" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="325" bodyend="335"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1ae23ad271b968ef3dd68523e052a7c018" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1106,7 +1106,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="342" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="343" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a2a027f7a504370f2328601ac9809b9bf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1153,7 +1153,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="351" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="352" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1afc2dbde25683525633d3aa3e81a6fc96" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1200,7 +1200,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="360" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="360" bodyend="369"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="361" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="361" bodyend="370"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1ac3aa360730fc431c88be1f5bfdf5cb20" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1247,7 +1247,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="377" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="378" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a34c00d15780cef7fc9e4a5f94698a1da" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1272,7 +1272,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="380" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="380" bodyend="391"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="381" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="381" bodyend="392"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a55407dbb8cf5c18a31a987cc6a8afcfa" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1297,7 +1297,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="393" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="394" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a0afdd05b7d9d5a1da3126e1d15ef5622" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1322,7 +1322,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="396" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="397" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a651c24144e97d635e0b7a6099489ffe3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1347,7 +1347,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="399" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="399" bodyend="409"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="400" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="400" bodyend="410"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1af93bba6815b260ab5ae00a90b135e848" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1372,7 +1372,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="411" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="412" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a32c6a3b3efd96fc5dc726ee01c68ca91" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1393,7 +1393,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="414" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="414" bodyend="425"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="415" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="415" bodyend="426"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a607d7bae316eaf790387736507f62dab" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -1420,7 +1420,7 @@
           <defval>&quot;ePhone&quot;</defval>
         </param>
         <param>
-          <type>Vector2?</type>
+          <type><ref refid="class_pathfinder_1_1_util_1_1_vector2" kindref="compound">Vector2</ref>?</type>
           <declname>location</declname>
           <defval>null</defval>
         </param>
@@ -1455,7 +1455,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="427" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="427" bodyend="464"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="428" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="428" bodyend="465"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1acd1086c3251eba319767b398215c6169" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
@@ -1476,7 +1476,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="466" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="466" bodyend="493"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="467" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="467" bodyend="494"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a51c8967d3a5dc55f18cf2000a312ba6d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
@@ -1493,7 +1493,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="495" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="496" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a1229e1bd4259dd3d028ad4cfc6b65f50" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
@@ -1510,7 +1510,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="498" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="499" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1a027a46d310865115539e94e1ab5b7159" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
@@ -1527,7 +1527,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="501" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="502" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_computer_1_1_extensions_1aa695fc6425b2bde4541d622a33800f32" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
@@ -1544,14 +1544,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Computer/Extensions.cs" line="504" column="1"/>
+        <location file="Pathfinder/Computer/Extensions.cs" line="505" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Computer/Extensions.cs" line="11" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="10" bodyend="506"/>
+    <location file="Pathfinder/Computer/Extensions.cs" line="12" column="1" bodyfile="Pathfinder/Computer/Extensions.cs" bodystart="11" bodyend="507"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_computer_1_1_extensions_1a32c6a3b3efd96fc5dc726ee01c68ca91" prot="public" virt="non-virtual"><scope>Pathfinder::Computer::Extensions</scope><name>AddEOSDevice</name></member>
       <member refid="class_pathfinder_1_1_computer_1_1_extensions_1af2c740d0e822631511763202dd71afc8" prot="public" virt="non-virtual"><scope>Pathfinder::Computer::Extensions</scope><name>AddLink</name></member>

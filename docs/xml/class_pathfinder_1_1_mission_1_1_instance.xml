@@ -409,24 +409,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="253">
+      <node id="295">
         <label>ActiveMission</label>
       </node>
-      <node id="252">
+      <node id="294">
         <label>Pathfinder.Mission.Instance</label>
         <link refid="class_pathfinder_1_1_mission_1_1_instance"/>
-        <childnode refid="253" relation="public-inheritance">
+        <childnode refid="295" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="255">
+      <node id="297">
         <label>ActiveMission</label>
       </node>
-      <node id="254">
+      <node id="296">
         <label>Pathfinder.Mission.Instance</label>
         <link refid="class_pathfinder_1_1_mission_1_1_instance"/>
-        <childnode refid="255" relation="public-inheritance">
+        <childnode refid="297" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

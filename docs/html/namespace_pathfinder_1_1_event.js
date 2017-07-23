@@ -23,12 +23,18 @@ var namespace_pathfinder_1_1_event =
     [ "MainMenuEvent", "class_pathfinder_1_1_event_1_1_main_menu_event.html", "class_pathfinder_1_1_event_1_1_main_menu_event" ],
     [ "ModuleEvent", "class_pathfinder_1_1_event_1_1_module_event.html", "class_pathfinder_1_1_event_1_1_module_event" ],
     [ "NetworkMapLoadContentEvent", "class_pathfinder_1_1_event_1_1_network_map_load_content_event.html", "class_pathfinder_1_1_event_1_1_network_map_load_content_event" ],
+    [ "OptionsMenuApplyEvent", "class_pathfinder_1_1_event_1_1_options_menu_apply_event.html", "class_pathfinder_1_1_event_1_1_options_menu_apply_event" ],
+    [ "OptionsMenuDrawEvent", "class_pathfinder_1_1_event_1_1_options_menu_draw_event.html", "class_pathfinder_1_1_event_1_1_options_menu_draw_event" ],
+    [ "OptionsMenuEvent", "class_pathfinder_1_1_event_1_1_options_menu_event.html", "class_pathfinder_1_1_event_1_1_options_menu_event" ],
+    [ "OptionsMenuLoadContentEvent", "class_pathfinder_1_1_event_1_1_options_menu_load_content_event.html", "class_pathfinder_1_1_event_1_1_options_menu_load_content_event" ],
+    [ "OptionsMenuUpdateEvent", "class_pathfinder_1_1_event_1_1_options_menu_update_event.html", "class_pathfinder_1_1_event_1_1_options_menu_update_event" ],
     [ "OSEvent", "class_pathfinder_1_1_event_1_1_o_s_event.html", "class_pathfinder_1_1_event_1_1_o_s_event" ],
     [ "OSLoadContentEvent", "class_pathfinder_1_1_event_1_1_o_s_load_content_event.html", "class_pathfinder_1_1_event_1_1_o_s_load_content_event" ],
     [ "OSLoadSaveFileEvent", "class_pathfinder_1_1_event_1_1_o_s_load_save_file_event.html", "class_pathfinder_1_1_event_1_1_o_s_load_save_file_event" ],
     [ "OSPostLoadContenEvent", "class_pathfinder_1_1_event_1_1_o_s_post_load_conten_event.html", "class_pathfinder_1_1_event_1_1_o_s_post_load_conten_event" ],
     [ "OSSaveFileEvent", "class_pathfinder_1_1_event_1_1_o_s_save_file_event.html", "class_pathfinder_1_1_event_1_1_o_s_save_file_event" ],
     [ "OSSaveWriteEvent", "class_pathfinder_1_1_event_1_1_o_s_save_write_event.html", "class_pathfinder_1_1_event_1_1_o_s_save_write_event" ],
+    [ "OSUnloadContentEvent", "class_pathfinder_1_1_event_1_1_o_s_unload_content_event.html", "class_pathfinder_1_1_event_1_1_o_s_unload_content_event" ],
     [ "PathfinderEvent", "class_pathfinder_1_1_event_1_1_pathfinder_event.html", "class_pathfinder_1_1_event_1_1_pathfinder_event" ],
     [ "StartUpEvent", "class_pathfinder_1_1_event_1_1_start_up_event.html", "class_pathfinder_1_1_event_1_1_start_up_event" ]
 ];

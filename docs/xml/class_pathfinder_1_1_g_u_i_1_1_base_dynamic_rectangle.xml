@@ -144,31 +144,31 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="7">
+      <node id="18">
         <label>Pathfinder.GUI.BaseDynamicRectangle</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle"/>
-        <childnode refid="8" relation="public-inheritance">
+        <childnode refid="19" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="8">
+      <node id="19">
         <label>BaseInteractiveRectangle&lt; float &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
       </node>
-      <node id="9">
+      <node id="20">
         <label>Pathfinder.GUI.DynamicRectangle</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle"/>
-        <childnode refid="7" relation="public-inheritance">
+        <childnode refid="18" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="10">
+      <node id="21">
         <label>Pathfinder.GUI.BaseDynamicRectangle</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle"/>
-        <childnode refid="11" relation="public-inheritance">
+        <childnode refid="22" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="11">
+      <node id="22">
         <label>BaseInteractiveRectangle&lt; float &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
       </node>

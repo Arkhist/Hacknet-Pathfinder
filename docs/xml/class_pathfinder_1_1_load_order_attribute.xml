@@ -2,35 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="class_pathfinder_1_1_load_order_attribute" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::LoadOrderAttribute</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">Attribute</basecompoundref>
-      <sectiondef kind="package-attrib">
-      <memberdef kind="variable" id="class_pathfinder_1_1_load_order_attribute_1a17988fa188de6de2ffc7012bc4b634bc" prot="package" static="no" mutable="no">
-        <type>List&lt; string &gt;</type>
-        <definition>List&lt;string&gt; Pathfinder.LoadOrderAttribute.beforeIds</definition>
-        <argsstring></argsstring>
-        <name>beforeIds</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="Pathfinder/LoadOrderAttribute.cs" line="10" column="1" bodyfile="Pathfinder/LoadOrderAttribute.cs" bodystart="10" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_pathfinder_1_1_load_order_attribute_1aa7347b84465b33cb5e032ced88e48b85" prot="package" static="no" mutable="no">
-        <type>List&lt; string &gt;</type>
-        <definition>List&lt;string&gt; Pathfinder.LoadOrderAttribute.afterIds</definition>
-        <argsstring></argsstring>
-        <name>afterIds</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="Pathfinder/LoadOrderAttribute.cs" line="11" column="1" bodyfile="Pathfinder/LoadOrderAttribute.cs" bodystart="11" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+    <basecompoundref refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute" prot="public" virt="non-virtual">Pathfinder.Util.Attribute.LoadOrderAttribute</basecompoundref>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="class_pathfinder_1_1_load_order_attribute_1a593d3350541da659fdfd0464a876bcd1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -53,7 +25,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/LoadOrderAttribute.cs" line="13" column="1" bodyfile="Pathfinder/LoadOrderAttribute.cs" bodystart="13" bodyend="19"/>
+        <location file="Pathfinder/LoadOrderAttribute.cs" line="8" column="1" bodyfile="Pathfinder/LoadOrderAttribute.cs" bodystart="8" bodyend="8"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -61,31 +33,43 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="309">
-        <label>Attribute</label>
+      <node id="353">
+        <label>Util::Attribute::LoadOrderAttribute</label>
+        <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute"/>
+        <childnode refid="354" relation="public-inheritance">
+        </childnode>
       </node>
-      <node id="308">
+      <node id="354">
+        <label>System::Attribute</label>
+      </node>
+      <node id="352">
         <label>Pathfinder.LoadOrderAttribute</label>
         <link refid="class_pathfinder_1_1_load_order_attribute"/>
-        <childnode refid="309" relation="public-inheritance">
+        <childnode refid="353" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="311">
-        <label>Attribute</label>
+      <node id="356">
+        <label>Util::Attribute::LoadOrderAttribute</label>
+        <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute"/>
+        <childnode refid="357" relation="public-inheritance">
+        </childnode>
       </node>
-      <node id="310">
+      <node id="357">
+        <label>System::Attribute</label>
+      </node>
+      <node id="355">
         <label>Pathfinder.LoadOrderAttribute</label>
         <link refid="class_pathfinder_1_1_load_order_attribute"/>
-        <childnode refid="311" relation="public-inheritance">
+        <childnode refid="356" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/LoadOrderAttribute.cs" line="9" column="1" bodyfile="Pathfinder/LoadOrderAttribute.cs" bodystart="8" bodyend="20"/>
+    <location file="Pathfinder/LoadOrderAttribute.cs" line="7" column="1" bodyfile="Pathfinder/LoadOrderAttribute.cs" bodystart="6" bodyend="9"/>
     <listofallmembers>
-      <member refid="class_pathfinder_1_1_load_order_attribute_1aa7347b84465b33cb5e032ced88e48b85" prot="package" virt="non-virtual"><scope>Pathfinder::LoadOrderAttribute</scope><name>afterIds</name></member>
-      <member refid="class_pathfinder_1_1_load_order_attribute_1a17988fa188de6de2ffc7012bc4b634bc" prot="package" virt="non-virtual"><scope>Pathfinder::LoadOrderAttribute</scope><name>beforeIds</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute_1a27d95a36903b66ff31c4cab2b1298a9f" prot="package" virt="non-virtual"><scope>Pathfinder::LoadOrderAttribute</scope><name>afterIds</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute_1ab1ee9d787453ed866e006bdf70087a38" prot="package" virt="non-virtual"><scope>Pathfinder::LoadOrderAttribute</scope><name>beforeIds</name></member>
       <member refid="class_pathfinder_1_1_load_order_attribute_1a593d3350541da659fdfd0464a876bcd1" prot="public" virt="non-virtual"><scope>Pathfinder::LoadOrderAttribute</scope><name>LoadOrderAttribute</name></member>
     </listofallmembers>
   </compounddef>

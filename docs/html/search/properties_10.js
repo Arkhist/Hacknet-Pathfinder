@@ -1,12 +1,14 @@
 var searchData=
 [
   ['savestring',['SaveString',['../class_pathfinder_1_1_event_1_1_o_s_save_write_event.html#a0cc2e7e389b9c7321e9f79dab1c99af7',1,'Pathfinder.Event.OSSaveWriteEvent.SaveString()'],['../class_pathfinder_1_1_mission_1_1_goal_instance.html#a24c1360f8a56965a2425ae1734d42319',1,'Pathfinder.Mission.GoalInstance.SaveString()']]],
+  ['screeniscovered',['ScreenIsCovered',['../class_pathfinder_1_1_event_1_1_options_menu_update_event.html#ad0e41f3e69e1f7a834ed38b93cd6431e',1,'Pathfinder::Event::OptionsMenuUpdateEvent']]],
   ['screenmanager',['ScreenManager',['../class_pathfinder_1_1_event_1_1_draw_extension_menu_event.html#ae3824441cccedf344c8e2aa852c51926',1,'Pathfinder::Event::DrawExtensionMenuEvent']]],
+  ['screennotfocused',['ScreenNotFocused',['../class_pathfinder_1_1_event_1_1_options_menu_update_event.html#a030943501b818d32df801cee0c6b8cb3',1,'Pathfinder::Event::OptionsMenuUpdateEvent']]],
   ['selectableborder',['SelectableBorder',['../class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle.html#af64f56d11288f6a3abcf32c8ad04c5f1',1,'Pathfinder::GUI::BaseDynamicRectangle']]],
   ['selectedcolor',['SelectedColor',['../class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle.html#a6353b57bdb780b15e0eb4ab8a7dc70cf',1,'Pathfinder::GUI::BaseDynamicRectangle']]],
   ['servicename',['ServiceName',['../struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info.html#a999bd57f467954b7142ae330daa121d7',1,'Pathfinder::Util::ExeInfoManager::ExecutableInfo']]],
   ['shouldlogmultiplayer',['ShouldLogMultiplayer',['../class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#afcf736453f2b3bc1271cc4b8f29e250d',1,'Pathfinder::GameFilesystem::Filesystem']]],
-  ['size',['Size',['../class_pathfinder_1_1_game_filesystem_1_1_file.html#a0d164f88c76532d949b585428fd6948c',1,'Pathfinder::GameFilesystem::File']]],
+  ['size',['Size',['../class_pathfinder_1_1_game_filesystem_1_1_file.html#a0d164f88c76532d949b585428fd6948c',1,'Pathfinder.GameFilesystem.File.Size()'],['../class_pathfinder_1_1_g_u_i_1_1_base_interaction.html#aa4ddf7e2d716271455bcec7c2df55ecb',1,'Pathfinder.GUI.BaseInteraction.Size()']]],
   ['smallbutton',['SmallButton',['../class_pathfinder_1_1_g_u_i_1_1_button.html#ac06d8877c53b8fbf314030e414adb042',1,'Pathfinder::GUI::Button']]],
   ['soundmuted',['SoundMuted',['../class_pathfinder_1_1_util_1_1_sound_system.html#aacb22ecc5014b78e1471c46c156d0c37',1,'Pathfinder::Util::SoundSystem']]],
   ['soundvolume',['SoundVolume',['../class_pathfinder_1_1_util_1_1_sound_system.html#abfb8c7ce5c636baf251ecb7b7ef8cdf6',1,'Pathfinder::Util::SoundSystem']]],

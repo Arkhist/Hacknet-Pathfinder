@@ -68,13 +68,13 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="237">
+      <node id="271">
         <label>Pathfinder.Mission.GoalImpl</label>
         <link refid="class_pathfinder_1_1_mission_1_1_goal_impl"/>
-        <childnode refid="236" relation="public-inheritance">
+        <childnode refid="270" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="236">
+      <node id="270">
         <label>Pathfinder.Mission.IGoal</label>
         <link refid="interface_pathfinder_1_1_mission_1_1_i_goal"/>
       </node>

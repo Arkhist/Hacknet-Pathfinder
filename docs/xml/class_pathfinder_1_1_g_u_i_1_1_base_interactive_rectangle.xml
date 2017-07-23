@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="45" column="1" bodyfile="Pathfinder/GUI/BaseInteractiveRectangle.cs" bodystart="45" bodyend="-1"/>
+        <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="64" column="1" bodyfile="Pathfinder/GUI/BaseInteractiveRectangle.cs" bodystart="64" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -51,7 +51,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="47" column="1" bodyfile="Pathfinder/GUI/BaseInteractiveRectangle.cs" bodystart="47" bodyend="47"/>
+        <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="66" column="1" bodyfile="Pathfinder/GUI/BaseInteractiveRectangle.cs" bodystart="66" bodyend="66"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="49" column="1" bodyfile="Pathfinder/GUI/BaseInteractiveRectangle.cs" bodystart="49" bodyend="60"/>
+        <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="68" column="1" bodyfile="Pathfinder/GUI/BaseInteractiveRectangle.cs" bodystart="68" bodyend="79"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a0746af665136c20f31dc2b8194573193" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>bool</type>
@@ -81,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="62" column="1" bodyfile="Pathfinder/GUI/BaseInteractiveRectangle.cs" bodystart="62" bodyend="69"/>
+        <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="81" column="1" bodyfile="Pathfinder/GUI/BaseInteractiveRectangle.cs" bodystart="81" bodyend="88"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a968d26475d9ba99f7d1416f7605408eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>abstract void</type>
@@ -97,7 +97,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="71" column="1"/>
+        <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="90" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -105,30 +105,30 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="15">
+      <node id="26">
         <label>Pathfinder.GUI.BaseInteractiveRectangle&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
-        <childnode refid="16" relation="public-inheritance">
+        <childnode refid="27" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="16">
+      <node id="27">
         <label>BaseInteraction&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interaction"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="17">
+      <node id="28">
         <label>Pathfinder.GUI.BaseInteractiveRectangle&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
-        <childnode refid="18" relation="public-inheritance">
+        <childnode refid="29" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="18">
+      <node id="29">
         <label>BaseInteraction&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interaction"/>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="44" column="1" bodyfile="Pathfinder/GUI/BaseInteractiveRectangle.cs" bodystart="43" bodyend="72"/>
+    <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="63" column="1" bodyfile="Pathfinder/GUI/BaseInteractiveRectangle.cs" bodystart="62" bodyend="91"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interaction_1a6b45873e1c7925e831812440c3b1c6b2" prot="protected" virt="non-virtual"><scope>Pathfinder::GUI::BaseInteractiveRectangle</scope><name>BaseInteraction</name></member>
       <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a97499babf4182dab76805bdb57ba9db3" prot="protected" virt="non-virtual"><scope>Pathfinder::GUI::BaseInteractiveRectangle</scope><name>BaseInteractiveRectangle</name></member>
@@ -143,6 +143,9 @@
       <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interaction_1afd51b31a87c9668afb236a471a81ecb6" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseInteractiveRectangle</scope><name>IsHeldDown</name></member>
       <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interaction_1ac7da302840301b07b8570bbdfcf9a239" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseInteractiveRectangle</scope><name>IsReleased</name></member>
       <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interaction_1a0fee95c9ce622ff2016306ee49f24c88" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseInteractiveRectangle</scope><name>JustReleased</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interaction_1a404492069d313f2aea0672aa930c7a1e" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseInteractiveRectangle</scope><name>Position</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interaction_1a9f9f5bffc48a54c44062d0e13d9a6942" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseInteractiveRectangle</scope><name>Rectangle</name></member>
+      <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interaction_1aa4ddf7e2d716271455bcec7c2df55ecb" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseInteractiveRectangle</scope><name>Size</name></member>
       <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interaction_1a7225b4ee4322604e9c6c58790ceca7e5" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseInteractiveRectangle</scope><name>WasHeld</name></member>
       <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interaction_1a93e29583a14ec5b40ba91c6e47900fe6" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseInteractiveRectangle</scope><name>Width</name></member>
       <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interaction_1a67465f5e1c9f2c4dbd24f2d659099d72" prot="public" virt="non-virtual"><scope>Pathfinder::GUI::BaseInteractiveRectangle</scope><name>X</name></member>

@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Pathfinder.NetworkMap
 {
+    [Obsolete("Use Pathfinder.Game.NetworkMap.Extensions")]
     public static class Extensions
     {
         /// <summary>

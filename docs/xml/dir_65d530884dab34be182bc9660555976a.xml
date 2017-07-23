@@ -2,7 +2,9 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="dir_65d530884dab34be182bc9660555976a" kind="dir">
     <compoundname>Pathfinder/Util</compoundname>
+    <innerdir refid="dir_7b4624f62f8e6e97e3aac9d7ddab0e5a">Pathfinder/Util/Attribute</innerdir>
     <innerdir refid="dir_c092f47b78606d2ccd4282a170129415">Pathfinder/Util/File</innerdir>
+    <innerfile refid="_convert_any_8cs">ConvertAny.cs</innerfile>
     <innerfile refid="_exe_info_manager_8cs">ExeInfoManager.cs</innerfile>
     <innerfile refid="_json_object_8cs">JsonObject.cs</innerfile>
     <innerfile refid="_logger_8cs">Logger.cs</innerfile>
@@ -10,6 +12,7 @@
     <innerfile refid="_sound_system_8cs">SoundSystem.cs</innerfile>
     <innerfile refid="_updater_8cs">Updater.cs</innerfile>
     <innerfile refid="_utility_8cs">Utility.cs</innerfile>
+    <innerfile refid="_vector_8cs">Vector.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

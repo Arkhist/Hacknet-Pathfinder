@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_description_attribute" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::ModManager::Attribute::DescriptionAttribute</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Attribute</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_description_attribute_1ad04b93fece3c25bac5a0b3e171f21056" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.ModManager.Attribute.DescriptionAttribute.Description</definition>
+        <argsstring></argsstring>
+        <name>Description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="15" column="1" bodyfile="Pathfinder/ModManager/Attribute/Attributes.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_description_attribute_1afd6f62137480a494c99cd4b1fe9e118f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.ModManager.Attribute.DescriptionAttribute.DescriptionAttribute</definition>
+        <argsstring>(string description)</argsstring>
+        <name>DescriptionAttribute</name>
+        <param>
+          <type>string</type>
+          <declname>description</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="16" column="1" bodyfile="Pathfinder/ModManager/Attribute/Attributes.cs" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_description_attribute_1a88f0cdd7abb6a30391808a32e444de5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string Pathfinder.ModManager.Attribute.DescriptionAttribute.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="17" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="65">
+        <label>Pathfinder.ModManager.Attribute.DescriptionAttribute</label>
+        <link refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_description_attribute"/>
+        <childnode refid="66" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>System::Attribute</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="67">
+        <label>Pathfinder.ModManager.Attribute.DescriptionAttribute</label>
+        <link refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_description_attribute"/>
+        <childnode refid="68" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>System::Attribute</label>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="14" column="1" bodyfile="Pathfinder/ModManager/Attribute/Attributes.cs" bodystart="13" bodyend="18"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_description_attribute_1ad04b93fece3c25bac5a0b3e171f21056" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::Attribute::DescriptionAttribute</scope><name>Description</name></member>
+      <member refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_description_attribute_1afd6f62137480a494c99cd4b1fe9e118f" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::Attribute::DescriptionAttribute</scope><name>DescriptionAttribute</name></member>
+      <member refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_description_attribute_1a88f0cdd7abb6a30391808a32e444de5a" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::Attribute::DescriptionAttribute</scope><name>ToString</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

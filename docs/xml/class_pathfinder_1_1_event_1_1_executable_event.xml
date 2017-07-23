@@ -71,6 +71,19 @@
         </inbodydescription>
         <location file="Pathfinder/Event/ExecutableEvents.cs" line="15" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="15" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_executable_event_1acb54933cce060e98153d4f2b1191ba3c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Event.ExecutableEvent.this[int index]</definition>
+        <argsstring></argsstring>
+        <name>this[int index]</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ExecutableEvents.cs" line="29" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="class_pathfinder_1_1_event_1_1_executable_event_1a8ea0206e8e6b39a8ed9c8119e7e58f82" prot="public" static="no" mutable="no">
@@ -144,48 +157,48 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="127">
+      <node id="152">
         <label>Pathfinder.Event.ExecutableExecuteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_execute_event"/>
-        <childnode refid="125" relation="public-inheritance">
+        <childnode refid="150" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="126">
+      <node id="151">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="128">
+      <node id="153">
         <label>Pathfinder.Event.ExecutablePortExecuteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_port_execute_event"/>
-        <childnode refid="125" relation="public-inheritance">
+        <childnode refid="150" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="125">
+      <node id="150">
         <label>Pathfinder.Event.ExecutableEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_event"/>
-        <childnode refid="126" relation="public-inheritance">
+        <childnode refid="151" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="130">
+      <node id="155">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="131">
+      <node id="156">
         <label>Hacknet</label>
       </node>
-      <node id="129">
+      <node id="154">
         <label>Pathfinder.Event.ExecutableEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_event"/>
-        <childnode refid="130" relation="public-inheritance">
+        <childnode refid="155" relation="public-inheritance">
         </childnode>
-        <childnode refid="131" relation="usage">
+        <childnode refid="156" relation="usage">
           <edgelabel>OsInstance</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/ExecutableEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="9" bodyend="28"/>
+    <location file="Pathfinder/Event/ExecutableEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="9" bodyend="38"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a456d3ea9ab10d4a0abcf7272ff1a1360" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableEvent</scope><name>Arguments</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableEvent</scope><name>CallEvent</name></member>
@@ -197,6 +210,7 @@
       <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a3821192b81da6ca72c15a9e8c40ca934" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableEvent</scope><name>OS</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a05892b7df74393296d2dda651881b6a8" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableEvent</scope><name>OsInstance</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a8ea0206e8e6b39a8ed9c8119e7e58f82" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableEvent</scope><name>Parameters</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_executable_event_1acb54933cce060e98153d4f2b1191ba3c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableEvent</scope><name>this[int index]</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

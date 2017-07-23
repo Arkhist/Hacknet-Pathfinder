@@ -15,7 +15,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/ProgramEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/ProgramEvents.cs" bodystart="10" bodyend="-1"/>
+        <location file="Pathfinder/Event/ProgramEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/ProgramEvents.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_start_up_event_1a08e7b843196558e252b3fb6523429c68" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.Event.StartUpEvent.this[int index]</definition>
+        <argsstring></argsstring>
+        <name>this[int index]</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/ProgramEvents.cs" line="11" column="1" bodyfile="Pathfinder/Event/ProgramEvents.cs" bodystart="12" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -34,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/ProgramEvents.cs" line="11" column="1" bodyfile="Pathfinder/Event/ProgramEvents.cs" bodystart="11" bodyend="11"/>
+        <location file="Pathfinder/Event/ProgramEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/ProgramEvents.cs" bodystart="10" bodyend="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -42,35 +55,36 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="449">
+      <node id="579">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="448">
+      <node id="578">
         <label>Pathfinder.Event.StartUpEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_start_up_event"/>
-        <childnode refid="449" relation="public-inheritance">
+        <childnode refid="579" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="451">
+      <node id="581">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="450">
+      <node id="580">
         <label>Pathfinder.Event.StartUpEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_start_up_event"/>
-        <childnode refid="451" relation="public-inheritance">
+        <childnode refid="581" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/ProgramEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/ProgramEvents.cs" bodystart="8" bodyend="12"/>
+    <location file="Pathfinder/Event/ProgramEvents.cs" line="8" column="1" bodyfile="Pathfinder/Event/ProgramEvents.cs" bodystart="7" bodyend="20"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::StartUpEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::StartUpEvent</scope><name>IsCancelled</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_start_up_event_1aed16ab83a7194e9ef7965378e513a3b5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::StartUpEvent</scope><name>MainArguments</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_start_up_event_1a9cc4e6f437a89fc6b9c1b815821874ec" prot="public" virt="non-virtual"><scope>Pathfinder::Event::StartUpEvent</scope><name>StartUpEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_start_up_event_1a08e7b843196558e252b3fb6523429c68" prot="public" virt="non-virtual"><scope>Pathfinder::Event::StartUpEvent</scope><name>this[int index]</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

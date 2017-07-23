@@ -12,6 +12,7 @@
     <innerclass refid="struct_pathfinder_1_1_g_u_i_1_1_move_line" prot="public">Pathfinder::GUI::MoveLine</innerclass>
     <innerclass refid="class_pathfinder_1_1_g_u_i_1_1_scrollbar" prot="public">Pathfinder::GUI::Scrollbar</innerclass>
     <innerclass refid="class_pathfinder_1_1_g_u_i_1_1_sprite_batch_extensions" prot="public">Pathfinder::GUI::SpriteBatchExtensions</innerclass>
+    <innernamespace refid="namespace_pathfinder_1_1_g_u_i_1_1_mod_options">Pathfinder::GUI::ModOptions</innernamespace>
       <sectiondef kind="enum">
       <memberdef kind="enum" id="namespace_pathfinder_1_1_g_u_i_1af6f9ab3f00d3218d4771fe469c10ad4c" prot="public" static="no">
         <name>CommandDisplayStateChange</name>
@@ -91,6 +92,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="8" column="1"/>
+    <location file="Pathfinder/GUI/BaseInteractiveRectangle.cs" line="9" column="1"/>
   </compounddef>
 </doxygen>

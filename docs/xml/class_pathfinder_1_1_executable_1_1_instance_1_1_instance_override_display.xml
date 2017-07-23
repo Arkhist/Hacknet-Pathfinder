@@ -42,7 +42,7 @@
         <argsstring>(Rectangle loc, Hacknet.OS os, List&lt; string &gt; arguments, FileEntry executionFile, IInterface exeInterface)</argsstring>
         <name>InstanceOverrideDisplay</name>
         <param>
-          <type>Rectangle</type>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
           <declname>loc</declname>
         </param>
         <param>
@@ -75,7 +75,7 @@
         <argsstring>(Rectangle dest, SpriteBatch sb)</argsstring>
         <name>RenderMainDisplay</name>
         <param>
-          <type>Rectangle</type>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
           <declname>dest</declname>
         </param>
         <param>
@@ -96,46 +96,46 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="273">
+      <node id="315">
         <label>ExeModule</label>
       </node>
-      <node id="272">
+      <node id="314">
         <label>Instance</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance"/>
-        <childnode refid="273" relation="public-inheritance">
+        <childnode refid="315" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="274">
+      <node id="316">
         <label>MainDisplayOverrideEXE</label>
       </node>
-      <node id="271">
+      <node id="313">
         <label>Pathfinder.Executable.Instance.InstanceOverrideDisplay</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display"/>
-        <childnode refid="272" relation="public-inheritance">
+        <childnode refid="314" relation="public-inheritance">
         </childnode>
-        <childnode refid="274" relation="public-inheritance">
+        <childnode refid="316" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="277">
+      <node id="319">
         <label>ExeModule</label>
       </node>
-      <node id="276">
+      <node id="318">
         <label>Instance</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance"/>
-        <childnode refid="277" relation="public-inheritance">
+        <childnode refid="319" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="278">
+      <node id="320">
         <label>MainDisplayOverrideEXE</label>
       </node>
-      <node id="275">
+      <node id="317">
         <label>Pathfinder.Executable.Instance.InstanceOverrideDisplay</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display"/>
-        <childnode refid="276" relation="public-inheritance">
+        <childnode refid="318" relation="public-inheritance">
         </childnode>
-        <childnode refid="278" relation="public-inheritance">
+        <childnode refid="320" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

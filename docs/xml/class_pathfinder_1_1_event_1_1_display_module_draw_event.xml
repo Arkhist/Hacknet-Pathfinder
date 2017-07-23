@@ -46,56 +46,56 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="57">
+      <node id="78">
         <label>Pathfinder.Event.DisplayModuleDrawEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_display_module_draw_event"/>
-        <childnode refid="58" relation="public-inheritance">
+        <childnode refid="79" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="58">
+      <node id="79">
         <label>DisplayModuleEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_display_module_event"/>
-        <childnode refid="59" relation="public-inheritance">
+        <childnode refid="80" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="60">
+      <node id="81">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="59">
+      <node id="80">
         <label>ModuleEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_module_event"/>
-        <childnode refid="60" relation="public-inheritance">
+        <childnode refid="81" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="61">
+      <node id="82">
         <label>Pathfinder.Event.DisplayModuleDrawEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_display_module_draw_event"/>
-        <childnode refid="62" relation="public-inheritance">
+        <childnode refid="83" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="62">
+      <node id="83">
         <label>DisplayModuleEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_display_module_event"/>
-        <childnode refid="63" relation="public-inheritance">
+        <childnode refid="84" relation="public-inheritance">
         </childnode>
-        <childnode refid="65" relation="usage">
+        <childnode refid="86" relation="usage">
           <edgelabel>Module</edgelabel>
         </childnode>
       </node>
-      <node id="64">
+      <node id="85">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="65">
+      <node id="86">
         <label>Hacknet</label>
       </node>
-      <node id="63">
+      <node id="84">
         <label>ModuleEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_module_event"/>
-        <childnode refid="64" relation="public-inheritance">
+        <childnode refid="85" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

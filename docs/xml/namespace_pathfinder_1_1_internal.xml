@@ -4,11 +4,12 @@
     <compoundname>Pathfinder::Internal</compoundname>
     <innerclass refid="class_pathfinder_1_1_internal_1_1_execution_override" prot="public">Pathfinder::Internal::ExecutionOverride</innerclass>
     <innerclass refid="class_pathfinder_1_1_internal_1_1_handler_listener" prot="public">Pathfinder::Internal::HandlerListener</innerclass>
+    <innerclass refid="class_pathfinder_1_1_internal_1_1_placeholder_extension_info" prot="public">Pathfinder::Internal::PlaceholderExtensionInfo</innerclass>
     <innernamespace refid="namespace_pathfinder_1_1_internal_1_1_g_u_i">Pathfinder::Internal::GUI</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Internal/ExecutionOverride.cs" line="10" column="1"/>
+    <location file="Pathfinder/Internal/ExecutionOverride.cs" line="13" column="1"/>
   </compounddef>
 </doxygen>

@@ -223,7 +223,7 @@
         <argsstring>(Rectangle bounds, SpriteBatch sb)</argsstring>
         <name>draw</name>
         <param>
-          <type>Rectangle</type>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
           <declname>bounds</declname>
         </param>
         <param>
@@ -321,24 +321,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="268">
+      <node id="304">
         <label>Hacknet::Daemon</label>
       </node>
-      <node id="267">
+      <node id="303">
         <label>Pathfinder.Daemon.Instance</label>
         <link refid="class_pathfinder_1_1_daemon_1_1_instance"/>
-        <childnode refid="268" relation="public-inheritance">
+        <childnode refid="304" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="270">
+      <node id="306">
         <label>Hacknet::Daemon</label>
       </node>
-      <node id="269">
+      <node id="305">
         <label>Pathfinder.Daemon.Instance</label>
         <link refid="class_pathfinder_1_1_daemon_1_1_instance"/>
-        <childnode refid="270" relation="public-inheritance">
+        <childnode refid="306" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

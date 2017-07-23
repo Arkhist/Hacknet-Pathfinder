@@ -25,18 +25,24 @@
     <innerclass refid="class_pathfinder_1_1_event_1_1_main_menu_event" prot="public">Pathfinder::Event::MainMenuEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_module_event" prot="public">Pathfinder::Event::ModuleEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event" prot="public">Pathfinder::Event::NetworkMapLoadContentEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_options_menu_apply_event" prot="public">Pathfinder::Event::OptionsMenuApplyEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_options_menu_draw_event" prot="public">Pathfinder::Event::OptionsMenuDrawEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_options_menu_event" prot="public">Pathfinder::Event::OptionsMenuEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_options_menu_load_content_event" prot="public">Pathfinder::Event::OptionsMenuLoadContentEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_options_menu_update_event" prot="public">Pathfinder::Event::OptionsMenuUpdateEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_event" prot="public">Pathfinder::Event::OSEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event" prot="public">Pathfinder::Event::OSLoadContentEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event" prot="public">Pathfinder::Event::OSLoadSaveFileEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_post_load_conten_event" prot="public">Pathfinder::Event::OSPostLoadContenEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event" prot="public">Pathfinder::Event::OSSaveFileEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_save_write_event" prot="public">Pathfinder::Event::OSSaveWriteEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_unload_content_event" prot="public">Pathfinder::Event::OSUnloadContentEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_pathfinder_event" prot="public">Pathfinder::Event::PathfinderEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_start_up_event" prot="public">Pathfinder::Event::StartUpEvent</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Event/BasicEvents.cs" line="5" column="1"/>
+    <location file="Pathfinder/Event/BasicEvents.cs" line="4" column="1"/>
   </compounddef>
 </doxygen>
