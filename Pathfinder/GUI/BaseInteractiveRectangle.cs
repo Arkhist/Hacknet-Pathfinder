@@ -53,9 +53,9 @@ namespace Pathfinder.GUI
         public static bool Contains(T x, T y, T width, T height, Point p)
         {
             return Convert.ToDouble(x) <= p.X
-                          && p.X < Convert.ToDouble(x) + Convert.ToDouble(width)
+                          && p.X <= Convert.ToDouble(x) + Convert.ToDouble(width)
                           && Convert.ToDouble(y) <= p.Y
-                          && p.Y < Convert.ToDouble(y) + Convert.ToDouble(height);
+                          && p.Y <= Convert.ToDouble(y) + Convert.ToDouble(height);
         }
     }
 

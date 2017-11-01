@@ -60,11 +60,6 @@
     <NoWarn>0649</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HacknetPathfinder, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\HacknetPathfinder.exe</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="AlienFXManagedWrapper3.5">
       <HintPath>lib\AlienFXManagedWrapper3.5.dll</HintPath>
@@ -79,6 +74,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.XML" />
+    <Reference Include="HacknetPathfinder">
+      <HintPath>lib\HacknetPathfinder.exe</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pathfinder\Event\BasicEvents.cs" />

@@ -210,13 +210,14 @@ namespace Pathfinder
             return false;
         }
 
+        // createdComputer is from the hidden compiler generated value at Hacknet.ComputerLoader/'<>c__DisplayClass4'::c
+        // its an irregular addition via injection
         public static void onLoadComputer(ref XmlReader reader,
                                           string filename,
                                           bool preventAddingToNetmap,
-                                          bool preventInitDaemons)
+                                          bool preventInitDaemons,
+                                          Hacknet.Computer createdComputer)
         {
-            var createdComputer = (Hacknet.Computer)Type.GetType("Hacknet.ComputerLoader/<>c__DisplayClass4")
-                                                        .GetField("c", BindingFlags.Static).GetValue(null);
             var loadComputerEvent = new Event.LoadComputerXmlReadEvent(createdComputer,
                                                                 reader,
                                                                 filename,
@@ -254,25 +255,33 @@ namespace Pathfinder
                 }
                 TextItem.doFontLabel(new Vector2(180f, 105f), text3, GuiData.smallfont, Color.Red * 0.8f, 600f, 26f, false);
             }
-            var drawMainMenuTitles = new Event.DrawMainMenuTitlesEvent(self, mainTitle, subtitle);
+            var vecDest = new Vector4(dest.X, dest.Y, dest.Width, dest.Height);
+            var main = new Event.DrawMainMenuTitlesEvent.TitleData(mainTitle,
+                                                                   (Color)titleColorField.GetValue(self),
+                                                                   titleFontField.GetValue(self) as SpriteFont,
+                                                                   vecDest
+                                                                  );
+            var sub = new Event.DrawMainMenuTitlesEvent.TitleData(subtitle,
+                                                                  main.Color * 0.5f,
+                                                                  GuiData.smallfont,
+                                                                  new Vector4(520, 178, 0, 0)
+                                                                 );
+            var drawMainMenuTitles = new Event.DrawMainMenuTitlesEvent(self, main, sub);
             drawMainMenuTitles.CallEvent();
             if (drawMainMenuTitles.IsCancelled)
                 return true;
-            mainTitle = drawMainMenuTitles.MainTitle;
-            subtitle = drawMainMenuTitles.Subtitle;
-
-            var c = (Color)titleColorField.GetValue(self);
+            main = drawMainMenuTitles.Main;
+            sub = drawMainMenuTitles.Sub;
             FlickeringTextEffect.DrawLinedFlickeringText(
-                dest,
-                mainTitle,
+                dest = main.RectangleDestination,
+                main.Title,
                 7f,
                 0.55f,
-                titleFontField.GetValue(self) as SpriteFont,
+                main.Font,
                 null,
-                c,
-                2
+                main.Color
             );
-            TextItem.doFontLabel(new Vector2(520f, 178f), subtitle, GuiData.smallfont, c * 0.5f, 600f, 26f, false);
+            TextItem.doFontLabel(new Vector2(sub.Destination.X, sub.Destination.Y), sub.Title, sub.Font, sub.Color, 600f, 26f);
             Logger.Verbose("Finished Redrawing Main Menu Titles");
             return true;
         }
