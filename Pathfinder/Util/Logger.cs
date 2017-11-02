@@ -73,17 +73,17 @@ namespace Pathfinder.Util
         {
             Tuple<LogLevel, string> t;
             var prefix = IncludeModId ? Utility.ActiveModId + " " : "";
-            if (input.Length > 1)
-                t = new Tuple<LogLevel, string>(level,
-                                                String.Format("{0}[{1}]: {2}",
-                                                              prefix,
-                                                              level,
-                                                              String.Format(input[0].ToString(), input.Skip(1).ToArray())));
-            else
-                t = new Tuple<LogLevel, string>(level,
-                                                String.Format("{0}[{1}]: {2}",
-                                                              prefix,
-                                                              level, input[0]));
+            switch (input.Length)
+            {
+                case 0: return;
+                case 1:
+                    t = new Tuple<LogLevel, string>(level, String.Format("{0}[{1}]: {2}", prefix, level, input[0]));
+                    break;
+                default:
+                    t = new Tuple<LogLevel, string>(level, String.Format("{0}[{1}]: {2}", prefix, level,
+                                                                String.Format(input[0].ToString(), input.Skip(1).ToArray())));
+                    break;
+            }
             if (logHistory.Count >= MAX_LOG_SIZE)
                 logHistory.RemoveRange(0, logHistory.Count - MAX_LOG_SIZE);
             logHistory.Add(t);
