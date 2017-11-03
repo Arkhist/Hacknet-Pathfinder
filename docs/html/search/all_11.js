@@ -37,5 +37,7 @@ var searchData=
   ['state',['State',['../class_pathfinder_1_1_event_1_1_command_sent_event.html#a9e6fa831728bf162d728f0a169afcd5c',1,'Pathfinder::Event::CommandSentEvent']]],
   ['statechange',['StateChange',['../class_pathfinder_1_1_event_1_1_command_sent_event.html#a52aa94e27f5a0c9f632abc94f99e90c5',1,'Pathfinder::Event::CommandSentEvent']]],
   ['stream',['Stream',['../class_pathfinder_1_1_event_1_1_o_s_load_save_file_event.html#a52aee1e458346f4a75a7479d19789c7d',1,'Pathfinder::Event::OSLoadSaveFileEvent']]],
-  ['subtitle',['Subtitle',['../class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html#a08418295a0d8c09117478309894cf231',1,'Pathfinder::Event::DrawMainMenuTitlesEvent']]]
+  ['sub',['Sub',['../class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html#a5ebed0bb02743c50b7d907aa46e19141',1,'Pathfinder::Event::DrawMainMenuTitlesEvent']]],
+  ['subtitle',['Subtitle',['../class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html#a08418295a0d8c09117478309894cf231',1,'Pathfinder::Event::DrawMainMenuTitlesEvent']]],
+  ['subtitledata',['SubTitleData',['../_pathfinder_hooks_8cs.html#a28cc0f54b27c150765d192463d04225a',1,'PathfinderHooks.cs']]]
 ];

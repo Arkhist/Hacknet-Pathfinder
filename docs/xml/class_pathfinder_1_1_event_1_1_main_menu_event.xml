@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="8" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="8" bodyend="-1"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="9" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="10" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="10" bodyend="-1"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="11" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="11" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -53,7 +53,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="11" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="11" bodyend="14"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="12" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="12" bodyend="15"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -108,7 +108,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/MainMenuEvents.cs" line="7" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="6" bodyend="15"/>
+    <location file="Pathfinder/Event/MainMenuEvents.cs" line="8" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="7" bodyend="16"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::MainMenuEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::MainMenuEvent</scope><name>IsCancelled</name></member>

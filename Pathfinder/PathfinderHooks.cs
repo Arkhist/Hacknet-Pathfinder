@@ -1,17 +1,20 @@
-using System.Reflection;
-using Hacknet;
-using Microsoft.Xna.Framework;
-using System.IO;
-using System.Xml;
-using Hacknet.Effects;
 using System;
-using Hacknet.Gui;
-using Microsoft.Xna.Framework.Graphics;
-using Pathfinder.Util;
-using Pathfinder.GUI;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Xml;
+using Hacknet;
+using Hacknet.Effects;
+using Hacknet.Gui;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.GameFilesystem;
+using Pathfinder.GUI;
 using Pathfinder.ModManager;
+using Pathfinder.Util;
+
+using MainTitleData = Pathfinder.Event.DrawMainMenuTitlesEvent.TitleData<int>;
+using SubTitleData = Pathfinder.Event.DrawMainMenuTitlesEvent.TitleData<float>;
 
 namespace Pathfinder
 {
@@ -255,17 +258,16 @@ namespace Pathfinder
                 }
                 TextItem.doFontLabel(new Vector2(180f, 105f), text3, GuiData.smallfont, Color.Red * 0.8f, 600f, 26f, false);
             }
-            var vecDest = new Vector4(dest.X, dest.Y, dest.Width, dest.Height);
-            var main = new Event.DrawMainMenuTitlesEvent.TitleData(mainTitle,
-                                                                   (Color)titleColorField.GetValue(self),
-                                                                   titleFontField.GetValue(self) as SpriteFont,
-                                                                   vecDest
-                                                                  );
-            var sub = new Event.DrawMainMenuTitlesEvent.TitleData(subtitle,
-                                                                  main.Color * 0.5f,
-                                                                  GuiData.smallfont,
-                                                                  new Vector4(520, 178, 0, 0)
-                                                                 );
+            var main = new MainTitleData(mainTitle,
+                                         (Color)titleColorField.GetValue(self),
+                                         titleFontField.GetValue(self) as SpriteFont,
+                                         dest
+                                        );
+            var sub = new SubTitleData(subtitle,
+                                       main.Color * 0.5f,
+                                       GuiData.smallfont,
+                                       new Vector4(520, 178, 0, 0)
+                                      );
             var drawMainMenuTitles = new Event.DrawMainMenuTitlesEvent(self, main, sub);
             drawMainMenuTitles.CallEvent();
             if (drawMainMenuTitles.IsCancelled)
@@ -273,7 +275,7 @@ namespace Pathfinder
             main = drawMainMenuTitles.Main;
             sub = drawMainMenuTitles.Sub;
             FlickeringTextEffect.DrawLinedFlickeringText(
-                dest = main.RectangleDestination,
+                dest = main.Destination,
                 main.Title,
                 7f,
                 0.55f,
@@ -281,7 +283,7 @@ namespace Pathfinder
                 null,
                 main.Color
             );
-            TextItem.doFontLabel(new Vector2(sub.Destination.X, sub.Destination.Y), sub.Title, sub.Font, sub.Color, 600f, 26f);
+            TextItem.doFontLabel(sub.Destination, sub.Title, sub.Font, sub.Color, 600f, 26f);
             Logger.Verbose("Finished Redrawing Main Menu Titles");
             return true;
         }

@@ -445,13 +445,13 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="596">
+      <node id="598">
         <label>Hacknet</label>
       </node>
-      <node id="595">
+      <node id="597">
         <label>Pathfinder.Util.Utility</label>
         <link refid="class_pathfinder_1_1_util_1_1_utility"/>
-        <childnode refid="596" relation="usage">
+        <childnode refid="598" relation="usage">
           <edgelabel>ClientNetworkMap</edgelabel>
           <edgelabel>ClientOS</edgelabel>
           <edgelabel>CurrentComputer</edgelabel>

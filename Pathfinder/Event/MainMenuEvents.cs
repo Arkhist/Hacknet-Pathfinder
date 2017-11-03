@@ -28,9 +28,9 @@ namespace Pathfinder.Event
 
     public class DrawMainMenuTitlesEvent : MainMenuEvent
     {
-        public class TitleData
+        public class TitleData<T>
         {
-            public TitleData(string title, Color color, SpriteFont font, Vector4 dest)
+            public TitleData(string title, Color color, SpriteFont font, Util.Vector4<T> dest)
             {
                 Title = title;
                 Color = color;
@@ -40,17 +40,10 @@ namespace Pathfinder.Event
             public string Title { get; set; }
             public Color Color { get; set; }
             public SpriteFont Font { get; set; }
-            public Vector4 Destination { get; set; }
-            public Rectangle RectangleDestination
-            {
-                get
-                {
-                    return new Rectangle((int)Destination.X, (int)Destination.Y, (int)Destination.Z, (int)Destination.W);
-                }
-            }
+            public Util.Vector4<T> Destination { get; set; }
         }
-        public TitleData Main { get; set; }
-        public TitleData Sub { get; set; }
+        public TitleData<int> Main { get; set; }
+        public TitleData<float> Sub { get; set; }
         [Obsolete("Use Main.Title instead")]
         public string MainTitle { get { return Main.Title; } set { Main.Title = value; } }
         [Obsolete("Use Sub.Title instead")]
@@ -61,7 +54,7 @@ namespace Pathfinder.Event
             MainTitle = mainTitle;
             Subtitle = subtitle;
         }
-        public DrawMainMenuTitlesEvent(Hacknet.MainMenu mainMenu, TitleData main, TitleData sub) : base(mainMenu)
+        public DrawMainMenuTitlesEvent(Hacknet.MainMenu mainMenu, TitleData<int> main, TitleData<float> sub) : base(mainMenu)
         {
             Main = main;
             Sub = sub;

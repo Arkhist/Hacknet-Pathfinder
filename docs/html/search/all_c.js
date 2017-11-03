@@ -1,11 +1,13 @@
 var searchData=
 [
+  ['main',['Main',['../class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html#ad87393c7e7f4ba53c821f6f416e45d7f',1,'Pathfinder::Event::DrawMainMenuTitlesEvent']]],
   ['mainarguments',['MainArguments',['../class_pathfinder_1_1_event_1_1_start_up_event.html#aed16ab83a7194e9ef7965378e513a3b5',1,'Pathfinder::Event::StartUpEvent']]],
   ['mainmenu',['MainMenu',['../class_pathfinder_1_1_event_1_1_main_menu_event.html#a43e6e11389ed9f7d85cce30a467b9f33',1,'Pathfinder::Event::MainMenuEvent']]],
   ['mainmenuevent',['MainMenuEvent',['../class_pathfinder_1_1_event_1_1_main_menu_event.html',1,'Pathfinder.Event.MainMenuEvent'],['../class_pathfinder_1_1_event_1_1_main_menu_event.html#a3a45b98e106bcc8bf2c4efa9574966d2',1,'Pathfinder.Event.MainMenuEvent.MainMenuEvent()']]],
   ['mainmenuevents_2ecs',['MainMenuEvents.cs',['../_main_menu_events_8cs.html',1,'']]],
   ['mainmenuinstance',['MainMenuInstance',['../class_pathfinder_1_1_event_1_1_main_menu_event.html#a89e0fb7803acff5c8488ee876b81b5b5',1,'Pathfinder::Event::MainMenuEvent']]],
   ['maintitle',['MainTitle',['../class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html#a0458094d81fff54fac6c9067595a01ec',1,'Pathfinder::Event::DrawMainMenuTitlesEvent']]],
+  ['maintitledata',['MainTitleData',['../_pathfinder_hooks_8cs.html#a0c79fe1bacc60335a871cb9fe2ff5143',1,'PathfinderHooks.cs']]],
   ['makefolder',['MakeFolder',['../class_pathfinder_1_1_game_filesystem_1_1_extensions.html#a057d54005c7c83b3411cf03c08b10bb4',1,'Pathfinder.GameFilesystem.Extensions.MakeFolder(this Folder folder, string path)'],['../class_pathfinder_1_1_game_filesystem_1_1_extensions.html#a6f9fbff6a19ac473c42a42e8b3aeb204',1,'Pathfinder.GameFilesystem.Extensions.MakeFolder(this FileSystem fs, string path)']]],
   ['manager',['Manager',['../class_pathfinder_1_1_mod_manager_1_1_manager.html',1,'Pathfinder::ModManager']]],
   ['manager_2ecs',['Manager.cs',['../_manager_8cs.html',1,'']]],

@@ -170,6 +170,8 @@ var NAVTREEINDEX0 =
 "_pathfinder_event_8cs.html":[3,0,0,3,12],
 "_pathfinder_event_8cs_source.html":[3,0,0,3,12],
 "_pathfinder_hooks_8cs.html":[3,0,0,18],
+"_pathfinder_hooks_8cs.html#a0c79fe1bacc60335a871cb9fe2ff5143":[3,0,0,18,1],
+"_pathfinder_hooks_8cs.html#a28cc0f54b27c150765d192463d04225a":[3,0,0,18,2],
 "_pathfinder_hooks_8cs_source.html":[3,0,0,18],
 "_pathfinder_mod_8cs.html":[3,0,0,19],
 "_pathfinder_mod_8cs_source.html":[3,0,0,19],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "class_pathfinder_1_1_computer_1_1_extensions.html#a027a46d310865115539e94e1ab5b7159":[2,0,0,1,0,20],
 "class_pathfinder_1_1_computer_1_1_extensions.html#a0afdd05b7d9d5a1da3126e1d15ef5622":[2,0,0,1,0,12],
 "class_pathfinder_1_1_computer_1_1_extensions.html#a1229e1bd4259dd3d028ad4cfc6b65f50":[2,0,0,1,0,19],
-"class_pathfinder_1_1_computer_1_1_extensions.html#a23b5acecf0d874a3c2e247105873c861":[2,0,0,1,0,28],
-"class_pathfinder_1_1_computer_1_1_extensions.html#a256c4c281d0bc968e027ecdcaf912021":[2,0,0,1,0,45],
-"class_pathfinder_1_1_computer_1_1_extensions.html#a2936e66b27d6cee159864e18bc429c6f":[2,0,0,1,0,32]
+"class_pathfinder_1_1_computer_1_1_extensions.html#a23b5acecf0d874a3c2e247105873c861":[2,0,0,1,0,28]
 };

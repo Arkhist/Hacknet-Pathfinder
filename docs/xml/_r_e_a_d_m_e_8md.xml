@@ -8,12 +8,43 @@
     </detaileddescription>
     <programlisting>
 <codeline><highlight class="normal">#<sp/>Hacknet<sp/>Pathfinder</highlight></codeline>
-<codeline><highlight class="normal">Hacknet<sp/>Modloader<sp/>in<sp/>C#</highlight></codeline>
+<codeline><highlight class="normal">An<sp/>extensive<sp/>modding<sp/>API<sp/>and<sp/>loader<sp/>for<sp/>Hacknet<sp/>that<sp/>enables<sp/>practically<sp/>limitless<sp/>programable<sp/>extensions<sp/>to<sp/>the<sp/>game</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">#<sp/>Note</highlight></codeline>
-<codeline><highlight class="normal">Must<sp/>include<sp/>Hacknet&apos;s<sp/>AlienFXManagedWrapper3.5.dll,<sp/>FNA.dll,<sp/>and<sp/>Steamworks.NET.dll<sp/>in<sp/>the<sp/>lib<sp/>directory</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>Installation</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">#<sp/>Warning</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Extract<sp/>all<sp/>of<sp/>the<sp/>binary<sp/>files<sp/>into<sp/>the<sp/>directory<sp/>containing<sp/>Hacknet.exe<sp/>(goto<sp/>game<sp/>properties<sp/>in<sp/>Steam,<sp/>goto<sp/>the<sp/>local<sp/>tab,<sp/>and<sp/>click<sp/>browse<sp/>local<sp/>files)</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Run<sp/>PathfinderPatcher.exe</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>Start<sp/>HacknetPathfinder.exe<sp/>and<sp/>then<sp/>close<sp/>(or<sp/>you<sp/>can<sp/>merely<sp/>create<sp/>a<sp/>Mods<sp/>folder<sp/>in<sp/>the<sp/>game<sp/>directory)</highlight></codeline>
+<codeline><highlight class="normal">4.<sp/>Drop<sp/>any<sp/>mod<sp/>DLLs<sp/>you<sp/>plan<sp/>to<sp/>play<sp/>with<sp/>into<sp/>the<sp/>Mods<sp/>directory</highlight></codeline>
+<codeline><highlight class="normal">5.<sp/>Start<sp/>HacknetPathfinder.exe</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Creating<sp/>Mods</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">1.<sp/>Start<sp/>a<sp/>new<sp/>.NET<sp/>library<sp/>project</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Link<sp/>it<sp/>against<sp/>the<sp/>Pathfinder.dll<sp/>(recommended<sp/>you<sp/>also<sp/>at<sp/>least<sp/>link<sp/>it<sp/>against<sp/>FNA.dll<sp/>and<sp/>HacknetPathfinder.exe)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*<sp/>You<sp/>may<sp/>need<sp/>to<sp/>go<sp/>into<sp/>the<sp/>project<sp/>options<sp/>and<sp/>set<sp/>the<sp/>project<sp/>to<sp/>target<sp/>the<sp/>x86<sp/>platform</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>Create<sp/>a<sp/>class<sp/>that<sp/>implments<sp/>the<sp/>Pathfinder.ModManager.IMod<sp/>interface</highlight></codeline>
+<codeline><highlight class="normal">4.<sp/>And<sp/>now<sp/>you<sp/>have<sp/>a<sp/>basic<sp/>functioning<sp/>mod,<sp/>the<sp/>rest<sp/>is<sp/>up<sp/>to<sp/>you</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Contributing<sp/>to<sp/>Pathfinder</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">1.<sp/>Clone<sp/>the<sp/>project<sp/>like<sp/>so<sp/>`git<sp/>clone<sp/>https://github.com/Arkhist/Hacknet-Pathfinder`</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>Copy<sp/>FNA.dll,<sp/>AlienFXManagedWrapper3.5.dll,<sp/>and<sp/>Steamworks.NET.dll<sp/>into<sp/>the<sp/>lib<sp/>directory</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>Open<sp/>the<sp/>solution<sp/>file<sp/>in<sp/>a<sp/>.NET<sp/>4.0<sp/>compatible<sp/>IDE</highlight></codeline>
+<codeline><highlight class="normal">4.<sp/>Build<sp/>the<sp/>PathfinderPatcher<sp/>and<sp/>Pathfinder<sp/>projects<sp/>(if<sp/>you&apos;re<sp/>using<sp/>an<sp/>IDE<sp/>other<sp/>then<sp/>Xamarin<sp/>Studio<sp/>on<sp/>Windows,<sp/>build.bat<sp/>should<sp/>prevent<sp/>any<sp/>problematic<sp/>IDE<sp/>annoyances)</highlight></codeline>
+<codeline><highlight class="normal">5.<sp/>And<sp/>now<sp/>you&apos;re<sp/>ready<sp/>to<sp/>contribute<sp/>to<sp/>the<sp/>development<sp/>of<sp/>the<sp/>mod</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Links</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[Discord](https://discord.gg/65SaxGg)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[Github](https://github.com/Arkhist/Hacknet-Pathfinder)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[Documentation](https://arkhist.github.io/Hacknet-Pathfinder/)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[Bug<sp/>Reports](https://github.com/Arkhist/Hacknet-Pathfinder/issues)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Warning</highlight></codeline>
 <codeline><highlight class="normal">Use<sp/>at<sp/>your<sp/>own<sp/>risk</highlight></codeline>
     </programlisting>
     <location file="README.md"/>

@@ -27,11 +27,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="hacknet_modding_docs_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Pathfinder Hacknet
    &#160;<span id="projectnumber">v2.1 Pre-release 6</span>
    </div>
-   <div id="projectbrief">A project aimed at enabling programmable modding of Hacknet to an extreme extent</div>
+   <div id="projectbrief">The definitive Hacknet programmable modding system</div>
   </td>
  </tr>
  </tbody>
@@ -85,17 +86,46 @@ $(document).ready(function(){initNavTree('md__r_e_a_d_m_e.html','');});
 <div class="title">Hacknet <a class="el" href="namespace_pathfinder.html">Pathfinder</a> </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Hacknet Modloader in C#</p>
-<h1>Note</h1>
-<p>Must include Hacknet's AlienFXManagedWrapper3.5.dll, FNA.dll, and Steamworks.NET.dll in the lib directory</p>
-<h1>Warning</h1>
+<div class="textblock"><p>An extensive modding API and loader for Hacknet that enables practically limitless programable extensions to the game</p>
+<h3>Installation</h3>
+<ol type="1">
+<li>Extract all of the binary files into the directory containing Hacknet.exe (goto game properties in Steam, goto the local tab, and click browse local files)</li>
+<li>Run PathfinderPatcher.exe</li>
+<li>Start HacknetPathfinder.exe and then close (or you can merely create a Mods folder in the game directory)</li>
+<li>Drop any mod DLLs you plan to play with into the Mods directory</li>
+<li>Start HacknetPathfinder.exe</li>
+</ol>
+<h3>Creating Mods</h3>
+<ol type="1">
+<li>Start a new .NET library project</li>
+<li>Link it against the Pathfinder.dll (recommended you also at least link it against FNA.dll and HacknetPathfinder.exe)<ul>
+<li>You may need to go into the project options and set the project to target the x86 platform</li>
+</ul>
+</li>
+<li>Create a class that implments the <a class="el" href="interface_pathfinder_1_1_mod_manager_1_1_i_mod.html">Pathfinder.ModManager.IMod</a> interface</li>
+<li>And now you have a basic functioning mod, the rest is up to you</li>
+</ol>
+<h3>Contributing to <a class="el" href="namespace_pathfinder.html">Pathfinder</a></h3>
+<ol type="1">
+<li>Clone the project like so <code>git clone <a href="https://github.com/Arkhist/Hacknet-Pathfinder">https://github.com/Arkhist/Hacknet-Pathfinder</a></code></li>
+<li>Copy FNA.dll, AlienFXManagedWrapper3.5.dll, and Steamworks.NET.dll into the lib directory</li>
+<li>Open the solution file in a .NET 4.0 compatible IDE</li>
+<li>Build the PathfinderPatcher and <a class="el" href="namespace_pathfinder.html">Pathfinder</a> projects (if you're using an IDE other then Xamarin Studio on Windows, build.bat should prevent any problematic IDE annoyances)</li>
+<li>And now you're ready to contribute to the development of the mod</li>
+</ol>
+<h2>Links</h2>
+<p><a href="https://discord.gg/65SaxGg">Discord</a></p>
+<p><a href="https://github.com/Arkhist/Hacknet-Pathfinder">Github</a></p>
+<p><a href="https://arkhist.github.io/Hacknet-Pathfinder/">Documentation</a></p>
+<p><a href="https://github.com/Arkhist/Hacknet-Pathfinder/issues">Bug Reports</a></p>
+<h2>Warning</h2>
 <p>Use at your own risk </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Jul 23 2017 17:00:42 for Pathfinder Hacknet by
+    <li class="footer">Generated on Fri Nov 3 2017 02:57:28 for Pathfinder Hacknet by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="228" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="228" bodyend="-1"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="232" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="232" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_pathfinder_hooks_1a8220ab76c01571474de63b5b519477a3" prot="private" static="yes" mutable="no">
         <type>FieldInfo</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="230" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="230" bodyend="-1"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="234" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="234" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="24" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="24" bodyend="47"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="27" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="27" bodyend="50"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a04b88abfa1d10dfc986251fd4b9bb7c7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="54" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="54" bodyend="60"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="57" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="57" bodyend="63"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a4baf67078ff22249fc121b39c8ffeb9c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -96,7 +96,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="63" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="63" bodyend="89"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="66" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="66" bodyend="92"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1adeb1045c54b7cd3d4173d3c7b14fc016" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -113,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="92" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="92" bodyend="99"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="95" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="95" bodyend="102"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1af90993239a81c449261fa4095796b7da" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -130,7 +130,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="102" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="102" bodyend="106"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="105" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="105" bodyend="109"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a0a45eb9a30f1506e6ea0b40ec82f5742" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -147,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="108" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="108" bodyend="112"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="111" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="111" bodyend="115"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a7d223357d5480b066fee3aac4fd53eff" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -168,7 +168,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="115" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="115" bodyend="127"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="118" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="118" bodyend="130"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a22723a402af6d601ecc3e59ccac70cd9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -185,7 +185,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="130" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="130" bodyend="134"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="133" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="133" bodyend="137"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a2147d4acd050711b4e3af3f3e54f604a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -210,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="137" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="137" bodyend="144"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="140" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="140" bodyend="147"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a0d799b7cdbdc80ae7a6dbbb87cac7855" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -231,7 +231,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="147" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="147" bodyend="154"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="150" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="150" bodyend="157"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a32509072e9be046299145b6d09cb6fbc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -256,7 +256,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="156" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="156" bodyend="161"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="159" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="159" bodyend="164"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1acc58756e50c83bdf3a58c151cc15856e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -273,7 +273,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="164" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="164" bodyend="171"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="167" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="167" bodyend="174"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1aebc40e199251e0d0ec95dec2bb6239a8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -314,7 +314,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="174" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="174" bodyend="193"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="177" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="177" bodyend="196"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a15629e7518416723a7996e920c4211d1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -355,12 +355,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="195" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="195" bodyend="211"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="198" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="198" bodyend="214"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1afaf66e25c2db7f3f7f13e7eb0c4d79c7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1aed31a52813808e1069941c233ba8f867" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.PathfinderHooks.onLoadComputer</definition>
-        <argsstring>(ref XmlReader reader, string filename, bool preventAddingToNetmap, bool preventInitDaemons)</argsstring>
+        <argsstring>(ref XmlReader reader, string filename, bool preventAddingToNetmap, bool preventInitDaemons, Hacknet.Computer createdComputer)</argsstring>
         <name>onLoadComputer</name>
         <param>
           <type>ref XmlReader</type>
@@ -378,13 +378,17 @@
           <type>bool</type>
           <declname>preventInitDaemons</declname>
         </param>
+        <param>
+          <type>Hacknet.Computer</type>
+          <declname>createdComputer</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="213" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="213" bodyend="226"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="218" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="218" bodyend="230"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1afd8f11882aa51778c376286a2c7e2b3d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -409,7 +413,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="233" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="233" bodyend="278"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="237" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="237" bodyend="289"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1ae7f2ebfb0b0d0027fd5b3d098bfa6d0d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -426,7 +430,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="280" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="280" bodyend="284"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="291" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="291" bodyend="295"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a400fd38e22eb1d75dfdc6e32c62056cb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -447,7 +451,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="286" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="286" bodyend="290"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="297" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="297" bodyend="301"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a87ea13e22496034e0ff7899c0308b9a7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -476,7 +480,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="292" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="292" bodyend="315"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="303" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="303" bodyend="326"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a6be1e9dc07c00137f08ff53681ac810e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -497,7 +501,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="317" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="317" bodyend="324"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="328" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="328" bodyend="335"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a565cdd3a620bac908aa92532588d22cb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -518,7 +522,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="326" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="326" bodyend="333"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="337" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="337" bodyend="344"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1aa8ce089b2a69e7e86f0efe9499feeb34" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -551,7 +555,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="335" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="335" bodyend="346"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="346" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="346" bodyend="357"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1af5071ba9a13f6a2119bb92aa48528507" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -584,7 +588,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="348" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="348" bodyend="361"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="359" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="359" bodyend="372"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a6d2b26ee04eb7464c6abe32136fff5f5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -605,7 +609,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="363" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="363" bodyend="374"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="374" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="374" bodyend="385"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1ac657dd3e688c7f21ba42523318ce95bc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -622,7 +626,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="376" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="376" bodyend="380"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="387" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="387" bodyend="391"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a57dff19ecf2eb437b3164d91114a089a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -651,7 +655,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="382" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="382" bodyend="389"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="393" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="393" bodyend="400"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_pathfinder_hooks_1a8eab001a65ee6cd55c4a09bb13ba3663" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -668,14 +672,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/PathfinderHooks.cs" line="391" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="391" bodyend="395"/>
+        <location file="Pathfinder/PathfinderHooks.cs" line="402" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="402" bodyend="406"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>Function hooks for the <ref refid="class_pathfinder_1_1_pathfinder" kindref="compound">Pathfinder</ref> mod system </para>    </briefdescription>
     <detaileddescription>
 <para>Place all functions to be hooked into Hacknet here </para>    </detaileddescription>
-    <location file="Pathfinder/PathfinderHooks.cs" line="23" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="22" bodyend="396"/>
+    <location file="Pathfinder/PathfinderHooks.cs" line="26" column="1" bodyfile="Pathfinder/PathfinderHooks.cs" bodystart="25" bodyend="407"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_pathfinder_hooks_1a4baf67078ff22249fc121b39c8ffeb9c" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderHooks</scope><name>onCommandSent</name></member>
       <member refid="class_pathfinder_1_1_pathfinder_hooks_1a565cdd3a620bac908aa92532588d22cb" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderHooks</scope><name>onDisplayModuleDraw</name></member>
@@ -686,7 +690,7 @@
       <member refid="class_pathfinder_1_1_pathfinder_hooks_1aa8ce089b2a69e7e86f0efe9499feeb34" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderHooks</scope><name>onExtensionsMenuScreenDraw</name></member>
       <member refid="class_pathfinder_1_1_pathfinder_hooks_1ae7f2ebfb0b0d0027fd5b3d098bfa6d0d" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderHooks</scope><name>onGameUnloadContent</name></member>
       <member refid="class_pathfinder_1_1_pathfinder_hooks_1a400fd38e22eb1d75dfdc6e32c62056cb" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderHooks</scope><name>onGameUpdate</name></member>
-      <member refid="class_pathfinder_1_1_pathfinder_hooks_1afaf66e25c2db7f3f7f13e7eb0c4d79c7" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderHooks</scope><name>onLoadComputer</name></member>
+      <member refid="class_pathfinder_1_1_pathfinder_hooks_1aed31a52813808e1069941c233ba8f867" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderHooks</scope><name>onLoadComputer</name></member>
       <member refid="class_pathfinder_1_1_pathfinder_hooks_1a04b88abfa1d10dfc986251fd4b9bb7c7" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderHooks</scope><name>onLoadContent</name></member>
       <member refid="class_pathfinder_1_1_pathfinder_hooks_1acc58756e50c83bdf3a58c151cc15856e" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderHooks</scope><name>onLoadNetmapContent</name></member>
       <member refid="class_pathfinder_1_1_pathfinder_hooks_1a2147d4acd050711b4e3af3f3e54f604a" prot="public" virt="non-virtual"><scope>Pathfinder::PathfinderHooks</scope><name>onLoadSaveFile</name></member>

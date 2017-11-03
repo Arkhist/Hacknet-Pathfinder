@@ -22,9 +22,7 @@ var dir_f17f94439237c4628605ae31fe1f1655 =
     [ "Pathfinder.cs", "_pathfinder_8cs.html", [
       [ "Pathfinder", "class_pathfinder_1_1_pathfinder.html", "class_pathfinder_1_1_pathfinder" ]
     ] ],
-    [ "PathfinderHooks.cs", "_pathfinder_hooks_8cs.html", [
-      [ "PathfinderHooks", "class_pathfinder_1_1_pathfinder_hooks.html", "class_pathfinder_1_1_pathfinder_hooks" ]
-    ] ],
+    [ "PathfinderHooks.cs", "_pathfinder_hooks_8cs.html", "_pathfinder_hooks_8cs" ],
     [ "PathfinderMod.cs", "_pathfinder_mod_8cs.html", [
       [ "IPathfinderMod", "interface_pathfinder_1_1_i_pathfinder_mod.html", null ],
       [ "PathfinderMod", "class_pathfinder_1_1_pathfinder_mod.html", null ],

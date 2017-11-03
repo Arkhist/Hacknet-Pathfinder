@@ -36,7 +36,8 @@ var dir_64d253ef1f79ff8128c877fa1dc35bc4 =
       [ "MainMenuEvent", "class_pathfinder_1_1_event_1_1_main_menu_event.html", "class_pathfinder_1_1_event_1_1_main_menu_event" ],
       [ "DrawMainMenuEvent", "class_pathfinder_1_1_event_1_1_draw_main_menu_event.html", "class_pathfinder_1_1_event_1_1_draw_main_menu_event" ],
       [ "DrawMainMenuButtonsEvent", "class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event.html", "class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event" ],
-      [ "DrawMainMenuTitlesEvent", "class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html", "class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event" ]
+      [ "DrawMainMenuTitlesEvent", "class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html", "class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event" ],
+      [ "TitleData", "class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1_1_title_data.html", "class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1_1_title_data" ]
     ] ],
     [ "ModuleEvents.cs", "_module_events_8cs.html", [
       [ "ModuleEvent", "class_pathfinder_1_1_event_1_1_module_event.html", "class_pathfinder_1_1_event_1_1_module_event" ],

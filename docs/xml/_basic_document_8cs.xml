@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="_basic_document_8cs" kind="file" language="C#">
+    <compoundname>BasicDocument.cs</compoundname>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_x_m_l_1_1_basic_document" prot="public">Pathfinder::Util::XML::BasicDocument</innerclass>
+    <innernamespace refid="namespace_pathfinder_1_1_util_1_1_x_m_l">Pathfinder::Util::XML</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_system" kindref="compound">System</ref>;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.Util.XML</highlight></codeline>
+<codeline lineno="3"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="4" refid="class_pathfinder_1_1_util_1_1_x_m_l_1_1_basic_document" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_pathfinder_1_1_util_1_1_x_m_l_1_1_basic_document" kindref="compound">BasicDocument</ref></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="6" refid="class_pathfinder_1_1_util_1_1_x_m_l_1_1_basic_document_1a302478e6124ce031c7d9df7a83ad6c11" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>Raw<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/></highlight><highlight class="keyword">set</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="class_pathfinder_1_1_util_1_1_x_m_l_1_1_basic_document_1af3c77cd86fa0fe64e7b62beecf5c304a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_pathfinder_1_1_util_1_1_x_m_l_1_1_basic_document_1af3c77cd86fa0fe64e7b62beecf5c304a" kindref="member">BasicDocument</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>raw)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Raw<sp/>=<sp/>raw;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="class_pathfinder_1_1_util_1_1_x_m_l_1_1_basic_document_1aa80c2853445f46da04e56186e8c0f347" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_pathfinder_1_1_util_1_1_x_m_l_1_1_basic_document_1aa80c2853445f46da04e56186e8c0f347" kindref="member">StartDocument</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="14" refid="class_pathfinder_1_1_util_1_1_x_m_l_1_1_basic_document_1a1a42540c7b9391fc3199bb0871f4192c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_pathfinder_1_1_util_1_1_x_m_l_1_1_basic_document_1a1a42540c7b9391fc3199bb0871f4192c" kindref="member">EndDocument</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>StartElement(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>namespaceURI,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>localName,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>qualifiedName,<sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="Pathfinder/Util/XML/BasicDocument.cs"/>
+  </compounddef>
+</doxygen>

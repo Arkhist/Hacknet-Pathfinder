@@ -187,9 +187,12 @@
     <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_event_1a99fdbb21a3290032720b02fab7c59ba2" kind="function"><name>DrawMainMenuEvent</name></member>
   </compound>
   <compound refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event" kind="class"><name>Pathfinder::Event::DrawMainMenuTitlesEvent</name>
+    <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1ad87393c7e7f4ba53c821f6f416e45d7f" kind="property"><name>Main</name></member>
+    <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1a5ebed0bb02743c50b7d907aa46e19141" kind="property"><name>Sub</name></member>
     <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1a0458094d81fff54fac6c9067595a01ec" kind="property"><name>MainTitle</name></member>
     <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1a08418295a0d8c09117478309894cf231" kind="property"><name>Subtitle</name></member>
     <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1affe2adc07b635da107a5d871e4dbb7c4" kind="function"><name>DrawMainMenuTitlesEvent</name></member>
+    <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1aa81f72c2a0ab828416a7e3ceed1895fd" kind="function"><name>DrawMainMenuTitlesEvent</name></member>
   </compound>
   <compound refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle" kind="class"><name>Pathfinder::GUI::DynamicRectangle</name>
     <member refid="class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle_1a80f9bb4b86fde06f522788998b06bb90" kind="variable"><name>OriginalClickPosition</name></member>
@@ -404,6 +407,17 @@
     <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a4f94c3f5f852e4e08c0c231f27527bbe" kind="function"><name>GetEOSDevicesByName</name></member>
     <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ae03e83b80704d8f0b3440968860241f9" kind="function"><name>GetEOSDevicesByIndex</name></member>
   </compound>
+  <compound refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions" kind="class"><name>Pathfinder::Game::OS::Extensions</name>
+    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a08d55d853112988b8a69f26110d47d3c" kind="function"><name>GetExesFor</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a210838cd29e560ada42c3356f4b5f710" kind="function"><name>GetExesFor&lt; T &gt;</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ac553c7d9ed908a25fcab8091f82e4e9d" kind="function"><name>GetModExeInterfaceFor</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a6cb7772226d053dcecf32b85fb8bf66d" kind="function"><name>GetModExeInterfaceFor&lt; T &gt;</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a3c7dc4252ef9aa625353a05831412ed6" kind="function"><name>GetCurrentComputer</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a1c379f092ec7cc44aeb12a3aed8e5183" kind="function"><name>Write</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a7e8a53fd0198cf29bad63ed30eccb3f7" kind="function"><name>WriteSingle</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a98be3beba4f665b17dadc1b8a95279b8" kind="function"><name>WriteF</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ab2a6df6aa04ecd7745ee89f1a6f2e103" kind="function"><name>WriteSingleF</name></member>
+  </compound>
   <compound refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions" kind="class"><name>Pathfinder::Game::NetworkMap::Extensions</name>
     <member refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1a22ca9f8727bb0f90f1551a2a4d8d2664" kind="function"><name>DiscoverNode</name></member>
     <member refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1ad52ba2781109cae461b801b7cb0acec2" kind="function"><name>DiscoverNodeByName</name></member>
@@ -416,17 +430,6 @@
     <member refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1a564ab766afc5da8a9e49ca75f6b39e38" kind="function"><name>GetComputerByIp</name></member>
     <member refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1af3370e9feaa8d3d81c3323dc297de6ab" kind="function"><name>GetComputerById</name></member>
     <member refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1abdf253e8b817ceebb4bc99d03c81a5ef" kind="function"><name>AddLink</name></member>
-  </compound>
-  <compound refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions" kind="class"><name>Pathfinder::Game::OS::Extensions</name>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a08d55d853112988b8a69f26110d47d3c" kind="function"><name>GetExesFor</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a210838cd29e560ada42c3356f4b5f710" kind="function"><name>GetExesFor&lt; T &gt;</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ac553c7d9ed908a25fcab8091f82e4e9d" kind="function"><name>GetModExeInterfaceFor</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a6cb7772226d053dcecf32b85fb8bf66d" kind="function"><name>GetModExeInterfaceFor&lt; T &gt;</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a3c7dc4252ef9aa625353a05831412ed6" kind="function"><name>GetCurrentComputer</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a1c379f092ec7cc44aeb12a3aed8e5183" kind="function"><name>Write</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a7e8a53fd0198cf29bad63ed30eccb3f7" kind="function"><name>WriteSingle</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a98be3beba4f665b17dadc1b8a95279b8" kind="function"><name>WriteF</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ab2a6df6aa04ecd7745ee89f1a6f2e103" kind="function"><name>WriteSingleF</name></member>
   </compound>
   <compound refid="class_pathfinder_1_1_game_filesystem_1_1_extensions" kind="class"><name>Pathfinder::GameFilesystem::Extensions</name>
     <member refid="class_pathfinder_1_1_game_filesystem_1_1_extensions_1a35979df9043fddabfbefbfb2a5f97d86" kind="function"><name>ContainsFolder</name></member>
@@ -688,6 +691,28 @@
     <member refid="class_pathfinder_1_1_extension_1_1_info_1a5447d768d5c79bc8b85de72e42dcf35f" kind="function"><name>OnLoad</name></member>
     <member refid="class_pathfinder_1_1_extension_1_1_info_1a1af044730691677c59c1eac61695a39d" kind="function"><name>OnUnload</name></member>
   </compound>
+  <compound refid="class_pathfinder_1_1_executable_1_1_instance" kind="class"><name>Pathfinder::Executable::Instance</name>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a071d449d591ff751827272b5663a93b4" kind="variable"><name>keyToObject</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a27cb7492992c3a401f91a03f6dc1afea" kind="property"><name>Arguments</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1aab0bd3088cfb3917e7ed95c35ba2a6eb" kind="property"><name>Interface</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a69e1fbd1c1916a301132619f8acde178" kind="property"><name>ExecutionFile</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a16fd9b140b9aa331ae9dec19f7dc8731" kind="property"><name>this[string key]</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a0ae080d33031df52737f1145b4b86ad9" kind="function"><name>Instance</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a5e634e15f0318580574628f969096a85" kind="function"><name>GetInstanceData</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a293ac84945183d6d1c85e96cf96f8587" kind="function"><name>GetInstanceData&lt; T &gt;</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1abe9bde1c1dc2296884b9b84ad011872e" kind="function"><name>SetInstanceData</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1aeba6c6875898fa5753041da6119a12ef" kind="function"><name>LoadContent</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1acbfa0b10d3b806cdf193a96d28b64427" kind="function"><name>Completed</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a9662e1e07e9176aa8d1d20aa5d62011a" kind="function"><name>Draw</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a3dd8d03b9a8ca7571120010aafc2ff0e" kind="function"><name>drawOutline</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1aada09ac32b8d910ce570de7f885b05aa" kind="function"><name>drawTarget</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a78c4283943889aae2046bcc2b90a7232" kind="function"><name>Killed</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a6fae642c6d3d848208ff22502dcfcc3f" kind="function"><name>Update</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a705afb81180025993ead03c0fd5a7309" kind="function"><name>PreDrawStep</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1ad04270a30a4c0aaff5f0c316e3ce345c" kind="function"><name>PostDrawStep</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1ac1fe76737c3807e7a3a30eefb5adcbc0" kind="function"><name>CreateInstance</name></member>
+    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a06916f772a19702356c8c1d20ac0ca75" kind="function"><name>CreateInstance</name></member>
+  </compound>
   <compound refid="class_pathfinder_1_1_mission_1_1_instance" kind="class"><name>Pathfinder::Mission::Instance</name>
     <member refid="class_pathfinder_1_1_mission_1_1_instance_1a15059471eb4cd1c35265cfc3c9f21b54" kind="variable"><name>keyToObject</name></member>
     <member refid="class_pathfinder_1_1_mission_1_1_instance_1ab884af32ae74027bb739f50fadf4dd7f" kind="variable"><name>dynamicGoals</name></member>
@@ -712,28 +737,6 @@
     <member refid="class_pathfinder_1_1_mission_1_1_instance_1a82507a30749308df5ac6e94a710b9cfa" kind="function"><name>Update</name></member>
     <member refid="class_pathfinder_1_1_mission_1_1_instance_1a948c4b7e751752d1584b35db79f7cb8f" kind="function"><name>getSaveString</name></member>
     <member refid="class_pathfinder_1_1_mission_1_1_instance_1ae6ac4481f9587f943cbdecf73edc45df" kind="function"><name>sendEmail</name></member>
-  </compound>
-  <compound refid="class_pathfinder_1_1_executable_1_1_instance" kind="class"><name>Pathfinder::Executable::Instance</name>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a071d449d591ff751827272b5663a93b4" kind="variable"><name>keyToObject</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a27cb7492992c3a401f91a03f6dc1afea" kind="property"><name>Arguments</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1aab0bd3088cfb3917e7ed95c35ba2a6eb" kind="property"><name>Interface</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a69e1fbd1c1916a301132619f8acde178" kind="property"><name>ExecutionFile</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a16fd9b140b9aa331ae9dec19f7dc8731" kind="property"><name>this[string key]</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a0ae080d33031df52737f1145b4b86ad9" kind="function"><name>Instance</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a5e634e15f0318580574628f969096a85" kind="function"><name>GetInstanceData</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a293ac84945183d6d1c85e96cf96f8587" kind="function"><name>GetInstanceData&lt; T &gt;</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1abe9bde1c1dc2296884b9b84ad011872e" kind="function"><name>SetInstanceData</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1aeba6c6875898fa5753041da6119a12ef" kind="function"><name>LoadContent</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1acbfa0b10d3b806cdf193a96d28b64427" kind="function"><name>Completed</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a9662e1e07e9176aa8d1d20aa5d62011a" kind="function"><name>Draw</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a3dd8d03b9a8ca7571120010aafc2ff0e" kind="function"><name>drawOutline</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1aada09ac32b8d910ce570de7f885b05aa" kind="function"><name>drawTarget</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a78c4283943889aae2046bcc2b90a7232" kind="function"><name>Killed</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a6fae642c6d3d848208ff22502dcfcc3f" kind="function"><name>Update</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a705afb81180025993ead03c0fd5a7309" kind="function"><name>PreDrawStep</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1ad04270a30a4c0aaff5f0c316e3ce345c" kind="function"><name>PostDrawStep</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1ac1fe76737c3807e7a3a30eefb5adcbc0" kind="function"><name>CreateInstance</name></member>
-    <member refid="class_pathfinder_1_1_executable_1_1_instance_1a06916f772a19702356c8c1d20ac0ca75" kind="function"><name>CreateInstance</name></member>
   </compound>
   <compound refid="class_pathfinder_1_1_daemon_1_1_instance" kind="class"><name>Pathfinder::Daemon::Instance</name>
     <member refid="class_pathfinder_1_1_daemon_1_1_instance_1ada804e320ebcbb804103d04120cb02e2" kind="variable"><name>keyToObject</name></member>
@@ -1072,7 +1075,7 @@
     <member refid="class_pathfinder_1_1_pathfinder_hooks_1acc58756e50c83bdf3a58c151cc15856e" kind="function"><name>onLoadNetmapContent</name></member>
     <member refid="class_pathfinder_1_1_pathfinder_hooks_1aebc40e199251e0d0ec95dec2bb6239a8" kind="function"><name>onExecutableExecute</name></member>
     <member refid="class_pathfinder_1_1_pathfinder_hooks_1a15629e7518416723a7996e920c4211d1" kind="function"><name>onPortExecutableExecute</name></member>
-    <member refid="class_pathfinder_1_1_pathfinder_hooks_1afaf66e25c2db7f3f7f13e7eb0c4d79c7" kind="function"><name>onLoadComputer</name></member>
+    <member refid="class_pathfinder_1_1_pathfinder_hooks_1aed31a52813808e1069941c233ba8f867" kind="function"><name>onLoadComputer</name></member>
     <member refid="class_pathfinder_1_1_pathfinder_hooks_1afd8f11882aa51778c376286a2c7e2b3d" kind="function"><name>onDrawMainMenuTitles</name></member>
     <member refid="class_pathfinder_1_1_pathfinder_hooks_1ae7f2ebfb0b0d0027fd5b3d098bfa6d0d" kind="function"><name>onGameUnloadContent</name></member>
     <member refid="class_pathfinder_1_1_pathfinder_hooks_1a400fd38e22eb1d75dfdc6e32c62056cb" kind="function"><name>onGameUpdate</name></member>
@@ -1125,6 +1128,13 @@
     <member refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_title_attribute_1aa96304f3964e8061d861824d2ae57f25" kind="property"><name>Title</name></member>
     <member refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_title_attribute_1aa380ca090fc982ce04073f457d8b6dbe" kind="function"><name>TitleAttribute</name></member>
     <member refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_title_attribute_1a6abdefca08fc0fc4ed44ab592159a877" kind="function"><name>ToString</name></member>
+  </compound>
+  <compound refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1_1_title_data" kind="class"><name>Pathfinder::Event::DrawMainMenuTitlesEvent::TitleData</name>
+    <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1_1_title_data_1a648973844096ffce3adb2af8ad9e623a" kind="property"><name>Title</name></member>
+    <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1_1_title_data_1acad920619c6c97ec645353e3d2829b24" kind="property"><name>Color</name></member>
+    <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1_1_title_data_1a41646af58c32f5fb82382039a3392761" kind="property"><name>Font</name></member>
+    <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1_1_title_data_1ac7b01f8b3366a50f7235fad93c020493" kind="property"><name>Destination</name></member>
+    <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1_1_title_data_1af256dd0ce5dfd0492c0d7366f84b551f" kind="function"><name>TitleData</name></member>
   </compound>
   <compound refid="class_pathfinder_1_1_port_1_1_type" kind="class"><name>Pathfinder::Port::Type</name>
     <member refid="class_pathfinder_1_1_port_1_1_type_1ab38ac401192483df868ba3a0939f352e" kind="property"><name>PortName</name></member>
@@ -1240,6 +1250,8 @@
   </compound>
   <compound refid="namespace_i_o" kind="namespace"><name>IO</name>
   </compound>
+  <compound refid="namespace_main_title_data" kind="namespace"><name>MainTitleData</name>
+  </compound>
   <compound refid="namespace_microsoft_1_1_xna_1_1_framework" kind="namespace"><name>Microsoft::Xna::Framework</name>
   </compound>
   <compound refid="namespace_microsoft_1_1_xna_1_1_framework_1_1_audio" kind="namespace"><name>Microsoft::Xna::Framework::Audio</name>
@@ -1337,6 +1349,8 @@
   <compound refid="namespace_port" kind="namespace"><name>Port</name>
   </compound>
   <compound refid="namespace_rectangle" kind="namespace"><name>Rectangle</name>
+  </compound>
+  <compound refid="namespace_sub_title_data" kind="namespace"><name>SubTitleData</name>
   </compound>
   <compound refid="namespace_system" kind="namespace"><name>System</name>
   </compound>
@@ -1518,6 +1532,8 @@
   <compound refid="_pathfinder_8cs" kind="file"><name>Pathfinder.cs</name>
   </compound>
   <compound refid="_pathfinder_hooks_8cs" kind="file"><name>PathfinderHooks.cs</name>
+    <member refid="_pathfinder_hooks_8cs_1a0c79fe1bacc60335a871cb9fe2ff5143" kind="typedef"><name>MainTitleData</name></member>
+    <member refid="_pathfinder_hooks_8cs_1a28cc0f54b27c150765d192463d04225a" kind="typedef"><name>SubTitleData</name></member>
   </compound>
   <compound refid="_pathfinder_mod_8cs" kind="file"><name>PathfinderMod.cs</name>
   </compound>

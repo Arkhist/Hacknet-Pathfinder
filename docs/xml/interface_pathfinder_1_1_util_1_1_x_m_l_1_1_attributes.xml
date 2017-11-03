@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes" kind="interface" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::XML::Attributes</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a658a133ba9e110294cc86bba22f09b37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Pathfinder.Util.XML.Attributes.GetIndex</definition>
+        <argsstring>(string qualifiedName)</argsstring>
+        <name>GetIndex</name>
+        <param>
+          <type>string</type>
+          <declname>qualifiedName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/XML/Attributes.cs" line="6" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a58f0ad10abf072f9812835ff8ffcbef7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Pathfinder.Util.XML.Attributes.GetIndex</definition>
+        <argsstring>(string uri, string localName)</argsstring>
+        <name>GetIndex</name>
+        <param>
+          <type>string</type>
+          <declname>uri</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>localName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/XML/Attributes.cs" line="7" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1acd9f50368cd1cc849ada44af591b5ea7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Pathfinder.Util.XML.Attributes.GetLocalName</definition>
+        <argsstring>(int index)</argsstring>
+        <name>GetLocalName</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/XML/Attributes.cs" line="8" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1ad49d8eb23b8af2e78ed203942c43e1ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Pathfinder.Util.XML.Attributes.GetQualifiedName</definition>
+        <argsstring>(int index)</argsstring>
+        <name>GetQualifiedName</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/XML/Attributes.cs" line="9" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a0a50ff76661cbfbb831b762dfe5dc226" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Pathfinder.Util.XML.Attributes.GetType</definition>
+        <argsstring>(int index)</argsstring>
+        <name>GetType</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/XML/Attributes.cs" line="10" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a3234042510024ffe6dd5160873bea245" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Pathfinder.Util.XML.Attributes.GetType</definition>
+        <argsstring>(string qualifiedName)</argsstring>
+        <name>GetType</name>
+        <param>
+          <type>string</type>
+          <declname>qualifiedName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/XML/Attributes.cs" line="11" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a6da95a12d9c7eceb5fa49dfff49c82d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Pathfinder.Util.XML.Attributes.GetType</definition>
+        <argsstring>(string uri, string localName)</argsstring>
+        <name>GetType</name>
+        <param>
+          <type>string</type>
+          <declname>uri</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>localName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/XML/Attributes.cs" line="12" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a44c7313c028c545ac13b8835dcd40be7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Pathfinder.Util.XML.Attributes.GetUri</definition>
+        <argsstring>(int index)</argsstring>
+        <name>GetUri</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/XML/Attributes.cs" line="13" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1aaf2e331d6d9100cef76688d85e6ee61e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Pathfinder.Util.XML.Attributes.GetValue</definition>
+        <argsstring>(int index)</argsstring>
+        <name>GetValue</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/XML/Attributes.cs" line="14" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1ae9ed002507b459c8c42426c9025e9f61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Pathfinder.Util.XML.Attributes.GetValue</definition>
+        <argsstring>(string qualifiedName)</argsstring>
+        <name>GetValue</name>
+        <param>
+          <type>string</type>
+          <declname>qualifiedName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/XML/Attributes.cs" line="15" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a93e5f3495edca820ce561eaa3a76b4fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Pathfinder.Util.XML.Attributes.GetValue</definition>
+        <argsstring>(string uri, string localName)</argsstring>
+        <name>GetValue</name>
+        <param>
+          <type>string</type>
+          <declname>uri</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>localName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/XML/Attributes.cs" line="16" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a47c9125428a56401530b3328a883e61e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Pathfinder.Util.XML.Attributes.GetLength</definition>
+        <argsstring>()</argsstring>
+        <name>GetLength</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/XML/Attributes.cs" line="17" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Util/XML/Attributes.cs" line="5" column="1" bodyfile="Pathfinder/Util/XML/Attributes.cs" bodystart="4" bodyend="19"/>
+    <listofallmembers>
+      <member refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a658a133ba9e110294cc86bba22f09b37" prot="public" virt="non-virtual"><scope>Pathfinder::Util::XML::Attributes</scope><name>GetIndex</name></member>
+      <member refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a58f0ad10abf072f9812835ff8ffcbef7" prot="public" virt="non-virtual"><scope>Pathfinder::Util::XML::Attributes</scope><name>GetIndex</name></member>
+      <member refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a47c9125428a56401530b3328a883e61e" prot="public" virt="non-virtual"><scope>Pathfinder::Util::XML::Attributes</scope><name>GetLength</name></member>
+      <member refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1acd9f50368cd1cc849ada44af591b5ea7" prot="public" virt="non-virtual"><scope>Pathfinder::Util::XML::Attributes</scope><name>GetLocalName</name></member>
+      <member refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1ad49d8eb23b8af2e78ed203942c43e1ab" prot="public" virt="non-virtual"><scope>Pathfinder::Util::XML::Attributes</scope><name>GetQualifiedName</name></member>
+      <member refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a0a50ff76661cbfbb831b762dfe5dc226" prot="public" virt="non-virtual"><scope>Pathfinder::Util::XML::Attributes</scope><name>GetType</name></member>
+      <member refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a3234042510024ffe6dd5160873bea245" prot="public" virt="non-virtual"><scope>Pathfinder::Util::XML::Attributes</scope><name>GetType</name></member>
+      <member refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a6da95a12d9c7eceb5fa49dfff49c82d4" prot="public" virt="non-virtual"><scope>Pathfinder::Util::XML::Attributes</scope><name>GetType</name></member>
+      <member refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a44c7313c028c545ac13b8835dcd40be7" prot="public" virt="non-virtual"><scope>Pathfinder::Util::XML::Attributes</scope><name>GetUri</name></member>
+      <member refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1aaf2e331d6d9100cef76688d85e6ee61e" prot="public" virt="non-virtual"><scope>Pathfinder::Util::XML::Attributes</scope><name>GetValue</name></member>
+      <member refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1ae9ed002507b459c8c42426c9025e9f61" prot="public" virt="non-virtual"><scope>Pathfinder::Util::XML::Attributes</scope><name>GetValue</name></member>
+      <member refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes_1a93e5f3495edca820ce561eaa3a76b4fa" prot="public" virt="non-virtual"><scope>Pathfinder::Util::XML::Attributes</scope><name>GetValue</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

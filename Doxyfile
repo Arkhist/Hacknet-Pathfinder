@@ -44,14 +44,14 @@ PROJECT_NUMBER         = "v2.1 Pre-release 6"
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "A project aimed at enabling programmable modding of Hacknet to an extreme extent"
+PROJECT_BRIEF          = "The definitive Hacknet programmable modding system"
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55
 # pixels and the maximum width should not exceed 200 pixels. Doxygen will copy
 # the logo to the output directory.
 
-PROJECT_LOGO           = 
+PROJECT_LOGO           = C:\Users\George\Desktop\Projects\C#\Modding\Hacknet\Hacknet-Pathfinder\hacknet_modding_docs_logo.png
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
 # into which the generated documentation will be written. If a relative path is
@@ -873,7 +873,7 @@ RECURSIVE              = YES
 # Note that relative paths are relative to the directory from which doxygen is
 # run.
 
-EXCLUDE                = 
+EXCLUDE                = Pathfinder/Util/XML
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespace_pathfinder_1_1_util_1_1_x_m_l" kind="namespace" language="C#">
+    <compoundname>Pathfinder::Util::XML</compoundname>
+    <innerclass refid="interface_pathfinder_1_1_util_1_1_x_m_l_1_1_attributes" prot="public">Pathfinder::Util::XML::Attributes</innerclass>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_x_m_l_1_1_basic_document" prot="public">Pathfinder::Util::XML::BasicDocument</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Util/XML/Attributes.cs" line="3" column="1"/>
+  </compounddef>
+</doxygen>

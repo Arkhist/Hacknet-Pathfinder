@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="19" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="19" bodyend="-1"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="20" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="20" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -38,7 +38,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="20" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="20" bodyend="20"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="21" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="21" bodyend="21"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -87,7 +87,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/MainMenuEvents.cs" line="18" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="17" bodyend="21"/>
+    <location file="Pathfinder/Event/MainMenuEvents.cs" line="19" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="18" bodyend="22"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_event_1a99fdbb21a3290032720b02fab7c59ba2" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuEvent</scope><name>DrawMainMenuEvent</name></member>
