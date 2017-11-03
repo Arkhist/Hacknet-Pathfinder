@@ -23,7 +23,13 @@ namespace Pathfinder.Event
 
     public class DrawMainMenuButtonsEvent : MainMenuEvent
     {
-        public DrawMainMenuButtonsEvent(Hacknet.MainMenu mainMenu) : base(mainMenu) {}
+        public int MainButtonY { get; set; }
+        public int SecondaryButtonY { get; set; }
+        public DrawMainMenuButtonsEvent(Hacknet.MainMenu mainMenu, int mainY, int secondY) : base(mainMenu) 
+        {
+            MainButtonY = mainY;
+            SecondaryButtonY = secondY;
+        }
     }
 
     public class DrawMainMenuTitlesEvent : MainMenuEvent

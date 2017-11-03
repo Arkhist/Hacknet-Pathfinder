@@ -23,6 +23,18 @@ namespace Pathfinder
         public static string DepFolderPath => Manager.DepFolderPath;
         public static IMod CurrentMod => Manager.CurrentMod;
 
+        /// <summary>
+        /// Gets the loaded mod identifiers.
+        /// </summary>
+        /// <value>The loaded mod identifiers.</value>
+        public static List<string> LoadedModIdentifiers => Manager.LoadedModIds;
+
+        /// <summary>
+        /// Gets the unloaded mod identifiers.
+        /// </summary>
+        /// <value>The  mod identifiers.</value>
+        public static List<string> UnloadedModIdentifiers => Manager.UnloadedModIds.ToList();
+
         static Pathfinder()
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -118,18 +130,6 @@ namespace Pathfinder
             }
             return true;
         }
-
-        /// <summary>
-        /// Gets the loaded mod identifiers.
-        /// </summary>
-        /// <value>The loaded mod identifiers.</value>
-        public static List<string> LoadedModIdentifiers => Manager.OperationalMods.Keys.ToList();
-
-        /// <summary>
-        /// Gets the unloaded mod identifiers.
-        /// </summary>
-        /// <value>The unloaded mod identifiers.</value>
-        public static List<string> UnloadedModIdentifiers => Manager.UnloadedModIds.ToList();
 
         internal static void ManageSaveXml(OSSaveWriteEvent e)
         {

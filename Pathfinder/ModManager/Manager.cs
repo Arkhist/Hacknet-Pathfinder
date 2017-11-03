@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Pathfinder.Util;
 using Pathfinder.Event;
+using Pathfinder.Util;
 using Pathfinder.Util.Attribute;
 using ALoadOrderAttribute = Pathfinder.Util.Attribute.LoadOrderAttribute;
 
@@ -20,15 +20,22 @@ namespace Pathfinder.ModManager
         public static Dictionary<string, IMod> LoadedMods = new Dictionary<string, IMod>();
         public static List<string> UnloadedModIds = new List<string>();
 
-        public static IMod CurrentMod { get; internal set; }
-        public static Dictionary<string, IMod> OperationalMods => LoadedMods
-#pragma warning disable CS0618 // Type or member is obsolete
-            .Where(pair => !(pair.Value is Placeholder || pair.Value is ModPlaceholder))
-#pragma warning restore CS0618 // Type or member is obsolete
-            .ToDictionary(pair => pair.Key, pair => pair.Value);
+        public static List<IMod> MarkedModsForUnload = new List<IMod>();
+        public static List<IMod> MarkedModsForLoad = new List<IMod>();
+
+        public static IMod CurrentMod { get; set; }
+        #pragma warning disable CS0618 // Type or member is obsolete
+        public static Dictionary<string, IMod> OperationalMods =>
+            (
+                from pair in LoadedMods where !(pair.Value is Placeholder || pair.Value is ModPlaceholder)
+                    select pair
+            ).ToDictionary(pair => pair.Key, pair => pair.Value);
+        #pragma warning restore CS0618 // Type or member is obsolete
 
         public static IEnumerable<Type> GetModTypes(this Assembly asm) =>
                 asm.GetExportedTypes().Where(t => t.IsClass && !t.IsAbstract && typeof(IMod).IsAssignableFrom(t));
+
+        public static List<string> LoadedModIds => OperationalMods.Keys.ToList();
 
         public static IMod GetFirstMod(this Assembly asm)
         {
@@ -85,6 +92,28 @@ namespace Pathfinder.ModManager
             }
         }
 
+        public static void MarkForUnload(IMod mod) => MarkedModsForUnload.Add(mod);
+        public static void UnloadMarkedMods()
+        {
+            foreach (var mod in MarkedModsForUnload)
+                UnloadMod(mod);
+            MarkedModsForUnload.Clear();
+        }
+
+        public static void MarkForLoad(IMod mod) => MarkedModsForLoad.Add(mod);
+        public static void LoadMarkedMods()
+        {
+            IMod newMod;
+            foreach (var mod in MarkedModsForLoad)
+            {
+                newMod = LoadMod(mod.GetType());
+                CurrentMod = newMod;
+                newMod.LoadContent();
+                CurrentMod = null;
+            }
+            MarkedModsForLoad.Clear();
+        }
+
         public static void UnloadMod(IMod mod)
         {
             if (mod == null || mod is Placeholder) return;
@@ -102,32 +131,59 @@ namespace Pathfinder.ModManager
                         UnloadMod(LoadedMods[id]);
                 }
 
-            foreach (var e in Extension.Handler.ModExtensions.ToArray())
-                if (e.Key.IndexOf('.') != -1 && e.Key.Remove(e.Key.IndexOf('.')) == name)
-                    Extension.Handler.UnregisterExtension(e.Key);
+            foreach (var e in
+                     (from p in Extension.Handler.ModExtensions
+                        where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                        select p.Key)
+                     .ToArray()
+                    )
+                    Extension.Handler.UnregisterExtension(e);
 
-            foreach (var e in Executable.Handler.ModExecutables.ToArray())
-                if (e.Key.IndexOf('.') != -1 && e.Key.Remove(e.Key.IndexOf('.')) == name)
-                    Executable.Handler.UnregisterExecutable(e.Key);
+            foreach (var e in
+                     (from p in Executable.Handler.ModExecutables
+                        where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                        select p.Key)
+                     .ToArray()
+                    )
+                    Executable.Handler.UnregisterExecutable(e);
 
-            foreach (var d in Daemon.Handler.ModDaemons.ToArray())
-                if (d.Key.IndexOf('.') != -1 && d.Key.Remove(d.Key.IndexOf('.')) == name)
-                    Daemon.Handler.UnregisterDaemon(d.Key);
+            foreach (var d in
+                     (from p in Daemon.Handler.ModDaemons
+                        where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                        select p.Key)
+                     .ToArray()
+                    )
+                    Daemon.Handler.UnregisterDaemon(d);
 
-            foreach (var c in Command.Handler.ModIdToCommandKeyList[name].ToArray())
-                Command.Handler.UnregisterCommand(c);
+            List<string> clist;
+            Command.Handler.ModIdToCommandKeyList.TryGetValue(name, out clist);
+            if(clist != null)
+                foreach (var c in clist.ToArray())
+                    Command.Handler.UnregisterCommand(c);
 
-            foreach (var g in Mission.Handler.ModGoals.ToArray())
-                if (g.Key.IndexOf('.') != -1 && g.Key.Remove(g.Key.IndexOf('.')) == name)
-                    Mission.Handler.UnregisterMissionGoal(g.Key);
+            foreach (var g in
+                     (from p in Mission.Handler.ModGoals
+                        where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                        select p.Key)
+                     .ToArray()
+                    )
+                    Mission.Handler.UnregisterMissionGoal(g);
 
-            foreach (var m in Mission.Handler.ModMissions.ToArray())
-                if (m.Key.IndexOf('.') != -1 && m.Key.Remove(m.Key.IndexOf('.')) == name)
-                    Mission.Handler.UnregisterMission(m.Key);
+            foreach (var m in
+                     (from p in Mission.Handler.ModMissions
+                        where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                        select p.Key)
+                     .ToArray()
+                    )
+                    Mission.Handler.UnregisterMission(m);
 
-            foreach (var p in Port.Handler.PortTypes.ToArray())
-                if (p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name)
-                    Port.Handler.UnregisterPort(p.Key);
+            foreach (var p in
+                     (from p in Port.Handler.PortTypes
+                        where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                        select p.Key)
+                     .ToArray()
+                    )
+                    Port.Handler.UnregisterPort(p);
 
             var events = new List<Tuple<Action<PathfinderEvent>, string, string, int>>();
             foreach (var v in EventManager.eventListeners.Values)

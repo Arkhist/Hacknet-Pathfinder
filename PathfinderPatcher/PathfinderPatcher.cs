@@ -280,8 +280,9 @@ namespace PathfinderPatcher
                 // Hook onMainMenuButtonsDraw to MainMenu.drawMainMenuButtons
                 ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("drawMainMenuButtons").InjectWith(
                     hooks.GetMethod("onMainMenuButtonsDraw"),
-                    flags: InjectFlags.PassInvokingInstance,
-                    dir: InjectDirection.After
+                    248,
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals,
+                    localsID: new int[] { 0, 4 }
                 );
 
                 // SENSIBLE CODE, CHANGE OFFSET IF NEEDED

@@ -1,23 +1,24 @@
-﻿using Pathfinder.Util;
-using Command = Pathfinder.Command;
-using Executable = Pathfinder.Executable;
-using Port = Pathfinder.Port;
-using Extension = Pathfinder.Extension;
-using Hacknet;
-using System;
-using System.IO;
-using Microsoft.Xna.Framework;
-using Pathfinder.Computer;
-using Daemon = Pathfinder.Daemon;
-using Microsoft.Xna.Framework.Graphics;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using Hacknet;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Pathfinder.Computer;
 using Pathfinder.Event;
+using Pathfinder.ModManager;
+using Pathfinder.Util;
 using Pathfinder.Util.Attribute;
+using Command = Pathfinder.Command;
 using CommandFunc = Pathfinder.Command.Handler.CommandFunc;
+using Daemon = Pathfinder.Daemon;
+using Executable = Pathfinder.Executable;
+using Extension = Pathfinder.Extension;
+using Port = Pathfinder.Port;
 
 namespace TemplateMod
 {
-    public class TemplateMod : Pathfinder.IPathfinderMod
+    public class TemplateMod : IMod
     {
         internal static Port.Type p = new Port.Type("TemplateName", 4);
 

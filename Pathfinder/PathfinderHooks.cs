@@ -130,10 +130,12 @@ namespace Pathfinder
         }
 
         // Hook location : MainMenu.drawMainMenuButtons()
-        public static void onMainMenuButtonsDraw(MainMenu self)
+        public static void onMainMenuButtonsDraw(MainMenu self, ref int mainButtonY, ref int secondaryButtonY)
         {
-            var drawMainMenuButtonsEvent = new Event.DrawMainMenuButtonsEvent(self);
+            var drawMainMenuButtonsEvent = new Event.DrawMainMenuButtonsEvent(self, mainButtonY, secondaryButtonY);
             drawMainMenuButtonsEvent.CallEvent();
+            mainButtonY = drawMainMenuButtonsEvent.MainButtonY;
+            secondaryButtonY = drawMainMenuButtonsEvent.SecondaryButtonY;
         }
 
         // Hook location : OS.loadSaveFile()
@@ -229,13 +231,12 @@ namespace Pathfinder
             loadComputerEvent.CallEvent();
         }
 
-        static FieldInfo titleFontField = typeof(MainMenu).GetField("titleFont",
-                                                                            BindingFlags.NonPublic | BindingFlags.Instance);
-        static FieldInfo titleColorField = typeof(MainMenu).GetField("titleColor",
-                                                                            BindingFlags.NonPublic | BindingFlags.Instance);
+        static Color defaultTitleColor = new Color(190, 190, 190, 0);
+        static SpriteFont defaultTitleFont;
 
         public static bool onDrawMainMenuTitles(MainMenu self, out bool result, ref Rectangle dest)
         {
+            if (defaultTitleFont == null) defaultTitleFont = self.ScreenManager.Game.Content.Load<SpriteFont>("Kremlin");
             Logger.Verbose("Redrawing Main Menu Titles");
             var version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             var mainTitle = "HACKNET";
@@ -259,8 +260,8 @@ namespace Pathfinder
                 TextItem.doFontLabel(new Vector2(180f, 105f), text3, GuiData.smallfont, Color.Red * 0.8f, 600f, 26f, false);
             }
             var main = new MainTitleData(mainTitle,
-                                         (Color)titleColorField.GetValue(self),
-                                         titleFontField.GetValue(self) as SpriteFont,
+                                         defaultTitleColor,
+                                         defaultTitleFont,
                                          dest
                                         );
             var sub = new SubTitleData(subtitle,
