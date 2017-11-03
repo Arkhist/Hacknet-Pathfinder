@@ -13,7 +13,7 @@ An extensive modding API and loader for Hacknet that enables practically limitle
 
 1. Start a new .NET library project
 2. Link it against the Pathfinder.dll (recommended you also at least link it against FNA.dll and HacknetPathfinder.exe)
-	a. You may need to go into the project options and set the project to target the x86 platform
+    * You may need to go into the project options and set the project to target the x86 platform
 3. Create a class that implments the Pathfinder.ModManager.IMod interface
 4. And now you have a basic functioning mod, the rest is up to you
 
