@@ -96,46 +96,46 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="315">
+      <node id="328">
         <label>ExeModule</label>
       </node>
-      <node id="314">
+      <node id="327">
         <label>Instance</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance"/>
-        <childnode refid="315" relation="public-inheritance">
+        <childnode refid="328" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="316">
+      <node id="329">
         <label>MainDisplayOverrideEXE</label>
       </node>
-      <node id="313">
+      <node id="326">
         <label>Pathfinder.Executable.Instance.InstanceOverrideDisplay</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display"/>
-        <childnode refid="314" relation="public-inheritance">
+        <childnode refid="327" relation="public-inheritance">
         </childnode>
-        <childnode refid="316" relation="public-inheritance">
+        <childnode refid="329" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="319">
+      <node id="332">
         <label>ExeModule</label>
       </node>
-      <node id="318">
+      <node id="331">
         <label>Instance</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance"/>
-        <childnode refid="319" relation="public-inheritance">
+        <childnode refid="332" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="320">
+      <node id="333">
         <label>MainDisplayOverrideEXE</label>
       </node>
-      <node id="317">
+      <node id="330">
         <label>Pathfinder.Executable.Instance.InstanceOverrideDisplay</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display"/>
-        <childnode refid="318" relation="public-inheritance">
+        <childnode refid="331" relation="public-inheritance">
         </childnode>
-        <childnode refid="320" relation="public-inheritance">
+        <childnode refid="333" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

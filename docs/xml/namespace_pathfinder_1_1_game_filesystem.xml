@@ -6,7 +6,9 @@
     <innerclass refid="class_pathfinder_1_1_game_filesystem_1_1_extensions" prot="public">Pathfinder::GameFilesystem::Extensions</innerclass>
     <innerclass refid="class_pathfinder_1_1_game_filesystem_1_1_file" prot="public">Pathfinder::GameFilesystem::File</innerclass>
     <innerclass refid="class_pathfinder_1_1_game_filesystem_1_1_file_object" prot="public">Pathfinder::GameFilesystem::FileObject</innerclass>
+    <innerclass refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" prot="public">Pathfinder::GameFilesystem::FilePath</innerclass>
     <innerclass refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem" prot="public">Pathfinder::GameFilesystem::Filesystem</innerclass>
+    <innerclass refid="class_pathfinder_1_1_game_filesystem_1_1_file_type_extension" prot="public">Pathfinder::GameFilesystem::FileTypeExtension</innerclass>
     <innerclass refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object" prot="public">Pathfinder::GameFilesystem::IFileObject</innerclass>
       <sectiondef kind="enum">
       <memberdef kind="enum" id="namespace_pathfinder_1_1_game_filesystem_1a03dead9151c6fa847caa5f40346a6a6a" prot="public" static="no">
@@ -73,7 +75,38 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="145" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="144" bodyend="198"/>
+        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="155" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="154" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_pathfinder_1_1_game_filesystem_1a873ecba342eff829005d86481960c19d" prot="public" static="no">
+        <name>FileType</name>
+        <enumvalue id="namespace_pathfinder_1_1_game_filesystem_1a873ecba342eff829005d86481960c19daac52cf637478f3656a1fdee5c02324fd" prot="public">
+          <name>Filesystem</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_pathfinder_1_1_game_filesystem_1a873ecba342eff829005d86481960c19dae73cda510e8bb947f7e61089e5581494" prot="public">
+          <name>Directory</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_pathfinder_1_1_game_filesystem_1a873ecba342eff829005d86481960c19da0b27918290ff5323bea1e3b78a9cf04e" prot="public">
+          <name>File</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="211" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="210" bodyend="215"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

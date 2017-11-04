@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Hacknet;
 using Pathfinder.Util;
 
 namespace Pathfinder.GameFilesystem
 {
-    public class Filesystem : FileObject<FileSystem, Hacknet.Computer>
+    public sealed class Filesystem : FileObject<FileSystem, Hacknet.Computer>, IEnumerable<IFileObject>
     {
+        private Directory rootDirectory;
+
         public Filesystem(Hacknet.Computer parent) : base(parent.files, parent) { }
 
         public override string Name
@@ -18,7 +22,7 @@ namespace Pathfinder.GameFilesystem
 
             set
             {
-                throw new InvalidOperationException("A Pathfinder.GameFilesystem.Filesystem Instance Name can't be assigned");
+                throw new InvalidOperationException("A " + nameof(Filesystem) + " Instance Name can't be assigned");
             }
         }
 
@@ -30,23 +34,18 @@ namespace Pathfinder.GameFilesystem
             {
                 return -1;
             }
+
             internal set
             {
-                throw new InvalidOperationException("A Pathfinder.GameFilesystem.Filesystem Instance Index can't be assigned");
+                throw new InvalidOperationException("A " + nameof(Filesystem) + " Instance Index can't be assigned");
             }
         }
 
         public override Filesystem Root => this;
+        public override FileType Type => FileType.Filesystem;
+        public Directory Directory => rootDirectory ?? (rootDirectory = new Directory(Object.root, this));
 
-        public Directory Directory
-        {
-            get
-            {
-                return new Directory(Object.root, this);
-            }
-        }
-
-        public Directory SeacrhForDirectory(string path)
+        public Directory SearchForDirectory(string path)
         {
             var res = Directory;
             foreach (var p in path.Split('/').Skip(1))
@@ -71,14 +70,15 @@ namespace Pathfinder.GameFilesystem
             return res;
         }
 
+        public IEnumerator<IFileObject> GetEnumerator() => Directory.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
         public string IPAccess { get; set; } = null;
         public bool ShouldLogMultiplayer { get; set; } = true;
 
         public static Filesystem PrimaryFilesystem => Utility.ClientComputer;
 
-        public static implicit operator Filesystem(Hacknet.Computer c)
-        {
-            return new Filesystem(c);
-        }
+        public static implicit operator Filesystem(Hacknet.Computer c) => new Filesystem(c);
     }
 }

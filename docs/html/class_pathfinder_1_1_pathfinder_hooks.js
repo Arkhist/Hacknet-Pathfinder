@@ -15,7 +15,7 @@ var class_pathfinder_1_1_pathfinder_hooks =
     [ "onLoadSaveFile", "class_pathfinder_1_1_pathfinder_hooks.html#a2147d4acd050711b4e3af3f3e54f604a", null ],
     [ "onLoadSession", "class_pathfinder_1_1_pathfinder_hooks.html#adeb1045c54b7cd3d4173d3c7b14fc016", null ],
     [ "onMain", "class_pathfinder_1_1_pathfinder_hooks.html#ab1edc04c1d1b258c5fa7e9d91cf71652", null ],
-    [ "onMainMenuButtonsDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a22723a402af6d601ecc3e59ccac70cd9", null ],
+    [ "onMainMenuButtonsDraw", "class_pathfinder_1_1_pathfinder_hooks.html#aa286f1ae39bd813fa4e6a391d4b863e7", null ],
     [ "onMainMenuDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a7d223357d5480b066fee3aac4fd53eff", null ],
     [ "onOptionsApply", "class_pathfinder_1_1_pathfinder_hooks.html#a8eab001a65ee6cd55c4a09bb13ba3663", null ],
     [ "onOptionsMenuDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a6d2b26ee04eb7464c6abe32136fff5f5", null ],

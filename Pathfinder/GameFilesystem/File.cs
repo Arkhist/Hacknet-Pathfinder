@@ -1,4 +1,4 @@
-﻿using Hacknet;
+using Hacknet;
 
 namespace Pathfinder.GameFilesystem
 {
@@ -31,6 +31,8 @@ namespace Pathfinder.GameFilesystem
 
         public sealed override Filesystem Root => Parent.Root;
 
+        public sealed override FileType Type => FileType.File;
+
         public override string Path
         {
             get
@@ -40,7 +42,7 @@ namespace Pathfinder.GameFilesystem
 
             set
             {
-                var d = Root.SeacrhForDirectory(value.Remove(value.LastIndexOf('/')));
+                var d = Root.SearchForDirectory(value.Remove(value.LastIndexOf('/')));
                 if (d != null)
                     Parent = d;
                 var name = value.Substring(value.LastIndexOf('/') + 1);

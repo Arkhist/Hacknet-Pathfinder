@@ -3,15 +3,51 @@
   <compounddef id="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Event::DrawMainMenuButtonsEvent</compoundname>
     <basecompoundref refid="class_pathfinder_1_1_event_1_1_main_menu_event" prot="public" virt="non-virtual">Pathfinder.Event.MainMenuEvent</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event_1ab0219d6645b9b826f74f7096bb007e80" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int Pathfinder.Event.DrawMainMenuButtonsEvent.MainButtonY</definition>
+        <argsstring></argsstring>
+        <name>MainButtonY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="26" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event_1a1daa6b71ad4f6385663ab81d98e32988" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int Pathfinder.Event.DrawMainMenuButtonsEvent.SecondaryButtonY</definition>
+        <argsstring></argsstring>
+        <name>SecondaryButtonY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="27" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event_1a253b40cc400535bac8b0ec99dce8a5da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event_1a6ccb8d60b2cb6efe26faf67c8a81a83a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>Pathfinder.Event.DrawMainMenuButtonsEvent.DrawMainMenuButtonsEvent</definition>
-        <argsstring>(Hacknet.MainMenu mainMenu)</argsstring>
+        <argsstring>(Hacknet.MainMenu mainMenu, int mainY, int secondY)</argsstring>
         <name>DrawMainMenuButtonsEvent</name>
         <param>
           <type>Hacknet.MainMenu</type>
           <declname>mainMenu</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mainY</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>secondY</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -19,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="26" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="26" bodyend="26"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="28" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="28" bodyend="32"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -68,14 +104,16 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/MainMenuEvents.cs" line="25" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="24" bodyend="27"/>
+    <location file="Pathfinder/Event/MainMenuEvents.cs" line="25" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="24" bodyend="33"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>CallEvent</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event_1a253b40cc400535bac8b0ec99dce8a5da" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>DrawMainMenuButtonsEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event_1a6ccb8d60b2cb6efe26faf67c8a81a83a" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>DrawMainMenuButtonsEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>IsCancelled</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event_1ab0219d6645b9b826f74f7096bb007e80" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>MainButtonY</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_main_menu_event_1a43e6e11389ed9f7d85cce30a467b9f33" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>MainMenu</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_main_menu_event_1a3a45b98e106bcc8bf2c4efa9574966d2" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>MainMenuEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_main_menu_event_1a89e0fb7803acff5c8488ee876b81b5b5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>MainMenuInstance</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event_1a1daa6b71ad4f6385663ab81d98e32988" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>SecondaryButtonY</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -321,24 +321,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="304">
+      <node id="317">
         <label>Hacknet::Daemon</label>
       </node>
-      <node id="303">
+      <node id="316">
         <label>Pathfinder.Daemon.Instance</label>
         <link refid="class_pathfinder_1_1_daemon_1_1_instance"/>
-        <childnode refid="304" relation="public-inheritance">
+        <childnode refid="317" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="306">
+      <node id="319">
         <label>Hacknet::Daemon</label>
       </node>
-      <node id="305">
+      <node id="318">
         <label>Pathfinder.Daemon.Instance</label>
         <link refid="class_pathfinder_1_1_daemon_1_1_instance"/>
-        <childnode refid="306" relation="public-inheritance">
+        <childnode refid="319" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

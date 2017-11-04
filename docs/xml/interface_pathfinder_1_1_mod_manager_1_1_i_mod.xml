@@ -5,6 +5,7 @@
     <derivedcompoundref refid="interface_pathfinder_1_1_i_pathfinder_mod" prot="public" virt="non-virtual">Pathfinder.IPathfinderMod</derivedcompoundref>
     <derivedcompoundref refid="class_pathfinder_1_1_mod_manager_1_1_mod" prot="public" virt="non-virtual">Pathfinder.ModManager.Mod</derivedcompoundref>
     <derivedcompoundref refid="class_pathfinder_1_1_mod_manager_1_1_placeholder" prot="public" virt="non-virtual">Pathfinder.ModManager.Placeholder</derivedcompoundref>
+    <derivedcompoundref refid="class_template_mod_1_1_template_mod" prot="public" virt="non-virtual">TemplateMod.TemplateMod</derivedcompoundref>
       <sectiondef kind="property">
       <memberdef kind="property" id="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1a6b02b35017029548fc1616ec0b64c4fa" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>string</type>
@@ -72,47 +73,47 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="287">
+      <node id="300">
         <label>Pathfinder.PathfinderMod</label>
         <link refid="class_pathfinder_1_1_pathfinder_mod"/>
-        <childnode refid="285" relation="public-inheritance">
+        <childnode refid="298" relation="public-inheritance">
         </childnode>
-        <childnode refid="289" relation="public-inheritance">
+        <childnode refid="301" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="286">
+      <node id="299">
         <label>Pathfinder.ModPlaceholder</label>
         <link refid="class_pathfinder_1_1_mod_placeholder"/>
-        <childnode refid="285" relation="public-inheritance">
+        <childnode refid="298" relation="public-inheritance">
         </childnode>
-        <childnode refid="290" relation="public-inheritance">
+        <childnode refid="302" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="290">
+      <node id="302">
         <label>Pathfinder.ModManager.Placeholder</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_placeholder"/>
-        <childnode refid="284" relation="public-inheritance">
+        <childnode refid="297" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="289">
+      <node id="301">
         <label>Pathfinder.ModManager.Mod</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_mod"/>
-        <childnode refid="284" relation="public-inheritance">
+        <childnode refid="297" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="288">
+      <node id="303">
         <label>TemplateMod.TemplateMod</label>
-        <childnode refid="285" relation="public-inheritance">
+        <childnode refid="297" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="284">
+      <node id="297">
         <label>Pathfinder.ModManager.IMod</label>
         <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
       </node>
-      <node id="285">
+      <node id="298">
         <label>Pathfinder.IPathfinderMod</label>
         <link refid="interface_pathfinder_1_1_i_pathfinder_mod"/>
-        <childnode refid="284" relation="public-inheritance">
+        <childnode refid="297" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>

@@ -2,6 +2,8 @@ var searchData=
 [
   ['mainmenuevent',['MainMenuEvent',['../class_pathfinder_1_1_event_1_1_main_menu_event.html#a3a45b98e106bcc8bf2c4efa9574966d2',1,'Pathfinder::Event::MainMenuEvent']]],
   ['makefolder',['MakeFolder',['../class_pathfinder_1_1_game_filesystem_1_1_extensions.html#a057d54005c7c83b3411cf03c08b10bb4',1,'Pathfinder.GameFilesystem.Extensions.MakeFolder(this Folder folder, string path)'],['../class_pathfinder_1_1_game_filesystem_1_1_extensions.html#a6f9fbff6a19ac473c42a42e8b3aeb204',1,'Pathfinder.GameFilesystem.Extensions.MakeFolder(this FileSystem fs, string path)']]],
+  ['markforload',['MarkForLoad',['../class_pathfinder_1_1_mod_manager_1_1_manager.html#a8f050c6af7d4f69a81eb0ca0317530dd',1,'Pathfinder::ModManager::Manager']]],
+  ['markforunload',['MarkForUnload',['../class_pathfinder_1_1_mod_manager_1_1_manager.html#a990fc98745cabbb041548c4cce001804',1,'Pathfinder::ModManager::Manager']]],
   ['modcontent',['ModContent',['../class_pathfinder_1_1_util_1_1_file_1_1_mod_content.html#ac24f862c6747c7d138c75af452484d6b',1,'Pathfinder::Util::File::ModContent']]],
   ['modoptionsattribute',['ModOptionsAttribute',['../class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute.html#a9eb8ee30e83c3448a52eb73414153148',1,'Pathfinder.Util.Attribute.ModOptionsAttribute.ModOptionsAttribute(Type type)'],['../class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute.html#a70e4f304af02cf96b688b33b2caccd3d',1,'Pathfinder.Util.Attribute.ModOptionsAttribute.ModOptionsAttribute(string name)']]],
   ['modplaceholder',['ModPlaceholder',['../class_pathfinder_1_1_mod_placeholder.html#a1448ab1ae113aa5db5bd7dc1602ced7b',1,'Pathfinder::ModPlaceholder']]],

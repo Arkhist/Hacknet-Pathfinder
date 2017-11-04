@@ -52,7 +52,7 @@ namespace Pathfinder.GameFilesystem
 
             set
             {
-                var d = Root.SeacrhForDirectory(value.Remove(value.LastIndexOf('/')));
+                var d = Root.SearchForDirectory(value.Remove(value.LastIndexOf('/')));
                 if (d != null)
                     Parent = d;
                 var name = value.Substring(value.LastIndexOf('/') + 1);
@@ -70,6 +70,8 @@ namespace Pathfinder.GameFilesystem
         public sealed override int Index { get; internal set; }
 
         public sealed override Filesystem Root => Parent.Root;
+
+        public sealed override FileType Type => FileType.Directory;
 
         /// <summary>
         /// Casts the Parent FileObject to a Directory
@@ -93,7 +95,7 @@ namespace Pathfinder.GameFilesystem
             return null;
         }
 
-        public Directory SeacrhForDirectory(string path)
+        public Directory SearchForDirectory(string path)
         {
             var res = this;
             foreach (var p in path.Split('/').Skip(1))
@@ -209,8 +211,7 @@ namespace Pathfinder.GameFilesystem
                 return Object.containsFileWithData(data);
             if (data == null)
                 return Object.containsFile(name);
-            else
-                return Object.files.Exists(f => f.name == name && f.data == data);
+            return Object.files.Exists(f => f.name == name && f.data == data);
         }
 
         public bool ContainsDirectory(string name)

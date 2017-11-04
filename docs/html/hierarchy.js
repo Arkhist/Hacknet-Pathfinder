@@ -57,8 +57,8 @@ var hierarchy =
     [ "Pathfinder.OS.Extensions", "class_pathfinder_1_1_o_s_1_1_extensions.html", null ],
     [ "Pathfinder.Game.Computer.Extensions", "class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html", null ],
     [ "Pathfinder.Game.OS.Extensions", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html", null ],
-    [ "Pathfinder.Game.NetworkMap.Extensions", "class_pathfinder_1_1_game_1_1_network_map_1_1_extensions.html", null ],
     [ "Pathfinder.GameFilesystem.Extensions", "class_pathfinder_1_1_game_filesystem_1_1_extensions.html", null ],
+    [ "Pathfinder.Game.NetworkMap.Extensions", "class_pathfinder_1_1_game_1_1_network_map_1_1_extensions.html", null ],
     [ "Pathfinder.GameFilesystem.FileObject< VanillaT, ParentT >", "class_pathfinder_1_1_game_filesystem_1_1_file_object.html", null ],
     [ "Pathfinder.GameFilesystem.FileObject< FileEntry, Directory >", "class_pathfinder_1_1_game_filesystem_1_1_file_object.html", [
       [ "Pathfinder.GameFilesystem.File", "class_pathfinder_1_1_game_filesystem_1_1_file.html", null ]
@@ -72,6 +72,8 @@ var hierarchy =
     [ "Pathfinder.GameFilesystem.FileObject< VanillaT >", "class_pathfinder_1_1_game_filesystem_1_1_file_object.html", [
       [ "Pathfinder.GameFilesystem.FileObject< VanillaT >", "class_pathfinder_1_1_game_filesystem_1_1_file_object.html", null ]
     ] ],
+    [ "Pathfinder.GameFilesystem.FilePath", "class_pathfinder_1_1_game_filesystem_1_1_file_path.html", null ],
+    [ "Pathfinder.GameFilesystem.FileTypeExtension", "class_pathfinder_1_1_game_filesystem_1_1_file_type_extension.html", null ],
     [ "Pathfinder.Command.Handler", "class_pathfinder_1_1_command_1_1_handler.html", null ],
     [ "Pathfinder.GUI.ModOptions.Handler", "class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_handler.html", null ],
     [ "Pathfinder.Daemon.Handler", "class_pathfinder_1_1_daemon_1_1_handler.html", null ],
@@ -82,7 +84,8 @@ var hierarchy =
     [ "Pathfinder.Internal.HandlerListener", "class_pathfinder_1_1_internal_1_1_handler_listener.html", null ],
     [ "Pathfinder.Command.Help", "class_pathfinder_1_1_command_1_1_help.html", null ],
     [ "IEnumerable", null, [
-      [ "Pathfinder.GameFilesystem.Directory", "class_pathfinder_1_1_game_filesystem_1_1_directory.html", null ]
+      [ "Pathfinder.GameFilesystem.Directory", "class_pathfinder_1_1_game_filesystem_1_1_directory.html", null ],
+      [ "Pathfinder.GameFilesystem.Filesystem", "class_pathfinder_1_1_game_filesystem_1_1_filesystem.html", null ]
     ] ],
     [ "IEquatable", null, [
       [ "Pathfinder.Port.Instance", "class_pathfinder_1_1_port_1_1_instance.html", null ],

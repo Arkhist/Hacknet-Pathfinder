@@ -155,31 +155,31 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="381">
+      <node id="393">
         <label>Pathfinder.PathfinderMod</label>
         <link refid="class_pathfinder_1_1_pathfinder_mod"/>
-        <childnode refid="379" relation="public-inheritance">
+        <childnode refid="391" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="379">
+      <node id="391">
         <label>Pathfinder.ModManager.Mod</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_mod"/>
-        <childnode refid="380" relation="public-inheritance">
+        <childnode refid="392" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="380">
+      <node id="392">
         <label>IMod</label>
         <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="382">
+      <node id="394">
         <label>Pathfinder.ModManager.Mod</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_mod"/>
-        <childnode refid="383" relation="public-inheritance">
+        <childnode refid="395" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="383">
+      <node id="395">
         <label>IMod</label>
         <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
       </node>

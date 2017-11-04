@@ -163,6 +163,7 @@
     <Compile Include="Pathfinder\Game\Computer\Extensions.cs" />
     <Compile Include="Pathfinder\Game\NetworkMap\Extensions.cs" />
     <Compile Include="Pathfinder\Game\OS\Extensions.cs" />
+    <Compile Include="Pathfinder\GameFilesystem\FilePath.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Computer\" />

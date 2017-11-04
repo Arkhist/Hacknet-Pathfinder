@@ -22,7 +22,7 @@ var class_pathfinder_1_1_game_filesystem_1_1_directory =
     [ "RemoveDirectory", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a5a30aeb285391a1159957b3047acb1e9", null ],
     [ "RemoveFile", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a8fdcbcf6d19f409edf126a6716b29633", null ],
     [ "RemoveFile", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a2edb9f010d03c77886e8c0057d0e05e3", null ],
-    [ "SeacrhForDirectory", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a82672e4a62df5f20266c8481edb77f43", null ],
+    [ "SearchForDirectory", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#af06de9b3ab4f362c9f794e09d58f0079", null ],
     [ "SearchForFile", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#ace439a09fc0d18b85e6cfa171c34e07e", null ],
     [ "Directories", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#aba9a0ff76d741285d4820ef957e0affe", null ],
     [ "DirectoryCount", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#aa058dabe3080d142dc82fef3681ca1fb", null ],
@@ -31,6 +31,7 @@ var class_pathfinder_1_1_game_filesystem_1_1_directory =
     [ "ParentDirectory", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a95421f5140591db142d603796dc84918", null ],
     [ "Root", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a3fc80a20942b10df9962d8d6bcfa564e", null ],
     [ "this[string name]", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a0cc62ab846ea71703c3be4b1a72a3d5c", null ],
+    [ "Type", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#aa59b2db31ec83aa048ec3e921a257dbe", null ],
     [ "Index", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#ab8a2bbe8ade5b544166f7e2660ff6bf7", null ],
     [ "Name", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#af80bacc8ee33f4aa413448d8a750cbf4", null ],
     [ "Path", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a9be36703c187719d285a1793eff63e2a", null ]

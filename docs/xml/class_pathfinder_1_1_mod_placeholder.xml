@@ -28,62 +28,62 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="394">
+      <node id="406">
         <label>Pathfinder.ModPlaceholder</label>
         <link refid="class_pathfinder_1_1_mod_placeholder"/>
-        <childnode refid="395" relation="public-inheritance">
+        <childnode refid="407" relation="public-inheritance">
         </childnode>
-        <childnode refid="397" relation="public-inheritance">
+        <childnode refid="409" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="395">
+      <node id="407">
         <label>ModManager::Placeholder</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_placeholder"/>
-        <childnode refid="396" relation="public-inheritance">
+        <childnode refid="408" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="398">
+      <node id="410">
         <label>ModManager::IMod</label>
         <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
       </node>
-      <node id="396">
+      <node id="408">
         <label>IMod</label>
         <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
       </node>
-      <node id="397">
+      <node id="409">
         <label>IPathfinderMod</label>
         <link refid="interface_pathfinder_1_1_i_pathfinder_mod"/>
-        <childnode refid="398" relation="public-inheritance">
+        <childnode refid="410" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="399">
+      <node id="411">
         <label>Pathfinder.ModPlaceholder</label>
         <link refid="class_pathfinder_1_1_mod_placeholder"/>
-        <childnode refid="400" relation="public-inheritance">
+        <childnode refid="412" relation="public-inheritance">
         </childnode>
-        <childnode refid="402" relation="public-inheritance">
+        <childnode refid="414" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="400">
+      <node id="412">
         <label>ModManager::Placeholder</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_placeholder"/>
-        <childnode refid="401" relation="public-inheritance">
+        <childnode refid="413" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="403">
+      <node id="415">
         <label>ModManager::IMod</label>
         <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
       </node>
-      <node id="401">
+      <node id="413">
         <label>IMod</label>
         <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
       </node>
-      <node id="402">
+      <node id="414">
         <label>IPathfinderMod</label>
         <link refid="interface_pathfinder_1_1_i_pathfinder_mod"/>
-        <childnode refid="403" relation="public-inheritance">
+        <childnode refid="415" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

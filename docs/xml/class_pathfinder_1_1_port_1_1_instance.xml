@@ -211,34 +211,34 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="307">
+      <node id="320">
         <label>Pathfinder.Port.Instance</label>
         <link refid="class_pathfinder_1_1_port_1_1_instance"/>
-        <childnode refid="308" relation="public-inheritance">
+        <childnode refid="321" relation="public-inheritance">
         </childnode>
-        <childnode refid="309" relation="public-inheritance">
+        <childnode refid="322" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="308">
+      <node id="321">
         <label>IEquatable&lt; Type &gt;</label>
       </node>
-      <node id="309">
+      <node id="322">
         <label>IEquatable&lt; Instance &gt;</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="310">
+      <node id="323">
         <label>Pathfinder.Port.Instance</label>
         <link refid="class_pathfinder_1_1_port_1_1_instance"/>
-        <childnode refid="311" relation="public-inheritance">
+        <childnode refid="324" relation="public-inheritance">
         </childnode>
-        <childnode refid="312" relation="public-inheritance">
+        <childnode refid="325" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="311">
+      <node id="324">
         <label>IEquatable&lt; Type &gt;</label>
       </node>
-      <node id="312">
+      <node id="325">
         <label>IEquatable&lt; Instance &gt;</label>
       </node>
     </collaborationgraph>

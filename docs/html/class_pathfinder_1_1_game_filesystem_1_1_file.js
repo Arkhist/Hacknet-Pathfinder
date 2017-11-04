@@ -5,6 +5,7 @@ var class_pathfinder_1_1_game_filesystem_1_1_file =
     [ "UpdateFileSize", "class_pathfinder_1_1_game_filesystem_1_1_file.html#a759f8e3f40bee6ee654823b94987dd5a", null ],
     [ "Head", "class_pathfinder_1_1_game_filesystem_1_1_file.html#a54081accd395035618e372cbe43fbb81", null ],
     [ "Root", "class_pathfinder_1_1_game_filesystem_1_1_file.html#aee6cf4f931a9ba66c65e11e0e267cd2c", null ],
+    [ "Type", "class_pathfinder_1_1_game_filesystem_1_1_file.html#a14b77662cd67f7c99b3c15e9bb0128a7", null ],
     [ "Data", "class_pathfinder_1_1_game_filesystem_1_1_file.html#af683f9a133f6e176a971a85c1dfab0de", null ],
     [ "Index", "class_pathfinder_1_1_game_filesystem_1_1_file.html#a2611697af53f7740f524ae8db89b8651", null ],
     [ "Name", "class_pathfinder_1_1_game_filesystem_1_1_file.html#af5ebf4de669771078f0df15cabc50bfd", null ],

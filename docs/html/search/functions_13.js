@@ -2,6 +2,7 @@ var searchData=
 [
   ['unload',['Unload',['../interface_pathfinder_1_1_mod_manager_1_1_i_mod.html#abd2edc19398718a168a57b8726b41360',1,'Pathfinder.ModManager.IMod.Unload()'],['../class_pathfinder_1_1_mod_manager_1_1_mod.html#a83e028edb8a35a05a78d7c54737fbc5e',1,'Pathfinder.ModManager.Mod.Unload()'],['../class_pathfinder_1_1_mod_manager_1_1_placeholder.html#a5b47820adbf7220bdcb7c2bc18025477',1,'Pathfinder.ModManager.Placeholder.Unload()']]],
   ['unloadcontentformodextensionlistener',['UnloadContentForModExtensionListener',['../class_pathfinder_1_1_internal_1_1_g_u_i_1_1_mod_extensions_u_i.html#a0c391eb2c508ca7692462cc3e5909459',1,'Pathfinder::Internal::GUI::ModExtensionsUI']]],
+  ['unloadmarkedmods',['UnloadMarkedMods',['../class_pathfinder_1_1_mod_manager_1_1_manager.html#abb14af026f874dd11a614e694514c3f5',1,'Pathfinder::ModManager::Manager']]],
   ['unloadmod',['UnloadMod',['../class_pathfinder_1_1_mod_manager_1_1_manager.html#acbb945b1a42e6b501918a6441d27826a',1,'Pathfinder::ModManager::Manager']]],
   ['unloadmods',['UnloadMods',['../class_pathfinder_1_1_mod_manager_1_1_manager.html#a5226f6eba54df74fed23843da36a5874',1,'Pathfinder::ModManager::Manager']]],
   ['unregisterlistener',['UnregisterListener',['../class_pathfinder_1_1_event_1_1_event_manager.html#a42972b3abb0b3d901ae52fbb25c621ed',1,'Pathfinder::Event::EventManager']]],

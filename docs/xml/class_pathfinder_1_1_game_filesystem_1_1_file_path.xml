@@ -1,0 +1,388 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_game_filesystem_1_1_file_path" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::GameFilesystem::FilePath</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a646a0871fbdbff21c340f56ebb39a48b" prot="public" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string Pathfinder.GameFilesystem.FilePath.SEPERATOR</definition>
+        <argsstring></argsstring>
+        <name>SEPERATOR</name>
+        <initializer>= &quot;/&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="7" column="1" bodyfile="Pathfinder/GameFilesystem/FilePath.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1ab456f92b1c5e33a045141bb1b09f995c" prot="public" static="no" mutable="no">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>FilePath Pathfinder.GameFilesystem.FilePath.Root</definition>
+        <argsstring></argsstring>
+        <name>Root</name>
+        <initializer>=&gt; Path.StartsWith(<ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a646a0871fbdbff21c340f56ebb39a48b" kindref="member">SEPERATOR</ref>) ? Path.Substring(1, Path.IndexOf(<ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a646a0871fbdbff21c340f56ebb39a48b" kindref="member">SEPERATOR</ref>, 1)) : &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="53" column="1" bodyfile="Pathfinder/GameFilesystem/FilePath.cs" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1ac9b5e740b6323c7b65e1e45fb9357280" prot="public" static="no" mutable="no">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>FilePath Pathfinder.GameFilesystem.FilePath.Relative</definition>
+        <argsstring></argsstring>
+        <name>Relative</name>
+        <initializer>=&gt; Path.IndexOf(<ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1ab456f92b1c5e33a045141bb1b09f995c" kindref="member">Root</ref>) != -1 ? Path.Remove(Path.IndexOf(<ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1ab456f92b1c5e33a045141bb1b09f995c" kindref="member">Root</ref>), Root.Path.Length) : <ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a41e1136908e390d19722bc6fa266036e" kindref="member">Path</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="54" column="1" bodyfile="Pathfinder/GameFilesystem/FilePath.cs" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1aeda33548b37d13b1352f93f8a2636550" prot="public" static="no" mutable="no">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>FilePath Pathfinder.GameFilesystem.FilePath.Filename</definition>
+        <argsstring></argsstring>
+        <name>Filename</name>
+        <initializer>=&gt; Path.IndexOf(<ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a646a0871fbdbff21c340f56ebb39a48b" kindref="member">SEPERATOR</ref>) != Path.LastIndexOf(<ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a646a0871fbdbff21c340f56ebb39a48b" kindref="member">SEPERATOR</ref>)
+                                        &amp;&amp; Path.LastIndexOf(<ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a646a0871fbdbff21c340f56ebb39a48b" kindref="member">SEPERATOR</ref>) == Path.Length - 1
+                                        ? &quot;.&quot; : Path.Substring(Path.LastIndexOf(<ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a646a0871fbdbff21c340f56ebb39a48b" kindref="member">SEPERATOR</ref>)+1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="66" column="1" bodyfile="Pathfinder/GameFilesystem/FilePath.cs" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1acd3a83325713ca43120fec3f59d7357e" prot="public" static="no" mutable="no">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>FilePath Pathfinder.GameFilesystem.FilePath.Stem</definition>
+        <argsstring></argsstring>
+        <name>Stem</name>
+        <initializer>=&gt; Filename.Path.LastIndexOf(&apos;.&apos;) != -1
+                                        &amp;&amp; <ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1aeda33548b37d13b1352f93f8a2636550" kindref="member">Filename</ref> != &quot;.&quot; &amp;&amp; <ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1aeda33548b37d13b1352f93f8a2636550" kindref="member">Filename</ref> != &quot;..&quot;
+                                        ? Filename.Path.Remove(Filename.Path.LastIndexOf(&apos;.&apos;)) : Filename.Path</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="70" column="1" bodyfile="Pathfinder/GameFilesystem/FilePath.cs" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a42f37d2a9ad2bf052f15b339c8f90505" prot="public" static="no" mutable="no">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>FilePath Pathfinder.GameFilesystem.FilePath.Extension</definition>
+        <argsstring></argsstring>
+        <name>Extension</name>
+        <initializer>=&gt; Filename.Path.LastIndexOf(&apos;.&apos;) != -1
+                                        &amp;&amp; <ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1aeda33548b37d13b1352f93f8a2636550" kindref="member">Filename</ref> != &quot;.&quot; &amp;&amp; <ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1aeda33548b37d13b1352f93f8a2636550" kindref="member">Filename</ref> != &quot;..&quot;
+                                        ? Filename.Path.Substring(Filename.Path.LastIndexOf(&apos;.&apos;)) : &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="74" column="1" bodyfile="Pathfinder/GameFilesystem/FilePath.cs" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a99c9fb8891785bff028488cf4d6372c6" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Pathfinder.GameFilesystem.FilePath.path</definition>
+        <argsstring></argsstring>
+        <name>path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="9" column="1" bodyfile="Pathfinder/GameFilesystem/FilePath.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a41e1136908e390d19722bc6fa266036e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string Pathfinder.GameFilesystem.FilePath.Path</definition>
+        <argsstring></argsstring>
+        <name>Path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="10" column="1" bodyfile="Pathfinder/GameFilesystem/FilePath.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1ab6787abcc2257d4980cc84a04e6ee76d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>FilePath Pathfinder.GameFilesystem.FilePath.Parent</definition>
+        <argsstring></argsstring>
+        <name>Parent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="55" column="1" bodyfile="Pathfinder/GameFilesystem/FilePath.cs" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1aaf67b5729f0031d1f35adf56090a5c43" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Pathfinder.GameFilesystem.FilePath.FilePath</definition>
+        <argsstring>(string path)</argsstring>
+        <name>FilePath</name>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="25" column="1" bodyfile="Pathfinder/GameFilesystem/FilePath.cs" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a59ab5953f24c42b3e73ced4d041aa21b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>FilePath Pathfinder.GameFilesystem.FilePath.Append</definition>
+        <argsstring>(FilePath source)</argsstring>
+        <name>Append</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="33" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a99207132738e48835e00b379368d2d85" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>FilePath Pathfinder.GameFilesystem.FilePath.Append</definition>
+        <argsstring>(string source)</argsstring>
+        <name>Append</name>
+        <param>
+          <type>string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="34" column="1" bodyfile="Pathfinder/GameFilesystem/FilePath.cs" bodystart="34" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a40cad3307346d4ec4c8861ef80ccb5ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>FilePath Pathfinder.GameFilesystem.FilePath.Concat</definition>
+        <argsstring>(FilePath source)</argsstring>
+        <name>Concat</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="47" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a34b635dbba4bb170e3e0c81eb661f5e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>FilePath Pathfinder.GameFilesystem.FilePath.Concat</definition>
+        <argsstring>(string source)</argsstring>
+        <name>Concat</name>
+        <param>
+          <type>string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="48" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a441a609e7d5c85374125850bdceb3718" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>implicit</type>
+        <definition>static implicit Pathfinder.GameFilesystem.FilePath.operator FilePath</definition>
+        <argsstring>(string s)</argsstring>
+        <name>operator FilePath</name>
+        <param>
+          <type>string</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="30" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1adb63ae7b28ddeab45495e2997f74d6e5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>implicit</type>
+        <definition>static implicit Pathfinder.GameFilesystem.FilePath.operator string</definition>
+        <argsstring>(FilePath p)</argsstring>
+        <name>operator string</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="31" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1ae7e814f7cc020847b5c2b51063494203" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>static FilePath Pathfinder.GameFilesystem.FilePath.operator/</definition>
+        <argsstring>(FilePath path, FilePath source)</argsstring>
+        <name>operator/</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="44" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1ab12322336655f6a37391aab1c6730f84" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>static FilePath Pathfinder.GameFilesystem.FilePath.operator/</definition>
+        <argsstring>(FilePath path, string source)</argsstring>
+        <name>operator/</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="45" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a911438638068971112302af7a46dbdaa" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>static FilePath Pathfinder.GameFilesystem.FilePath.operator+</definition>
+        <argsstring>(FilePath path, FilePath source)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="50" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a58e026b5a8a52a05183f56318ccb576e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+        <definition>static FilePath Pathfinder.GameFilesystem.FilePath.operator+</definition>
+        <argsstring>(FilePath path, string source)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file_path" kindref="compound">FilePath</ref></type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FilePath.cs" line="51" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="217">
+        <label>Pathfinder.GameFilesystem.FilePath</label>
+        <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_path"/>
+        <childnode refid="217" relation="usage">
+          <edgelabel>Root</edgelabel>
+          <edgelabel>Filename</edgelabel>
+          <edgelabel>Stem</edgelabel>
+          <edgelabel>Relative</edgelabel>
+          <edgelabel>Extension</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/GameFilesystem/FilePath.cs" line="6" column="1" bodyfile="Pathfinder/GameFilesystem/FilePath.cs" bodystart="5" bodyend="77"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a59ab5953f24c42b3e73ced4d041aa21b" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>Append</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a99207132738e48835e00b379368d2d85" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>Append</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a40cad3307346d4ec4c8861ef80ccb5ef" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>Concat</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a34b635dbba4bb170e3e0c81eb661f5e9" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>Concat</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a42f37d2a9ad2bf052f15b339c8f90505" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>Extension</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1aeda33548b37d13b1352f93f8a2636550" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>Filename</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1aaf67b5729f0031d1f35adf56090a5c43" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>FilePath</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a441a609e7d5c85374125850bdceb3718" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>operator FilePath</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1adb63ae7b28ddeab45495e2997f74d6e5" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>operator string</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a911438638068971112302af7a46dbdaa" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>operator+</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a58e026b5a8a52a05183f56318ccb576e" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>operator+</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1ae7e814f7cc020847b5c2b51063494203" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>operator/</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1ab12322336655f6a37391aab1c6730f84" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>operator/</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1ab6787abcc2257d4980cc84a04e6ee76d" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>Parent</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a41e1136908e390d19722bc6fa266036e" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>Path</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a99c9fb8891785bff028488cf4d6372c6" prot="private" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>path</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1ac9b5e740b6323c7b65e1e45fb9357280" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>Relative</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1ab456f92b1c5e33a045141bb1b09f995c" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>Root</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1a646a0871fbdbff21c340f56ebb39a48b" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>SEPERATOR</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_path_1acd3a83325713ca43120fec3f59d7357e" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FilePath</scope><name>Stem</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

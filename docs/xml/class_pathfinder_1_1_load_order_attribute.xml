@@ -33,36 +33,36 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="353">
+      <node id="365">
         <label>Util::Attribute::LoadOrderAttribute</label>
         <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute"/>
-        <childnode refid="354" relation="public-inheritance">
+        <childnode refid="366" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="354">
+      <node id="366">
         <label>System::Attribute</label>
       </node>
-      <node id="352">
+      <node id="364">
         <label>Pathfinder.LoadOrderAttribute</label>
         <link refid="class_pathfinder_1_1_load_order_attribute"/>
-        <childnode refid="353" relation="public-inheritance">
+        <childnode refid="365" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="356">
+      <node id="368">
         <label>Util::Attribute::LoadOrderAttribute</label>
         <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute"/>
-        <childnode refid="357" relation="public-inheritance">
+        <childnode refid="369" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="357">
+      <node id="369">
         <label>System::Attribute</label>
       </node>
-      <node id="355">
+      <node id="367">
         <label>Pathfinder.LoadOrderAttribute</label>
         <link refid="class_pathfinder_1_1_load_order_attribute"/>
-        <childnode refid="356" relation="public-inheritance">
+        <childnode refid="368" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

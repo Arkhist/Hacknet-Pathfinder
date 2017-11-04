@@ -27,44 +27,44 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="501">
+      <node id="513">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="502" relation="public-inheritance">
+        <childnode refid="514" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="502">
+      <node id="514">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="500">
+      <node id="512">
         <label>Pathfinder.Event.OSUnloadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_unload_content_event"/>
-        <childnode refid="501" relation="public-inheritance">
+        <childnode refid="513" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="504">
+      <node id="516">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="505" relation="public-inheritance">
+        <childnode refid="517" relation="public-inheritance">
         </childnode>
-        <childnode refid="506" relation="usage">
+        <childnode refid="518" relation="usage">
           <edgelabel>OsInstance</edgelabel>
         </childnode>
       </node>
-      <node id="505">
+      <node id="517">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="506">
+      <node id="518">
         <label>Hacknet</label>
       </node>
-      <node id="503">
+      <node id="515">
         <label>Pathfinder.Event.OSUnloadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_unload_content_event"/>
-        <childnode refid="504" relation="public-inheritance">
+        <childnode refid="516" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

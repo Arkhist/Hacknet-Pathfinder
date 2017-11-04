@@ -6,5 +6,7 @@ var searchData=
   ['fileobject_3c_20filesystem_2c_20hacknet_2ecomputer_20_3e',['FileObject&lt; FileSystem, Hacknet.Computer &gt;',['../class_pathfinder_1_1_game_filesystem_1_1_file_object.html',1,'Pathfinder::GameFilesystem']]],
   ['fileobject_3c_20folder_2c_20ifileobject_20_3e',['FileObject&lt; Folder, IFileObject &gt;',['../class_pathfinder_1_1_game_filesystem_1_1_file_object.html',1,'Pathfinder::GameFilesystem']]],
   ['fileobject_3c_20vanillat_20_3e',['FileObject&lt; VanillaT &gt;',['../class_pathfinder_1_1_game_filesystem_1_1_file_object.html',1,'Pathfinder::GameFilesystem']]],
-  ['filesystem',['Filesystem',['../class_pathfinder_1_1_game_filesystem_1_1_filesystem.html',1,'Pathfinder::GameFilesystem']]]
+  ['filepath',['FilePath',['../class_pathfinder_1_1_game_filesystem_1_1_file_path.html',1,'Pathfinder::GameFilesystem']]],
+  ['filesystem',['Filesystem',['../class_pathfinder_1_1_game_filesystem_1_1_filesystem.html',1,'Pathfinder::GameFilesystem']]],
+  ['filetypeextension',['FileTypeExtension',['../class_pathfinder_1_1_game_filesystem_1_1_file_type_extension.html',1,'Pathfinder::GameFilesystem']]]
 ];

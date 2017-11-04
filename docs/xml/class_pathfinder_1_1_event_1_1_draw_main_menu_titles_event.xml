@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="45" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="45" bodyend="-1"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="51" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="51" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1a5ebed0bb02743c50b7d907aa46e19141" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type><ref refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1_1_title_data" kindref="compound">TitleData</ref>&lt; float &gt;</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="46" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="46" bodyend="-1"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="52" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1a0458094d81fff54fac6c9067595a01ec" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>string</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="48" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="48" bodyend="-1"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="54" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1a08418295a0d8c09117478309894cf231" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>string</type>
@@ -55,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="50" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="50" bodyend="-1"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="56" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="56" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="52" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="52" bodyend="56"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="58" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="58" bodyend="62"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1aa81f72c2a0ab828416a7e3ceed1895fd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -107,7 +107,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="57" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="57" bodyend="61"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="63" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="63" bodyend="67"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -156,7 +156,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/MainMenuEvents.cs" line="30" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="29" bodyend="62"/>
+    <location file="Pathfinder/Event/MainMenuEvents.cs" line="36" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="35" bodyend="68"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuTitlesEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1affe2adc07b635da107a5d871e4dbb7c4" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuTitlesEvent</scope><name>DrawMainMenuTitlesEvent</name></member>

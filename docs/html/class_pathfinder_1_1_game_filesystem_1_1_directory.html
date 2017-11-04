@@ -109,8 +109,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad1299c0bbb0255b3c2582d8ece06ae9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18c88697e01d90c77c6a5f8d7d1daab0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#a18c88697e01d90c77c6a5f8d7d1daab0">FindDirectory</a> (string name)</td></tr>
 <tr class="separator:a18c88697e01d90c77c6a5f8d7d1daab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82672e4a62df5f20266c8481edb77f43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#a82672e4a62df5f20266c8481edb77f43">SeacrhForDirectory</a> (string path)</td></tr>
-<tr class="separator:a82672e4a62df5f20266c8481edb77f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af06de9b3ab4f362c9f794e09d58f0079"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#af06de9b3ab4f362c9f794e09d58f0079">SearchForDirectory</a> (string path)</td></tr>
+<tr class="separator:af06de9b3ab4f362c9f794e09d58f0079"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace439a09fc0d18b85e6cfa171c34e07e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#ace439a09fc0d18b85e6cfa171c34e07e">SearchForFile</a> (string path)</td></tr>
 <tr class="separator:ace439a09fc0d18b85e6cfa171c34e07e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4b4500fc5fed3a06caeb15722a1e14e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#af4b4500fc5fed3a06caeb15722a1e14e">GetFile</a> (int index)</td></tr>
@@ -156,6 +156,8 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a3fc80a20942b10df9962d8d6bcfa564e"><td class="memItemLeft" align="right" valign="top">sealed override <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_filesystem.html">Filesystem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#a3fc80a20942b10df9962d8d6bcfa564e">Root</a> =&gt; Parent.Root</td></tr>
 <tr class="separator:a3fc80a20942b10df9962d8d6bcfa564e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa59b2db31ec83aa048ec3e921a257dbe"><td class="memItemLeft" align="right" valign="top">sealed override <a class="el" href="namespace_pathfinder_1_1_game_filesystem.html#a873ecba342eff829005d86481960c19d">FileType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#aa59b2db31ec83aa048ec3e921a257dbe">Type</a> =&gt; <a class="el" href="namespace_pathfinder_1_1_game_filesystem.html#a873ecba342eff829005d86481960c19dae73cda510e8bb947f7e61089e5581494">FileType.Directory</a></td></tr>
+<tr class="separator:aa59b2db31ec83aa048ec3e921a257dbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95421f5140591db142d603796dc84918"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#a95421f5140591db142d603796dc84918">ParentDirectory</a> =&gt; (<a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a>)Parent</td></tr>
 <tr class="memdesc:a95421f5140591db142d603796dc84918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts the Parent <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file_object.html">FileObject</a> to a <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a>  <a href="#a95421f5140591db142d603796dc84918">More...</a><br /></td></tr>
 <tr class="separator:a95421f5140591db142d603796dc84918"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -269,7 +271,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00216">216</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00217">217</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -299,7 +301,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00204">204</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00206">206</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -319,7 +321,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00146">146</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00148">148</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -405,7 +407,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00127">127</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00129">129</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -453,7 +455,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00088">88</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00090">90</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -473,7 +475,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00080">80</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00082">82</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -510,7 +512,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00229">229</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00230">230</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -558,7 +560,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00187">187</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00189">189</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -588,7 +590,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00174">174</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00176">176</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -644,7 +646,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00166">166</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00168">168</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -682,18 +684,18 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00156">156</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00158">158</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
-<a id="a82672e4a62df5f20266c8481edb77f43"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82672e4a62df5f20266c8481edb77f43">&#9670;&nbsp;</a></span>SeacrhForDirectory()</h2>
+<a id="af06de9b3ab4f362c9f794e09d58f0079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af06de9b3ab4f362c9f794e09d58f0079">&#9670;&nbsp;</a></span>SearchForDirectory()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a> Pathfinder.GameFilesystem.Directory.SeacrhForDirectory </td>
+          <td class="memname"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a> Pathfinder.GameFilesystem.Directory.SearchForDirectory </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>path</em></td><td>)</td>
@@ -702,7 +704,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00096">96</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00098">98</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -722,7 +724,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00105">105</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00107">107</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -739,7 +741,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00225">225</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00226">226</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -755,7 +757,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00227">227</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00228">228</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -771,7 +773,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00226">226</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00227">227</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -787,7 +789,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00224">224</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00225">225</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -806,7 +808,7 @@ Properties</h2></td></tr>
 <p>Casts the Parent <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file_object.html">FileObject</a> to a <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a> </p>
 <p>The Parent as <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a></p>
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00078">78</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00080">80</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -838,7 +840,23 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00223">223</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00224">224</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa59b2db31ec83aa048ec3e921a257dbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa59b2db31ec83aa048ec3e921a257dbe">&#9670;&nbsp;</a></span>Type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sealed override <a class="el" href="namespace_pathfinder_1_1_game_filesystem.html#a873ecba342eff829005d86481960c19d">FileType</a> Pathfinder.GameFilesystem.Directory.Type =&gt; <a class="el" href="namespace_pathfinder_1_1_game_filesystem.html#a873ecba342eff829005d86481960c19dae73cda510e8bb947f7e61089e5581494">FileType.Directory</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_directory_8cs_source.html#l00074">74</a> of file <a class="el" href="_directory_8cs_source.html">Directory.cs</a>.</p>
 
 </div>
 </div>
@@ -933,7 +951,7 @@ Properties</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_pathfinder.html">Pathfinder</a></li><li class="navelem"><a class="el" href="namespace_pathfinder_1_1_game_filesystem.html">GameFilesystem</a></li><li class="navelem"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a></li>
-    <li class="footer">Generated on Fri Nov 3 2017 02:57:29 for Pathfinder Hacknet by
+    <li class="footer">Generated on Sat Nov 4 2017 14:23:18 for Pathfinder Hacknet by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

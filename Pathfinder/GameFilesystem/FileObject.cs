@@ -55,6 +55,12 @@ namespace Pathfinder.GameFilesystem
         /// </summary>
         public virtual Filesystem Root { get; }
         Filesystem IFileObject.Root => Root;
+        /// <summary>
+        /// Gets the FileType of the object.
+        /// </summary>
+        /// <value>The type.</value>
+        public virtual FileType Type { get; }
+        FileType IFileObject.Type => Type;
 
         public bool LogOperation(FileOpLogType t, params string[] inputArr)
         {
@@ -139,6 +145,10 @@ namespace Pathfinder.GameFilesystem
         /// Gets the root Filesystem the object is within
         /// </summary>
         Filesystem Root { get; }
+        /// <summary>
+        /// Gets the FileType of the object.
+        /// </summary>
+        FileType Type { get; }
     }
 
     public enum FileOpLogType
@@ -195,5 +205,17 @@ namespace Pathfinder.GameFilesystem
         /// 4 = oldFolderPath
         /// 5 = newFolderPath
         MoveFolder
+    }
+
+    public enum FileType
+    {
+        Filesystem,
+        Directory,
+        File
+    }
+
+    public static class FileTypeExtension
+    {
+        public static bool Is(this FileType self, FileType type) => self == type;
     }
 }

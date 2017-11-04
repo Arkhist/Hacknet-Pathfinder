@@ -4,6 +4,7 @@ var searchData=
   ['screeniscovered',['ScreenIsCovered',['../class_pathfinder_1_1_event_1_1_options_menu_update_event.html#ad0e41f3e69e1f7a834ed38b93cd6431e',1,'Pathfinder::Event::OptionsMenuUpdateEvent']]],
   ['screenmanager',['ScreenManager',['../class_pathfinder_1_1_event_1_1_draw_extension_menu_event.html#ae3824441cccedf344c8e2aa852c51926',1,'Pathfinder::Event::DrawExtensionMenuEvent']]],
   ['screennotfocused',['ScreenNotFocused',['../class_pathfinder_1_1_event_1_1_options_menu_update_event.html#a030943501b818d32df801cee0c6b8cb3',1,'Pathfinder::Event::OptionsMenuUpdateEvent']]],
+  ['secondarybuttony',['SecondaryButtonY',['../class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event.html#a1daa6b71ad4f6385663ab81d98e32988',1,'Pathfinder::Event::DrawMainMenuButtonsEvent']]],
   ['selectableborder',['SelectableBorder',['../class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle.html#af64f56d11288f6a3abcf32c8ad04c5f1',1,'Pathfinder::GUI::BaseDynamicRectangle']]],
   ['selectedcolor',['SelectedColor',['../class_pathfinder_1_1_g_u_i_1_1_base_dynamic_rectangle.html#a6353b57bdb780b15e0eb4ab8a7dc70cf',1,'Pathfinder::GUI::BaseDynamicRectangle']]],
   ['servicename',['ServiceName',['../struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info.html#a999bd57f467954b7142ae330daa121d7',1,'Pathfinder::Util::ExeInfoManager::ExecutableInfo']]],
