@@ -7,7 +7,7 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline><highlight class="normal">#<sp/>Hacknet<sp/>Pathfinder</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Pathfinder</highlight></codeline>
 <codeline><highlight class="normal">An<sp/>extensive<sp/>modding<sp/>API<sp/>and<sp/>loader<sp/>for<sp/>Hacknet<sp/>that<sp/>enables<sp/>practically<sp/>limitless<sp/>programable<sp/>extensions<sp/>to<sp/>the<sp/>game</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">###<sp/>Installation</highlight></codeline>

@@ -12,6 +12,7 @@ var searchData=
   ['gamefilesystem',['GameFilesystem',['../namespace_pathfinder_1_1_game_filesystem.html',1,'Pathfinder']]],
   ['gui',['GUI',['../namespace_pathfinder_1_1_g_u_i.html',1,'Pathfinder.GUI'],['../namespace_pathfinder_1_1_internal_1_1_g_u_i.html',1,'Pathfinder.Internal.GUI']]],
   ['internal',['Internal',['../namespace_pathfinder_1_1_internal.html',1,'Pathfinder']]],
+  ['pathfinder',['Pathfinder',['../md__r_e_a_d_m_e.html',1,'']]],
   ['mission',['Mission',['../namespace_pathfinder_1_1_mission.html',1,'Pathfinder']]],
   ['modmanager',['ModManager',['../namespace_pathfinder_1_1_mod_manager.html',1,'Pathfinder']]],
   ['modoptions',['ModOptions',['../namespace_pathfinder_1_1_g_u_i_1_1_mod_options.html',1,'Pathfinder::GUI']]],

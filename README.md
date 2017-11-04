@@ -1,4 +1,4 @@
-# Hacknet Pathfinder
+# Pathfinder
 An extensive modding API and loader for Hacknet that enables practically limitless programable extensions to the game
 
 ### Installation

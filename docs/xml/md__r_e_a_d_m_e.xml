@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="md__r_e_a_d_m_e" kind="page">
     <compoundname>md_README</compoundname>
-    <title>Hacknet Pathfinder</title>
+    <title>Pathfinder</title>
     <detaileddescription>
 <para>An extensive modding API and loader for Hacknet that enables practically limitless programable extensions to the game</para><para><heading level="3">Installation</heading>
 </para><para><orderedlist>
