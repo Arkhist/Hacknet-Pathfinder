@@ -104,7 +104,7 @@ namespace Pathfinder
         // Hook location : end of OS.LoadContent()
         public static void onPostLoadSession(Hacknet.OS self)
         {
-            var postLoadSessionEvent = new Event.OSPostLoadContenEvent(self);
+            var postLoadSessionEvent = new Event.OSPostLoadContentEvent(self);
             postLoadSessionEvent.CallEvent();
         }
 

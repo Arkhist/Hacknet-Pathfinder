@@ -17,9 +17,9 @@ namespace Pathfinder.Event
         public OSLoadContentEvent(Hacknet.OS os) : base(os) { }
     }
 
-    public class OSPostLoadContenEvent : OSEvent
+    public class OSPostLoadContentEvent : OSEvent
     {
-        public OSPostLoadContenEvent(Hacknet.OS os) : base(os) { }
+        public OSPostLoadContentEvent(Hacknet.OS os) : base(os) { }
     }
 
     public class OSUnloadContentEvent : OSEvent
