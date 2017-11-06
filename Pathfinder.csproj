@@ -7,12 +7,13 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Pathfinder</RootNamespace>
     <AssemblyName>Pathfinder</AssemblyName>
+    <ReleaseVersion>2.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
+    <OutputPath>lib</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -36,9 +37,10 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>lib</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile></DocumentationFile>
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
     <CustomCommands>
@@ -55,9 +57,16 @@
           <workingdir>lib\</workingdir>
           <externalConsole>True</externalConsole>
         </Command>
+        <Command>
+          <type>AfterBuild</type>
+          <command>zipjs.bat zipItem -source ./PathfinderPatcher.exe -source ./Pathfinder.dll -source ./Mono.Cecil.dll -source ./Mono.Cecil.Inject.dll -source ./Cecil_LICENSE.txt -source ./Cecil_Inject_LICENSE.txt -source ../README.md -destination ../releases/Pathfinder.Release.V_.zip -keep yes -force yes</command>
+          <workingdir>lib\</workingdir>
+          <externalConsole>True</externalConsole>
+        </Command>
       </CustomCommands>
     </CustomCommands>
     <NoWarn>0649</NoWarn>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
