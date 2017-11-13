@@ -6,6 +6,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Command/Handler.cs" line="3" column="1"/>
+    <location file="Pathfinder/Event/ComputerEvent.cs" line="3" column="1"/>
   </compounddef>
 </doxygen>

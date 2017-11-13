@@ -18,23 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/GameEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/GameEvents.cs" bodystart="9" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="class_pathfinder_1_1_event_1_1_game_event_1a2cb1886844c91ecbaf196c9d129f477c" prot="public" static="no" mutable="no">
-        <type>Game1</type>
-        <definition>Game1 Pathfinder.Event.GameEvent.GameInstance</definition>
-        <argsstring></argsstring>
-        <name>GameInstance</name>
-        <initializer>=&gt; <ref refid="class_pathfinder_1_1_event_1_1_game_event_1af8af5de0396ccac6181b63bc739c97e6" kindref="member">Game</ref></initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="Pathfinder/Event/GameEvents.cs" line="11" column="1" bodyfile="Pathfinder/Event/GameEvents.cs" bodystart="11" bodyend="-1"/>
+        <location file="Pathfinder/Event/GameEvents.cs" line="8" column="1" bodyfile="Pathfinder/Event/GameEvents.cs" bodystart="8" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -53,7 +37,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/GameEvents.cs" line="12" column="1" bodyfile="Pathfinder/Event/GameEvents.cs" bodystart="12" bodyend="12"/>
+        <location file="Pathfinder/Event/GameEvents.cs" line="9" column="1" bodyfile="Pathfinder/Event/GameEvents.cs" bodystart="9" bodyend="9"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -61,53 +45,52 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="230">
+      <node id="214">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="231">
+      <node id="215">
         <label>Pathfinder.Event.GameLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_load_content_event"/>
-        <childnode refid="229" relation="public-inheritance">
+        <childnode refid="213" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="233">
+      <node id="217">
         <label>Pathfinder.Event.GameUpdateEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_update_event"/>
-        <childnode refid="229" relation="public-inheritance">
+        <childnode refid="213" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="232">
+      <node id="216">
         <label>Pathfinder.Event.GameUnloadEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_unload_event"/>
-        <childnode refid="229" relation="public-inheritance">
+        <childnode refid="213" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="229">
+      <node id="213">
         <label>Pathfinder.Event.GameEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_event"/>
-        <childnode refid="230" relation="public-inheritance">
+        <childnode refid="214" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="235">
+      <node id="219">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="234">
+      <node id="218">
         <label>Pathfinder.Event.GameEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_event"/>
-        <childnode refid="235" relation="public-inheritance">
+        <childnode refid="219" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/GameEvents.cs" line="8" column="1" bodyfile="Pathfinder/Event/GameEvents.cs" bodystart="7" bodyend="13"/>
+    <location file="Pathfinder/Event/GameEvents.cs" line="7" column="1" bodyfile="Pathfinder/Event/GameEvents.cs" bodystart="6" bodyend="10"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::GameEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_game_event_1af8af5de0396ccac6181b63bc739c97e6" prot="public" virt="non-virtual"><scope>Pathfinder::Event::GameEvent</scope><name>Game</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_game_event_1ac03c69a6e5e859d262ef84694d8e43ef" prot="public" virt="non-virtual"><scope>Pathfinder::Event::GameEvent</scope><name>GameEvent</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_game_event_1a2cb1886844c91ecbaf196c9d129f477c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::GameEvent</scope><name>GameInstance</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::GameEvent</scope><name>IsCancelled</name></member>
     </listofallmembers>
   </compounddef>

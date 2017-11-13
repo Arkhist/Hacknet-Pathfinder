@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Util;
@@ -13,10 +12,6 @@ namespace Pathfinder.Event
         public string ExecutableName { get; set; }
         public string ExecutableData { get; set; }
         public List<string> Arguments { get; private set; }
-        [Obsolete("Use Arguments")]
-        public List<string> Parameters => Arguments;
-        [Obsolete("Use OS")]
-        public Hacknet.OS OsInstance => OS;
         public ExecutableEvent(Hacknet.Computer com, Hacknet.OS os, string[] args, string name = null, string data = null)
         {
             Computer = com;
@@ -66,10 +61,6 @@ namespace Pathfinder.Event
                 ((ExecutableEvent)this).ExecutableData = value;
             }
         }
-        [Obsolete("Does not pertain to normal executables")]
-        public Rectangle Location => default(Rectangle);
-        [Obsolete("Does not pertain to normal executables")]
-        public int TargetPort => -1;
         public ExecutableExecuteEvent(Hacknet.Computer com, Folder fol, int finde, GameFilesystem.File file, Hacknet.OS os, string[] args)
             : base(com, os, args)
         {

@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/OSEvents.cs" line="45" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="45" bodyend="-1"/>
+        <location file="Pathfinder/Event/OSEvents.cs" line="40" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="40" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -39,7 +39,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/OSEvents.cs" line="46" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="46" bodyend="46"/>
+        <location file="Pathfinder/Event/OSEvents.cs" line="41" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="41" bodyend="41"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -47,61 +47,54 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="496">
+      <node id="447">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="497" relation="public-inheritance">
+        <childnode refid="448" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="497">
+      <node id="448">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="495">
+      <node id="446">
         <label>Pathfinder.Event.OSSaveFileEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event"/>
-        <childnode refid="496" relation="public-inheritance">
+        <childnode refid="447" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="498">
+      <node id="449">
         <label>Pathfinder.Event.OSSaveWriteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_save_write_event"/>
-        <childnode refid="495" relation="public-inheritance">
+        <childnode refid="446" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="500">
+      <node id="451">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="501" relation="public-inheritance">
-        </childnode>
-        <childnode refid="502" relation="usage">
-          <edgelabel>OsInstance</edgelabel>
+        <childnode refid="452" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="501">
+      <node id="452">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="502">
-        <label>Hacknet</label>
-      </node>
-      <node id="499">
+      <node id="450">
         <label>Pathfinder.Event.OSSaveFileEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event"/>
-        <childnode refid="500" relation="public-inheritance">
+        <childnode refid="451" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/OSEvents.cs" line="44" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="43" bodyend="47"/>
+    <location file="Pathfinder/Event/OSEvents.cs" line="39" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="38" bodyend="42"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event_1a1a7c9d85a617f8c63f21e6c72ca9b300" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>Filename</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>IsCancelled</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1a59c0db53d1a98f303716f74f9ae844e5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>OS</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1afbed2fcd726a384a8baf01375de0e96c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>OSEvent</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1ac373c93e4c8c30fd9efc814c74e89c99" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>OsInstance</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event_1a8682239e6bb736a8d5c7618228de115e" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSSaveFileEvent</scope><name>OSSaveFileEvent</name></member>
     </listofallmembers>
   </compounddef>

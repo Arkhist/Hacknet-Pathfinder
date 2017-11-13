@@ -37,10 +37,11 @@ namespace Pathfinder.Executable
             return new Instance(loc, os, args, executionFile, exeInterface);
         }
 
-        public static Instance CreateInstance(IInterface exeInterface, FileEntry executionFile, Hacknet.OS os, List<string> args)
-        {
-            return CreateInstance(exeInterface, executionFile, os, args, Rectangle.Empty);
-        }
+        public static Instance CreateInstance(IInterface exeInterface, 
+                                              FileEntry executionFile,
+                                              Hacknet.OS os, 
+                                              List<string> args) =>
+            CreateInstance(exeInterface, executionFile, os, args, Rectangle.Empty);
 
         public object this[string key]
         {
@@ -57,15 +58,8 @@ namespace Pathfinder.Executable
             }
         }
 
-        public object GetInstanceData(string key)
-        {
-            return this[key];
-        }
-
-        public T GetInstanceData<T>(string key)
-        {
-            return (T) GetInstanceData(key);
-        }
+        public object GetInstanceData(string key) => this[key];
+        public T GetInstanceData<T>(string key) => (T)GetInstanceData(key);
 
         public bool SetInstanceData(string key, object val)
         {
@@ -152,10 +146,8 @@ namespace Pathfinder.Executable
                     throw new ArgumentException("exeInterface must be derived from IMainDisplayOverride");
             }
 
-            public void RenderMainDisplay(Rectangle dest, SpriteBatch sb)
-            {
+            public void RenderMainDisplay(Rectangle dest, SpriteBatch sb) => 
                 (Interface as IMainDisplayOverride).DrawMain(this, dest, sb);
-            }
         }
     }
 }

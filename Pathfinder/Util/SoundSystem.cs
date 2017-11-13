@@ -5,10 +5,7 @@ namespace Pathfinder.Util
 {
     public static class SoundSystem
     {
-        public static bool SoundMuted
-        {
-            get; set;
-        }
+        public static bool SoundMuted { get; set; }
 
         private static float soundVolume;
 

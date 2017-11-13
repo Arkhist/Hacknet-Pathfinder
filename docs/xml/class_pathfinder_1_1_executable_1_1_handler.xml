@@ -57,27 +57,6 @@
         </inbodydescription>
         <location file="Pathfinder/Executable/Handler.cs" line="19" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="19" bodyend="38"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1aeea60860961b9af31162b6e28ef6f41a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
-        <definition>static bool Pathfinder.Executable.Handler.AddExecutable</definition>
-        <argsstring>(string id, IInterface inter)</argsstring>
-        <name>AddExecutable</name>
-        <param>
-          <type>string</type>
-          <declname>id</declname>
-        </param>
-        <param>
-          <type><ref refid="interface_pathfinder_1_1_executable_1_1_i_interface" kindref="compound">IInterface</ref></type>
-          <declname>inter</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="41" column="1"/>
-      </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1a9b8e34a0bc16ae4000b78cd534886783" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>static bool Pathfinder.Executable.Handler.IsFileDataForModExe</definition>
@@ -102,7 +81,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="56" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="56" bodyend="63"/>
+        <location file="Pathfinder/Executable/Handler.cs" line="53" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="53" bodyend="60"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1a03d09fcc2079a242d5e0f19a0eef8cb3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>string</type>
@@ -140,7 +119,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="71" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="71" bodyend="80"/>
+        <location file="Pathfinder/Executable/Handler.cs" line="68" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="68" bodyend="77"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_handler_1ac5ace69a2f4b3dbf962df8073f2cc23b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>string</type>
@@ -166,7 +145,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="87" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="87" bodyend="93"/>
+        <location file="Pathfinder/Executable/Handler.cs" line="84" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="84" bodyend="90"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="package-static-func">
@@ -185,16 +164,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Handler.cs" line="43" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="43" bodyend="49"/>
+        <location file="Pathfinder/Executable/Handler.cs" line="40" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="40" bodyend="46"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Executable/Handler.cs" line="9" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="8" bodyend="94"/>
+    <location file="Pathfinder/Executable/Handler.cs" line="9" column="1" bodyfile="Pathfinder/Executable/Handler.cs" bodystart="8" bodyend="91"/>
     <listofallmembers>
-      <member refid="class_pathfinder_1_1_executable_1_1_handler_1aeea60860961b9af31162b6e28ef6f41a" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>AddExecutable</name></member>
       <member refid="class_pathfinder_1_1_executable_1_1_handler_1a03d09fcc2079a242d5e0f19a0eef8cb3" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>GetStandardFileDataBy</name></member>
       <member refid="class_pathfinder_1_1_executable_1_1_handler_1ac5ace69a2f4b3dbf962df8073f2cc23b" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>GetStandardFileDataBy</name></member>
       <member refid="class_pathfinder_1_1_executable_1_1_handler_1a9b8e34a0bc16ae4000b78cd534886783" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Handler</scope><name>IsFileDataForModExe</name></member>

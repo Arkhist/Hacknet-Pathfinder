@@ -1,6 +1,5 @@
 var class_pathfinder_1_1_daemon_1_1_handler =
 [
-    [ "AddDaemon", "class_pathfinder_1_1_daemon_1_1_handler.html#ae7a0a3c312e6e37d8a81acbbfeddd068", null ],
     [ "ContainsDaemon", "class_pathfinder_1_1_daemon_1_1_handler.html#acde19a6a94d142a5106b9697b0062e19", null ],
     [ "ContainsDaemon", "class_pathfinder_1_1_daemon_1_1_handler.html#acaa1f9f19525d270b7b282ecf6b33c52", null ],
     [ "GetDaemonById", "class_pathfinder_1_1_daemon_1_1_handler.html#ac6fe93befa456f655c6bd259407143ab", null ],

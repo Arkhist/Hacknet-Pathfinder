@@ -19,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/OSEvents.cs" line="17" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="17" bodyend="17"/>
+        <location file="Pathfinder/Event/OSEvents.cs" line="14" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="14" bodyend="14"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -27,54 +27,47 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="475">
+      <node id="429">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="476" relation="public-inheritance">
+        <childnode refid="430" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="476">
+      <node id="430">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="474">
+      <node id="428">
         <label>Pathfinder.Event.OSLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event"/>
-        <childnode refid="475" relation="public-inheritance">
+        <childnode refid="429" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="478">
+      <node id="432">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="479" relation="public-inheritance">
-        </childnode>
-        <childnode refid="480" relation="usage">
-          <edgelabel>OsInstance</edgelabel>
+        <childnode refid="433" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="479">
+      <node id="433">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="480">
-        <label>Hacknet</label>
-      </node>
-      <node id="477">
+      <node id="431">
         <label>Pathfinder.Event.OSLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event"/>
-        <childnode refid="478" relation="public-inheritance">
+        <childnode refid="432" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/OSEvents.cs" line="16" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="15" bodyend="18"/>
+    <location file="Pathfinder/Event/OSEvents.cs" line="13" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="12" bodyend="15"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadContentEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadContentEvent</scope><name>IsCancelled</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1a59c0db53d1a98f303716f74f9ae844e5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadContentEvent</scope><name>OS</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1afbed2fcd726a384a8baf01375de0e96c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadContentEvent</scope><name>OSEvent</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1ac373c93e4c8c30fd9efc814c74e89c99" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadContentEvent</scope><name>OsInstance</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event_1ad044d209fe5c6e31d655c084ace9691e" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSLoadContentEvent</scope><name>OSLoadContentEvent</name></member>
     </listofallmembers>
   </compounddef>

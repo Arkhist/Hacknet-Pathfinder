@@ -2,8 +2,6 @@ var class_pathfinder_1_1_event_1_1_executable_execute_event =
 [
     [ "ExecutableExecuteEvent", "class_pathfinder_1_1_event_1_1_executable_execute_event.html#aa7268386dee2d7c08918aa54bb323099", null ],
     [ "ExecutableFile", "class_pathfinder_1_1_event_1_1_executable_execute_event.html#a68dfdeba14a358adb93d5a62d0589695", null ],
-    [ "Location", "class_pathfinder_1_1_event_1_1_executable_execute_event.html#a76f2b003164a5278083adc59375439d8", null ],
-    [ "TargetPort", "class_pathfinder_1_1_event_1_1_executable_execute_event.html#a91259325b5184888de2458732612e003", null ],
     [ "ExecutableData", "class_pathfinder_1_1_event_1_1_executable_execute_event.html#a822b0038663a8063746657a19044d48f", null ],
     [ "ExecutableName", "class_pathfinder_1_1_event_1_1_executable_execute_event.html#ae3627b43ef2b7eda91eb6fbbdee19e1f", null ],
     [ "File", "class_pathfinder_1_1_event_1_1_executable_execute_event.html#ab64ca0691f6d69913bf820aa32e28227", null ],

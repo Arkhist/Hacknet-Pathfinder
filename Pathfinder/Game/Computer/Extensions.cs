@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Hacknet;
 using Microsoft.Xna.Framework;
-using Pathfinder.NetworkMap;
+using Pathfinder.Game.NetworkMap;
 using Pathfinder.Util;
 
 namespace Pathfinder.Game.Computer
@@ -54,18 +54,14 @@ namespace Pathfinder.Game.Computer
         /// <summary>
         /// Gets the first mod daemon instance whose interface type is exactly modInterface.
         /// </summary>
-        public static Daemon.Instance GetModdedDaemon(this Hacknet.Computer comp, Type modInterface)
-        {
-            return comp.GetModdedDaemonList(modInterface)[0];
-        }
+        public static Daemon.Instance GetModdedDaemon(this Hacknet.Computer comp, Type modInterface) =>
+            comp.GetModdedDaemonList(modInterface)[0];
 
         /// <summary>
         /// Gets the first mod daemon instance whose interface type derives or is of type modInterface.
         /// </summary>
-        public static Daemon.Instance GetModdedDaemon<T>(this Hacknet.Computer comp) where T : Daemon.IInterface
-        {
-            return comp.GetModdedDaemonList<T>()[0];
-        }
+        public static Daemon.Instance GetModdedDaemon<T>(this Hacknet.Computer comp) where T : Daemon.IInterface =>
+            comp.GetModdedDaemonList<T>()[0];
 
         /// <summary>
         /// Retrieves a list of mod daemon instances whose interface is exactly of type modInterface
@@ -328,7 +324,7 @@ namespace Pathfinder.Game.Computer
                 return;
             if (!comp.silent)
                 comp.portsOpen[i] = 1;
-            if(!String.IsNullOrEmpty(ipFrom))
+            if (!String.IsNullOrEmpty(ipFrom))
                 comp.log(ipFrom + " Opened Port#" + info.PortNumber);
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + info.PortNumber);
         }
@@ -363,7 +359,7 @@ namespace Pathfinder.Game.Computer
             if (i == null)
                 return;
             i.Unlocked |= !comp.silent;
-            if(!String.IsNullOrEmpty(ipFrom))
+            if (!String.IsNullOrEmpty(ipFrom))
                 comp.log(ipFrom + " Opened Port#" + port.PortName + "/" + port.PortDisplay);
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
         }
@@ -454,7 +450,7 @@ namespace Pathfinder.Game.Computer
             foreach (var p in vanillaPorts)
                 c.AddVanillaPort(p);
             if (modPorts != null) foreach (var p in modPorts)
-                c.AddModPort(p);
+                    c.AddModPort(p);
             c.portsNeededForCrack = portCracksRequired;
             if (eosFolder != null)
                 c.files.root.folders.Add(eosFolder);
@@ -468,27 +464,27 @@ namespace Pathfinder.Game.Computer
             var res = new Dictionary<string, Hacknet.Computer>();
             if (comp.attatchedDeviceIDs != null)
                 foreach (var id in comp.attatchedDeviceIDs.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                var c = comp.GetNetworkMap().GetComputerById(id);
+                {
+                    var c = comp.GetNetworkMap().GetComputerById(id);
                     if (c != null)
                     {
                         switch (retType)
                         {
-                        case RetrieveType.ID:
+                            case RetrieveType.ID:
                                 res[id] = c;
                                 break;
-                        case RetrieveType.ADDRESS:
+                            case RetrieveType.ADDRESS:
                                 res[c.ip] = c;
                                 break;
-                        case RetrieveType.NAME:
+                            case RetrieveType.NAME:
                                 res[c.name] = c;
                                 break;
-                        case RetrieveType.INDEX:
+                            case RetrieveType.INDEX:
                                 res[c.GetNetworkMap().nodes.IndexOf(c).ToString()] = c;
                                 break;
                         }
                     }
-            }
+                }
             return res;
         }
 

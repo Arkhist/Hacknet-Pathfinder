@@ -1,5 +1,4 @@
-﻿using System;
-using Pathfinder.Util.File;
+﻿using Pathfinder.Util.File;
 
 namespace Pathfinder.ModManager
 {
@@ -23,17 +22,7 @@ namespace Pathfinder.ModManager
         /// Retrieves the Mod's identifier.
         /// </summary>
         /// <value>The Mod's identifier</value>
-#pragma warning disable CS0618 // Type or member is obsolete
-        public string Identifier => GetIdentifier();
-#pragma warning restore CS0618 // Type or member is obsolete
-
-        /// <summary>
-        /// Retrieves the Mod's identifier.
-        /// </summary>
-        /// <returns>String - The Mod's identifier</returns>
-        /// <remarks>Obsolete: Use Identifier instead</remarks>
-        [Obsolete("Use Identifier")]
-        public abstract string GetIdentifier();
+        public abstract string Identifier { get; }
 
         public virtual string TexturePath => "Texture";
         public virtual string SoundPath => "Sound";

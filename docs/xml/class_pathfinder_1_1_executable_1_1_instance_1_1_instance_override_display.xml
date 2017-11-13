@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Instance.cs" line="134" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="134" bodyend="-1"/>
+        <location file="Pathfinder/Executable/Instance.cs" line="128" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="128" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="property">
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Instance.cs" line="136" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="137" bodyend="-1"/>
+        <location file="Pathfinder/Executable/Instance.cs" line="130" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="131" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -67,9 +67,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Instance.cs" line="148" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="148" bodyend="153"/>
+        <location file="Pathfinder/Executable/Instance.cs" line="142" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="142" bodyend="147"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display_1a536b19989cc1771d2115c23513ab8ae2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display_1a536b19989cc1771d2115c23513ab8ae2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void Pathfinder.Executable.Instance.InstanceOverrideDisplay.RenderMainDisplay</definition>
         <argsstring>(Rectangle dest, SpriteBatch sb)</argsstring>
@@ -88,7 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Executable/Instance.cs" line="155" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="155" bodyend="158"/>
+        <location file="Pathfinder/Executable/Instance.cs" line="149" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -96,50 +96,50 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="328">
+      <node id="309">
         <label>ExeModule</label>
       </node>
-      <node id="327">
+      <node id="308">
         <label>Instance</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance"/>
-        <childnode refid="328" relation="public-inheritance">
+        <childnode refid="309" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="329">
+      <node id="310">
         <label>MainDisplayOverrideEXE</label>
       </node>
-      <node id="326">
+      <node id="307">
         <label>Pathfinder.Executable.Instance.InstanceOverrideDisplay</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display"/>
-        <childnode refid="327" relation="public-inheritance">
+        <childnode refid="308" relation="public-inheritance">
         </childnode>
-        <childnode refid="329" relation="public-inheritance">
+        <childnode refid="310" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="332">
+      <node id="313">
         <label>ExeModule</label>
       </node>
-      <node id="331">
+      <node id="312">
         <label>Instance</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance"/>
-        <childnode refid="332" relation="public-inheritance">
+        <childnode refid="313" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="333">
+      <node id="314">
         <label>MainDisplayOverrideEXE</label>
       </node>
-      <node id="330">
+      <node id="311">
         <label>Pathfinder.Executable.Instance.InstanceOverrideDisplay</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display"/>
-        <childnode refid="331" relation="public-inheritance">
+        <childnode refid="312" relation="public-inheritance">
         </childnode>
-        <childnode refid="333" relation="public-inheritance">
+        <childnode refid="314" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Executable/Instance.cs" line="133" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="132" bodyend="159"/>
+    <location file="Pathfinder/Executable/Instance.cs" line="127" column="1" bodyfile="Pathfinder/Executable/Instance.cs" bodystart="126" bodyend="151"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_executable_1_1_instance_1a27cb7492992c3a401f91a03f6dc1afea" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>Arguments</name></member>
       <member refid="class_pathfinder_1_1_executable_1_1_instance_1acbfa0b10d3b806cdf193a96d28b64427" prot="public" virt="non-virtual"><scope>Pathfinder::Executable::Instance::InstanceOverrideDisplay</scope><name>Completed</name></member>

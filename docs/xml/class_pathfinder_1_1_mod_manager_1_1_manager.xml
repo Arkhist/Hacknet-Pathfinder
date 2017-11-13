@@ -109,8 +109,9 @@
         <name>OperationalMods</name>
         <initializer>=&gt;
             (
-                from pair in <ref refid="class_pathfinder_1_1_mod_manager_1_1_manager_1ab570dccdb7f6d4a1fb494cc02b274371" kindref="member">LoadedMods</ref> where !(pair.Value is <ref refid="class_pathfinder_1_1_mod_manager_1_1_placeholder" kindref="compound">Placeholder</ref> || pair.Value is <ref refid="class_pathfinder_1_1_mod_placeholder" kindref="compound">ModPlaceholder</ref>)
-                    select pair
+                from pair in <ref refid="class_pathfinder_1_1_mod_manager_1_1_manager_1ab570dccdb7f6d4a1fb494cc02b274371" kindref="member">LoadedMods</ref>
+                where !(pair.Value is <ref refid="class_pathfinder_1_1_mod_manager_1_1_placeholder" kindref="compound">Placeholder</ref>)
+                select pair 
             ).ToDictionary(pair =&gt; pair.Key, pair =&gt; pair.Value)</initializer>
         <briefdescription>
         </briefdescription>
@@ -118,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="28" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="28" bodyend="-1"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="27" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="27" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_mod_manager_1_1_manager_1a6744573f0f7da45214e4cb668d122f45" prot="public" static="yes" mutable="no">
         <type>List&lt; string &gt;</type>
@@ -132,7 +133,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="38" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="38" bodyend="-1"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="37" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="37" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="property">
@@ -166,7 +167,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="35" column="1"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="34" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1abad77979bd7a860eb7e1cb74924f4f03" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod" kindref="compound">IMod</ref></type>
@@ -183,7 +184,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="40" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="40" bodyend="46"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="39" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="39" bodyend="45"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1a324bee6d1864b8bf615ddf50ec8f247c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod" kindref="compound">IMod</ref></type>
@@ -200,7 +201,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="48" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="48" bodyend="53"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="47" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="47" bodyend="52"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1a7cb97b8c81569efecdc61bbd237bd42a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -213,7 +214,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="55" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="55" bodyend="70"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="54" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="54" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1acf258e8d385f71b46967161cd129ded3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -226,7 +227,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="72" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="72" bodyend="82"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="71" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="71" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1a5226f6eba54df74fed23843da36a5874" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -243,7 +244,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="84" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="84" bodyend="93"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="83" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="83" bodyend="92"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1a990fc98745cabbb041548c4cce001804" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -260,7 +261,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="95" column="1"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="94" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1abb14af026f874dd11a614e694514c3f5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -273,7 +274,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="96" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="96" bodyend="101"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="95" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="95" bodyend="100"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1a8f050c6af7d4f69a81eb0ca0317530dd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -290,7 +291,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="103" column="1"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="102" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1ac2296ae9f89e4692b6ae0c288108f865" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -303,7 +304,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="104" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="104" bodyend="115"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="103" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="103" bodyend="114"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1acbb945b1a42e6b501918a6441d27826a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -320,7 +321,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="117" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="117" bodyend="201"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="116" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="116" bodyend="200"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1a61acc43fa51401f4d2081193f8434c79" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod" kindref="compound">IMod</ref></type>
@@ -337,7 +338,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="203" column="1"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="202" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1a1d6d6389404de8a7ca4e329f008b7b88" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod" kindref="compound">IMod</ref></type>
@@ -354,7 +355,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="205" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="205" bodyend="260"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="204" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="204" bodyend="259"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1a4ca7791b3aae14eacb414c923a2f890c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod" kindref="compound">IMod</ref></type>
@@ -371,7 +372,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="262" column="1"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="261" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1a6c2a9a517772ff71b1a1dbe297ec1ab7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; <ref refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod" kindref="compound">IMod</ref> &gt;</type>
@@ -393,7 +394,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="265" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="265" bodyend="277"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="264" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="264" bodyend="276"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_manager_1a68fc06df8d9dfa3735ed525b237a9025" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -410,14 +411,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Manager.cs" line="279" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="279" bodyend="283"/>
+        <location file="Pathfinder/ModManager/Manager.cs" line="278" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="278" bodyend="282"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/ModManager/Manager.cs" line="14" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="13" bodyend="284"/>
+    <location file="Pathfinder/ModManager/Manager.cs" line="14" column="1" bodyfile="Pathfinder/ModManager/Manager.cs" bodystart="13" bodyend="283"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_mod_manager_1_1_manager_1a61acc43fa51401f4d2081193f8434c79" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::Manager</scope><name>CreateMod</name></member>
       <member refid="class_pathfinder_1_1_mod_manager_1_1_manager_1a0f9724c7a1a4423c41cd204976e4067e" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::Manager</scope><name>CurrentMod</name></member>

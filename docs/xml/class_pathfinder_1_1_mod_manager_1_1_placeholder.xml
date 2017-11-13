@@ -3,7 +3,6 @@
   <compounddef id="class_pathfinder_1_1_mod_manager_1_1_placeholder" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::ModManager::Placeholder</compoundname>
     <basecompoundref refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod" prot="public" virt="non-virtual">Pathfinder.ModManager.IMod</basecompoundref>
-    <derivedcompoundref refid="class_pathfinder_1_1_mod_placeholder" prot="public" virt="non-virtual">Pathfinder.ModPlaceholder</derivedcompoundref>
       <sectiondef kind="property">
       <memberdef kind="property" id="class_pathfinder_1_1_mod_manager_1_1_placeholder_1a22b3cba658371a5dfea66243975f2362" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type>string</type>
@@ -16,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Mod.cs" line="72" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="72" bodyend="-1"/>
+        <location file="Pathfinder/ModManager/Mod.cs" line="61" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="61" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -35,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Mod.cs" line="71" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="71" bodyend="71"/>
+        <location file="Pathfinder/ModManager/Mod.cs" line="60" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="60" bodyend="60"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_placeholder_1a82d085a2ffe5762ef3cf62939d1b35c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -49,7 +48,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Mod.cs" line="73" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="73" bodyend="73"/>
+        <location file="Pathfinder/ModManager/Mod.cs" line="62" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="62" bodyend="62"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_placeholder_1a2e973e7255be714eb9ff20884ffaa5d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -63,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Mod.cs" line="74" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="74" bodyend="74"/>
+        <location file="Pathfinder/ModManager/Mod.cs" line="63" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="63" bodyend="63"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_placeholder_1a5b47820adbf7220bdcb7c2bc18025477" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -77,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Mod.cs" line="75" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="75" bodyend="75"/>
+        <location file="Pathfinder/ModManager/Mod.cs" line="64" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="64" bodyend="64"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -85,36 +84,30 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="573">
-        <label>Pathfinder.ModPlaceholder</label>
-        <link refid="class_pathfinder_1_1_mod_placeholder"/>
-        <childnode refid="571" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="571">
+      <node id="509">
         <label>Pathfinder.ModManager.Placeholder</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_placeholder"/>
-        <childnode refid="572" relation="public-inheritance">
+        <childnode refid="510" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="572">
+      <node id="510">
         <label>IMod</label>
         <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="574">
+      <node id="511">
         <label>Pathfinder.ModManager.Placeholder</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_placeholder"/>
-        <childnode refid="575" relation="public-inheritance">
+        <childnode refid="512" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="575">
+      <node id="512">
         <label>IMod</label>
         <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/ModManager/Mod.cs" line="70" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="69" bodyend="76"/>
+    <location file="Pathfinder/ModManager/Mod.cs" line="59" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="58" bodyend="65"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_mod_manager_1_1_placeholder_1a22b3cba658371a5dfea66243975f2362" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::Placeholder</scope><name>Identifier</name></member>
       <member refid="class_pathfinder_1_1_mod_manager_1_1_placeholder_1a82d085a2ffe5762ef3cf62939d1b35c9" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::Placeholder</scope><name>Load</name></member>

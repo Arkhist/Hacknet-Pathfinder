@@ -33,7 +33,7 @@
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_event" prot="public">Pathfinder::Event::OSEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event" prot="public">Pathfinder::Event::OSLoadContentEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event" prot="public">Pathfinder::Event::OSLoadSaveFileEvent</innerclass>
-    <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_post_load_conten_event" prot="public">Pathfinder::Event::OSPostLoadContenEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event" prot="public">Pathfinder::Event::OSPostLoadContentEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event" prot="public">Pathfinder::Event::OSSaveFileEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_save_write_event" prot="public">Pathfinder::Event::OSSaveWriteEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_unload_content_event" prot="public">Pathfinder::Event::OSUnloadContentEvent</innerclass>
@@ -43,6 +43,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Event/BasicEvents.cs" line="4" column="1"/>
+    <location file="Pathfinder/Event/BasicEvents.cs" line="2" column="1"/>
   </compounddef>
 </doxygen>

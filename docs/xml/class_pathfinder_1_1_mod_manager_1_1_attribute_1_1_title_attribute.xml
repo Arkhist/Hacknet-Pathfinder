@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="8" column="1" bodyfile="Pathfinder/ModManager/Attribute/Attributes.cs" bodystart="8" bodyend="-1"/>
+        <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="7" column="1" bodyfile="Pathfinder/ModManager/Attribute/Attributes.cs" bodystart="7" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="9" column="1" bodyfile="Pathfinder/ModManager/Attribute/Attributes.cs" bodystart="9" bodyend="9"/>
+        <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="8" column="1" bodyfile="Pathfinder/ModManager/Attribute/Attributes.cs" bodystart="8" bodyend="8"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_title_attribute_1a6abdefca08fc0fc4ed44ab592159a877" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>override string</type>
@@ -47,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="10" column="1"/>
+        <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="9" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -55,28 +55,28 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="594">
+      <node id="531">
         <label>Pathfinder.ModManager.Attribute.TitleAttribute</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_title_attribute"/>
-        <childnode refid="595" relation="public-inheritance">
+        <childnode refid="532" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="595">
+      <node id="532">
         <label>System::Attribute</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="596">
+      <node id="533">
         <label>Pathfinder.ModManager.Attribute.TitleAttribute</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_title_attribute"/>
-        <childnode refid="597" relation="public-inheritance">
+        <childnode refid="534" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="597">
+      <node id="534">
         <label>System::Attribute</label>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="7" column="1" bodyfile="Pathfinder/ModManager/Attribute/Attributes.cs" bodystart="6" bodyend="11"/>
+    <location file="Pathfinder/ModManager/Attribute/Attributes.cs" line="6" column="1" bodyfile="Pathfinder/ModManager/Attribute/Attributes.cs" bodystart="5" bodyend="10"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_title_attribute_1aa96304f3964e8061d861824d2ae57f25" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::Attribute::TitleAttribute</scope><name>Title</name></member>
       <member refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_title_attribute_1aa380ca090fc982ce04073f457d8b6dbe" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::Attribute::TitleAttribute</scope><name>TitleAttribute</name></member>

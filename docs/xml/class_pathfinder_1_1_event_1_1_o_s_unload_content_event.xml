@@ -19,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/OSEvents.cs" line="27" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="27" bodyend="27"/>
+        <location file="Pathfinder/Event/OSEvents.cs" line="24" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="24" bodyend="24"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -27,54 +27,47 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="513">
+      <node id="462">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="514" relation="public-inheritance">
+        <childnode refid="463" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="514">
+      <node id="463">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="512">
+      <node id="461">
         <label>Pathfinder.Event.OSUnloadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_unload_content_event"/>
-        <childnode refid="513" relation="public-inheritance">
+        <childnode refid="462" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="516">
+      <node id="465">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="517" relation="public-inheritance">
-        </childnode>
-        <childnode refid="518" relation="usage">
-          <edgelabel>OsInstance</edgelabel>
+        <childnode refid="466" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="517">
+      <node id="466">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="518">
-        <label>Hacknet</label>
-      </node>
-      <node id="515">
+      <node id="464">
         <label>Pathfinder.Event.OSUnloadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_unload_content_event"/>
-        <childnode refid="516" relation="public-inheritance">
+        <childnode refid="465" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/OSEvents.cs" line="26" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="25" bodyend="28"/>
+    <location file="Pathfinder/Event/OSEvents.cs" line="23" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="22" bodyend="25"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSUnloadContentEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSUnloadContentEvent</scope><name>IsCancelled</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1a59c0db53d1a98f303716f74f9ae844e5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSUnloadContentEvent</scope><name>OS</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1afbed2fcd726a384a8baf01375de0e96c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSUnloadContentEvent</scope><name>OSEvent</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1ac373c93e4c8c30fd9efc814c74e89c99" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSUnloadContentEvent</scope><name>OsInstance</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_o_s_unload_content_event_1aef2934c959829c6b616b7e93cfee9f2b" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSUnloadContentEvent</scope><name>OSUnloadContentEvent</name></member>
     </listofallmembers>
   </compounddef>

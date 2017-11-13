@@ -2,7 +2,7 @@ var searchData=
 [
   ['attribute',['Attribute',['../namespace_pathfinder_1_1_mod_manager_1_1_attribute.html',1,'Pathfinder.ModManager.Attribute'],['../namespace_pathfinder_1_1_util_1_1_attribute.html',1,'Pathfinder.Util.Attribute']]],
   ['command',['Command',['../namespace_pathfinder_1_1_command.html',1,'Pathfinder']]],
-  ['computer',['Computer',['../namespace_pathfinder_1_1_computer.html',1,'Pathfinder.Computer'],['../namespace_pathfinder_1_1_game_1_1_computer.html',1,'Pathfinder.Game.Computer']]],
+  ['computer',['Computer',['../namespace_pathfinder_1_1_game_1_1_computer.html',1,'Pathfinder::Game']]],
   ['daemon',['Daemon',['../namespace_pathfinder_1_1_daemon.html',1,'Pathfinder']]],
   ['event',['Event',['../namespace_pathfinder_1_1_event.html',1,'Pathfinder']]],
   ['executable',['Executable',['../namespace_pathfinder_1_1_executable.html',1,'Pathfinder']]],
@@ -15,8 +15,8 @@ var searchData=
   ['mission',['Mission',['../namespace_pathfinder_1_1_mission.html',1,'Pathfinder']]],
   ['modmanager',['ModManager',['../namespace_pathfinder_1_1_mod_manager.html',1,'Pathfinder']]],
   ['modoptions',['ModOptions',['../namespace_pathfinder_1_1_g_u_i_1_1_mod_options.html',1,'Pathfinder::GUI']]],
-  ['networkmap',['NetworkMap',['../namespace_pathfinder_1_1_game_1_1_network_map.html',1,'Pathfinder.Game.NetworkMap'],['../namespace_pathfinder_1_1_network_map.html',1,'Pathfinder.NetworkMap']]],
-  ['os',['OS',['../namespace_pathfinder_1_1_game_1_1_o_s.html',1,'Pathfinder.Game.OS'],['../namespace_pathfinder_1_1_o_s.html',1,'Pathfinder.OS']]],
+  ['networkmap',['NetworkMap',['../namespace_pathfinder_1_1_game_1_1_network_map.html',1,'Pathfinder::Game']]],
+  ['os',['OS',['../namespace_pathfinder_1_1_game_1_1_o_s.html',1,'Pathfinder::Game']]],
   ['pathfinder',['Pathfinder',['../namespace_pathfinder.html',1,'']]],
   ['port',['Port',['../namespace_pathfinder_1_1_port.html',1,'Pathfinder']]],
   ['util',['Util',['../namespace_pathfinder_1_1_util.html',1,'Pathfinder']]]

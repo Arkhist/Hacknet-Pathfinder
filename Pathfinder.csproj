@@ -100,14 +100,11 @@
     <Compile Include="Pathfinder\Executable\Handler.cs" />
     <Compile Include="Pathfinder\Command\Handler.cs" />
     <Compile Include="Pathfinder\Executable\Instance.cs" />
-    <Compile Include="Pathfinder\Command\CommandHandler.cs" />
     <Compile Include="Pathfinder\Daemon\Instance.cs" />
     <Compile Include="Pathfinder\Daemon\Interface.cs" />
     <Compile Include="Pathfinder\Executable\ExecutionResult.cs" />
     <Compile Include="Pathfinder\Executable\IMainDisplayOverride.cs" />
     <Compile Include="Pathfinder\Daemon\Handler.cs" />
-    <Compile Include="Pathfinder\Computer\Extensions.cs" />
-    <Compile Include="Pathfinder\OS\Extensions.cs" />
     <Compile Include="Pathfinder\Util\File\ModContent.cs" />
     <Compile Include="Pathfinder\Util\SoundSystem.cs" />
     <Compile Include="Pathfinder\GameFilesystem\Extensions.cs" />
@@ -130,14 +127,12 @@
     <Compile Include="Pathfinder\Event\OSEvents.cs" />
     <Compile Include="Pathfinder\Event\ComputerEvents.cs" />
     <Compile Include="Pathfinder\Event\ExecutableEvents.cs" />
-    <Compile Include="Pathfinder\NetworkMap\Extensions.cs" />
     <Compile Include="Pathfinder\Util\Updater.cs" />
     <Compile Include="Pathfinder\Util\JsonObject.cs" />
     <Compile Include="Pathfinder\Port\Type.cs" />
     <Compile Include="Pathfinder\Port\Instance.cs" />
     <Compile Include="Pathfinder\Port\Handler.cs" />
     <Compile Include="Pathfinder\GUI\CommandDisplayState.cs" />
-    <Compile Include="Pathfinder\LoadOrderAttribute.cs" />
     <Compile Include="Pathfinder\GUI\Button.cs" />
     <Compile Include="Pathfinder\GUI\Scrollbar.cs" />
     <Compile Include="Pathfinder\GUI\BaseInteractiveRectangle.cs" />
@@ -166,7 +161,6 @@
     <Compile Include="Pathfinder\GUI\ModOptions\BasicOptions.cs" />
     <Compile Include="Pathfinder\GUI\ModOptions\Handler.cs" />
     <Compile Include="Pathfinder\ModManager\Mod.cs" />
-    <Compile Include="Pathfinder\PathfinderMod.cs" />
     <Compile Include="Pathfinder\ModManager\Manager.cs" />
     <Compile Include="Pathfinder\ModManager\Attribute\Attributes.cs" />
     <Compile Include="Pathfinder\Game\Computer\Extensions.cs" />
@@ -175,13 +169,10 @@
     <Compile Include="Pathfinder\GameFilesystem\FilePath.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pathfinder\Computer\" />
-    <Folder Include="Pathfinder\OS\" />
     <Folder Include="Pathfinder\Util\" />
     <Folder Include="Pathfinder\Util\File\" />
     <Folder Include="Pathfinder\GameFilesystem\" />
     <Folder Include="Pathfinder\Mission\" />
-    <Folder Include="Pathfinder\NetworkMap\" />
     <Folder Include="Pathfinder\Port\" />
     <Folder Include="Pathfinder\Extension\" />
     <Folder Include="Pathfinder\Internal\" />

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Hacknet;
 
@@ -47,16 +46,7 @@ namespace Pathfinder.Util
             /// Gets a value indicating whether this <see cref="T:Pathfinder.Util.ExeInfoManager.ExecutableInfo"/> is empty.
             /// </summary>
             /// <value><c>true</c> if is empty; otherwise, <c>false</c>.</value>
-            public bool IsEmpty
-            {
-                get
-                {
-                    return this.Equals(Empty);
-                }
-            }
-
-            [Obsolete("Use Number")]
-            public int Index => Number;
+            public bool IsEmpty => Equals(Empty);
 
             public ExecutableInfo(int pn, int n, int ni, string na, string sn, bool np, string d, string ld)
             {
@@ -92,14 +82,14 @@ namespace Pathfinder.Util
             public override int GetHashCode()
             {
                 int hash = Number;
-                hash = (hash * 15) + NumberIndex;
-                hash = (hash * 15) + Name.GetHashCode();
-                hash = (hash * 15) + ServiceName.GetHashCode();
-                hash = (hash * 15) + (NeedsPort ? 1 : 2);
-                hash = (hash * 15) + Data.GetHashCode();
-                hash = (hash * 15) + Data.GetHashCode();
+                hash = (hash * 16) + NumberIndex;
+                hash = (hash * 16) + Name.GetHashCode();
+                hash = (hash * 16) + ServiceName.GetHashCode();
+                hash = (hash * 16) + (NeedsPort ? 1 : 2);
+                hash = (hash * 16) + Data.GetHashCode();
+                hash = (hash * 16) + Data.GetHashCode();
                 if (PortNumber != -1)
-                    hash = (hash * 15) + PortNumber;
+                    hash = (hash * 16) + PortNumber;
                 return hash;
             }
         }

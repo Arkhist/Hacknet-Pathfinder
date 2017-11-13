@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Pathfinder.GUI;
 using Pathfinder.Util;
 
@@ -24,8 +23,6 @@ namespace Pathfinder.Event
             }
         }
         public List<string> Arguments { get; private set; }
-        [Obsolete("Use Arguments")]
-        public string[] Args => Arguments.ToArray();
         public CommandSentEvent(Hacknet.OS os, string[] args) : base(os)
         {
             Arguments = new List<string>(args ?? Utility.Array<string>.Empty);

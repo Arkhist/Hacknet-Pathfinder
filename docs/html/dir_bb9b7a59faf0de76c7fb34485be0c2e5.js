@@ -3,7 +3,7 @@ var dir_bb9b7a59faf0de76c7fb34485be0c2e5 =
     [ "Directory.cs", "_directory_8cs.html", [
       [ "Directory", "class_pathfinder_1_1_game_filesystem_1_1_directory.html", "class_pathfinder_1_1_game_filesystem_1_1_directory" ]
     ] ],
-    [ "Extensions.cs", "_game_filesystem_2_extensions_8cs.html", [
+    [ "Extensions.cs", "ilesystem_2_extensions_8cs.html", [
       [ "Extensions", "class_pathfinder_1_1_game_filesystem_1_1_extensions.html", "class_pathfinder_1_1_game_filesystem_1_1_extensions" ]
     ] ],
     [ "File.cs", "_file_8cs.html", [

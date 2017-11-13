@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Xml;
 
 namespace Pathfinder.Event
@@ -7,8 +6,6 @@ namespace Pathfinder.Event
     public class OSEvent : PathfinderEvent
     {
         public Hacknet.OS OS { get; private set; }
-        [Obsolete("Use OS instead")]
-        public Hacknet.OS OsInstance => OS;
         public OSEvent(Hacknet.OS os) { OS = os; }
     }
 
@@ -30,8 +27,6 @@ namespace Pathfinder.Event
     public class OSLoadSaveFileEvent : OSEvent
     {
         public XmlReader Reader { get; private set; }
-        [Obsolete("Use Reader")]
-        public XmlReader XmlReader => Reader;
         public Stream Stream { get; private set; }
         public OSLoadSaveFileEvent(Hacknet.OS os, XmlReader xmlReader, Stream stream) : base(os)
         {

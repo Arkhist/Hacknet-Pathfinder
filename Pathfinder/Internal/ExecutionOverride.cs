@@ -3,10 +3,10 @@ using System.Threading;
 using Hacknet;
 using Hacknet.Extensions;
 using Microsoft.Xna.Framework.Input;
-using Pathfinder.Computer;
 using Pathfinder.Event;
+using Pathfinder.Game.Computer;
+using Pathfinder.Game.OS;
 using Pathfinder.GUI;
-using Pathfinder.OS;
 using Pathfinder.Util;
 
 namespace Pathfinder.Internal
@@ -66,10 +66,10 @@ namespace Pathfinder.Internal
                 }
                 os.Write("\nProbe Complete - Open ports:\n").Write("---------------------------------");
                 if (Port.Instance.compToInst.ContainsKey(c)) foreach (var ins in Port.Instance.compToInst[c])
-                {
-                    os.WriteF("Port#: {0} - {1}{2}", ins.Port.PortDisplay, ins.Port.PortName, (ins.Unlocked ? "OPEN" : ""));
-                    Thread.Sleep(120);
-                }
+                    {
+                        os.WriteF("Port#: {0} - {1}{2}", ins.Port.PortDisplay, ins.Port.PortName, (ins.Unlocked ? "OPEN" : ""));
+                        Thread.Sleep(120);
+                    }
                 for (i = 0; i < c.ports.Count; i++)
                 {
                     os.WriteF("Port#: {0} - {1}{2}", c.GetDisplayPortNumberFromCodePort(c.ports[i]),
@@ -249,7 +249,7 @@ namespace Pathfinder.Internal
                 else
                 {
                     os.runCommand("connect " + os.thisComputer.ip);
-                    if (doTut && !Hacknet.OS.WillLoadSave && !os.Flags.HasFlag("ExtensionFirstBootComplete"))
+                    if (doTut && !OS.WillLoadSave && !os.Flags.HasFlag("ExtensionFirstBootComplete"))
                     {
                         ExtensionLoader.SendStartingEmailForActiveExtensionNextFrame(os);
                         float num5 = 2.2f;

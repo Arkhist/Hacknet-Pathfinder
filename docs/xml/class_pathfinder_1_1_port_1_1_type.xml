@@ -195,34 +195,34 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="601">
+      <node id="538">
         <label>IEquatable&lt; Type &gt;</label>
       </node>
-      <node id="602">
+      <node id="539">
         <label>IEquatable&lt; Instance &gt;</label>
       </node>
-      <node id="600">
+      <node id="537">
         <label>Pathfinder.Port.Type</label>
         <link refid="class_pathfinder_1_1_port_1_1_type"/>
-        <childnode refid="601" relation="public-inheritance">
+        <childnode refid="538" relation="public-inheritance">
         </childnode>
-        <childnode refid="602" relation="public-inheritance">
+        <childnode refid="539" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="604">
+      <node id="541">
         <label>IEquatable&lt; Type &gt;</label>
       </node>
-      <node id="605">
+      <node id="542">
         <label>IEquatable&lt; Instance &gt;</label>
       </node>
-      <node id="603">
+      <node id="540">
         <label>Pathfinder.Port.Type</label>
         <link refid="class_pathfinder_1_1_port_1_1_type"/>
-        <childnode refid="604" relation="public-inheritance">
+        <childnode refid="541" relation="public-inheritance">
         </childnode>
-        <childnode refid="605" relation="public-inheritance">
+        <childnode refid="542" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

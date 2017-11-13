@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="_commands_8cs" kind="file" language="C#">
     <compoundname>Commands.cs</compoundname>
+    <innernamespace refid="namespace_pathfinder_1_1_computer">Pathfinder::Computer</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -9,7 +10,7 @@
     <programlisting>
 <codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_system" kindref="compound">System</ref>;</highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_system" kindref="compound">System</ref>.Collections.Generic;</highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.<ref refid="namespace_pathfinder_1_1_computer" kindref="compound">Computer</ref>;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.Computer;</highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.<ref refid="namespace_pathfinder_1_1_game_filesystem" kindref="compound">GameFilesystem</ref>;</highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.<ref refid="namespace_pathfinder_1_1_util" kindref="compound">Util</ref>;</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>

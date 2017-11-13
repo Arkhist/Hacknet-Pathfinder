@@ -3,7 +3,6 @@
   <compounddef id="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Util::Attribute::LoadOrderAttribute</compoundname>
     <basecompoundref prot="public" virt="non-virtual">Attribute</basecompoundref>
-    <derivedcompoundref refid="class_pathfinder_1_1_load_order_attribute" prot="public" virt="non-virtual">Pathfinder.LoadOrderAttribute</derivedcompoundref>
       <sectiondef kind="package-attrib">
       <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute_1ab1ee9d787453ed866e006bdf70087a38" prot="package" static="no" mutable="no">
         <type>List&lt; string &gt;</type>
@@ -62,30 +61,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="370">
+      <node id="339">
         <label>Pathfinder.Util.Attribute.LoadOrderAttribute</label>
         <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute"/>
-        <childnode refid="371" relation="public-inheritance">
+        <childnode refid="340" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="371">
+      <node id="340">
         <label>System::Attribute</label>
-      </node>
-      <node id="372">
-        <label>Pathfinder.LoadOrderAttribute</label>
-        <link refid="class_pathfinder_1_1_load_order_attribute"/>
-        <childnode refid="370" relation="public-inheritance">
-        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="373">
+      <node id="341">
         <label>Pathfinder.Util.Attribute.LoadOrderAttribute</label>
         <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute"/>
-        <childnode refid="374" relation="public-inheritance">
+        <childnode refid="342" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="374">
+      <node id="342">
         <label>System::Attribute</label>
       </node>
     </collaborationgraph>

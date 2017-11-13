@@ -7,8 +7,6 @@ namespace Pathfinder.Event
     public class MainMenuEvent : PathfinderEvent
     {
         public Hacknet.MainMenu MainMenu { get; private set; }
-        [Obsolete("Use MainMenu")]
-        public Hacknet.MainMenu MainMenuInstance => MainMenu;
         public MainMenuEvent(Hacknet.MainMenu mainMenu)
         {
             MainMenu = mainMenu;

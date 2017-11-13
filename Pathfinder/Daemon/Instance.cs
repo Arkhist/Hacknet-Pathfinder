@@ -10,15 +10,9 @@ namespace Pathfinder.Daemon
     {
         private Dictionary<string, Tuple<bool, object>> keyToObject = new Dictionary<string, Tuple<bool, object>>();
 
-        public IInterface Interface
-        {
-            get; private set;
-        }
+        public IInterface Interface {  get; private set; }
 
-        public string InterfaceId
-        {
-            get; private set;
-        }
+        public string InterfaceId { get; private set; }
 
         internal Instance(Hacknet.Computer computer, string serviceName, Hacknet.OS os, IInterface daeInterface)
             : base(computer, serviceName, os)
@@ -59,15 +53,8 @@ namespace Pathfinder.Daemon
             }
         }
 
-        public object GetInstanceData(string key)
-        {
-            return this[key];
-        }
-
-        public T GetInstanceData<T>(string key)
-        {
-            return (T)GetInstanceData(key);
-        }
+        public object GetInstanceData(string key) => this[key];
+        public T GetInstanceData<T>(string key) => (T)GetInstanceData(key);
 
         public bool? IsInstanceSaveable(string key)
         {
@@ -107,10 +94,8 @@ namespace Pathfinder.Daemon
         {
             var str = "<moddedDamon interfaceId=\"" + InterfaceId + "\" storedObjects=\"";
             foreach (var o in keyToObject)
-            {
                 if (o.Value.Item1)
                     str += " " + o.Key + "|" + o.Value.Item2;
-            }
             str += "\" />";
             return str;
         }

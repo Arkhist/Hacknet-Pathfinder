@@ -83,26 +83,26 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="613">
+      <node id="550">
         <label>Pathfinder::Util::Vector3&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector3"/>
-        <childnode refid="612" relation="public-inheritance">
+        <childnode refid="549" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="611">
+      <node id="548">
         <label>Pathfinder.Util.Vector1&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector1"/>
       </node>
-      <node id="614">
+      <node id="551">
         <label>Pathfinder::Util::Vector4&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector4"/>
-        <childnode refid="613" relation="public-inheritance">
+        <childnode refid="550" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="612">
+      <node id="549">
         <label>Pathfinder::Util::Vector2&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector2"/>
-        <childnode refid="611" relation="public-inheritance">
+        <childnode refid="548" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
