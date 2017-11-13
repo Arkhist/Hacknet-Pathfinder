@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/ExecutableEvents.cs" line="86" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="86" bodyend="-1"/>
+        <location file="Pathfinder/Event/ExecutableEvents.cs" line="77" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="77" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_executable_port_execute_event_1a8f5c44d1d0879bcddc408bbaafc7d8b8" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
         <type>int</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/ExecutableEvents.cs" line="87" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="87" bodyend="-1"/>
+        <location file="Pathfinder/Event/ExecutableEvents.cs" line="78" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="78" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/ExecutableEvents.cs" line="88" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="88" bodyend="93"/>
+        <location file="Pathfinder/Event/ExecutableEvents.cs" line="79" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="79" bodyend="84"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -75,48 +75,42 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="168">
+      <node id="159">
         <label>ExecutableEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_event"/>
-        <childnode refid="169" relation="public-inheritance">
+        <childnode refid="160" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="169">
+      <node id="160">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="167">
+      <node id="158">
         <label>Pathfinder.Event.ExecutablePortExecuteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_port_execute_event"/>
-        <childnode refid="168" relation="public-inheritance">
+        <childnode refid="159" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="171">
+      <node id="162">
         <label>ExecutableEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_event"/>
-        <childnode refid="172" relation="public-inheritance">
-        </childnode>
-        <childnode refid="173" relation="usage">
-          <edgelabel>OsInstance</edgelabel>
+        <childnode refid="163" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="172">
+      <node id="163">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="173">
-        <label>Hacknet</label>
-      </node>
-      <node id="170">
+      <node id="161">
         <label>Pathfinder.Event.ExecutablePortExecuteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_port_execute_event"/>
-        <childnode refid="171" relation="public-inheritance">
+        <childnode refid="162" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/ExecutableEvents.cs" line="85" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="84" bodyend="94"/>
+    <location file="Pathfinder/Event/ExecutableEvents.cs" line="76" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="75" bodyend="85"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a456d3ea9ab10d4a0abcf7272ff1a1360" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutablePortExecuteEvent</scope><name>Arguments</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutablePortExecuteEvent</scope><name>CallEvent</name></member>
@@ -128,8 +122,6 @@
       <member refid="class_pathfinder_1_1_event_1_1_executable_port_execute_event_1acbdde316970d9d4f5f20c169ebad3d26" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutablePortExecuteEvent</scope><name>ExecutablePortExecuteEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutablePortExecuteEvent</scope><name>IsCancelled</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a3821192b81da6ca72c15a9e8c40ca934" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutablePortExecuteEvent</scope><name>OS</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a05892b7df74393296d2dda651881b6a8" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutablePortExecuteEvent</scope><name>OsInstance</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a8ea0206e8e6b39a8ed9c8119e7e58f82" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutablePortExecuteEvent</scope><name>Parameters</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_port_execute_event_1a8f5c44d1d0879bcddc408bbaafc7d8b8" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutablePortExecuteEvent</scope><name>TargetPort</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_event_1acb54933cce060e98153d4f2b1191ba3c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutablePortExecuteEvent</scope><name>this[int index]</name></member>
     </listofallmembers>

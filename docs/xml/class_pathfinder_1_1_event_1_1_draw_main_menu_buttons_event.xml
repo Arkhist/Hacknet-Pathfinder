@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="26" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="26" bodyend="-1"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="24" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="24" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event_1a1daa6b71ad4f6385663ab81d98e32988" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>int</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="27" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="27" bodyend="-1"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="25" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="25" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -55,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/MainMenuEvents.cs" line="28" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="28" bodyend="32"/>
+        <location file="Pathfinder/Event/MainMenuEvents.cs" line="26" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="26" bodyend="30"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -63,6 +63,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
+      <node id="114">
+        <label>Pathfinder.Event.DrawMainMenuButtonsEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event"/>
+        <childnode refid="115" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="116">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="115">
+        <label>MainMenuEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
+        <childnode refid="116" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
       <node id="117">
         <label>Pathfinder.Event.DrawMainMenuButtonsEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event"/>
@@ -79,32 +97,8 @@
         <childnode refid="119" relation="public-inheritance">
         </childnode>
       </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="120">
-        <label>Pathfinder.Event.DrawMainMenuButtonsEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event"/>
-        <childnode refid="121" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="122">
-        <label>PathfinderEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
-      </node>
-      <node id="123">
-        <label>Hacknet</label>
-      </node>
-      <node id="121">
-        <label>MainMenuEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="122" relation="public-inheritance">
-        </childnode>
-        <childnode refid="123" relation="usage">
-          <edgelabel>MainMenuInstance</edgelabel>
-        </childnode>
-      </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/MainMenuEvents.cs" line="25" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="24" bodyend="33"/>
+    <location file="Pathfinder/Event/MainMenuEvents.cs" line="23" column="1" bodyfile="Pathfinder/Event/MainMenuEvents.cs" bodystart="22" bodyend="31"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event_1a6ccb8d60b2cb6efe26faf67c8a81a83a" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>DrawMainMenuButtonsEvent</name></member>
@@ -112,7 +106,6 @@
       <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event_1ab0219d6645b9b826f74f7096bb007e80" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>MainButtonY</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_main_menu_event_1a43e6e11389ed9f7d85cce30a467b9f33" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>MainMenu</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_main_menu_event_1a3a45b98e106bcc8bf2c4efa9574966d2" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>MainMenuEvent</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_main_menu_event_1a89e0fb7803acff5c8488ee876b81b5b5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>MainMenuInstance</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event_1a1daa6b71ad4f6385663ab81d98e32988" prot="public" virt="non-virtual"><scope>Pathfinder::Event::DrawMainMenuButtonsEvent</scope><name>SecondaryButtonY</name></member>
     </listofallmembers>
   </compounddef>

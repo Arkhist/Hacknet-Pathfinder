@@ -1,5 +1,4 @@
-﻿#pragma warning disable RECS0137 // Method with optional parameter is hidden by overload
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -72,31 +71,25 @@ namespace Pathfinder.Util
         /// Gets the current client OS.
         /// </summary>
         /// <returns>The client's current OS.</returns>
-        public static Hacknet.OS ClientOS => Hacknet.OS.currentInstance;
-        [Obsolete("Use ClientOS Property")]
-        public static Hacknet.OS GetClientOS() => ClientOS;
+        public static Hacknet.OS ClientOS => OS.currentInstance;
 
         /// <summary>
         /// Gets the current client's Computer.
         /// </summary>
         /// <returns>The client's Current Computer.</returns>
         public static Hacknet.Computer ClientComputer => ClientOS.thisComputer;
-        [Obsolete("Use ClientComputer Property")]
-        public static Hacknet.Computer GetClientComputer() => ClientComputer;
 
         /// <summary>
         /// Gets the current client's NetworkMap for the current client OS.
         /// </summary>
         /// <returns>The client's current Network Map.</returns>
         public static Hacknet.NetworkMap ClientNetworkMap => ClientOS?.netMap;
-        [Obsolete("Use ClientNetworkMap Property")]
-        public static Hacknet.NetworkMap GetClientNetMap() => ClientNetworkMap;
 
         /// <summary>
         /// Gets the current Computer the OS is active in.
         /// </summary>
         /// <returns>The currently active Computer.</returns>
-        /// <param name="os">The OS to get the current Computer, or equal to <see cref="Utility.GetClientOS"/> if <c>null</c>.</param>
+        /// <param name="os">The OS to get the current Computer, or equal to <see cref="Utility.ClientOS"/> if <c>null</c>.</param>
         public static Hacknet.Computer GetCurrentComputer(Hacknet.OS os = null)
         {
             if (os == null)
@@ -109,8 +102,6 @@ namespace Pathfinder.Util
         /// </summary>
         /// <value>The current Computer.</value>
         public static Hacknet.Computer CurrentComputer => GetCurrentComputer(null);
-        [Obsolete("Use CurrentComputer Property")]
-        public static Hacknet.Computer GetCurrentComputer() => CurrentComputer;
 
         public static int GenerateRandomIPSection(Random rand = null) => (rand ?? pathfinderRng).Next(254) + 1;
         public static string GenerateRandomIP(Random rand = null) =>

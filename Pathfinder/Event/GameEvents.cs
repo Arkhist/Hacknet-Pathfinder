@@ -1,5 +1,4 @@
-﻿using System;
-using Hacknet;
+﻿using Hacknet;
 using Microsoft.Xna.Framework;
 
 namespace Pathfinder.Event
@@ -7,8 +6,6 @@ namespace Pathfinder.Event
     public class GameEvent : PathfinderEvent
     {
         public Game1 Game { get; private set; }
-        [Obsolete("Use Game")]
-        public Game1 GameInstance => Game;
         public GameEvent(Game1 ins) { Game = ins; }
     }
 

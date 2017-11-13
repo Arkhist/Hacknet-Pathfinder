@@ -2,15 +2,9 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="namespace_pathfinder" kind="namespace" language="C#">
     <compoundname>Pathfinder</compoundname>
-    <innerclass refid="class_pathfinder_1_1_command_handler" prot="public">Pathfinder::CommandHandler</innerclass>
-    <innerclass refid="interface_pathfinder_1_1_i_pathfinder_mod" prot="public">Pathfinder::IPathfinderMod</innerclass>
-    <innerclass refid="class_pathfinder_1_1_load_order_attribute" prot="public">Pathfinder::LoadOrderAttribute</innerclass>
-    <innerclass refid="class_pathfinder_1_1_mod_placeholder" prot="public">Pathfinder::ModPlaceholder</innerclass>
     <innerclass refid="class_pathfinder_1_1_pathfinder" prot="public">Pathfinder::Pathfinder</innerclass>
     <innerclass refid="class_pathfinder_1_1_pathfinder_hooks" prot="public">Pathfinder::PathfinderHooks</innerclass>
-    <innerclass refid="class_pathfinder_1_1_pathfinder_mod" prot="public">Pathfinder::PathfinderMod</innerclass>
     <innernamespace refid="namespace_pathfinder_1_1_command">Pathfinder::Command</innernamespace>
-    <innernamespace refid="namespace_pathfinder_1_1_computer">Pathfinder::Computer</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_daemon">Pathfinder::Daemon</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_event">Pathfinder::Event</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_executable">Pathfinder::Executable</innernamespace>
@@ -21,14 +15,12 @@
     <innernamespace refid="namespace_pathfinder_1_1_internal">Pathfinder::Internal</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_mission">Pathfinder::Mission</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_mod_manager">Pathfinder::ModManager</innernamespace>
-    <innernamespace refid="namespace_pathfinder_1_1_network_map">Pathfinder::NetworkMap</innernamespace>
-    <innernamespace refid="namespace_pathfinder_1_1_o_s">Pathfinder::OS</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_port">Pathfinder::Port</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_util">Pathfinder::Util</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Command/CommandHandler.cs" line="5" column="1"/>
+    <location file="[generated]" line="1" column="1"/>
   </compounddef>
 </doxygen>

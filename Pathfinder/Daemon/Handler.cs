@@ -30,9 +30,6 @@ namespace Pathfinder.Daemon
             return id;
         }
 
-        [Obsolete("Use RegisterDaemon")]
-        public static bool AddDaemon(string id, IInterface inter) => RegisterDaemon(id, inter) != null;
-
         internal static bool UnregisterDaemon(string id)
         {
             id = Utility.GetId(id);

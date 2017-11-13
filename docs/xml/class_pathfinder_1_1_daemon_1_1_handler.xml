@@ -56,27 +56,6 @@
         </inbodydescription>
         <location file="Pathfinder/Daemon/Handler.cs" line="17" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="17" bodyend="31"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_handler_1ae7a0a3c312e6e37d8a81acbbfeddd068" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
-        <definition>static bool Pathfinder.Daemon.Handler.AddDaemon</definition>
-        <argsstring>(string id, IInterface inter)</argsstring>
-        <name>AddDaemon</name>
-        <param>
-          <type>string</type>
-          <declname>id</declname>
-        </param>
-        <param>
-          <type><ref refid="interface_pathfinder_1_1_daemon_1_1_i_interface" kindref="compound">IInterface</ref></type>
-          <declname>inter</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="Pathfinder/Daemon/Handler.cs" line="34" column="1"/>
-      </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_handler_1acde19a6a94d142a5106b9697b0062e19" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>static bool Pathfinder.Daemon.Handler.ContainsDaemon</definition>
@@ -92,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Daemon/Handler.cs" line="44" column="1"/>
+        <location file="Pathfinder/Daemon/Handler.cs" line="41" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_handler_1acaa1f9f19525d270b7b282ecf6b33c52" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -109,7 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Daemon/Handler.cs" line="45" column="1"/>
+        <location file="Pathfinder/Daemon/Handler.cs" line="42" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_handler_1ac6fe93befa456f655c6bd259407143ab" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="interface_pathfinder_1_1_daemon_1_1_i_interface" kindref="compound">IInterface</ref></type>
@@ -126,7 +105,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Daemon/Handler.cs" line="47" column="1"/>
+        <location file="Pathfinder/Daemon/Handler.cs" line="44" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_handler_1a0ed3dc3b18a2fe06d02ab9526ccaab51" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="interface_pathfinder_1_1_daemon_1_1_i_interface" kindref="compound">IInterface</ref></type>
@@ -143,7 +122,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Daemon/Handler.cs" line="48" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="48" bodyend="54"/>
+        <location file="Pathfinder/Daemon/Handler.cs" line="45" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="45" bodyend="51"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="package-static-func">
@@ -162,16 +141,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Daemon/Handler.cs" line="36" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="36" bodyend="42"/>
+        <location file="Pathfinder/Daemon/Handler.cs" line="33" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="33" bodyend="39"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Daemon/Handler.cs" line="8" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="7" bodyend="55"/>
+    <location file="Pathfinder/Daemon/Handler.cs" line="8" column="1" bodyfile="Pathfinder/Daemon/Handler.cs" bodystart="7" bodyend="52"/>
     <listofallmembers>
-      <member refid="class_pathfinder_1_1_daemon_1_1_handler_1ae7a0a3c312e6e37d8a81acbbfeddd068" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>AddDaemon</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_handler_1acde19a6a94d142a5106b9697b0062e19" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>ContainsDaemon</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_handler_1acaa1f9f19525d270b7b282ecf6b33c52" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>ContainsDaemon</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_handler_1ac6fe93befa456f655c6bd259407143ab" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Handler</scope><name>GetDaemonById</name></member>

@@ -2,7 +2,6 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="interface_pathfinder_1_1_mod_manager_1_1_i_mod" kind="interface" language="C#" prot="public">
     <compoundname>Pathfinder::ModManager::IMod</compoundname>
-    <derivedcompoundref refid="interface_pathfinder_1_1_i_pathfinder_mod" prot="public" virt="non-virtual">Pathfinder.IPathfinderMod</derivedcompoundref>
     <derivedcompoundref refid="class_pathfinder_1_1_mod_manager_1_1_mod" prot="public" virt="non-virtual">Pathfinder.ModManager.Mod</derivedcompoundref>
     <derivedcompoundref refid="class_pathfinder_1_1_mod_manager_1_1_placeholder" prot="public" virt="non-virtual">Pathfinder.ModManager.Placeholder</derivedcompoundref>
     <derivedcompoundref refid="class_template_mod_1_1_template_mod" prot="public" virt="non-virtual">TemplateMod.TemplateMod</derivedcompoundref>
@@ -18,7 +17,7 @@
 <para>The <ref refid="class_pathfinder_1_1_mod_manager_1_1_mod" kindref="compound">Mod</ref>&apos;s identifier</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Mod.cs" line="12" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="12" bodyend="-1"/>
+        <location file="Pathfinder/ModManager/Mod.cs" line="11" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="11" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -35,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Mod.cs" line="13" column="1"/>
+        <location file="Pathfinder/ModManager/Mod.cs" line="12" column="1"/>
       </memberdef>
       <memberdef kind="function" id="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1a1c56b83b37eb42b8bc8f67948d8850b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -50,7 +49,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Mod.cs" line="14" column="1"/>
+        <location file="Pathfinder/ModManager/Mod.cs" line="13" column="1"/>
       </memberdef>
       <memberdef kind="function" id="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1abd2edc19398718a168a57b8726b41360" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -65,7 +64,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/ModManager/Mod.cs" line="15" column="1"/>
+        <location file="Pathfinder/ModManager/Mod.cs" line="14" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -73,51 +72,29 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="300">
-        <label>Pathfinder.PathfinderMod</label>
-        <link refid="class_pathfinder_1_1_pathfinder_mod"/>
-        <childnode refid="298" relation="public-inheritance">
-        </childnode>
-        <childnode refid="301" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="299">
-        <label>Pathfinder.ModPlaceholder</label>
-        <link refid="class_pathfinder_1_1_mod_placeholder"/>
-        <childnode refid="298" relation="public-inheritance">
-        </childnode>
-        <childnode refid="302" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="302">
+      <node id="283">
         <label>Pathfinder.ModManager.Placeholder</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_placeholder"/>
-        <childnode refid="297" relation="public-inheritance">
+        <childnode refid="281" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="301">
+      <node id="282">
         <label>Pathfinder.ModManager.Mod</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_mod"/>
-        <childnode refid="297" relation="public-inheritance">
+        <childnode refid="281" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="303">
+      <node id="284">
         <label>TemplateMod.TemplateMod</label>
-        <childnode refid="297" relation="public-inheritance">
+        <childnode refid="281" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="297">
+      <node id="281">
         <label>Pathfinder.ModManager.IMod</label>
         <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
       </node>
-      <node id="298">
-        <label>Pathfinder.IPathfinderMod</label>
-        <link refid="interface_pathfinder_1_1_i_pathfinder_mod"/>
-        <childnode refid="297" relation="public-inheritance">
-        </childnode>
-      </node>
     </inheritancegraph>
-    <location file="Pathfinder/ModManager/Mod.cs" line="7" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="6" bodyend="16"/>
+    <location file="Pathfinder/ModManager/Mod.cs" line="6" column="1" bodyfile="Pathfinder/ModManager/Mod.cs" bodystart="5" bodyend="15"/>
     <listofallmembers>
       <member refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1a6b02b35017029548fc1616ec0b64c4fa" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::IMod</scope><name>Identifier</name></member>
       <member refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod_1a70000bce950678bda95460a05b922247" prot="public" virt="non-virtual"><scope>Pathfinder::ModManager::IMod</scope><name>Load</name></member>

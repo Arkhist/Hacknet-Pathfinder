@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
-using Pathfinder.OS;
+using Pathfinder.Game.OS;
 using ModOptions = Pathfinder.GUI.ModOptions;
 
 namespace Pathfinder.Internal

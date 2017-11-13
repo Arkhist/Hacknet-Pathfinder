@@ -3,7 +3,6 @@
   <compounddef id="dir_f17f94439237c4628605ae31fe1f1655" kind="dir">
     <compoundname>Pathfinder</compoundname>
     <innerdir refid="dir_c64f3ee0330408b832b2ff013f2b8372">Pathfinder/Command</innerdir>
-    <innerdir refid="dir_b2142fc325a27b653f13c7811cce653e">Pathfinder/Computer</innerdir>
     <innerdir refid="dir_94882eac2a5a1673f579888c724746a0">Pathfinder/Daemon</innerdir>
     <innerdir refid="dir_64d253ef1f79ff8128c877fa1dc35bc4">Pathfinder/Event</innerdir>
     <innerdir refid="dir_7405b3433f6ada1bd12e44c3cd4ae2b5">Pathfinder/Executable</innerdir>
@@ -14,14 +13,10 @@
     <innerdir refid="dir_ba86ee79358cb458e83b25a7963d8f23">Pathfinder/Internal</innerdir>
     <innerdir refid="dir_4973f844c5b98b996d1f257ca771e153">Pathfinder/Mission</innerdir>
     <innerdir refid="dir_613bcb64cd9ae37c7fbeddbc3dcd672b">Pathfinder/ModManager</innerdir>
-    <innerdir refid="dir_a4d4ba999040ff4313dc51ccddbd1b61">Pathfinder/NetworkMap</innerdir>
-    <innerdir refid="dir_c60eccdc9a22def4f557ef5f2753f4e7">Pathfinder/OS</innerdir>
     <innerdir refid="dir_be3eeacac46046c4e1dd6d9b6676d121">Pathfinder/Port</innerdir>
     <innerdir refid="dir_65d530884dab34be182bc9660555976a">Pathfinder/Util</innerdir>
-    <innerfile refid="_load_order_attribute_8cs">LoadOrderAttribute.cs</innerfile>
     <innerfile refid="_pathfinder_8cs">Pathfinder.cs</innerfile>
     <innerfile refid="_pathfinder_hooks_8cs">PathfinderHooks.cs</innerfile>
-    <innerfile refid="_pathfinder_mod_8cs">PathfinderMod.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

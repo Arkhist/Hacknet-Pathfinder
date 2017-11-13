@@ -43,32 +43,32 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="55">
+      <node id="52">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="56">
+      <node id="53">
         <label>Pathfinder.Event.LoadComputerXmlReadEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event"/>
-        <childnode refid="54" relation="public-inheritance">
+        <childnode refid="51" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="51">
+        <label>Pathfinder.Event.ComputerEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_computer_event"/>
+        <childnode refid="52" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="55">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
       <node id="54">
         <label>Pathfinder.Event.ComputerEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_computer_event"/>
         <childnode refid="55" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="58">
-        <label>PathfinderEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
-      </node>
-      <node id="57">
-        <label>Pathfinder.Event.ComputerEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_computer_event"/>
-        <childnode refid="58" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

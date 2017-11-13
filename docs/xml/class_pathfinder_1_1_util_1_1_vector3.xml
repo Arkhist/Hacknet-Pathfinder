@@ -92,43 +92,43 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="623">
+      <node id="560">
         <label>Vector2&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector2"/>
-        <childnode refid="624" relation="public-inheritance">
+        <childnode refid="561" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="625">
+      <node id="562">
         <label>Pathfinder::Util::Vector4&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector4"/>
-        <childnode refid="622" relation="public-inheritance">
+        <childnode refid="559" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="622">
+      <node id="559">
         <label>Pathfinder.Util.Vector3&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector3"/>
-        <childnode refid="623" relation="public-inheritance">
+        <childnode refid="560" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="624">
+      <node id="561">
         <label>Vector1&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector1"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="627">
+      <node id="564">
         <label>Vector2&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector2"/>
-        <childnode refid="628" relation="public-inheritance">
+        <childnode refid="565" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="626">
+      <node id="563">
         <label>Pathfinder.Util.Vector3&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector3"/>
-        <childnode refid="627" relation="public-inheritance">
+        <childnode refid="564" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="628">
+      <node id="565">
         <label>Vector1&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector1"/>
       </node>

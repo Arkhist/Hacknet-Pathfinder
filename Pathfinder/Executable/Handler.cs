@@ -1,6 +1,6 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using Pathfinder.Util;
 
 namespace Pathfinder.Executable
@@ -36,9 +36,6 @@ namespace Pathfinder.Executable
             ModExecutables.Add(id, new Tuple<IInterface, string>(inter, fileData));
             return id;
         }
-
-        [Obsolete("Use RegisterExecutable")]
-        public static bool AddExecutable(string id, IInterface inter) => RegisterExecutable(id, inter) != null;
 
         internal static bool UnregisterExecutable(string id)
         {

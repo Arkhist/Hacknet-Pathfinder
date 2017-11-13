@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Hacknet;
 using Pathfinder.Util;
 
@@ -61,22 +60,5 @@ namespace Pathfinder.Command
             ProgramList.programs.Remove(key);
             return ModCommands.Remove(key);
         }
-
-        [Obsolete("Use RegisterCommand")]
-        public static bool AddCommand(string key,
-                                      Func<Hacknet.OS, List<string>, bool> function,
-                                      string description = null,
-                                      bool autoComplete = false) =>
-            RegisterCommand(key, function, description, autoComplete) != null;
-
-        [Obsolete("The second argument of function should be a list instead of an array")]
-        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function) =>
-            AddCommand(key, (os, l) => function(os, l.ToArray()));
-        [Obsolete("The second argument of function should be a list instead of an array")]
-        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function, bool autoComplete) =>
-            AddCommand(key, (os, l) => function(os, l.ToArray()), autoComplete: autoComplete);
-        [Obsolete("The second argument of function should be a list instead of an array")]
-        public static bool AddCommand(string key, Func<Hacknet.OS, string[], bool> function, string description, bool autoComplete) =>
-            AddCommand(key, (Hacknet.OS os, List<string> l) => function(os, l.ToArray()), description, autoComplete);
     }
 }

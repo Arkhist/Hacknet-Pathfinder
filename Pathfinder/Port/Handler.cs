@@ -25,9 +25,6 @@ namespace Pathfinder.Port
             return id;
         }
 
-        [Obsolete("Use RegisterPort")]
-        public static bool AddPort(string id, Type port) => RegisterPort(id, port) != null;
-
         internal static bool UnregisterPort(string id)
         {
             id = Utility.GetId(id);

@@ -37,10 +37,8 @@ namespace Pathfinder
 
         static Pathfinder()
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            Manager.LoadedMods.Add("Hacknet", new ModPlaceholder("Hacknet"));
-            Manager.LoadedMods.Add("Pathfinder", new ModPlaceholder("Pathfinder"));
-#pragma warning restore CS0618 // Type or member is obsolete
+            Manager.LoadedMods.Add("Hacknet", new Placeholder("Hacknet"));
+            Manager.LoadedMods.Add("Pathfinder", new Placeholder("Pathfinder"));
         }
 
         internal static void Initialize()

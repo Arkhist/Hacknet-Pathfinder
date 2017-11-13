@@ -24,13 +24,12 @@ namespace Pathfinder.ModManager
         public static List<IMod> MarkedModsForLoad = new List<IMod>();
 
         public static IMod CurrentMod { get; set; }
-        #pragma warning disable CS0618 // Type or member is obsolete
         public static Dictionary<string, IMod> OperationalMods =>
             (
-                from pair in LoadedMods where !(pair.Value is Placeholder || pair.Value is ModPlaceholder)
-                    select pair
+                from pair in LoadedMods
+                where !(pair.Value is Placeholder)
+                select pair 
             ).ToDictionary(pair => pair.Key, pair => pair.Value);
-        #pragma warning restore CS0618 // Type or member is obsolete
 
         public static IEnumerable<Type> GetModTypes(this Assembly asm) =>
                 asm.GetExportedTypes().Where(t => t.IsClass && !t.IsAbstract && typeof(IMod).IsAssignableFrom(t));

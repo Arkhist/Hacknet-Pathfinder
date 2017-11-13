@@ -635,8 +635,29 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
+      <node id="68">
+        <label>IEnumerable&lt; IFileObject &gt;</label>
+      </node>
+      <node id="66">
+        <label>Pathfinder.GameFilesystem.Directory</label>
+        <link refid="class_pathfinder_1_1_game_filesystem_1_1_directory"/>
+        <childnode refid="67" relation="public-inheritance">
+        </childnode>
+        <childnode refid="68" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>FileObject&lt; Folder, IFileObject &gt;</label>
+        <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
       <node id="71">
         <label>IEnumerable&lt; IFileObject &gt;</label>
+      </node>
+      <node id="74">
+        <label>FileObject&lt; FileSystem, Hacknet.Computer &gt;</label>
+        <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
       <node id="69">
         <label>Pathfinder.GameFilesystem.Directory</label>
@@ -645,57 +666,36 @@
         </childnode>
         <childnode refid="71" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="70">
-        <label>FileObject&lt; Folder, IFileObject &gt;</label>
-        <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="74">
-        <label>IEnumerable&lt; IFileObject &gt;</label>
-      </node>
-      <node id="77">
-        <label>FileObject&lt; FileSystem, Hacknet.Computer &gt;</label>
-        <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
-      </node>
-      <node id="72">
-        <label>Pathfinder.GameFilesystem.Directory</label>
-        <link refid="class_pathfinder_1_1_game_filesystem_1_1_directory"/>
-        <childnode refid="73" relation="public-inheritance">
-        </childnode>
-        <childnode refid="74" relation="public-inheritance">
-        </childnode>
-        <childnode refid="75" relation="usage">
+        <childnode refid="72" relation="usage">
           <edgelabel>this[string name]</edgelabel>
         </childnode>
-        <childnode refid="72" relation="usage">
+        <childnode refid="69" relation="usage">
           <edgelabel>ParentDirectory</edgelabel>
         </childnode>
-        <childnode refid="76" relation="usage">
+        <childnode refid="73" relation="usage">
           <edgelabel>Root</edgelabel>
         </childnode>
       </node>
-      <node id="76">
+      <node id="73">
         <label>Pathfinder.GameFilesystem.Filesystem</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem"/>
-        <childnode refid="77" relation="public-inheritance">
-        </childnode>
         <childnode refid="74" relation="public-inheritance">
         </childnode>
-        <childnode refid="72" relation="usage">
+        <childnode refid="71" relation="public-inheritance">
+        </childnode>
+        <childnode refid="69" relation="usage">
           <edgelabel>Directory</edgelabel>
         </childnode>
-        <childnode refid="76" relation="usage">
+        <childnode refid="73" relation="usage">
           <edgelabel>Root</edgelabel>
           <edgelabel>PrimaryFilesystem</edgelabel>
         </childnode>
       </node>
-      <node id="75">
+      <node id="72">
         <label>Pathfinder.GameFilesystem.IFileObject</label>
         <link refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object"/>
       </node>
-      <node id="73">
+      <node id="70">
         <label>FileObject&lt; Folder, IFileObject &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>

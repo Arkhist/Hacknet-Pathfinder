@@ -19,14 +19,7 @@ namespace Pathfinder.Daemon
 
     public class Interface : IInterface
     {
-        public virtual string InitialServiceName
-        {
-            get
-            {
-                return this.GetType().FullName;
-            }
-        }
-
+        public virtual string InitialServiceName => GetType().FullName;
         public virtual void OnCreate(Instance instance) {}
         public virtual void Draw(Instance instance, Rectangle bounds, SpriteBatch sb) {}
         public virtual void LoadInstance(Instance instance, Dictionary<string, string> objects) {}

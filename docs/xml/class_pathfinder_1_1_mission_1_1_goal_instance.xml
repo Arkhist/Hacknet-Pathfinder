@@ -290,24 +290,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="259">
+      <node id="243">
         <label>Hacknet::Mission::MisisonGoal</label>
       </node>
-      <node id="258">
+      <node id="242">
         <label>Pathfinder.Mission.GoalInstance</label>
         <link refid="class_pathfinder_1_1_mission_1_1_goal_instance"/>
-        <childnode refid="259" relation="public-inheritance">
+        <childnode refid="243" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="261">
+      <node id="245">
         <label>Hacknet::Mission::MisisonGoal</label>
       </node>
-      <node id="260">
+      <node id="244">
         <label>Pathfinder.Mission.GoalInstance</label>
         <link refid="class_pathfinder_1_1_mission_1_1_goal_instance"/>
-        <childnode refid="261" relation="public-inheritance">
+        <childnode refid="245" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
