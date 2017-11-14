@@ -22,7 +22,7 @@
           <defval>1f</defval>
         </param>
         <briefdescription>
-<para>Discovers a computer node if it exists. </para>        </briefdescription>
+<para>Discovers a <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> node if it exists. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if node exists and was discovered, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -71,7 +71,7 @@
           <defval>1f</defval>
         </param>
         <briefdescription>
-<para>Discovers a computer node by name if it exists. </para>        </briefdescription>
+<para>Discovers a <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> node by name if it exists. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if node exists and was discovered, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -120,7 +120,7 @@
           <defval>1f</defval>
         </param>
         <briefdescription>
-<para>Discovers a computer node by ip if it exists. </para>        </briefdescription>
+<para>Discovers a <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> node by ip if it exists. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if node exists and was discovered, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -171,7 +171,7 @@
         <briefdescription>
 <para>Discovers nodes by a <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> enumerable. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>A list of booleans for each discovered node</para></simplesect>
+<para><simplesect kind="return"><para>A List of booleans for each discovered node</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>netmap</parametername>
@@ -194,10 +194,11 @@
 <para>The flash time length for the discovery</para></parameterdescription>
 </parameteritem>
 </parameterlist>
+<simplesect kind="see"><para><ref refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1a22ca9f8727bb0f90f1551a2a4d8d2664" kindref="member">DiscoverNode</ref></para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="56" column="1" bodyfile="Pathfinder/Game/NetworkMap/Extensions.cs" bodystart="56" bodyend="62"/>
+        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="57" column="1" bodyfile="Pathfinder/Game/NetworkMap/Extensions.cs" bodystart="57" bodyend="63"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1a61fd2bdb7f5b5007c14165df734f9a90" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>List&lt; bool &gt;</type>
@@ -220,7 +221,7 @@
         <briefdescription>
 <para>Discovers <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> nodes by a name enumerable. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>A list of booleans for each discovered node</para></simplesect>
+<para><simplesect kind="return"><para>A List of booleans for each discovered node</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>netmap</parametername>
@@ -243,10 +244,11 @@
 <para>The flash time length for the discovery</para></parameterdescription>
 </parameteritem>
 </parameterlist>
+<simplesect kind="see"><para><ref refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1ad52ba2781109cae461b801b7cb0acec2" kindref="member">DiscoverNodeByName</ref></para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="71" column="1"/>
+        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="73" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1a7ee71be20f654d5234b403fabbf48883" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>List&lt; bool &gt;</type>
@@ -269,7 +271,7 @@
         <briefdescription>
 <para>Discovers <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> nodes by an ip enumerable. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>A list of booleans for each discovered node</para></simplesect>
+<para><simplesect kind="return"><para>A List of booleans for each discovered node</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>netmap</parametername>
@@ -292,10 +294,11 @@
 <para>The flash time length for the discovery</para></parameterdescription>
 </parameteritem>
 </parameterlist>
+<simplesect kind="see"><para><ref refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1a06cc4f8b194ba461f9530d139417b3f5" kindref="member">DiscoverNodeByIp</ref></para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="83" column="1"/>
+        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="86" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1aa3e0b1ffb1916fc3bbbd9926cf6a6fbc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -311,9 +314,9 @@
           <declname>index</declname>
         </param>
         <briefdescription>
-<para>Gets a <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> by index. </para>        </briefdescription>
+<para>Retrieves a <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> by index. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>.</para></simplesect>
+<para><simplesect kind="return"><para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> or <computeroutput>null</computeroutput> if not found.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>netmap</parametername>
@@ -332,7 +335,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="94" column="1"/>
+        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="97" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1a02a5f4c37c8d22dbcc810d292f433f46" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -348,7 +351,7 @@
           <declname>name</declname>
         </param>
         <briefdescription>
-<para>Gets a <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> by name. </para>        </briefdescription>
+<para>Retrieves a <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> by name. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> or <computeroutput>null</computeroutput> if not found.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -369,7 +372,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="102" column="1"/>
+        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="106" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1a564ab766afc5da8a9e49ca75f6b39e38" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -385,7 +388,7 @@
           <declname>ip</declname>
         </param>
         <briefdescription>
-<para>Gets a <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> by ip. </para>        </briefdescription>
+<para>Retrieves a <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> by ip. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> or <computeroutput>null</computeroutput> if not found.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -406,7 +409,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="111" column="1"/>
+        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="115" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1af3370e9feaa8d3d81c3323dc297de6ab" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -422,12 +425,28 @@
           <declname>id</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Retrieves a <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> by identifier. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><simplesect kind="return"><para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> or <computeroutput>null</computeroutput> if not found.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>netmap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_game_1_1_network_map" kindref="compound">NetworkMap</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The id to get.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="114" column="1"/>
+        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="124" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1abdf253e8b817ceebb4bc99d03c81a5ef" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -462,27 +481,27 @@
 <parametername>linkStart</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The Link start.</para></parameterdescription>
+<para>The link start.</para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>linkEnd</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The Link end.</para></parameterdescription>
+<para>The link end.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="124" column="1" bodyfile="Pathfinder/Game/NetworkMap/Extensions.cs" bodystart="124" bodyend="131"/>
+        <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="134" column="1" bodyfile="Pathfinder/Game/NetworkMap/Extensions.cs" bodystart="134" bodyend="141"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="7" column="1" bodyfile="Pathfinder/Game/NetworkMap/Extensions.cs" bodystart="6" bodyend="132"/>
+    <location file="Pathfinder/Game/NetworkMap/Extensions.cs" line="7" column="1" bodyfile="Pathfinder/Game/NetworkMap/Extensions.cs" bodystart="6" bodyend="142"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1abdf253e8b817ceebb4bc99d03c81a5ef" prot="public" virt="non-virtual"><scope>Pathfinder::Game::NetworkMap::Extensions</scope><name>AddLink</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1a22ca9f8727bb0f90f1551a2a4d8d2664" prot="public" virt="non-virtual"><scope>Pathfinder::Game::NetworkMap::Extensions</scope><name>DiscoverNode</name></member>

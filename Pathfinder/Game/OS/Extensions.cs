@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Hacknet;
 using Pathfinder.Util;
 
@@ -9,8 +8,9 @@ namespace Pathfinder.Game.OS
     public static class Extensions
     {
         /// <summary>
-        /// Only retrieves the OS's exes of the specifed type. Use <see cref="Extensions.GetExesFor(Hacknet.OS)"/> to get inherited types
+        /// Retrieves the List of ExeModule whose Type is exactly instanceType 
         /// </summary>
+        /// <param name="instanceType">The exact Type to search for in the Executable List</param>
         public static List<ExeModule> GetExesFor(this Hacknet.OS os, Type instanceType)
         {
             var result = new List<ExeModule>();
@@ -21,8 +21,9 @@ namespace Pathfinder.Game.OS
         }
 
         /// <summary>
-        /// Retrieves all exes derived from T on the OS, Use <see cref="Extensions.GetExesFor(Hacknet.OS, Type)"/> to get only singular types
+        /// Retrieves the List of ExeModule List whose Type is or is derived from T 
         /// </summary>
+        /// <typeparam name="T">The Type or derivative of the type to search for in the Executable List</typeparam>
         public static List<T> GetExesFor<T>(this Hacknet.OS os) where T : ExeModule
         {
             var result = new List<T>();
@@ -33,8 +34,9 @@ namespace Pathfinder.Game.OS
         }
 
         /// <summary>
-        /// Only retrieves the OS's modded exes of the specifed interface. Use <see cref="Extensions.GetModExeInterfaceFor(Hacknet.OS)"/> to get inherited types
+        /// Retrieves the List of Executable.Instance whose Type is exactly instanceType 
         /// </summary>
+        /// <param name="interfaceType">The exact Type to search for in the Executable List</param>
         public static List<Executable.Instance> GetModExeInterfaceFor(this Hacknet.OS os, Type interfaceType)
         {
             var result = new List<Executable.Instance>();
@@ -45,8 +47,9 @@ namespace Pathfinder.Game.OS
         }
 
         /// <summary>
-        /// Retrieves all modded exe interfaces derived from T on the OS, Use <see cref="Extensions.GetModExeInterfaceFor(Hacknet.OS, Type)"/> to get only singular types
+        /// Retrieves the List of Executable.Instance List whose Type is or is derived from T 
         /// </summary>
+        /// <typeparam name="T">The Type or derivative of the type to search for in the Executable List</typeparam>
         public static List<Executable.Instance> GetModExeInterfaceFor<T>(this Hacknet.OS os) where T : Executable.IInterface
         {
             var result = new List<Executable.Instance>();
@@ -57,47 +60,30 @@ namespace Pathfinder.Game.OS
         }
 
         /// <summary>
-        /// Retrieves the currently active Computer according to the OS
+        /// Retrieves the active network Computer according to the OS
         /// </summary>
-        public static Hacknet.Computer GetCurrentComputer(this Hacknet.OS os)
-        {
-            return Utility.GetCurrentComputer(os);
-        }
+        public static Hacknet.Computer GetCurrentComputer(this Hacknet.OS os) => Utility.GetCurrentComputer(os);
 
-        public static Hacknet.OS Write(this Hacknet.OS os, string write)
+        /// <summary>
+        /// Writes the formatted string to OS terminal.
+        /// </summary>
+        /// <param name="os">The OS.</param>
+        /// <param name="write">The formatted string to write.</param>
+        public static Hacknet.OS Write(this Hacknet.OS os, string write, params object[] args)
         {
-            os.write(write);
-            return os;
-        }
-
-        public static Hacknet.OS WriteSingle(this Hacknet.OS os, string write)
-        {
-            os.writeSingle(write);
+            os.write(args == null || args.Length < 1 ? write : String.Format(write, args));
             return os;
         }
 
         /// <summary>
-        /// Writes to the terminal using standard C# formatting.
+        /// Writes the formatted string directly to OS terminal. Less safe then <see cref="Write"/>
         /// </summary>
-        /// <returns>The OS.</returns>
-        /// <param name="input">The input to format, zero index must be a formatable string.</param>
-        public static Hacknet.OS WriteF(this Hacknet.OS os, params object[] input)
+        /// <param name="os">The OS.</param>
+        /// <param name="write">The formatted string to write.</param>
+        public static Hacknet.OS WriteSingle(this Hacknet.OS os, string write, params object[] args)
         {
-            if (input.Length <= 0)
-                return os;
-            return os.Write(String.Format(input[0].ToString(), input.Length > 1 ? input.Skip(1).ToArray() : Utility.Array<object>.Empty));
-        }
-
-        /// <summary>
-        /// Writes single to the terminal using standard C# formatting.
-        /// </summary>
-        /// <returns>The OS.</returns>
-        /// <param name="input">The input to format, zero index must be a formatable string.</param>
-        public static Hacknet.OS WriteSingleF(this Hacknet.OS os, params object[] input)
-        {
-            if(input.Length <= 0)
-                return os;
-            return os.WriteSingle(String.Format(input[0].ToString(), input.Length > 1 ? input.Skip(1).ToArray() : Utility.Array<object>.Empty));
+            os.writeSingle(args == null || args.Length < 1 ? write : String.Format(write, args));
+            return os;
         }
     }
 }

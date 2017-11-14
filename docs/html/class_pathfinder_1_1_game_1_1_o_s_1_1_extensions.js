@@ -5,8 +5,6 @@ var class_pathfinder_1_1_game_1_1_o_s_1_1_extensions =
     [ "GetExesFor< T >", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html#a210838cd29e560ada42c3356f4b5f710", null ],
     [ "GetModExeInterfaceFor", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html#ac553c7d9ed908a25fcab8091f82e4e9d", null ],
     [ "GetModExeInterfaceFor< T >", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html#a6cb7772226d053dcecf32b85fb8bf66d", null ],
-    [ "Write", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html#a1c379f092ec7cc44aeb12a3aed8e5183", null ],
-    [ "WriteF", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html#a98be3beba4f665b17dadc1b8a95279b8", null ],
-    [ "WriteSingle", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html#a7e8a53fd0198cf29bad63ed30eccb3f7", null ],
-    [ "WriteSingleF", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html#ab2a6df6aa04ecd7745ee89f1a6f2e103", null ]
+    [ "Write", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html#aa650fe7f1b31a300e7c768804839678e", null ],
+    [ "WriteSingle", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html#a5e9a84b3d11bfc05f86fe6b79ab416f5", null ]
 ];

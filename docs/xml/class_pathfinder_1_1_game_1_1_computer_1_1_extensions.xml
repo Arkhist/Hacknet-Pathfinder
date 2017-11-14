@@ -22,9 +22,9 @@
           <defval>null</defval>
         </param>
         <briefdescription>
-<para>Adds a modded daemon by interface id to the <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>. </para>        </briefdescription>
+<para>Adds a modded <ref refid="namespace_pathfinder_1_1_daemon" kindref="compound">Daemon</ref> via the interface id string to the <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>The modded daemon instance.</para></simplesect>
+<para><simplesect kind="return"><para>The modded <ref refid="namespace_pathfinder_1_1_daemon" kindref="compound">Daemon</ref> instance.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>comp</parametername>
@@ -50,7 +50,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="19" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="19" bodyend="28"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="20" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="20" bodyend="29"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ad489bbc2bd3b21595bdc1c93a9816536" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; <ref refid="_template_mod_8cs_1afbb0d8e10828a139d097cbde897543b0" kindref="member">Hacknet.Daemon</ref> &gt;</type>
@@ -66,14 +66,22 @@
           <declname>daemonType</declname>
         </param>
         <briefdescription>
-<para>Retrieves a list of daemon of the exact type daemonType from comp </para>        </briefdescription>
+<para>Retrieves a List of daemons exactly of <ref refid="namespace_pathfinder_1_1_daemon" kindref="compound">Daemon</ref> from the <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>/// <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>daemonType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exact Type to search for</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="33" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="33" bodyend="40"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="35" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="35" bodyend="42"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1abc9d14c4d4506aed6ce38c9bb22b4de0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1abc9d14c4d4506aed6ce38c9bb22b4de0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>List&lt; T &gt;</type>
         <definition>static List&lt;T&gt; Pathfinder.Game.Computer.Extensions.GetDaemonList&lt; T &gt;</definition>
         <argsstring>(this Hacknet.Computer comp)</argsstring>
@@ -83,12 +91,20 @@
           <declname>comp</declname>
         </param>
         <briefdescription>
-<para>Retrieves a list of daemon whose type is either T or derived from T, pulled from comp </para>        </briefdescription>
+<para>Retrieves a List of Daemons whose Type is or is derived from T, pulled from <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type or derivative of the type to search for in the <ref refid="namespace_pathfinder_1_1_daemon" kindref="compound">Daemon</ref> List</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="45" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="45" bodyend="52"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="48" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ac683401008ac15c08ecbf7946a5fe24a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Daemon.Instance</type>
@@ -104,12 +120,20 @@
           <declname>modInterface</declname>
         </param>
         <briefdescription>
-<para>Gets the first mod daemon instance whose interface type is exactly modInterface. </para>        </briefdescription>
+<para>Retrieves the first <ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref> whose interface Type is exactly modInterface. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>modInterface</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exact Type to find</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="57" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="55" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1aac0be8436e6d238d72173e03a35fb44b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Daemon.Instance</type>
@@ -121,12 +145,20 @@
           <declname>comp</declname>
         </param>
         <briefdescription>
-<para>Gets the first mod daemon instance whose interface type derives or is of type modInterface. </para>        </briefdescription>
+<para>Retrieves the first mod <ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref> whose interface Type is or is derived from T. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type or derivative of the type to search for in the <ref refid="namespace_pathfinder_1_1_daemon" kindref="compound">Daemon</ref> List</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="63" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="62" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a193ef2545fc2d855e414717dd5a06ead" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; Daemon.Instance &gt;</type>
@@ -142,9 +174,17 @@
           <declname>modInterface</declname>
         </param>
         <briefdescription>
-<para>Retrieves a list of mod daemon instances whose interface is exactly of type modInterface </para>        </briefdescription>
+<para>Retrieves a List of <ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref> whose interface Type is exactly modInterface. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>/// <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>modInterface</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exact Type to find</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="Pathfinder/Game/Computer/Extensions.cs" line="69" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="69" bodyend="76"/>
@@ -159,12 +199,20 @@
           <declname>comp</declname>
         </param>
         <briefdescription>
-<para>Retrieves a list of mod daemon instances whose interface type is either T or derived from T, pulled from comp </para>        </briefdescription>
+<para>Retrieves a List of mod <ref refid="class_pathfinder_1_1_daemon_1_1_instance" kindref="compound">Daemon.Instance</ref> whose interface Type is or is derived from T </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type or derivative of the type to search for in the <ref refid="namespace_pathfinder_1_1_daemon" kindref="compound">Daemon</ref> List</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="81" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="81" bodyend="88"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="82" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="82" bodyend="89"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1aa3853d2b8446e08fcb7cbaa38af200ef" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -180,7 +228,7 @@
           <declname>newLink</declname>
         </param>
         <briefdescription>
-<para>Adds from this comp connecting to newLink. </para>        </briefdescription>
+<para>Adds a link on the <ref refid="namespace_pathfinder_1_1_game_1_1_network_map" kindref="compound">NetworkMap</ref> from <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> connecting to newLink. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if the link was added, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -201,7 +249,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="96" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="97" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1aa85941fa270067d20bfe29e35c22b57a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.OS</type>
@@ -213,7 +261,7 @@
           <declname>comp</declname>
         </param>
         <briefdescription>
-<para>Gets the <ref refid="namespace_pathfinder_1_1_game_1_1_o_s" kindref="compound">OS</ref> the current computer is on. </para>        </briefdescription>
+<para>Retireves the <ref refid="namespace_pathfinder_1_1_game_1_1_o_s" kindref="compound">OS</ref> of <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para>The <ref refid="namespace_pathfinder_1_1_game_1_1_o_s" kindref="compound">OS</ref>.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -227,7 +275,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="104" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="105" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ae072cf1d65f12e0ee47a81de0d571eef" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.NetworkMap</type>
@@ -239,7 +287,7 @@
           <declname>comp</declname>
         </param>
         <briefdescription>
-<para>Gets the <ref refid="namespace_pathfinder_1_1_game_1_1_network_map" kindref="compound">NetworkMap</ref> the computer is part of. </para>        </briefdescription>
+<para>Retrieves the <ref refid="namespace_pathfinder_1_1_game_1_1_network_map" kindref="compound">NetworkMap</ref> of <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para>The <ref refid="namespace_pathfinder_1_1_game_1_1_network_map" kindref="compound">NetworkMap</ref>.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -253,7 +301,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="111" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="112" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a660238438b184b163072d84b49efa15a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -289,7 +337,7 @@
 <parametername>info</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The info for the port</para></parameterdescription>
+<para>The ExecutableInfo for the port</para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -302,7 +350,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="120" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="120" bodyend="127"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="121" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="121" bodyend="128"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1afdd85c8429dba6517f3878a1690fee5d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -351,7 +399,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="136" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="137" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a8110b42b7e3ce1082322680d049563b2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -400,7 +448,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="146" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="147" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a6321d67de2540313cb1998a276834b4d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -436,7 +484,7 @@
 <parametername>port</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The port type to add to the computer</para></parameterdescription>
+<para>The <ref refid="class_pathfinder_1_1_port_1_1_type" kindref="compound">Port.Type</ref> to add to <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref></para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -449,7 +497,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="156" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="157" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a97e5ba6f04f9da1fea7cf15c8e925709" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -470,7 +518,7 @@
           <defval>false</defval>
         </param>
         <briefdescription>
-<para>Adds the mod port by port registry id. </para>        </briefdescription>
+<para>Adds the mod port by the modded port&apos;s registry id. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if mod port was added, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -485,7 +533,7 @@
 <parametername>id</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The port&apos;s registry id to add to the computer</para></parameterdescription>
+<para>The modded port&apos;s registry id to add to <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref></para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -498,7 +546,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="166" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="167" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a347336f72519a32306ab2bb1948a200a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -529,13 +577,13 @@
 <parametername>info</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The info for the port</para></parameterdescription>
+<para>The ExecutableInfo for the port</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="175" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="175" bodyend="185"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="176" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="176" bodyend="186"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a02f5d757d0b44fdeaa90b28a18532e6a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -572,7 +620,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="193" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="194" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a76cb036d9b5783b84f41c56cf3c4833d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -609,7 +657,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="202" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="203" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ae9adf41560dc83d71128cf70b8e72e8d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -630,7 +678,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="205" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="206" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a4a853fce3472afacd13e6d34efb15df0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -651,7 +699,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="208" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="209" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a0d9b8fc39c5b8f974eeeee6a10e7cf3c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>IList&lt; Port.Instance &gt;</type>
@@ -677,7 +725,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="216" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="216" bodyend="223"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="217" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="217" bodyend="224"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a81ec2b53b376884e06e3edccbcf64f54" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -693,7 +741,7 @@
           <declname>info</declname>
         </param>
         <briefdescription>
-<para>Determines whether the <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has a certain vanilla port. </para>        </briefdescription>
+<para>Determines whether <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has a certain vanilla port. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has the port, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -707,7 +755,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="230" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="231" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1af400d97a15b1c4a2584a2e7d808bb7d5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -723,7 +771,7 @@
           <declname>portName</declname>
         </param>
         <briefdescription>
-<para>Determines whether the <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has a certain vanilla port. </para>        </briefdescription>
+<para>Determines whether <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has a certain vanilla port. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has the port, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -737,7 +785,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="238" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="239" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1aed8a68d3092ba9ad2c21de6ffb57b45f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -753,7 +801,7 @@
           <declname>portNum</declname>
         </param>
         <briefdescription>
-<para>Determines whether the <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has a certain vanilla port. </para>        </briefdescription>
+<para>Determines whether <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has a certain vanilla port. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has the port, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -767,7 +815,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="246" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="247" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a44206dcd04a8c9564e1ac1cb14e39952" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -783,7 +831,7 @@
           <declname>port</declname>
         </param>
         <briefdescription>
-<para>Determines whether the <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has a certain mod port. </para>        </briefdescription>
+<para>Determines whether <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has a certain mod port. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has the port, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -791,13 +839,13 @@
 <parametername>port</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The port type to search by.</para></parameterdescription>
+<para>The <ref refid="class_pathfinder_1_1_port_1_1_type" kindref="compound">Port.Type</ref> to search by.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="254" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="255" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a2967460a61cc6bf6dd635d6acefa0146" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -813,7 +861,7 @@
           <declname>id</declname>
         </param>
         <briefdescription>
-<para>Determines whether the <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has a certain mod port. </para>        </briefdescription>
+<para>Determines whether <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has a certain mod port. </para>        </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> has the port, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
@@ -821,13 +869,13 @@
 <parametername>id</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The registry port id to search by.</para></parameterdescription>
+<para>The modded port&apos;s registry id to search by.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="262" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="263" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a8e7b104b1eb60ee74063591fd53d3877" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -845,7 +893,7 @@
         <briefdescription>
 <para>Determines whether the vanilla port is open. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if port open is open, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if the port exists and is open, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>comp</parametername>
@@ -864,7 +912,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="270" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="270" bodyend="276"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="271" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="271" bodyend="277"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ab014867367facb0f1f3e508bf4eb95e5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -882,7 +930,7 @@
         <briefdescription>
 <para>Determines whether the vanilla port is open. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if port open is open, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if the port exists and is open, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>comp</parametername>
@@ -901,7 +949,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="284" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="285" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1acba6782d5495e73169ae15572569825e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -919,7 +967,7 @@
         <briefdescription>
 <para>Determines whether the vanilla port is open. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if port open is open, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if the port exists and is open, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>comp</parametername>
@@ -938,7 +986,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="293" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="294" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1aaba33f38024a55e914c60da8a96b0334" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -954,9 +1002,9 @@
           <declname>port</declname>
         </param>
         <briefdescription>
-<para>Determines whether the mod port is open. </para>        </briefdescription>
+<para>Determines whether the modded port is open. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if port open is open, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if the port exists and is open, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>comp</parametername>
@@ -969,13 +1017,13 @@
 <parametername>port</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The port type to find</para></parameterdescription>
+<para>The <ref refid="class_pathfinder_1_1_port_1_1_type" kindref="compound">Port.Type</ref> to find</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="302" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="303" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a6f7ea892e48a5e72c5a159415e80742a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -993,7 +1041,7 @@
         <briefdescription>
 <para>Determines whether the mod port is open. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if port open is open, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if the port exists and is open, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>comp</parametername>
@@ -1006,18 +1054,18 @@
 <parametername>id</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The registered port id to search by</para></parameterdescription>
+<para>The modded port&apos;s registry id to search by</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="311" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="312" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1abfb148e3590acd854624cee46972c823" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a8e113af134f6557e20843e674fc62443" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Game.Computer.Extensions.OpenVanillaPort</definition>
-        <argsstring>(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom)</argsstring>
+        <argsstring>(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom=null)</argsstring>
         <name>OpenVanillaPort</name>
         <param>
           <type>this Hacknet.Computer</type>
@@ -1030,9 +1078,10 @@
         <param>
           <type>string</type>
           <declname>ipFrom</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
-<para>Opens a vanilla port. </para>        </briefdescription>
+<para>Opens a vanilla port. Doesn&apos;t add a port </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -1053,18 +1102,18 @@
 <parametername>ipFrom</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The IP responsible for the change.</para></parameterdescription>
+<para>The ip responsible for the change.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="320" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="320" bodyend="330"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="321" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="321" bodyend="331"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ae59a36274f62bc84a401bb24f7671c67" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a631e8f036e1bca2edcf518a3c0dea422" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Game.Computer.Extensions.OpenVanillaPort</definition>
-        <argsstring>(this Hacknet.Computer comp, string portName, string ipFrom)</argsstring>
+        <argsstring>(this Hacknet.Computer comp, string portName, string ipFrom=null)</argsstring>
         <name>OpenVanillaPort</name>
         <param>
           <type>this Hacknet.Computer</type>
@@ -1077,9 +1126,10 @@
         <param>
           <type>string</type>
           <declname>ipFrom</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
-<para>Opens a vanilla port. </para>        </briefdescription>
+<para>Opens a vanilla port. Doesn&apos;t add a port </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -1100,18 +1150,18 @@
 <parametername>ipFrom</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The IP responsible for the change.</para></parameterdescription>
+<para>The ip responsible for the change.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="338" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="339" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ac31db7dac92ab32a31e8b68f12239570" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a454cd42d7f0b3fbc2112f3aaa1e09ffd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Game.Computer.Extensions.OpenVanillaPort</definition>
-        <argsstring>(this Hacknet.Computer comp, int portNum, string ipFrom)</argsstring>
+        <argsstring>(this Hacknet.Computer comp, int portNum, string ipFrom=null)</argsstring>
         <name>OpenVanillaPort</name>
         <param>
           <type>this Hacknet.Computer</type>
@@ -1124,9 +1174,10 @@
         <param>
           <type>string</type>
           <declname>ipFrom</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
-<para>Opens a vanilla port. </para>        </briefdescription>
+<para>Opens a vanilla port. Doesn&apos;t add a port </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -1147,18 +1198,18 @@
 <parametername>ipFrom</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The IP responsible for the change.</para></parameterdescription>
+<para>The ip responsible for the change.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="347" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="348" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a43b16dd1b6a8075c3913c4be8edc08f1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a233f14bc3f81ad8d7978b8c79ec7cfa0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Game.Computer.Extensions.OpenModPort</definition>
-        <argsstring>(this Hacknet.Computer comp, Port.Type port, string ipFrom)</argsstring>
+        <argsstring>(this Hacknet.Computer comp, Port.Type port, string ipFrom=null)</argsstring>
         <name>OpenModPort</name>
         <param>
           <type>this Hacknet.Computer</type>
@@ -1171,9 +1222,10 @@
         <param>
           <type>string</type>
           <declname>ipFrom</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
-<para>Opens a mod port. </para>        </briefdescription>
+<para>Opens a mod port. Doesn&apos;t add a port </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -1187,25 +1239,25 @@
 <parametername>port</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The Type to search for.</para></parameterdescription>
+<para>The <ref refid="class_pathfinder_1_1_port_1_1_type" kindref="compound">Port.Type</ref> to search for.</para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>ipFrom</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The IP responsible for the change.</para></parameterdescription>
+<para>The ip responsible for the change.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="356" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="356" bodyend="365"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="357" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="357" bodyend="366"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a01c71243fa8baaeb2d55071e7bf7101a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a892cdb57a01f65ccee0240c2bbe03d9d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Game.Computer.Extensions.OpenModPort</definition>
-        <argsstring>(this Hacknet.Computer comp, string id, string ipFrom)</argsstring>
+        <argsstring>(this Hacknet.Computer comp, string id, string ipFrom=null)</argsstring>
         <name>OpenModPort</name>
         <param>
           <type>this Hacknet.Computer</type>
@@ -1218,9 +1270,10 @@
         <param>
           <type>string</type>
           <declname>ipFrom</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
-<para>Opens a mod port. </para>        </briefdescription>
+<para>Opens a mod port. Doesn&apos;t add a port </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -1241,18 +1294,18 @@
 <parametername>ipFrom</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The IP responsible for the change.</para></parameterdescription>
+<para>The ip responsible for the change.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="373" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="374" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a9f7ddb3ba4a0f6f32a0f6eb3e8178dd8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a3122aef93de0c4093c8643da642c9d7b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Game.Computer.Extensions.CloseVanillaPort</definition>
-        <argsstring>(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom)</argsstring>
+        <argsstring>(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom=null)</argsstring>
         <name>CloseVanillaPort</name>
         <param>
           <type>this Hacknet.Computer</type>
@@ -1265,19 +1318,42 @@
         <param>
           <type>string</type>
           <declname>ipFrom</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Closes a vanilla port. Doesn&apos;t add a port </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>comp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ExecutableInfo to search for.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ipFrom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ip responsible for the change.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="376" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="376" bodyend="387"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="383" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="383" bodyend="394"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1adfe9a5d05a8f96816b78cce955f2e667" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1adcc50885e37f7ba1e89f30a23ee6233c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Game.Computer.Extensions.CloseVanillaPort</definition>
-        <argsstring>(this Hacknet.Computer comp, string portName, string ipFrom)</argsstring>
+        <argsstring>(this Hacknet.Computer comp, string portName, string ipFrom=null)</argsstring>
         <name>CloseVanillaPort</name>
         <param>
           <type>this Hacknet.Computer</type>
@@ -1290,19 +1366,42 @@
         <param>
           <type>string</type>
           <declname>ipFrom</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Closes a vanilla port. Doesn&apos;t add a port </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>comp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>portName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The port name to search for.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ipFrom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ip responsible for the change.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="389" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="402" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a29f006738eabc3194778c47d8549ab3d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a4fab6d4d53f2d536b4df82cd28f3c6fe" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Game.Computer.Extensions.CloseVanillaPort</definition>
-        <argsstring>(this Hacknet.Computer comp, int portNum, string ipFrom)</argsstring>
+        <argsstring>(this Hacknet.Computer comp, int portNum, string ipFrom=null)</argsstring>
         <name>CloseVanillaPort</name>
         <param>
           <type>this Hacknet.Computer</type>
@@ -1315,19 +1414,42 @@
         <param>
           <type>string</type>
           <declname>ipFrom</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Closes a vanilla port. Doesn&apos;t add a port </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>comp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>portNum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The port number to search for.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ipFrom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ip responsible for the change.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="392" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="411" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ad94578a8a138e204bc51e712ce1abd91" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ad1a13578e815ae861d80c3612289e89b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Game.Computer.Extensions.CloseModPort</definition>
-        <argsstring>(this Hacknet.Computer comp, Port.Type port, string ipFrom)</argsstring>
+        <argsstring>(this Hacknet.Computer comp, Port.Type port, string ipFrom=null)</argsstring>
         <name>CloseModPort</name>
         <param>
           <type>this Hacknet.Computer</type>
@@ -1340,19 +1462,42 @@
         <param>
           <type>string</type>
           <declname>ipFrom</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Closes a mod port. Doesn&apos;t add a port </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>comp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="class_pathfinder_1_1_port_1_1_type" kindref="compound">Port.Type</ref> to search for.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ipFrom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ip responsible for the change.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="395" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="395" bodyend="405"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="420" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="420" bodyend="430"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a4795ff57c8d0a998c01e6ed82fbf1dc2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7f6f74f4c9df4c5230a787511633dcfb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Game.Computer.Extensions.CloseModPort</definition>
-        <argsstring>(this Hacknet.Computer comp, string id, string ipFrom)</argsstring>
+        <argsstring>(this Hacknet.Computer comp, string id, string ipFrom=null)</argsstring>
         <name>CloseModPort</name>
         <param>
           <type>this Hacknet.Computer</type>
@@ -1365,14 +1510,37 @@
         <param>
           <type>string</type>
           <declname>ipFrom</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Closes a mod port. Doesn&apos;t add a port </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>comp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type id to search for.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ipFrom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ip responsible for the change.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="407" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="438" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7f03319f859dd7b8f726482d0e8e902c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -1388,12 +1556,27 @@
           <declname>device</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Adds a EOS Device connection represented by device </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>comp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>device</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref> device to link to.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="410" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="410" bodyend="421"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="446" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="446" bodyend="457"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7ed8030625798e10d73f17788a8a7b6f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -1450,12 +1633,84 @@
           <defval>null</defval>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Creates the EOS Device connected to <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><simplesect kind="return"><para>The created EOS Device.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>comp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The device&apos;s name.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ip</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The device&apos;s ip.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>icon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The device&apos;s icon.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>location</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The device&apos;s <ref refid="namespace_pathfinder_1_1_game_1_1_network_map" kindref="compound">NetworkMap</ref> position.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The device&apos;s password, by game default should be alpine.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vanillaPorts</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The device&apos;s closed vanilla port numbers.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>portCracksRequired</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The device&apos;s cracked ports required to unlock.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eosFolder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The device&apos;s eos folder.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>modPorts</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The device&apos;s closed modded <ref refid="class_pathfinder_1_1_port_1_1_type" kindref="compound">Port.Type</ref> List.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="423" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="423" bodyend="460"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="473" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="473" bodyend="510"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a5de7264ce9c8b04d2e4e4bfb1c495092" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
@@ -1471,12 +1726,28 @@
           <declname>retType</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Gets the EOS Devices sorted by retType. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><simplesect kind="return"><para>The EOS Devices.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>comp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_game_1_1_computer" kindref="compound">Computer</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>retType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Determines how to sort the devices.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="462" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="462" bodyend="489"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="518" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="518" bodyend="545"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7ed0b3f54a0705e1661f200bad800f76" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
@@ -1488,12 +1759,12 @@
           <declname>comp</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Sorts EOS Devices by ids </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><ref refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a5de7264ce9c8b04d2e4e4bfb1c495092" kindref="member">GetEOSDevicesBy</ref> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="491" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="551" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ab8ccfe4322463ae2fc55b0d4ff9090ae" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
@@ -1505,12 +1776,12 @@
           <declname>comp</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Sorts EOS Devices by ips </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><ref refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a5de7264ce9c8b04d2e4e4bfb1c495092" kindref="member">GetEOSDevicesBy</ref> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="494" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="558" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a4f94c3f5f852e4e08c0c231f27527bbe" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
@@ -1522,12 +1793,12 @@
           <declname>comp</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Sorts EOS Devices by names </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><ref refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a5de7264ce9c8b04d2e4e4bfb1c495092" kindref="member">GetEOSDevicesBy</ref> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="497" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="565" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ae03e83b80704d8f0b3440968860241f9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
@@ -1539,19 +1810,19 @@
           <declname>comp</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Sorts EOS Devices by <ref refid="namespace_pathfinder_1_1_game_1_1_network_map" kindref="compound">NetworkMap</ref> indexes </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><ref refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a5de7264ce9c8b04d2e4e4bfb1c495092" kindref="member">GetEOSDevicesBy</ref> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/Computer/Extensions.cs" line="500" column="1"/>
+        <location file="Pathfinder/Game/Computer/Extensions.cs" line="572" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Game/Computer/Extensions.cs" line="11" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="10" bodyend="502"/>
+    <location file="Pathfinder/Game/Computer/Extensions.cs" line="12" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="11" bodyend="574"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7f03319f859dd7b8f726482d0e8e902c" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>AddEOSDevice</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1aa3853d2b8446e08fcb7cbaa38af200ef" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>AddLink</name></member>
@@ -1561,11 +1832,11 @@
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a660238438b184b163072d84b49efa15a" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>AddVanillaPort</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1afdd85c8429dba6517f3878a1690fee5d" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>AddVanillaPort</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a8110b42b7e3ce1082322680d049563b2" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>AddVanillaPort</name></member>
-      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ad94578a8a138e204bc51e712ce1abd91" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseModPort</name></member>
-      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a4795ff57c8d0a998c01e6ed82fbf1dc2" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseModPort</name></member>
-      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a9f7ddb3ba4a0f6f32a0f6eb3e8178dd8" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseVanillaPort</name></member>
-      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1adfe9a5d05a8f96816b78cce955f2e667" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseVanillaPort</name></member>
-      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a29f006738eabc3194778c47d8549ab3d" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseVanillaPort</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ad1a13578e815ae861d80c3612289e89b" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseModPort</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7f6f74f4c9df4c5230a787511633dcfb" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseModPort</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a3122aef93de0c4093c8643da642c9d7b" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseVanillaPort</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1adcc50885e37f7ba1e89f30a23ee6233c" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseVanillaPort</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a4fab6d4d53f2d536b4df82cd28f3c6fe" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseVanillaPort</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7ed8030625798e10d73f17788a8a7b6f" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CreateEOSDeviceOn</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ad489bbc2bd3b21595bdc1c93a9816536" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>GetDaemonList</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1abc9d14c4d4506aed6ce38c9bb22b4de0" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>GetDaemonList&lt; T &gt;</name></member>
@@ -1591,11 +1862,11 @@
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a8e7b104b1eb60ee74063591fd53d3877" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>IsVanillaPortOpen</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ab014867367facb0f1f3e508bf4eb95e5" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>IsVanillaPortOpen</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1acba6782d5495e73169ae15572569825e" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>IsVanillaPortOpen</name></member>
-      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a43b16dd1b6a8075c3913c4be8edc08f1" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>OpenModPort</name></member>
-      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a01c71243fa8baaeb2d55071e7bf7101a" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>OpenModPort</name></member>
-      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1abfb148e3590acd854624cee46972c823" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>OpenVanillaPort</name></member>
-      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ae59a36274f62bc84a401bb24f7671c67" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>OpenVanillaPort</name></member>
-      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ac31db7dac92ab32a31e8b68f12239570" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>OpenVanillaPort</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a233f14bc3f81ad8d7978b8c79ec7cfa0" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>OpenModPort</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a892cdb57a01f65ccee0240c2bbe03d9d" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>OpenModPort</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a8e113af134f6557e20843e674fc62443" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>OpenVanillaPort</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a631e8f036e1bca2edcf518a3c0dea422" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>OpenVanillaPort</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a454cd42d7f0b3fbc2112f3aaa1e09ffd" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>OpenVanillaPort</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ae9adf41560dc83d71128cf70b8e72e8d" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>RemoveModPort</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a4a853fce3472afacd13e6d34efb15df0" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>RemoveModPort</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a347336f72519a32306ab2bb1948a200a" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>RemoveVanillaPort</name></member>

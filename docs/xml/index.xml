@@ -307,16 +307,16 @@
     <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1acba6782d5495e73169ae15572569825e" kind="function"><name>IsVanillaPortOpen</name></member>
     <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1aaba33f38024a55e914c60da8a96b0334" kind="function"><name>IsModPortOpen</name></member>
     <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a6f7ea892e48a5e72c5a159415e80742a" kind="function"><name>IsModPortOpen</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1abfb148e3590acd854624cee46972c823" kind="function"><name>OpenVanillaPort</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ae59a36274f62bc84a401bb24f7671c67" kind="function"><name>OpenVanillaPort</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ac31db7dac92ab32a31e8b68f12239570" kind="function"><name>OpenVanillaPort</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a43b16dd1b6a8075c3913c4be8edc08f1" kind="function"><name>OpenModPort</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a01c71243fa8baaeb2d55071e7bf7101a" kind="function"><name>OpenModPort</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a9f7ddb3ba4a0f6f32a0f6eb3e8178dd8" kind="function"><name>CloseVanillaPort</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1adfe9a5d05a8f96816b78cce955f2e667" kind="function"><name>CloseVanillaPort</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a29f006738eabc3194778c47d8549ab3d" kind="function"><name>CloseVanillaPort</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ad94578a8a138e204bc51e712ce1abd91" kind="function"><name>CloseModPort</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a4795ff57c8d0a998c01e6ed82fbf1dc2" kind="function"><name>CloseModPort</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a8e113af134f6557e20843e674fc62443" kind="function"><name>OpenVanillaPort</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a631e8f036e1bca2edcf518a3c0dea422" kind="function"><name>OpenVanillaPort</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a454cd42d7f0b3fbc2112f3aaa1e09ffd" kind="function"><name>OpenVanillaPort</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a233f14bc3f81ad8d7978b8c79ec7cfa0" kind="function"><name>OpenModPort</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a892cdb57a01f65ccee0240c2bbe03d9d" kind="function"><name>OpenModPort</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a3122aef93de0c4093c8643da642c9d7b" kind="function"><name>CloseVanillaPort</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1adcc50885e37f7ba1e89f30a23ee6233c" kind="function"><name>CloseVanillaPort</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a4fab6d4d53f2d536b4df82cd28f3c6fe" kind="function"><name>CloseVanillaPort</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ad1a13578e815ae861d80c3612289e89b" kind="function"><name>CloseModPort</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7f6f74f4c9df4c5230a787511633dcfb" kind="function"><name>CloseModPort</name></member>
     <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7f03319f859dd7b8f726482d0e8e902c" kind="function"><name>AddEOSDevice</name></member>
     <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7ed8030625798e10d73f17788a8a7b6f" kind="function"><name>CreateEOSDeviceOn</name></member>
     <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a5de7264ce9c8b04d2e4e4bfb1c495092" kind="function"><name>GetEOSDevicesBy</name></member>
@@ -331,10 +331,8 @@
     <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ac553c7d9ed908a25fcab8091f82e4e9d" kind="function"><name>GetModExeInterfaceFor</name></member>
     <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a6cb7772226d053dcecf32b85fb8bf66d" kind="function"><name>GetModExeInterfaceFor&lt; T &gt;</name></member>
     <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a3c7dc4252ef9aa625353a05831412ed6" kind="function"><name>GetCurrentComputer</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a1c379f092ec7cc44aeb12a3aed8e5183" kind="function"><name>Write</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a7e8a53fd0198cf29bad63ed30eccb3f7" kind="function"><name>WriteSingle</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a98be3beba4f665b17dadc1b8a95279b8" kind="function"><name>WriteF</name></member>
-    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ab2a6df6aa04ecd7745ee89f1a6f2e103" kind="function"><name>WriteSingleF</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1aa650fe7f1b31a300e7c768804839678e" kind="function"><name>Write</name></member>
+    <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a5e9a84b3d11bfc05f86fe6b79ab416f5" kind="function"><name>WriteSingle</name></member>
   </compound>
   <compound refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions" kind="class"><name>Pathfinder::Game::NetworkMap::Extensions</name>
     <member refid="class_pathfinder_1_1_game_1_1_network_map_1_1_extensions_1a22ca9f8727bb0f90f1551a2a4d8d2664" kind="function"><name>DiscoverNode</name></member>
