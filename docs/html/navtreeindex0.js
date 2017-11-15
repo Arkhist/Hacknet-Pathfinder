@@ -221,7 +221,6 @@ var NAVTREEINDEX0 =
 "annotated.html":[2,0],
 "class_pathfinder_1_1_command_1_1_handler.html":[2,0,0,0,0],
 "class_pathfinder_1_1_command_1_1_handler.html#a2a554560d17cb4f32735115a9efde193":[2,0,0,0,0,0],
-"class_pathfinder_1_1_command_1_1_handler.html#abf1b582e5eac97152f0ec2ba6ef70f04":[2,0,0,0,0,2],
 "class_pathfinder_1_1_command_1_1_handler.html#ae2ba76254891fa9ac9e40a874028e709":[2,0,0,0,0,1],
 "class_pathfinder_1_1_command_1_1_help.html":[2,0,0,0,1],
 "class_pathfinder_1_1_command_1_1_help.html#a1da9fe1c6968425c039930f9cbe3d165":[2,0,0,0,1,4],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "class_pathfinder_1_1_daemon_1_1_instance.html#a6f9257835a3d44259f9559a20c28e88f":[2,0,0,1,2,1],
 "class_pathfinder_1_1_daemon_1_1_instance.html#a9e574f325dfc5e782d6b2b17cf2a3a12":[2,0,0,1,2,10],
 "class_pathfinder_1_1_daemon_1_1_instance.html#aba8be79a7c9d0198f64e96f71b666cf1":[2,0,0,1,2,0],
-"class_pathfinder_1_1_daemon_1_1_instance.html#ad22126d7d4e8ac25c959bf424a99e616":[2,0,0,1,2,4]
+"class_pathfinder_1_1_daemon_1_1_instance.html#ad22126d7d4e8ac25c959bf424a99e616":[2,0,0,1,2,4],
+"class_pathfinder_1_1_daemon_1_1_instance.html#ae7dfe4ab933781a99b9bddd918426fcf":[2,0,0,1,2,13]
 };

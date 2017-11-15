@@ -52,7 +52,7 @@ namespace Pathfinder.Internal
                 int num = e.OS.ram.bounds.Y + RamModule.contentStartOffset;
                 foreach (var exe in e.OS.exes)
                     num += exe.bounds.Height;
-                var location = new Rectangle(e.OS.ram.bounds.X, num, RamModule.MODULE_WIDTH, (int)Hacknet.OS.EXE_MODULE_HEIGHT);
+                var location = new Rectangle(e.OS.ram.bounds.X, num, RamModule.MODULE_WIDTH, (int)OS.EXE_MODULE_HEIGHT);
                 e.OS.addExe(Executable.Instance.CreateInstance(tuple.Item1, e.ExecutableFile, e.OS, e.Arguments, location));
                 e.Result = Executable.ExecutionResult.StartupSuccess;
             }

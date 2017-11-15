@@ -477,7 +477,6 @@
     <member refid="class_pathfinder_1_1_command_1_1_handler_1ae5933bbb6f98e287d2517a29a8be230c" kind="variable"><name>ModIdToCommandKeyList</name></member>
     <member refid="class_pathfinder_1_1_command_1_1_handler_1a2a554560d17cb4f32735115a9efde193" kind="function"><name>CommandFunc</name></member>
     <member refid="class_pathfinder_1_1_command_1_1_handler_1ae2ba76254891fa9ac9e40a874028e709" kind="function"><name>RegisterCommand</name></member>
-    <member refid="class_pathfinder_1_1_command_1_1_handler_1abf1b582e5eac97152f0ec2ba6ef70f04" kind="function"><name>RegisterCommand</name></member>
     <member refid="class_pathfinder_1_1_command_1_1_handler_1a8a1f9cc635fa33135068ca40abf02d2e" kind="function"><name>UnregisterCommand</name></member>
   </compound>
   <compound refid="class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_handler" kind="class"><name>Pathfinder::GUI::ModOptions::Handler</name>

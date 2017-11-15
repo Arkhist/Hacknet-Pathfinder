@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['registercommand',['RegisterCommand',['../class_pathfinder_1_1_command_1_1_handler.html#ae2ba76254891fa9ac9e40a874028e709',1,'Pathfinder.Command.Handler.RegisterCommand(string key, CommandFunc function, string description=null, bool autoComplete=false)'],['../class_pathfinder_1_1_command_1_1_handler.html#abf1b582e5eac97152f0ec2ba6ef70f04',1,'Pathfinder.Command.Handler.RegisterCommand(string key, Func&lt; Hacknet.OS, List&lt; string &gt;, bool &gt; function, string description=null, bool autoComplete=false)']]],
+  ['registercommand',['RegisterCommand',['../class_pathfinder_1_1_command_1_1_handler.html#ae2ba76254891fa9ac9e40a874028e709',1,'Pathfinder::Command::Handler']]],
   ['registerdaemon',['RegisterDaemon',['../class_pathfinder_1_1_daemon_1_1_handler.html#a44ee1cb75865d7c31428ffaec269e9d5',1,'Pathfinder::Daemon::Handler']]],
   ['registerexecutable',['RegisterExecutable',['../class_pathfinder_1_1_executable_1_1_handler.html#ad54f06a107407f1f0c8e225587c265de',1,'Pathfinder::Executable::Handler']]],
   ['registerextension',['RegisterExtension',['../class_pathfinder_1_1_extension_1_1_handler.html#a4a5fdec834a4b1b367ab7aa3c1b9d3ae',1,'Pathfinder::Extension::Handler']]],

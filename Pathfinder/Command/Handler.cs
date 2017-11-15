@@ -44,13 +44,6 @@ namespace Pathfinder.Command
             return id + '.' + key;
         }
 
-        [Obsolete("Use CommandFunc Register, usually needs a simple recompile")]
-        public static string RegisterCommand(string key,
-                                               Func<Hacknet.OS, List<string>, bool> function,
-                                               string description = null,
-                                               bool autoComplete = false) =>
-            RegisterCommand(key, (CommandFunc)function.Invoke, description, autoComplete);
-
         internal static bool UnregisterCommand(string key)
         {
             if (!ModCommands.ContainsKey(key))
