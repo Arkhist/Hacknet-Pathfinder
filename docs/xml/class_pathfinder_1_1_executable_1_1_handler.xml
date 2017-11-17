@@ -100,7 +100,7 @@
         <briefdescription>
 <para>Gets the standard file data by id. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>The standard file data or <computeroutput>nulll</computeroutput> if it doesn&apos;t exist.</para></simplesect>
+<para><simplesect kind="return"><para>The standard file data or <computeroutput>null</computeroutput> if it doesn&apos;t exist.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>id</parametername>

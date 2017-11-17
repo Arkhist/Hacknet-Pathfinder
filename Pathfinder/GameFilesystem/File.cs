@@ -9,9 +9,12 @@ namespace Pathfinder.GameFilesystem
         public File(FileEntry vanila, Directory parent) : base(vanila, parent)
         {
             Index = Parent.Object.files.IndexOf(Object);
-            path = Parent.Path + '/' + Name;
+            path = Parent.Path + FilePath.SEPERATOR + Name;
         }
 
+        /// <summary>
+        /// Gets or sets the File's name. (logs as move if change is attempted)
+        /// </summary>
         public sealed override string Name
         {
             get
@@ -21,18 +24,28 @@ namespace Pathfinder.GameFilesystem
 
             set
             {
-                LogOperation(FileOpLogType.MoveFile, value, Path, Parent.Path + '/' + Name);
+                LogOperation(FileOpLogType.MoveFile, value, Path, Parent.Path + FilePath.SEPERATOR + Name);
                 Object.name = value;
-                path = Parent.Path + '/' + Name;
+                path = Parent.Path + FilePath.SEPERATOR + Name;
             }
         }
 
+        /// <summary>
+        /// Gets the index inside its parent's respective list
+        /// </summary>
         public sealed override int Index { get; internal set; }
-
+        /// <summary>
+        /// Gets the root Filesystem the File is within.
+        /// </summary>
         public sealed override Filesystem Root => Parent.Root;
-
+        /// <summary>
+        /// Returns FileType.File
+        /// </summary>
         public sealed override FileType Type => FileType.File;
 
+        /// <summary>
+        /// Gets or sets the File's full path, setting changes the File's parent.
+        /// </summary>
         public override string Path
         {
             get
@@ -42,17 +55,20 @@ namespace Pathfinder.GameFilesystem
 
             set
             {
-                var d = Root.SearchForDirectory(value.Remove(value.LastIndexOf('/')));
+                var d = Root.SearchForDirectory(value.Remove(value.LastIndexOf(FilePath.SEPERATOR)));
                 if (d != null)
                     Parent = d;
-                var name = value.Substring(value.LastIndexOf('/') + 1);
+                var name = value.Substring(value.LastIndexOf(FilePath.SEPERATOR) + 1);
                 name = name.Length > 0 ? name : Name;
-                LogOperation(FileOpLogType.MoveFile, name, Path, Parent.Path + '/' + Name);
+                LogOperation(FileOpLogType.MoveFile, name, Path, Parent.Path + FilePath.SEPERATOR + Name);
                 Object.name = name;
-                path = Parent.Path + '/' + Name;
+                path = Parent.Path + FilePath.SEPERATOR + Name;
             }
         }
 
+        /// <summary>
+        /// Gets or sets the File's data.
+        /// </summary>
         public string Data
         {
             get
@@ -66,6 +82,9 @@ namespace Pathfinder.GameFilesystem
             }
         }
 
+        /// <summary>
+        /// Gets or sets the File's size.
+        /// </summary>
         public int Size
         {
             get
@@ -79,8 +98,19 @@ namespace Pathfinder.GameFilesystem
             }
         }
 
+        /// <summary>
+        /// Updates the size of the File according to the standard set in Hacknet.
+        /// </summary>
         public void UpdateFileSize() => Size = Data.Length * 8;
+        /// <summary>
+        /// Retrieves the head of the file, or the first 50 characters of the File's data before a newline.
+        /// </summary>
         public string Head => Object.head();
+        /// <summary>
+        /// Moves the File to a different Directory.
+        /// </summary>
+        /// <returns>The File after its been moved.</returns>
+        /// <param name="to">The Directory to move the File to.</param>
         public File MoveTo(Directory to) => Parent.MoveFile(this, to);
     }
 }

@@ -3,9 +3,9 @@
   <compounddef id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Game::OS::Extensions</compoundname>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a08d55d853112988b8a69f26110d47d3c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>List&lt; ExeModule &gt;</type>
-        <definition>static List&lt;ExeModule&gt; Pathfinder.Game.OS.Extensions.GetExesFor</definition>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a15cb9803d2ecbd2a53ea93548153fa1c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Hacknet.ExeModule &gt;</type>
+        <definition>static List&lt;Hacknet.ExeModule&gt; Pathfinder.Game.OS.Extensions.GetExesFor</definition>
         <argsstring>(this Hacknet.OS os, Type instanceType)</argsstring>
         <name>GetExesFor</name>
         <param>
@@ -17,7 +17,7 @@
           <declname>instanceType</declname>
         </param>
         <briefdescription>
-<para>Retrieves the List of ExeModule whose Type is exactly instanceType </para>        </briefdescription>
+<para>Retrieves the List of <ref refid="namespace_pathfinder_1_1_game_1_1_exe_module" kindref="compound">ExeModule</ref> whose Type is exactly instanceType </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -30,7 +30,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/OS/Extensions.cs" line="14" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="14" bodyend="21"/>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="15" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="15" bodyend="22"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a210838cd29e560ada42c3356f4b5f710" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; T &gt;</type>
@@ -42,7 +42,7 @@
           <declname>os</declname>
         </param>
         <briefdescription>
-<para>Retrieves the List of ExeModule List whose Type is or is derived from T </para>        </briefdescription>
+<para>Retrieves the List of <ref refid="namespace_pathfinder_1_1_game_1_1_exe_module" kindref="compound">ExeModule</ref> List whose Type is or is derived from T </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
@@ -55,7 +55,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/OS/Extensions.cs" line="27" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="27" bodyend="34"/>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="28" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="28" bodyend="35"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ac553c7d9ed908a25fcab8091f82e4e9d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; Executable.Instance &gt;</type>
@@ -84,7 +84,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/OS/Extensions.cs" line="40" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="40" bodyend="47"/>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="41" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="41" bodyend="48"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a6cb7772226d053dcecf32b85fb8bf66d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>List&lt; Executable.Instance &gt;</type>
@@ -109,7 +109,81 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/OS/Extensions.cs" line="53" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="53" bodyend="60"/>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="54" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="54" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ac93001d1580e3dde21c46fe30acce9c9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Game.OS.Extensions.KillExeModule</definition>
+        <argsstring>(this Hacknet.OS os, Hacknet.ExeModule module, bool shouldWrite=false)</argsstring>
+        <name>KillExeModule</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>Hacknet.ExeModule</type>
+          <declname>module</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>shouldWrite</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="63" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="63" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a9e5431195ded9239de5f4356f020578f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Game.OS.Extensions.KillExeModule</definition>
+        <argsstring>(this Hacknet.OS os, string input, bool shouldWrite=false)</argsstring>
+        <name>KillExeModule</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>shouldWrite</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="70" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="70" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1af28a9d5404c71e6e1713a0fec1c83061" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Game.OS.Extensions.KillAllExeModules</definition>
+        <argsstring>(this Hacknet.OS os, bool shouldWrite=false)</argsstring>
+        <name>KillAllExeModules</name>
+        <param>
+          <type>this Hacknet.OS</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>shouldWrite</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="90" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="90" bodyend="94"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a3c7dc4252ef9aa625353a05831412ed6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Hacknet.Computer</type>
@@ -126,7 +200,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/OS/Extensions.cs" line="65" column="1"/>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="99" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1aa650fe7f1b31a300e7c768804839678e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.OS</type>
@@ -166,7 +240,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/OS/Extensions.cs" line="72" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="72" bodyend="76"/>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="106" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="106" bodyend="110"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a5e9a84b3d11bfc05f86fe6b79ab416f5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Hacknet.OS</type>
@@ -206,20 +280,23 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/OS/Extensions.cs" line="83" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="83" bodyend="87"/>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="117" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="117" bodyend="121"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Game/OS/Extensions.cs" line="9" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="8" bodyend="88"/>
+    <location file="Pathfinder/Game/OS/Extensions.cs" line="10" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="9" bodyend="122"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a3c7dc4252ef9aa625353a05831412ed6" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetCurrentComputer</name></member>
-      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a08d55d853112988b8a69f26110d47d3c" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetExesFor</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a15cb9803d2ecbd2a53ea93548153fa1c" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetExesFor</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a210838cd29e560ada42c3356f4b5f710" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetExesFor&lt; T &gt;</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ac553c7d9ed908a25fcab8091f82e4e9d" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetModExeInterfaceFor</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a6cb7772226d053dcecf32b85fb8bf66d" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetModExeInterfaceFor&lt; T &gt;</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1af28a9d5404c71e6e1713a0fec1c83061" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>KillAllExeModules</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1ac93001d1580e3dde21c46fe30acce9c9" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>KillExeModule</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a9e5431195ded9239de5f4356f020578f" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>KillExeModule</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1aa650fe7f1b31a300e7c768804839678e" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>Write</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a5e9a84b3d11bfc05f86fe6b79ab416f5" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>WriteSingle</name></member>
     </listofallmembers>

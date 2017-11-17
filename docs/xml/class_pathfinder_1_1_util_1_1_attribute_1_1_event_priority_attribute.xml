@@ -42,24 +42,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="140">
+      <node id="136">
         <label>Pathfinder.Util.Attribute.EventPriorityAttribute</label>
         <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_event_priority_attribute"/>
-        <childnode refid="141" relation="public-inheritance">
+        <childnode refid="137" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="141">
+      <node id="137">
         <label>System::Attribute</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="142">
+      <node id="138">
         <label>Pathfinder.Util.Attribute.EventPriorityAttribute</label>
         <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_event_priority_attribute"/>
-        <childnode refid="143" relation="public-inheritance">
+        <childnode refid="139" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="143">
+      <node id="139">
         <label>System::Attribute</label>
       </node>
     </collaborationgraph>

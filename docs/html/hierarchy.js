@@ -41,17 +41,13 @@ var hierarchy =
     [ "Pathfinder.Util.ExeInfoManager.ExecutableInfo", "struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info.html", null ],
     [ "Pathfinder.Internal.ExecutionOverride", "class_pathfinder_1_1_internal_1_1_execution_override.html", null ],
     [ "Pathfinder.Util.ExeInfoManager", "class_pathfinder_1_1_util_1_1_exe_info_manager.html", null ],
-    [ "ExeModule", null, [
-      [ "Pathfinder.Executable.Instance", "class_pathfinder_1_1_executable_1_1_instance.html", [
-        [ "Pathfinder.Executable.Instance.InstanceOverrideDisplay", "class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display.html", null ]
-      ] ]
-    ] ],
     [ "ExtensionInfo", null, [
       [ "Pathfinder.Internal.PlaceholderExtensionInfo", "class_pathfinder_1_1_internal_1_1_placeholder_extension_info.html", null ]
     ] ],
     [ "Pathfinder.Game.Computer.Extensions", "class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html", null ],
-    [ "Pathfinder.Game.OS.Extensions", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html", null ],
+    [ "Pathfinder.Game.ExeModule.Extensions", "class_pathfinder_1_1_game_1_1_exe_module_1_1_extensions.html", null ],
     [ "Pathfinder.Game.NetworkMap.Extensions", "class_pathfinder_1_1_game_1_1_network_map_1_1_extensions.html", null ],
+    [ "Pathfinder.Game.OS.Extensions", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html", null ],
     [ "Pathfinder.GameFilesystem.Extensions", "class_pathfinder_1_1_game_filesystem_1_1_extensions.html", null ],
     [ "Pathfinder.GameFilesystem.FileObject< VanillaT, ParentT >", "class_pathfinder_1_1_game_filesystem_1_1_file_object.html", null ],
     [ "Pathfinder.GameFilesystem.FileObject< FileEntry, Directory >", "class_pathfinder_1_1_game_filesystem_1_1_file_object.html", [
@@ -172,9 +168,11 @@ var hierarchy =
       [ "Pathfinder.Event.StartUpEvent", "class_pathfinder_1_1_event_1_1_start_up_event.html", null ]
     ] ],
     [ "Pathfinder.PathfinderHooks", "class_pathfinder_1_1_pathfinder_hooks.html", null ],
+    [ "Pathfinder.Util.Network.RestManager", "class_pathfinder_1_1_util_1_1_network_1_1_rest_manager.html", null ],
     [ "Pathfinder.Util.SoundSystem", "class_pathfinder_1_1_util_1_1_sound_system.html", null ],
     [ "Pathfinder.GUI.SpriteBatchExtensions", "class_pathfinder_1_1_g_u_i_1_1_sprite_batch_extensions.html", null ],
     [ "Pathfinder.Event.DrawMainMenuTitlesEvent.TitleData< T >", "class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event_1_1_title_data.html", null ],
+    [ "Pathfinder.Util.Network.Updater", "class_pathfinder_1_1_util_1_1_network_1_1_updater.html", null ],
     [ "Pathfinder.Util.Utility", "class_pathfinder_1_1_util_1_1_utility.html", null ],
     [ "Pathfinder.Util.Vector1< T >", "class_pathfinder_1_1_util_1_1_vector1.html", [
       [ "Pathfinder.Util.Vector2< T >", "class_pathfinder_1_1_util_1_1_vector2.html", [
@@ -184,6 +182,11 @@ var hierarchy =
       ] ]
     ] ],
     [ "WebClient", null, [
-      [ "Pathfinder.Util.CustomWebClient", "class_pathfinder_1_1_util_1_1_custom_web_client.html", null ]
+      [ "Pathfinder.Util.Network.WebClient", "class_pathfinder_1_1_util_1_1_network_1_1_web_client.html", null ]
+    ] ],
+    [ "ExeModule", null, [
+      [ "Pathfinder.Executable.Instance", "class_pathfinder_1_1_executable_1_1_instance.html", [
+        [ "Pathfinder.Executable.Instance.InstanceOverrideDisplay", "class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display.html", null ]
+      ] ]
     ] ]
 ];

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Hacknet;
 using Pathfinder.Util;
 
@@ -45,30 +44,23 @@ namespace Pathfinder.GameFilesystem
         public override FileType Type => FileType.Filesystem;
         public Directory Directory => rootDirectory ?? (rootDirectory = new Directory(Object.root, this));
 
-        public Directory SearchForDirectory(string path)
-        {
-            var res = Directory;
-            foreach (var p in path.Split('/').Skip(1))
-                if ((res = res.FindDirectory(p)) == null)
-                    break;
-            return res;
-        }
-
-        public File SearchForFile(string path)
-        {
-            var pList = path.Split('/').Skip(1);
-            string p = null;
-            File res = null;
-            var dir = Directory;
-            for (int i = 0; i < pList.Count(); p = pList.ElementAt(i++))
-            {
-                if (i == pList.Count() - 1)
-                    res = dir.FindFile(p);
-                if ((dir = dir.FindDirectory(p)) == null)
-                    break;
-            }
-            return res;
-        }
+        /// <summary>
+        /// Searchs for a Directory's path as far as possible.
+        /// </summary>
+        /// <returns>The Directory to search for, or the deepest Directory found in the path, or <c>null</c> if nullOut is true.</returns>
+        /// <param name="path">The path to search by.</param>
+        /// <param name="ignoreRootSymbol">If set to <c>true</c> ignores the root (/) symbol at the start.</param>
+        /// <param name="nullOut">If set to <c>true</c> then nulls out on failure, otherwise returns furthest depth</param>
+        public Directory SearchForDirectory(string path, bool ignoreRootSymbol = true, bool nullOut = false) =>
+            Directory.SearchForDirectory(path, ignoreRootSymbol, nullOut);
+        /// <summary>
+        /// Searchs for a File's path as far as possible.
+        /// </summary>
+        /// <returns>The File to search for, or <c>null</c> if not found.</returns>
+        /// <param name="path">The path to search by.</param>
+        /// <param name="ignoreRootSymbol">If set to <c>true</c> ignores the root (/) symbol at the start.</param>
+        public File SearchForFile(string path, bool ignoreRootSymbol = true) =>
+            Directory.SearchForFile(path, ignoreRootSymbol);
 
         public IEnumerator<IFileObject> GetEnumerator() => Directory.GetEnumerator();
 
@@ -78,6 +70,26 @@ namespace Pathfinder.GameFilesystem
         public bool ShouldLogMultiplayer { get; set; } = true;
 
         public static Filesystem PrimaryFilesystem => Utility.ClientComputer;
+        public static Directory CurrentDirectory => GetCurrentDirectory();
+
+        public static Directory GetCurrentDirectory(OS os = null) =>
+            GetDirectoryAtDepth((os ?? Utility.ClientOS).navigationPath.Count, os);
+
+        /// <summary>
+        /// Gets the Directory at the specified depth.
+        /// </summary>
+        /// <returns>The Directory at the inputed depth.</returns>
+        /// <param name="depth">The depth to retrieve.</param>
+        /// <param name="os">The OS responsible for the data relating to the Directory's depth.</param>
+        public static Directory GetDirectoryAtDepth(int depth, OS os = null)
+        {
+            os = os ?? Utility.ClientOS;
+            var dir = Utility.GetCurrentComputer(os).GetFilesystem().Directory;
+            if (os.navigationPath.Count > 0)
+                for (var i = 0; i < depth && os.navigationPath.Count > i; i++)
+                    if (dir.DirectoryCount > os.navigationPath[i]) dir = dir.GetDirectory(os.navigationPath[i]);
+            return dir;
+        }
 
         public static implicit operator Filesystem(Hacknet.Computer c) => new Filesystem(c);
     }

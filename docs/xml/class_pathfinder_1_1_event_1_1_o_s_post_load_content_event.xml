@@ -27,37 +27,37 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="441">
+      <node id="439">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="442" relation="public-inheritance">
+        <childnode refid="440" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="438">
+        <label>Pathfinder.Event.OSPostLoadContentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event"/>
+        <childnode refid="439" relation="public-inheritance">
         </childnode>
       </node>
       <node id="440">
-        <label>Pathfinder.Event.OSPostLoadContentEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event"/>
-        <childnode refid="441" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="442">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="444">
+      <node id="442">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="445" relation="public-inheritance">
+        <childnode refid="443" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="441">
+        <label>Pathfinder.Event.OSPostLoadContentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event"/>
+        <childnode refid="442" relation="public-inheritance">
         </childnode>
       </node>
       <node id="443">
-        <label>Pathfinder.Event.OSPostLoadContentEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event"/>
-        <childnode refid="444" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="445">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>

@@ -62,6 +62,22 @@ namespace Pathfinder.GameFilesystem
         public virtual FileType Type { get; }
         FileType IFileObject.Type => Type;
 
+        public List<string> ParsePath(string p)
+        {
+            var pList = p.Split(new string[] { FilePath.SEPERATOR }, StringSplitOptions.None).ToList();
+            if (p.StartsWith(Path))
+                pList = p.Substring(p.IndexOf(Path) + Path.Length + 1)
+                            .Split(new string[] { FilePath.SEPERATOR }, StringSplitOptions.None).ToList();
+            if (pList.Count > 0)
+            {
+                if (p[0].Equals(".") || p[0].Equals(Name))
+                    pList = pList.Skip(1).ToList();
+                for (var i = 0; i < pList.Count; i++)
+                    if (pList[i].Equals("..") && i + 1 < pList.Count) pList.RemoveRange(i, 2);
+            }
+            return pList;
+        }
+
         public bool LogOperation(FileOpLogType t, params string[] inputArr)
         {
             var input = new List<string>(inputArr);

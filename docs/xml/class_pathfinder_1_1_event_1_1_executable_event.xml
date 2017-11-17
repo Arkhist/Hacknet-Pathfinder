@@ -127,38 +127,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="146">
+      <node id="142">
         <label>Pathfinder.Event.ExecutableExecuteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_execute_event"/>
-        <childnode refid="144" relation="public-inheritance">
+        <childnode refid="140" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="145">
+      <node id="141">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="147">
+      <node id="143">
         <label>Pathfinder.Event.ExecutablePortExecuteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_port_execute_event"/>
-        <childnode refid="144" relation="public-inheritance">
+        <childnode refid="140" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="140">
+        <label>Pathfinder.Event.ExecutableEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_executable_event"/>
+        <childnode refid="141" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="145">
+        <label>PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
       <node id="144">
         <label>Pathfinder.Event.ExecutableEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_event"/>
         <childnode refid="145" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="149">
-        <label>PathfinderEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
-      </node>
-      <node id="148">
-        <label>Pathfinder.Event.ExecutableEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_executable_event"/>
-        <childnode refid="149" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

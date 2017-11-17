@@ -60,55 +60,55 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="87">
+      <node id="83">
         <label>Pathfinder.Event.DisplayModuleDrawEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_display_module_draw_event"/>
-        <childnode refid="84" relation="public-inheritance">
+        <childnode refid="80" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="86">
+      <node id="82">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="85">
+      <node id="81">
         <label>ModuleEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_module_event"/>
-        <childnode refid="86" relation="public-inheritance">
+        <childnode refid="82" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="80">
+        <label>Pathfinder.Event.DisplayModuleEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_display_module_event"/>
+        <childnode refid="81" relation="public-inheritance">
         </childnode>
       </node>
       <node id="84">
-        <label>Pathfinder.Event.DisplayModuleEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_display_module_event"/>
-        <childnode refid="85" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="88">
         <label>Pathfinder.Event.DisplayModuleUpdateEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_display_module_update_event"/>
-        <childnode refid="84" relation="public-inheritance">
+        <childnode refid="80" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="91">
+      <node id="87">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="92">
+      <node id="88">
         <label>Hacknet</label>
       </node>
-      <node id="90">
+      <node id="86">
         <label>ModuleEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_module_event"/>
-        <childnode refid="91" relation="public-inheritance">
+        <childnode refid="87" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="89">
+      <node id="85">
         <label>Pathfinder.Event.DisplayModuleEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_display_module_event"/>
-        <childnode refid="90" relation="public-inheritance">
+        <childnode refid="86" relation="public-inheritance">
         </childnode>
-        <childnode refid="92" relation="usage">
+        <childnode refid="88" relation="usage">
           <edgelabel>Module</edgelabel>
         </childnode>
       </node>

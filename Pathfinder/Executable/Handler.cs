@@ -62,7 +62,7 @@ namespace Pathfinder.Executable
         /// <summary>
         /// Gets the standard file data by id.
         /// </summary>
-        /// <returns>The standard file data or <c>nulll</c> if it doesn't exist.</returns>
+        /// <returns>The standard file data or <c>null</c> if it doesn't exist.</returns>
         /// <param name="id">Executable Identifier.</param>
         /// <param name="requiresModId">If set to <c>true</c> id requires a prefixing mod identifier delimated by period.</param>
         public static string GetStandardFileDataBy(string id, bool requiresModId = false)

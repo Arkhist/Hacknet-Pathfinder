@@ -101,7 +101,7 @@
         <briefdescription>
 <para>Gets the current client&apos;s NetworkMap for the current client OS. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>The client&apos;s current Network Map.</para></simplesect>
+<para><simplesect kind="return"><para>The client&apos;s current <ref refid="namespace_pathfinder_1_1_util_1_1_network" kindref="compound">Network</ref> Map.</para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>

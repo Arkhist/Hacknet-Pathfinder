@@ -94,7 +94,7 @@ namespace Pathfinder.Util
         {
             if (os == null)
                 os = ClientOS;
-            return os?.connectedComp ?? os?.thisComputer;
+            return os.connectedComp ?? os.thisComputer;
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Pathfinder.Util
             else if (asm == typeof(Hacknet.Program).Assembly)
                 result = "Hacknet";
             else
-                result =  asm.GetFirstMod()?.GetCleanId();
+                result = asm.GetFirstMod()?.GetCleanId();
             return result;
         }
 

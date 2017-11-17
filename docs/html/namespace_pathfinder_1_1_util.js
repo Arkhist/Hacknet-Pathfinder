@@ -2,8 +2,8 @@ var namespace_pathfinder_1_1_util =
 [
     [ "Attribute", "namespace_pathfinder_1_1_util_1_1_attribute.html", "namespace_pathfinder_1_1_util_1_1_attribute" ],
     [ "File", "namespace_pathfinder_1_1_util_1_1_file.html", "namespace_pathfinder_1_1_util_1_1_file" ],
+    [ "Network", "namespace_pathfinder_1_1_util_1_1_network.html", "namespace_pathfinder_1_1_util_1_1_network" ],
     [ "ConvertAny", "class_pathfinder_1_1_util_1_1_convert_any.html", "class_pathfinder_1_1_util_1_1_convert_any" ],
-    [ "CustomWebClient", "class_pathfinder_1_1_util_1_1_custom_web_client.html", "class_pathfinder_1_1_util_1_1_custom_web_client" ],
     [ "ExeInfoManager", "class_pathfinder_1_1_util_1_1_exe_info_manager.html", "class_pathfinder_1_1_util_1_1_exe_info_manager" ],
     [ "JsonObject", "class_pathfinder_1_1_util_1_1_json_object.html", "class_pathfinder_1_1_util_1_1_json_object" ],
     [ "Logger", "class_pathfinder_1_1_util_1_1_logger.html", "class_pathfinder_1_1_util_1_1_logger" ],

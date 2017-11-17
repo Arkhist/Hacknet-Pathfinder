@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_util_1_1_network_1_1_updater" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::Network::Updater</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_network_1_1_updater_1ac6619196642b2a4ba85394a768f26885" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Pathfinder.Util.Network.Updater.GetString</definition>
+        <argsstring>(string url, string tag, string authKey=&quot;&quot;)</argsstring>
+        <name>GetString</name>
+        <param>
+          <type>string</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>tag</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>authKey</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Network/Updater.cs" line="7" column="1" bodyfile="Pathfinder/Util/Network/Updater.cs" bodystart="7" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_network_1_1_updater_1abebbc3069f93ee065fdd6d9fa1db5813" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Util.Network.Updater.VerifyVersions</definition>
+        <argsstring>(Version latestVersion, string currentVersion)</argsstring>
+        <name>VerifyVersions</name>
+        <param>
+          <type>Version</type>
+          <declname>latestVersion</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>currentVersion</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Network/Updater.cs" line="13" column="1" bodyfile="Pathfinder/Util/Network/Updater.cs" bodystart="13" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_network_1_1_updater_1a29c06ad73b6cb09cc99e15fcb149764a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Util.Network.Updater.VerifyVersionByUrl</definition>
+        <argsstring>(string url, string versionTag, string currentVer, string authKey=&quot;&quot;)</argsstring>
+        <name>VerifyVersionByUrl</name>
+        <param>
+          <type>string</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>versionTag</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>currentVer</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>authKey</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Network/Updater.cs" line="21" column="1" bodyfile="Pathfinder/Util/Network/Updater.cs" bodystart="21" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Util/Network/Updater.cs" line="6" column="1" bodyfile="Pathfinder/Util/Network/Updater.cs" bodystart="5" bodyend="34"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_util_1_1_network_1_1_updater_1ac6619196642b2a4ba85394a768f26885" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Network::Updater</scope><name>GetString</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_network_1_1_updater_1a29c06ad73b6cb09cc99e15fcb149764a" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Network::Updater</scope><name>VerifyVersionByUrl</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_network_1_1_updater_1abebbc3069f93ee065fdd6d9fa1db5813" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Network::Updater</scope><name>VerifyVersions</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

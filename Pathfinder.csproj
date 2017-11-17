@@ -129,7 +129,6 @@
     <Compile Include="Pathfinder\Event\OSEvents.cs" />
     <Compile Include="Pathfinder\Event\ComputerEvents.cs" />
     <Compile Include="Pathfinder\Event\ExecutableEvents.cs" />
-    <Compile Include="Pathfinder\Util\Updater.cs" />
     <Compile Include="Pathfinder\Util\JsonObject.cs" />
     <Compile Include="Pathfinder\Port\Type.cs" />
     <Compile Include="Pathfinder\Port\Instance.cs" />
@@ -169,6 +168,9 @@
     <Compile Include="Pathfinder\Game\NetworkMap\Extensions.cs" />
     <Compile Include="Pathfinder\Game\OS\Extensions.cs" />
     <Compile Include="Pathfinder\GameFilesystem\FilePath.cs" />
+    <Compile Include="Pathfinder\Game\ExeModule\Extensions.cs" />
+    <Compile Include="Pathfinder\Util\Network\RestManager.cs" />
+    <Compile Include="Pathfinder\Util\Network\Updater.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Util\" />
@@ -187,6 +189,11 @@
     <Folder Include="Pathfinder\Game\Computer\" />
     <Folder Include="Pathfinder\Game\NetworkMap\" />
     <Folder Include="Pathfinder\Game\OS\" />
+    <Folder Include="Pathfinder\Game\ExeModule\">
+    </Folder>
+    <Folder Include="Pathfinder\Util\Network\">
+      <DependentUpon>Network</DependentUpon>
+    </Folder>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

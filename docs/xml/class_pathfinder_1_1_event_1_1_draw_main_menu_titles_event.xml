@@ -115,38 +115,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="126">
+      <node id="122">
         <label>Pathfinder.Event.DrawMainMenuTitlesEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event"/>
-        <childnode refid="127" relation="public-inheritance">
+        <childnode refid="123" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="128">
+      <node id="124">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="127">
+      <node id="123">
         <label>MainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="128" relation="public-inheritance">
+        <childnode refid="124" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="129">
+      <node id="125">
         <label>Pathfinder.Event.DrawMainMenuTitlesEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event"/>
-        <childnode refid="130" relation="public-inheritance">
+        <childnode refid="126" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="131">
+      <node id="127">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="130">
+      <node id="126">
         <label>MainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="131" relation="public-inheritance">
+        <childnode refid="127" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

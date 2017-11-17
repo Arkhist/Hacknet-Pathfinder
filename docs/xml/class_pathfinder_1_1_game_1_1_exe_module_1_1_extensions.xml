@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_game_1_1_exe_module_1_1_extensions" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Game::ExeModule::Extensions</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_exe_module_1_1_extensions_1a6e01a03b6ff43664d12172c4afdfc0d5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Pathfinder.Game.ExeModule.Extensions.Kill</definition>
+        <argsstring>(this Hacknet.ExeModule module, bool shouldWrite=false)</argsstring>
+        <name>Kill</name>
+        <param>
+          <type>this Hacknet.ExeModule</type>
+          <declname>module</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>shouldWrite</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Game/ExeModule/Extensions.cs" line="7" column="1" bodyfile="Pathfinder/Game/ExeModule/Extensions.cs" bodystart="7" bodyend="15"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Game/ExeModule/Extensions.cs" line="6" column="1" bodyfile="Pathfinder/Game/ExeModule/Extensions.cs" bodystart="5" bodyend="16"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_game_1_1_exe_module_1_1_extensions_1a6e01a03b6ff43664d12172c4afdfc0d5" prot="public" virt="non-virtual"><scope>Pathfinder::Game::ExeModule::Extensions</scope><name>Kill</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

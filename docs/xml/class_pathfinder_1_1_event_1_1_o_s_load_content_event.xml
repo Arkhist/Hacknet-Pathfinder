@@ -27,38 +27,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="429">
+      <node id="427">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="430" relation="public-inheritance">
+        <childnode refid="428" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="430">
+      <node id="428">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="428">
+      <node id="426">
         <label>Pathfinder.Event.OSLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event"/>
-        <childnode refid="429" relation="public-inheritance">
+        <childnode refid="427" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="432">
+      <node id="430">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="433" relation="public-inheritance">
+        <childnode refid="431" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="433">
+      <node id="431">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="431">
+      <node id="429">
         <label>Pathfinder.Event.OSLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event"/>
-        <childnode refid="432" relation="public-inheritance">
+        <childnode refid="430" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

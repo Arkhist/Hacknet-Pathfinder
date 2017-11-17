@@ -3,6 +3,7 @@
   <compounddef id="dir_42a5ffd058db6b48519a8dd23a13a598" kind="dir">
     <compoundname>Pathfinder/Game</compoundname>
     <innerdir refid="dir_8e35258e086f8b22d94a217f884f7b61">Pathfinder/Game/Computer</innerdir>
+    <innerdir refid="dir_ae29a18437b787006b39d7e8f7e20678">Pathfinder/Game/ExeModule</innerdir>
     <innerdir refid="dir_4c6e7ed8cd3c12e095faff90eeb5db9b">Pathfinder/Game/NetworkMap</innerdir>
     <innerdir refid="dir_4b0a75306c0f97320feaff032eac47ed">Pathfinder/Game/OS</innerdir>
     <briefdescription>

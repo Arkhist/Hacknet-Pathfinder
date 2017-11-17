@@ -2,6 +2,7 @@ var class_pathfinder_1_1_game_filesystem_1_1_file_object =
 [
     [ "FileObject", "class_pathfinder_1_1_game_filesystem_1_1_file_object.html#a35580103660359aeab10483190458802", null ],
     [ "LogOperation", "class_pathfinder_1_1_game_filesystem_1_1_file_object.html#a4bf72ef2c745fe703e6f268d96ae19e7", null ],
+    [ "ParsePath", "class_pathfinder_1_1_game_filesystem_1_1_file_object.html#a9cddf581b2bfb8e12d4e094b5ed65c45", null ],
     [ "parent", "class_pathfinder_1_1_game_filesystem_1_1_file_object.html#a21354fb3268b0c74fe1291696406728b", null ],
     [ "Index", "class_pathfinder_1_1_game_filesystem_1_1_file_object.html#a975dbc446587d03ee6824ad95572b654", null ],
     [ "Name", "class_pathfinder_1_1_game_filesystem_1_1_file_object.html#a82021a922dd5de09317e972c8cb7d534", null ],

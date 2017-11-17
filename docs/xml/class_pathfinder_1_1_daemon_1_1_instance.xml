@@ -321,6 +321,17 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
+      <node id="287">
+        <label>Hacknet::Daemon</label>
+      </node>
+      <node id="286">
+        <label>Pathfinder.Daemon.Instance</label>
+        <link refid="class_pathfinder_1_1_daemon_1_1_instance"/>
+        <childnode refid="287" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
       <node id="289">
         <label>Hacknet::Daemon</label>
       </node>
@@ -328,17 +339,6 @@
         <label>Pathfinder.Daemon.Instance</label>
         <link refid="class_pathfinder_1_1_daemon_1_1_instance"/>
         <childnode refid="289" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="291">
-        <label>Hacknet::Daemon</label>
-      </node>
-      <node id="290">
-        <label>Pathfinder.Daemon.Instance</label>
-        <link refid="class_pathfinder_1_1_daemon_1_1_instance"/>
-        <childnode refid="291" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

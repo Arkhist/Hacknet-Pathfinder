@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="12" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="12" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="11" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="11" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="property">
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="16" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="17" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="15" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="16" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1af6d10a009c7b2f9aa982d4b071fc7ef0" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>override int</type>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="31" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="32" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="30" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1accfa9fd3938eb3fa0c59890808fa857d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>string</type>
@@ -57,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="77" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="77" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="69" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="69" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afcf736453f2b3bc1271cc4b8f29e250d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>bool</type>
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="78" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="78" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="70" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="70" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -87,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="29" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="29" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="28" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="28" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a01f1c1672698fcf0b0ee11df2f0f82f6" prot="public" static="no" mutable="no">
         <type>override <ref refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem" kindref="compound">Filesystem</ref></type>
@@ -101,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="44" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="44" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="43" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1adeab860edf553ea7523812337bc5e5ca" prot="public" static="no" mutable="no">
         <type>override <ref refid="namespace_pathfinder_1_1_game_filesystem_1a873ecba342eff829005d86481960c19d" kindref="member">FileType</ref></type>
@@ -115,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="45" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="45" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="44" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ae3ecec102d5ba29ad216e2b022fcae51" prot="public" static="no" mutable="no">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
@@ -129,7 +129,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="46" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="46" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="45" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="45" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-attrib">
@@ -145,7 +145,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="80" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="80" bodyend="-1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="72" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afd5ca4f1e03772ec93acf6bb2c02a428" prot="public" static="yes" mutable="no">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
+        <definition>Directory Pathfinder.GameFilesystem.Filesystem.CurrentDirectory</definition>
+        <argsstring></argsstring>
+        <name>CurrentDirectory</name>
+        <initializer>=&gt; <ref refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ae26230f62e11ebb7c6de3a05ab463b3f" kindref="member">GetCurrentDirectory</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="73" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="73" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -164,41 +178,95 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="14" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="14" bodyend="14"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="13" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="13" bodyend="13"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ad524faf27983bbbbd3194b423bb7f068" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ae67cbe2ec33cb4a3b4160e23b4c388f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
         <definition>Directory Pathfinder.GameFilesystem.Filesystem.SearchForDirectory</definition>
-        <argsstring>(string path)</argsstring>
+        <argsstring>(string path, bool ignoreRootSymbol=true, bool nullOut=false)</argsstring>
         <name>SearchForDirectory</name>
         <param>
           <type>string</type>
           <declname>path</declname>
         </param>
+        <param>
+          <type>bool</type>
+          <declname>ignoreRootSymbol</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>nullOut</declname>
+          <defval>false</defval>
+        </param>
         <briefdescription>
-        </briefdescription>
+<para>Searchs for a <ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref>&apos;s path as far as possible. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><simplesect kind="return"><para>The <ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref> to search for, or the deepest <ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref> found in the path, or <computeroutput>null</computeroutput> if nullOut is true.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to search by.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ignoreRootSymbol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If set to <computeroutput>true</computeroutput> ignores the root (/) symbol at the start.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nullOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If set to <computeroutput>true</computeroutput> then nulls out on failure, otherwise returns furthest depth</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="48" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="48" bodyend="55"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="54" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afc0733d1a42d0022a5a71d789543bf51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1af192f22197f60b262d0fbf3ad6902692" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_file" kindref="compound">File</ref></type>
         <definition>File Pathfinder.GameFilesystem.Filesystem.SearchForFile</definition>
-        <argsstring>(string path)</argsstring>
+        <argsstring>(string path, bool ignoreRootSymbol=true)</argsstring>
         <name>SearchForFile</name>
         <param>
           <type>string</type>
           <declname>path</declname>
         </param>
+        <param>
+          <type>bool</type>
+          <declname>ignoreRootSymbol</declname>
+          <defval>true</defval>
+        </param>
         <briefdescription>
-        </briefdescription>
+<para>Searchs for a <ref refid="class_pathfinder_1_1_game_filesystem_1_1_file" kindref="compound">File</ref>&apos;s path as far as possible. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><simplesect kind="return"><para>The <ref refid="class_pathfinder_1_1_game_filesystem_1_1_file" kindref="compound">File</ref> to search for, or <computeroutput>null</computeroutput> if not found.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to search by.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ignoreRootSymbol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If set to <computeroutput>true</computeroutput> ignores the root (/) symbol at the start.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="57" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="57" bodyend="71"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="62" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afbdbf8fc0ebd74e30cd43a15ba59d160" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>IEnumerator&lt; <ref refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object" kindref="compound">IFileObject</ref> &gt;</type>
@@ -211,7 +279,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="73" column="1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="65" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -226,10 +294,66 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="75" column="1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="67" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ae26230f62e11ebb7c6de3a05ab463b3f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
+        <definition>static Directory Pathfinder.GameFilesystem.Filesystem.GetCurrentDirectory</definition>
+        <argsstring>(OS os=null)</argsstring>
+        <name>GetCurrentDirectory</name>
+        <param>
+          <type>OS</type>
+          <declname>os</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="75" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1adf4f176be37753f09803466b9b13f64a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref></type>
+        <definition>static Directory Pathfinder.GameFilesystem.Filesystem.GetDirectoryAtDepth</definition>
+        <argsstring>(int depth, OS os=null)</argsstring>
+        <name>GetDirectoryAtDepth</name>
+        <param>
+          <type>int</type>
+          <declname>depth</declname>
+        </param>
+        <param>
+          <type>OS</type>
+          <declname>os</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+<para>Gets the <ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref> at the specified depth. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The <ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref> at the inputed depth.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>depth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The depth to retrieve.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The OS responsible for the data relating to the <ref refid="class_pathfinder_1_1_game_filesystem_1_1_directory" kindref="compound">Directory</ref>&apos;s depth.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="84" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="84" bodyend="92"/>
+      </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a191277e8f7df7ea2a5f3d0346374d5ba" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>implicit</type>
         <definition>static implicit Pathfinder.GameFilesystem.Filesystem.operator Filesystem</definition>
@@ -245,7 +369,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="82" column="1"/>
+        <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="94" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -253,75 +377,79 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="204">
+      <node id="202">
         <label>IEnumerable&lt; IFileObject &gt;</label>
       </node>
-      <node id="203">
+      <node id="201">
         <label>FileObject&lt; FileSystem, Hacknet.Computer &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
-      <node id="202">
+      <node id="200">
         <label>Pathfinder.GameFilesystem.Filesystem</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem"/>
-        <childnode refid="203" relation="public-inheritance">
+        <childnode refid="201" relation="public-inheritance">
         </childnode>
-        <childnode refid="204" relation="public-inheritance">
+        <childnode refid="202" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="207">
+      <node id="205">
         <label>IEnumerable&lt; IFileObject &gt;</label>
       </node>
-      <node id="206">
+      <node id="204">
         <label>FileObject&lt; FileSystem, Hacknet.Computer &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
-      <node id="208">
+      <node id="206">
         <label>Pathfinder.GameFilesystem.Directory</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_directory"/>
-        <childnode refid="209" relation="public-inheritance">
-        </childnode>
         <childnode refid="207" relation="public-inheritance">
         </childnode>
-        <childnode refid="210" relation="usage">
-          <edgelabel>this[string name]</edgelabel>
+        <childnode refid="205" relation="public-inheritance">
         </childnode>
         <childnode refid="208" relation="usage">
+          <edgelabel>this[string name]</edgelabel>
+        </childnode>
+        <childnode refid="206" relation="usage">
           <edgelabel>ParentDirectory</edgelabel>
         </childnode>
-        <childnode refid="205" relation="usage">
+        <childnode refid="203" relation="usage">
           <edgelabel>Root</edgelabel>
         </childnode>
       </node>
-      <node id="205">
+      <node id="203">
         <label>Pathfinder.GameFilesystem.Filesystem</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem"/>
-        <childnode refid="206" relation="public-inheritance">
+        <childnode refid="204" relation="public-inheritance">
         </childnode>
-        <childnode refid="207" relation="public-inheritance">
+        <childnode refid="205" relation="public-inheritance">
         </childnode>
-        <childnode refid="208" relation="usage">
+        <childnode refid="206" relation="usage">
+          <edgelabel>CurrentDirectory</edgelabel>
           <edgelabel>Directory</edgelabel>
         </childnode>
-        <childnode refid="205" relation="usage">
+        <childnode refid="203" relation="usage">
           <edgelabel>Root</edgelabel>
           <edgelabel>PrimaryFilesystem</edgelabel>
         </childnode>
       </node>
-      <node id="210">
+      <node id="208">
         <label>Pathfinder.GameFilesystem.IFileObject</label>
         <link refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object"/>
       </node>
-      <node id="209">
+      <node id="207">
         <label>FileObject&lt; Folder, IFileObject &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="11" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="10" bodyend="83"/>
+    <location file="Pathfinder/GameFilesystem/Filesystem.cs" line="10" column="1" bodyfile="Pathfinder/GameFilesystem/Filesystem.cs" bodystart="9" bodyend="95"/>
     <listofallmembers>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afd5ca4f1e03772ec93acf6bb2c02a428" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>CurrentDirectory</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ae3ecec102d5ba29ad216e2b022fcae51" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>Directory</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a6656e9fc34cc04e1c3460747b9b73316" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>Filesystem</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ae26230f62e11ebb7c6de3a05ab463b3f" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>GetCurrentDirectory</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1adf4f176be37753f09803466b9b13f64a" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>GetDirectoryAtDepth</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afbdbf8fc0ebd74e30cd43a15ba59d160" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>GetEnumerator</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ada3adbac50424e0893def73f7244f616" prot="private" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>GetEnumerator</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1af6d10a009c7b2f9aa982d4b071fc7ef0" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>Index</name></member>
@@ -332,8 +460,8 @@
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ab89979582a7f7c9a5d986cb0be4dfb75" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>PrimaryFilesystem</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a01f1c1672698fcf0b0ee11df2f0f82f6" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>Root</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1a42f62859a5c9c05312b76a28f630bb6d" prot="private" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>rootDirectory</name></member>
-      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ad524faf27983bbbbd3194b423bb7f068" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>SearchForDirectory</name></member>
-      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afc0733d1a42d0022a5a71d789543bf51" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>SearchForFile</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1ae67cbe2ec33cb4a3b4160e23b4c388f9" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>SearchForDirectory</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1af192f22197f60b262d0fbf3ad6902692" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>SearchForFile</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1afcf736453f2b3bc1271cc4b8f29e250d" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>ShouldLogMultiplayer</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem_1adeab860edf553ea7523812337bc5e5ca" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::Filesystem</scope><name>Type</name></member>
     </listofallmembers>

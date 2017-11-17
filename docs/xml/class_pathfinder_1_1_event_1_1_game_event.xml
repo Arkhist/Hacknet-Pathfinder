@@ -45,44 +45,44 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="214">
+      <node id="212">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="215">
+      <node id="213">
         <label>Pathfinder.Event.GameLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_load_content_event"/>
-        <childnode refid="213" relation="public-inheritance">
+        <childnode refid="211" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="217">
+      <node id="215">
         <label>Pathfinder.Event.GameUpdateEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_update_event"/>
-        <childnode refid="213" relation="public-inheritance">
+        <childnode refid="211" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="216">
+      <node id="214">
         <label>Pathfinder.Event.GameUnloadEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_unload_event"/>
-        <childnode refid="213" relation="public-inheritance">
+        <childnode refid="211" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="213">
+      <node id="211">
         <label>Pathfinder.Event.GameEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_event"/>
-        <childnode refid="214" relation="public-inheritance">
+        <childnode refid="212" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="219">
+      <node id="217">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="218">
+      <node id="216">
         <label>Pathfinder.Event.GameEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_event"/>
-        <childnode refid="219" relation="public-inheritance">
+        <childnode refid="217" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

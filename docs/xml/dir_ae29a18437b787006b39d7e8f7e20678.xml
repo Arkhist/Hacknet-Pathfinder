@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_ae29a18437b787006b39d7e8f7e20678" kind="dir">
+    <compoundname>Pathfinder/Game/ExeModule</compoundname>
+    <innerfile refid="_exe_module_2_extensions_8cs">Extensions.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Game/ExeModule/"/>
+  </compounddef>
+</doxygen>

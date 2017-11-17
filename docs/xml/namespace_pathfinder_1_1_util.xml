@@ -3,12 +3,10 @@
   <compounddef id="namespace_pathfinder_1_1_util" kind="namespace" language="C#">
     <compoundname>Pathfinder::Util</compoundname>
     <innerclass refid="class_pathfinder_1_1_util_1_1_convert_any" prot="public">Pathfinder::Util::ConvertAny</innerclass>
-    <innerclass refid="class_pathfinder_1_1_util_1_1_custom_web_client" prot="public">Pathfinder::Util::CustomWebClient</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_exe_info_manager" prot="public">Pathfinder::Util::ExeInfoManager</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_json_object" prot="public">Pathfinder::Util::JsonObject</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_logger" prot="public">Pathfinder::Util::Logger</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_sound_system" prot="public">Pathfinder::Util::SoundSystem</innerclass>
-    <innerclass refid="class_pathfinder_1_1_util_1_1_updater" prot="package">Pathfinder::Util::Updater</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_utility" prot="public">Pathfinder::Util::Utility</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_vector1" prot="public">Pathfinder::Util::Vector1</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_vector2" prot="public">Pathfinder::Util::Vector2</innerclass>
@@ -16,6 +14,7 @@
     <innerclass refid="class_pathfinder_1_1_util_1_1_vector4" prot="public">Pathfinder::Util::Vector4</innerclass>
     <innernamespace refid="namespace_pathfinder_1_1_util_1_1_attribute">Pathfinder::Util::Attribute</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_util_1_1_file">Pathfinder::Util::File</innernamespace>
+    <innernamespace refid="namespace_pathfinder_1_1_util_1_1_network">Pathfinder::Util::Network</innernamespace>
       <sectiondef kind="enum">
       <memberdef kind="enum" id="namespace_pathfinder_1_1_util_1ad5b0e2a0eef9e7e1761790600eae23a6" prot="public" static="no">
         <name>RetrieveType</name>

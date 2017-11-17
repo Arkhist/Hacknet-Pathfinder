@@ -14,7 +14,7 @@ namespace Pathfinder
     public static class Pathfinder
     {
         /*private static readonly Version AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
-        public static readonly Version Version = new Version(AssemblyVersion.Major,AssemblyVersion.Minor,1);
+        public static readonly Version Version = new Version(AssemblyVersion.Major, AssemblyVersion.Minor);
         private static Version latestVersion;*/
 
         class InvalidIdException : ArgumentException { public InvalidIdException(string msg) : base(msg) {} }

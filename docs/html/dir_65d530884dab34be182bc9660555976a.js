@@ -2,6 +2,7 @@ var dir_65d530884dab34be182bc9660555976a =
 [
     [ "Attribute", "dir_7b4624f62f8e6e97e3aac9d7ddab0e5a.html", "dir_7b4624f62f8e6e97e3aac9d7ddab0e5a" ],
     [ "File", "dir_c092f47b78606d2ccd4282a170129415.html", "dir_c092f47b78606d2ccd4282a170129415" ],
+    [ "Network", "dir_c01f5b108b8a7891f6215e8ffb5d8f83.html", "dir_c01f5b108b8a7891f6215e8ffb5d8f83" ],
     [ "ConvertAny.cs", "_convert_any_8cs.html", [
       [ "ConvertAny", "class_pathfinder_1_1_util_1_1_convert_any.html", "class_pathfinder_1_1_util_1_1_convert_any" ]
     ] ],
@@ -18,9 +19,6 @@ var dir_65d530884dab34be182bc9660555976a =
     [ "RetrieveType.cs", "_retrieve_type_8cs.html", "_retrieve_type_8cs" ],
     [ "SoundSystem.cs", "_sound_system_8cs.html", [
       [ "SoundSystem", "class_pathfinder_1_1_util_1_1_sound_system.html", "class_pathfinder_1_1_util_1_1_sound_system" ]
-    ] ],
-    [ "Updater.cs", "_updater_8cs.html", [
-      [ "CustomWebClient", "class_pathfinder_1_1_util_1_1_custom_web_client.html", "class_pathfinder_1_1_util_1_1_custom_web_client" ]
     ] ],
     [ "Utility.cs", "_utility_8cs.html", [
       [ "Utility", "class_pathfinder_1_1_util_1_1_utility.html", "class_pathfinder_1_1_util_1_1_utility" ],

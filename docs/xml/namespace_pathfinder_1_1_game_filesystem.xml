@@ -75,7 +75,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="155" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="154" bodyend="208"/>
+        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="171" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="170" bodyend="224"/>
       </memberdef>
       <memberdef kind="enum" id="namespace_pathfinder_1_1_game_filesystem_1a873ecba342eff829005d86481960c19d" prot="public" static="no">
         <name>FileType</name>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="211" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="210" bodyend="215"/>
+        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="227" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="226" bodyend="231"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

@@ -176,18 +176,6 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="315">
-        <label>Pathfinder.Daemon.Interface</label>
-        <link refid="class_pathfinder_1_1_daemon_1_1_interface"/>
-        <childnode refid="316" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="316">
-        <label>IInterface</label>
-        <link refid="interface_pathfinder_1_1_daemon_1_1_i_interface"/>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="317">
         <label>Pathfinder.Daemon.Interface</label>
         <link refid="class_pathfinder_1_1_daemon_1_1_interface"/>
@@ -195,6 +183,18 @@
         </childnode>
       </node>
       <node id="318">
+        <label>IInterface</label>
+        <link refid="interface_pathfinder_1_1_daemon_1_1_i_interface"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="319">
+        <label>Pathfinder.Daemon.Interface</label>
+        <link refid="class_pathfinder_1_1_daemon_1_1_interface"/>
+        <childnode refid="320" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="320">
         <label>IInterface</label>
         <link refid="interface_pathfinder_1_1_daemon_1_1_i_interface"/>
       </node>

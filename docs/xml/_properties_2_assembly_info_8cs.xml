@@ -26,7 +26,7 @@
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>form<sp/>&quot;{Major}.{Minor}.*&quot;<sp/>will<sp/>automatically<sp/>update<sp/>the<sp/>build<sp/>and<sp/>revision,</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>and<sp/>&quot;{Major}.{Minor}.{Build}.*&quot;<sp/>will<sp/>update<sp/>just<sp/>the<sp/>revision.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal">[assembly:<sp/>AssemblyVersion(</highlight><highlight class="stringliteral">&quot;2.0.*&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">[assembly:<sp/>AssemblyVersion(</highlight><highlight class="stringliteral">&quot;3.0.*&quot;</highlight><highlight class="normal">)]</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>following<sp/>attributes<sp/>are<sp/>used<sp/>to<sp/>specify<sp/>the<sp/>signing<sp/>key<sp/>for<sp/>the<sp/>assembly,<sp/></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>if<sp/>desired.<sp/>See<sp/>the<sp/>Mono<sp/>documentation<sp/>for<sp/>more<sp/>information<sp/>about<sp/>signing.</highlight><highlight class="normal"></highlight></codeline>

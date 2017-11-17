@@ -290,6 +290,17 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
+      <node id="241">
+        <label>Hacknet::Mission::MisisonGoal</label>
+      </node>
+      <node id="240">
+        <label>Pathfinder.Mission.GoalInstance</label>
+        <link refid="class_pathfinder_1_1_mission_1_1_goal_instance"/>
+        <childnode refid="241" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
       <node id="243">
         <label>Hacknet::Mission::MisisonGoal</label>
       </node>
@@ -297,17 +308,6 @@
         <label>Pathfinder.Mission.GoalInstance</label>
         <link refid="class_pathfinder_1_1_mission_1_1_goal_instance"/>
         <childnode refid="243" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="245">
-        <label>Hacknet::Mission::MisisonGoal</label>
-      </node>
-      <node id="244">
-        <label>Pathfinder.Mission.GoalInstance</label>
-        <link refid="class_pathfinder_1_1_mission_1_1_goal_instance"/>
-        <childnode refid="245" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

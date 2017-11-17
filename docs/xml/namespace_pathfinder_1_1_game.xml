@@ -3,6 +3,7 @@
   <compounddef id="namespace_pathfinder_1_1_game" kind="namespace" language="C#">
     <compoundname>Pathfinder::Game</compoundname>
     <innernamespace refid="namespace_pathfinder_1_1_game_1_1_computer">Pathfinder::Game::Computer</innernamespace>
+    <innernamespace refid="namespace_pathfinder_1_1_game_1_1_exe_module">Pathfinder::Game::ExeModule</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_game_1_1_network_map">Pathfinder::Game::NetworkMap</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_game_1_1_o_s">Pathfinder::Game::OS</innernamespace>
     <briefdescription>

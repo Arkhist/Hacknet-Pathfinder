@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_pathfinder_1_1_util_1_1_network_1_1_rest_manager" kind="class" language="C#" prot="public">
+    <compoundname>Pathfinder::Util::Network::RestManager</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_network_1_1_rest_manager_1ab4213dafc49ca693ffd57a402ddc9d71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Pathfinder.Util.Network.RestManager.Fetch</definition>
+        <argsstring>(string url, string method=WebRequestMethods.Http.Get, string toSend=&quot;&quot;, string apiKey=&quot;&quot;, bool forJson=true)</argsstring>
+        <name>Fetch</name>
+        <param>
+          <type>string</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>method</declname>
+          <defval>WebRequestMethods.Http.Get</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>toSend</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>apiKey</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>forJson</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Network/RestManager.cs" line="15" column="1" bodyfile="Pathfinder/Util/Network/RestManager.cs" bodystart="15" bodyend="84"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_network_1_1_rest_manager_1a9697f76ca677d6c6e0d2365d15a0d315" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Util.Network.RestManager.ProcessResponse</definition>
+        <argsstring>(WebResponse response, out string recurlyResponse, out string responseHeaders, out int responseStatusCode)</argsstring>
+        <name>ProcessResponse</name>
+        <param>
+          <type>WebResponse</type>
+          <declname>response</declname>
+        </param>
+        <param>
+          <type>out string</type>
+          <declname>recurlyResponse</declname>
+        </param>
+        <param>
+          <type>out string</type>
+          <declname>responseHeaders</declname>
+        </param>
+        <param>
+          <type>out int</type>
+          <declname>responseStatusCode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Util/Network/RestManager.cs" line="86" column="1" bodyfile="Pathfinder/Util/Network/RestManager.cs" bodystart="86" bodyend="99"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Util/Network/RestManager.cs" line="14" column="1" bodyfile="Pathfinder/Util/Network/RestManager.cs" bodystart="13" bodyend="100"/>
+    <listofallmembers>
+      <member refid="class_pathfinder_1_1_util_1_1_network_1_1_rest_manager_1ab4213dafc49ca693ffd57a402ddc9d71" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Network::RestManager</scope><name>Fetch</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_network_1_1_rest_manager_1a9697f76ca677d6c6e0d2365d15a0d315" prot="private" virt="non-virtual"><scope>Pathfinder::Util::Network::RestManager</scope><name>ProcessResponse</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

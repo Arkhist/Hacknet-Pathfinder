@@ -252,6 +252,23 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_object_1a9cddf581b2bfb8e12d4e094b5ed65c45" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; Pathfinder.GameFilesystem.FileObject&lt; VanillaT &gt;.ParsePath</definition>
+        <argsstring>(string p)</argsstring>
+        <name>ParsePath</name>
+        <param>
+          <type>string</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="65" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="65" bodyend="79"/>
+      </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_filesystem_1_1_file_object_1a4bf72ef2c745fe703e6f268d96ae19e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool Pathfinder.GameFilesystem.FileObject&lt; VanillaT &gt;.LogOperation</definition>
@@ -271,7 +288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="65" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="65" bodyend="119"/>
+        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="81" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="81" bodyend="135"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -279,42 +296,42 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="195">
+      <node id="193">
         <label>IFileObject</label>
         <link refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object"/>
       </node>
-      <node id="194">
+      <node id="192">
         <label>Pathfinder.GameFilesystem.FileObject&lt; VanillaT &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
-        <childnode refid="195" relation="public-inheritance">
+        <childnode refid="193" relation="public-inheritance">
         </childnode>
-        <childnode refid="196" relation="public-inheritance">
+        <childnode refid="194" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="196">
+      <node id="194">
         <label>FileObject&lt; VanillaT &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="198">
+      <node id="196">
         <label>IFileObject</label>
         <link refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object"/>
       </node>
-      <node id="197">
+      <node id="195">
         <label>Pathfinder.GameFilesystem.FileObject&lt; VanillaT &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
-        <childnode refid="198" relation="public-inheritance">
+        <childnode refid="196" relation="public-inheritance">
         </childnode>
-        <childnode refid="199" relation="public-inheritance">
+        <childnode refid="197" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="199">
+      <node id="197">
         <label>FileObject&lt; VanillaT &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/GameFilesystem/FileObject.cs" line="25" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="24" bodyend="120"/>
+    <location file="Pathfinder/GameFilesystem/FileObject.cs" line="25" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="24" bodyend="136"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_object_1a35580103660359aeab10483190458802" prot="protected" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FileObject</scope><name>FileObject</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_object_1a975dbc446587d03ee6824ad95572b654" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FileObject</scope><name>Index</name></member>
@@ -328,6 +345,7 @@
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_object_1a7078103aa328d74c76ffb1162bada214" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FileObject</scope><name>Parent</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_object_1a295a4be59ad430086ddff9cb31185ff1" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FileObject</scope><name>Parent</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_object_1a586aeb8679d38aff1078d4656740c56a" prot="private" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FileObject</scope><name>Parent</name></member>
+      <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_object_1a9cddf581b2bfb8e12d4e094b5ed65c45" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FileObject</scope><name>ParsePath</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_object_1a98ec72e8153d84d1fecbf16bc744851c" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FileObject</scope><name>Path</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_object_1aee1e31b245aa9df8aed21448ab077cd5" prot="private" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FileObject</scope><name>Path</name></member>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_object_1a93b08d279b3c7ed1eb7093de98c5c9bf" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FileObject</scope><name>Root</name></member>
