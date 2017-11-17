@@ -83,7 +83,7 @@ namespace Pathfinder.Game.OS
                 if (mod == null && shouldWrite)
                     os.Write(LocaleTerms.Loc("Invalid Identifier Name"));
             }
-            else os.Write(LocaleTerms.Loc("Error: Invalid PID or Input Format"));
+            else if(shouldWrite) os.Write(LocaleTerms.Loc("Error: Invalid PID or Input Format"));
             return mod?.Kill(shouldWrite) ?? false;
         }
 
