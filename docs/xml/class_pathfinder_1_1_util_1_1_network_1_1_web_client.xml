@@ -27,17 +27,6 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="579">
-        <label>System::Net::WebClient</label>
-      </node>
-      <node id="578">
-        <label>Pathfinder.Util.Network.WebClient</label>
-        <link refid="class_pathfinder_1_1_util_1_1_network_1_1_web_client"/>
-        <childnode refid="579" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="581">
         <label>System::Net::WebClient</label>
       </node>
@@ -45,6 +34,17 @@
         <label>Pathfinder.Util.Network.WebClient</label>
         <link refid="class_pathfinder_1_1_util_1_1_network_1_1_web_client"/>
         <childnode refid="581" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="583">
+        <label>System::Net::WebClient</label>
+      </node>
+      <node id="582">
+        <label>Pathfinder.Util.Network.WebClient</label>
+        <link refid="class_pathfinder_1_1_util_1_1_network_1_1_web_client"/>
+        <childnode refid="583" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

@@ -13,6 +13,9 @@ var dir_65d530884dab34be182bc9660555976a =
     [ "JsonObject.cs", "_json_object_8cs.html", [
       [ "JsonObject", "class_pathfinder_1_1_util_1_1_json_object.html", "class_pathfinder_1_1_util_1_1_json_object" ]
     ] ],
+    [ "Locale.cs", "_locale_8cs.html", [
+      [ "Locale", "class_pathfinder_1_1_util_1_1_locale.html", "class_pathfinder_1_1_util_1_1_locale" ]
+    ] ],
     [ "Logger.cs", "_logger_8cs.html", [
       [ "Logger", "class_pathfinder_1_1_util_1_1_logger.html", "class_pathfinder_1_1_util_1_1_logger" ]
     ] ],

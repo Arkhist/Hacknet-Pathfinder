@@ -55,17 +55,6 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="531">
-        <label>Pathfinder.ModManager.Attribute.TitleAttribute</label>
-        <link refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_title_attribute"/>
-        <childnode refid="532" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="532">
-        <label>System::Attribute</label>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="533">
         <label>Pathfinder.ModManager.Attribute.TitleAttribute</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_title_attribute"/>
@@ -73,6 +62,17 @@
         </childnode>
       </node>
       <node id="534">
+        <label>System::Attribute</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="535">
+        <label>Pathfinder.ModManager.Attribute.TitleAttribute</label>
+        <link refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_title_attribute"/>
+        <childnode refid="536" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="536">
         <label>System::Attribute</label>
       </node>
     </collaborationgraph>

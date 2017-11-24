@@ -5,6 +5,7 @@
     <innerclass refid="class_pathfinder_1_1_util_1_1_convert_any" prot="public">Pathfinder::Util::ConvertAny</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_exe_info_manager" prot="public">Pathfinder::Util::ExeInfoManager</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_json_object" prot="public">Pathfinder::Util::JsonObject</innerclass>
+    <innerclass refid="class_pathfinder_1_1_util_1_1_locale" prot="public">Pathfinder::Util::Locale</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_logger" prot="public">Pathfinder::Util::Logger</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_sound_system" prot="public">Pathfinder::Util::SoundSystem</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_utility" prot="public">Pathfinder::Util::Utility</innerclass>

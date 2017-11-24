@@ -5,7 +5,6 @@
     <innerclass refid="class_pathfinder_1_1_util_1_1_utility" prot="public">Pathfinder::Util::Utility</innerclass>
     <innerclass refid="class_pathfinder_1_1_util_1_1_utility_1_1_array" prot="public">Pathfinder::Util::Utility::Array</innerclass>
     <innernamespace refid="namespace_pathfinder_1_1_util">Pathfinder::Util</innernamespace>
-    <innernamespace refid="namespace_system_1_1_text_1_1_regular_expressions">System::Text::RegularExpressions</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

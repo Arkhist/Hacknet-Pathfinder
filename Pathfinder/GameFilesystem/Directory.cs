@@ -127,8 +127,8 @@ namespace Pathfinder.GameFilesystem
             {
                 if ((res = res.FindDirectory(p)) == null)
                 {
-                    if (nullOut) { }
-                    else res = last;
+                    if (!nullOut)
+                        res = last;
                     break;
                 }
                 if(!nullOut) last = res;

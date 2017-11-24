@@ -18,19 +18,35 @@
           <defval>false</defval>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Kill the <ref refid="namespace_pathfinder_1_1_game_1_1_exe_module" kindref="compound">ExeModule</ref>. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput>, if <ref refid="namespace_pathfinder_1_1_game_1_1_exe_module" kindref="compound">ExeModule</ref> was found, killed, and removed, <computeroutput>false</computeroutput> otherwise.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>module</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="namespace_pathfinder_1_1_game_1_1_exe_module" kindref="compound">ExeModule</ref> to kill.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shouldWrite</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If set to <computeroutput>true</computeroutput> then success will be written to the <ref refid="namespace_pathfinder_1_1_game_1_1_o_s" kindref="compound">OS</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/ExeModule/Extensions.cs" line="7" column="1" bodyfile="Pathfinder/Game/ExeModule/Extensions.cs" bodystart="7" bodyend="15"/>
+        <location file="Pathfinder/Game/ExeModule/Extensions.cs" line="13" column="1" bodyfile="Pathfinder/Game/ExeModule/Extensions.cs" bodystart="13" bodyend="21"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Game/ExeModule/Extensions.cs" line="6" column="1" bodyfile="Pathfinder/Game/ExeModule/Extensions.cs" bodystart="5" bodyend="16"/>
+    <location file="Pathfinder/Game/ExeModule/Extensions.cs" line="6" column="1" bodyfile="Pathfinder/Game/ExeModule/Extensions.cs" bodystart="5" bodyend="22"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_game_1_1_exe_module_1_1_extensions_1a6e01a03b6ff43664d12172c4afdfc0d5" prot="public" virt="non-virtual"><scope>Pathfinder::Game::ExeModule::Extensions</scope><name>Kill</name></member>
     </listofallmembers>

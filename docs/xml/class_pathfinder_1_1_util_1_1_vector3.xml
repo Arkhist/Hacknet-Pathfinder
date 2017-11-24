@@ -92,43 +92,43 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="560">
+      <node id="562">
         <label>Vector2&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector2"/>
+        <childnode refid="563" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="564">
+        <label>Pathfinder::Util::Vector4&lt; T &gt;</label>
+        <link refid="class_pathfinder_1_1_util_1_1_vector4"/>
         <childnode refid="561" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="562">
-        <label>Pathfinder::Util::Vector4&lt; T &gt;</label>
-        <link refid="class_pathfinder_1_1_util_1_1_vector4"/>
-        <childnode refid="559" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="559">
+      <node id="561">
         <label>Pathfinder.Util.Vector3&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector3"/>
-        <childnode refid="560" relation="public-inheritance">
+        <childnode refid="562" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="561">
+      <node id="563">
         <label>Vector1&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector1"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="564">
+      <node id="566">
         <label>Vector2&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector2"/>
-        <childnode refid="565" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="563">
-        <label>Pathfinder.Util.Vector3&lt; T &gt;</label>
-        <link refid="class_pathfinder_1_1_util_1_1_vector3"/>
-        <childnode refid="564" relation="public-inheritance">
+        <childnode refid="567" relation="public-inheritance">
         </childnode>
       </node>
       <node id="565">
+        <label>Pathfinder.Util.Vector3&lt; T &gt;</label>
+        <link refid="class_pathfinder_1_1_util_1_1_vector3"/>
+        <childnode refid="566" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="567">
         <label>Vector1&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector1"/>
       </node>

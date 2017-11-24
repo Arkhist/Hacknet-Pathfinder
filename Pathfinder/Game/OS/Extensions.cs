@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Hacknet;
 using Pathfinder.Game.ExeModule;
 using Pathfinder.Util;
 
@@ -60,34 +59,55 @@ namespace Pathfinder.Game.OS
             return result;
         }
 
-        public static bool KillExeModule(this Hacknet.OS os, Hacknet.ExeModule module, bool shouldWrite = false)
+        /// <summary>
+        /// Kills the ExeModules on the OS.
+        /// </summary>
+        /// <returns><c>true</c>, if ExeModule was killed, <c>false</c> otherwise.</returns>
+        /// <param name="os">The OS.</param>
+        /// <param name="module">The ExeModule to kill.</param>
+        /// <param name="shouldWrite">If set to <c>true</c> then success will be written to the OS.</param>
+        public static bool KillExecutableModule(this Hacknet.OS os, Hacknet.ExeModule module, bool shouldWrite = false)
         {
             if (os.exes.Contains(module))
                 return module.Kill(shouldWrite);
             return false;
         }
 
-        public static bool KillExeModule(this Hacknet.OS os, string input, bool shouldWrite = false)
+        /// <summary>
+        /// Kills the first ExeModules on the OS that matches the string.
+        /// </summary>
+        /// <returns><c>true</c>, if ExeModule was killed, <c>false</c> otherwise.</returns>
+        /// <param name="os">The OS.</param>
+        /// <param name="input">The input string (or string representation of the integer PID) to search against.</param>
+        /// <param name="searchName">If set to <c>true</c> then can search by IdentifierName.</param>
+        /// <param name="shouldWrite">If set to <c>true</c> will write success and failure to the OS.</param>
+        public static bool KillExecutableModule(this Hacknet.OS os, string input, bool searchName = false, bool shouldWrite = false)
         {
             int i;
             Hacknet.ExeModule mod = null;
+            input = input.Trim();
             if (int.TryParse(input, out i))
             {
                 mod = os.exes.Find((obj) => obj.PID == i);
                 if (mod == null && shouldWrite)
-                    os.Write(LocaleTerms.Loc("Invalid PID"));
+                    os.Write(Locale.Get("Invalid PID"));
             }
-            else if (!String.IsNullOrWhiteSpace(input))
+            else if (searchName && !String.IsNullOrWhiteSpace(input))
             {
                 mod = os.exes.Find((obj) => obj.IdentifierName == input);
                 if (mod == null && shouldWrite)
-                    os.Write(LocaleTerms.Loc("Invalid Identifier Name"));
+                    os.Write(Locale.Get("Invalid Identifier Name"));
             }
-            else if(shouldWrite) os.Write(LocaleTerms.Loc("Error: Invalid PID or Input Format"));
+            else if(shouldWrite) os.Write(Locale.Get("Error: Invalid PID or Input Format"));
             return mod?.Kill(shouldWrite) ?? false;
         }
 
-        public static void KillAllExeModules(this Hacknet.OS os, bool shouldWrite = false)
+        /// <summary>
+        /// Kills all ExeModules.
+        /// </summary>
+        /// <param name="os">The OS.</param>
+        /// <param name="shouldWrite">If set to <c>true</c> will write success to the OS.</param>
+        public static void KillAllExecutableModules(this Hacknet.OS os, bool shouldWrite = false)
         {
             for (int i = os.exes.Count - 1; i >= 0; i--)
                 os.exes[i].Kill(shouldWrite);

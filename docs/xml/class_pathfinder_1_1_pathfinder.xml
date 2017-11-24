@@ -210,14 +210,14 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="466">
+      <node id="468">
         <label>Pathfinder.Pathfinder</label>
         <link refid="class_pathfinder_1_1_pathfinder"/>
-        <childnode refid="467" relation="usage">
+        <childnode refid="469" relation="usage">
           <edgelabel>CurrentMod</edgelabel>
         </childnode>
       </node>
-      <node id="467">
+      <node id="469">
         <label>Pathfinder.ModManager.IMod</label>
         <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
       </node>

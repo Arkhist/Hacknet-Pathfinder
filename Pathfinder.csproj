@@ -171,6 +171,7 @@
     <Compile Include="Pathfinder\Game\ExeModule\Extensions.cs" />
     <Compile Include="Pathfinder\Util\Network\RestManager.cs" />
     <Compile Include="Pathfinder\Util\Network\Updater.cs" />
+    <Compile Include="Pathfinder\Util\Locale.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Util\" />
@@ -192,7 +193,6 @@
     <Folder Include="Pathfinder\Game\ExeModule\">
     </Folder>
     <Folder Include="Pathfinder\Util\Network\">
-      <DependentUpon>Network</DependentUpon>
     </Folder>
   </ItemGroup>
   <ItemGroup />

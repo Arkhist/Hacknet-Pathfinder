@@ -21,6 +21,8 @@ var searchData=
   ['loadsounds',['LoadSounds',['../class_pathfinder_1_1_util_1_1_file_1_1_mod_content.html#a536ce2aaf3b833e3b52a25c93b1faa66',1,'Pathfinder::Util::File::ModContent']]],
   ['loadtextures',['LoadTextures',['../class_pathfinder_1_1_util_1_1_file_1_1_mod_content.html#a2e0421c8cb0a6b4f629d3173a646926f',1,'Pathfinder::Util::File::ModContent']]],
   ['localdata',['LocalData',['../struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info.html#a0ed0aeeaa35d405d86028659f627600d',1,'Pathfinder::Util::ExeInfoManager::ExecutableInfo']]],
+  ['locale',['Locale',['../class_pathfinder_1_1_util_1_1_locale.html',1,'Pathfinder::Util']]],
+  ['locale_2ecs',['Locale.cs',['../_locale_8cs.html',1,'']]],
   ['log',['Log',['../class_pathfinder_1_1_util_1_1_logger.html#adaabf1d1d6c22138715eab328fc78070',1,'Pathfinder::Util::Logger']]],
   ['logger',['Logger',['../class_pathfinder_1_1_util_1_1_logger.html',1,'Pathfinder::Util']]],
   ['logger_2ecs',['Logger.cs',['../_logger_8cs.html',1,'']]],

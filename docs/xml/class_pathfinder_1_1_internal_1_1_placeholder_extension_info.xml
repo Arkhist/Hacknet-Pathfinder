@@ -27,17 +27,6 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="511">
-        <label>Pathfinder.Internal.PlaceholderExtensionInfo</label>
-        <link refid="class_pathfinder_1_1_internal_1_1_placeholder_extension_info"/>
-        <childnode refid="512" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="512">
-        <label>ExtensionInfo</label>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="513">
         <label>Pathfinder.Internal.PlaceholderExtensionInfo</label>
         <link refid="class_pathfinder_1_1_internal_1_1_placeholder_extension_info"/>
@@ -45,6 +34,17 @@
         </childnode>
       </node>
       <node id="514">
+        <label>ExtensionInfo</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="515">
+        <label>Pathfinder.Internal.PlaceholderExtensionInfo</label>
+        <link refid="class_pathfinder_1_1_internal_1_1_placeholder_extension_info"/>
+        <childnode refid="516" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="516">
         <label>ExtensionInfo</label>
       </node>
     </collaborationgraph>

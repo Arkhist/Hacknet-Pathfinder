@@ -105,6 +105,7 @@ var hierarchy =
     ] ],
     [ "Pathfinder.Extension.Info", "class_pathfinder_1_1_extension_1_1_info.html", null ],
     [ "Pathfinder.Util.JsonObject", "class_pathfinder_1_1_util_1_1_json_object.html", null ],
+    [ "Pathfinder.Util.Locale", "class_pathfinder_1_1_util_1_1_locale.html", null ],
     [ "Pathfinder.Util.Logger", "class_pathfinder_1_1_util_1_1_logger.html", null ],
     [ "MainDisplayOverrideEXE", null, [
       [ "Pathfinder.Executable.Instance.InstanceOverrideDisplay", "class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display.html", null ]

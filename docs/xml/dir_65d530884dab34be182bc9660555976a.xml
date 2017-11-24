@@ -8,6 +8,7 @@
     <innerfile refid="_convert_any_8cs">ConvertAny.cs</innerfile>
     <innerfile refid="_exe_info_manager_8cs">ExeInfoManager.cs</innerfile>
     <innerfile refid="_json_object_8cs">JsonObject.cs</innerfile>
+    <innerfile refid="_locale_8cs">Locale.cs</innerfile>
     <innerfile refid="_logger_8cs">Logger.cs</innerfile>
     <innerfile refid="_retrieve_type_8cs">RetrieveType.cs</innerfile>
     <innerfile refid="_sound_system_8cs">SoundSystem.cs</innerfile>
