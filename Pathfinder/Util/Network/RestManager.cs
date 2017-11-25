@@ -30,15 +30,15 @@ namespace Pathfinder.Util.Network
                 webClient.Proxy = null;
                 webClient.Headers.Add(HttpRequestHeader.Accept, headerValue);
 
-                // You can use BASIC authorization like so (you must implement your own Recurly.ApiKeyBase64String): 
+                // You can use BASIC authorization like so (you must implement your own Recurly.ApiKeyBase64string): 
                 webClient.Headers.Add(HttpRequestHeader.Authorization, "Basic " + apiKey);
 
-                if (!String.IsNullOrWhiteSpace(toSend))
+                if (!string.IsNullOrWhiteSpace(toSend))
                     webClient.Headers.Add(HttpRequestHeader.ContentType, headerValue + "; charset=utf-8");
                 var webRequest = webClient.GetWebRequest(new Uri(url));
                 webRequest.Method = method;
 
-                if (!String.IsNullOrWhiteSpace(toSend))
+                if (!string.IsNullOrWhiteSpace(toSend))
                 {
                     using (var writer = new StreamWriter(webRequest.GetRequestStream(), Encoding.UTF8))
                         writer.WriteLine(toSend);
@@ -57,30 +57,30 @@ namespace Pathfinder.Util.Network
 
                 responseData = "<!-- " + ex.Message + " -->\r\n\r\n" + responseData;
             }
-            finally
+            /*finally
             {
-                /* YOU CAN (you should) LOG ALL YOUR COMMUNICATION WITH SERVER HERE like this:
+                  YOU CAN (you should) LOG ALL YOUR COMMUNICATION WITH SERVER HERE like this:
 
                   var log = Log.CreateCommunicationLogObject();
 
                   log.StartedOnUtc = startedOnUtc;
                   log.FinishedOnUtc = DateTime.UtcNow;
                   log.RequestMethod = method;
-                  log.RequestData = String.IsNullOrWhiteSpace(xmlToSend) ? null : xmlToSend;
+                  log.RequestData = string.IsNullOrWhiteSpace(xmlToSend) ? null : xmlToSend;
                   log.RequestUrl = url;
                   log.ResponseData = responseData;
                   log.ResponseStatusCode = responseStatusCode;
                   log.ResponseHeaders = responseHeaders;
 
                   Log.Save();
-                */
-            }
+                
+            }*/
 
             if (responseStatusCode >= 200 && responseStatusCode < 300)
                 // All 2xx HTTP statuses are OK
                 return responseData;
 
-            return String.Empty;
+            return string.Empty;
         }
 
         private static void ProcessResponse(WebResponse response,
@@ -88,13 +88,13 @@ namespace Pathfinder.Util.Network
                                             out string responseHeaders,
                                             out int responseStatusCode)
         {
-            recurlyResponse = responseHeaders = String.Empty;
+            recurlyResponse = responseHeaders = string.Empty;
 
             using (var responseStream = response.GetResponseStream())
                 using (var sr = new StreamReader(responseStream, Encoding.UTF8))
                     recurlyResponse = sr.ReadToEnd();
 
-            responseHeaders = response.Headers.ToString();
+            responseHeaders = response.Headers.Tostring();
             responseStatusCode = (int)((response as HttpWebResponse)?.StatusCode ?? 0);
         }
     }

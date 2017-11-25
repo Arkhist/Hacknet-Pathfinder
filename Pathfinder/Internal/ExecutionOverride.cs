@@ -183,7 +183,7 @@ namespace Pathfinder.Internal
                 {
                     Programs.typeOut("\n------ " + LocaleTerms.Loc("BOOT ERRORS DETECTED") + " ------", os, 50);
                     Utility.HaltThread(200);
-                    string[] array = os.crashModule.BootLoadErrors.Split(Utils.newlineDelim, StringSplitOptions.RemoveEmptyEntries);
+                    var array = os.crashModule.BootLoadErrors.Split(Utils.newlineDelim, StringSplitOptions.RemoveEmptyEntries);
                     for (int i = 0; i < array.Length; i++)
                     {
                         Programs.typeOut(array[i], os, 50);
@@ -253,7 +253,7 @@ namespace Pathfinder.Internal
                     {
                         ExtensionLoader.SendStartingEmailForActiveExtensionNextFrame(os);
                         float num5 = 2.2f;
-                        int num3 = (int)(60f * num5);
+                        var num3 = (int)(60f * num5);
                         for (int i = 0; i < num3; i++)
                         {
                             double num4 = (double)i / num3;

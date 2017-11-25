@@ -34,7 +34,7 @@ namespace Pathfinder.Util
         public static string ConvertToValidXmlAttributeName(string input)
         {
             input = xmlAttribRegex.Replace(input, "_");
-            if (Char.IsDigit(input[0]))
+            if (char.IsDigit(input[0]))
                 input = '_' + input.Substring(1);
             return input;
         }
@@ -71,26 +71,26 @@ namespace Pathfinder.Util
         /// Gets the current client OS.
         /// </summary>
         /// <returns>The client's current OS.</returns>
-        public static Hacknet.OS ClientOS => OS.currentInstance;
+        public static OS ClientOS => OS.currentInstance;
 
         /// <summary>
         /// Gets the current client's Computer.
         /// </summary>
         /// <returns>The client's Current Computer.</returns>
-        public static Hacknet.Computer ClientComputer => ClientOS.thisComputer;
+        public static Computer ClientComputer => ClientOS.thisComputer;
 
         /// <summary>
         /// Gets the current client's NetworkMap for the current client OS.
         /// </summary>
         /// <returns>The client's current Network Map.</returns>
-        public static Hacknet.NetworkMap ClientNetworkMap => ClientOS?.netMap;
+        public static NetworkMap ClientNetworkMap => ClientOS?.netMap;
 
         /// <summary>
         /// Gets the current Computer the OS is active in.
         /// </summary>
         /// <returns>The currently active Computer.</returns>
-        /// <param name="os">The OS to get the current Computer, or equal to <see cref="Utility.ClientOS"/> if <c>null</c>.</param>
-        public static Hacknet.Computer GetCurrentComputer(Hacknet.OS os = null)
+        /// <param name="os">The OS to get the current Computer, or equal to <see cref="ClientOS"/> if <c>null</c>.</param>
+        public static Computer GetCurrentComputer(OS os = null)
         {
             if (os == null)
                 os = ClientOS;
@@ -101,7 +101,7 @@ namespace Pathfinder.Util
         /// Gets the current Computer the client is connected to.
         /// </summary>
         /// <value>The current Computer.</value>
-        public static Hacknet.Computer CurrentComputer => GetCurrentComputer(null);
+        public static Computer CurrentComputer => GetCurrentComputer(null);
 
         public static int GenerateRandomIPSection(Random rand = null) => (rand ?? pathfinderRng).Next(254) + 1;
         public static string GenerateRandomIP(Random rand = null) =>
@@ -120,7 +120,7 @@ namespace Pathfinder.Util
             var asm = new StackFrame(frameSkip).GetMethod().Module.Assembly;
             if (asm == MethodBase.GetCurrentMethod().Module.Assembly)
                 result = "Pathfinder";
-            else if (asm == typeof(Hacknet.Program).Assembly)
+            else if (asm == typeof(Program).Assembly)
                 result = "Hacknet";
             else
                 result = asm.GetFirstMod()?.GetCleanId();

@@ -9,15 +9,15 @@ namespace Pathfinder.Mission
 {
     public static class MissionManager
     {
-        public static MissionListingServer CreateMissionListingDaemon(this Hacknet.Computer c,
+        public static MissionListingServer CreateMissionListingDaemon(this Computer c,
                                                                       string serviceName,
                                                                       string logoPath = null,
                                                                       bool isPublic = false,
                                                                       bool isAssigner = false,
-                                                                      Hacknet.OS os = null)
+                                                                      OS os = null)
         {
             var s = new MissionListingServer(c, serviceName, serviceName, os ?? Utility.ClientOS, isPublic, isAssigner);
-            if(!String.IsNullOrEmpty(logoPath))
+            if(!string.IsNullOrEmpty(logoPath))
                 try
                 {
                     using (var fs = File.OpenRead(logoPath))
@@ -66,7 +66,7 @@ namespace Pathfinder.Mission
             return s;
         }
 
-        public static MissionHubServer CreateMissionHubDaemon(this Hacknet.Computer c, string serviceName, Hacknet.OS os = null)
+        public static MissionHubServer CreateMissionHubDaemon(this Computer c, string serviceName, OS os = null)
         {
             var s = new MissionHubServer(c, serviceName, serviceName, os ?? Utility.ClientOS);
             c.daemons.Add(s);

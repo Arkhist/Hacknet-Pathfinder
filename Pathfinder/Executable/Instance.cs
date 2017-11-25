@@ -14,21 +14,21 @@ namespace Pathfinder.Executable
         public IInterface Interface { get; private set; }
         public FileEntry ExecutionFile { get; private set; }
 
-        public Instance(Rectangle loc, Hacknet.OS os, List<string> args, FileEntry executionFile, IInterface exeInterface)
+        public Instance(Rectangle loc, OS os, List<string> args, FileEntry executionFile, IInterface exeInterface)
             : base(loc, os)
         {
             Arguments = args;
             Interface = exeInterface;
             ExecutionFile = executionFile;
-            this.IdentifierName = Interface.Identifier;
-            this.needsProxyAccess = Interface.NeedsProxyAccess;
-            this.ramCost = Interface.RamCost;
+            IdentifierName = Interface.Identifier;
+            needsProxyAccess = Interface.NeedsProxyAccess;
+            ramCost = Interface.RamCost;
             Interface.OnConstruction(this);
         }
 
         public static Instance CreateInstance(IInterface exeInterface,
                                               FileEntry executionFile,
-                                              Hacknet.OS os,
+                                              OS os,
                                               List<string> args,
                                               Rectangle loc)
         {
@@ -37,9 +37,9 @@ namespace Pathfinder.Executable
             return new Instance(loc, os, args, executionFile, exeInterface);
         }
 
-        public static Instance CreateInstance(IInterface exeInterface, 
+        public static Instance CreateInstance(IInterface exeInterface,
                                               FileEntry executionFile,
-                                              Hacknet.OS os, 
+                                              OS os,
                                               List<string> args) =>
             CreateInstance(exeInterface, executionFile, os, args, Rectangle.Empty);
 
@@ -107,7 +107,7 @@ namespace Pathfinder.Executable
         {
             var result = Interface.Update(this, t);
             if(result.HasValue)
-                this.isExiting = result.Value;
+                isExiting = result.Value;
             base.Update(t);
         }
 
@@ -139,14 +139,18 @@ namespace Pathfinder.Executable
                 }
             }
 
-            public InstanceOverrideDisplay(Rectangle loc, Hacknet.OS os, List<string> arguments, FileEntry executionFile, IInterface exeInterface)
+            public InstanceOverrideDisplay(Rectangle loc,
+                                           OS os,
+                                           List<string> arguments,
+                                           FileEntry executionFile,
+                                           IInterface exeInterface)
                 : base(loc, os, arguments, executionFile, exeInterface)
             {
                 if (!(exeInterface is IMainDisplayOverride))
                     throw new ArgumentException("exeInterface must be derived from IMainDisplayOverride");
             }
 
-            public void RenderMainDisplay(Rectangle dest, SpriteBatch sb) => 
+            public void RenderMainDisplay(Rectangle dest, SpriteBatch sb) =>
                 (Interface as IMainDisplayOverride).DrawMain(this, dest, sb);
         }
     }

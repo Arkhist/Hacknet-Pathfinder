@@ -25,7 +25,7 @@ namespace Pathfinder.Util
                 if (extraArgs != null && extraArgs.Length > 0)
                     try
                     {
-                        return String.Format(result, extraArgs);
+                        return string.Format(result, extraArgs);
                     }
                     catch (FormatException) {}
                 return result;

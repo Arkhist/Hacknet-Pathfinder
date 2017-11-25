@@ -13,13 +13,13 @@ namespace Pathfinder.Util
         public enum LogLevel
         {
             VERBOSE = 1,
-            DEBUG = 2,
-            INFO = 4,
-            WARN = 8,
-            ERROR = 16,
-            FATAL = 32,
-            All = VERBOSE | DEBUG | INFO | WARN | ERROR | FATAL,
-            None = 0,
+            DEBUG   = 1 << 1,
+            INFO    = 1 << 2,
+            WARN    = 1 << 3,
+            ERROR   = 1 << 4,
+            FATAL   = 1 << 5,
+            All     = VERBOSE | DEBUG | INFO | WARN | ERROR | FATAL,
+            None    = 0,
             Default = FATAL | ERROR | WARN | INFO
         }
 
@@ -77,11 +77,12 @@ namespace Pathfinder.Util
             {
                 case 0: return;
                 case 1:
-                    t = new Tuple<LogLevel, string>(level, String.Format("{0}[{1}]: {2}", prefix, level, input[0]));
+                    t = new Tuple<LogLevel, string>(level, string.Format("{0}[{1}]: {2}", prefix, level, input[0]));
                     break;
                 default:
-                    t = new Tuple<LogLevel, string>(level, String.Format("{0}[{1}]: {2}", prefix, level,
-                                                                String.Format(input[0].ToString(), input.Skip(1).ToArray())));
+                    t = new Tuple<LogLevel, string>(level, string.Format("{0}[{1}]: {2}", prefix, level,
+                                                                         string.Format(input[0].ToString(),
+                                                                                       input.Skip(1).ToArray())));
                     break;
             }
             if (logHistory.Count >= MAX_LOG_SIZE)

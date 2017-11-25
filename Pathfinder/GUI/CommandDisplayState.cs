@@ -1,5 +1,4 @@
-﻿using System;
-namespace Pathfinder.GUI
+﻿namespace Pathfinder.GUI
 {
     public enum CommandDisplayStateChange
     {

@@ -1,6 +1,5 @@
 ﻿using System;
 using Hacknet;
-using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 
 namespace Pathfinder.GUI
@@ -33,11 +32,11 @@ namespace Pathfinder.GUI
         protected DynamicRectangle Draggable { get; set; }
 
         public Scrollbar(Rectangle shape, int contentSize, float scroll = 0, bool vertical = true)
-            : this(shape.X, shape.Y, shape.Width, shape.Height, contentSize, scroll, vertical) {}
+            : this(shape.X, shape.Y, shape.Width, shape.Height, contentSize, scroll, vertical) { }
         public Scrollbar(Point position, Point size, int contentSize, float scroll = 0, bool vertical = true)
-            : this(position.X, position.Y, size.X, size.Y, contentSize, scroll, vertical) {}
+            : this(position.X, position.Y, size.X, size.Y, contentSize, scroll, vertical) { }
         public Scrollbar(int x, int y, int width, int height, int contentSize, float scroll = 0, bool vertical = true)
-            : base(x, y, width, height, contentSize, scroll, vertical) 
+            : base(x, y, width, height, contentSize, scroll, vertical)
         {
             Draggable = new DynamicRectangle(X, Y, Width, Height, Color.White, Color.Gray, Width, false, false);
         }

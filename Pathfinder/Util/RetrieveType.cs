@@ -1,5 +1,4 @@
-﻿using System;
-namespace Pathfinder.Util
+﻿namespace Pathfinder.Util
 {
     public enum RetrieveType
     {

@@ -325,7 +325,7 @@ namespace Pathfinder.Game.Computer
                 return;
             if (!comp.silent)
                 comp.portsOpen[i] = 1;
-            if (!String.IsNullOrEmpty(ipFrom))
+            if (!string.IsNullOrEmpty(ipFrom))
                 comp.log(ipFrom + " Opened Port#" + info.PortNumber);
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + info.PortNumber);
         }
@@ -360,7 +360,7 @@ namespace Pathfinder.Game.Computer
             if (i == null)
                 return;
             i.Unlocked |= !comp.silent;
-            if (!String.IsNullOrEmpty(ipFrom))
+            if (!string.IsNullOrEmpty(ipFrom))
                 comp.log(ipFrom + " Opened Port#" + port.PortName + "/" + port.PortDisplay);
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
         }
@@ -388,7 +388,7 @@ namespace Pathfinder.Game.Computer
             var wasOpen = comp.portsOpen[i] >= 1;
             if (!comp.silent)
                 comp.portsOpen[i] = 0;
-            if (wasOpen && !String.IsNullOrEmpty(ipFrom))
+            if (wasOpen && !string.IsNullOrEmpty(ipFrom))
                 comp.log(ipFrom + " Closes Port#" + info.PortNumber);
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + info.PortNumber);
         }
@@ -424,7 +424,7 @@ namespace Pathfinder.Game.Computer
                 return;
             var wasOpen = i.Unlocked;
             i.Unlocked &= comp.silent;
-            if (wasOpen & !String.IsNullOrEmpty(ipFrom))
+            if (wasOpen & !string.IsNullOrEmpty(ipFrom))
                 comp.log(ipFrom + " Closed Port#" + port.PortName + "/" + port.PortDisplay);
             comp.sendNetworkMessage("cPortOpen " + comp.ip + " " + ipFrom + " " + port);
         }
@@ -519,7 +519,7 @@ namespace Pathfinder.Game.Computer
         {
             var res = new Dictionary<string, Hacknet.Computer>();
             if (comp.attatchedDeviceIDs != null)
-                foreach (var id in comp.attatchedDeviceIDs.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var id in comp.attatchedDeviceIDs.Split(new char[] { ' ', ',' }, stringSplitOptions.RemoveEmptyEntries))
                 {
                     var c = comp.GetNetworkMap().GetComputerById(id);
                     if (c != null)
@@ -536,7 +536,7 @@ namespace Pathfinder.Game.Computer
                                 res[c.name] = c;
                                 break;
                             case RetrieveType.INDEX:
-                                res[c.GetNetworkMap().nodes.IndexOf(c).ToString()] = c;
+                                res[c.GetNetworkMap().nodes.IndexOf(c).Tostring()] = c;
                                 break;
                         }
                     }

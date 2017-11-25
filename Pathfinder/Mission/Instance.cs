@@ -15,8 +15,8 @@ namespace Pathfinder.Mission
 
         public IInterface Interface { get; private set; }
         public string InterfaceId { get; private set; }
-        public Hacknet.Computer MissionComputer { get; internal set; }
-        public Hacknet.Computer AgentComputer { get; internal set; }
+        public Computer MissionComputer { get; internal set; }
+        public Computer AgentComputer { get; internal set; }
 
         internal Instance(IInterface inter,
                         string next = "NONE",
@@ -120,7 +120,7 @@ namespace Pathfinder.Mission
         {
             Tuple<string, int> t;
             if ((t = Interface.OnStart(this)) != null)
-                this.addStartFunction(t.Item2, t.Item1);
+                addStartFunction(t.Item2, t.Item1);
             base.ActivateSuppressedStartFunctionIfPresent();
         }
 
@@ -128,30 +128,30 @@ namespace Pathfinder.Mission
         {
             Tuple<string, int> t;
             if ((t = Interface.OnEnd(this)) != null)
-                this.addEndFunction(t.Item2, t.Item1);
+                addEndFunction(t.Item2, t.Item1);
 
             var os = Utility.ClientOS;
             os.branchMissions.Clear();
-            if (this.nextMission.StartsWith("Pathfinder:", StringComparison.Ordinal))
+            if (nextMission.StartsWith("Pathfinder:", StringComparison.Ordinal))
             {
                 var id = nextMission.Substring(nextMission.IndexOf(':') + 1);
                 os.currentMission = CreateInstance(id, new Dictionary<string, string>());
                 os.currentMission?.sendEmail(os);
             }
-            else if (!this.nextMission.Equals("NONE"))
+            else if (!nextMission.Equals("NONE"))
             {
                 var str = "Content/Missions";
                 if (Settings.IsInExtensionMode)
                     str = ExtensionLoader.ActiveExtensionInfo.FolderPath;
-                ComputerLoader.loadMission(str + "/" + this.nextMission, false);
+                ComputerLoader.loadMission(str + "/" + nextMission, false);
             }
             else
                 os.currentMission = null;
 
             os.currentMission?.ActivateSuppressedStartFunctionIfPresent();
 
-            if (this.endFunctionName != null)
-                MissionFunctions.runCommand(this.endFunctionValue, this.endFunctionName);
+            if (endFunctionName != null)
+                MissionFunctions.runCommand(endFunctionValue, endFunctionName);
 
             os.saveGame();
             if (os.multiplayer)
@@ -202,7 +202,7 @@ namespace Pathfinder.Mission
             return str;
         }
 
-        public override void sendEmail(Hacknet.OS os)
+        public override void sendEmail(OS os)
         {
             if (Interface.SendEmail(this, os))
                 base.sendEmail(os);

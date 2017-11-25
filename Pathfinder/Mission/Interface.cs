@@ -16,7 +16,7 @@ namespace Pathfinder.Mission
         void OnGoalAdd(Instance instance, MisisonGoal goal);
         void Update(Instance instance, float time);
         bool? IsComplete(Instance instance, List<string> details);
-        bool SendEmail(Instance instance, Hacknet.OS os);
+        bool SendEmail(Instance instance, OS os);
         Tuple<string, int> OnEnd(Instance instance);
     }
 
@@ -29,7 +29,7 @@ namespace Pathfinder.Mission
         public bool? IsComplete(Instance instance, List<string> details) { return true; }
         public Tuple<string, int> OnEnd(Instance instance) { return null; }
         public Tuple<string, int> OnStart(Instance instance) { return null; }
-        public bool SendEmail(Instance instance, Hacknet.OS os) { return true; }
+        public bool SendEmail(Instance instance, OS os) { return true; }
         public void Update(Instance instance, float time) {}
         public void OnGoalAdd(Instance instance, MisisonGoal goal) {}
         public void OnLoadInstance(Instance instance, Dictionary<string, string> objects) {}

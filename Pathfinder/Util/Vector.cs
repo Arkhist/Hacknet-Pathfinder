@@ -12,13 +12,13 @@ namespace Pathfinder.Util
         public static T2 Convert<T2>(T c)
         {
             T2 result;
-            ConvertAny.TryConvert<T2>(c, out result);
+            ConvertAny.TryConvert(c, out result);
             return result;
         }
         public static T Convert<T2>(T2 c)
         {
             T result;
-            ConvertAny.TryConvert<T>(c, out result);
+            ConvertAny.TryConvert(c, out result);
             return result;
         }
     }

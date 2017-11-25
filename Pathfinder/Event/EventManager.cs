@@ -20,7 +20,7 @@ namespace Pathfinder.Event
             if (!eventListeners.ContainsKey(pathfinderEventType))
                 eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string, string, int>>());
             var name = Pathfinder.CurrentMod?.GetCleanId() ?? Extension.Handler.ActiveInfo?.Id ?? "Pathfinder";
-            if (String.IsNullOrEmpty(debugName))
+            if (string.IsNullOrEmpty(debugName))
                 debugName = "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
                                        + listener.Method.DeclaringType.FullName + "." + listener.Method.Name;
             Logger.Verbose("{0} {1} is attempting to add event listener {2} with priority {3}",
@@ -51,7 +51,7 @@ namespace Pathfinder.Event
         public static void RegisterListener<T>(Action<T> listener, string debugName = null) where T : PathfinderEvent
         {
             RegisterListener(typeof(T), (e) => listener.Invoke((T)e),
-                             String.IsNullOrEmpty(debugName) ?
+                             string.IsNullOrEmpty(debugName) ?
                              "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
                              + listener.Method.DeclaringType.FullName + "." + listener.Method.Name : debugName,
                              listener.Method.GetFirstAttribute<EventPriorityAttribute>()?.Priority ?? 0);

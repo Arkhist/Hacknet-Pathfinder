@@ -7,12 +7,12 @@ namespace Pathfinder.Event
 {
     public class ExecutableEvent : PathfinderEvent
     {
-        public Hacknet.Computer Computer { get; private set; }
-        public Hacknet.OS OS { get; private set; }
+        public Computer Computer { get; private set; }
+        public OS OS { get; private set; }
         public string ExecutableName { get; set; }
         public string ExecutableData { get; set; }
         public List<string> Arguments { get; private set; }
-        public ExecutableEvent(Hacknet.Computer com, Hacknet.OS os, string[] args, string name = null, string data = null)
+        public ExecutableEvent(Computer com, OS os, string[] args, string name = null, string data = null)
         {
             Computer = com;
             OS = os;
@@ -61,7 +61,7 @@ namespace Pathfinder.Event
                 ((ExecutableEvent)this).ExecutableData = value;
             }
         }
-        public ExecutableExecuteEvent(Hacknet.Computer com, Folder fol, int finde, GameFilesystem.File file, Hacknet.OS os, string[] args)
+        public ExecutableExecuteEvent(Computer com, Folder fol, int finde, GameFilesystem.File file, OS os, string[] args)
             : base(com, os, args)
         {
             Folder = fol;
@@ -76,7 +76,7 @@ namespace Pathfinder.Event
     {
         public Rectangle Destination { get; private set; }
         public int TargetPort { get; private set; }
-        public ExecutablePortExecuteEvent(Hacknet.OS os, Rectangle dest, string name, string data, int port, string[] args)
+        public ExecutablePortExecuteEvent(OS os, Rectangle dest, string name, string data, int port, string[] args)
             : base(os.thisComputer, os, args, name, data)
         {
             Destination = dest;

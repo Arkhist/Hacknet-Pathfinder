@@ -7,7 +7,7 @@ namespace Pathfinder.Util.Network
         public static string GetString(string url, string tag, string authKey = "")
         {
             Logger.Verbose("Getting version from {0} at tag {1}", url, tag);
-            return new JsonObject(new Network.RestManager().Fetch(url, apiKey: authKey))[tag].AsString;
+            return new JsonObject(new RestManager().Fetch(url, apiKey: authKey))[tag].AsString;
         }
 
         public static bool VerifyVersions(Version latestVersion, string currentVersion)

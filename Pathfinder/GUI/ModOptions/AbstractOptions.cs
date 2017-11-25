@@ -1,5 +1,4 @@
-﻿using System;
-using Hacknet;
+﻿using Hacknet;
 using Microsoft.Xna.Framework;
 
 namespace Pathfinder.GUI.ModOptions

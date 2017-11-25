@@ -33,7 +33,7 @@ namespace Pathfinder.GameFilesystem
         public FilePath Append(FilePath source) => Append(source.Path);
         public FilePath Append(string source)
         {
-            if (Path.EndsWith(SEPERATOR) || String.IsNullOrEmpty(Path) || source.StartsWith(SEPERATOR))
+            if (Path.EndsWith(SEPERATOR) || string.IsNullOrEmpty(Path) || source.StartsWith(SEPERATOR))
             {
                 if (Path.EndsWith(SEPERATOR) && source.StartsWith(SEPERATOR)) source = source.Remove(0, 1);
                 return new FilePath(Path + source);

@@ -17,26 +17,14 @@ namespace Pathfinder.Util
 
         public static bool MusicMuted
         {
-            get
-            {
-                return MusicManager.isMuted;
-            }
-            set
-            {
-                MusicManager.setIsMuted(value);
-            }
+            get { return MusicManager.isMuted; }
+            set { MusicManager.setIsMuted(value); }
         }
 
         public static float MusicVolume
         {
-            get
-            {
-                return MusicManager.getVolume();
-            }
-            set
-            {
-                MusicManager.setVolume(value);
-            }
+            get { return MusicManager.getVolume(); }
+            set { MusicManager.setVolume(value); }
         }
     }
 }

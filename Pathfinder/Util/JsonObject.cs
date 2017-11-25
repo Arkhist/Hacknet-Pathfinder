@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Pathfinder.Util
 {
@@ -13,12 +12,12 @@ namespace Pathfinder.Util
         {
             int cur = 0;
             this.src = src;
-            this.start = cur;
-            this.end = src.Length;
+            start = cur;
+            end = src.Length;
             Match('{', ref cur);
             SkipNested(ref cur);
             Match('}', ref cur);
-            this.end = cur;
+            end = cur;
         }
 
         private JsonObject() {}
@@ -28,16 +27,16 @@ namespace Pathfinder.Util
         {
             get
             {
-                var cur = this.start;
+                var cur = start;
 
                 var fieldObj = new JsonObject();
-                fieldObj.src = this.src;
+                fieldObj.src = src;
 
                 SkipWhite(ref cur);
-                if (this.src[cur] == '{')
+                if (src[cur] == '{')
                 {
                     cur++;
-                    while (cur < this.end)
+                    while (cur < end)
                     {
                         Match('\"', ref cur);
                         var isMatch = Compare(cur, fieldName);
@@ -67,13 +66,13 @@ namespace Pathfinder.Util
         {
             get
             {
-                int cur = this.start;
+                int cur = start;
 
                 var fieldObj = new JsonObject();
-                fieldObj.src = this.src;
+                fieldObj.src = src;
 
                 SkipWhite(ref cur);
-                if (this.src[cur] == '[')
+                if (src[cur] == '[')
                 {
                     cur++;
                     SkipWhite(ref cur);
@@ -81,15 +80,15 @@ namespace Pathfinder.Util
                     while (index > 0)
                     {
                         SkipNested(ref cur);
-                        if (this.src[cur] == ',')
+                        if (src[cur] == ',')
                             cur++;
-                        else if (this.src[cur] == ']')
+                        else if (src[cur] == ']')
                             return null;
 
                         index--;
                     }
 
-                    if (this.src[cur] == ']')
+                    if (src[cur] == ']')
                         return null;
 
                     SkipWhite(ref cur);
@@ -106,13 +105,13 @@ namespace Pathfinder.Util
 
         public JsonObject Next()
         {
-            int cur = this.end;
+            int cur = end;
 
             var fieldObj = new JsonObject();
-            fieldObj.src = this.src;
+            fieldObj.src = src;
 
             SkipWhite(ref cur);
-            if (this.src[cur] != ',')
+            if (src[cur] != ',')
                 return null;
 
             cur++;
@@ -129,7 +128,7 @@ namespace Pathfinder.Util
             get
             {
                 int res;
-                return Int32.TryParse(src.Substring(start, end - start), out res) ? (int?)res : null;
+                return int.TryParse(src.Substring(start, end - start), out res) ? (int?)res : null;
             }
         }
 
@@ -137,10 +136,10 @@ namespace Pathfinder.Util
         {
             get
             {
-                if (this.src[this.start] != '\"' || this.src[this.end - 1] != '\"')
+                if (src[start] != '\"' || src[end - 1] != '\"')
                     return "";
 
-                return this.src.Substring(this.start + 1, this.end - this.start - 2);
+                return src.Substring(start + 1, end - start - 2);
             }
         }
 
@@ -149,36 +148,33 @@ namespace Pathfinder.Util
             get
             {
                 bool res;
-                return Boolean.TryParse(src.Substring(start, end - start), out res) ? (bool?)res : null;
+                return bool.TryParse(src.Substring(start, end - start), out res) ? (bool?)res : null;
             }
         }
 
         public bool CompareAsString(string str)
         {
-            if (this.src[this.start] != '\"' || this.src[this.end - 1] != '\"')
+            if (src[start] != '\"' || src[end - 1] != '\"')
                 return false;
 
-            int cur = this.start + 1;
+            int cur = start + 1;
             int strCur = 0;
-            while (cur < this.end && this.src[cur] != '\"' && strCur < str.Length)
+            while (cur < end && src[cur] != '\"' && strCur < str.Length)
             {
-                if (this.src[cur] != str[strCur])
+                if (src[cur] != str[strCur])
                     return false;
 
                 cur++;
                 strCur++;
             }
 
-            if (this.src[cur] != '\"' || strCur < str.Length)
+            if (src[cur] != '\"' || strCur < str.Length)
                 return false;
 
             return true;
         }
 
-        public string GetObjectString()
-        {
-            return this.src.Substring(this.start, this.end - this.start);
-        }
+        public string GetObjectString() => src.Substring(start, end - start);
 
         private void Match(char c, ref int cur)
         {
@@ -228,7 +224,7 @@ namespace Pathfinder.Util
                 if (cur >= src.Length)
                     throw new Exception("unexpected end");
 
-                else if (src[cur] == '{')
+                if (src[cur] == '{')
                     braceNesting++;
                 else if (src[cur] == '}')
                 {
@@ -254,16 +250,16 @@ namespace Pathfinder.Util
         private bool Compare(int cur, string str)
         {
             int strCur = 0;
-            while (cur < this.end && this.src[cur] != '\"' && strCur < str.Length)
+            while (cur < end && src[cur] != '\"' && strCur < str.Length)
             {
-                if (this.src[cur] != str[strCur])
+                if (src[cur] != str[strCur])
                     return false;
 
                 cur++;
                 strCur++;
             }
 
-            if (this.src[cur] != '\"' || strCur < str.Length)
+            if (src[cur] != '\"' || strCur < str.Length)
                 return false;
 
             return true;

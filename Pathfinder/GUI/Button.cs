@@ -36,7 +36,7 @@ namespace Pathfinder.GUI
         public override void DoDraw()
         {
             int num = (!ForceNoColorTag && Width > 65) ? 13 : 0;
-            Rectangle rect = new Rectangle(X, Y, Width, Height);
+            var rect = new Rectangle(X, Y, Width, Height);
             if (Texture.Equals(Utils.white))
             {
                 if (!OnlyOutline)
@@ -52,7 +52,7 @@ namespace Pathfinder.GUI
             else
                 GuiData.spriteBatch.Draw(Texture, rect, (IsActive) ? ((IsHeldDown) ? GuiData.Default_Unselected_Color : GuiData.Default_Lit_Backing_Color) : Color);
             SpriteFont spriteFont = SmallButton ? GuiData.detailfont : GuiData.tinyfont;
-            Vector2 scale = spriteFont.MeasureString(Text);
+            var scale = spriteFont.MeasureString(Text);
             float num2 = LocaleActivator.ActiveLocaleIsCJK() ? 4f : 0f;
             float y2 = scale.Y;
             if (scale.X > Width - 4)

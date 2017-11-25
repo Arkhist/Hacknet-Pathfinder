@@ -206,7 +206,7 @@ namespace Pathfinder.ModManager
             if (mod == null) return null;
             var modType = mod.GetType();
             var attrib = modType.GetFirstAttribute<ALoadOrderAttribute>();
-            string name = mod.GetCleanId();
+            var name = mod.GetCleanId();
             if (attrib != null)
             {
                 foreach (var pair in ModIdReliance.ToArray())

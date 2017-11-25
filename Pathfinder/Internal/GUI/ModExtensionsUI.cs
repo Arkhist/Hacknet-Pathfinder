@@ -120,7 +120,7 @@ namespace Pathfinder.Internal.GUI
                                         flag ? ("Continue Account : " + SaveFileManager.LastLoggedInUser.Username) : " - No Accounts - ",
                                         flag ? MainMenu.buttonColor : Color.Black))
                     {
-                        Hacknet.OS.WillLoadSave = true;
+                        OS.WillLoadSave = true;
                         if (ms.LoadAccountForExtension_FileAndUsername != null)
                             ms.LoadAccountForExtension_FileAndUsername.Invoke(SaveFileManager.LastLoggedInUser.FileUsername,
                                                                               SaveFileManager.LastLoggedInUser.Username);
@@ -161,15 +161,15 @@ namespace Pathfinder.Internal.GUI
         {
             ms.CreateNewAccountForExtension_UserAndPass = (n, p) =>
             {
-                Hacknet.OS.WillLoadSave = false;
+                OS.WillLoadSave = false;
                 MainMenu.CreateNewAccountForExtensionAndStart(n, p, m.ScreenManager, m, ms);
             };
             ms.LoadAccountForExtension_FileAndUsername = (userFile, username) =>
             {
                 m.ExitScreen();
                 MainMenu.resetOS();
-                Hacknet.OS.WillLoadSave = SaveFileManager.StorageMethods[0].FileExists(userFile);
-                Hacknet.OS o = new Hacknet.OS()
+                OS.WillLoadSave = SaveFileManager.StorageMethods[0].FileExists(userFile);
+                var o = new OS
                 {
                     SaveGameUserName = userFile,
                     SaveUserAccountName = username
@@ -252,7 +252,7 @@ namespace Pathfinder.Internal.GUI
                 if (os.multiplayer && !os.isServer)
                     compLocation = new Vector2(0.8f, 0.8f);
                 os.ramAvaliable = os.totalRam;
-                os.thisComputer = new Hacknet.Computer(os.username + " PC", Utility.GenerateRandomIP(), compLocation, 5, 4, os);
+                os.thisComputer = new Computer(os.username + " PC", Utility.GenerateRandomIP(), compLocation, 5, 4, os);
                 os.thisComputer.adminIP = os.thisComputer.ip;
                 os.thisComputer.idName = "playerComp";
                 os.thisComputer.Memory = new MemoryContents();
@@ -270,7 +270,7 @@ namespace Pathfinder.Internal.GUI
                                    "#" + compLocation.Y + "#" + 5 + "#" + os.thisComputer.name);
                     os.multiplayerMissionLoaded = false;
                 }
-                if (!Hacknet.OS.WillLoadSave)
+                if (!OS.WillLoadSave)
                     People.init();
                 os.modules = new List<Module>();
                 os.exes = new List<ExeModule>();
@@ -278,27 +278,27 @@ namespace Pathfinder.Internal.GUI
                 os.shellIPs = new List<string>();
                 Viewport viewport = os.ScreenManager.GraphicsDevice.Viewport;
                 int num2 = 205;
-                int num3 = (int)((viewport.Width - RamModule.MODULE_WIDTH - 6) * 0.44420000000000004);
-                int num4 = (int)((viewport.Width - RamModule.MODULE_WIDTH - 6) * 0.5558);
-                int height = viewport.Height - num2 - Hacknet.OS.TOP_BAR_HEIGHT - 6;
+                var num3 = (int)((viewport.Width - RamModule.MODULE_WIDTH - 6) * 0.44420000000000004);
+                var num4 = (int)((viewport.Width - RamModule.MODULE_WIDTH - 6) * 0.5558);
+                int height = viewport.Height - num2 - OS.TOP_BAR_HEIGHT - 6;
                 os.terminal = new Terminal(new Rectangle(viewport.Width - 2 - num3,
-                                                         Hacknet.OS.TOP_BAR_HEIGHT,
+                                                         OS.TOP_BAR_HEIGHT,
                                                          num3,
-                                                         viewport.Height - Hacknet.OS.TOP_BAR_HEIGHT - 2), os)
+                                                         viewport.Height - OS.TOP_BAR_HEIGHT - 2), os)
                 {
                     name = "TERMINAL"
                 };
                 os.modules.Add(os.terminal);
-                os.netMap = new Hacknet.NetworkMap(new Rectangle(RamModule.MODULE_WIDTH + 4,
-                                                                 viewport.Height - num2 - 2,
-                                                                 num4 - 1,
-                                                                 num2), os)
+                os.netMap = new NetworkMap(new Rectangle(RamModule.MODULE_WIDTH + 4,
+                                                         viewport.Height - num2 - 2,
+                                                         num4 - 1,
+                                                         num2), os)
                 {
                     name = "netMap v1.7"
                 };
                 os.modules.Add(os.netMap);
                 os.display = new DisplayModule(new Rectangle(RamModule.MODULE_WIDTH + 4,
-                                                             Hacknet.OS.TOP_BAR_HEIGHT,
+                                                             OS.TOP_BAR_HEIGHT,
                                                              num4 - 2,
                                                              height), os)
                 {
@@ -306,7 +306,7 @@ namespace Pathfinder.Internal.GUI
                 };
                 os.modules.Add(os.display);
                 os.ram = new RamModule(new Rectangle(2,
-                                                     Hacknet.OS.TOP_BAR_HEIGHT,
+                                                     OS.TOP_BAR_HEIGHT,
                                                      RamModule.MODULE_WIDTH,
                                                      os.ramAvaliable + RamModule.contentStartOffset), os)
                 {
@@ -321,7 +321,7 @@ namespace Pathfinder.Internal.GUI
                     os.allFactions.init();
                 }
                 bool flag = false;
-                if (!Hacknet.OS.WillLoadSave)
+                if (!OS.WillLoadSave)
                 {
                     os.netMap.nodes.Insert(0, os.thisComputer);
                     os.netMap.visibleNodes.Add(0);
@@ -335,7 +335,7 @@ namespace Pathfinder.Internal.GUI
                     Settings.initShowsTutorial = false;
                     SaveFixHacks.FixSavesWithTerribleHacks(os);
                 }
-                var computer = new Hacknet.Computer("JMail Email Server", Utility.GenerateRandomIP(), new Vector2(0.8f, 0.2f), 6, 1, os)
+                var computer = new Computer("JMail Email Server", Utility.GenerateRandomIP(), new Vector2(0.8f, 0.2f), 6, 1, os)
                 {
                     idName = "jmail"
                 };
@@ -345,7 +345,7 @@ namespace Pathfinder.Internal.GUI
                 computer.initDaemons();
                 os.netMap.nodes.Add(computer);
                 os.netMap.mailServer = computer;
-                os.topBar = new Rectangle(0, 0, viewport.Width, Hacknet.OS.TOP_BAR_HEIGHT - 1);
+                os.topBar = new Rectangle(0, 0, viewport.Width, OS.TOP_BAR_HEIGHT - 1);
                 os.crashModule = new CrashModule(new Rectangle(0, 0, os.ScreenManager.GraphicsDevice.Viewport.Width, os.ScreenManager.GraphicsDevice.Viewport.Height), os);
                 os.crashModule.LoadContent();
                 Settings.IsInExtensionMode = false; // little hack to prevent intro text module ctor from throwing nullref
@@ -394,9 +394,9 @@ namespace Pathfinder.Internal.GUI
                         HostileHackerBreakinSequence.ReactToFirstSuccesfulBoot(os);
                         os.rebootThisComputer();
                     }
-                    if (!Hacknet.OS.TestingPassOnly)
+                    if (!OS.TestingPassOnly)
                         os.runCommand("connect " + os.thisComputer.ip);
-                    Folder folder2 = os.thisComputer.files.root.searchForFolder("sys");
+                    var folder2 = os.thisComputer.files.root.searchForFolder("sys");
                     if (folder2.searchForFile("Notes_Reopener.bat") != null)
                         os.runCommand("notes");
                 }
@@ -408,20 +408,20 @@ namespace Pathfinder.Internal.GUI
                         flag4 |= os.Flags.HasFlag("AircraftInfoOverlayActivated");
                         if (!flag4)
                         {
-                            Hacknet.Computer c = Programs.getComputer(os, "dair_crash");
-                            Folder folder3 = c.files.root.searchForFolder("FlightSystems");
+                            var c = Programs.getComputer(os, "dair_crash");
+                            var folder3 = c.files.root.searchForFolder("FlightSystems");
                             bool flag5 = false;
                             for (int i = 0; i < folder3.files.Count; i++)
                                 flag5 |= folder3.files[i].name == "747FlightOps.dll";
-                            AircraftDaemon aircraftDaemon = (AircraftDaemon)c.getDaemon(typeof(AircraftDaemon));
+                            var aircraftDaemon = (AircraftDaemon)c.getDaemon(typeof(AircraftDaemon));
                             if (!flag5 && !os.Flags.HasFlag("DLC_PlaneResult"))
                                 flag4 = true;
                         }
                     }
                     if (flag4)
                     {
-                        Hacknet.Computer c = Programs.getComputer(os, "dair_crash");
-                        AircraftDaemon aircraftDaemon = (AircraftDaemon)c.getDaemon(typeof(AircraftDaemon));
+                        var c = Programs.getComputer(os, "dair_crash");
+                        var aircraftDaemon = (AircraftDaemon)c.getDaemon(typeof(AircraftDaemon));
                         aircraftDaemon.StartReloadFirmware();
                         aircraftDaemon.StartUpdating();
                         os.AircraftInfoOverlay.Activate();
@@ -436,10 +436,10 @@ namespace Pathfinder.Internal.GUI
             os.IsInDLCMode = false;
             os.ShowDLCAlertsIcon = false;
 
-            if (Hacknet.OS.WillLoadSave)
+            if (OS.WillLoadSave)
             {
                 Stream stream = null;
-                if (e.OS.ForceLoadOverrideStream != null && Hacknet.OS.TestingPassOnly)
+                if (e.OS.ForceLoadOverrideStream != null && OS.TestingPassOnly)
                     stream = e.OS.ForceLoadOverrideStream;
                 else
                     stream = SaveFileManager.GetSaveReadStream(e.OS.SaveGameUserName);

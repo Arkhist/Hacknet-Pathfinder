@@ -6,11 +6,11 @@ using Pathfinder.Util;
 
 namespace Pathfinder.GameFilesystem
 {
-    public sealed class Filesystem : FileObject<FileSystem, Hacknet.Computer>, IEnumerable<IFileObject>
+    public sealed class Filesystem : FileObject<FileSystem, Computer>, IEnumerable<IFileObject>
     {
         private Directory rootDirectory;
 
-        public Filesystem(Hacknet.Computer parent) : base(parent.files, parent) { }
+        public Filesystem(Computer parent) : base(parent.files, parent) { }
 
         public override string Name
         {
@@ -91,6 +91,6 @@ namespace Pathfinder.GameFilesystem
             return dir;
         }
 
-        public static implicit operator Filesystem(Hacknet.Computer c) => new Filesystem(c);
+        public static implicit operator Filesystem(Computer c) => new Filesystem(c);
     }
 }

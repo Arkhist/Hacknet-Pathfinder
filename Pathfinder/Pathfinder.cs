@@ -96,7 +96,7 @@ namespace Pathfinder
         /// <param name="shouldThrowReason">If set to <c>true</c> then this method will throw.</param>
         public static bool IsModIdentifierValid(string id, bool shouldThrowReason = false)
         {
-            if (String.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
                 if (shouldThrowReason)
                     throw new InvalidIdException("Mod Idenfitier '" + id + "' is null or empty");
@@ -114,7 +114,7 @@ namespace Pathfinder
                     throw new InvalidIdException("Mod Idenfitier '" + id + "' contains a period");
                 return false;
             }
-            if (Char.IsDigit(id[0]))
+            if (char.IsDigit(id[0]))
             {
                 if (shouldThrowReason)
                     throw new InvalidIdException("Mod Idenfitier '" + id + "' starts with a digit");

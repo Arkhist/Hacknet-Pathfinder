@@ -127,10 +127,10 @@ namespace Pathfinder.GameFilesystem
                     break;
             }
             if(Root.ShouldLogMultiplayer)
-                Root.Parent.sendNetworkMessage(String.Format(mpLog, input.ToArray()));
+                Root.Parent.sendNetworkMessage(string.Format(mpLog, input.ToArray()));
             if (Root.IPAccess == null)
                 return false;
-            Root.Parent.log(String.Format(gameLog, input.ToArray()));
+            Root.Parent.log(string.Format(gameLog, input.ToArray()));
             return true;
         }
     }

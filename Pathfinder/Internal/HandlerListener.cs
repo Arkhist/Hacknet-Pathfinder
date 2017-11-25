@@ -23,7 +23,7 @@ namespace Pathfinder.Internal
                 catch (Exception ex)
                 {
                     e.OS.Write("Command {0} threw Exception:\n    {1}('{2}')", e.Arguments[0], ex.GetType().FullName, ex.Message);
-                    throw ex;
+                    throw;
                 }
             }
         }
@@ -58,8 +58,24 @@ namespace Pathfinder.Internal
             }
         }
 
+        public static void UpdateDisplayModes(OptionsMenu m)
+        {
+            var list = new List<string>();
+            foreach (var mode in m.ScreenManager.GraphicsDevice.Adapter.SupportedDisplayModes)
+            {
+                if (!list.Contains(mode.Width + "x" + mode.Height))
+                    list.Add(mode.Width + "x" + mode.Height);
+                if (m.getCurrentResolution().Equals(list[list.Count - 1]))
+                    m.currentResIndex = list.Count - 1;
+            }
+            list.Sort();
+            m.currentResIndex = list.FindIndex((obj) => obj.Equals(m.getCurrentResolution()));
+            if (m.currentResIndex == -1) m.currentResIndex = 0;
+        }
+
         public static void OptionsMenuLoadContentListener(OptionsMenuLoadContentEvent e)
         {
+			UpdateDisplayModes(e.OptionsMenu);
             foreach (var o in ModOptions.Handler.ModOptions)
                 o.Value.LoadContent(e.OptionsMenu);
         }
@@ -70,8 +86,17 @@ namespace Pathfinder.Internal
                 o.Value.Apply(e.OptionsMenu);
         }
 
+        private static bool updateDisplayMode = false;
         public static void OptionsMenuUpdateListener(OptionsMenuUpdateEvent e)
         {
+            if (updateDisplayMode && e.OptionsMenu.windowed == e.OptionsMenu.getIfWindowed())
+            {
+                UpdateDisplayModes(e.OptionsMenu);
+                updateDisplayMode = false;
+            }
+            else updateDisplayMode |= e.OptionsMenu.windowed != e.OptionsMenu.getIfWindowed();
+            // this updates the resolutions on the options menu on the next update so that it be accurate
+            // according to the window mode
             foreach (var o in ModOptions.Handler.ModOptions)
                 o.Value.Update(e.OptionsMenu, e.GameTime, e.ScreenNotFocused, e.ScreenIsCovered);
         }

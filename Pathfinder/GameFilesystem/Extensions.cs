@@ -23,9 +23,9 @@ namespace Pathfinder.GameFilesystem
         public static Folder MakeFolder(this FileSystem fs, string path) =>
             fs.root.MakeFolder(path);
 
-        public static Filesystem GetFilesystem(this Hacknet.Computer computer) => computer;
+        public static Filesystem GetFilesystem(this Computer computer) => computer;
 
-        public static Directory GetDirectoryAtDepth(this Hacknet.OS os, int depth)
+        public static Directory GetDirectoryAtDepth(this OS os, int depth)
         {
             Filesystem fs = os.connectedComp ?? os.thisComputer;
             var dir = fs.Directory;
@@ -40,7 +40,7 @@ namespace Pathfinder.GameFilesystem
             return dir;
         }
 
-        public static Directory GetCurrentDirectory(this Hacknet.OS os) =>
+        public static Directory GetCurrentDirectory(this OS os) =>
             GetDirectoryAtDepth(os, os.navigationPath.Count);
     }
 }

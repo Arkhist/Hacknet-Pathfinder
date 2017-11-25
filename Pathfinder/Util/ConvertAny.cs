@@ -59,7 +59,7 @@ namespace Pathfinder.Util
                 //Casting a boxed object to a type even though the type supports an explicit cast to
                 //that type will fail. The only way to do this is to try to find the explicit or
                 //implicit type conversion operator on the to type that supports the from type.
-                MethodInfo mi = typeof(ToType).GetMethods().FirstOrDefault(m =>
+                var mi = typeof(ToType).GetMethods().FirstOrDefault(m =>
                     (m.Name == "op_Explicit" || m.Name == "op_Implicit") &&
                     m.ReturnType == typeof(ToType) &&
                     m.GetParameters().Length == 1 && m.GetParameters()[0].ParameterType == value.GetType()
@@ -121,7 +121,7 @@ namespace Pathfinder.Util
                 //Casting a boxed object to a type even though the type supports an explicit cast to
                 //that type will fail. The only way to do this is to try to find the explicit or
                 //implicit type conversion operator on the to type that supports the from type.
-                MethodInfo mi = toType.GetMethods().FirstOrDefault(m =>
+                var mi = toType.GetMethods().FirstOrDefault(m =>
                     (m.Name == "op_Explicit" || m.Name == "op_Implicit") &&
                     m.ReturnType == toType &&
                     m.GetParameters().Length == 1 && m.GetParameters()[0].ParameterType == fromType
@@ -226,7 +226,7 @@ namespace Pathfinder.Util
             if (typeof(IConvertible).IsAssignableFrom(toType) &&
                 typeof(IConvertible).IsAssignableFrom(fromValue.GetType()))
             {
-                object dVal = System.Convert.ChangeType(fromValue, toType);
+                var dVal = System.Convert.ChangeType(fromValue, toType);
                 return dVal;
             }
 
@@ -250,7 +250,7 @@ namespace Pathfinder.Util
             if (typeof(T).IsPrimitive)
                 return default(T);
 
-            ConstructorInfo cInfo = typeof(T).GetConstructor(Type.EmptyTypes);
+            var cInfo = typeof(T).GetConstructor(Type.EmptyTypes);
 
             if (cInfo == null)
                 return default(T);
@@ -270,7 +270,7 @@ namespace Pathfinder.Util
         [DebuggerStepThrough]
         public static object DefaultByType(Type type)
         {
-            MethodInfo generic = _genericDefaultMethod.MakeGenericMethod(type);
+            var generic = _genericDefaultMethod.MakeGenericMethod(type);
 
             return generic.Invoke(null, null);
         }
@@ -282,7 +282,7 @@ namespace Pathfinder.Util
         [DebuggerStepThrough]
         private static object ConvertByGeneric(object fromValue, Type toType)
         {
-            MethodInfo generic = _genericConvertMethod.MakeGenericMethod(toType);
+            var generic = _genericConvertMethod.MakeGenericMethod(toType);
 
             dynamic outVal = generic.Invoke(null, new object[] { fromValue });
 
@@ -301,7 +301,7 @@ namespace Pathfinder.Util
                 //Casting a boxed object to a type even though the type supports an explicit cast to
                 //that type will fail. The only way to do this is to try to find the explicit or
                 //implicit type conversion operator on the to type that supports the from type.
-                MethodInfo mi = typeof(ToType).GetMethods().FirstOrDefault(m =>
+                var mi = typeof(ToType).GetMethods().FirstOrDefault(m =>
                     (m.Name == "op_Explicit" || m.Name == "op_Implicit") &&
                     m.ReturnType == typeof(ToType) &&
                     m.GetParameters().Length == 1 && m.GetParameters()[0].ParameterType == fromValue.GetType()

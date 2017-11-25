@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using IO = System.IO;
 using System.IO;
+using Hacknet;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
-using Hacknet;
+using IO = System.IO;
 
 namespace Pathfinder.Util.File
 {
@@ -23,18 +23,18 @@ namespace Pathfinder.Util.File
         {
             var sep = Path.DirectorySeparatorChar;
             this.modId = modId;
-            this.contentPath = Pathfinder.ModFolderPath + sep + this.modId;
-            this.texturePath = this.contentPath + sep + textureDirName;
-            this.soundPath = this.contentPath + sep + soundDirName;
-            this.musicPath = this.contentPath + sep + musicDirName;
-            if (!Directory.Exists(this.contentPath))
-               Directory.CreateDirectory(this.contentPath);
-            if (!Directory.Exists(this.texturePath))
-                Directory.CreateDirectory(this.texturePath);
-            if (!Directory.Exists(this.soundPath))
-                Directory.CreateDirectory(this.soundPath);
-            if (!Directory.Exists(this.musicPath))
-                Directory.CreateDirectory(this.musicPath);
+            contentPath = Pathfinder.ModFolderPath + sep + this.modId;
+            texturePath = contentPath + sep + textureDirName;
+            soundPath = contentPath + sep + soundDirName;
+            musicPath = contentPath + sep + musicDirName;
+            if (!Directory.Exists(contentPath))
+               Directory.CreateDirectory(contentPath);
+            if (!Directory.Exists(texturePath))
+                Directory.CreateDirectory(texturePath);
+            if (!Directory.Exists(soundPath))
+                Directory.CreateDirectory(soundPath);
+            if (!Directory.Exists(musicPath))
+                Directory.CreateDirectory(musicPath);
 
             LoadTextures();
             LoadSounds();
@@ -43,22 +43,22 @@ namespace Pathfinder.Util.File
 
         public Texture2D GetTexture(string texName)
         {
-            if (this.loadedTextures.ContainsKey(texName))
-                return this.loadedTextures[texName];
+            if (loadedTextures.ContainsKey(texName))
+                return loadedTextures[texName];
             return null;
         }
 
         public SoundEffect GetSound(string soundName)
         {
-            if (this.loadedSounds.ContainsKey(soundName))
-                return this.loadedSounds[soundName];
+            if (loadedSounds.ContainsKey(soundName))
+                return loadedSounds[soundName];
             return null;
         }
 
         public string GetSongPath(string songName)
         {
-            if (this.songNameToPath.ContainsKey(songName))
-                return this.songNameToPath[songName];
+            if (songNameToPath.ContainsKey(songName))
+                return songNameToPath[songName];
             return null;
         }
 
@@ -90,7 +90,7 @@ namespace Pathfinder.Util.File
         public void LoadTextures()
         {
             loadedTextures.Clear();
-            foreach (var tex in Directory.GetFiles(this.texturePath))
+            foreach (var tex in Directory.GetFiles(texturePath))
             {
                 try
                 {
@@ -108,7 +108,7 @@ namespace Pathfinder.Util.File
         public void LoadSounds()
         {
             loadedSounds.Clear();
-            foreach (var sou in Directory.GetFiles(this.soundPath))
+            foreach (var sou in Directory.GetFiles(soundPath))
 			{
                 try
                 {
@@ -125,7 +125,7 @@ namespace Pathfinder.Util.File
         public void LoadMusicList()
         {
             songNameToPath.Clear();
-            foreach (var mus in Directory.GetFiles(this.musicPath))
+            foreach (var mus in Directory.GetFiles(musicPath))
                 songNameToPath.Add(Path.GetFileNameWithoutExtension(mus), mus);
         }
     }

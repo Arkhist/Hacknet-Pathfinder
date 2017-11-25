@@ -65,7 +65,7 @@ namespace Pathfinder
         // Hook location : ProgramRunner.ExecuteProgram()
         public static bool onCommandSent(out bool disconnects, ref bool returnFlag, object osObj, string[] arguments)
         {
-            var os = osObj as Hacknet.OS;
+            var os = osObj as OS;
             var commandSentEvent = new Event.CommandSentEvent(os, arguments)
             {
                 Disconnects = true
@@ -82,7 +82,7 @@ namespace Pathfinder
                     var state = commandSentEvent.State;
                     os.display.command = state;
                     os.display.commandArgs =
-                        (state + " " + String.Join(" ", commandSentEvent.Arguments.Skip(1).ToArray())).Split(' ');
+                        (state + " " + string.Join(" ", commandSentEvent.Arguments.Skip(1).ToArray())).Split(' ');
                     os.display.typeChanged();
                 }
                 return true;
@@ -92,7 +92,7 @@ namespace Pathfinder
         }
 
         // Hook location : OS.LoadContent()
-        public static bool onLoadSession(Hacknet.OS self)
+        public static bool onLoadSession(OS self)
         {
             var loadSessionEvent = new Event.OSLoadContentEvent(self);
             loadSessionEvent.CallEvent();
@@ -102,13 +102,13 @@ namespace Pathfinder
         }
 
         // Hook location : end of OS.LoadContent()
-        public static void onPostLoadSession(Hacknet.OS self)
+        public static void onPostLoadSession(OS self)
         {
             var postLoadSessionEvent = new Event.OSPostLoadContentEvent(self);
             postLoadSessionEvent.CallEvent();
         }
 
-        public static void onUnloadSession(Hacknet.OS self)
+        public static void onUnloadSession(OS self)
         {
             var unloadSessionEvent = new Event.OSUnloadContentEvent(self);
             unloadSessionEvent.CallEvent();
@@ -139,7 +139,7 @@ namespace Pathfinder
         }
 
         // Hook location : OS.loadSaveFile()
-        public static bool onLoadSaveFile(Hacknet.OS self, ref Stream stream, ref XmlReader xmlReader)
+        public static bool onLoadSaveFile(OS self, ref Stream stream, ref XmlReader xmlReader)
         {
             var loadSaveFileEvent = new Event.OSLoadSaveFileEvent(self, xmlReader, stream);
             loadSaveFileEvent.CallEvent();
@@ -149,7 +149,7 @@ namespace Pathfinder
         }
 
         // Hook location : OS.writeSaveGame()
-        public static bool onSaveFile(Hacknet.OS self, string filename)
+        public static bool onSaveFile(OS self, string filename)
         {
             var saveFileEvent = new Event.OSSaveFileEvent(self, filename);
             saveFileEvent.CallEvent();
@@ -158,7 +158,7 @@ namespace Pathfinder
             return false;
         }
 
-        public static void onSaveWrite(Hacknet.OS self, ref string saveString, string filename)
+        public static void onSaveWrite(OS self, ref string saveString, string filename)
         {
             var saveWriteEvent = new Event.OSSaveWriteEvent(self, filename, saveString);
             saveWriteEvent.CallEvent();
@@ -166,7 +166,7 @@ namespace Pathfinder
         }
 
         // Hook location : NetworkMap.LoadContent()
-        public static bool onLoadNetmapContent(Hacknet.NetworkMap self)
+        public static bool onLoadNetmapContent(NetworkMap self)
         {
             var loadNetmapContentEvent = new Event.NetworkMapLoadContentEvent(self);
             loadNetmapContentEvent.CallEvent();
@@ -177,11 +177,11 @@ namespace Pathfinder
 
         // Hook location : OS.launchExecutable
         public static bool onExecutableExecute(out int result,
-                                               ref Hacknet.Computer com,
+                                               ref Computer com,
                                                ref Folder fol,
                                                ref int finde,
                                                ref string exeFileData,
-                                               ref Hacknet.OS os,
+                                               ref OS os,
                                                ref string[] args)
         {
             GameFilesystem.File f = null;
@@ -197,7 +197,7 @@ namespace Pathfinder
             return false;
         }
 
-        public static bool onPortExecutableExecute(Hacknet.OS self,
+        public static bool onPortExecutableExecute(OS self,
                                                      ref Rectangle dest,
                                                      ref string name,
                                                      ref string data,
@@ -221,7 +221,7 @@ namespace Pathfinder
                                           string filename,
                                           bool preventAddingToNetmap,
                                           bool preventInitDaemons,
-                                          Hacknet.Computer createdComputer)
+                                          Computer createdComputer)
         {
             var loadComputerEvent = new Event.LoadComputerXmlReadEvent(createdComputer,
                                                                 reader,
@@ -301,9 +301,9 @@ namespace Pathfinder
             gameUpdateEvent.CallEvent();
         }
 
-        public static void onPortNameDraw(Hacknet.DisplayModule self,
+        public static void onPortNameDraw(DisplayModule self,
                                             ref Rectangle rect,
-                                            ref Hacknet.Computer computer,
+                                            ref Computer computer,
                                             ref Vector2 lockPos)
         {
             var leftMeasure = Vector2.Zero;
@@ -326,7 +326,7 @@ namespace Pathfinder
                 }
         }
 
-        public static bool onDisplayModuleUpdate(Hacknet.DisplayModule self, ref float time)
+        public static bool onDisplayModuleUpdate(DisplayModule self, ref float time)
         {
             var displayModuleUpdateEvent = new Event.DisplayModuleUpdateEvent(self, time);
             displayModuleUpdateEvent.CallEvent();
@@ -335,7 +335,7 @@ namespace Pathfinder
             return false;
         }
 
-        public static bool onDisplayModuleDraw(Hacknet.DisplayModule self, ref float time)
+        public static bool onDisplayModuleDraw(DisplayModule self, ref float time)
         {
             var displayModuleDrawEvent = new Event.DisplayModuleDrawEvent(self, time);
             displayModuleDrawEvent.CallEvent();
@@ -372,7 +372,7 @@ namespace Pathfinder
             return false;
         }
 
-        public static bool onOptionsMenuDraw(Hacknet.OptionsMenu self, ref GameTime time)
+        public static bool onOptionsMenuDraw(OptionsMenu self, ref GameTime time)
         {
             var optionsMenuDrawEvent = new Event.OptionsMenuDrawEvent(self, time);
             optionsMenuDrawEvent.CallEvent();
@@ -385,13 +385,13 @@ namespace Pathfinder
             return false;
         }
 
-        public static void onOptionsMenuLoadContent(Hacknet.OptionsMenu self)
+        public static void onOptionsMenuLoadContent(OptionsMenu self)
         {
             var optionsMenuLoadContentEvent = new Event.OptionsMenuLoadContentEvent(self);
             optionsMenuLoadContentEvent.CallEvent();
         }
 
-        public static bool onOptionsMenuUpdate(Hacknet.OptionsMenu self, ref GameTime time, ref bool notFocused, ref bool isCovered)
+        public static bool onOptionsMenuUpdate(OptionsMenu self, ref GameTime time, ref bool notFocused, ref bool isCovered)
         {
             var optionsMenuUpdateEvent = new Event.OptionsMenuUpdateEvent(self, time, notFocused, isCovered);
             optionsMenuUpdateEvent.CallEvent();
@@ -400,7 +400,7 @@ namespace Pathfinder
             return false;
         }
 
-        public static void onOptionsApply(Hacknet.OptionsMenu self)
+        public static void onOptionsApply(OptionsMenu self)
         {
             var optionsMenuApplyEvent = new Event.OptionsMenuApplyEvent(self);
             optionsMenuApplyEvent.CallEvent();

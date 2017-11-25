@@ -92,7 +92,7 @@ namespace Pathfinder.Game.OS
                 if (mod == null && shouldWrite)
                     os.Write(Locale.Get("Invalid PID"));
             }
-            else if (searchName && !String.IsNullOrWhiteSpace(input))
+            else if (searchName && !string.IsNullOrWhiteSpace(input))
             {
                 mod = os.exes.Find((obj) => obj.IdentifierName == input);
                 if (mod == null && shouldWrite)
@@ -125,7 +125,7 @@ namespace Pathfinder.Game.OS
         /// <param name="write">The formatted string to write.</param>
         public static Hacknet.OS Write(this Hacknet.OS os, string write, params object[] args)
         {
-            os.write(args == null || args.Length < 1 ? write : String.Format(write, args));
+            os.write(args == null || args.Length < 1 ? write : string.Format(write, args));
             return os;
         }
 
@@ -136,7 +136,7 @@ namespace Pathfinder.Game.OS
         /// <param name="write">The formatted string to write.</param>
         public static Hacknet.OS WriteSingle(this Hacknet.OS os, string write, params object[] args)
         {
-            os.writeSingle(args == null || args.Length < 1 ? write : String.Format(write, args));
+            os.writeSingle(args == null || args.Length < 1 ? write : string.Format(write, args));
             return os;
         }
     }
