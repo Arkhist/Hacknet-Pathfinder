@@ -22,14 +22,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="235" column="1"/>
+        <location file="Pathfinder/GameFilesystem/FileObject.cs" line="236" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/GameFilesystem/FileObject.cs" line="234" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="233" bodyend="236"/>
+    <location file="Pathfinder/GameFilesystem/FileObject.cs" line="235" column="1" bodyfile="Pathfinder/GameFilesystem/FileObject.cs" bodystart="234" bodyend="237"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_game_filesystem_1_1_file_type_extension_1a930600d37d2cb896e742ef9a9b60e495" prot="public" virt="non-virtual"><scope>Pathfinder::GameFilesystem::FileTypeExtension</scope><name>Is</name></member>
     </listofallmembers>

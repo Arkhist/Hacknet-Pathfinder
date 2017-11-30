@@ -519,7 +519,7 @@ namespace Pathfinder.Game.Computer
         {
             var res = new Dictionary<string, Hacknet.Computer>();
             if (comp.attatchedDeviceIDs != null)
-                foreach (var id in comp.attatchedDeviceIDs.Split(new char[] { ' ', ',' }, stringSplitOptions.RemoveEmptyEntries))
+                foreach (var id in comp.attatchedDeviceIDs.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     var c = comp.GetNetworkMap().GetComputerById(id);
                     if (c != null)
@@ -536,7 +536,7 @@ namespace Pathfinder.Game.Computer
                                 res[c.name] = c;
                                 break;
                             case RetrieveType.INDEX:
-                                res[c.GetNetworkMap().nodes.IndexOf(c).Tostring()] = c;
+                                res[c.GetNetworkMap().nodes.IndexOf(c).ToString()] = c;
                                 break;
                         }
                     }

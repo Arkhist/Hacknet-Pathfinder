@@ -15,7 +15,7 @@
         </enumvalue>
         <enumvalue id="class_pathfinder_1_1_util_1_1_logger_1a3eae0eba87ff6f0f6d570de47f7ba696adc30ec20708ef7b0f641ef78b7880a15" prot="public">
           <name>DEBUG</name>
-          <initializer>= 2</initializer>
+          <initializer>= 1 &lt;&lt; 1</initializer>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
@@ -23,7 +23,7 @@
         </enumvalue>
         <enumvalue id="class_pathfinder_1_1_util_1_1_logger_1a3eae0eba87ff6f0f6d570de47f7ba696a551b723eafd6a31d444fcb2f5920fbd3" prot="public">
           <name>INFO</name>
-          <initializer>= 4</initializer>
+          <initializer>= 1 &lt;&lt; 2</initializer>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
@@ -31,7 +31,7 @@
         </enumvalue>
         <enumvalue id="class_pathfinder_1_1_util_1_1_logger_1a3eae0eba87ff6f0f6d570de47f7ba696a32bd8a1db2275458673903bdb84cb277" prot="public">
           <name>WARN</name>
-          <initializer>= 8</initializer>
+          <initializer>= 1 &lt;&lt; 3</initializer>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
@@ -39,7 +39,7 @@
         </enumvalue>
         <enumvalue id="class_pathfinder_1_1_util_1_1_logger_1a3eae0eba87ff6f0f6d570de47f7ba696abb1ca97ec761fc37101737ba0aa2e7c5" prot="public">
           <name>ERROR</name>
-          <initializer>= 16</initializer>
+          <initializer>= 1 &lt;&lt; 4</initializer>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
@@ -47,7 +47,7 @@
         </enumvalue>
         <enumvalue id="class_pathfinder_1_1_util_1_1_logger_1a3eae0eba87ff6f0f6d570de47f7ba696a19da7170bea36556dde582519795f3fc" prot="public">
           <name>FATAL</name>
-          <initializer>= 32</initializer>
+          <initializer>= 1 &lt;&lt; 5</initializer>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
@@ -326,7 +326,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="72" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="72" bodyend="92"/>
+        <location file="Pathfinder/Util/Logger.cs" line="72" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="72" bodyend="93"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1aacfc0d30763fd5bebd00239d6e125d49" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -351,7 +351,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="98" column="1"/>
+        <location file="Pathfinder/Util/Logger.cs" line="99" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1a2b4ae592077ee8362e351c791b3c946f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -376,7 +376,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="104" column="1"/>
+        <location file="Pathfinder/Util/Logger.cs" line="105" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1af769ccfd040a22871c3520e92995fa1b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -401,7 +401,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="110" column="1"/>
+        <location file="Pathfinder/Util/Logger.cs" line="111" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1af3b73844726d014ccd4367a8b3248701" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -426,7 +426,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="116" column="1"/>
+        <location file="Pathfinder/Util/Logger.cs" line="117" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1ad965a1bd7951117393a9d82ab9c4799a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -451,7 +451,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="122" column="1"/>
+        <location file="Pathfinder/Util/Logger.cs" line="123" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_logger_1a2d30f28e11e27ef74836283c5a9f6747" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -476,14 +476,14 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/Logger.cs" line="128" column="1"/>
+        <location file="Pathfinder/Util/Logger.cs" line="129" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Util/Logger.cs" line="8" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="7" bodyend="129"/>
+    <location file="Pathfinder/Util/Logger.cs" line="8" column="1" bodyfile="Pathfinder/Util/Logger.cs" bodystart="7" bodyend="130"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_util_1_1_logger_1a2db057b4d5404a7452a9b39565155af8" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Logger</scope><name>AddFlag</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_logger_1a2b4ae592077ee8362e351c791b3c946f" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Logger</scope><name>Debug</name></member>

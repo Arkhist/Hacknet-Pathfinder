@@ -55,26 +55,26 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="530">
+      <node id="898">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="529">
+      <node id="897">
         <label>Pathfinder.Event.StartUpEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_start_up_event"/>
-        <childnode refid="530" relation="public-inheritance">
+        <childnode refid="898" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="532">
+      <node id="900">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="531">
+      <node id="899">
         <label>Pathfinder.Event.StartUpEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_start_up_event"/>
-        <childnode refid="532" relation="public-inheritance">
+        <childnode refid="900" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

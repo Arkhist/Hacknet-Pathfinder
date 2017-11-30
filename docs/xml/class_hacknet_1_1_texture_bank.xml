@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_texture_bank" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::TextureBank</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_texture_bank_1a14684b7479c8a4f614c02022305b038e" prot="public" static="yes" mutable="no">
+        <type>List&lt; LoadedTexture &gt;</type>
+        <definition>List&lt;LoadedTexture&gt; Hacknet.TextureBank.textures</definition>
+        <argsstring></argsstring>
+        <name>textures</name>
+        <initializer>= new List&lt;LoadedTexture&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="924" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="924" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hacknet_1_1_texture_bank_1a6e06f704ba66706b79ba6508647d36fb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Texture2D</type>
+        <definition>static Texture2D Hacknet.TextureBank.getIfLoaded</definition>
+        <argsstring>(string filename)</argsstring>
+        <name>getIfLoaded</name>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="926" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_texture_bank_1a3907765d8481500ce52b586ad5b28265" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Texture2D</type>
+        <definition>static Texture2D Hacknet.TextureBank.load</definition>
+        <argsstring>(string filename, ContentManager content)</argsstring>
+        <name>load</name>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>ContentManager</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="927" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_texture_bank_1aa8299e38a24e7e383b3d1dbea69c0600" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.TextureBank.unload</definition>
+        <argsstring>(Texture2D tex)</argsstring>
+        <name>unload</name>
+        <param>
+          <type>Texture2D</type>
+          <declname>tex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="928" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_texture_bank_1a8b1729a3aa4eb2194c1dcba422dedb08" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.TextureBank.unloadWithoutRemoval</definition>
+        <argsstring>(Texture2D tex)</argsstring>
+        <name>unloadWithoutRemoval</name>
+        <param>
+          <type>Texture2D</type>
+          <declname>tex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="929" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="923" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="922" bodyend="930"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_texture_bank_1a6e06f704ba66706b79ba6508647d36fb" prot="public" virt="non-virtual"><scope>Hacknet::TextureBank</scope><name>getIfLoaded</name></member>
+      <member refid="class_hacknet_1_1_texture_bank_1a3907765d8481500ce52b586ad5b28265" prot="public" virt="non-virtual"><scope>Hacknet::TextureBank</scope><name>load</name></member>
+      <member refid="class_hacknet_1_1_texture_bank_1a14684b7479c8a4f614c02022305b038e" prot="public" virt="non-virtual"><scope>Hacknet::TextureBank</scope><name>textures</name></member>
+      <member refid="class_hacknet_1_1_texture_bank_1aa8299e38a24e7e383b3d1dbea69c0600" prot="public" virt="non-virtual"><scope>Hacknet::TextureBank</scope><name>unload</name></member>
+      <member refid="class_hacknet_1_1_texture_bank_1a8b1729a3aa4eb2194c1dcba422dedb08" prot="public" virt="non-virtual"><scope>Hacknet::TextureBank</scope><name>unloadWithoutRemoval</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

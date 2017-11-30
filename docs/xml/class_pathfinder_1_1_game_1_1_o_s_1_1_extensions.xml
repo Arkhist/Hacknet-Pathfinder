@@ -4,12 +4,12 @@
     <compoundname>Pathfinder::Game::OS::Extensions</compoundname>
       <sectiondef kind="public-static-func">
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a15cb9803d2ecbd2a53ea93548153fa1c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>List&lt; Hacknet.ExeModule &gt;</type>
+        <type>List&lt; <ref refid="class_hacknet_1_1_exe_module" kindref="compound">Hacknet.ExeModule</ref> &gt;</type>
         <definition>static List&lt;Hacknet.ExeModule&gt; Pathfinder.Game.OS.Extensions.GetExesFor</definition>
         <argsstring>(this Hacknet.OS os, Type instanceType)</argsstring>
         <name>GetExesFor</name>
         <param>
-          <type>this Hacknet.OS</type>
+          <type>this <ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <param>
@@ -38,7 +38,7 @@
         <argsstring>(this Hacknet.OS os)</argsstring>
         <name>GetExesFor&lt; T &gt;</name>
         <param>
-          <type>this Hacknet.OS</type>
+          <type>this <ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <briefdescription>
@@ -63,7 +63,7 @@
         <argsstring>(this Hacknet.OS os, Type interfaceType)</argsstring>
         <name>GetModExeInterfaceFor</name>
         <param>
-          <type>this Hacknet.OS</type>
+          <type>this <ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <param>
@@ -92,7 +92,7 @@
         <argsstring>(this Hacknet.OS os)</argsstring>
         <name>GetModExeInterfaceFor&lt; T &gt;</name>
         <param>
-          <type>this Hacknet.OS</type>
+          <type>this <ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <briefdescription>
@@ -117,11 +117,11 @@
         <argsstring>(this Hacknet.OS os, Hacknet.ExeModule module, bool shouldWrite=false)</argsstring>
         <name>KillExecutableModule</name>
         <param>
-          <type>this Hacknet.OS</type>
+          <type>this <ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <param>
-          <type>Hacknet.ExeModule</type>
+          <type><ref refid="class_hacknet_1_1_exe_module" kindref="compound">Hacknet.ExeModule</ref></type>
           <declname>module</declname>
         </param>
         <param>
@@ -166,7 +166,7 @@
         <argsstring>(this Hacknet.OS os, string input, bool searchName=false, bool shouldWrite=false)</argsstring>
         <name>KillExecutableModule</name>
         <param>
-          <type>this Hacknet.OS</type>
+          <type>this <ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <param>
@@ -219,7 +219,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/OS/Extensions.cs" line="84" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="84" bodyend="102"/>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="84" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="84" bodyend="103"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a34c0b845669d4737ea6e52a26b3af85f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -227,7 +227,7 @@
         <argsstring>(this Hacknet.OS os, bool shouldWrite=false)</argsstring>
         <name>KillAllExecutableModules</name>
         <param>
-          <type>this Hacknet.OS</type>
+          <type>this <ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <param>
@@ -256,15 +256,15 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/OS/Extensions.cs" line="109" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="109" bodyend="113"/>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="110" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="110" bodyend="114"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a3c7dc4252ef9aa625353a05831412ed6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Hacknet.Computer</type>
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
         <definition>static Hacknet.Computer Pathfinder.Game.OS.Extensions.GetCurrentComputer</definition>
         <argsstring>(this Hacknet.OS os)</argsstring>
         <name>GetCurrentComputer</name>
         <param>
-          <type>this Hacknet.OS</type>
+          <type>this <ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <briefdescription>
@@ -273,15 +273,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/OS/Extensions.cs" line="118" column="1"/>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="119" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1aa650fe7f1b31a300e7c768804839678e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>Hacknet.OS</type>
+        <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
         <definition>static Hacknet.OS Pathfinder.Game.OS.Extensions.Write</definition>
         <argsstring>(this Hacknet.OS os, string write, params object[] args)</argsstring>
         <name>Write</name>
         <param>
-          <type>this Hacknet.OS</type>
+          <type>this <ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <param>
@@ -313,15 +313,15 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/OS/Extensions.cs" line="125" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="125" bodyend="129"/>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="126" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="126" bodyend="130"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a5e9a84b3d11bfc05f86fe6b79ab416f5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>Hacknet.OS</type>
+        <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
         <definition>static Hacknet.OS Pathfinder.Game.OS.Extensions.WriteSingle</definition>
         <argsstring>(this Hacknet.OS os, string write, params object[] args)</argsstring>
         <name>WriteSingle</name>
         <param>
-          <type>this Hacknet.OS</type>
+          <type>this <ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <param>
@@ -353,14 +353,14 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Game/OS/Extensions.cs" line="136" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="136" bodyend="140"/>
+        <location file="Pathfinder/Game/OS/Extensions.cs" line="137" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="137" bodyend="141"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Game/OS/Extensions.cs" line="9" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="8" bodyend="141"/>
+    <location file="Pathfinder/Game/OS/Extensions.cs" line="9" column="1" bodyfile="Pathfinder/Game/OS/Extensions.cs" bodystart="8" bodyend="142"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a3c7dc4252ef9aa625353a05831412ed6" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetCurrentComputer</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_o_s_1_1_extensions_1a15cb9803d2ecbd2a53ea93548153fa1c" prot="public" virt="non-virtual"><scope>Pathfinder::Game::OS::Extensions</scope><name>GetExesFor</name></member>

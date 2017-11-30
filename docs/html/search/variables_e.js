@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['texturepath',['TexturePath',['../class_pathfinder_1_1_mod_manager_1_1_mod.html#ac3563c0eb0a55d748512d1e282a35467',1,'Pathfinder::ModManager::Mod']]],
-  ['this_5bstring_20name_5d',['this[string name]',['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#a0cc62ab846ea71703c3be4b1a72a3d5c',1,'Pathfinder::GameFilesystem::Directory']]],
-  ['type',['Type',['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#aa59b2db31ec83aa048ec3e921a257dbe',1,'Pathfinder.GameFilesystem.Directory.Type()'],['../class_pathfinder_1_1_game_filesystem_1_1_file.html#a14b77662cd67f7c99b3c15e9bb0128a7',1,'Pathfinder.GameFilesystem.File.Type()'],['../class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#adeab860edf553ea7523812337bc5e5ca',1,'Pathfinder.GameFilesystem.Filesystem.Type()']]]
+  ['ram',['ram',['../class_hacknet_1_1_o_s.html#afad871fe64d18ac288c36e97d206cbea',1,'Hacknet::OS']]],
+  ['ram_5fchange_5fps',['RAM_CHANGE_PS',['../class_hacknet_1_1_shell_exe.html#abe93d04ff82e302d0d5c074772688c7b',1,'Hacknet::ShellExe']]],
+  ['ramavaliable',['ramAvaliable',['../class_hacknet_1_1_o_s.html#a8e4231db99b702e4072a3f3da0ca001f',1,'Hacknet::OS']]],
+  ['ramcost',['RamCost',['../class_pathfinder_1_1_executable_1_1_interface.html#a774d57c4fb820eb00e676fbbaf883dcc',1,'Pathfinder.Executable.Interface.RamCost()'],['../class_hacknet_1_1_exe_module.html#aada61bfc8f6e0393926d0c0b6801492e',1,'Hacknet.ExeModule.ramCost()']]],
+  ['recoverfromerrorssilently',['recoverFromErrorsSilently',['../class_hacknet_1_1_settings.html#a88daf417150df6200dcc32ee4edffee7',1,'Hacknet::Settings']]],
+  ['relative',['Relative',['../class_pathfinder_1_1_game_filesystem_1_1_file_path.html#ac9b5e740b6323c7b65e1e45fb9357280',1,'Pathfinder::GameFilesystem::FilePath']]],
+  ['reportingshell',['reportingShell',['../class_hacknet_1_1_computer.html#afae433fcb4e1ee1e52a3e2a0fc51dbc2',1,'Hacknet::Computer']]],
+  ['root',['Root',['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#a3fc80a20942b10df9962d8d6bcfa564e',1,'Pathfinder.GameFilesystem.Directory.Root()'],['../class_pathfinder_1_1_game_filesystem_1_1_file.html#aee6cf4f931a9ba66c65e11e0e267cd2c',1,'Pathfinder.GameFilesystem.File.Root()'],['../class_pathfinder_1_1_game_filesystem_1_1_file_path.html#ab456f92b1c5e33a045141bb1b09f995c',1,'Pathfinder.GameFilesystem.FilePath.Root()'],['../class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#a01f1c1672698fcf0b0ee11df2f0f82f6',1,'Pathfinder.GameFilesystem.Filesystem.Root()'],['../class_hacknet_1_1_file_system.html#a8e5e4a4dac02c663a40900f011ae963a',1,'Hacknet.FileSystem.root()']]]
 ];

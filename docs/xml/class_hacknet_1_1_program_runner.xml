@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_program_runner" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::ProgramRunner</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hacknet_1_1_program_runner_1ac0bd0a5315b65daae57adfc88768b807" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Hacknet.ProgramRunner.ExecuteProgram</definition>
+        <argsstring>(object os_object, string[] arguments)</argsstring>
+        <name>ExecuteProgram</name>
+        <param>
+          <type>object</type>
+          <declname>os_object</declname>
+        </param>
+        <param>
+          <type>string []</type>
+          <declname>arguments</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="872" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_program_runner_1a2bf577e0bd9b2951c34964d6d3f3b7c2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Hacknet.ProgramRunner.ExeProgramExists</definition>
+        <argsstring>(string name, object binariesFolder)</argsstring>
+        <name>ExeProgramExists</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>binariesFolder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="873" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="871" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="870" bodyend="874"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_program_runner_1ac0bd0a5315b65daae57adfc88768b807" prot="public" virt="non-virtual"><scope>Hacknet::ProgramRunner</scope><name>ExecuteProgram</name></member>
+      <member refid="class_hacknet_1_1_program_runner_1a2bf577e0bd9b2951c34964d6d3f3b7c2" prot="public" virt="non-virtual"><scope>Hacknet::ProgramRunner</scope><name>ExeProgramExists</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

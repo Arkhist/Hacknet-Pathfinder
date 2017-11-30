@@ -1,0 +1,544 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_terminal" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::Terminal</compoundname>
+    <basecompoundref refid="class_hacknet_1_1_core_module" prot="public" virt="non-virtual">Hacknet.CoreModule</basecompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_terminal_1ac0e80195b11e3cabcfc40594333213b4" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.Terminal.PROMPT_OFFSET</definition>
+        <argsstring></argsstring>
+        <name>PROMPT_OFFSET</name>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="657" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="657" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_terminal_1a4977a798d43021b7216da05a5e832320" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.Terminal.currentLine</definition>
+        <argsstring></argsstring>
+        <name>currentLine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="659" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="659" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_terminal_1a0225019a65562760a5130a319e3cdab8" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.Terminal.lastRunCommand</definition>
+        <argsstring></argsstring>
+        <name>lastRunCommand</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="660" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="660" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_terminal_1a0d00e93234d092be893a5ee9c523fd21" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.Terminal.prompt</definition>
+        <argsstring></argsstring>
+        <name>prompt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="661" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="661" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_terminal_1a3ff54451bc3653be6aefa9d345a399f0" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.Terminal.usingTabExecution</definition>
+        <argsstring></argsstring>
+        <name>usingTabExecution</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="662" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="662" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_terminal_1ab0b603d03b18bd2fd827f3b2f6e3da0d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.Terminal.preventingExecution</definition>
+        <argsstring></argsstring>
+        <name>preventingExecution</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="663" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="663" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_terminal_1ad77735717eae354709402348485eb0ff" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.Terminal.executionPreventionIsInteruptable</definition>
+        <argsstring></argsstring>
+        <name>executionPreventionIsInteruptable</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="664" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="664" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1ae94457f7e7322325885859416eb05582" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Hacknet.Terminal.Terminal</definition>
+        <argsstring>(Rectangle location, OS operatingSystem)</argsstring>
+        <name>Terminal</name>
+        <param>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
+          <declname>operatingSystem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="666" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1a5947ef88f94328eec110d936ef6e244a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.Terminal.clearCurrentLine</definition>
+        <argsstring>()</argsstring>
+        <name>clearCurrentLine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="668" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1a9f64bec3aea9dbc4db969b413af201db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Hacknet.Terminal.commandsRun</definition>
+        <argsstring>()</argsstring>
+        <name>commandsRun</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="669" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1a55c98a4148eb462a2292136662e23573" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.Terminal.doGui</definition>
+        <argsstring>()</argsstring>
+        <name>doGui</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="670" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1a276af4d8944a201f131c26b5d01d5998" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.Terminal.doTabComplete</definition>
+        <argsstring>()</argsstring>
+        <name>doTabComplete</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="671" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1a267c189ad496c450b3dd98ee87d95dd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.Terminal.Draw</definition>
+        <argsstring>(float t)</argsstring>
+        <name>Draw</name>
+        <reimplements refid="class_hacknet_1_1_module_1a15f0e31db7bd178fbac0a3ae6688272a">Draw</reimplements>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="672" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1a44db9897ec351a2bc0e4588b59702ac4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.Terminal.executeLine</definition>
+        <argsstring>()</argsstring>
+        <name>executeLine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="673" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1a92a6f874376ff08df0b49303826fe4d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Hacknet.Terminal.getLastRunCommand</definition>
+        <argsstring>()</argsstring>
+        <name>getLastRunCommand</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="674" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1a5c1da962dd9cfbadc0c8a2cacf109361" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; Hacknet.Terminal.GetRecentTerminalHistoryList</definition>
+        <argsstring>()</argsstring>
+        <name>GetRecentTerminalHistoryList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="675" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1a9238c7a9ea352efeabe7405a1e996a21" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Hacknet.Terminal.GetRecentTerminalHistoryString</definition>
+        <argsstring>()</argsstring>
+        <name>GetRecentTerminalHistoryString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="676" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1aefbfc35b69b148b742e1f4cf28bfd17f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.Terminal.LoadContent</definition>
+        <argsstring>()</argsstring>
+        <name>LoadContent</name>
+        <reimplements refid="class_hacknet_1_1_core_module_1a3152fd15281c36fa3a894900ac6d9b3f">LoadContent</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="677" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1aa0665c5a050b5e345b9dac15fd611a77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.Terminal.NonThreadedInstantExecuteLine</definition>
+        <argsstring>()</argsstring>
+        <name>NonThreadedInstantExecuteLine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="678" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1a20c6160d56d0b948d8f248e331ac2467" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.Terminal.reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="679" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1a83288aed8e3add544ce62b9c1f867a01" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.Terminal.Update</definition>
+        <argsstring>(float t)</argsstring>
+        <name>Update</name>
+        <reimplements refid="class_hacknet_1_1_module_1a7740ee2ced93f5fa1c3b27d9785996ed">Update</reimplements>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="680" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1acec0863e1d34dbff3d9b7245cea538da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.Terminal.write</definition>
+        <argsstring>(string text)</argsstring>
+        <name>write</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="681" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_terminal_1add27906498ed283bb88e461ec20f15cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.Terminal.writeLine</definition>
+        <argsstring>(string text)</argsstring>
+        <name>writeLine</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="682" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="903">
+        <label>Module</label>
+        <link refid="class_hacknet_1_1_module"/>
+      </node>
+      <node id="902">
+        <label>CoreModule</label>
+        <link refid="class_hacknet_1_1_core_module"/>
+        <childnode refid="903" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="901">
+        <label>Hacknet.Terminal</label>
+        <link refid="class_hacknet_1_1_terminal"/>
+        <childnode refid="902" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="920">
+        <label>Framework</label>
+      </node>
+      <node id="911">
+        <label>Hacknet.DisplayModule</label>
+        <link refid="class_hacknet_1_1_display_module"/>
+        <childnode refid="905" relation="public-inheritance">
+        </childnode>
+        <childnode refid="912" relation="usage">
+          <edgelabel>LastDisplayedFileFolder</edgelabel>
+        </childnode>
+      </node>
+      <node id="915">
+        <label>Hacknet.Computer</label>
+        <link refid="class_hacknet_1_1_computer"/>
+        <childnode refid="916" relation="usage">
+          <edgelabel>reportingShell</edgelabel>
+        </childnode>
+        <childnode refid="918" relation="usage">
+          <edgelabel>files</edgelabel>
+        </childnode>
+        <childnode refid="919" relation="usage">
+          <edgelabel>firewall</edgelabel>
+        </childnode>
+      </node>
+      <node id="908">
+        <label>GameScreen</label>
+        <link refid="class_hacknet_1_1_game_screen"/>
+      </node>
+      <node id="906">
+        <label>Module</label>
+        <link refid="class_hacknet_1_1_module"/>
+        <childnode refid="907" relation="usage">
+          <edgelabel>os</edgelabel>
+        </childnode>
+        <childnode refid="920" relation="usage">
+          <edgelabel>bounds</edgelabel>
+        </childnode>
+      </node>
+      <node id="905">
+        <label>CoreModule</label>
+        <link refid="class_hacknet_1_1_core_module"/>
+        <childnode refid="906" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="917">
+        <label>ExeModule</label>
+        <link refid="class_hacknet_1_1_exe_module"/>
+        <childnode refid="906" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="914">
+        <label>Hacknet.NetworkMap</label>
+        <link refid="class_hacknet_1_1_network_map"/>
+        <childnode refid="905" relation="public-inheritance">
+        </childnode>
+        <childnode refid="915" relation="usage">
+          <edgelabel>mailServer</edgelabel>
+          <edgelabel>academicDatabase</edgelabel>
+          <edgelabel>lastAddedNode</edgelabel>
+        </childnode>
+      </node>
+      <node id="916">
+        <label>Hacknet.ShellExe</label>
+        <link refid="class_hacknet_1_1_shell_exe"/>
+        <childnode refid="917" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="919">
+        <label>Hacknet.Firewall</label>
+        <link refid="class_hacknet_1_1_firewall"/>
+      </node>
+      <node id="918">
+        <label>Hacknet.FileSystem</label>
+        <link refid="class_hacknet_1_1_file_system"/>
+        <childnode refid="912" relation="usage">
+          <edgelabel>root</edgelabel>
+        </childnode>
+      </node>
+      <node id="904">
+        <label>Hacknet.Terminal</label>
+        <link refid="class_hacknet_1_1_terminal"/>
+        <childnode refid="905" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="910">
+        <label>Hacknet.CrashModule</label>
+        <link refid="class_hacknet_1_1_crash_module"/>
+        <childnode refid="906" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="913">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="907">
+        <label>Hacknet.OS</label>
+        <link refid="class_hacknet_1_1_o_s"/>
+        <childnode refid="908" relation="public-inheritance">
+        </childnode>
+        <childnode refid="909" relation="usage">
+          <edgelabel>ram</edgelabel>
+        </childnode>
+        <childnode refid="910" relation="usage">
+          <edgelabel>crashModule</edgelabel>
+        </childnode>
+        <childnode refid="911" relation="usage">
+          <edgelabel>display</edgelabel>
+        </childnode>
+        <childnode refid="904" relation="usage">
+          <edgelabel>terminal</edgelabel>
+        </childnode>
+        <childnode refid="914" relation="usage">
+          <edgelabel>netMap</edgelabel>
+        </childnode>
+        <childnode refid="915" relation="usage">
+          <edgelabel>opponentComputer</edgelabel>
+          <edgelabel>connectedComp</edgelabel>
+          <edgelabel>thisComputer</edgelabel>
+        </childnode>
+        <childnode refid="920" relation="usage">
+          <edgelabel>fullscreen</edgelabel>
+        </childnode>
+        <childnode refid="907" relation="usage">
+          <edgelabel>currentInstance</edgelabel>
+        </childnode>
+      </node>
+      <node id="912">
+        <label>Hacknet.Folder</label>
+        <link refid="class_hacknet_1_1_folder"/>
+        <childnode refid="913" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="909">
+        <label>Hacknet.RamModule</label>
+        <link refid="class_hacknet_1_1_ram_module"/>
+        <childnode refid="905" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="656" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="655" bodyend="683"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_module_1a9f5568515780ca1149d57051fc2f7c77" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>bounds</name></member>
+      <member refid="class_hacknet_1_1_module_1a5ea045ba822711fc59f9e10766955f73" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>Bounds</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a5947ef88f94328eec110d936ef6e244a" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>clearCurrentLine</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a9f64bec3aea9dbc4db969b413af201db" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>commandsRun</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a4977a798d43021b7216da05a5e832320" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>currentLine</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a55c98a4148eb462a2292136662e23573" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>doGui</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a276af4d8944a201f131c26b5d01d5998" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>doTabComplete</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a267c189ad496c450b3dd98ee87d95dd0" prot="public" virt="virtual"><scope>Hacknet::Terminal</scope><name>Draw</name></member>
+      <member refid="class_hacknet_1_1_module_1a61074e32ce3d681fb28e41c71a92889d" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>drawFrame</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a44db9897ec351a2bc0e4588b59702ac4" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>executeLine</name></member>
+      <member refid="class_hacknet_1_1_terminal_1ad77735717eae354709402348485eb0ff" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>executionPreventionIsInteruptable</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a92a6f874376ff08df0b49303826fe4d1" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>getLastRunCommand</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a5c1da962dd9cfbadc0c8a2cacf109361" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>GetRecentTerminalHistoryList</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a9238c7a9ea352efeabe7405a1e996a21" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>GetRecentTerminalHistoryString</name></member>
+      <member refid="class_hacknet_1_1_core_module_1a9e07c7e2852ea839082bba068cda5b19" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>inputLocked</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a0225019a65562760a5130a319e3cdab8" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>lastRunCommand</name></member>
+      <member refid="class_hacknet_1_1_terminal_1aefbfc35b69b148b742e1f4cf28bfd17f" prot="public" virt="virtual"><scope>Hacknet::Terminal</scope><name>LoadContent</name></member>
+      <member refid="class_hacknet_1_1_module_1aac9b4cea405a9ba9e385e1107de7c507" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>Module</name></member>
+      <member refid="class_hacknet_1_1_module_1ac87b80233cd3d601009c98d29b926b9f" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>name</name></member>
+      <member refid="class_hacknet_1_1_terminal_1aa0665c5a050b5e345b9dac15fd611a77" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>NonThreadedInstantExecuteLine</name></member>
+      <member refid="class_hacknet_1_1_module_1a5f28f2631470430dfc7ce75e3a1ceaed" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>os</name></member>
+      <member refid="class_hacknet_1_1_module_1a7cf1a874d7c2ab76e6ed26471cfaa556" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>PANEL_HEIGHT</name></member>
+      <member refid="class_hacknet_1_1_core_module_1a163b3d4f37172dbb43cd570908fad1ed" prot="public" virt="virtual"><scope>Hacknet::Terminal</scope><name>PostDrawStep</name></member>
+      <member refid="class_hacknet_1_1_core_module_1ac2dd0e7330981cec99958caabfa08a1e" prot="public" virt="virtual"><scope>Hacknet::Terminal</scope><name>PreDrawStep</name></member>
+      <member refid="class_hacknet_1_1_terminal_1ab0b603d03b18bd2fd827f3b2f6e3da0d" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>preventingExecution</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a0d00e93234d092be893a5ee9c523fd21" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>prompt</name></member>
+      <member refid="class_hacknet_1_1_terminal_1ac0e80195b11e3cabcfc40594333213b4" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>PROMPT_OFFSET</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a20c6160d56d0b948d8f248e331ac2467" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>reset</name></member>
+      <member refid="class_hacknet_1_1_module_1a3c22224a83a15603c5f6bfbb778613b2" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>spriteBatch</name></member>
+      <member refid="class_hacknet_1_1_terminal_1ae94457f7e7322325885859416eb05582" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>Terminal</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a83288aed8e3add544ce62b9c1f867a01" prot="public" virt="virtual"><scope>Hacknet::Terminal</scope><name>Update</name></member>
+      <member refid="class_hacknet_1_1_terminal_1a3ff54451bc3653be6aefa9d345a399f0" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>usingTabExecution</name></member>
+      <member refid="class_hacknet_1_1_module_1ad92e134fd646691737cc24aa434a336f" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>visible</name></member>
+      <member refid="class_hacknet_1_1_terminal_1acec0863e1d34dbff3d9b7245cea538da" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>write</name></member>
+      <member refid="class_hacknet_1_1_terminal_1add27906498ed283bb88e461ec20f15cd" prot="public" virt="non-virtual"><scope>Hacknet::Terminal</scope><name>writeLine</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

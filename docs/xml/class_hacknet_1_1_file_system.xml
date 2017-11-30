@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_file_system" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::FileSystem</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_file_system_1a8e5e4a4dac02c663a40900f011ae963a" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_folder" kindref="compound">Folder</ref></type>
+        <definition>Folder Hacknet.FileSystem.root</definition>
+        <argsstring></argsstring>
+        <name>root</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1096" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="1096" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hacknet_1_1_file_system_1aa9c5fa8393d47cb4b5c3d67bd8708243" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Hacknet.FileSystem.FileSystem</definition>
+        <argsstring>(bool empty)</argsstring>
+        <name>FileSystem</name>
+        <param>
+          <type>bool</type>
+          <declname>empty</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1098" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_file_system_1a98dd7663bd938c7078c8e7826da650f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Hacknet.FileSystem.FileSystem</definition>
+        <argsstring>()</argsstring>
+        <name>FileSystem</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1099" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_file_system_1a33fc596b96722a7f5fff4e2c863bf2c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.FileSystem.generateSystemFiles</definition>
+        <argsstring>()</argsstring>
+        <name>generateSystemFiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1103" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_file_system_1a04ea034c4de42efb8704f210fec8d01b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>override int</type>
+        <definition>override int Hacknet.FileSystem.GetHashCode</definition>
+        <argsstring>()</argsstring>
+        <name>GetHashCode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1104" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_file_system_1a618cdd1d3a2a6b9fdbbcdf748645b459" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Hacknet.FileSystem.getSaveString</definition>
+        <argsstring>()</argsstring>
+        <name>getSaveString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1105" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_file_system_1a5cbb055ccd1f9be0900bc30ca4369b35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Hacknet.FileSystem.TestEquals</definition>
+        <argsstring>(object obj)</argsstring>
+        <name>TestEquals</name>
+        <param>
+          <type>object</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1106" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hacknet_1_1_file_system_1a9731692bfa60a93e4005e96467b01d57" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hacknet_1_1_file_system" kindref="compound">FileSystem</ref></type>
+        <definition>static FileSystem Hacknet.FileSystem.load</definition>
+        <argsstring>(XmlReader reader)</argsstring>
+        <name>load</name>
+        <param>
+          <type>XmlReader</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1101" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="341">
+        <label>Hacknet.FileSystem</label>
+        <link refid="class_hacknet_1_1_file_system"/>
+        <childnode refid="342" relation="usage">
+          <edgelabel>root</edgelabel>
+        </childnode>
+      </node>
+      <node id="343">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="342">
+        <label>Hacknet.Folder</label>
+        <link refid="class_hacknet_1_1_folder"/>
+        <childnode refid="343" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="1095" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="1094" bodyend="1107"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_file_system_1aa9c5fa8393d47cb4b5c3d67bd8708243" prot="public" virt="non-virtual"><scope>Hacknet::FileSystem</scope><name>FileSystem</name></member>
+      <member refid="class_hacknet_1_1_file_system_1a98dd7663bd938c7078c8e7826da650f6" prot="public" virt="non-virtual"><scope>Hacknet::FileSystem</scope><name>FileSystem</name></member>
+      <member refid="class_hacknet_1_1_file_system_1a33fc596b96722a7f5fff4e2c863bf2c7" prot="public" virt="non-virtual"><scope>Hacknet::FileSystem</scope><name>generateSystemFiles</name></member>
+      <member refid="class_hacknet_1_1_file_system_1a04ea034c4de42efb8704f210fec8d01b" prot="public" virt="non-virtual"><scope>Hacknet::FileSystem</scope><name>GetHashCode</name></member>
+      <member refid="class_hacknet_1_1_file_system_1a618cdd1d3a2a6b9fdbbcdf748645b459" prot="public" virt="non-virtual"><scope>Hacknet::FileSystem</scope><name>getSaveString</name></member>
+      <member refid="class_hacknet_1_1_file_system_1a9731692bfa60a93e4005e96467b01d57" prot="public" virt="non-virtual"><scope>Hacknet::FileSystem</scope><name>load</name></member>
+      <member refid="class_hacknet_1_1_file_system_1a8e5e4a4dac02c663a40900f011ae963a" prot="public" virt="non-virtual"><scope>Hacknet::FileSystem</scope><name>root</name></member>
+      <member refid="class_hacknet_1_1_file_system_1a5cbb055ccd1f9be0900bc30ca4369b35" prot="public" virt="non-virtual"><scope>Hacknet::FileSystem</scope><name>TestEquals</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

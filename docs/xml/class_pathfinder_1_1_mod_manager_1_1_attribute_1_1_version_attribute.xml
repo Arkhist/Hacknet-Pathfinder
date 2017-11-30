@@ -55,24 +55,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="577">
+      <node id="1002">
         <label>System::Attribute</label>
       </node>
-      <node id="576">
+      <node id="1001">
         <label>Pathfinder.ModManager.Attribute.VersionAttribute</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_version_attribute"/>
-        <childnode refid="577" relation="public-inheritance">
+        <childnode refid="1002" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="579">
+      <node id="1004">
         <label>System::Attribute</label>
       </node>
-      <node id="578">
+      <node id="1003">
         <label>Pathfinder.ModManager.Attribute.VersionAttribute</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_attribute_1_1_version_attribute"/>
-        <childnode refid="579" relation="public-inheritance">
+        <childnode refid="1004" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

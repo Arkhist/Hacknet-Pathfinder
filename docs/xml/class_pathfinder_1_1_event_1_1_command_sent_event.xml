@@ -78,7 +78,7 @@
         <argsstring>(Hacknet.OS os, string[] args)</argsstring>
         <name>CommandSentEvent</name>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <param>

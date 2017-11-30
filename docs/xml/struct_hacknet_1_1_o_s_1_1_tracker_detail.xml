@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="struct_hacknet_1_1_o_s_1_1_tracker_detail" kind="struct" language="C#" prot="public">
+    <compoundname>Hacknet::OS::TrackerDetail</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_hacknet_1_1_o_s_1_1_tracker_detail_1adf82aa32bf1a19eb555a30d79e941a37" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+        <definition>Computer Hacknet.OS.TrackerDetail.comp</definition>
+        <argsstring></argsstring>
+        <name>comp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="373" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="373" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_hacknet_1_1_o_s_1_1_tracker_detail_1ad9f144e97dd2d8a21c314dcda1c69ffe" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.OS.TrackerDetail.timeLeft</definition>
+        <argsstring></argsstring>
+        <name>timeLeft</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="374" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="374" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="945">
+        <label>Framework</label>
+      </node>
+      <node id="940">
+        <label>Hacknet.DisplayModule</label>
+        <link refid="class_hacknet_1_1_display_module"/>
+        <childnode refid="938" relation="public-inheritance">
+        </childnode>
+        <childnode refid="941" relation="usage">
+          <edgelabel>LastDisplayedFileFolder</edgelabel>
+        </childnode>
+      </node>
+      <node id="931">
+        <label>Hacknet.Computer</label>
+        <link refid="class_hacknet_1_1_computer"/>
+        <childnode refid="932" relation="usage">
+          <edgelabel>reportingShell</edgelabel>
+        </childnode>
+        <childnode refid="946" relation="usage">
+          <edgelabel>files</edgelabel>
+        </childnode>
+        <childnode refid="947" relation="usage">
+          <edgelabel>firewall</edgelabel>
+        </childnode>
+      </node>
+      <node id="936">
+        <label>GameScreen</label>
+        <link refid="class_hacknet_1_1_game_screen"/>
+      </node>
+      <node id="934">
+        <label>Module</label>
+        <link refid="class_hacknet_1_1_module"/>
+        <childnode refid="935" relation="usage">
+          <edgelabel>os</edgelabel>
+        </childnode>
+        <childnode refid="945" relation="usage">
+          <edgelabel>bounds</edgelabel>
+        </childnode>
+      </node>
+      <node id="938">
+        <label>CoreModule</label>
+        <link refid="class_hacknet_1_1_core_module"/>
+        <childnode refid="934" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="930">
+        <label>Hacknet.OS.TrackerDetail</label>
+        <link refid="struct_hacknet_1_1_o_s_1_1_tracker_detail"/>
+        <childnode refid="931" relation="usage">
+          <edgelabel>comp</edgelabel>
+        </childnode>
+      </node>
+      <node id="933">
+        <label>ExeModule</label>
+        <link refid="class_hacknet_1_1_exe_module"/>
+        <childnode refid="934" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="944">
+        <label>Hacknet.NetworkMap</label>
+        <link refid="class_hacknet_1_1_network_map"/>
+        <childnode refid="938" relation="public-inheritance">
+        </childnode>
+        <childnode refid="931" relation="usage">
+          <edgelabel>mailServer</edgelabel>
+          <edgelabel>academicDatabase</edgelabel>
+          <edgelabel>lastAddedNode</edgelabel>
+        </childnode>
+      </node>
+      <node id="932">
+        <label>Hacknet.ShellExe</label>
+        <link refid="class_hacknet_1_1_shell_exe"/>
+        <childnode refid="933" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="947">
+        <label>Hacknet.Firewall</label>
+        <link refid="class_hacknet_1_1_firewall"/>
+      </node>
+      <node id="946">
+        <label>Hacknet.FileSystem</label>
+        <link refid="class_hacknet_1_1_file_system"/>
+        <childnode refid="941" relation="usage">
+          <edgelabel>root</edgelabel>
+        </childnode>
+      </node>
+      <node id="943">
+        <label>Hacknet.Terminal</label>
+        <link refid="class_hacknet_1_1_terminal"/>
+        <childnode refid="938" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="939">
+        <label>Hacknet.CrashModule</label>
+        <link refid="class_hacknet_1_1_crash_module"/>
+        <childnode refid="934" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="942">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="935">
+        <label>Hacknet.OS</label>
+        <link refid="class_hacknet_1_1_o_s"/>
+        <childnode refid="936" relation="public-inheritance">
+        </childnode>
+        <childnode refid="937" relation="usage">
+          <edgelabel>ram</edgelabel>
+        </childnode>
+        <childnode refid="939" relation="usage">
+          <edgelabel>crashModule</edgelabel>
+        </childnode>
+        <childnode refid="940" relation="usage">
+          <edgelabel>display</edgelabel>
+        </childnode>
+        <childnode refid="943" relation="usage">
+          <edgelabel>terminal</edgelabel>
+        </childnode>
+        <childnode refid="944" relation="usage">
+          <edgelabel>netMap</edgelabel>
+        </childnode>
+        <childnode refid="931" relation="usage">
+          <edgelabel>opponentComputer</edgelabel>
+          <edgelabel>connectedComp</edgelabel>
+          <edgelabel>thisComputer</edgelabel>
+        </childnode>
+        <childnode refid="945" relation="usage">
+          <edgelabel>fullscreen</edgelabel>
+        </childnode>
+        <childnode refid="935" relation="usage">
+          <edgelabel>currentInstance</edgelabel>
+        </childnode>
+      </node>
+      <node id="941">
+        <label>Hacknet.Folder</label>
+        <link refid="class_hacknet_1_1_folder"/>
+        <childnode refid="942" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="937">
+        <label>Hacknet.RamModule</label>
+        <link refid="class_hacknet_1_1_ram_module"/>
+        <childnode refid="938" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="372" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="371" bodyend="375"/>
+    <listofallmembers>
+      <member refid="struct_hacknet_1_1_o_s_1_1_tracker_detail_1adf82aa32bf1a19eb555a30d79e941a37" prot="public" virt="non-virtual"><scope>Hacknet::OS::TrackerDetail</scope><name>comp</name></member>
+      <member refid="struct_hacknet_1_1_o_s_1_1_tracker_detail_1ad9f144e97dd2d8a21c314dcda1c69ffe" prot="public" virt="non-virtual"><scope>Hacknet::OS::TrackerDetail</scope><name>timeLeft</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

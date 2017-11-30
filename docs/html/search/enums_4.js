@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['retrievetype',['RetrieveType',['../namespace_pathfinder_1_1_util.html#ad5b0e2a0eef9e7e1761790600eae23a6',1,'Pathfinder::Util']]]
+  ['netmapsortingalgorithm',['NetmapSortingAlgorithm',['../namespace_hacknet.html#a0774049c781d940d0c03ff0cad572110',1,'Hacknet']]]
 ];

@@ -39,38 +39,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="106">
+      <node id="210">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="104">
+      <node id="208">
         <label>Pathfinder.Event.DrawExtensionMenuListEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_list_event"/>
-        <childnode refid="105" relation="public-inheritance">
+        <childnode refid="209" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="105">
+      <node id="209">
         <label>ExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_extension_menu_event"/>
-        <childnode refid="106" relation="public-inheritance">
+        <childnode refid="210" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="109">
+      <node id="213">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="107">
+      <node id="211">
         <label>Pathfinder.Event.DrawExtensionMenuListEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_list_event"/>
-        <childnode refid="108" relation="public-inheritance">
+        <childnode refid="212" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="108">
+      <node id="212">
         <label>ExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_extension_menu_event"/>
-        <childnode refid="109" relation="public-inheritance">
+        <childnode refid="213" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

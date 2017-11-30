@@ -1,18 +1,33 @@
-﻿using System;
-using Hacknet;
+﻿using Hacknet;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Pathfinder.Util
 {
     public static class SoundSystem
     {
-        public static bool SoundMuted { get; set; }
-
-        private static float soundVolume;
+        private static float? lastSound = null;
+        public static bool SoundMuted
+        {
+            get { return lastSound.HasValue; }
+            set
+            {
+                if (value)
+                {
+                    lastSound = SoundVolume;
+                    SoundVolume = 0;
+                }
+                else
+                {
+                    SoundVolume = lastSound ?? 0;
+                    lastSound = null;
+                }
+            }
+        }
 
         public static float SoundVolume
         {
-            get { return soundVolume; }
-            set { soundVolume = Math.Min(2, value); }
+            get { return SoundEffect.MasterVolume; }
+            set { SoundEffect.MasterVolume = value; }
         }
 
         public static bool MusicMuted

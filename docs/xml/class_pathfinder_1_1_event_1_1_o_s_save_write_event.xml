@@ -25,7 +25,7 @@
         <argsstring>(Hacknet.OS os, string fnam, string saveStr)</argsstring>
         <name>OSSaveWriteEvent</name>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <param>
@@ -50,50 +50,50 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="455">
+      <node id="771">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="456" relation="public-inheritance">
+        <childnode refid="772" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="456">
+      <node id="772">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="454">
+      <node id="770">
         <label>OSSaveFileEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event"/>
-        <childnode refid="455" relation="public-inheritance">
+        <childnode refid="771" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="453">
+      <node id="769">
         <label>Pathfinder.Event.OSSaveWriteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_save_write_event"/>
-        <childnode refid="454" relation="public-inheritance">
+        <childnode refid="770" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="459">
+      <node id="775">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="460" relation="public-inheritance">
+        <childnode refid="776" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="460">
+      <node id="776">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="458">
+      <node id="774">
         <label>OSSaveFileEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event"/>
-        <childnode refid="459" relation="public-inheritance">
+        <childnode refid="775" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="457">
+      <node id="773">
         <label>Pathfinder.Event.OSSaveWriteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_save_write_event"/>
-        <childnode refid="458" relation="public-inheritance">
+        <childnode refid="774" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

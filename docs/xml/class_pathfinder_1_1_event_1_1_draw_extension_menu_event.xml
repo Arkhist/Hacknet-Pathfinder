@@ -5,7 +5,7 @@
     <basecompoundref refid="class_pathfinder_1_1_event_1_1_extension_menu_event" prot="public" virt="non-virtual">Pathfinder.Event.ExtensionMenuEvent</basecompoundref>
       <sectiondef kind="property">
       <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_draw_extension_menu_event_1ae3824441cccedf344c8e2aa852c51926" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
-        <type>ScreenManager</type>
+        <type><ref refid="class_hacknet_1_1_screen_manager" kindref="compound">ScreenManager</ref></type>
         <definition>ScreenManager Pathfinder.Event.DrawExtensionMenuEvent.ScreenManager</definition>
         <argsstring></argsstring>
         <name>ScreenManager</name>
@@ -37,7 +37,7 @@
           <declname>sprite</declname>
         </param>
         <param>
-          <type><ref refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_event_1ae3824441cccedf344c8e2aa852c51926" kindref="member">ScreenManager</ref></type>
+          <type><ref refid="class_hacknet_1_1_screen_manager" kindref="compound">ScreenManager</ref></type>
           <declname>manager</declname>
         </param>
         <param>
@@ -58,38 +58,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="100">
+      <node id="204">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="98">
+      <node id="202">
         <label>Pathfinder.Event.DrawExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_event"/>
-        <childnode refid="99" relation="public-inheritance">
+        <childnode refid="203" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="99">
+      <node id="203">
         <label>ExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_extension_menu_event"/>
-        <childnode refid="100" relation="public-inheritance">
+        <childnode refid="204" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="103">
+      <node id="207">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="101">
+      <node id="205">
         <label>Pathfinder.Event.DrawExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_event"/>
-        <childnode refid="102" relation="public-inheritance">
+        <childnode refid="206" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="102">
+      <node id="206">
         <label>ExtensionMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_extension_menu_event"/>
-        <childnode refid="103" relation="public-inheritance">
+        <childnode refid="207" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

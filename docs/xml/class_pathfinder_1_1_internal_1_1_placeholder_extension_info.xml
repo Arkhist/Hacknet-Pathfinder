@@ -27,24 +27,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="513">
+      <node id="829">
         <label>Pathfinder.Internal.PlaceholderExtensionInfo</label>
         <link refid="class_pathfinder_1_1_internal_1_1_placeholder_extension_info"/>
-        <childnode refid="514" relation="public-inheritance">
+        <childnode refid="830" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="514">
+      <node id="830">
         <label>ExtensionInfo</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="515">
+      <node id="831">
         <label>Pathfinder.Internal.PlaceholderExtensionInfo</label>
         <link refid="class_pathfinder_1_1_internal_1_1_placeholder_extension_info"/>
-        <childnode refid="516" relation="public-inheritance">
+        <childnode refid="832" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="516">
+      <node id="832">
         <label>ExtensionInfo</label>
       </node>
     </collaborationgraph>

@@ -1,0 +1,447 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_notes_exe" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::NotesExe</compoundname>
+    <basecompoundref refid="class_hacknet_1_1_exe_module" prot="public" virt="non-virtual">Hacknet.ExeModule</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_notes_exe_1a6cdeadd670e9e758fb67021c805dcd6c" prot="public" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string Hacknet.NotesExe.NotesReopenOnLoadFile</definition>
+        <argsstring></argsstring>
+        <name>NotesReopenOnLoadFile</name>
+        <initializer>= &quot;Notes_Reopener.bat&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="613" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="613" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_notes_exe_1af365ad4a478da995062de53cfa51213e" prot="public" static="no" mutable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; Hacknet.NotesExe.notes</definition>
+        <argsstring></argsstring>
+        <name>notes</name>
+        <initializer>= new List&lt;string&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="615" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="615" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_notes_exe_1a1bb0a5ff5ae2d64765478796fe01468d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.NotesExe.MemoryWarningFlashTime</definition>
+        <argsstring></argsstring>
+        <name>MemoryWarningFlashTime</name>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="616" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="616" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hacknet_1_1_notes_exe_1a4051969f149c1a15c8fc7eb14e58b378" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Hacknet.NotesExe.NotesExe</definition>
+        <argsstring>(Rectangle location, OS operatingSystem)</argsstring>
+        <name>NotesExe</name>
+        <param>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
+          <declname>operatingSystem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="618" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_notes_exe_1a46c470f2b950926a25df58fce6ae78eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.NotesExe.AddNote</definition>
+        <argsstring>(string note)</argsstring>
+        <name>AddNote</name>
+        <param>
+          <type>string</type>
+          <declname>note</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="623" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_notes_exe_1a0af33b506d04c3c42bfbe68f6816b6ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.NotesExe.DisplayOutOfMemoryWarning</definition>
+        <argsstring>()</argsstring>
+        <name>DisplayOutOfMemoryWarning</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="624" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_notes_exe_1acf1411d57838740cecc73d31f1a8d331" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.NotesExe.Draw</definition>
+        <argsstring>(float t)</argsstring>
+        <name>Draw</name>
+        <reimplements refid="class_hacknet_1_1_exe_module_1ae148ec4dbf999194dc74352c940b196b">Draw</reimplements>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="625" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_notes_exe_1a8c174f99886e3e0e4ec62b617acb0c43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Hacknet.NotesExe.HasNote</definition>
+        <argsstring>(string note)</argsstring>
+        <name>HasNote</name>
+        <param>
+          <type>string</type>
+          <declname>note</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="626" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_notes_exe_1ab02bd3f11cd790c1457979e88b27a240" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.NotesExe.Killed</definition>
+        <argsstring>()</argsstring>
+        <name>Killed</name>
+        <reimplements refid="class_hacknet_1_1_exe_module_1a997512a1c133e9ac7c9aa39b8fc95a9b">Killed</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="627" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_notes_exe_1ab05f1a95777cd619f38f7039b95fdfcc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.NotesExe.LoadContent</definition>
+        <argsstring>()</argsstring>
+        <name>LoadContent</name>
+        <reimplements refid="class_hacknet_1_1_exe_module_1a7d886f52efad875f68cd6f8c40f1254e">LoadContent</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="628" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_notes_exe_1af09b0f530dfdfb42466151400bd65e4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.NotesExe.Update</definition>
+        <argsstring>(float t)</argsstring>
+        <name>Update</name>
+        <reimplements refid="class_hacknet_1_1_exe_module_1adc43019f5eb1d89610e13c5f08977f45">Update</reimplements>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="629" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hacknet_1_1_notes_exe_1a821bf167a23b1eb3286ca6099507f8b0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.NotesExe.AddNoteToOS</definition>
+        <argsstring>(string note, OS os, bool isRecursiveSelfAdd=false)</argsstring>
+        <name>AddNoteToOS</name>
+        <param>
+          <type>string</type>
+          <declname>note</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isRecursiveSelfAdd</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="620" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_notes_exe_1a9d6853bd3464082e9b685676b25a03fa" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Hacknet.NotesExe.NoteExists</definition>
+        <argsstring>(string note, OS os)</argsstring>
+        <name>NoteExists</name>
+        <param>
+          <type>string</type>
+          <declname>note</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="621" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="663">
+        <label>Module</label>
+        <link refid="class_hacknet_1_1_module"/>
+      </node>
+      <node id="662">
+        <label>ExeModule</label>
+        <link refid="class_hacknet_1_1_exe_module"/>
+        <childnode refid="663" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="661">
+        <label>Hacknet.NotesExe</label>
+        <link refid="class_hacknet_1_1_notes_exe"/>
+        <childnode refid="662" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="681">
+        <label>Framework</label>
+      </node>
+      <node id="672">
+        <label>Hacknet.DisplayModule</label>
+        <link refid="class_hacknet_1_1_display_module"/>
+        <childnode refid="670" relation="public-inheritance">
+        </childnode>
+        <childnode refid="673" relation="usage">
+          <edgelabel>LastDisplayedFileFolder</edgelabel>
+        </childnode>
+      </node>
+      <node id="677">
+        <label>Hacknet.Computer</label>
+        <link refid="class_hacknet_1_1_computer"/>
+        <childnode refid="678" relation="usage">
+          <edgelabel>reportingShell</edgelabel>
+        </childnode>
+        <childnode refid="679" relation="usage">
+          <edgelabel>files</edgelabel>
+        </childnode>
+        <childnode refid="680" relation="usage">
+          <edgelabel>firewall</edgelabel>
+        </childnode>
+      </node>
+      <node id="668">
+        <label>GameScreen</label>
+        <link refid="class_hacknet_1_1_game_screen"/>
+      </node>
+      <node id="666">
+        <label>Module</label>
+        <link refid="class_hacknet_1_1_module"/>
+        <childnode refid="667" relation="usage">
+          <edgelabel>os</edgelabel>
+        </childnode>
+        <childnode refid="681" relation="usage">
+          <edgelabel>bounds</edgelabel>
+        </childnode>
+      </node>
+      <node id="670">
+        <label>CoreModule</label>
+        <link refid="class_hacknet_1_1_core_module"/>
+        <childnode refid="666" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="665">
+        <label>ExeModule</label>
+        <link refid="class_hacknet_1_1_exe_module"/>
+        <childnode refid="666" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="664">
+        <label>Hacknet.NotesExe</label>
+        <link refid="class_hacknet_1_1_notes_exe"/>
+        <childnode refid="665" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="676">
+        <label>Hacknet.NetworkMap</label>
+        <link refid="class_hacknet_1_1_network_map"/>
+        <childnode refid="670" relation="public-inheritance">
+        </childnode>
+        <childnode refid="677" relation="usage">
+          <edgelabel>mailServer</edgelabel>
+          <edgelabel>academicDatabase</edgelabel>
+          <edgelabel>lastAddedNode</edgelabel>
+        </childnode>
+      </node>
+      <node id="678">
+        <label>Hacknet.ShellExe</label>
+        <link refid="class_hacknet_1_1_shell_exe"/>
+        <childnode refid="665" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="680">
+        <label>Hacknet.Firewall</label>
+        <link refid="class_hacknet_1_1_firewall"/>
+      </node>
+      <node id="679">
+        <label>Hacknet.FileSystem</label>
+        <link refid="class_hacknet_1_1_file_system"/>
+        <childnode refid="673" relation="usage">
+          <edgelabel>root</edgelabel>
+        </childnode>
+      </node>
+      <node id="675">
+        <label>Hacknet.Terminal</label>
+        <link refid="class_hacknet_1_1_terminal"/>
+        <childnode refid="670" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="671">
+        <label>Hacknet.CrashModule</label>
+        <link refid="class_hacknet_1_1_crash_module"/>
+        <childnode refid="666" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="674">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="667">
+        <label>Hacknet.OS</label>
+        <link refid="class_hacknet_1_1_o_s"/>
+        <childnode refid="668" relation="public-inheritance">
+        </childnode>
+        <childnode refid="669" relation="usage">
+          <edgelabel>ram</edgelabel>
+        </childnode>
+        <childnode refid="671" relation="usage">
+          <edgelabel>crashModule</edgelabel>
+        </childnode>
+        <childnode refid="672" relation="usage">
+          <edgelabel>display</edgelabel>
+        </childnode>
+        <childnode refid="675" relation="usage">
+          <edgelabel>terminal</edgelabel>
+        </childnode>
+        <childnode refid="676" relation="usage">
+          <edgelabel>netMap</edgelabel>
+        </childnode>
+        <childnode refid="677" relation="usage">
+          <edgelabel>opponentComputer</edgelabel>
+          <edgelabel>connectedComp</edgelabel>
+          <edgelabel>thisComputer</edgelabel>
+        </childnode>
+        <childnode refid="681" relation="usage">
+          <edgelabel>fullscreen</edgelabel>
+        </childnode>
+        <childnode refid="667" relation="usage">
+          <edgelabel>currentInstance</edgelabel>
+        </childnode>
+      </node>
+      <node id="673">
+        <label>Hacknet.Folder</label>
+        <link refid="class_hacknet_1_1_folder"/>
+        <childnode refid="674" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="669">
+        <label>Hacknet.RamModule</label>
+        <link refid="class_hacknet_1_1_ram_module"/>
+        <childnode refid="670" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="612" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="611" bodyend="630"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_notes_exe_1a46c470f2b950926a25df58fce6ae78eb" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>AddNote</name></member>
+      <member refid="class_hacknet_1_1_notes_exe_1a821bf167a23b1eb3286ca6099507f8b0" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>AddNoteToOS</name></member>
+      <member refid="class_hacknet_1_1_module_1a9f5568515780ca1149d57051fc2f7c77" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>bounds</name></member>
+      <member refid="class_hacknet_1_1_module_1a5ea045ba822711fc59f9e10766955f73" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>Bounds</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1a5b7777dd8cf3512077fa0358278c70fd" prot="public" virt="virtual"><scope>Hacknet::NotesExe</scope><name>Completed</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1a9fd73b9a3cd40f4b950db981fd115840" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>DEFAULT_RAM_COST</name></member>
+      <member refid="class_hacknet_1_1_notes_exe_1a0af33b506d04c3c42bfbe68f6816b6ad" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>DisplayOutOfMemoryWarning</name></member>
+      <member refid="class_hacknet_1_1_notes_exe_1acf1411d57838740cecc73d31f1a8d331" prot="public" virt="virtual"><scope>Hacknet::NotesExe</scope><name>Draw</name></member>
+      <member refid="class_hacknet_1_1_module_1a61074e32ce3d681fb28e41c71a92889d" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>drawFrame</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1a85270ff54093d53a1e24530d6c164752" prot="public" virt="virtual"><scope>Hacknet::NotesExe</scope><name>drawOutline</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1ab47727c8cb794fef3195cf71860d5ba4" prot="public" virt="virtual"><scope>Hacknet::NotesExe</scope><name>drawTarget</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1a8256db4fddc33a9122b84414dad774b9" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>ExeModule</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1a7d216de66934ba4ac989a43306af8bf6" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>fade</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1aa98145eac71b6b1a857890ced3be37ae" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>FADEOUT_RATE</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1a9fab5164d6924f477284a8b9a04619dd" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>GetContentAreaDest</name></member>
+      <member refid="class_hacknet_1_1_notes_exe_1a8c174f99886e3e0e4ec62b617acb0c43" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>HasNote</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1a59495e5f21fbce1326c6500839334c87" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>IdentifierName</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1a69312204fea00aa36b5dd54232538be1" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>isExiting</name></member>
+      <member refid="class_hacknet_1_1_notes_exe_1ab02bd3f11cd790c1457979e88b27a240" prot="public" virt="virtual"><scope>Hacknet::NotesExe</scope><name>Killed</name></member>
+      <member refid="class_hacknet_1_1_notes_exe_1ab05f1a95777cd619f38f7039b95fdfcc" prot="public" virt="virtual"><scope>Hacknet::NotesExe</scope><name>LoadContent</name></member>
+      <member refid="class_hacknet_1_1_notes_exe_1a1bb0a5ff5ae2d64765478796fe01468d" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>MemoryWarningFlashTime</name></member>
+      <member refid="class_hacknet_1_1_module_1aac9b4cea405a9ba9e385e1107de7c507" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>Module</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1a6f3d07bd0fbcb02dbedb8aea2f1c7fb4" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>MOVE_UP_RATE</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1a5d5d31291ff1ebef2bfad1f81e4175cb" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>moveUpBy</name></member>
+      <member refid="class_hacknet_1_1_module_1ac87b80233cd3d601009c98d29b926b9f" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>name</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1a916426afc7d31e68349f8ef88a722460" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>needsProxyAccess</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1a0bf5baf042d709f8c5c7a9eb867dbf21" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>needsRemoval</name></member>
+      <member refid="class_hacknet_1_1_notes_exe_1a9d6853bd3464082e9b685676b25a03fa" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>NoteExists</name></member>
+      <member refid="class_hacknet_1_1_notes_exe_1af365ad4a478da995062de53cfa51213e" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>notes</name></member>
+      <member refid="class_hacknet_1_1_notes_exe_1a4051969f149c1a15c8fc7eb14e58b378" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>NotesExe</name></member>
+      <member refid="class_hacknet_1_1_notes_exe_1a6cdeadd670e9e758fb67021c805dcd6c" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>NotesReopenOnLoadFile</name></member>
+      <member refid="class_hacknet_1_1_module_1a5f28f2631470430dfc7ce75e3a1ceaed" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>os</name></member>
+      <member refid="class_hacknet_1_1_module_1a7cf1a874d7c2ab76e6ed26471cfaa556" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>PANEL_HEIGHT</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1afa87f94ebcf42ed93a057932f8062cc4" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>PID</name></member>
+      <member refid="class_hacknet_1_1_module_1a2ba662bf701f926f5635e4125a3fb088" prot="public" virt="virtual"><scope>Hacknet::NotesExe</scope><name>PostDrawStep</name></member>
+      <member refid="class_hacknet_1_1_module_1ac59d8e2d982af379d6ea413cbbd235d5" prot="public" virt="virtual"><scope>Hacknet::NotesExe</scope><name>PreDrawStep</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1aada61bfc8f6e0393926d0c0b6801492e" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>ramCost</name></member>
+      <member refid="class_hacknet_1_1_module_1a3c22224a83a15603c5f6bfbb778613b2" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>spriteBatch</name></member>
+      <member refid="class_hacknet_1_1_exe_module_1aee9ce20e5e0265ae4dcf562e50eeaed0" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>targetIP</name></member>
+      <member refid="class_hacknet_1_1_notes_exe_1af09b0f530dfdfb42466151400bd65e4d" prot="public" virt="virtual"><scope>Hacknet::NotesExe</scope><name>Update</name></member>
+      <member refid="class_hacknet_1_1_module_1ad92e134fd646691737cc24aa434a336f" prot="public" virt="non-virtual"><scope>Hacknet::NotesExe</scope><name>visible</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

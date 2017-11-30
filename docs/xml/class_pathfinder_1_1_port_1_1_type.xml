@@ -73,7 +73,7 @@
         <argsstring>(Hacknet.Computer c, bool unlocked=false)</argsstring>
         <name>AssignTo</name>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>c</declname>
         </param>
         <param>
@@ -95,7 +95,7 @@
         <argsstring>(Hacknet.Computer c)</argsstring>
         <name>RemoveFrom</name>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>c</declname>
         </param>
         <briefdescription>
@@ -112,7 +112,7 @@
         <argsstring>(Hacknet.Computer c)</argsstring>
         <name>GetWithin</name>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>c</declname>
         </param>
         <briefdescription>
@@ -195,34 +195,34 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="540">
+      <node id="949">
         <label>IEquatable&lt; Type &gt;</label>
       </node>
-      <node id="541">
+      <node id="950">
         <label>IEquatable&lt; Instance &gt;</label>
       </node>
-      <node id="539">
+      <node id="948">
         <label>Pathfinder.Port.Type</label>
         <link refid="class_pathfinder_1_1_port_1_1_type"/>
-        <childnode refid="540" relation="public-inheritance">
+        <childnode refid="949" relation="public-inheritance">
         </childnode>
-        <childnode refid="541" relation="public-inheritance">
+        <childnode refid="950" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="543">
+      <node id="952">
         <label>IEquatable&lt; Type &gt;</label>
       </node>
-      <node id="544">
+      <node id="953">
         <label>IEquatable&lt; Instance &gt;</label>
       </node>
-      <node id="542">
+      <node id="951">
         <label>Pathfinder.Port.Type</label>
         <link refid="class_pathfinder_1_1_port_1_1_type"/>
-        <childnode refid="543" relation="public-inheritance">
+        <childnode refid="952" relation="public-inheritance">
         </childnode>
-        <childnode refid="544" relation="public-inheritance">
+        <childnode refid="953" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

@@ -38,7 +38,7 @@
         <argsstring>(Hacknet.OS os, XmlReader xmlReader, Stream stream)</argsstring>
         <name>OSLoadSaveFileEvent</name>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <param>
@@ -63,38 +63,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="435">
+      <node id="751">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="436" relation="public-inheritance">
+        <childnode refid="752" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="436">
+      <node id="752">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="434">
+      <node id="750">
         <label>Pathfinder.Event.OSLoadSaveFileEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event"/>
-        <childnode refid="435" relation="public-inheritance">
+        <childnode refid="751" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="438">
+      <node id="754">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="439" relation="public-inheritance">
+        <childnode refid="755" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="439">
+      <node id="755">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="437">
+      <node id="753">
         <label>Pathfinder.Event.OSLoadSaveFileEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event"/>
-        <childnode refid="438" relation="public-inheritance">
+        <childnode refid="754" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

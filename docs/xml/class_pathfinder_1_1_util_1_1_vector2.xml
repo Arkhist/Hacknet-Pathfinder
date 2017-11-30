@@ -88,37 +88,37 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="557">
+      <node id="982">
         <label>Pathfinder::Util::Vector3&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector3"/>
-        <childnode refid="555" relation="public-inheritance">
+        <childnode refid="980" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="558">
+      <node id="983">
         <label>Pathfinder::Util::Vector4&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector4"/>
-        <childnode refid="557" relation="public-inheritance">
+        <childnode refid="982" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="555">
+      <node id="980">
         <label>Pathfinder.Util.Vector2&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector2"/>
-        <childnode refid="556" relation="public-inheritance">
+        <childnode refid="981" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="556">
+      <node id="981">
         <label>Vector1&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector1"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="559">
+      <node id="984">
         <label>Pathfinder.Util.Vector2&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector2"/>
-        <childnode refid="560" relation="public-inheritance">
+        <childnode refid="985" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="560">
+      <node id="985">
         <label>Vector1&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector1"/>
       </node>

@@ -6,5 +6,6 @@ var class_pathfinder_1_1_internal_1_1_handler_listener =
     [ "OptionsMenuApplyListener", "class_pathfinder_1_1_internal_1_1_handler_listener.html#a062d22345c3faace36a6c3d58a532c94", null ],
     [ "OptionsMenuDrawListener", "class_pathfinder_1_1_internal_1_1_handler_listener.html#a18beaf7ef23f577071fe1c9bda3939f7", null ],
     [ "OptionsMenuLoadContentListener", "class_pathfinder_1_1_internal_1_1_handler_listener.html#a1ae211d77cc876ccdd46ad35056ae805", null ],
-    [ "OptionsMenuUpdateListener", "class_pathfinder_1_1_internal_1_1_handler_listener.html#ac9ddcb5bb61ca91697c74fa88c9704d4", null ]
+    [ "OptionsMenuUpdateListener", "class_pathfinder_1_1_internal_1_1_handler_listener.html#ac9ddcb5bb61ca91697c74fa88c9704d4", null ],
+    [ "UpdateDisplayModes", "class_pathfinder_1_1_internal_1_1_handler_listener.html#afc6c1eb0e6f9f03099bea8dfce9c1091", null ]
 ];

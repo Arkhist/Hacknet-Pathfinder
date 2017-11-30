@@ -349,10 +349,10 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="199">
+      <node id="339">
         <label>Pathfinder.GameFilesystem.FilePath</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_path"/>
-        <childnode refid="199" relation="usage">
+        <childnode refid="339" relation="usage">
           <edgelabel>Root</edgelabel>
           <edgelabel>Filename</edgelabel>
           <edgelabel>Stem</edgelabel>

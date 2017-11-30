@@ -118,10 +118,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:af88edc34911fdbe8a285bf7eb972c1a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Extended conversion utilities to convert any type to any other type provided the conversion is valid. </p>
-
-<p class="definition">Definition at line <a class="el" href="_convert_any_8cs_source.html#l00011">11</a> of file <a class="el" href="_convert_any_8cs_source.html">ConvertAny.cs</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<div class="textblock"></div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ac26e564a913833a7ae292cbd6f479ef5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac26e564a913833a7ae292cbd6f479ef5">&#9670;&nbsp;</a></span>CanConvert()</h2>
 
@@ -155,8 +152,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Determines whether this instance can convert the specified <em>fromType</em>  to the <em>toType</em> . </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fromType</td><td>From type.</td></tr>
@@ -172,8 +167,6 @@ Static Public Member Functions</h2></td></tr>
 <li>If the toType is part of the inheritance chain of fromType.</li>
 <li>Direct casting, only returns true if both types have default constructors. </li>
 </ol>
-
-<p class="definition">Definition at line <a class="el" href="_convert_any_8cs_source.html#l00104">104</a> of file <a class="el" href="_convert_any_8cs_source.html">ConvertAny.cs</a>.</p>
 
 </div>
 </div>
@@ -200,8 +193,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Determines whether this instance can convert the specified value. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">ToType</td><td>The type of to type.</td></tr>
@@ -215,8 +206,6 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if this instance can convert the specified from value; otherwise, <code>false</code>.</dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_convert_any_8cs_source.html#l00046">46</a> of file <a class="el" href="_convert_any_8cs_source.html">ConvertAny.cs</a>.</p>
 
 </div>
 </div>
@@ -243,8 +232,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Converts the specified from value. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">ToType</td><td>The type to convert to.</td></tr>
@@ -264,8 +251,6 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="_convert_any_8cs_source.html#l00200">200</a> of file <a class="el" href="_convert_any_8cs_source.html">ConvertAny.cs</a>.</p>
 
 </div>
 </div>
@@ -302,8 +287,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Converts value to the specified type. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fromValue</td><td>The value to convert.</td></tr>
@@ -312,8 +295,6 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Object that represents the converted type.</dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_convert_any_8cs_source.html#l00221">221</a> of file <a class="el" href="_convert_any_8cs_source.html">ConvertAny.cs</a>.</p>
 
 </div>
 </div>
@@ -339,8 +320,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Creates a default instance of <em>T</em>  </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>Type to create a default instance of.</td></tr>
@@ -349,8 +328,6 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Default instance of <em>T</em> .</dd></dl>
 <p>For primitive types this will create a value of 0 with the specified type. For objects, if the object has a default constructor it will return a default instance of the type. If the object does not have a default constructor, it will return null. </p>
-
-<p class="definition">Definition at line <a class="el" href="_convert_any_8cs_source.html#l00248">248</a> of file <a class="el" href="_convert_any_8cs_source.html">ConvertAny.cs</a>.</p>
 
 </div>
 </div>
@@ -377,8 +354,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Creates a default instance of <em>type</em> . </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>The type.</td></tr>
@@ -387,8 +362,6 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Instance of the specified type.</dd></dl>
 <p>This method uses the generic Default method to create an instance of the type. </p>
-
-<p class="definition">Definition at line <a class="el" href="_convert_any_8cs_source.html#l00271">271</a> of file <a class="el" href="_convert_any_8cs_source.html">ConvertAny.cs</a>.</p>
 
 </div>
 </div>
@@ -425,8 +398,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Attempts to convert the value to the specified type. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">ToType</td><td>The type to convert to.</td></tr>
@@ -443,12 +414,10 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if conversion succeeds, <code>false</code> otherwise.</dd></dl>
 <p>If the conversion fails, the value of <em>toValue</em>  is the default of that particular type. </p>
 
-<p class="definition">Definition at line <a class="el" href="_convert_any_8cs_source.html#l00163">163</a> of file <a class="el" href="_convert_any_8cs_source.html">ConvertAny.cs</a>.</p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Pathfinder/Util/<a class="el" href="_convert_any_8cs_source.html">ConvertAny.cs</a></li>
+<li>Pathfinder/Util/<a class="el" href="_convert_any_8cs.html">ConvertAny.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

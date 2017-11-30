@@ -3,6 +3,20 @@
   <compounddef id="class_pathfinder_1_1_internal_1_1_handler_listener" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Internal::HandlerListener</compoundname>
       <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_pathfinder_1_1_internal_1_1_handler_listener_1a349471c3924f345c1e6c84fa0aa25132" prot="private" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool Pathfinder.Internal.HandlerListener.updateDisplayMode</definition>
+        <argsstring></argsstring>
+        <name>updateDisplayMode</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/HandlerListener.cs" line="89" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="89" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_internal_1_1_handler_listener_1ad7cf9653de3813a80af6403dd8898776" prot="private" static="yes" mutable="no">
         <type>string</type>
         <definition>string Pathfinder.Internal.HandlerListener.selected</definition>
@@ -14,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/HandlerListener.cs" line="79" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="79" bodyend="-1"/>
+        <location file="Pathfinder/Internal/HandlerListener.cs" line="104" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="104" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -69,6 +83,23 @@
         </inbodydescription>
         <location file="Pathfinder/Internal/HandlerListener.cs" line="46" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="46" bodyend="59"/>
       </memberdef>
+      <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_handler_listener_1afc6c1eb0e6f9f03099bea8dfce9c1091" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pathfinder.Internal.HandlerListener.UpdateDisplayModes</definition>
+        <argsstring>(OptionsMenu m)</argsstring>
+        <name>UpdateDisplayModes</name>
+        <param>
+          <type>OptionsMenu</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Internal/HandlerListener.cs" line="61" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="61" bodyend="74"/>
+      </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_handler_listener_1a1ae211d77cc876ccdd46ad35056ae805" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void Pathfinder.Internal.HandlerListener.OptionsMenuLoadContentListener</definition>
@@ -84,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/HandlerListener.cs" line="61" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="61" bodyend="65"/>
+        <location file="Pathfinder/Internal/HandlerListener.cs" line="76" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="76" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_handler_listener_1a062d22345c3faace36a6c3d58a532c94" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -101,7 +132,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/HandlerListener.cs" line="67" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="67" bodyend="71"/>
+        <location file="Pathfinder/Internal/HandlerListener.cs" line="83" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="83" bodyend="87"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_handler_listener_1ac9ddcb5bb61ca91697c74fa88c9704d4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -118,7 +149,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/HandlerListener.cs" line="73" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="73" bodyend="77"/>
+        <location file="Pathfinder/Internal/HandlerListener.cs" line="90" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="90" bodyend="102"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_internal_1_1_handler_listener_1a18beaf7ef23f577071fe1c9bda3939f7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -135,14 +166,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Internal/HandlerListener.cs" line="80" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="80" bodyend="85"/>
+        <location file="Pathfinder/Internal/HandlerListener.cs" line="105" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="105" bodyend="110"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Internal/HandlerListener.cs" line="12" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="11" bodyend="86"/>
+    <location file="Pathfinder/Internal/HandlerListener.cs" line="12" column="1" bodyfile="Pathfinder/Internal/HandlerListener.cs" bodystart="11" bodyend="111"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_internal_1_1_handler_listener_1ad4649376655a04765d6cd78e89f53e30" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::HandlerListener</scope><name>CommandListener</name></member>
       <member refid="class_pathfinder_1_1_internal_1_1_handler_listener_1aa2904ab36ea7d4ff518c6d5d2b6d6b86" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::HandlerListener</scope><name>DaemonLoadListener</name></member>
@@ -152,6 +183,8 @@
       <member refid="class_pathfinder_1_1_internal_1_1_handler_listener_1a1ae211d77cc876ccdd46ad35056ae805" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::HandlerListener</scope><name>OptionsMenuLoadContentListener</name></member>
       <member refid="class_pathfinder_1_1_internal_1_1_handler_listener_1ac9ddcb5bb61ca91697c74fa88c9704d4" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::HandlerListener</scope><name>OptionsMenuUpdateListener</name></member>
       <member refid="class_pathfinder_1_1_internal_1_1_handler_listener_1ad7cf9653de3813a80af6403dd8898776" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::HandlerListener</scope><name>selected</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_handler_listener_1a349471c3924f345c1e6c84fa0aa25132" prot="private" virt="non-virtual"><scope>Pathfinder::Internal::HandlerListener</scope><name>updateDisplayMode</name></member>
+      <member refid="class_pathfinder_1_1_internal_1_1_handler_listener_1afc6c1eb0e6f9f03099bea8dfce9c1091" prot="public" virt="non-virtual"><scope>Pathfinder::Internal::HandlerListener</scope><name>UpdateDisplayModes</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,7 +1,20 @@
 var searchData=
 [
-  ['loadedmodidentifiers',['LoadedModIdentifiers',['../class_pathfinder_1_1_pathfinder.html#acf68e7c2fc870dbd0700c287f99ba819',1,'Pathfinder::Pathfinder']]],
-  ['loadedmodids',['LoadedModIds',['../class_pathfinder_1_1_mod_manager_1_1_manager.html#a6744573f0f7da45214e4cb668d122f45',1,'Pathfinder::ModManager::Manager']]],
-  ['loadedmods',['LoadedMods',['../class_pathfinder_1_1_mod_manager_1_1_manager.html#ab570dccdb7f6d4a1fb494cc02b274371',1,'Pathfinder::ModManager::Manager']]],
-  ['loghistory',['LogHistory',['../class_pathfinder_1_1_util_1_1_logger.html#aa5a0d9741bde195c6c7e8c38717c1072',1,'Pathfinder::Util::Logger']]]
+  ['haltoffset',['HaltOffset',['../class_pathfinder_1_1_util_1_1_utility.html#a080150d60f2ae63ddca5f21784f681e0',1,'Pathfinder::Util::Utility']]],
+  ['hasexitedandended',['HasExitedAndEnded',['../class_hacknet_1_1_o_s.html#a2cd7f6c6ba622e5eec0f1e6521c8c518',1,'Hacknet::OS']]],
+  ['haslabyrinthsdemostartmainmenubutton',['HasLabyrinthsDemoStartMainMenuButton',['../class_hacknet_1_1_settings.html#a101ed07a2812eeb34cbc5474690b8795',1,'Hacknet::Settings']]],
+  ['hasloadeddlccontent',['HasLoadedDLCContent',['../class_hacknet_1_1_o_s.html#a51b1d9209fb276ad202e6602db4b8840',1,'Hacknet::OS']]],
+  ['hasproxy',['hasProxy',['../class_hacknet_1_1_computer.html#a423981fcb8aafc8266d59a977e9bc304',1,'Hacknet::Computer']]],
+  ['hastracker',['HasTracker',['../class_hacknet_1_1_computer.html#ac0991d84c1fda9d4ad23a92cc03cf2ef',1,'Hacknet::Computer']]],
+  ['head',['Head',['../class_pathfinder_1_1_game_filesystem_1_1_file.html#a54081accd395035618e372cbe43fbb81',1,'Pathfinder::GameFilesystem::File']]],
+  ['help',['help',['../class_hacknet_1_1_helpfile.html#af53a69e2934b6ff8f1a1afa33229694f',1,'Hacknet::Helpfile']]],
+  ['helpcount',['HelpCount',['../class_pathfinder_1_1_command_1_1_help.html#aaf2e891b0f764a37051f91a65d4a9a96',1,'Pathfinder::Command::Help']]],
+  ['highlightcolor',['highlightColor',['../class_hacknet_1_1_o_s.html#a0950948d2167a831830b9392b3382d8d',1,'Hacknet::OS']]],
+  ['highlightflashtime',['highlightFlashTime',['../class_hacknet_1_1_computer.html#a7a3ff6f4442bad9ec0a8c80ef9c9d151',1,'Hacknet::Computer']]],
+  ['home',['HOME',['../class_hacknet_1_1_computer.html#a49f8711ffd02fea8847901b7faffb1e4',1,'Hacknet::Computer']]],
+  ['homeassetserverid',['homeAssetServerID',['../class_hacknet_1_1_o_s.html#a552d43617fa54707c150fbb55af96680',1,'Hacknet::OS']]],
+  ['homenodeid',['homeNodeID',['../class_hacknet_1_1_o_s.html#a391a753d7efa1bbdf309d2997e944e53',1,'Hacknet::OS']]],
+  ['hot',['hot',['../class_hacknet_1_1_gui_data.html#a91f91a0da3a948c6b3dcb5c3acd8e2ca',1,'Hacknet::GuiData']]],
+  ['hubserveralertsicon',['hubServerAlertsIcon',['../class_hacknet_1_1_o_s.html#a85c1b7e0dc47eda4318f55a612a6ea3e',1,'Hacknet::OS']]],
+  ['hugefont',['hugeFont',['../class_hacknet_1_1_screen_manager.html#a93c4b51045abd38d39f7d76a1e2ec652',1,'Hacknet::ScreenManager']]]
 ];

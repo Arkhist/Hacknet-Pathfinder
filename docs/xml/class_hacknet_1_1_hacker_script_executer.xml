@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_hacker_script_executer" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::HackerScriptExecuter</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_hacker_script_executer_1a6fc093432506fc785ff9af0e77d1dd89" prot="public" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string Hacknet.HackerScriptExecuter.splitDelimiter</definition>
+        <argsstring></argsstring>
+        <name>splitDelimiter</name>
+        <initializer>= &quot; $#%#$\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1042" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="1042" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hacknet_1_1_hacker_script_executer_1aabf9470fc4a272bf6e80fc0c31614ab9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.HackerScriptExecuter.runScript</definition>
+        <argsstring>(string scriptName, object os, string sourceCompReplacer=null, string targetCompReplacer=null)</argsstring>
+        <name>runScript</name>
+        <param>
+          <type>string</type>
+          <declname>scriptName</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>sourceCompReplacer</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>targetCompReplacer</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1044" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="1041" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="1040" bodyend="1045"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_hacker_script_executer_1aabf9470fc4a272bf6e80fc0c31614ab9" prot="public" virt="non-virtual"><scope>Hacknet::HackerScriptExecuter</scope><name>runScript</name></member>
+      <member refid="class_hacknet_1_1_hacker_script_executer_1a6fc093432506fc785ff9af0e77d1dd89" prot="public" virt="non-virtual"><scope>Hacknet::HackerScriptExecuter</scope><name>splitDelimiter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/JsonObject.cs" line="8" column="1" bodyfile="Pathfinder/Util/JsonObject.cs" bodystart="8" bodyend="-1"/>
+        <location file="Pathfinder/Util/JsonObject.cs" line="7" column="1" bodyfile="Pathfinder/Util/JsonObject.cs" bodystart="7" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_json_object_1a5062bc1d7a61ceeac54acdb4f82c0356" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/JsonObject.cs" line="9" column="1" bodyfile="Pathfinder/Util/JsonObject.cs" bodystart="9" bodyend="-1"/>
+        <location file="Pathfinder/Util/JsonObject.cs" line="8" column="1" bodyfile="Pathfinder/Util/JsonObject.cs" bodystart="8" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_json_object_1aec73a345ae6e7a3e07ed7596871bd31d" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/JsonObject.cs" line="10" column="1" bodyfile="Pathfinder/Util/JsonObject.cs" bodystart="10" bodyend="-1"/>
+        <location file="Pathfinder/Util/JsonObject.cs" line="9" column="1" bodyfile="Pathfinder/Util/JsonObject.cs" bodystart="9" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/JsonObject.cs" line="12" column="1" bodyfile="Pathfinder/Util/JsonObject.cs" bodystart="12" bodyend="22"/>
+        <location file="Pathfinder/Util/JsonObject.cs" line="11" column="1" bodyfile="Pathfinder/Util/JsonObject.cs" bodystart="11" bodyend="21"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -74,14 +74,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/JsonObject.cs" line="24" column="1" bodyfile="Pathfinder/Util/JsonObject.cs" bodystart="24" bodyend="24"/>
+        <location file="Pathfinder/Util/JsonObject.cs" line="23" column="1" bodyfile="Pathfinder/Util/JsonObject.cs" bodystart="23" bodyend="23"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="Pathfinder/Util/JsonObject.cs" line="7" column="1" bodyfile="Pathfinder/Util/JsonObject.cs" bodystart="6" bodyend="271"/>
+    <location file="Pathfinder/Util/JsonObject.cs" line="6" column="1" bodyfile="Pathfinder/Util/JsonObject.cs" bodystart="5" bodyend="267"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_util_1_1_json_object_1aec73a345ae6e7a3e07ed7596871bd31d" prot="public" virt="non-virtual"><scope>Pathfinder::Util::JsonObject</scope><name>end</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_json_object_1a10261dfdc1a82f97fd082e051c494be1" prot="public" virt="non-virtual"><scope>Pathfinder::Util::JsonObject</scope><name>JsonObject</name></member>

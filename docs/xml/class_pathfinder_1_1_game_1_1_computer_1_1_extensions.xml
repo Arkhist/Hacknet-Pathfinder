@@ -9,7 +9,7 @@
         <argsstring>(this Hacknet.Computer comp, string interfaceId, Dictionary&lt; string, string &gt; input=null)</argsstring>
         <name>AddModdedDaemon</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -53,12 +53,12 @@
         <location file="Pathfinder/Game/Computer/Extensions.cs" line="20" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="20" bodyend="29"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ad489bbc2bd3b21595bdc1c93a9816536" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>List&lt; <ref refid="_template_mod_8cs_1afbb0d8e10828a139d097cbde897543b0" kindref="member">Hacknet.Daemon</ref> &gt;</type>
+        <type>List&lt; <ref refid="class_hacknet_1_1_daemon" kindref="compound">Hacknet.Daemon</ref> &gt;</type>
         <definition>static List&lt;Hacknet.Daemon&gt; Pathfinder.Game.Computer.Extensions.GetDaemonList</definition>
         <argsstring>(this Hacknet.Computer comp, Type daemonType)</argsstring>
         <name>GetDaemonList</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -87,7 +87,7 @@
         <argsstring>(this Hacknet.Computer comp)</argsstring>
         <name>GetDaemonList&lt; T &gt;</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <briefdescription>
@@ -112,7 +112,7 @@
         <argsstring>(this Hacknet.Computer comp, Type modInterface)</argsstring>
         <name>GetModdedDaemon</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -141,7 +141,7 @@
         <argsstring>(this Hacknet.Computer comp)</argsstring>
         <name>GetModdedDaemon&lt; T &gt;</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <briefdescription>
@@ -166,7 +166,7 @@
         <argsstring>(this Hacknet.Computer comp, Type modInterface)</argsstring>
         <name>GetModdedDaemonList</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -195,7 +195,7 @@
         <argsstring>(this Hacknet.Computer comp)</argsstring>
         <name>GetModdedDaemonList&lt; T &gt;</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <briefdescription>
@@ -220,11 +220,11 @@
         <argsstring>(this Hacknet.Computer comp, Hacknet.Computer newLink)</argsstring>
         <name>AddLink</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>newLink</declname>
         </param>
         <briefdescription>
@@ -252,12 +252,12 @@
         <location file="Pathfinder/Game/Computer/Extensions.cs" line="97" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1aa85941fa270067d20bfe29e35c22b57a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Hacknet.OS</type>
+        <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
         <definition>static Hacknet.OS Pathfinder.Game.Computer.Extensions.GetOS</definition>
         <argsstring>(this Hacknet.Computer comp)</argsstring>
         <name>GetOS</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <briefdescription>
@@ -278,12 +278,12 @@
         <location file="Pathfinder/Game/Computer/Extensions.cs" line="105" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ae072cf1d65f12e0ee47a81de0d571eef" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Hacknet.NetworkMap</type>
+        <type><ref refid="class_hacknet_1_1_network_map" kindref="compound">Hacknet.NetworkMap</ref></type>
         <definition>static Hacknet.NetworkMap Pathfinder.Game.Computer.Extensions.GetNetworkMap</definition>
         <argsstring>(this Hacknet.Computer comp)</argsstring>
         <name>GetNetworkMap</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <briefdescription>
@@ -309,7 +309,7 @@
         <argsstring>(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, bool unlocked=false)</argsstring>
         <name>AddVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -358,7 +358,7 @@
         <argsstring>(this Hacknet.Computer comp, string portName, bool unlocked=false)</argsstring>
         <name>AddVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -407,7 +407,7 @@
         <argsstring>(this Hacknet.Computer comp, int portNum, bool unlocked=false)</argsstring>
         <name>AddVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -456,7 +456,7 @@
         <argsstring>(this Hacknet.Computer comp, Port.Type port, bool unlocked=false)</argsstring>
         <name>AddModPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -505,7 +505,7 @@
         <argsstring>(this Hacknet.Computer comp, string id, bool unlocked=false)</argsstring>
         <name>AddModPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -554,7 +554,7 @@
         <argsstring>(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info)</argsstring>
         <name>RemoveVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -591,7 +591,7 @@
         <argsstring>(this Hacknet.Computer comp, string portName)</argsstring>
         <name>RemoveVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -628,7 +628,7 @@
         <argsstring>(this Hacknet.Computer comp, int portNum)</argsstring>
         <name>RemoveVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -665,7 +665,7 @@
         <argsstring>(this Hacknet.Computer comp, Port.Type port)</argsstring>
         <name>RemoveModPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -686,7 +686,7 @@
         <argsstring>(this Hacknet.Computer comp, string id)</argsstring>
         <name>RemoveModPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -707,7 +707,7 @@
         <argsstring>(this Hacknet.Computer comp)</argsstring>
         <name>GetModdedPortList</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <briefdescription>
@@ -733,7 +733,7 @@
         <argsstring>(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info)</argsstring>
         <name>HasVanilaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -763,7 +763,7 @@
         <argsstring>(this Hacknet.Computer comp, string portName)</argsstring>
         <name>HasVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -793,7 +793,7 @@
         <argsstring>(this Hacknet.Computer comp, int portNum)</argsstring>
         <name>HasVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -823,7 +823,7 @@
         <argsstring>(this Hacknet.Computer comp, Port.Type port)</argsstring>
         <name>HasModPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -853,7 +853,7 @@
         <argsstring>(this Hacknet.Computer comp, string id)</argsstring>
         <name>HasModPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -883,7 +883,7 @@
         <argsstring>(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info)</argsstring>
         <name>IsVanillaPortOpen</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -920,7 +920,7 @@
         <argsstring>(this Hacknet.Computer comp, string portName)</argsstring>
         <name>IsVanillaPortOpen</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -957,7 +957,7 @@
         <argsstring>(this Hacknet.Computer comp, int portNum)</argsstring>
         <name>IsVanillaPortOpen</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -994,7 +994,7 @@
         <argsstring>(this Hacknet.Computer comp, Port.Type port)</argsstring>
         <name>IsModPortOpen</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1031,7 +1031,7 @@
         <argsstring>(this Hacknet.Computer comp, string id)</argsstring>
         <name>IsModPortOpen</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1068,7 +1068,7 @@
         <argsstring>(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom=null)</argsstring>
         <name>OpenVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1116,7 +1116,7 @@
         <argsstring>(this Hacknet.Computer comp, string portName, string ipFrom=null)</argsstring>
         <name>OpenVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1164,7 +1164,7 @@
         <argsstring>(this Hacknet.Computer comp, int portNum, string ipFrom=null)</argsstring>
         <name>OpenVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1212,7 +1212,7 @@
         <argsstring>(this Hacknet.Computer comp, Port.Type port, string ipFrom=null)</argsstring>
         <name>OpenModPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1260,7 +1260,7 @@
         <argsstring>(this Hacknet.Computer comp, string id, string ipFrom=null)</argsstring>
         <name>OpenModPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1308,7 +1308,7 @@
         <argsstring>(this Hacknet.Computer comp, ExeInfoManager.ExecutableInfo info, string ipFrom=null)</argsstring>
         <name>CloseVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1356,7 +1356,7 @@
         <argsstring>(this Hacknet.Computer comp, string portName, string ipFrom=null)</argsstring>
         <name>CloseVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1404,7 +1404,7 @@
         <argsstring>(this Hacknet.Computer comp, int portNum, string ipFrom=null)</argsstring>
         <name>CloseVanillaPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1452,7 +1452,7 @@
         <argsstring>(this Hacknet.Computer comp, Port.Type port, string ipFrom=null)</argsstring>
         <name>CloseModPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1500,7 +1500,7 @@
         <argsstring>(this Hacknet.Computer comp, string id, string ipFrom=null)</argsstring>
         <name>CloseModPort</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1548,11 +1548,11 @@
         <argsstring>(this Hacknet.Computer comp, Hacknet.Computer device)</argsstring>
         <name>AddEOSDevice</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>device</declname>
         </param>
         <briefdescription>
@@ -1579,12 +1579,12 @@
         <location file="Pathfinder/Game/Computer/Extensions.cs" line="446" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="446" bodyend="457"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7ed8030625798e10d73f17788a8a7b6f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>Hacknet.Computer</type>
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
         <definition>static Hacknet.Computer Pathfinder.Game.Computer.Extensions.CreateEOSDeviceOn</definition>
         <argsstring>(this Hacknet.Computer comp, string name=&quot;Unregistered eOS Device&quot;, string ip=null, string icon=&quot;ePhone&quot;, Vector2? location=null, string password=&quot;alpine&quot;, List&lt; int &gt; vanillaPorts=null, int portCracksRequired=2, Folder eosFolder=null, List&lt; Port.Type &gt; modPorts=null)</argsstring>
         <name>CreateEOSDeviceOn</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1623,7 +1623,7 @@
           <defval>2</defval>
         </param>
         <param>
-          <type>Folder</type>
+          <type><ref refid="class_hacknet_1_1_folder" kindref="compound">Folder</ref></type>
           <declname>eosFolder</declname>
           <defval>null</defval>
         </param>
@@ -1713,12 +1713,12 @@
         <location file="Pathfinder/Game/Computer/Extensions.cs" line="473" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="473" bodyend="510"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a5de7264ce9c8b04d2e4e4bfb1c495092" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
+        <type>Dictionary&lt; string, <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref> &gt;</type>
         <definition>static Dictionary&lt;string, Hacknet.Computer&gt; Pathfinder.Game.Computer.Extensions.GetEOSDevicesBy</definition>
         <argsstring>(this Hacknet.Computer comp, RetrieveType retType)</argsstring>
         <name>GetEOSDevicesBy</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <param>
@@ -1750,12 +1750,12 @@
         <location file="Pathfinder/Game/Computer/Extensions.cs" line="518" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="518" bodyend="545"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7ed0b3f54a0705e1661f200bad800f76" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
+        <type>Dictionary&lt; string, <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref> &gt;</type>
         <definition>static Dictionary&lt;string, Hacknet.Computer&gt; Pathfinder.Game.Computer.Extensions.GetEOSDevicesById</definition>
         <argsstring>(this Hacknet.Computer comp)</argsstring>
         <name>GetEOSDevicesById</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <briefdescription>
@@ -1767,12 +1767,12 @@
         <location file="Pathfinder/Game/Computer/Extensions.cs" line="551" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ab8ccfe4322463ae2fc55b0d4ff9090ae" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
+        <type>Dictionary&lt; string, <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref> &gt;</type>
         <definition>static Dictionary&lt;string, Hacknet.Computer&gt; Pathfinder.Game.Computer.Extensions.GetEOSDevicesByIp</definition>
         <argsstring>(this Hacknet.Computer comp)</argsstring>
         <name>GetEOSDevicesByIp</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <briefdescription>
@@ -1784,12 +1784,12 @@
         <location file="Pathfinder/Game/Computer/Extensions.cs" line="558" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a4f94c3f5f852e4e08c0c231f27527bbe" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
+        <type>Dictionary&lt; string, <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref> &gt;</type>
         <definition>static Dictionary&lt;string, Hacknet.Computer&gt; Pathfinder.Game.Computer.Extensions.GetEOSDevicesByName</definition>
         <argsstring>(this Hacknet.Computer comp)</argsstring>
         <name>GetEOSDevicesByName</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <briefdescription>
@@ -1801,12 +1801,12 @@
         <location file="Pathfinder/Game/Computer/Extensions.cs" line="565" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ae03e83b80704d8f0b3440968860241f9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Dictionary&lt; string, Hacknet.Computer &gt;</type>
+        <type>Dictionary&lt; string, <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref> &gt;</type>
         <definition>static Dictionary&lt;string, Hacknet.Computer&gt; Pathfinder.Game.Computer.Extensions.GetEOSDevicesByIndex</definition>
         <argsstring>(this Hacknet.Computer comp)</argsstring>
         <name>GetEOSDevicesByIndex</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>comp</declname>
         </param>
         <briefdescription>

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_locale_terms" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::LocaleTerms</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_locale_terms_1a7e9471f347084cf0a5bac449992c4470" prot="public" static="yes" mutable="no">
+        <type>Dictionary&lt; string, string &gt;</type>
+        <definition>Dictionary&lt;string, string&gt; Hacknet.LocaleTerms.ActiveTerms</definition>
+        <argsstring></argsstring>
+        <name>ActiveTerms</name>
+        <initializer>= new Dictionary&lt;string, string&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1002" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="1002" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hacknet_1_1_locale_terms_1a6ed6c25a8f860e27a553990c4c511c9b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.LocaleTerms.ClearForEnUS</definition>
+        <argsstring>()</argsstring>
+        <name>ClearForEnUS</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1004" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_locale_terms_1a67e39ab8a451b2981ebe5be9bb276411" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Hacknet.LocaleTerms.Loc</definition>
+        <argsstring>(string input)</argsstring>
+        <name>Loc</name>
+        <param>
+          <type>string</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1005" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_locale_terms_1add4333928c43e1a3dcb19536917d89ea" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.LocaleTerms.ReadInTerms</definition>
+        <argsstring>(string termsFilepath, bool clearPreviouslyLoadedTerms=true)</argsstring>
+        <name>ReadInTerms</name>
+        <param>
+          <type>string</type>
+          <declname>termsFilepath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>clearPreviouslyLoadedTerms</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1006" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="1001" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="1000" bodyend="1007"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_locale_terms_1a7e9471f347084cf0a5bac449992c4470" prot="public" virt="non-virtual"><scope>Hacknet::LocaleTerms</scope><name>ActiveTerms</name></member>
+      <member refid="class_hacknet_1_1_locale_terms_1a6ed6c25a8f860e27a553990c4c511c9b" prot="public" virt="non-virtual"><scope>Hacknet::LocaleTerms</scope><name>ClearForEnUS</name></member>
+      <member refid="class_hacknet_1_1_locale_terms_1a67e39ab8a451b2981ebe5be9bb276411" prot="public" virt="non-virtual"><scope>Hacknet::LocaleTerms</scope><name>Loc</name></member>
+      <member refid="class_hacknet_1_1_locale_terms_1add4333928c43e1a3dcb19536917d89ea" prot="public" virt="non-virtual"><scope>Hacknet::LocaleTerms</scope><name>ReadInTerms</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

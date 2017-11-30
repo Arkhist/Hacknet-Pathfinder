@@ -97,12 +97,12 @@ $(document).ready(function(){initNavTree('class_pathfinder_1_1_util_1_1_logger.h
 Public Types</h2></td></tr>
 <tr class="memitem:a3eae0eba87ff6f0f6d570de47f7ba696"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696">LogLevel</a> { <br />
 &#160;&#160;<a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696aec1f06e9fb39c4ef0729b3c7c9c8e8cc">LogLevel.VERBOSE</a> = 1, 
-<a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696adc30ec20708ef7b0f641ef78b7880a15">LogLevel.DEBUG</a> = 2, 
-<a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696a551b723eafd6a31d444fcb2f5920fbd3">LogLevel.INFO</a> = 4, 
-<a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696a32bd8a1db2275458673903bdb84cb277">LogLevel.WARN</a> = 8, 
+<a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696adc30ec20708ef7b0f641ef78b7880a15">LogLevel.DEBUG</a> = 1 &lt;&lt; 1, 
+<a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696a551b723eafd6a31d444fcb2f5920fbd3">LogLevel.INFO</a> = 1 &lt;&lt; 2, 
+<a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696a32bd8a1db2275458673903bdb84cb277">LogLevel.WARN</a> = 1 &lt;&lt; 3, 
 <br />
-&#160;&#160;<a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696abb1ca97ec761fc37101737ba0aa2e7c5">LogLevel.ERROR</a> = 16, 
-<a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696a19da7170bea36556dde582519795f3fc">LogLevel.FATAL</a> = 32, 
+&#160;&#160;<a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696abb1ca97ec761fc37101737ba0aa2e7c5">LogLevel.ERROR</a> = 1 &lt;&lt; 4, 
+<a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696a19da7170bea36556dde582519795f3fc">LogLevel.FATAL</a> = 1 &lt;&lt; 5, 
 <a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696ab1c94ca2fbc3e78fc30069c8d0f01680">LogLevel.All</a> = VERBOSE | DEBUG | INFO | WARN | ERROR | FATAL, 
 <a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a3eae0eba87ff6f0f6d570de47f7ba696a6adf97f83acf6453d4a6a4b1070f3754">LogLevel.None</a> = 0, 
 <br />
@@ -164,10 +164,7 @@ Properties</h2></td></tr>
 <tr class="memitem:a7589512acab152dc1741a286e952ecdf"><td class="memItemLeft" align="right" valign="top">static List&lt; Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_util_1_1_logger.html#a7589512acab152dc1741a286e952ecdf">IgnoreEventTypes</a><code> [get, set]</code></td></tr>
 <tr class="separator:a7589512acab152dc1741a286e952ecdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_logger_8cs_source.html#l00007">7</a> of file <a class="el" href="_logger_8cs_source.html">Logger.cs</a>.</p>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a3eae0eba87ff6f0f6d570de47f7ba696"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3eae0eba87ff6f0f6d570de47f7ba696">&#9670;&nbsp;</a></span>LogLevel</h2>
 
@@ -187,8 +184,6 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Log Levels for the <a class="el" href="class_pathfinder_1_1_util_1_1_logger.html">Logger</a> </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3eae0eba87ff6f0f6d570de47f7ba696aec1f06e9fb39c4ef0729b3c7c9c8e8cc"></a>VERBOSE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a3eae0eba87ff6f0f6d570de47f7ba696adc30ec20708ef7b0f641ef78b7880a15"></a>DEBUG&#160;</td><td class="fielddoc"></td></tr>
@@ -200,8 +195,6 @@ Properties</h2></td></tr>
 <tr><td class="fieldname"><a id="a3eae0eba87ff6f0f6d570de47f7ba696a6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a3eae0eba87ff6f0f6d570de47f7ba696a7a1920d61156abc05a60135aefe8bc67"></a>Default&#160;</td><td class="fielddoc"></td></tr>
 </table>
-
-<p class="definition">Definition at line <a class="el" href="_logger_8cs_source.html#l00013">13</a> of file <a class="el" href="_logger_8cs_source.html">Logger.cs</a>.</p>
 
 </div>
 </div>
@@ -229,8 +222,6 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Adds flag(s) to this T:Pathfinder.Util.Logger's flags. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">levels</td><td>Log Level(s) to add.</td></tr>
@@ -263,8 +254,6 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Logs on T:Pathfinder.Util.Logger.LogLevel.DEBUG the specified input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input</td><td>Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</td></tr>
@@ -297,8 +286,6 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Logs on T:Pathfinder.Util.Logger.LogLevel.ERROR the specified input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input</td><td>Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</td></tr>
@@ -331,8 +318,6 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Logs on T:Pathfinder.Util.Logger.LogLevel.FATAL the specified input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input</td><td>Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</td></tr>
@@ -365,8 +350,6 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Determines whether this T:Pathfinder.Util.Logger has the flag(s). </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code>, has flag, <code>false</code> otherwise.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -400,8 +383,6 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Logs on T:Pathfinder.Util.Logger.LogLevel.INFO the specified input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input</td><td>Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</td></tr>
@@ -444,8 +425,6 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Logs the specified level and input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">level</td><td>Log Level to log for.</td></tr>
@@ -453,8 +432,6 @@ Properties</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="_logger_8cs_source.html#l00072">72</a> of file <a class="el" href="_logger_8cs_source.html">Logger.cs</a>.</p>
 
 </div>
 </div>
@@ -481,8 +458,6 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Removes a flag(s) from this T:Pathfinder.Util.Logger's flags. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">levels</td><td>Log Level(s) to remove.</td></tr>
@@ -515,8 +490,6 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Sets showFlags to exact levels. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">levels</td><td>Log Levels to set this T:Pathfinder.Util.Logger's showFlags to.</td></tr>
@@ -549,8 +522,6 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Logs on T:Pathfinder.Util.Logger.LogLevel.VERBOSE the specified input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input</td><td>Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</td></tr>
@@ -583,8 +554,6 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Logs on T:Pathfinder.Util.Logger.LogLevel.WARN the specified input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">input</td><td>Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</td></tr>
@@ -615,8 +584,6 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_8cs_source.html#l00027">27</a> of file <a class="el" href="_logger_8cs_source.html">Logger.cs</a>.</p>
-
 </div>
 </div>
 <a id="aa5a0d9741bde195c6c7e8c38717c1072"></a>
@@ -638,11 +605,7 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Gets the log history. </p>
 <p>The log history for the past 100 log calls.</p>
-
-<p class="definition">Definition at line <a class="el" href="_logger_8cs_source.html#l00039">39</a> of file <a class="el" href="_logger_8cs_source.html">Logger.cs</a>.</p>
 
 </div>
 </div>
@@ -667,8 +630,6 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_logger_8cs_source.html#l00040">40</a> of file <a class="el" href="_logger_8cs_source.html">Logger.cs</a>.</p>
-
 </div>
 </div>
 <a id="ad550296f254a8fdf3c31dc6d7965e2e1"></a>
@@ -690,16 +651,12 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Gets or sets a value indicating whether this T:Pathfinder.Util.Logger should include mod identifier. </p>
 <p><code>true</code> if mod identifier should be included; otherwise, <code>false</code>.</p>
-
-<p class="definition">Definition at line <a class="el" href="_logger_8cs_source.html#l00034">34</a> of file <a class="el" href="_logger_8cs_source.html">Logger.cs</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Pathfinder/Util/<a class="el" href="_logger_8cs_source.html">Logger.cs</a></li>
+<li>Pathfinder/Util/<a class="el" href="_logger_8cs.html">Logger.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

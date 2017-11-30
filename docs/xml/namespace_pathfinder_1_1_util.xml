@@ -53,7 +53,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Util/RetrieveType.cs" line="5" column="1" bodyfile="Pathfinder/Util/RetrieveType.cs" bodystart="4" bodyend="10"/>
+        <location file="Pathfinder/Util/RetrieveType.cs" line="4" column="1" bodyfile="Pathfinder/Util/RetrieveType.cs" bodystart="3" bodyend="9"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

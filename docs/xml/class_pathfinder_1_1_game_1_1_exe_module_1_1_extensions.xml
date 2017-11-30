@@ -9,7 +9,7 @@
         <argsstring>(this Hacknet.ExeModule module, bool shouldWrite=false)</argsstring>
         <name>Kill</name>
         <param>
-          <type>this Hacknet.ExeModule</type>
+          <type>this <ref refid="class_hacknet_1_1_exe_module" kindref="compound">Hacknet.ExeModule</ref></type>
           <declname>module</declname>
         </param>
         <param>

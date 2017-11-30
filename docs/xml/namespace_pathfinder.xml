@@ -18,9 +18,9 @@
     <innernamespace refid="namespace_pathfinder_1_1_port">Pathfinder::Port</innernamespace>
     <innernamespace refid="namespace_pathfinder_1_1_util">Pathfinder::Util</innernamespace>
     <briefdescription>
-    </briefdescription>
+<para>The Mod API namespace. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para>The namespace containing all <ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref> API classes and systems, such as the hook and event system found in the namespace <ref refid="namespace_pathfinder_1_1_event" kindref="compound">Event</ref> and the class <ref refid="class_pathfinder_1_1_pathfinder_hooks" kindref="compound">PathfinderHooks</ref> </para>    </detaileddescription>
     <location file="[generated]" line="1" column="1"/>
   </compounddef>
 </doxygen>

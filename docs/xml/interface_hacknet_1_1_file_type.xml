@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="interface_hacknet_1_1_file_type" kind="interface" language="C#" prot="public">
+    <compoundname>Hacknet::FileType</compoundname>
+    <derivedcompoundref refid="class_hacknet_1_1_file_entry" prot="public" virt="non-virtual">Hacknet.FileEntry</derivedcompoundref>
+    <derivedcompoundref refid="class_hacknet_1_1_folder" prot="public" virt="non-virtual">Hacknet.Folder</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interface_hacknet_1_1_file_type_1a40206e33340960bebd2b26f88153b5d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Hacknet.FileType.getName</definition>
+        <argsstring>()</argsstring>
+        <name>getName</name>
+        <reimplementedby refid="class_hacknet_1_1_file_entry_1aa362165f0a2e3235271f0fdb96ed0e7d">getName</reimplementedby>
+        <reimplementedby refid="class_hacknet_1_1_folder_1abbbc9b8bd0f4af27e030b7bb47b53222">getName</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1049" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="353">
+        <label>Hacknet.FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="354">
+        <label>Hacknet.FileEntry</label>
+        <link refid="class_hacknet_1_1_file_entry"/>
+        <childnode refid="353" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="355">
+        <label>Hacknet.Folder</label>
+        <link refid="class_hacknet_1_1_folder"/>
+        <childnode refid="353" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="1048" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="1047" bodyend="1050"/>
+    <listofallmembers>
+      <member refid="interface_hacknet_1_1_file_type_1a40206e33340960bebd2b26f88153b5d3" prot="public" virt="non-virtual"><scope>Hacknet::FileType</scope><name>getName</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

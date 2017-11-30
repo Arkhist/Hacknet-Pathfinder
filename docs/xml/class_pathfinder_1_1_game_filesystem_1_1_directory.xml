@@ -189,7 +189,7 @@
         <argsstring>(Folder obj, IFileObject parent)</argsstring>
         <name>Directory</name>
         <param>
-          <type>Folder</type>
+          <type><ref refid="class_hacknet_1_1_folder" kindref="compound">Folder</ref></type>
           <declname>obj</declname>
         </param>
         <param>
@@ -1016,69 +1016,69 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="64">
+      <node id="148">
         <label>IEnumerable&lt; IFileObject &gt;</label>
       </node>
-      <node id="62">
+      <node id="146">
         <label>Pathfinder.GameFilesystem.Directory</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_directory"/>
-        <childnode refid="63" relation="public-inheritance">
+        <childnode refid="147" relation="public-inheritance">
         </childnode>
-        <childnode refid="64" relation="public-inheritance">
+        <childnode refid="148" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="63">
+      <node id="147">
         <label>FileObject&lt; Folder, IFileObject &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="67">
+      <node id="151">
         <label>IEnumerable&lt; IFileObject &gt;</label>
       </node>
-      <node id="70">
-        <label>FileObject&lt; FileSystem, Hacknet.Computer &gt;</label>
-        <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
-      </node>
-      <node id="65">
+      <node id="149">
         <label>Pathfinder.GameFilesystem.Directory</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_directory"/>
-        <childnode refid="66" relation="public-inheritance">
+        <childnode refid="150" relation="public-inheritance">
         </childnode>
-        <childnode refid="67" relation="public-inheritance">
+        <childnode refid="151" relation="public-inheritance">
         </childnode>
-        <childnode refid="68" relation="usage">
+        <childnode refid="152" relation="usage">
           <edgelabel>this[string name]</edgelabel>
         </childnode>
-        <childnode refid="65" relation="usage">
+        <childnode refid="149" relation="usage">
           <edgelabel>ParentDirectory</edgelabel>
         </childnode>
-        <childnode refid="69" relation="usage">
+        <childnode refid="153" relation="usage">
           <edgelabel>Root</edgelabel>
         </childnode>
       </node>
-      <node id="69">
+      <node id="153">
         <label>Pathfinder.GameFilesystem.Filesystem</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_filesystem"/>
-        <childnode refid="70" relation="public-inheritance">
+        <childnode refid="154" relation="public-inheritance">
         </childnode>
-        <childnode refid="67" relation="public-inheritance">
+        <childnode refid="151" relation="public-inheritance">
         </childnode>
-        <childnode refid="65" relation="usage">
+        <childnode refid="149" relation="usage">
           <edgelabel>CurrentDirectory</edgelabel>
           <edgelabel>Directory</edgelabel>
         </childnode>
-        <childnode refid="69" relation="usage">
+        <childnode refid="153" relation="usage">
           <edgelabel>Root</edgelabel>
           <edgelabel>PrimaryFilesystem</edgelabel>
         </childnode>
       </node>
-      <node id="68">
+      <node id="152">
         <label>Pathfinder.GameFilesystem.IFileObject</label>
         <link refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object"/>
       </node>
-      <node id="66">
+      <node id="150">
         <label>FileObject&lt; Folder, IFileObject &gt;</label>
+        <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
+      </node>
+      <node id="154">
+        <label>FileObject&lt; FileSystem, Computer &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
       </node>
     </collaborationgraph>

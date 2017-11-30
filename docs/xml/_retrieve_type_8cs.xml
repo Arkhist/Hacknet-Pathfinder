@@ -8,17 +8,16 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespace_system" kindref="compound">System</ref>;</highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.Util</highlight></codeline>
-<codeline lineno="3"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="4" refid="namespace_pathfinder_1_1_util_1ad5b0e2a0eef9e7e1761790600eae23a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="namespace_pathfinder_1_1_util_1ad5b0e2a0eef9e7e1761790600eae23a6" kindref="member">RetrieveType</ref></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_pathfinder_1_1_util_1ad5b0e2a0eef9e7e1761790600eae23a6ab718adec73e04ce3ec720dd11a06a308" kindref="member">ID</ref>,</highlight></codeline>
-<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_pathfinder_1_1_util_1ad5b0e2a0eef9e7e1761790600eae23a6aad32e604e17467fc435538334fbddf3e" kindref="member">NAME</ref>,</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_pathfinder_1_1_util_1ad5b0e2a0eef9e7e1761790600eae23a6a2664f03ac6b8bb9eee4287720e407db3" kindref="member">ADDRESS</ref>,</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_pathfinder_1_1_util_1ad5b0e2a0eef9e7e1761790600eae23a6acb4ae3b37047fb4b2c0d16f8bf84f076" kindref="member">INDEX</ref></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="11"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="1"><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_pathfinder" kindref="compound">Pathfinder</ref>.Util</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="namespace_pathfinder_1_1_util_1ad5b0e2a0eef9e7e1761790600eae23a6" kindref="member">RetrieveType</ref></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_pathfinder_1_1_util_1ad5b0e2a0eef9e7e1761790600eae23a6ab718adec73e04ce3ec720dd11a06a308" kindref="member">ID</ref>,</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_pathfinder_1_1_util_1ad5b0e2a0eef9e7e1761790600eae23a6aad32e604e17467fc435538334fbddf3e" kindref="member">NAME</ref>,</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_pathfinder_1_1_util_1ad5b0e2a0eef9e7e1761790600eae23a6a2664f03ac6b8bb9eee4287720e407db3" kindref="member">ADDRESS</ref>,</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_pathfinder_1_1_util_1ad5b0e2a0eef9e7e1761790600eae23a6acb4ae3b37047fb4b2c0d16f8bf84f076" kindref="member">INDEX</ref></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="Pathfinder/Util/RetrieveType.cs"/>
   </compounddef>

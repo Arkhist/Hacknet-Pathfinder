@@ -239,10 +239,10 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="153">
+      <node id="259">
         <label>Pathfinder.Util.ExeInfoManager.ExecutableInfo</label>
         <link refid="struct_pathfinder_1_1_util_1_1_exe_info_manager_1_1_executable_info"/>
-        <childnode refid="153" relation="usage">
+        <childnode refid="259" relation="usage">
           <edgelabel>Empty</edgelabel>
         </childnode>
       </node>

@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_helpfile" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::Helpfile</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_helpfile_1af53a69e2934b6ff8f1a1afa33229694f" prot="public" static="yes" mutable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; Hacknet.Helpfile.help</definition>
+        <argsstring></argsstring>
+        <name>help</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="782" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="782" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_helpfile_1a5e2eba06c735e86d963f140717fdaa1d" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.Helpfile.prefix</definition>
+        <argsstring></argsstring>
+        <name>prefix</name>
+        <initializer>=
+            &quot;---------------------------------\n&quot; + LocaleTerms.Loc(&quot;Command List - Page [PAGENUM] of [TOTALPAGES]&quot;) + &quot;:\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="783" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="783" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hacknet_1_1_helpfile_1a2bf965635738841d686e52eafeab2879" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Hacknet.Helpfile.getNumberOfPages</definition>
+        <argsstring>()</argsstring>
+        <name>getNumberOfPages</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="786" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_helpfile_1afd932b7e2e2d546021ff7ae44af0e14c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.Helpfile.init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="787" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_helpfile_1a7f11a2c0a0e58dd9e1fe190196db1555" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.Helpfile.writeHelp</definition>
+        <argsstring>(OS os, int page=0)</argsstring>
+        <name>writeHelp</name>
+        <param>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>page</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="788" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="781" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="780" bodyend="789"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_helpfile_1a2bf965635738841d686e52eafeab2879" prot="public" virt="non-virtual"><scope>Hacknet::Helpfile</scope><name>getNumberOfPages</name></member>
+      <member refid="class_hacknet_1_1_helpfile_1af53a69e2934b6ff8f1a1afa33229694f" prot="public" virt="non-virtual"><scope>Hacknet::Helpfile</scope><name>help</name></member>
+      <member refid="class_hacknet_1_1_helpfile_1afd932b7e2e2d546021ff7ae44af0e14c" prot="public" virt="non-virtual"><scope>Hacknet::Helpfile</scope><name>init</name></member>
+      <member refid="class_hacknet_1_1_helpfile_1a5e2eba06c735e86d963f140717fdaa1d" prot="public" virt="non-virtual"><scope>Hacknet::Helpfile</scope><name>prefix</name></member>
+      <member refid="class_hacknet_1_1_helpfile_1a7f11a2c0a0e58dd9e1fe190196db1555" prot="public" virt="non-virtual"><scope>Hacknet::Helpfile</scope><name>writeHelp</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

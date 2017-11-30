@@ -3,13 +3,13 @@
   <compounddef id="class_pathfinder_1_1_mission_1_1_mission_manager" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Mission::MissionManager</compoundname>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1ab80007a432428a57346a528ee321270d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a623335fb4e4154f6730fd82ed79c1ce9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>MissionListingServer</type>
         <definition>static MissionListingServer Pathfinder.Mission.MissionManager.CreateMissionListingDaemon</definition>
-        <argsstring>(this Hacknet.Computer c, string serviceName, string logoPath=null, bool isPublic=false, bool isAssigner=false, Hacknet.OS os=null)</argsstring>
+        <argsstring>(this Computer c, string serviceName, string logoPath=null, bool isPublic=false, bool isAssigner=false, OS os=null)</argsstring>
         <name>CreateMissionListingDaemon</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
           <declname>c</declname>
         </param>
         <param>
@@ -32,7 +32,7 @@
           <defval>false</defval>
         </param>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
           <declname>os</declname>
           <defval>null</defval>
         </param>
@@ -154,13 +154,13 @@
         </inbodydescription>
         <location file="Pathfinder/Mission/MissionManager.cs" line="60" column="1" bodyfile="Pathfinder/Mission/MissionManager.cs" bodystart="60" bodyend="67"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a42bd646f03743a4fdcd4598798e50e4f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_mission_manager_1a7bd7571226e865848c007b409f7026ac" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>MissionHubServer</type>
         <definition>static MissionHubServer Pathfinder.Mission.MissionManager.CreateMissionHubDaemon</definition>
-        <argsstring>(this Hacknet.Computer c, string serviceName, Hacknet.OS os=null)</argsstring>
+        <argsstring>(this Computer c, string serviceName, OS os=null)</argsstring>
         <name>CreateMissionHubDaemon</name>
         <param>
-          <type>this Hacknet.Computer</type>
+          <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
           <declname>c</declname>
         </param>
         <param>
@@ -168,7 +168,7 @@
           <declname>serviceName</declname>
         </param>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
           <declname>os</declname>
           <defval>null</defval>
         </param>
@@ -267,8 +267,8 @@
     <listofallmembers>
       <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1ab87dd245a2f379b7e667027d0e9fe230" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>AddMission</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a0e303561ee82526bdc95e1d8f81dafb8" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>AddMission</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a42bd646f03743a4fdcd4598798e50e4f" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>CreateMissionHubDaemon</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1ab80007a432428a57346a528ee321270d" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>CreateMissionListingDaemon</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a7bd7571226e865848c007b409f7026ac" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>CreateMissionHubDaemon</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a623335fb4e4154f6730fd82ed79c1ce9" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>CreateMissionListingDaemon</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1afbfe2fd3ecb5ed53f205e356368f03e0" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>SetGroupName</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1ac57bb178f11a195254d43d0842730f23" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>SetGroupName</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_mission_manager_1a3249fcfd617228b0c145986ca6b22db9" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::MissionManager</scope><name>SetListingTitle</name></member>

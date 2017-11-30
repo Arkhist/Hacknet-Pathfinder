@@ -1,0 +1,352 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_ram_module" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::RamModule</compoundname>
+    <basecompoundref refid="class_hacknet_1_1_core_module" prot="public" virt="non-virtual">Hacknet.CoreModule</basecompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_ram_module_1a8aa448c3b6e5fd50b479166642500bd8" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int Hacknet.RamModule.contentStartOffset</definition>
+        <argsstring></argsstring>
+        <name>contentStartOffset</name>
+        <initializer>= 16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="687" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="687" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_ram_module_1a4ade89e80b04829484a95fae69c5833b" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int Hacknet.RamModule.MODULE_WIDTH</definition>
+        <argsstring></argsstring>
+        <name>MODULE_WIDTH</name>
+        <initializer>= 252</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="688" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="688" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_ram_module_1a5f829facf563888abf42f22ce8701005" prot="public" static="yes" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.RamModule.USED_RAM_COLOR</definition>
+        <argsstring></argsstring>
+        <name>USED_RAM_COLOR</name>
+        <initializer>= new Color(60, 60, 67)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="689" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="689" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_ram_module_1a3c4f1d32c125d32232d0bfd1152e2ba1" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.RamModule.FLASH_TIME</definition>
+        <argsstring></argsstring>
+        <name>FLASH_TIME</name>
+        <initializer>= 3f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="690" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="690" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hacknet_1_1_ram_module_1a0447ec382ae4e341fae1ce76077dab78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Hacknet.RamModule.RamModule</definition>
+        <argsstring>(Rectangle location, OS operatingSystem)</argsstring>
+        <name>RamModule</name>
+        <param>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
+          <declname>operatingSystem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="692" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_ram_module_1a1f1633209ad9f4b57820d5240893aed3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.RamModule.Draw</definition>
+        <argsstring>(float t)</argsstring>
+        <name>Draw</name>
+        <reimplements refid="class_hacknet_1_1_module_1a15f0e31db7bd178fbac0a3ae6688272a">Draw</reimplements>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="694" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_ram_module_1ae7b0df082b53c43175590c5ba5e6bc28" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Hacknet.RamModule.drawOutline</definition>
+        <argsstring>()</argsstring>
+        <name>drawOutline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="695" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_ram_module_1a16f8608695e03186fb51c15f7b93d1a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.RamModule.FlashMemoryWarning</definition>
+        <argsstring>()</argsstring>
+        <name>FlashMemoryWarning</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="696" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_ram_module_1a6ca9c74d932782d11a7ee8341028f4e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.RamModule.LoadContent</definition>
+        <argsstring>()</argsstring>
+        <name>LoadContent</name>
+        <reimplements refid="class_hacknet_1_1_core_module_1a3152fd15281c36fa3a894900ac6d9b3f">LoadContent</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="697" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_ram_module_1aa2f60d9255c18c87d911e2891c02364c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.RamModule.Update</definition>
+        <argsstring>(float t)</argsstring>
+        <name>Update</name>
+        <reimplements refid="class_hacknet_1_1_module_1a7740ee2ced93f5fa1c3b27d9785996ed">Update</reimplements>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="698" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="841">
+        <label>Module</label>
+        <link refid="class_hacknet_1_1_module"/>
+      </node>
+      <node id="840">
+        <label>CoreModule</label>
+        <link refid="class_hacknet_1_1_core_module"/>
+        <childnode refid="841" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="839">
+        <label>Hacknet.RamModule</label>
+        <link refid="class_hacknet_1_1_ram_module"/>
+        <childnode refid="840" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="858">
+        <label>Framework</label>
+      </node>
+      <node id="848">
+        <label>Hacknet.DisplayModule</label>
+        <link refid="class_hacknet_1_1_display_module"/>
+        <childnode refid="843" relation="public-inheritance">
+        </childnode>
+        <childnode refid="849" relation="usage">
+          <edgelabel>LastDisplayedFileFolder</edgelabel>
+        </childnode>
+      </node>
+      <node id="853">
+        <label>Hacknet.Computer</label>
+        <link refid="class_hacknet_1_1_computer"/>
+        <childnode refid="854" relation="usage">
+          <edgelabel>reportingShell</edgelabel>
+        </childnode>
+        <childnode refid="856" relation="usage">
+          <edgelabel>files</edgelabel>
+        </childnode>
+        <childnode refid="857" relation="usage">
+          <edgelabel>firewall</edgelabel>
+        </childnode>
+      </node>
+      <node id="846">
+        <label>GameScreen</label>
+        <link refid="class_hacknet_1_1_game_screen"/>
+      </node>
+      <node id="844">
+        <label>Module</label>
+        <link refid="class_hacknet_1_1_module"/>
+        <childnode refid="845" relation="usage">
+          <edgelabel>os</edgelabel>
+        </childnode>
+        <childnode refid="858" relation="usage">
+          <edgelabel>bounds</edgelabel>
+        </childnode>
+      </node>
+      <node id="843">
+        <label>CoreModule</label>
+        <link refid="class_hacknet_1_1_core_module"/>
+        <childnode refid="844" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="855">
+        <label>ExeModule</label>
+        <link refid="class_hacknet_1_1_exe_module"/>
+        <childnode refid="844" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="852">
+        <label>Hacknet.NetworkMap</label>
+        <link refid="class_hacknet_1_1_network_map"/>
+        <childnode refid="843" relation="public-inheritance">
+        </childnode>
+        <childnode refid="853" relation="usage">
+          <edgelabel>mailServer</edgelabel>
+          <edgelabel>academicDatabase</edgelabel>
+          <edgelabel>lastAddedNode</edgelabel>
+        </childnode>
+      </node>
+      <node id="854">
+        <label>Hacknet.ShellExe</label>
+        <link refid="class_hacknet_1_1_shell_exe"/>
+        <childnode refid="855" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="857">
+        <label>Hacknet.Firewall</label>
+        <link refid="class_hacknet_1_1_firewall"/>
+      </node>
+      <node id="856">
+        <label>Hacknet.FileSystem</label>
+        <link refid="class_hacknet_1_1_file_system"/>
+        <childnode refid="849" relation="usage">
+          <edgelabel>root</edgelabel>
+        </childnode>
+      </node>
+      <node id="851">
+        <label>Hacknet.Terminal</label>
+        <link refid="class_hacknet_1_1_terminal"/>
+        <childnode refid="843" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="847">
+        <label>Hacknet.CrashModule</label>
+        <link refid="class_hacknet_1_1_crash_module"/>
+        <childnode refid="844" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="850">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="845">
+        <label>Hacknet.OS</label>
+        <link refid="class_hacknet_1_1_o_s"/>
+        <childnode refid="846" relation="public-inheritance">
+        </childnode>
+        <childnode refid="842" relation="usage">
+          <edgelabel>ram</edgelabel>
+        </childnode>
+        <childnode refid="847" relation="usage">
+          <edgelabel>crashModule</edgelabel>
+        </childnode>
+        <childnode refid="848" relation="usage">
+          <edgelabel>display</edgelabel>
+        </childnode>
+        <childnode refid="851" relation="usage">
+          <edgelabel>terminal</edgelabel>
+        </childnode>
+        <childnode refid="852" relation="usage">
+          <edgelabel>netMap</edgelabel>
+        </childnode>
+        <childnode refid="853" relation="usage">
+          <edgelabel>opponentComputer</edgelabel>
+          <edgelabel>connectedComp</edgelabel>
+          <edgelabel>thisComputer</edgelabel>
+        </childnode>
+        <childnode refid="858" relation="usage">
+          <edgelabel>fullscreen</edgelabel>
+        </childnode>
+        <childnode refid="845" relation="usage">
+          <edgelabel>currentInstance</edgelabel>
+        </childnode>
+      </node>
+      <node id="849">
+        <label>Hacknet.Folder</label>
+        <link refid="class_hacknet_1_1_folder"/>
+        <childnode refid="850" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="842">
+        <label>Hacknet.RamModule</label>
+        <link refid="class_hacknet_1_1_ram_module"/>
+        <childnode refid="843" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="686" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="685" bodyend="699"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_module_1a9f5568515780ca1149d57051fc2f7c77" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>bounds</name></member>
+      <member refid="class_hacknet_1_1_module_1a5ea045ba822711fc59f9e10766955f73" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>Bounds</name></member>
+      <member refid="class_hacknet_1_1_ram_module_1a8aa448c3b6e5fd50b479166642500bd8" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>contentStartOffset</name></member>
+      <member refid="class_hacknet_1_1_ram_module_1a1f1633209ad9f4b57820d5240893aed3" prot="public" virt="virtual"><scope>Hacknet::RamModule</scope><name>Draw</name></member>
+      <member refid="class_hacknet_1_1_module_1a61074e32ce3d681fb28e41c71a92889d" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>drawFrame</name></member>
+      <member refid="class_hacknet_1_1_ram_module_1ae7b0df082b53c43175590c5ba5e6bc28" prot="public" virt="virtual"><scope>Hacknet::RamModule</scope><name>drawOutline</name></member>
+      <member refid="class_hacknet_1_1_ram_module_1a3c4f1d32c125d32232d0bfd1152e2ba1" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>FLASH_TIME</name></member>
+      <member refid="class_hacknet_1_1_ram_module_1a16f8608695e03186fb51c15f7b93d1a1" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>FlashMemoryWarning</name></member>
+      <member refid="class_hacknet_1_1_core_module_1a9e07c7e2852ea839082bba068cda5b19" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>inputLocked</name></member>
+      <member refid="class_hacknet_1_1_ram_module_1a6ca9c74d932782d11a7ee8341028f4e8" prot="public" virt="virtual"><scope>Hacknet::RamModule</scope><name>LoadContent</name></member>
+      <member refid="class_hacknet_1_1_module_1aac9b4cea405a9ba9e385e1107de7c507" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>Module</name></member>
+      <member refid="class_hacknet_1_1_ram_module_1a4ade89e80b04829484a95fae69c5833b" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>MODULE_WIDTH</name></member>
+      <member refid="class_hacknet_1_1_module_1ac87b80233cd3d601009c98d29b926b9f" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>name</name></member>
+      <member refid="class_hacknet_1_1_module_1a5f28f2631470430dfc7ce75e3a1ceaed" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>os</name></member>
+      <member refid="class_hacknet_1_1_module_1a7cf1a874d7c2ab76e6ed26471cfaa556" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>PANEL_HEIGHT</name></member>
+      <member refid="class_hacknet_1_1_core_module_1a163b3d4f37172dbb43cd570908fad1ed" prot="public" virt="virtual"><scope>Hacknet::RamModule</scope><name>PostDrawStep</name></member>
+      <member refid="class_hacknet_1_1_core_module_1ac2dd0e7330981cec99958caabfa08a1e" prot="public" virt="virtual"><scope>Hacknet::RamModule</scope><name>PreDrawStep</name></member>
+      <member refid="class_hacknet_1_1_ram_module_1a0447ec382ae4e341fae1ce76077dab78" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>RamModule</name></member>
+      <member refid="class_hacknet_1_1_module_1a3c22224a83a15603c5f6bfbb778613b2" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>spriteBatch</name></member>
+      <member refid="class_hacknet_1_1_ram_module_1aa2f60d9255c18c87d911e2891c02364c" prot="public" virt="virtual"><scope>Hacknet::RamModule</scope><name>Update</name></member>
+      <member refid="class_hacknet_1_1_ram_module_1a5f829facf563888abf42f22ce8701005" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>USED_RAM_COLOR</name></member>
+      <member refid="class_hacknet_1_1_module_1ad92e134fd646691737cc24aa434a336f" prot="public" virt="non-virtual"><scope>Hacknet::RamModule</scope><name>visible</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

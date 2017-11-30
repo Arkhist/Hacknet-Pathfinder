@@ -41,7 +41,7 @@
     <OutputPath>lib</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>lib\Pathfinder.xml</DocumentationFile>
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
     <CustomCommands>
@@ -172,6 +172,7 @@
     <Compile Include="Pathfinder\Util\Network\RestManager.cs" />
     <Compile Include="Pathfinder\Util\Network\Updater.cs" />
     <Compile Include="Pathfinder\Util\Locale.cs" />
+    <Compile Include="Pathfinder\Docs\Hacknet.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Util\" />
@@ -194,8 +195,13 @@
     </Folder>
     <Folder Include="Pathfinder\Util\Network\">
     </Folder>
+    <Folder Include="Pathfinder\Docs\">
+    </Folder>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="Pathfinder\Docs\Pathfinder.doc" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

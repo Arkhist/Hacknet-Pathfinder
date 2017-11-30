@@ -6,12 +6,12 @@
     <basecompoundref prot="public" virt="non-virtual">IEquatable&lt; Instance &gt;</basecompoundref>
       <sectiondef kind="package-static-attrib">
       <memberdef kind="variable" id="class_pathfinder_1_1_port_1_1_instance_1a0ce3738dde1b29338cd4f1fcde0f165d" prot="package" static="yes" mutable="no">
-        <type>Dictionary&lt; Hacknet.Computer, List&lt; <ref refid="class_pathfinder_1_1_port_1_1_instance" kindref="compound">Instance</ref> &gt; &gt;</type>
+        <type>Dictionary&lt; <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref>, List&lt; <ref refid="class_pathfinder_1_1_port_1_1_instance" kindref="compound">Instance</ref> &gt; &gt;</type>
         <definition>Dictionary&lt;Hacknet.Computer, List&lt;Instance&gt; &gt; Pathfinder.Port.Instance.compToInst</definition>
         <argsstring></argsstring>
         <name>compToInst</name>
         <initializer>=
-            new Dictionary&lt;Hacknet.Computer, List&lt;<ref refid="class_pathfinder_1_1_port_1_1_instance" kindref="compound">Instance</ref>&gt;&gt;()</initializer>
+            new Dictionary&lt;<ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref>, List&lt;<ref refid="class_pathfinder_1_1_port_1_1_instance" kindref="compound">Instance</ref>&gt;&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -78,7 +78,7 @@
         <argsstring>(Hacknet.Computer c)</argsstring>
         <name>AssignTo</name>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>c</declname>
         </param>
         <briefdescription>
@@ -95,7 +95,7 @@
         <argsstring>(Hacknet.Computer c)</argsstring>
         <name>RemoveFrom</name>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>c</declname>
         </param>
         <briefdescription>
@@ -152,7 +152,7 @@
           <declname>ins</declname>
         </param>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>c</declname>
         </param>
         <briefdescription>
@@ -173,7 +173,7 @@
           <declname>ins</declname>
         </param>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>c</declname>
         </param>
         <briefdescription>
@@ -190,7 +190,7 @@
         <argsstring>(Hacknet.Computer c, Type type)</argsstring>
         <name>GetInstanceIn</name>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>c</declname>
         </param>
         <param>
@@ -211,34 +211,34 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="299">
+      <node id="478">
         <label>Pathfinder.Port.Instance</label>
         <link refid="class_pathfinder_1_1_port_1_1_instance"/>
-        <childnode refid="300" relation="public-inheritance">
+        <childnode refid="479" relation="public-inheritance">
         </childnode>
-        <childnode refid="301" relation="public-inheritance">
+        <childnode refid="480" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="300">
+      <node id="479">
         <label>IEquatable&lt; Type &gt;</label>
       </node>
-      <node id="301">
+      <node id="480">
         <label>IEquatable&lt; Instance &gt;</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="302">
+      <node id="481">
         <label>Pathfinder.Port.Instance</label>
         <link refid="class_pathfinder_1_1_port_1_1_instance"/>
-        <childnode refid="303" relation="public-inheritance">
+        <childnode refid="482" relation="public-inheritance">
         </childnode>
-        <childnode refid="304" relation="public-inheritance">
+        <childnode refid="483" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="303">
+      <node id="482">
         <label>IEquatable&lt; Type &gt;</label>
       </node>
-      <node id="304">
+      <node id="483">
         <label>IEquatable&lt; Instance &gt;</label>
       </node>
     </collaborationgraph>

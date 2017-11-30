@@ -4,12 +4,12 @@
     <compoundname>Pathfinder::Extension::Info</compoundname>
       <sectiondef kind="package-attrib">
       <memberdef kind="variable" id="class_pathfinder_1_1_extension_1_1_info_1aa8ee694dee7f937f4fd140ae6a4c6aed" prot="package" static="no" mutable="no">
-        <type>Dictionary&lt; string, Tuple&lt; <ref refid="class_pathfinder_1_1_command_1_1_handler_1a2a554560d17cb4f32735115a9efde193" kindref="member">Command.Handler.CommandFunc</ref>, string, bool &gt; &gt;</type>
+        <type>Dictionary&lt; string, Tuple&lt; <ref refid="class_pathfinder_1_1_command_1_1_handler_1ac244ac92e40fed79a171eeb74e82415b" kindref="member">Command.Handler.CommandFunc</ref>, string, bool &gt; &gt;</type>
         <definition>Dictionary&lt;string, Tuple&lt;Command.Handler.CommandFunc, string, bool&gt; &gt; Pathfinder.Extension.Info.commands</definition>
         <argsstring></argsstring>
         <name>commands</name>
         <initializer>=
-            new Dictionary&lt;string, Tuple&lt;<ref refid="class_pathfinder_1_1_command_1_1_handler_1a2a554560d17cb4f32735115a9efde193" kindref="member">Command.Handler.CommandFunc</ref>, string, bool&gt;&gt;()</initializer>
+            new Dictionary&lt;string, Tuple&lt;<ref refid="class_pathfinder_1_1_command_1_1_handler_1ac244ac92e40fed79a171eeb74e82415b" kindref="member">Command.Handler.CommandFunc</ref>, string, bool&gt;&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -194,7 +194,7 @@
         <argsstring>(Hacknet.OS os)</argsstring>
         <name>OnConstruct</name>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <briefdescription>
@@ -219,7 +219,7 @@
         <argsstring>(Hacknet.OS os, Stream loadingStream)</argsstring>
         <name>OnLoad</name>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <param>
@@ -255,7 +255,7 @@
         <argsstring>(Hacknet.OS os)</argsstring>
         <name>OnUnload</name>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <briefdescription>

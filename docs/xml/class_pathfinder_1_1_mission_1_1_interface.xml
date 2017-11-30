@@ -103,18 +103,18 @@
         </inbodydescription>
         <location file="Pathfinder/Mission/Interface.cs" line="31" column="1" bodyfile="Pathfinder/Mission/Interface.cs" bodystart="31" bodyend="31"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_interface_1a1575b44a6e80fc4a2c7a610b23c6934b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_interface_1abb4bce8670071a6a9b5ccb6871cef9c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool Pathfinder.Mission.Interface.SendEmail</definition>
-        <argsstring>(Instance instance, Hacknet.OS os)</argsstring>
+        <argsstring>(Instance instance, OS os)</argsstring>
         <name>SendEmail</name>
-        <reimplements refid="interface_pathfinder_1_1_mission_1_1_i_interface_1a1f338473d59326921eb8d534e0162860">SendEmail</reimplements>
+        <reimplements refid="interface_pathfinder_1_1_mission_1_1_i_interface_1a371b2a4b60dbc082cae5c5b490c1acda">SendEmail</reimplements>
         <param>
           <type><ref refid="class_pathfinder_1_1_mission_1_1_instance" kindref="compound">Instance</ref></type>
           <declname>instance</declname>
         </param>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
           <declname>os</declname>
         </param>
         <briefdescription>
@@ -197,25 +197,25 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="313">
+      <node id="543">
         <label>Pathfinder.Mission.Interface</label>
         <link refid="class_pathfinder_1_1_mission_1_1_interface"/>
-        <childnode refid="314" relation="public-inheritance">
+        <childnode refid="544" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="314">
+      <node id="544">
         <label>IInterface</label>
         <link refid="interface_pathfinder_1_1_mission_1_1_i_interface"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="315">
+      <node id="545">
         <label>Pathfinder.Mission.Interface</label>
         <link refid="class_pathfinder_1_1_mission_1_1_interface"/>
-        <childnode refid="316" relation="public-inheritance">
+        <childnode refid="546" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="316">
+      <node id="546">
         <label>IInterface</label>
         <link refid="interface_pathfinder_1_1_mission_1_1_i_interface"/>
       </node>
@@ -230,7 +230,7 @@
       <member refid="class_pathfinder_1_1_mission_1_1_interface_1abc2aaabcd4c2abc3dbd6cf0a0fb974f1" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Interface</scope><name>OnGoalAdd</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_interface_1ac6c7e9131c5021a93838538f5dd9918a" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Interface</scope><name>OnLoadInstance</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_interface_1a3e09bea3c138dbfab6e70be038441da1" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Interface</scope><name>OnStart</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_interface_1a1575b44a6e80fc4a2c7a610b23c6934b" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Interface</scope><name>SendEmail</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_interface_1abb4bce8670071a6a9b5ccb6871cef9c1" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Interface</scope><name>SendEmail</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_interface_1a0d3776fc0c5559b52fb786d64c8963cf" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Interface</scope><name>Update</name></member>
     </listofallmembers>
   </compounddef>

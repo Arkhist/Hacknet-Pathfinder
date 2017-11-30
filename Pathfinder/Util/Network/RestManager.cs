@@ -94,7 +94,7 @@ namespace Pathfinder.Util.Network
                 using (var sr = new StreamReader(responseStream, Encoding.UTF8))
                     recurlyResponse = sr.ReadToEnd();
 
-            responseHeaders = response.Headers.Tostring();
+            responseHeaders = response.Headers.ToString();
             responseStatusCode = (int)((response as HttpWebResponse)?.StatusCode ?? 0);
         }
     }

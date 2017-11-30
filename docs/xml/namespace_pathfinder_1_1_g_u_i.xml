@@ -85,7 +85,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GUI/CommandDisplayState.cs" line="5" column="1" bodyfile="Pathfinder/GUI/CommandDisplayState.cs" bodystart="4" bodyend="15"/>
+        <location file="Pathfinder/GUI/CommandDisplayState.cs" line="4" column="1" bodyfile="Pathfinder/GUI/CommandDisplayState.cs" bodystart="3" bodyend="14"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

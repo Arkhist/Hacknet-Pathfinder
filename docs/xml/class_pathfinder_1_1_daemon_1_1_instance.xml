@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="class_pathfinder_1_1_daemon_1_1_instance" kind="class" language="C#" prot="public">
     <compoundname>Pathfinder::Daemon::Instance</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">Daemon</basecompoundref>
+    <basecompoundref refid="class_hacknet_1_1_daemon" prot="public" virt="non-virtual">Hacknet.Daemon</basecompoundref>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="class_pathfinder_1_1_daemon_1_1_instance_1ada804e320ebcbb804103d04120cb02e2" prot="private" static="no" mutable="no">
         <type>Dictionary&lt; string, Tuple&lt; bool, object &gt; &gt;</type>
@@ -67,7 +67,7 @@
         <argsstring>(Hacknet.Computer computer, string serviceName, Hacknet.OS os, IInterface daeInterface)</argsstring>
         <name>Instance</name>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>computer</declname>
         </param>
         <param>
@@ -75,7 +75,7 @@
           <declname>serviceName</declname>
         </param>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <param>
@@ -102,7 +102,7 @@
           <declname>id</declname>
         </param>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
           <declname>computer</declname>
         </param>
         <param>
@@ -217,11 +217,12 @@
         </inbodydescription>
         <location file="Pathfinder/Daemon/Instance.cs" line="76" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="76" bodyend="85"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a6f9257835a3d44259f9559a20c28e88f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a6f9257835a3d44259f9559a20c28e88f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>override void</type>
         <definition>override void Pathfinder.Daemon.Instance.draw</definition>
         <argsstring>(Rectangle bounds, SpriteBatch sb)</argsstring>
         <name>draw</name>
+        <reimplements refid="class_hacknet_1_1_daemon_1a0c9406a3a17917b6aee69cc7a1dada7e">draw</reimplements>
         <param>
           <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
           <declname>bounds</declname>
@@ -238,11 +239,12 @@
         </inbodydescription>
         <location file="Pathfinder/Daemon/Instance.cs" line="87" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="87" bodyend="91"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1ad22126d7d4e8ac25c959bf424a99e616" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1ad22126d7d4e8ac25c959bf424a99e616" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>override string</type>
         <definition>override string Pathfinder.Daemon.Instance.getSaveString</definition>
         <argsstring>()</argsstring>
         <name>getSaveString</name>
+        <reimplements refid="class_hacknet_1_1_daemon_1ad7cdf53fb1e9ce0941354c3cc32f32ce">getSaveString</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -251,11 +253,12 @@
         </inbodydescription>
         <location file="Pathfinder/Daemon/Instance.cs" line="93" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="93" bodyend="101"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a19c6cfd8c016126ac41917c132c3a8b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a19c6cfd8c016126ac41917c132c3a8b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>override void</type>
         <definition>override void Pathfinder.Daemon.Instance.initFiles</definition>
         <argsstring>()</argsstring>
         <name>initFiles</name>
+        <reimplements refid="class_hacknet_1_1_daemon_1a3f782a5ea32ce03c342a390748e92331">initFiles</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -264,11 +267,12 @@
         </inbodydescription>
         <location file="Pathfinder/Daemon/Instance.cs" line="103" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="103" bodyend="107"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a42f1eb454ea1a2e4a860fa2d7f4b3cd4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a42f1eb454ea1a2e4a860fa2d7f4b3cd4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>override void</type>
         <definition>override void Pathfinder.Daemon.Instance.loadInit</definition>
         <argsstring>()</argsstring>
         <name>loadInit</name>
+        <reimplements refid="class_hacknet_1_1_daemon_1a3844ca22abbecaea0d5c86f4da8286f9">loadInit</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -277,11 +281,12 @@
         </inbodydescription>
         <location file="Pathfinder/Daemon/Instance.cs" line="109" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="109" bodyend="113"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a1153af52b7967768f9129b3d7d0f8dcc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a1153af52b7967768f9129b3d7d0f8dcc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>override void</type>
         <definition>override void Pathfinder.Daemon.Instance.navigatedTo</definition>
         <argsstring>()</argsstring>
         <name>navigatedTo</name>
+        <reimplements refid="class_hacknet_1_1_daemon_1afbea2dfdc31498a0c1b8783b806e70d8">navigatedTo</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -290,11 +295,12 @@
         </inbodydescription>
         <location file="Pathfinder/Daemon/Instance.cs" line="115" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="115" bodyend="119"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a59d75b6a5b8015f0b86f21c6c863cd6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_daemon_1_1_instance_1a59d75b6a5b8015f0b86f21c6c863cd6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>override void</type>
         <definition>override void Pathfinder.Daemon.Instance.userAdded</definition>
         <argsstring>(string name, string pass, byte type)</argsstring>
         <name>userAdded</name>
+        <reimplements refid="class_hacknet_1_1_daemon_1ab04ce89cf349aa5fb1e517eaa8ef6037">userAdded</reimplements>
         <param>
           <type>string</type>
           <declname>name</declname>
@@ -321,46 +327,200 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="287">
+      <node id="458">
         <label>Hacknet::Daemon</label>
+        <link refid="class_hacknet_1_1_daemon"/>
       </node>
-      <node id="286">
+      <node id="457">
         <label>Pathfinder.Daemon.Instance</label>
         <link refid="class_pathfinder_1_1_daemon_1_1_instance"/>
-        <childnode refid="287" relation="public-inheritance">
+        <childnode refid="458" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="289">
-        <label>Hacknet::Daemon</label>
+      <node id="466">
+        <label>Framework</label>
       </node>
-      <node id="288">
+      <node id="468">
+        <label>Hacknet.DisplayModule</label>
+        <link refid="class_hacknet_1_1_display_module"/>
+        <childnode refid="464" relation="public-inheritance">
+        </childnode>
+        <childnode refid="469" relation="usage">
+          <edgelabel>LastDisplayedFileFolder</edgelabel>
+        </childnode>
+      </node>
+      <node id="473">
+        <label>Hacknet.Computer</label>
+        <link refid="class_hacknet_1_1_computer"/>
+        <childnode refid="474" relation="usage">
+          <edgelabel>reportingShell</edgelabel>
+        </childnode>
+        <childnode refid="476" relation="usage">
+          <edgelabel>files</edgelabel>
+        </childnode>
+        <childnode refid="477" relation="usage">
+          <edgelabel>firewall</edgelabel>
+        </childnode>
+      </node>
+      <node id="460">
+        <label>Hacknet::Daemon</label>
+        <link refid="class_hacknet_1_1_daemon"/>
+        <childnode refid="461" relation="usage">
+          <edgelabel>os</edgelabel>
+        </childnode>
+        <childnode refid="473" relation="usage">
+          <edgelabel>comp</edgelabel>
+        </childnode>
+      </node>
+      <node id="462">
+        <label>GameScreen</label>
+        <link refid="class_hacknet_1_1_game_screen"/>
+      </node>
+      <node id="465">
+        <label>Module</label>
+        <link refid="class_hacknet_1_1_module"/>
+        <childnode refid="461" relation="usage">
+          <edgelabel>os</edgelabel>
+        </childnode>
+        <childnode refid="466" relation="usage">
+          <edgelabel>bounds</edgelabel>
+        </childnode>
+      </node>
+      <node id="464">
+        <label>CoreModule</label>
+        <link refid="class_hacknet_1_1_core_module"/>
+        <childnode refid="465" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="459">
         <label>Pathfinder.Daemon.Instance</label>
         <link refid="class_pathfinder_1_1_daemon_1_1_instance"/>
-        <childnode refid="289" relation="public-inheritance">
+        <childnode refid="460" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="475">
+        <label>ExeModule</label>
+        <link refid="class_hacknet_1_1_exe_module"/>
+        <childnode refid="465" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="472">
+        <label>Hacknet.NetworkMap</label>
+        <link refid="class_hacknet_1_1_network_map"/>
+        <childnode refid="464" relation="public-inheritance">
+        </childnode>
+        <childnode refid="473" relation="usage">
+          <edgelabel>mailServer</edgelabel>
+          <edgelabel>academicDatabase</edgelabel>
+          <edgelabel>lastAddedNode</edgelabel>
+        </childnode>
+      </node>
+      <node id="474">
+        <label>Hacknet.ShellExe</label>
+        <link refid="class_hacknet_1_1_shell_exe"/>
+        <childnode refid="475" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="477">
+        <label>Hacknet.Firewall</label>
+        <link refid="class_hacknet_1_1_firewall"/>
+      </node>
+      <node id="476">
+        <label>Hacknet.FileSystem</label>
+        <link refid="class_hacknet_1_1_file_system"/>
+        <childnode refid="469" relation="usage">
+          <edgelabel>root</edgelabel>
+        </childnode>
+      </node>
+      <node id="471">
+        <label>Hacknet.Terminal</label>
+        <link refid="class_hacknet_1_1_terminal"/>
+        <childnode refid="464" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="467">
+        <label>Hacknet.CrashModule</label>
+        <link refid="class_hacknet_1_1_crash_module"/>
+        <childnode refid="465" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="470">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="461">
+        <label>Hacknet.OS</label>
+        <link refid="class_hacknet_1_1_o_s"/>
+        <childnode refid="462" relation="public-inheritance">
+        </childnode>
+        <childnode refid="463" relation="usage">
+          <edgelabel>ram</edgelabel>
+        </childnode>
+        <childnode refid="467" relation="usage">
+          <edgelabel>crashModule</edgelabel>
+        </childnode>
+        <childnode refid="468" relation="usage">
+          <edgelabel>display</edgelabel>
+        </childnode>
+        <childnode refid="471" relation="usage">
+          <edgelabel>terminal</edgelabel>
+        </childnode>
+        <childnode refid="472" relation="usage">
+          <edgelabel>netMap</edgelabel>
+        </childnode>
+        <childnode refid="473" relation="usage">
+          <edgelabel>opponentComputer</edgelabel>
+          <edgelabel>connectedComp</edgelabel>
+          <edgelabel>thisComputer</edgelabel>
+        </childnode>
+        <childnode refid="466" relation="usage">
+          <edgelabel>fullscreen</edgelabel>
+        </childnode>
+        <childnode refid="461" relation="usage">
+          <edgelabel>currentInstance</edgelabel>
+        </childnode>
+      </node>
+      <node id="469">
+        <label>Hacknet.Folder</label>
+        <link refid="class_hacknet_1_1_folder"/>
+        <childnode refid="470" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="463">
+        <label>Hacknet.RamModule</label>
+        <link refid="class_hacknet_1_1_ram_module"/>
+        <childnode refid="464" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
     <location file="Pathfinder/Daemon/Instance.cs" line="10" column="1" bodyfile="Pathfinder/Daemon/Instance.cs" bodystart="9" bodyend="126"/>
     <listofallmembers>
+      <member refid="class_hacknet_1_1_daemon_1a156a7a6834ce8f3f64ac018ff379f1d8" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>comp</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_instance_1aba8be79a7c9d0198f64e96f71b666cf1" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>CreateInstance</name></member>
-      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a6f9257835a3d44259f9559a20c28e88f" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>draw</name></member>
+      <member refid="class_hacknet_1_1_daemon_1a60fd59435a9c39dc6eed6b28c9015a4b" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>Daemon</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a6f9257835a3d44259f9559a20c28e88f" prot="public" virt="virtual"><scope>Pathfinder::Daemon::Instance</scope><name>draw</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a1ea093842b14fdf3803bbf13bca6f8cb" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>GetInstanceData</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a35a110b3f23e270936168799e8cad1f1" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>GetInstanceData&lt; T &gt;</name></member>
-      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1ad22126d7d4e8ac25c959bf424a99e616" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>getSaveString</name></member>
-      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a19c6cfd8c016126ac41917c132c3a8b2" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>initFiles</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1ad22126d7d4e8ac25c959bf424a99e616" prot="public" virt="virtual"><scope>Pathfinder::Daemon::Instance</scope><name>getSaveString</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a19c6cfd8c016126ac41917c132c3a8b2" prot="public" virt="virtual"><scope>Pathfinder::Daemon::Instance</scope><name>initFiles</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_instance_1abc54a44187b34387c09f7025e5a1f9d6" prot="package" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>Instance</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a4eb5cce73510781f0cbddfd8e67567e2" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>Interface</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_instance_1ae7dfe4ab933781a99b9bddd918426fcf" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>InterfaceId</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a0ebc30b92578de61d055950aa37586c3" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>IsInstanceSaveable</name></member>
+      <member refid="class_hacknet_1_1_daemon_1ac14ea67bfbf0c6df6e08bc874c96604a" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>isListed</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_instance_1ada804e320ebcbb804103d04120cb02e2" prot="private" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>keyToObject</name></member>
-      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a42f1eb454ea1a2e4a860fa2d7f4b3cd4" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>loadInit</name></member>
-      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a1153af52b7967768f9129b3d7d0f8dcc" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>navigatedTo</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a42f1eb454ea1a2e4a860fa2d7f4b3cd4" prot="public" virt="virtual"><scope>Pathfinder::Daemon::Instance</scope><name>loadInit</name></member>
+      <member refid="class_hacknet_1_1_daemon_1a90d9b1288853713e01028e96f6104cda" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>name</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a1153af52b7967768f9129b3d7d0f8dcc" prot="public" virt="virtual"><scope>Pathfinder::Daemon::Instance</scope><name>navigatedTo</name></member>
+      <member refid="class_hacknet_1_1_daemon_1a9a962fabfd36aa12595744fa27aedca6" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>os</name></member>
+      <member refid="class_hacknet_1_1_daemon_1aa3723ed6a701958b78da782a7800e3d9" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>registerAsDefaultBootDaemon</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a503f3f3a5181f6c2d97f778ab1ca490d" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>SetInstanceData</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a9e574f325dfc5e782d6b2b17cf2a3a12" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>SetInstanceDataSaveable</name></member>
       <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a1edcb1ad1e2e5c1d9cae106c4156c44e" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>this[string key]</name></member>
-      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a59d75b6a5b8015f0b86f21c6c863cd6e" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>userAdded</name></member>
+      <member refid="class_pathfinder_1_1_daemon_1_1_instance_1a59d75b6a5b8015f0b86f21c6c863cd6e" prot="public" virt="virtual"><scope>Pathfinder::Daemon::Instance</scope><name>userAdded</name></member>
+      <member refid="class_hacknet_1_1_daemon_1aec2200e4a89d4f8321d22107f40c8db4" prot="public" virt="non-virtual"><scope>Pathfinder::Daemon::Instance</scope><name>validUser</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

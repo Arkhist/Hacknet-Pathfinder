@@ -60,9 +60,9 @@
         </inbodydescription>
         <location file="Pathfinder/Mission/Instance.cs" line="17" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="17" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_instance_1a9c388722e28543bba19b8f6ca333bd28" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
-        <type>Hacknet.Computer</type>
-        <definition>Hacknet.Computer Pathfinder.Mission.Instance.MissionComputer</definition>
+      <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_instance_1ab82d546b84fa6ac96779f6066bc426fe" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+        <definition>Computer Pathfinder.Mission.Instance.MissionComputer</definition>
         <argsstring></argsstring>
         <name>MissionComputer</name>
         <briefdescription>
@@ -73,9 +73,9 @@
         </inbodydescription>
         <location file="Pathfinder/Mission/Instance.cs" line="18" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="18" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_instance_1a4ed96fe23b5d41815fc9caa722bb425b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
-        <type>Hacknet.Computer</type>
-        <definition>Hacknet.Computer Pathfinder.Mission.Instance.AgentComputer</definition>
+      <memberdef kind="property" id="class_pathfinder_1_1_mission_1_1_instance_1abc3b83cadacf8db347c9367a7f4e60a2" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+        <definition>Computer Pathfinder.Mission.Instance.AgentComputer</definition>
         <argsstring></argsstring>
         <name>AgentComputer</name>
         <briefdescription>
@@ -386,13 +386,13 @@
         </inbodydescription>
         <location file="Pathfinder/Mission/Instance.cs" line="179" column="1" bodyfile="Pathfinder/Mission/Instance.cs" bodystart="179" bodyend="203"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1ae6ac4481f9587f943cbdecf73edc45df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_mission_1_1_instance_1af37d15ba98a3ac7542119f2e854935c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>override void</type>
         <definition>override void Pathfinder.Mission.Instance.sendEmail</definition>
-        <argsstring>(Hacknet.OS os)</argsstring>
+        <argsstring>(OS os)</argsstring>
         <name>sendEmail</name>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
           <declname>os</declname>
         </param>
         <briefdescription>
@@ -409,24 +409,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="291">
+      <node id="507">
         <label>ActiveMission</label>
       </node>
-      <node id="290">
+      <node id="506">
         <label>Pathfinder.Mission.Instance</label>
         <link refid="class_pathfinder_1_1_mission_1_1_instance"/>
-        <childnode refid="291" relation="public-inheritance">
+        <childnode refid="507" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="293">
+      <node id="509">
         <label>ActiveMission</label>
       </node>
-      <node id="292">
+      <node id="508">
         <label>Pathfinder.Mission.Instance</label>
         <link refid="class_pathfinder_1_1_mission_1_1_instance"/>
-        <childnode refid="293" relation="public-inheritance">
+        <childnode refid="509" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
@@ -435,7 +435,7 @@
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a738a926afaf5b0cf6e3f1d50fb0db6f6" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>ActivateSuppressedStartFunctionIfPresent</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1ad8c7ad14ba26ef19c1e71317a585340e" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>AddGoal</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a98eeda94de223360edd22a5f7a91277b" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>AddGoal</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_instance_1a4ed96fe23b5d41815fc9caa722bb425b" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>AgentComputer</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_instance_1abc3b83cadacf8db347c9367a7f4e60a2" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>AgentComputer</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1ae1e219f75322eea9d3bbb05c036d2ab0" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>CreateInstance</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1ab884af32ae74027bb739f50fadf4dd7f" prot="private" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>dynamicGoals</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1ad9353660feefc6e95c7aa381d5c33900" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>finish</name></member>
@@ -449,8 +449,8 @@
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a91df79b1f57b59d77acff29899704f8a" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>IsInstanceSaveable</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a15059471eb4cd1c35265cfc3c9f21b54" prot="private" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>keyToObject</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a622b9b7f0dea776cab101a39399566ce" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>Load</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_instance_1a9c388722e28543bba19b8f6ca333bd28" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>MissionComputer</name></member>
-      <member refid="class_pathfinder_1_1_mission_1_1_instance_1ae6ac4481f9587f943cbdecf73edc45df" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>sendEmail</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_instance_1ab82d546b84fa6ac96779f6066bc426fe" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>MissionComputer</name></member>
+      <member refid="class_pathfinder_1_1_mission_1_1_instance_1af37d15ba98a3ac7542119f2e854935c3" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>sendEmail</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a56d538255aa40d363aab772c33827e71" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>SetInstanceData</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1adf33dee824e0eb2f35618ccf4708b698" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>SetInstanceDataSaveable</name></member>
       <member refid="class_pathfinder_1_1_mission_1_1_instance_1a859cff169ded02f8ca0965b9ecd0a52d" prot="public" virt="non-virtual"><scope>Pathfinder::Mission::Instance</scope><name>this[string key]</name></member>

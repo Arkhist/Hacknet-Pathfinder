@@ -62,9 +62,9 @@
         </inbodydescription>
         <location file="Pathfinder/Util/Utility.cs" line="46" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="46" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1a76906f5cd3901e82fd4f66842090a82e" prot="public" static="yes" mutable="no">
-        <type>Hacknet.OS</type>
-        <definition>Hacknet.OS Pathfinder.Util.Utility.ClientOS</definition>
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1a9019633aee1d468765b66863ef99afa8" prot="public" static="yes" mutable="no">
+        <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
+        <definition>OS Pathfinder.Util.Utility.ClientOS</definition>
         <argsstring></argsstring>
         <name>ClientOS</name>
         <initializer>=&gt; OS.currentInstance</initializer>
@@ -77,9 +77,9 @@
         </inbodydescription>
         <location file="Pathfinder/Util/Utility.cs" line="74" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="74" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1a391ca6ebd90f658afe070baea5049dfa" prot="public" static="yes" mutable="no">
-        <type>Hacknet.Computer</type>
-        <definition>Hacknet.Computer Pathfinder.Util.Utility.ClientComputer</definition>
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1ac07c967de325cbfffe6ed7b12f5eeab5" prot="public" static="yes" mutable="no">
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+        <definition>Computer Pathfinder.Util.Utility.ClientComputer</definition>
         <argsstring></argsstring>
         <name>ClientComputer</name>
         <initializer>=&gt; ClientOS.thisComputer</initializer>
@@ -92,12 +92,12 @@
         </inbodydescription>
         <location file="Pathfinder/Util/Utility.cs" line="80" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="80" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1a78d3804724a5dcd91a5449ec648b09c0" prot="public" static="yes" mutable="no">
-        <type>Hacknet.NetworkMap</type>
-        <definition>Hacknet.NetworkMap Pathfinder.Util.Utility.ClientNetworkMap</definition>
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1abedd9f776cbe68fe0d70fd8e94efb680" prot="public" static="yes" mutable="no">
+        <type><ref refid="class_hacknet_1_1_network_map" kindref="compound">NetworkMap</ref></type>
+        <definition>NetworkMap Pathfinder.Util.Utility.ClientNetworkMap</definition>
         <argsstring></argsstring>
         <name>ClientNetworkMap</name>
-        <initializer>=&gt; <ref refid="class_pathfinder_1_1_util_1_1_utility_1a76906f5cd3901e82fd4f66842090a82e" kindref="member">ClientOS</ref>?.netMap</initializer>
+        <initializer>=&gt; <ref refid="class_pathfinder_1_1_util_1_1_utility_1a9019633aee1d468765b66863ef99afa8" kindref="member">ClientOS</ref>?.netMap</initializer>
         <briefdescription>
 <para>Gets the current client&apos;s NetworkMap for the current client OS. </para>        </briefdescription>
         <detaileddescription>
@@ -107,12 +107,12 @@
         </inbodydescription>
         <location file="Pathfinder/Util/Utility.cs" line="86" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="86" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1a3e284b53efd6e797d8d6f8dfd50dc945" prot="public" static="yes" mutable="no">
-        <type>Hacknet.Computer</type>
-        <definition>Hacknet.Computer Pathfinder.Util.Utility.CurrentComputer</definition>
+      <memberdef kind="variable" id="class_pathfinder_1_1_util_1_1_utility_1ada02dd596561417caf6b8c918868976c" prot="public" static="yes" mutable="no">
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+        <definition>Computer Pathfinder.Util.Utility.CurrentComputer</definition>
         <argsstring></argsstring>
         <name>CurrentComputer</name>
-        <initializer>=&gt; <ref refid="class_pathfinder_1_1_util_1_1_utility_1a93ac7e49b676b567b9d3cb1601911cf0" kindref="member">GetCurrentComputer</ref>(null)</initializer>
+        <initializer>=&gt; <ref refid="class_pathfinder_1_1_util_1_1_utility_1a9b78ea80a2773773d73981412f367c1d" kindref="member">GetCurrentComputer</ref>(null)</initializer>
         <briefdescription>
 <para>Gets the current Computer the client is connected to. </para>        </briefdescription>
         <detaileddescription>
@@ -238,13 +238,13 @@
         </inbodydescription>
         <location file="Pathfinder/Util/Utility.cs" line="58" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="58" bodyend="68"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a93ac7e49b676b567b9d3cb1601911cf0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>Hacknet.Computer</type>
-        <definition>static Hacknet.Computer Pathfinder.Util.Utility.GetCurrentComputer</definition>
-        <argsstring>(Hacknet.OS os=null)</argsstring>
+      <memberdef kind="function" id="class_pathfinder_1_1_util_1_1_utility_1a9b78ea80a2773773d73981412f367c1d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+        <definition>static Computer Pathfinder.Util.Utility.GetCurrentComputer</definition>
+        <argsstring>(OS os=null)</argsstring>
         <name>GetCurrentComputer</name>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
           <declname>os</declname>
           <defval>null</defval>
         </param>
@@ -257,7 +257,7 @@
 <parametername>os</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The OS to get the current Computer, or equal to <ref refid="class_pathfinder_1_1_util_1_1_utility_1a76906f5cd3901e82fd4f66842090a82e" kindref="member">Utility.ClientOS</ref> if <computeroutput>null</computeroutput>.</para></parameterdescription>
+<para>The OS to get the current Computer, or equal to <ref refid="class_pathfinder_1_1_util_1_1_utility_1a9019633aee1d468765b66863ef99afa8" kindref="member">ClientOS</ref> if <computeroutput>null</computeroutput>.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
@@ -393,33 +393,173 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="549">
-        <label>Hacknet</label>
+      <node id="974">
+        <label>Framework</label>
       </node>
-      <node id="548">
+      <node id="965">
+        <label>Hacknet.DisplayModule</label>
+        <link refid="class_hacknet_1_1_display_module"/>
+        <childnode refid="959" relation="public-inheritance">
+        </childnode>
+        <childnode refid="966" relation="usage">
+          <edgelabel>LastDisplayedFileFolder</edgelabel>
+        </childnode>
+      </node>
+      <node id="969">
+        <label>Hacknet.Computer</label>
+        <link refid="class_hacknet_1_1_computer"/>
+        <childnode refid="970" relation="usage">
+          <edgelabel>reportingShell</edgelabel>
+        </childnode>
+        <childnode refid="972" relation="usage">
+          <edgelabel>files</edgelabel>
+        </childnode>
+        <childnode refid="973" relation="usage">
+          <edgelabel>firewall</edgelabel>
+        </childnode>
+      </node>
+      <node id="962">
+        <label>GameScreen</label>
+        <link refid="class_hacknet_1_1_game_screen"/>
+      </node>
+      <node id="960">
+        <label>Module</label>
+        <link refid="class_hacknet_1_1_module"/>
+        <childnode refid="961" relation="usage">
+          <edgelabel>os</edgelabel>
+        </childnode>
+        <childnode refid="974" relation="usage">
+          <edgelabel>bounds</edgelabel>
+        </childnode>
+      </node>
+      <node id="959">
+        <label>CoreModule</label>
+        <link refid="class_hacknet_1_1_core_module"/>
+        <childnode refid="960" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="971">
+        <label>ExeModule</label>
+        <link refid="class_hacknet_1_1_exe_module"/>
+        <childnode refid="960" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="957">
         <label>Pathfinder.Util.Utility</label>
         <link refid="class_pathfinder_1_1_util_1_1_utility"/>
-        <childnode refid="549" relation="usage">
+        <childnode refid="958" relation="usage">
           <edgelabel>ClientNetworkMap</edgelabel>
-          <edgelabel>ClientOS</edgelabel>
+        </childnode>
+        <childnode refid="969" relation="usage">
           <edgelabel>CurrentComputer</edgelabel>
           <edgelabel>ClientComputer</edgelabel>
+        </childnode>
+        <childnode refid="961" relation="usage">
+          <edgelabel>ClientOS</edgelabel>
+        </childnode>
+      </node>
+      <node id="958">
+        <label>Hacknet.NetworkMap</label>
+        <link refid="class_hacknet_1_1_network_map"/>
+        <childnode refid="959" relation="public-inheritance">
+        </childnode>
+        <childnode refid="969" relation="usage">
+          <edgelabel>mailServer</edgelabel>
+          <edgelabel>academicDatabase</edgelabel>
+          <edgelabel>lastAddedNode</edgelabel>
+        </childnode>
+      </node>
+      <node id="970">
+        <label>Hacknet.ShellExe</label>
+        <link refid="class_hacknet_1_1_shell_exe"/>
+        <childnode refid="971" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="973">
+        <label>Hacknet.Firewall</label>
+        <link refid="class_hacknet_1_1_firewall"/>
+      </node>
+      <node id="972">
+        <label>Hacknet.FileSystem</label>
+        <link refid="class_hacknet_1_1_file_system"/>
+        <childnode refid="966" relation="usage">
+          <edgelabel>root</edgelabel>
+        </childnode>
+      </node>
+      <node id="968">
+        <label>Hacknet.Terminal</label>
+        <link refid="class_hacknet_1_1_terminal"/>
+        <childnode refid="959" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="964">
+        <label>Hacknet.CrashModule</label>
+        <link refid="class_hacknet_1_1_crash_module"/>
+        <childnode refid="960" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="967">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="961">
+        <label>Hacknet.OS</label>
+        <link refid="class_hacknet_1_1_o_s"/>
+        <childnode refid="962" relation="public-inheritance">
+        </childnode>
+        <childnode refid="963" relation="usage">
+          <edgelabel>ram</edgelabel>
+        </childnode>
+        <childnode refid="964" relation="usage">
+          <edgelabel>crashModule</edgelabel>
+        </childnode>
+        <childnode refid="965" relation="usage">
+          <edgelabel>display</edgelabel>
+        </childnode>
+        <childnode refid="968" relation="usage">
+          <edgelabel>terminal</edgelabel>
+        </childnode>
+        <childnode refid="958" relation="usage">
+          <edgelabel>netMap</edgelabel>
+        </childnode>
+        <childnode refid="969" relation="usage">
+          <edgelabel>opponentComputer</edgelabel>
+          <edgelabel>connectedComp</edgelabel>
+          <edgelabel>thisComputer</edgelabel>
+        </childnode>
+        <childnode refid="974" relation="usage">
+          <edgelabel>fullscreen</edgelabel>
+        </childnode>
+        <childnode refid="961" relation="usage">
+          <edgelabel>currentInstance</edgelabel>
+        </childnode>
+      </node>
+      <node id="966">
+        <label>Hacknet.Folder</label>
+        <link refid="class_hacknet_1_1_folder"/>
+        <childnode refid="967" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="963">
+        <label>Hacknet.RamModule</label>
+        <link refid="class_hacknet_1_1_ram_module"/>
+        <childnode refid="959" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
     <location file="Pathfinder/Util/Utility.cs" line="12" column="1" bodyfile="Pathfinder/Util/Utility.cs" bodystart="11" bodyend="143"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a03d9c7906a78775a1b07990c750f22fc" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ActiveModId</name></member>
-      <member refid="class_pathfinder_1_1_util_1_1_utility_1a391ca6ebd90f658afe070baea5049dfa" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ClientComputer</name></member>
-      <member refid="class_pathfinder_1_1_util_1_1_utility_1a78d3804724a5dcd91a5449ec648b09c0" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ClientNetworkMap</name></member>
-      <member refid="class_pathfinder_1_1_util_1_1_utility_1a76906f5cd3901e82fd4f66842090a82e" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ClientOS</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1ac07c967de325cbfffe6ed7b12f5eeab5" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ClientComputer</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1abedd9f776cbe68fe0d70fd8e94efb680" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ClientNetworkMap</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1a9019633aee1d468765b66863ef99afa8" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ClientOS</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a357eda9e4e9b509912046ccc5ba928bb" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>ConvertToValidXmlAttributeName</name></member>
-      <member refid="class_pathfinder_1_1_util_1_1_utility_1a3e284b53efd6e797d8d6f8dfd50dc945" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>CurrentComputer</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1ada02dd596561417caf6b8c918868976c" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>CurrentComputer</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a618af1ec66399a7c5b0344d03325a1df" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GenerateRandomIP</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a70301f889c371b3549b0425d1ca6a148" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GenerateRandomIPSection</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1a79c4ef263212530a86cc044f37284284" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetCleanId</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1af8ff1ad3abf69ca64a95201c5d67a111" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetCleanId</name></member>
-      <member refid="class_pathfinder_1_1_util_1_1_utility_1a93ac7e49b676b567b9d3cb1601911cf0" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetCurrentComputer</name></member>
+      <member refid="class_pathfinder_1_1_util_1_1_utility_1a9b78ea80a2773773d73981412f367c1d" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetCurrentComputer</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1acd9c8556134b84d3565d5d3f5a5f39e1" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetFirstAttribute&lt; T &gt;</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1ad657ed312ff0be70d0556ee0c050c984" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetFirstAttribute&lt; T &gt;</name></member>
       <member refid="class_pathfinder_1_1_util_1_1_utility_1ac5ccd2583f65e51dbea1ed6088be0d14" prot="public" virt="non-virtual"><scope>Pathfinder::Util::Utility</scope><name>GetId</name></member>

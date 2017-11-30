@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_music_manager" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::MusicManager</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_music_manager_1a46356d031da8652125be6e0cd5dcc019" prot="public" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.MusicManager.dataLoadedFromOutsideFile</definition>
+        <argsstring></argsstring>
+        <name>dataLoadedFromOutsideFile</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="979" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="979" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_music_manager_1a97b823d10c8126128d2b7cce4c672ef7" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.MusicManager.currentSongName</definition>
+        <argsstring></argsstring>
+        <name>currentSongName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="980" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="980" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_music_manager_1a67597ce80343e89ac3d69d49376642e6" prot="public" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.MusicManager.isPlaying</definition>
+        <argsstring></argsstring>
+        <name>isPlaying</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="981" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="981" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_music_manager_1a0d41336ca1b36491ac465d6847c82026" prot="public" static="yes" mutable="no">
+        <type>Song</type>
+        <definition>Song Hacknet.MusicManager.curentSong</definition>
+        <argsstring></argsstring>
+        <name>curentSong</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="982" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="982" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_music_manager_1ac0d612267363ef45532e63939e759527" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.MusicManager.FADE_TIME</definition>
+        <argsstring></argsstring>
+        <name>FADE_TIME</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="983" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="983" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_music_manager_1a0c007653a985005e40aafc1d9a391294" prot="public" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.MusicManager.isMuted</definition>
+        <argsstring></argsstring>
+        <name>isMuted</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="984" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="984" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hacknet_1_1_music_manager_1adea4b32ce324a1b1d3c440be4278d252" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>static float Hacknet.MusicManager.getVolume</definition>
+        <argsstring>()</argsstring>
+        <name>getVolume</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="986" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_music_manager_1afc7248db4878c364f9cab509e2bb6fe4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.MusicManager.init</definition>
+        <argsstring>(ContentManager content)</argsstring>
+        <name>init</name>
+        <param>
+          <type>ContentManager</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="987" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_music_manager_1a5a2be7fb6a682984d04887fd56fb38c2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.MusicManager.loadAsCurrentSong</definition>
+        <argsstring>(string songname)</argsstring>
+        <name>loadAsCurrentSong</name>
+        <param>
+          <type>string</type>
+          <declname>songname</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="988" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_music_manager_1a3fba5f8b009ef61a09c92da8a9b50ca2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.MusicManager.loadAsCurrentSongUnsafe</definition>
+        <argsstring>(string songname)</argsstring>
+        <name>loadAsCurrentSongUnsafe</name>
+        <param>
+          <type>string</type>
+          <declname>songname</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="989" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_music_manager_1a37aea353e95361d424ba0e3a6fd7a1ec" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.MusicManager.playSong</definition>
+        <argsstring>()</argsstring>
+        <name>playSong</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="990" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_music_manager_1a2b67ea8bd36b3006bd82e553f3b81444" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.MusicManager.playSongImmediatley</definition>
+        <argsstring>(string songname)</argsstring>
+        <name>playSongImmediatley</name>
+        <param>
+          <type>string</type>
+          <declname>songname</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="991" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_music_manager_1aabbb0fec9e1694b1f1153dc37a90fa97" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.MusicManager.setIsMuted</definition>
+        <argsstring>(bool muted)</argsstring>
+        <name>setIsMuted</name>
+        <param>
+          <type>bool</type>
+          <declname>muted</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="992" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_music_manager_1a2bb5fa54e7270e4354f4310b7bcdaf86" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.MusicManager.setVolume</definition>
+        <argsstring>(float volume)</argsstring>
+        <name>setVolume</name>
+        <param>
+          <type>float</type>
+          <declname>volume</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="993" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_music_manager_1a7dd0d6f95a5f41a63073331572f0e42f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.MusicManager.stop</definition>
+        <argsstring>()</argsstring>
+        <name>stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="994" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_music_manager_1ac1f47b3fbb9e397a8614c967747006fb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.MusicManager.toggleMute</definition>
+        <argsstring>()</argsstring>
+        <name>toggleMute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="995" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_music_manager_1acf8500662f3a6b064bde9a2f385df758" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.MusicManager.transitionToSong</definition>
+        <argsstring>(string songName)</argsstring>
+        <name>transitionToSong</name>
+        <param>
+          <type>string</type>
+          <declname>songName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="996" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_music_manager_1a7b863960cb85851ab34b17967992dd80" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Hacknet.MusicManager.Update</definition>
+        <argsstring>(float t)</argsstring>
+        <name>Update</name>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="997" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="978" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="977" bodyend="998"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_music_manager_1a0d41336ca1b36491ac465d6847c82026" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>curentSong</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1a97b823d10c8126128d2b7cce4c672ef7" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>currentSongName</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1a46356d031da8652125be6e0cd5dcc019" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>dataLoadedFromOutsideFile</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1ac0d612267363ef45532e63939e759527" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>FADE_TIME</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1adea4b32ce324a1b1d3c440be4278d252" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>getVolume</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1afc7248db4878c364f9cab509e2bb6fe4" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>init</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1a0c007653a985005e40aafc1d9a391294" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>isMuted</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1a67597ce80343e89ac3d69d49376642e6" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>isPlaying</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1a5a2be7fb6a682984d04887fd56fb38c2" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>loadAsCurrentSong</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1a3fba5f8b009ef61a09c92da8a9b50ca2" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>loadAsCurrentSongUnsafe</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1a37aea353e95361d424ba0e3a6fd7a1ec" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>playSong</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1a2b67ea8bd36b3006bd82e553f3b81444" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>playSongImmediatley</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1aabbb0fec9e1694b1f1153dc37a90fa97" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>setIsMuted</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1a2bb5fa54e7270e4354f4310b7bcdaf86" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>setVolume</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1a7dd0d6f95a5f41a63073331572f0e42f" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>stop</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1ac1f47b3fbb9e397a8614c967747006fb" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>toggleMute</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1acf8500662f3a6b064bde9a2f385df758" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>transitionToSong</name></member>
+      <member refid="class_hacknet_1_1_music_manager_1a7b863960cb85851ab34b17967992dd80" prot="public" virt="non-virtual"><scope>Hacknet::MusicManager</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

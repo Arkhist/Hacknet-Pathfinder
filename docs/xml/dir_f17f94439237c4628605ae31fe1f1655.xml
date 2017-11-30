@@ -4,6 +4,7 @@
     <compoundname>Pathfinder</compoundname>
     <innerdir refid="dir_c64f3ee0330408b832b2ff013f2b8372">Pathfinder/Command</innerdir>
     <innerdir refid="dir_94882eac2a5a1673f579888c724746a0">Pathfinder/Daemon</innerdir>
+    <innerdir refid="dir_19b8a96f3afae42b8ed71d4ef628d0e9">Pathfinder/Docs</innerdir>
     <innerdir refid="dir_64d253ef1f79ff8128c877fa1dc35bc4">Pathfinder/Event</innerdir>
     <innerdir refid="dir_7405b3433f6ada1bd12e44c3cd4ae2b5">Pathfinder/Executable</innerdir>
     <innerdir refid="dir_d003398c5c83f30e449c6d3a26c0c4cc">Pathfinder/Extension</innerdir>

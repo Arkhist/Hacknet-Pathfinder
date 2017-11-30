@@ -12,6 +12,9 @@ var searchData=
   ['interfaceid',['InterfaceId',['../class_pathfinder_1_1_daemon_1_1_instance.html#ae7dfe4ab933781a99b9bddd918426fcf',1,'Pathfinder.Daemon.Instance.InterfaceId()'],['../class_pathfinder_1_1_mission_1_1_goal_instance.html#a1adcb9f8ed4600d92a9c66048daac96c',1,'Pathfinder.Mission.GoalInstance.InterfaceId()'],['../class_pathfinder_1_1_mission_1_1_instance.html#acc3734520fd48db00bb0efd09d5d91ef',1,'Pathfinder.Mission.Instance.InterfaceId()']]],
   ['intialemaildata',['IntialEmailData',['../interface_pathfinder_1_1_mission_1_1_i_interface.html#add1783b6871b8ae2e66ab89d2cc97c93',1,'Pathfinder.Mission.IInterface.IntialEmailData()'],['../class_pathfinder_1_1_mission_1_1_interface.html#a71d4a72ecb8629ecece1279ad203bc36',1,'Pathfinder.Mission.Interface.IntialEmailData()']]],
   ['ipaccess',['IPAccess',['../class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#accfa9fd3938eb3fa0c59890808fa857d',1,'Pathfinder::GameFilesystem::Filesystem']]],
+  ['isactive',['IsActive',['../class_hacknet_1_1_game_screen.html#aca7edc9ca28bc556a858826e8e419387',1,'Hacknet::GameScreen']]],
   ['iscancelled',['IsCancelled',['../class_pathfinder_1_1_event_1_1_pathfinder_event.html#a97787d999e89e0e767f3d8961d2981fa',1,'Pathfinder::Event::PathfinderEvent']]],
-  ['isdragging',['IsDragging',['../class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle.html#af5bdeb979ca4ba2690ab46d78d3aa6b6',1,'Pathfinder::GUI::DynamicRectangle']]]
+  ['isdragging',['IsDragging',['../class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle.html#af5bdeb979ca4ba2690ab46d78d3aa6b6',1,'Pathfinder::GUI::DynamicRectangle']]],
+  ['isexiting',['IsExiting',['../class_hacknet_1_1_game_screen.html#a721d705516f9d6c2d299c001ebbe7f74',1,'Hacknet::GameScreen']]],
+  ['ispopup',['IsPopup',['../class_hacknet_1_1_game_screen.html#ab5de92a0ecf428ceaeb25533aec96582',1,'Hacknet::GameScreen']]]
 ];

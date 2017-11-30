@@ -1,0 +1,2855 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_o_s" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::OS</compoundname>
+    <basecompoundref refid="class_hacknet_1_1_game_screen" prot="public" virt="non-virtual">Hacknet.GameScreen</basecompoundref>
+    <innerclass refid="struct_hacknet_1_1_o_s_1_1_tracker_detail" prot="public">Hacknet::OS::TrackerDetail</innerclass>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a69ac360d2b207ecc41423321ad152bf9" prot="public" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.TestingPassOnly</definition>
+        <argsstring></argsstring>
+        <name>TestingPassOnly</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="109" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a7c31f3b805871da61e9c258cc5493230" prot="public" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.DEBUG_COMMANDS</definition>
+        <argsstring></argsstring>
+        <name>DEBUG_COMMANDS</name>
+        <initializer>= <ref refid="class_hacknet_1_1_settings_1a2b057dd54ff79aacbd45c6b841fb2a9c" kindref="member">Settings.debugCommandsEnabled</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="110" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a0011055f3312fcba0a20840561a92b4d" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.OS.EXE_MODULE_HEIGHT</definition>
+        <argsstring></argsstring>
+        <name>EXE_MODULE_HEIGHT</name>
+        <initializer>= 250f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="111" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ac49399241be5d75b4c8ff14e62f69a3b" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.OS.TCP_STAYALIVE_TIMER</definition>
+        <argsstring></argsstring>
+        <name>TCP_STAYALIVE_TIMER</name>
+        <initializer>= 10f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="112" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a6acfd6df3eff61e671f6372093f2f5e7" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.OS.WARNING_FLASH_TIME</definition>
+        <argsstring></argsstring>
+        <name>WARNING_FLASH_TIME</name>
+        <initializer>= 2f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="113" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a802b38a53b5ec47f1c178a507af58395" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int Hacknet.OS.TOP_BAR_HEIGHT</definition>
+        <argsstring></argsstring>
+        <name>TOP_BAR_HEIGHT</name>
+        <initializer>= 21</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="114" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a072ac7fee081a21ca0e00fbf673e35e8" prot="public" static="yes" mutable="no">
+        <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
+        <definition>OS Hacknet.OS.currentInstance</definition>
+        <argsstring></argsstring>
+        <name>currentInstance</name>
+        <briefdescription>
+<para>The current main client <ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref> instance. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="118" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a4906cfec9666498800d3725ffb685398" prot="public" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.WillLoadSave</definition>
+        <argsstring></argsstring>
+        <name>WillLoadSave</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="119" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ab0444b37d300324da92f9d519501c0bc" prot="public" static="yes" mutable="no">
+        <type>object</type>
+        <definition>object Hacknet.OS.displayObjectCache</definition>
+        <argsstring></argsstring>
+        <name>displayObjectCache</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="120" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a6c1842e87948d9704e893b0e82b3e52a" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.OS.operationProgress</definition>
+        <argsstring></argsstring>
+        <name>operationProgress</name>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="121" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a276553713340efbce8daa7373ed92415" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double Hacknet.OS.currentElapsedTime</definition>
+        <argsstring></argsstring>
+        <name>currentElapsedTime</name>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="122" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1afd5844b4490d76220cc1bf8b33aea1b7" prot="public" static="no" mutable="no">
+        <type>BootCrashAssistanceModule</type>
+        <definition>BootCrashAssistanceModule Hacknet.OS.BootAssitanceModule</definition>
+        <argsstring></argsstring>
+        <name>BootAssitanceModule</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="124" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1aa119c630044d20e539a646406a0c5e8e" prot="public" static="no" mutable="no">
+        <type>RunnableConditionalActions</type>
+        <definition>RunnableConditionalActions Hacknet.OS.ConditionalActions</definition>
+        <argsstring></argsstring>
+        <name>ConditionalActions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="125" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1abe83e848c4c7e45c81dd185ce722b8ad" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.IsDLCSave</definition>
+        <argsstring></argsstring>
+        <name>IsDLCSave</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="126" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a87ee84b96de8ef59977c515b97fe8c94" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.PreDLCVisibleNodesCache</definition>
+        <argsstring></argsstring>
+        <name>PreDLCVisibleNodesCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="127" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a75b3ea42584c23ba8e2ea9f4e50a7532" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.IsDLCConventionDemo</definition>
+        <argsstring></argsstring>
+        <name>IsDLCConventionDemo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="128" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ad4569a685480a8b38a6864618b2968a2" prot="public" static="no" mutable="no">
+        <type>ActiveEffectsUpdater</type>
+        <definition>ActiveEffectsUpdater Hacknet.OS.EffectsUpdater</definition>
+        <argsstring></argsstring>
+        <name>EffectsUpdater</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="129" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ab1d507d45dcc322c8fa56b4c866ee345" prot="public" static="no" mutable="no">
+        <type>Action</type>
+        <definition>Action Hacknet.OS.traceCompleteOverrideAction</definition>
+        <argsstring></argsstring>
+        <name>traceCompleteOverrideAction</name>
+        <briefdescription>
+<para>The designated override action for a trace completion. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="133" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a795c23891a7ee8fca4d9aad76c425bc5" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="struct_hacknet_1_1_o_s_1_1_tracker_detail" kindref="compound">OS.TrackerDetail</ref> &gt;</type>
+        <definition>List&lt;OS.TrackerDetail&gt; Hacknet.OS.TrackersInProgress</definition>
+        <argsstring></argsstring>
+        <name>TrackersInProgress</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="134" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a1549724ae7d0bcba5a578dae240742a3" prot="public" static="no" mutable="no">
+        <type>Action</type>
+        <definition>Action Hacknet.OS.postFXDrawActions</definition>
+        <argsstring></argsstring>
+        <name>postFXDrawActions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="135" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1aa85392117f4c4ce05bfc0d745ba41cbd" prot="public" static="no" mutable="no">
+        <type>Action&lt; float &gt;</type>
+        <definition>Action&lt;float&gt; Hacknet.OS.UpdateSubscriptions</definition>
+        <argsstring></argsstring>
+        <name>UpdateSubscriptions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="136" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a86d994a4e8b7713f2718ea5d429c04b6" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.PreDLCFaction</definition>
+        <argsstring></argsstring>
+        <name>PreDLCFaction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="137" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a96597820519db95ddf1cfe0a0458d6ea" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.defaultHighlightColor</definition>
+        <argsstring></argsstring>
+        <name>defaultHighlightColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="138" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1abc6857cc0c8dce2b7ed21a1634f01eae" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.ShowDLCAlertsIcon</definition>
+        <argsstring></argsstring>
+        <name>ShowDLCAlertsIcon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="139" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a85c1b7e0dc47eda4318f55a612a6ea3e" prot="public" static="no" mutable="no">
+        <type>HubServerAlertsIcon</type>
+        <definition>HubServerAlertsIcon Hacknet.OS.hubServerAlertsIcon</definition>
+        <argsstring></argsstring>
+        <name>hubServerAlertsIcon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="140" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1aa2d5a36d39262a8deac1a199d419edcf" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.OS.timer</definition>
+        <argsstring></argsstring>
+        <name>timer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="141" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a51b1d9209fb276ad202e6602db4b8840" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.HasLoadedDLCContent</definition>
+        <argsstring></argsstring>
+        <name>HasLoadedDLCContent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="142" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a54c296574c7c37e9e73b47f8e1c0af05" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.connectedIPLastFrame</definition>
+        <argsstring></argsstring>
+        <name>connectedIPLastFrame</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="143" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a391a753d7efa1bbdf309d2997e944e53" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.homeNodeID</definition>
+        <argsstring></argsstring>
+        <name>homeNodeID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="144" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a552d43617fa54707c150fbb55af96680" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.homeAssetServerID</definition>
+        <argsstring></argsstring>
+        <name>homeAssetServerID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="145" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ae237a037a673cf3458d7631ad7ed7885" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.DisableTopBarButtons</definition>
+        <argsstring></argsstring>
+        <name>DisableTopBarButtons</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="146" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a3914e81dd877c57c1595885a5b7d3c27" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.DisableEmailIcon</definition>
+        <argsstring></argsstring>
+        <name>DisableEmailIcon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="147" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a524ffadf6ce7bca587c235a0a06243ea" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.IsInDLCMode</definition>
+        <argsstring></argsstring>
+        <name>IsInDLCMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="148" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a2cd7f6c6ba622e5eec0f1e6521c8c518" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.HasExitedAndEnded</definition>
+        <argsstring></argsstring>
+        <name>HasExitedAndEnded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="149" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a86713dc1ce930ac5da0cefd73c0bc25d" prot="public" static="no" mutable="no">
+        <type>ProgressionFlags</type>
+        <definition>ProgressionFlags Hacknet.OS.Flags</definition>
+        <argsstring></argsstring>
+        <name>Flags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="150" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a6e4842209192b1065a7a72ba626b7075" prot="public" static="no" mutable="no">
+        <type>List&lt; KeyValuePair&lt; string, string &gt; &gt;</type>
+        <definition>List&lt;KeyValuePair&lt;string, string&gt; &gt; Hacknet.OS.ActiveHackers</definition>
+        <argsstring></argsstring>
+        <name>ActiveHackers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="151" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1af8d4dc386e46e96aed1d78a20014005b" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.defaultTopBarColor</definition>
+        <argsstring></argsstring>
+        <name>defaultTopBarColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="152" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a1b215f373b715ea9fa552399a093851d" prot="public" static="no" mutable="no">
+        <type>SoundEffect</type>
+        <definition>SoundEffect Hacknet.OS.beepSound</definition>
+        <argsstring></argsstring>
+        <name>beepSound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="153" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ab1eec6e9a97fa2ab58e2a1c62d5ce8fb" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.terminalOnlyMode</definition>
+        <argsstring></argsstring>
+        <name>terminalOnlyMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="154" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a493bb75179bdb078997f67d628974715" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.warningColor</definition>
+        <argsstring></argsstring>
+        <name>warningColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="155" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a747eb9477aba877709a3005d73803561" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.indentBackgroundColor</definition>
+        <argsstring></argsstring>
+        <name>indentBackgroundColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="156" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ae3883bf81d74e7b2a2bf565e2ea0ff90" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.subtleTextColor</definition>
+        <argsstring></argsstring>
+        <name>subtleTextColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="157" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ac5466c6ee9da9e6998600849884bd318" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.connectedNodeHighlight</definition>
+        <argsstring></argsstring>
+        <name>connectedNodeHighlight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="158" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a194ad482698be7251eb1b8bf6bda0e66" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.exeModuleTopBar</definition>
+        <argsstring></argsstring>
+        <name>exeModuleTopBar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="159" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ac5b67fa5969a434b2ca75b586d095007" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.exeModuleTitleText</definition>
+        <argsstring></argsstring>
+        <name>exeModuleTitleText</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="160" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a87c6dbb3099cf5fb45fde0dd4f55c45d" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.netmapToolTipColor</definition>
+        <argsstring></argsstring>
+        <name>netmapToolTipColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="161" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1aad02ad6b39b7f9d9b0dc11da7f3c79eb" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.netmapToolTipBackground</definition>
+        <argsstring></argsstring>
+        <name>netmapToolTipBackground</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="162" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1abab26c754da207dd8320ee0a29848a70" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.displayModuleExtraLayerBackingColor</definition>
+        <argsstring></argsstring>
+        <name>displayModuleExtraLayerBackingColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="163" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a817ffe4039f8be5de2bc7257055097d9" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.topBarIconsColor</definition>
+        <argsstring></argsstring>
+        <name>topBarIconsColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="164" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a2aa7e342b376ffa7b5ea5b79a9d54b9f" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.BackgroundImageFillColor</definition>
+        <argsstring></argsstring>
+        <name>BackgroundImageFillColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="165" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a847e7d6a09419c91e227531052880072" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.UseAspectPreserveBackgroundScaling</definition>
+        <argsstring></argsstring>
+        <name>UseAspectPreserveBackgroundScaling</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="166" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a866b485b9a79485cfee698b9cb8384f7" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.AFX_KeyboardMiddle</definition>
+        <argsstring></argsstring>
+        <name>AFX_KeyboardMiddle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="167" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="167" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a5bd5f05e1c40d64257f959e220899638" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.AFX_KeyboardOuter</definition>
+        <argsstring></argsstring>
+        <name>AFX_KeyboardOuter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="168" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1aa4b38a7b047bedb68c46c171e8d7b122" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.AFX_WordLogo</definition>
+        <argsstring></argsstring>
+        <name>AFX_WordLogo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="169" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ace0ebef6d386cd6694bf20cc2c9ca587" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.AFX_Other</definition>
+        <argsstring></argsstring>
+        <name>AFX_Other</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="170" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a4eec308ccc0c1fd98d8b68f5f748e2c6" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.thisComputerNode</definition>
+        <argsstring></argsstring>
+        <name>thisComputerNode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="171" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a19b2ed13cc5bfd01a904a04d58c77eda" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.scanlinesColor</definition>
+        <argsstring></argsstring>
+        <name>scanlinesColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="172" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a6c9e1c3a3a45e3001ec7c9cd7afdaf01" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.superLightWhite</definition>
+        <argsstring></argsstring>
+        <name>superLightWhite</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="173" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a0950948d2167a831830b9392b3382d8d" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.highlightColor</definition>
+        <argsstring></argsstring>
+        <name>highlightColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="174" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a10f073c62b7fc13d95bc883c712809bd" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.topBarTextColor</definition>
+        <argsstring></argsstring>
+        <name>topBarTextColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="175" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a3d6e5d2b8c6d385284ef4c92ea40f704" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.semiTransText</definition>
+        <argsstring></argsstring>
+        <name>semiTransText</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="176" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1aaaf9232dd2c98c54024eabc6dbee769d" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.darkBackgroundColor</definition>
+        <argsstring></argsstring>
+        <name>darkBackgroundColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="177" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="177" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a9640a5031358adddb91d6a36a13b5e23" prot="public" static="no" mutable="no">
+        <type>ActionDelayer</type>
+        <definition>ActionDelayer Hacknet.OS.delayer</definition>
+        <argsstring></argsstring>
+        <name>delayer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="178" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1aeb8abd4784e2dd42dbf5e1e67625532e" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.outlineColor</definition>
+        <argsstring></argsstring>
+        <name>outlineColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="179" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a32f0e012ff66b9a22d9a2d9b27c46244" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.lockedColor</definition>
+        <argsstring></argsstring>
+        <name>lockedColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="180" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1aac1616b43e1dd3c167739d135d0db1c9" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.brightLockedColor</definition>
+        <argsstring></argsstring>
+        <name>brightLockedColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="181" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a767e6afcfa79a9656514ed41789095d2" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.brightUnlockedColor</definition>
+        <argsstring></argsstring>
+        <name>brightUnlockedColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="182" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="182" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a94858ea6dc19bb058c0e5608204a1e18" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.unlockedColor</definition>
+        <argsstring></argsstring>
+        <name>unlockedColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="183" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a3cdd163b71b88ff79ee765c24a1801b6" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.lightGray</definition>
+        <argsstring></argsstring>
+        <name>lightGray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="184" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="184" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1acc09a207d9791c11b92b67a7494c5e68" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.shellColor</definition>
+        <argsstring></argsstring>
+        <name>shellColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="185" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="185" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ae47791f72867d9104bce3d447abcf90e" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.shellButtonColor</definition>
+        <argsstring></argsstring>
+        <name>shellButtonColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="186" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a10466abaa440dc6d4023eab574862be4" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.moduleColorSolid</definition>
+        <argsstring></argsstring>
+        <name>moduleColorSolid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="187" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="187" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a2964c449814f7fbbb6b40d7853631285" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.moduleColorSolidDefault</definition>
+        <argsstring></argsstring>
+        <name>moduleColorSolidDefault</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="188" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="188" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1acbc2d64c4706f832064e1b6d48dbf1e0" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.moduleColorStrong</definition>
+        <argsstring></argsstring>
+        <name>moduleColorStrong</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="189" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a28abbf0a0781b417cb353c76b040eedc" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.moduleColorBacking</definition>
+        <argsstring></argsstring>
+        <name>moduleColorBacking</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="190" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="190" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a39447621692a10637fb15b13c3e7629c" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.topBarColor</definition>
+        <argsstring></argsstring>
+        <name>topBarColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="191" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a974ed2af0ae12cf03f77e35a2165e2b4" prot="public" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color Hacknet.OS.terminalTextColor</definition>
+        <argsstring></argsstring>
+        <name>terminalTextColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="192" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a63d70da13254c7e423f003a364d6ab16" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.validCommand</definition>
+        <argsstring></argsstring>
+        <name>validCommand</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="193" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a26e522854fbe3eb21bf1146a79c013c3" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.commandInvalid</definition>
+        <argsstring></argsstring>
+        <name>commandInvalid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="194" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="194" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a7cf0654d09c1c7f2a9e9b7d25d66ea9c" prot="public" static="no" mutable="no">
+        <type>TraceDangerSequence</type>
+        <definition>TraceDangerSequence Hacknet.OS.TraceDangerSequence</definition>
+        <argsstring></argsstring>
+        <name>TraceDangerSequence</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="195" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1aab4e5a89f0ee9edebaec2f0d07ac8a72" prot="public" static="no" mutable="no">
+        <type>IntroTextModule</type>
+        <definition>IntroTextModule Hacknet.OS.introTextModule</definition>
+        <argsstring></argsstring>
+        <name>introTextModule</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="196" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ac35824fc83f46c12a21341b6bd338cd4" prot="public" static="no" mutable="no">
+        <type>GameTime</type>
+        <definition>GameTime Hacknet.OS.lastGameTime</definition>
+        <argsstring></argsstring>
+        <name>lastGameTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="197" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a1456f2fa26f63f69e7e69dda7c2b074a" prot="public" static="no" mutable="no">
+        <type>UserDetail</type>
+        <definition>UserDetail Hacknet.OS.defaultUser</definition>
+        <argsstring></argsstring>
+        <name>defaultUser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="198" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="198" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1af7e680aac670a269dab50ba5947bebbe" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_terminal" kindref="compound">Terminal</ref></type>
+        <definition>Terminal Hacknet.OS.terminal</definition>
+        <argsstring></argsstring>
+        <name>terminal</name>
+        <briefdescription>
+<para>The <ref refid="class_hacknet_1_1_terminal" kindref="compound">Terminal</ref> module of the <ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="202" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ac649b46132d67beb6d4f8d34531fd563" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_network_map" kindref="compound">NetworkMap</ref></type>
+        <definition>NetworkMap Hacknet.OS.netMap</definition>
+        <argsstring></argsstring>
+        <name>netMap</name>
+        <briefdescription>
+<para>The <ref refid="class_hacknet_1_1_network_map" kindref="compound">NetworkMap</ref> module of the <ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="206" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="206" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ad8515a8a9871e762a4dd73c2e9d12adc" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_crash_module" kindref="compound">CrashModule</ref></type>
+        <definition>CrashModule Hacknet.OS.crashModule</definition>
+        <argsstring></argsstring>
+        <name>crashModule</name>
+        <briefdescription>
+<para>The <ref refid="class_hacknet_1_1_crash_module" kindref="compound">CrashModule</ref> of the <ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="210" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a01e5071a16c0bb2a5be52b5745a66d07" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_display_module" kindref="compound">DisplayModule</ref></type>
+        <definition>DisplayModule Hacknet.OS.display</definition>
+        <argsstring></argsstring>
+        <name>display</name>
+        <briefdescription>
+<para>The <ref refid="class_hacknet_1_1_display_module" kindref="compound">DisplayModule</ref> of the <ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="214" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a982d1ff314e881797d507d9bbef8a870" prot="public" static="no" mutable="no">
+        <type>IncomingConnectionOverlay</type>
+        <definition>IncomingConnectionOverlay Hacknet.OS.IncConnectionOverlay</definition>
+        <argsstring></argsstring>
+        <name>IncConnectionOverlay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="215" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a9ea41f47bf10dfa2357d3cb3f32f5320" prot="public" static="no" mutable="no">
+        <type>AircraftInfoOverlay</type>
+        <definition>AircraftInfoOverlay Hacknet.OS.AircraftInfoOverlay</definition>
+        <argsstring></argsstring>
+        <name>AircraftInfoOverlay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="216" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a558b8d35a7696b8b58625021de0243f0" prot="public" static="no" mutable="no">
+        <type>ActiveMission</type>
+        <definition>ActiveMission Hacknet.OS.currentMission</definition>
+        <argsstring></argsstring>
+        <name>currentMission</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="217" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a04ce6eb7ccfd023f24d513b7ffacc525" prot="public" static="no" mutable="no">
+        <type>List&lt; ActiveMission &gt;</type>
+        <definition>List&lt;ActiveMission&gt; Hacknet.OS.branchMissions</definition>
+        <argsstring></argsstring>
+        <name>branchMissions</name>
+        <initializer>= new List&lt;ActiveMission&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="218" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a1f7e8f26e1e7285d6347ff05fbcb1d64" prot="public" static="no" mutable="no">
+        <type>TraceTracker</type>
+        <definition>TraceTracker Hacknet.OS.traceTracker</definition>
+        <argsstring></argsstring>
+        <name>traceTracker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="219" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="219" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1afad871fe64d18ac288c36e97d206cbea" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_ram_module" kindref="compound">RamModule</ref></type>
+        <definition>RamModule Hacknet.OS.ram</definition>
+        <argsstring></argsstring>
+        <name>ram</name>
+        <briefdescription>
+<para>The <ref refid="class_hacknet_1_1_ram_module" kindref="compound">RamModule</ref> of the <ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="223" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="223" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1aa9235fd5dabc290bfe0a573d2c248a9f" prot="public" static="no" mutable="no">
+        <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
+        <definition>Rectangle Hacknet.OS.fullscreen</definition>
+        <argsstring></argsstring>
+        <name>fullscreen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="224" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a83fca1dd939fe20b50d99929f986f633" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_hacknet_1_1_shell_exe" kindref="compound">ShellExe</ref> &gt;</type>
+        <definition>List&lt;ShellExe&gt; Hacknet.OS.shells</definition>
+        <argsstring></argsstring>
+        <name>shells</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="225" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ab8fecba8fbb73b3b2c02fe6b23e3b012" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.FirstTimeStartup</definition>
+        <argsstring></argsstring>
+        <name>FirstTimeStartup</name>
+        <initializer>= <ref refid="class_hacknet_1_1_settings_1a1cf94eac875de5de567dce1c9d02cc16" kindref="member">Settings.slowOSStartup</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="226" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="226" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ae0fcc7116b9aaa89d6a1619eab28eae0" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.initShowsTutorial</definition>
+        <argsstring></argsstring>
+        <name>initShowsTutorial</name>
+        <initializer>= Settings.initShowsTutorial</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="227" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="227" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1abba911fd8050869dc7a0de19ae984e68" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.inputEnabled</definition>
+        <argsstring></argsstring>
+        <name>inputEnabled</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="228" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="228" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a25d51a9dc0b2e236a54bf2c29aaeeecf" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.isLoaded</definition>
+        <argsstring></argsstring>
+        <name>isLoaded</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="229" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a14ccded476fa4635633337f2d7f58466" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.OS.PorthackCompleteFlashTime</definition>
+        <argsstring></argsstring>
+        <name>PorthackCompleteFlashTime</name>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="230" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="230" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ac48ca15e30e8b4256351ffa2f5ce5c0a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.OS.MissionCompleteFlashTime</definition>
+        <argsstring></argsstring>
+        <name>MissionCompleteFlashTime</name>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="231" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a03fc708a0c5e2828c7b41955743eb052" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.username</definition>
+        <argsstring></argsstring>
+        <name>username</name>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="232" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="232" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1adacf317188616811f493503f0c710dbc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Hacknet.OS.totalRam</definition>
+        <argsstring></argsstring>
+        <name>totalRam</name>
+        <initializer>= 800 - (<ref refid="class_hacknet_1_1_o_s_1a802b38a53b5ec47f1c178a507af58395" kindref="member">TOP_BAR_HEIGHT</ref> + 2) - <ref refid="class_hacknet_1_1_ram_module_1a8aa448c3b6e5fd50b479166642500bd8" kindref="member">RamModule.contentStartOffset</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="233" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="233" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a8e4231db99b702e4072a3f3da0ca001f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Hacknet.OS.ramAvaliable</definition>
+        <argsstring></argsstring>
+        <name>ramAvaliable</name>
+        <initializer>= 800 - (<ref refid="class_hacknet_1_1_o_s_1a802b38a53b5ec47f1c178a507af58395" kindref="member">TOP_BAR_HEIGHT</ref> + 2)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="234" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="234" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1abf01772f1f9e70e14507a15f9c374af7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Hacknet.OS.currentPID</definition>
+        <argsstring></argsstring>
+        <name>currentPID</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="235" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="235" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ac8771d1eb4c342e5abddbdd9a08f2dc0" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_hacknet_1_1_exe_module" kindref="compound">ExeModule</ref> &gt;</type>
+        <definition>List&lt;ExeModule&gt; Hacknet.OS.exes</definition>
+        <argsstring></argsstring>
+        <name>exes</name>
+        <briefdescription>
+<para>The <ref refid="class_hacknet_1_1_exe_module" kindref="compound">ExeModule</ref> list, or the executables executing on the <ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="239" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="239" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1aafe97ab054daa85ea7488dec397596b1" prot="public" static="no" mutable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; Hacknet.OS.shellIPs</definition>
+        <argsstring></argsstring>
+        <name>shellIPs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="240" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="240" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ad244e8c0011b6eed3d4481a91851eabf" prot="public" static="no" mutable="no">
+        <type>MailIcon</type>
+        <definition>MailIcon Hacknet.OS.mailicon</definition>
+        <argsstring></argsstring>
+        <name>mailicon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="241" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="241" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a3c904dc43e0058dcd630adb222d42295" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.isServer</definition>
+        <argsstring></argsstring>
+        <name>isServer</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="242" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="242" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1aa3faf2052e118a5efd2942a29aac273d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.canRunContent</definition>
+        <argsstring></argsstring>
+        <name>canRunContent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="243" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a17b04de51ab3742670fac201b42057fa" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.OS.stayAliveTimer</definition>
+        <argsstring></argsstring>
+        <name>stayAliveTimer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="244" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1af9024fc79c434b0891ba257b8bef4796" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.opponentLocation</definition>
+        <argsstring></argsstring>
+        <name>opponentLocation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="245" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="245" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a20a221b824396a1d01245ee54f5f6197" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.displayCache</definition>
+        <argsstring></argsstring>
+        <name>displayCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="246" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a618bf60eab205db3c60e5b6911534b34" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.getStringCache</definition>
+        <argsstring></argsstring>
+        <name>getStringCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="247" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1abd62ba8d36413daf3f2ce289063f9a17" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.multiplayer</definition>
+        <argsstring></argsstring>
+        <name>multiplayer</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="248" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1abcf286c1a4fbd6ad815958f72041bf58" prot="public" static="no" mutable="no">
+        <type>AllFactions</type>
+        <definition>AllFactions Hacknet.OS.allFactions</definition>
+        <argsstring></argsstring>
+        <name>allFactions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="249" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="249" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a35c415d5b492399b921bd72c780664c3" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.connectedIP</definition>
+        <argsstring></argsstring>
+        <name>connectedIP</name>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="250" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="250" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a0043374be912b7d1b8a763e5031f3ae0" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+        <definition>Computer Hacknet.OS.thisComputer</definition>
+        <argsstring></argsstring>
+        <name>thisComputer</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>The <ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref>&apos; owned computer. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="254" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="254" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a4cf159df274a5e982bb6d3b7459dc05f" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+        <definition>Computer Hacknet.OS.connectedComp</definition>
+        <argsstring></argsstring>
+        <name>connectedComp</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+<para>The <ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref>&apos; network connected computer. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="258" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="258" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a74d49f36d904874b6cc1b7b7e2f00666" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+        <definition>Computer Hacknet.OS.opponentComputer</definition>
+        <argsstring></argsstring>
+        <name>opponentComputer</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="259" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="259" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a235f0db224e430029a5268b3e4bc06bb" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.OS.warningFlashTimer</definition>
+        <argsstring></argsstring>
+        <name>warningFlashTimer</name>
+        <initializer>= 0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="260" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="260" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1acf0213e45881af4d78dd167f85f7b5de" prot="public" static="no" mutable="no">
+        <type>Faction</type>
+        <definition>Faction Hacknet.OS.currentFaction</definition>
+        <argsstring></argsstring>
+        <name>currentFaction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="261" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="261" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a32b26d9bf27fe0acd1f8db62ae0f495f" prot="public" static="no" mutable="no">
+        <type>EndingSequenceModule</type>
+        <definition>EndingSequenceModule Hacknet.OS.endingSequence</definition>
+        <argsstring></argsstring>
+        <name>endingSequence</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="262" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="262" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a57a9e33bfffaa5e6a8e22307cf3a7e4a" prot="public" static="no" mutable="no">
+        <type>ContentManager</type>
+        <definition>ContentManager Hacknet.OS.content</definition>
+        <argsstring></argsstring>
+        <name>content</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="263" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="263" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a53b4cb7bfaa4a29a272b75d25cc3a1fc" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.OS.gameSavedTextAlpha</definition>
+        <argsstring></argsstring>
+        <name>gameSavedTextAlpha</name>
+        <initializer>= -1f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="264" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="264" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a6d9cbb35edbf6d7e25ed896c57d5ddb8" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.SaveGameUserName</definition>
+        <argsstring></argsstring>
+        <name>SaveGameUserName</name>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="265" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="265" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1a2e0f3651b206844aba357b4af3740c00" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.SaveUserAccountName</definition>
+        <argsstring></argsstring>
+        <name>SaveUserAccountName</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="266" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="266" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1ae3e8a3453e94bb19993b21673a866c91" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.OS.SaveUserPassword</definition>
+        <argsstring></argsstring>
+        <name>SaveUserPassword</name>
+        <initializer>= &quot;password&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="267" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="267" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_o_s_1acd518c54a43868f2b09945694ffa9a85" prot="public" static="no" mutable="no">
+        <type>List&lt; int &gt;</type>
+        <definition>List&lt;int&gt; Hacknet.OS.navigationPath</definition>
+        <argsstring></argsstring>
+        <name>navigationPath</name>
+        <initializer>= new List&lt;int&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="268" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="268" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1af990b04e4787243757621daca25e8d08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.addExe</definition>
+        <argsstring>(ExeModule exe)</argsstring>
+        <name>addExe</name>
+        <param>
+          <type><ref refid="class_hacknet_1_1_exe_module" kindref="compound">ExeModule</ref></type>
+          <declname>exe</declname>
+        </param>
+        <briefdescription>
+<para>Adds an <ref refid="class_hacknet_1_1_exe_module" kindref="compound">ExeModule</ref> to exes. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>exe</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="class_hacknet_1_1_exe_module" kindref="compound">ExeModule</ref> to add.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="274" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1af0178fcd5fd3f6139a66357099bc5824" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.clientDisconnected</definition>
+        <argsstring>()</argsstring>
+        <name>clientDisconnected</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="275" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a43b526dea349f1164cde7ab1a4a1f07c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.connectedComputerCrashed</definition>
+        <argsstring>(Computer c)</argsstring>
+        <name>connectedComputerCrashed</name>
+        <param>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="276" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a3a4ba6ccf8c54db47044ce80ceed97bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.OS.Draw</definition>
+        <argsstring>(GameTime gameTime)</argsstring>
+        <name>Draw</name>
+        <reimplements refid="class_hacknet_1_1_game_screen_1ad5981db7a8fbb6de68a5e4cb5b71f962">Draw</reimplements>
+        <param>
+          <type>GameTime</type>
+          <declname>gameTime</declname>
+        </param>
+        <briefdescription>
+<para>Draws the screen given the delta of gameTime. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gameTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The delta of last draw</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="277" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a73b3b1669f9d55d939efd9f61e14fca5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.drawBackground</definition>
+        <argsstring>()</argsstring>
+        <name>drawBackground</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="278" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1aeaa894235b8ec1d9d3351fd6a48840cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.drawModules</definition>
+        <argsstring>(GameTime gameTime)</argsstring>
+        <name>drawModules</name>
+        <param>
+          <type>GameTime</type>
+          <declname>gameTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="279" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a3e9962a8486ce5b731b7a3a8e5052e31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.drawScanlines</definition>
+        <argsstring>()</argsstring>
+        <name>drawScanlines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="280" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a4458a1f7ca9981e4d8bc0832130f92b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.endMultiplayerMatch</definition>
+        <argsstring>(bool won)</argsstring>
+        <name>endMultiplayerMatch</name>
+        <param>
+          <type>bool</type>
+          <declname>won</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="281" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a08fbb97f4d2ff097f3f9731d1512b84d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.execute</definition>
+        <argsstring>(string text)</argsstring>
+        <name>execute</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Executes the specified text as though it was typed in the <ref refid="class_hacknet_1_1_terminal" kindref="compound">Terminal</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text to execute.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="286" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a4eac5fdc23a6f6a8d57643fbc8bb7927" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.failBoot</definition>
+        <argsstring>()</argsstring>
+        <name>failBoot</name>
+        <briefdescription>
+<para>Triggers the boot to fail to <ref refid="class_hacknet_1_1_terminal" kindref="compound">Terminal</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="290" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a9a9f734337a366cd2e8cbd2d6a55b124" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
+        <definition>Rectangle Hacknet.OS.getExeBounds</definition>
+        <argsstring>()</argsstring>
+        <name>getExeBounds</name>
+        <briefdescription>
+<para>Gets the bounds of which all standard executable displays are within. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="294" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a09b74fd6f23271d92558b4f1de965760" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.graphicsFailBoot</definition>
+        <argsstring>()</argsstring>
+        <name>graphicsFailBoot</name>
+        <briefdescription>
+<para><ref refid="class_hacknet_1_1_o_s_1a4eac5fdc23a6f6a8d57643fbc8bb7927" kindref="member">failBoot()</ref> </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="296" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a667b7b1a73e7731a555ce12119bc2b3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.OS.HandleInput</definition>
+        <argsstring>(InputState input)</argsstring>
+        <name>HandleInput</name>
+        <reimplements refid="class_hacknet_1_1_game_screen_1adab8a6ff628a214a398645d5b7f16546">HandleInput</reimplements>
+        <param>
+          <type>InputState</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Handles general input. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="297" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a55d032fe9cb17c2149262dc43b91d41a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Hacknet.OS.hasConnectionPermission</definition>
+        <argsstring>(bool admin)</argsstring>
+        <name>hasConnectionPermission</name>
+        <param>
+          <type>bool</type>
+          <declname>admin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="298" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a2bc6c76283d6379c1770bd516f0026e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.OS.inputMethodChanged</definition>
+        <argsstring>(bool usingGamePad)</argsstring>
+        <name>inputMethodChanged</name>
+        <reimplements refid="class_hacknet_1_1_game_screen_1ab82d3fc47d1d46278e80f5b3cde2b01a">inputMethodChanged</reimplements>
+        <param>
+          <type>bool</type>
+          <declname>usingGamePad</declname>
+        </param>
+        <briefdescription>
+<para>Marks input method to change. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>usingGamePad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If set to <computeroutput>true</computeroutput> then input changes to game pad.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="299" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1aa053d14003514ceaa74126c8076f7d6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.launchExecutable</definition>
+        <argsstring>(string exeName, string exeFileData, int targetPort, string[] allParams=null, string originalName=null)</argsstring>
+        <name>launchExecutable</name>
+        <param>
+          <type>string</type>
+          <declname>exeName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>exeFileData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>targetPort</declname>
+        </param>
+        <param>
+          <type>string []</type>
+          <declname>allParams</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>originalName</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="300" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1ae873fdcd7c8d7e05f6aedc48dbb819ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.loadBranchMissionsSaveData</definition>
+        <argsstring>(XmlReader reader)</argsstring>
+        <name>loadBranchMissionsSaveData</name>
+        <param>
+          <type>XmlReader</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="305" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1aba4b67632431d3ed55bb7443d92cb777" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.OS.LoadContent</definition>
+        <argsstring>()</argsstring>
+        <name>LoadContent</name>
+        <reimplements refid="class_hacknet_1_1_game_screen_1a2bfe8611a4bc6d6f432d81fdee06789c">LoadContent</reimplements>
+        <briefdescription>
+<para>Loads content. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="306" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a2b527787cb91dfbb875da9a9cb338642" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.LoadExtraTitleSaveData</definition>
+        <argsstring>(XmlReader rdr)</argsstring>
+        <name>LoadExtraTitleSaveData</name>
+        <param>
+          <type>XmlReader</type>
+          <declname>rdr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="307" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1ad3de525e053aa172a8a3edbc84f98fa0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.loadMissionNodes</definition>
+        <argsstring>()</argsstring>
+        <name>loadMissionNodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="308" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1ae745650730a332cc019b9644e8bb1d37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.loadMultiplayerMission</definition>
+        <argsstring>()</argsstring>
+        <name>loadMultiplayerMission</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="309" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1ab7f458120dc8241143fe06f61671b799" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.loadOtherSaveData</definition>
+        <argsstring>(XmlReader reader)</argsstring>
+        <name>loadOtherSaveData</name>
+        <param>
+          <type>XmlReader</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="310" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a255226365e378db78ba82f497b0a83b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.loadSaveFile</definition>
+        <argsstring>()</argsstring>
+        <name>loadSaveFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="311" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1ad9fcac6e5789811fd6f23d8a7b54fc39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.loadTitleSaveData</definition>
+        <argsstring>(XmlReader reader)</argsstring>
+        <name>loadTitleSaveData</name>
+        <param>
+          <type>XmlReader</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="312" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1af0d671221f9edaf51c1fe9533ac07bab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.quitGame</definition>
+        <argsstring>(object sender, PlayerIndexEventArgs e)</argsstring>
+        <name>quitGame</name>
+        <param>
+          <type>object</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>PlayerIndexEventArgs</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="313" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a95ef99950fe8f16242fec8a370f2e772" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.rebootThisComputer</definition>
+        <argsstring>()</argsstring>
+        <name>rebootThisComputer</name>
+        <briefdescription>
+<para>Reboots the thisComputer. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="317" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a227d08f1ce6ea91dc0d53d2d6f023c5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.RefreshTheme</definition>
+        <argsstring>()</argsstring>
+        <name>RefreshTheme</name>
+        <briefdescription>
+<para>Refreshes the theme. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="321" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a7089988cb64129c84f489f688ebb5c29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.RequestRemovalOfAllPopups</definition>
+        <argsstring>()</argsstring>
+        <name>RequestRemovalOfAllPopups</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="322" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a88b8d6b9092240465af15c0fa53aa32a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.runCommand</definition>
+        <argsstring>(string text)</argsstring>
+        <name>runCommand</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="323" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a87f32dbc2e90cda2565c3ed7f6238979" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.saveGame</definition>
+        <argsstring>()</argsstring>
+        <name>saveGame</name>
+        <briefdescription>
+<para>Saves the game. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="327" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a296a84f46ca68a980a0f7378bb072d4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.sendMessage</definition>
+        <argsstring>(string message)</argsstring>
+        <name>sendMessage</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+<para>Writes the message to the network stream. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="331" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a3622bc3aa9cf02043855ec18c9a1e046" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.setMouseVisiblity</definition>
+        <argsstring>(bool mouseIsVisible)</argsstring>
+        <name>setMouseVisiblity</name>
+        <param>
+          <type>bool</type>
+          <declname>mouseIsVisible</declname>
+        </param>
+        <briefdescription>
+<para>Sets the mouse visiblity. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mouseIsVisible</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If set to <computeroutput>true</computeroutput> mouse is visible.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="336" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1ac9aceecb3da12feda0826f3612908251" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.sucsesfulBoot</definition>
+        <argsstring>()</argsstring>
+        <name>sucsesfulBoot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="337" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a968fb9a0b9b891514a2282fedc3b9fef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.takeAdmin</definition>
+        <argsstring>()</argsstring>
+        <name>takeAdmin</name>
+        <briefdescription>
+<para>Gives admin privilege of the connectedComputer to the ip of thisComputer </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="341" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a0c22da0b6142473bff267ccc90fae7af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.takeAdmin</definition>
+        <argsstring>(string ip)</argsstring>
+        <name>takeAdmin</name>
+        <param>
+          <type>string</type>
+          <declname>ip</declname>
+        </param>
+        <briefdescription>
+<para>Gives admin privilege of the ip to the ip of thisComputer </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ip</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ip of the computer to give admin privilege from.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="346" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1aad04fc59b96cede8514e67a4ea289559" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.thisComputerCrashed</definition>
+        <argsstring>()</argsstring>
+        <name>thisComputerCrashed</name>
+        <briefdescription>
+<para>Crashes the thisComputer. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="350" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a546388444c7347fee3a865ebb825ca04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.thisComputerIPReset</definition>
+        <argsstring>()</argsstring>
+        <name>thisComputerIPReset</name>
+        <briefdescription>
+<para>Resets the thisComputer&apos;s ip address. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="354" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1ab5ecd09fb1fdbe1428816e4bf3514058" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.threadedSaveExecute</definition>
+        <argsstring>(bool preventSaveText=false)</argsstring>
+        <name>threadedSaveExecute</name>
+        <param>
+          <type>bool</type>
+          <declname>preventSaveText</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="355" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a3704ac2d7f2f45e7520cf53337a84ea7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.timerExpired</definition>
+        <argsstring>()</argsstring>
+        <name>timerExpired</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="356" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a346a19a1d7e73c386da9d216b15cb126" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.OS.UnloadContent</definition>
+        <argsstring>()</argsstring>
+        <name>UnloadContent</name>
+        <reimplements refid="class_hacknet_1_1_game_screen_1a257b0a6ad6d0beca8ba1b78963e1ca63">UnloadContent</reimplements>
+        <briefdescription>
+<para>Unloads content if need be. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="357" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a62efb343bf7cef0142dfaed524c1632c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.OS.Update</definition>
+        <argsstring>(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)</argsstring>
+        <name>Update</name>
+        <reimplements refid="class_hacknet_1_1_game_screen_1a50e1a2d754930682e4fab53d113276c8">Update</reimplements>
+        <param>
+          <type>GameTime</type>
+          <declname>gameTime</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>otherScreenHasFocus</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>coveredByOtherScreen</declname>
+        </param>
+        <briefdescription>
+<para>Updates the screen given the delta of gameTime gameTime. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gameTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The delta of last update.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>otherScreenHasFocus</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If other screen has focus then is <computeroutput>true</computeroutput>, otherwise <computeroutput>false</computeroutput>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coveredByOtherScreen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If covered by another screen then is <computeroutput>true</computeroutput>, otherwise <computeroutput>false</computeroutput>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="358" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a2b723916e737cd13c3d2147015c33615" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.warningFlash</definition>
+        <argsstring>()</argsstring>
+        <name>warningFlash</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="359" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1acb32c7260d678cfef8bc4c8b26f0b38d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.write</definition>
+        <argsstring>(string text)</argsstring>
+        <name>write</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Write the specified text to <ref refid="class_hacknet_1_1_terminal" kindref="compound">Terminal</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text to write to the terminal.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="364" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_o_s_1a4016738ae048b2ec2d71f78c320cb889" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.OS.writeSingle</definition>
+        <argsstring>(string text)</argsstring>
+        <name>writeSingle</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Writes the specified text to <ref refid="class_hacknet_1_1_terminal" kindref="compound">Terminal</ref> without any special serialization of the text. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text to write.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="369" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="715">
+        <label>GameScreen</label>
+        <link refid="class_hacknet_1_1_game_screen"/>
+      </node>
+      <node id="714">
+        <label>Hacknet.OS</label>
+        <link refid="class_hacknet_1_1_o_s"/>
+        <childnode refid="715" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="721">
+        <label>Framework</label>
+      </node>
+      <node id="723">
+        <label>Hacknet.DisplayModule</label>
+        <link refid="class_hacknet_1_1_display_module"/>
+        <childnode refid="719" relation="public-inheritance">
+        </childnode>
+        <childnode refid="724" relation="usage">
+          <edgelabel>LastDisplayedFileFolder</edgelabel>
+        </childnode>
+      </node>
+      <node id="728">
+        <label>Hacknet.Computer</label>
+        <link refid="class_hacknet_1_1_computer"/>
+        <childnode refid="729" relation="usage">
+          <edgelabel>reportingShell</edgelabel>
+        </childnode>
+        <childnode refid="731" relation="usage">
+          <edgelabel>files</edgelabel>
+        </childnode>
+        <childnode refid="732" relation="usage">
+          <edgelabel>firewall</edgelabel>
+        </childnode>
+      </node>
+      <node id="717">
+        <label>GameScreen</label>
+        <link refid="class_hacknet_1_1_game_screen"/>
+      </node>
+      <node id="720">
+        <label>Module</label>
+        <link refid="class_hacknet_1_1_module"/>
+        <childnode refid="716" relation="usage">
+          <edgelabel>os</edgelabel>
+        </childnode>
+        <childnode refid="721" relation="usage">
+          <edgelabel>bounds</edgelabel>
+        </childnode>
+      </node>
+      <node id="719">
+        <label>CoreModule</label>
+        <link refid="class_hacknet_1_1_core_module"/>
+        <childnode refid="720" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="730">
+        <label>ExeModule</label>
+        <link refid="class_hacknet_1_1_exe_module"/>
+        <childnode refid="720" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="727">
+        <label>Hacknet.NetworkMap</label>
+        <link refid="class_hacknet_1_1_network_map"/>
+        <childnode refid="719" relation="public-inheritance">
+        </childnode>
+        <childnode refid="728" relation="usage">
+          <edgelabel>mailServer</edgelabel>
+          <edgelabel>academicDatabase</edgelabel>
+          <edgelabel>lastAddedNode</edgelabel>
+        </childnode>
+      </node>
+      <node id="729">
+        <label>Hacknet.ShellExe</label>
+        <link refid="class_hacknet_1_1_shell_exe"/>
+        <childnode refid="730" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="732">
+        <label>Hacknet.Firewall</label>
+        <link refid="class_hacknet_1_1_firewall"/>
+      </node>
+      <node id="731">
+        <label>Hacknet.FileSystem</label>
+        <link refid="class_hacknet_1_1_file_system"/>
+        <childnode refid="724" relation="usage">
+          <edgelabel>root</edgelabel>
+        </childnode>
+      </node>
+      <node id="726">
+        <label>Hacknet.Terminal</label>
+        <link refid="class_hacknet_1_1_terminal"/>
+        <childnode refid="719" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="722">
+        <label>Hacknet.CrashModule</label>
+        <link refid="class_hacknet_1_1_crash_module"/>
+        <childnode refid="720" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="725">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="716">
+        <label>Hacknet.OS</label>
+        <link refid="class_hacknet_1_1_o_s"/>
+        <childnode refid="717" relation="public-inheritance">
+        </childnode>
+        <childnode refid="718" relation="usage">
+          <edgelabel>ram</edgelabel>
+        </childnode>
+        <childnode refid="722" relation="usage">
+          <edgelabel>crashModule</edgelabel>
+        </childnode>
+        <childnode refid="723" relation="usage">
+          <edgelabel>display</edgelabel>
+        </childnode>
+        <childnode refid="726" relation="usage">
+          <edgelabel>terminal</edgelabel>
+        </childnode>
+        <childnode refid="727" relation="usage">
+          <edgelabel>netMap</edgelabel>
+        </childnode>
+        <childnode refid="728" relation="usage">
+          <edgelabel>opponentComputer</edgelabel>
+          <edgelabel>connectedComp</edgelabel>
+          <edgelabel>thisComputer</edgelabel>
+        </childnode>
+        <childnode refid="721" relation="usage">
+          <edgelabel>fullscreen</edgelabel>
+        </childnode>
+        <childnode refid="716" relation="usage">
+          <edgelabel>currentInstance</edgelabel>
+        </childnode>
+      </node>
+      <node id="724">
+        <label>Hacknet.Folder</label>
+        <link refid="class_hacknet_1_1_folder"/>
+        <childnode refid="725" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="718">
+        <label>Hacknet.RamModule</label>
+        <link refid="class_hacknet_1_1_ram_module"/>
+        <childnode refid="719" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="108" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="107" bodyend="376"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_o_s_1a6e4842209192b1065a7a72ba626b7075" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>ActiveHackers</name></member>
+      <member refid="class_hacknet_1_1_o_s_1af990b04e4787243757621daca25e8d08" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>addExe</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a866b485b9a79485cfee698b9cb8384f7" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>AFX_KeyboardMiddle</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a5bd5f05e1c40d64257f959e220899638" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>AFX_KeyboardOuter</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ace0ebef6d386cd6694bf20cc2c9ca587" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>AFX_Other</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aa4b38a7b047bedb68c46c171e8d7b122" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>AFX_WordLogo</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a9ea41f47bf10dfa2357d3cb3f32f5320" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>AircraftInfoOverlay</name></member>
+      <member refid="class_hacknet_1_1_o_s_1abcf286c1a4fbd6ad815958f72041bf58" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>allFactions</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a2aa7e342b376ffa7b5ea5b79a9d54b9f" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>BackgroundImageFillColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a1b215f373b715ea9fa552399a093851d" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>beepSound</name></member>
+      <member refid="class_hacknet_1_1_o_s_1afd5844b4490d76220cc1bf8b33aea1b7" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>BootAssitanceModule</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a04ce6eb7ccfd023f24d513b7ffacc525" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>branchMissions</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aac1616b43e1dd3c167739d135d0db1c9" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>brightLockedColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a767e6afcfa79a9656514ed41789095d2" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>brightUnlockedColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aa3faf2052e118a5efd2942a29aac273d" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>canRunContent</name></member>
+      <member refid="class_hacknet_1_1_o_s_1af0178fcd5fd3f6139a66357099bc5824" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>clientDisconnected</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a26e522854fbe3eb21bf1146a79c013c3" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>commandInvalid</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aa119c630044d20e539a646406a0c5e8e" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>ConditionalActions</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a4cf159df274a5e982bb6d3b7459dc05f" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>connectedComp</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a43b526dea349f1164cde7ab1a4a1f07c" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>connectedComputerCrashed</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a35c415d5b492399b921bd72c780664c3" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>connectedIP</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a54c296574c7c37e9e73b47f8e1c0af05" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>connectedIPLastFrame</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ac5466c6ee9da9e6998600849884bd318" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>connectedNodeHighlight</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a57a9e33bfffaa5e6a8e22307cf3a7e4a" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>content</name></member>
+      <member refid="class_hacknet_1_1_game_screen_1a4f07a74db6ecd8a2efa28a6da68f25a0" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>ControllingPlayer</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ad8515a8a9871e762a4dd73c2e9d12adc" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>crashModule</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a276553713340efbce8daa7373ed92415" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>currentElapsedTime</name></member>
+      <member refid="class_hacknet_1_1_o_s_1acf0213e45881af4d78dd167f85f7b5de" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>currentFaction</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a072ac7fee081a21ca0e00fbf673e35e8" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>currentInstance</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a558b8d35a7696b8b58625021de0243f0" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>currentMission</name></member>
+      <member refid="class_hacknet_1_1_o_s_1abf01772f1f9e70e14507a15f9c374af7" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>currentPID</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aaaf9232dd2c98c54024eabc6dbee769d" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>darkBackgroundColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a7c31f3b805871da61e9c258cc5493230" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>DEBUG_COMMANDS</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a96597820519db95ddf1cfe0a0458d6ea" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>defaultHighlightColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1af8d4dc386e46e96aed1d78a20014005b" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>defaultTopBarColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a1456f2fa26f63f69e7e69dda7c2b074a" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>defaultUser</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a9640a5031358adddb91d6a36a13b5e23" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>delayer</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a3914e81dd877c57c1595885a5b7d3c27" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>DisableEmailIcon</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ae237a037a673cf3458d7631ad7ed7885" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>DisableTopBarButtons</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a01e5071a16c0bb2a5be52b5745a66d07" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>display</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a20a221b824396a1d01245ee54f5f6197" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>displayCache</name></member>
+      <member refid="class_hacknet_1_1_o_s_1abab26c754da207dd8320ee0a29848a70" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>displayModuleExtraLayerBackingColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ab0444b37d300324da92f9d519501c0bc" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>displayObjectCache</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a3a4ba6ccf8c54db47044ce80ceed97bf" prot="public" virt="virtual"><scope>Hacknet::OS</scope><name>Draw</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a73b3b1669f9d55d939efd9f61e14fca5" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>drawBackground</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aeaa894235b8ec1d9d3351fd6a48840cb" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>drawModules</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a3e9962a8486ce5b731b7a3a8e5052e31" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>drawScanlines</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ad4569a685480a8b38a6864618b2968a2" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>EffectsUpdater</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a32b26d9bf27fe0acd1f8db62ae0f495f" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>endingSequence</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a4458a1f7ca9981e4d8bc0832130f92b7" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>endMultiplayerMatch</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a0011055f3312fcba0a20840561a92b4d" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>EXE_MODULE_HEIGHT</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a08fbb97f4d2ff097f3f9731d1512b84d" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>execute</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ac5b67fa5969a434b2ca75b586d095007" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>exeModuleTitleText</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a194ad482698be7251eb1b8bf6bda0e66" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>exeModuleTopBar</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ac8771d1eb4c342e5abddbdd9a08f2dc0" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>exes</name></member>
+      <member refid="class_hacknet_1_1_game_screen_1ade10ca23157ec2d18a04f79db2440b03" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>ExitScreen</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a4eac5fdc23a6f6a8d57643fbc8bb7927" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>failBoot</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ab8fecba8fbb73b3b2c02fe6b23e3b012" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>FirstTimeStartup</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a86713dc1ce930ac5da0cefd73c0bc25d" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>Flags</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aa9235fd5dabc290bfe0a573d2c248a9f" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>fullscreen</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a53b4cb7bfaa4a29a272b75d25cc3a1fc" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>gameSavedTextAlpha</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a9a9f734337a366cd2e8cbd2d6a55b124" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>getExeBounds</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a618bf60eab205db3c60e5b6911534b34" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>getStringCache</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a09b74fd6f23271d92558b4f1de965760" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>graphicsFailBoot</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a667b7b1a73e7731a555ce12119bc2b3d" prot="public" virt="virtual"><scope>Hacknet::OS</scope><name>HandleInput</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a55d032fe9cb17c2149262dc43b91d41a" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>hasConnectionPermission</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a2cd7f6c6ba622e5eec0f1e6521c8c518" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>HasExitedAndEnded</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a51b1d9209fb276ad202e6602db4b8840" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>HasLoadedDLCContent</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a0950948d2167a831830b9392b3382d8d" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>highlightColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a552d43617fa54707c150fbb55af96680" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>homeAssetServerID</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a391a753d7efa1bbdf309d2997e944e53" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>homeNodeID</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a85c1b7e0dc47eda4318f55a612a6ea3e" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>hubServerAlertsIcon</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a982d1ff314e881797d507d9bbef8a870" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>IncConnectionOverlay</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a747eb9477aba877709a3005d73803561" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>indentBackgroundColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ae0fcc7116b9aaa89d6a1619eab28eae0" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>initShowsTutorial</name></member>
+      <member refid="class_hacknet_1_1_o_s_1abba911fd8050869dc7a0de19ae984e68" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>inputEnabled</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a2bc6c76283d6379c1770bd516f0026e2" prot="public" virt="virtual"><scope>Hacknet::OS</scope><name>inputMethodChanged</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aab4e5a89f0ee9edebaec2f0d07ac8a72" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>introTextModule</name></member>
+      <member refid="class_hacknet_1_1_game_screen_1aca7edc9ca28bc556a858826e8e419387" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>IsActive</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a75b3ea42584c23ba8e2ea9f4e50a7532" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>IsDLCConventionDemo</name></member>
+      <member refid="class_hacknet_1_1_o_s_1abe83e848c4c7e45c81dd185ce722b8ad" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>IsDLCSave</name></member>
+      <member refid="class_hacknet_1_1_game_screen_1a721d705516f9d6c2d299c001ebbe7f74" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>IsExiting</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a524ffadf6ce7bca587c235a0a06243ea" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>IsInDLCMode</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a25d51a9dc0b2e236a54bf2c29aaeeecf" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>isLoaded</name></member>
+      <member refid="class_hacknet_1_1_game_screen_1ab5de92a0ecf428ceaeb25533aec96582" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>IsPopup</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a3c904dc43e0058dcd630adb222d42295" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>isServer</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ac35824fc83f46c12a21341b6bd338cd4" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>lastGameTime</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aa053d14003514ceaa74126c8076f7d6e" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>launchExecutable</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a3cdd163b71b88ff79ee765c24a1801b6" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>lightGray</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ae873fdcd7c8d7e05f6aedc48dbb819ec" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>loadBranchMissionsSaveData</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aba4b67632431d3ed55bb7443d92cb777" prot="public" virt="virtual"><scope>Hacknet::OS</scope><name>LoadContent</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a2b527787cb91dfbb875da9a9cb338642" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>LoadExtraTitleSaveData</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ad3de525e053aa172a8a3edbc84f98fa0" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>loadMissionNodes</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ae745650730a332cc019b9644e8bb1d37" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>loadMultiplayerMission</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ab7f458120dc8241143fe06f61671b799" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>loadOtherSaveData</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a255226365e378db78ba82f497b0a83b0" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>loadSaveFile</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ad9fcac6e5789811fd6f23d8a7b54fc39" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>loadTitleSaveData</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a32f0e012ff66b9a22d9a2d9b27c46244" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>lockedColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ad244e8c0011b6eed3d4481a91851eabf" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>mailicon</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ac48ca15e30e8b4256351ffa2f5ce5c0a" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>MissionCompleteFlashTime</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a28abbf0a0781b417cb353c76b040eedc" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>moduleColorBacking</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a10466abaa440dc6d4023eab574862be4" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>moduleColorSolid</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a2964c449814f7fbbb6b40d7853631285" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>moduleColorSolidDefault</name></member>
+      <member refid="class_hacknet_1_1_o_s_1acbc2d64c4706f832064e1b6d48dbf1e0" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>moduleColorStrong</name></member>
+      <member refid="class_hacknet_1_1_o_s_1abd62ba8d36413daf3f2ce289063f9a17" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>multiplayer</name></member>
+      <member refid="class_hacknet_1_1_o_s_1acd518c54a43868f2b09945694ffa9a85" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>navigationPath</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ac649b46132d67beb6d4f8d34531fd563" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>netMap</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aad02ad6b39b7f9d9b0dc11da7f3c79eb" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>netmapToolTipBackground</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a87c6dbb3099cf5fb45fde0dd4f55c45d" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>netmapToolTipColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a6c1842e87948d9704e893b0e82b3e52a" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>operationProgress</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a74d49f36d904874b6cc1b7b7e2f00666" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>opponentComputer</name></member>
+      <member refid="class_hacknet_1_1_o_s_1af9024fc79c434b0891ba257b8bef4796" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>opponentLocation</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aeb8abd4784e2dd42dbf5e1e67625532e" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>outlineColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a14ccded476fa4635633337f2d7f58466" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>PorthackCompleteFlashTime</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a1549724ae7d0bcba5a578dae240742a3" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>postFXDrawActions</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a86d994a4e8b7713f2718ea5d429c04b6" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>PreDLCFaction</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a87ee84b96de8ef59977c515b97fe8c94" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>PreDLCVisibleNodesCache</name></member>
+      <member refid="class_hacknet_1_1_o_s_1af0d671221f9edaf51c1fe9533ac07bab" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>quitGame</name></member>
+      <member refid="class_hacknet_1_1_o_s_1afad871fe64d18ac288c36e97d206cbea" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>ram</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a8e4231db99b702e4072a3f3da0ca001f" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>ramAvaliable</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a95ef99950fe8f16242fec8a370f2e772" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>rebootThisComputer</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a227d08f1ce6ea91dc0d53d2d6f023c5c" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>RefreshTheme</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a7089988cb64129c84f489f688ebb5c29" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>RequestRemovalOfAllPopups</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a88b8d6b9092240465af15c0fa53aa32a" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>runCommand</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a87f32dbc2e90cda2565c3ed7f6238979" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>saveGame</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a6d9cbb35edbf6d7e25ed896c57d5ddb8" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>SaveGameUserName</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a2e0f3651b206844aba357b4af3740c00" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>SaveUserAccountName</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ae3e8a3453e94bb19993b21673a866c91" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>SaveUserPassword</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a19b2ed13cc5bfd01a904a04d58c77eda" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>scanlinesColor</name></member>
+      <member refid="class_hacknet_1_1_game_screen_1ace8b0c089864327931a470505fbf1078" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>ScreenManager</name></member>
+      <member refid="class_hacknet_1_1_game_screen_1a42a1603fa85a3d7cf7a7f80cce21942b" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>ScreenState</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a3d6e5d2b8c6d385284ef4c92ea40f704" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>semiTransText</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a296a84f46ca68a980a0f7378bb072d4b" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>sendMessage</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a3622bc3aa9cf02043855ec18c9a1e046" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>setMouseVisiblity</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ae47791f72867d9104bce3d447abcf90e" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>shellButtonColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1acc09a207d9791c11b92b67a7494c5e68" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>shellColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aafe97ab054daa85ea7488dec397596b1" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>shellIPs</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a83fca1dd939fe20b50d99929f986f633" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>shells</name></member>
+      <member refid="class_hacknet_1_1_o_s_1abc6857cc0c8dce2b7ed21a1634f01eae" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>ShowDLCAlertsIcon</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a17b04de51ab3742670fac201b42057fa" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>stayAliveTimer</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ae3883bf81d74e7b2a2bf565e2ea0ff90" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>subtleTextColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ac9aceecb3da12feda0826f3612908251" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>sucsesfulBoot</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a6c9e1c3a3a45e3001ec7c9cd7afdaf01" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>superLightWhite</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a968fb9a0b9b891514a2282fedc3b9fef" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>takeAdmin</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a0c22da0b6142473bff267ccc90fae7af" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>takeAdmin</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ac49399241be5d75b4c8ff14e62f69a3b" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>TCP_STAYALIVE_TIMER</name></member>
+      <member refid="class_hacknet_1_1_o_s_1af7e680aac670a269dab50ba5947bebbe" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>terminal</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ab1eec6e9a97fa2ab58e2a1c62d5ce8fb" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>terminalOnlyMode</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a974ed2af0ae12cf03f77e35a2165e2b4" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>terminalTextColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a69ac360d2b207ecc41423321ad152bf9" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>TestingPassOnly</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a0043374be912b7d1b8a763e5031f3ae0" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>thisComputer</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aad04fc59b96cede8514e67a4ea289559" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>thisComputerCrashed</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a546388444c7347fee3a865ebb825ca04" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>thisComputerIPReset</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a4eec308ccc0c1fd98d8b68f5f748e2c6" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>thisComputerNode</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ab5ecd09fb1fdbe1428816e4bf3514058" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>threadedSaveExecute</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aa2d5a36d39262a8deac1a199d419edcf" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>timer</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a3704ac2d7f2f45e7520cf53337a84ea7" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>timerExpired</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a802b38a53b5ec47f1c178a507af58395" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>TOP_BAR_HEIGHT</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a39447621692a10637fb15b13c3e7629c" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>topBarColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a817ffe4039f8be5de2bc7257055097d9" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>topBarIconsColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a10f073c62b7fc13d95bc883c712809bd" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>topBarTextColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1adacf317188616811f493503f0c710dbc" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>totalRam</name></member>
+      <member refid="class_hacknet_1_1_o_s_1ab1d507d45dcc322c8fa56b4c866ee345" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>traceCompleteOverrideAction</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a7cf0654d09c1c7f2a9e9b7d25d66ea9c" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>TraceDangerSequence</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a1f7e8f26e1e7285d6347ff05fbcb1d64" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>traceTracker</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a795c23891a7ee8fca4d9aad76c425bc5" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>TrackersInProgress</name></member>
+      <member refid="class_hacknet_1_1_game_screen_1a2d328d61fff948922f81c755e09b887b" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>TransitionAlpha</name></member>
+      <member refid="class_hacknet_1_1_game_screen_1af436a4316d9c74feb0d422bd1f5a93c7" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>TransitionOffTime</name></member>
+      <member refid="class_hacknet_1_1_game_screen_1a0f21938c0dec8a538837d51bf42860fb" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>TransitionOnTime</name></member>
+      <member refid="class_hacknet_1_1_game_screen_1a1a1de66ff29e4729555d7c571e2dad99" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>TransitionPosition</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a346a19a1d7e73c386da9d216b15cb126" prot="public" virt="virtual"><scope>Hacknet::OS</scope><name>UnloadContent</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a94858ea6dc19bb058c0e5608204a1e18" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>unlockedColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a62efb343bf7cef0142dfaed524c1632c" prot="public" virt="virtual"><scope>Hacknet::OS</scope><name>Update</name></member>
+      <member refid="class_hacknet_1_1_o_s_1aa85392117f4c4ce05bfc0d745ba41cbd" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>UpdateSubscriptions</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a847e7d6a09419c91e227531052880072" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>UseAspectPreserveBackgroundScaling</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a03fc708a0c5e2828c7b41955743eb052" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>username</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a63d70da13254c7e423f003a364d6ab16" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>validCommand</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a6acfd6df3eff61e671f6372093f2f5e7" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>WARNING_FLASH_TIME</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a493bb75179bdb078997f67d628974715" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>warningColor</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a2b723916e737cd13c3d2147015c33615" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>warningFlash</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a235f0db224e430029a5268b3e4bc06bb" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>warningFlashTimer</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a4906cfec9666498800d3725ffb685398" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>WillLoadSave</name></member>
+      <member refid="class_hacknet_1_1_o_s_1acb32c7260d678cfef8bc4c8b26f0b38d" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>write</name></member>
+      <member refid="class_hacknet_1_1_o_s_1a4016738ae048b2ec2d71f78c320cb889" prot="public" virt="non-virtual"><scope>Hacknet::OS</scope><name>writeSingle</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

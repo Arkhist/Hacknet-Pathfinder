@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_folder" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::Folder</compoundname>
+    <basecompoundref refid="interface_hacknet_1_1_file_type" prot="public" virt="non-virtual">Hacknet.FileType</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_folder_1abe7e4c9c07c5084be1ae5685ed4de5bd" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_hacknet_1_1_file_entry" kindref="compound">FileEntry</ref> &gt;</type>
+        <definition>List&lt;FileEntry&gt; Hacknet.Folder.files</definition>
+        <argsstring></argsstring>
+        <name>files</name>
+        <initializer>= new List&lt;<ref refid="class_hacknet_1_1_file_entry" kindref="compound">FileEntry</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1073" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="1073" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_folder_1a672115d4ce5f35ec0f5c76c39e243789" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_hacknet_1_1_folder" kindref="compound">Folder</ref> &gt;</type>
+        <definition>List&lt;Folder&gt; Hacknet.Folder.folders</definition>
+        <argsstring></argsstring>
+        <name>folders</name>
+        <initializer>= new List&lt;<ref refid="class_hacknet_1_1_folder" kindref="compound">Folder</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1074" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="1074" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_folder_1a2b86559aa4721b3040c10493aa6e3e46" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Hacknet.Folder.name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1075" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="1075" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1a5bda723b1a8af21b3018ad94e94d0dc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Hacknet.Folder.Folder</definition>
+        <argsstring>(string foldername)</argsstring>
+        <name>Folder</name>
+        <param>
+          <type>string</type>
+          <declname>foldername</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1077" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1a17e0b1259e5f0a8baca8c23848ca553e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Hacknet.Folder.containsFile</definition>
+        <argsstring>(string name, string data)</argsstring>
+        <name>containsFile</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1083" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1a49405f451c6e5dcb2d39632a1780310b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Hacknet.Folder.containsFile</definition>
+        <argsstring>(string name)</argsstring>
+        <name>containsFile</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1084" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1aea79b4913d7d97f11c630ff471569d2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Hacknet.Folder.containsFileWithData</definition>
+        <argsstring>(string data)</argsstring>
+        <name>containsFileWithData</name>
+        <param>
+          <type>string</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1085" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1abbbc9b8bd0f4af27e030b7bb47b53222" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Hacknet.Folder.getName</definition>
+        <argsstring>()</argsstring>
+        <name>getName</name>
+        <reimplements refid="interface_hacknet_1_1_file_type_1a40206e33340960bebd2b26f88153b5d3">getName</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1086" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1a25209987144767e20a5a68f8d189ed41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Hacknet.Folder.getSaveString</definition>
+        <argsstring>()</argsstring>
+        <name>getSaveString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1087" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1a032e3d25cb6d738c57f69e7aefdc2fe1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.Folder.load</definition>
+        <argsstring>(string data)</argsstring>
+        <name>load</name>
+        <param>
+          <type>string</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1088" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1a8d289e7dbe8bc46824d799708cebd41a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hacknet_1_1_file_entry" kindref="compound">FileEntry</ref></type>
+        <definition>FileEntry Hacknet.Folder.searchForFile</definition>
+        <argsstring>(string fileName)</argsstring>
+        <name>searchForFile</name>
+        <param>
+          <type>string</type>
+          <declname>fileName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1089" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1a7678bd909b6b83c1a96c1a851d8fdde9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hacknet_1_1_folder" kindref="compound">Folder</ref></type>
+        <definition>Folder Hacknet.Folder.searchForFolder</definition>
+        <argsstring>(string folderName)</argsstring>
+        <name>searchForFolder</name>
+        <param>
+          <type>string</type>
+          <declname>folderName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1090" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1aec070d0aecd9ccd0557b859fa6cca232" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Hacknet.Folder.TestEqualsFolder</definition>
+        <argsstring>(Folder f)</argsstring>
+        <name>TestEqualsFolder</name>
+        <param>
+          <type><ref refid="class_hacknet_1_1_folder" kindref="compound">Folder</ref></type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1091" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1aef48a5a6489a9200cbb601af46bf6435" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Hacknet.Folder.deFilter</definition>
+        <argsstring>(string s)</argsstring>
+        <name>deFilter</name>
+        <param>
+          <type>string</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1079" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1ad346b05892c9142dbb4cd0a631e9856a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Hacknet.Folder.Filter</definition>
+        <argsstring>(string s)</argsstring>
+        <name>Filter</name>
+        <param>
+          <type>string</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1080" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_folder_1a4e11f8b34cd371436c80a6a933cc6bce" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hacknet_1_1_folder" kindref="compound">Folder</ref></type>
+        <definition>static Folder Hacknet.Folder.load</definition>
+        <argsstring>(XmlReader reader)</argsstring>
+        <name>load</name>
+        <param>
+          <type>XmlReader</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="1081" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="362">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="361">
+        <label>Hacknet.Folder</label>
+        <link refid="class_hacknet_1_1_folder"/>
+        <childnode refid="362" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="364">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="363">
+        <label>Hacknet.Folder</label>
+        <link refid="class_hacknet_1_1_folder"/>
+        <childnode refid="364" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="1072" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="1071" bodyend="1092"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_folder_1a17e0b1259e5f0a8baca8c23848ca553e" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>containsFile</name></member>
+      <member refid="class_hacknet_1_1_folder_1a49405f451c6e5dcb2d39632a1780310b" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>containsFile</name></member>
+      <member refid="class_hacknet_1_1_folder_1aea79b4913d7d97f11c630ff471569d2b" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>containsFileWithData</name></member>
+      <member refid="class_hacknet_1_1_folder_1aef48a5a6489a9200cbb601af46bf6435" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>deFilter</name></member>
+      <member refid="class_hacknet_1_1_folder_1abe7e4c9c07c5084be1ae5685ed4de5bd" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>files</name></member>
+      <member refid="class_hacknet_1_1_folder_1ad346b05892c9142dbb4cd0a631e9856a" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>Filter</name></member>
+      <member refid="class_hacknet_1_1_folder_1a5bda723b1a8af21b3018ad94e94d0dc6" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>Folder</name></member>
+      <member refid="class_hacknet_1_1_folder_1a672115d4ce5f35ec0f5c76c39e243789" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>folders</name></member>
+      <member refid="class_hacknet_1_1_folder_1abbbc9b8bd0f4af27e030b7bb47b53222" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>getName</name></member>
+      <member refid="class_hacknet_1_1_folder_1a25209987144767e20a5a68f8d189ed41" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>getSaveString</name></member>
+      <member refid="class_hacknet_1_1_folder_1a4e11f8b34cd371436c80a6a933cc6bce" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>load</name></member>
+      <member refid="class_hacknet_1_1_folder_1a032e3d25cb6d738c57f69e7aefdc2fe1" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>load</name></member>
+      <member refid="class_hacknet_1_1_folder_1a2b86559aa4721b3040c10493aa6e3e46" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>name</name></member>
+      <member refid="class_hacknet_1_1_folder_1a8d289e7dbe8bc46824d799708cebd41a" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>searchForFile</name></member>
+      <member refid="class_hacknet_1_1_folder_1a7678bd909b6b83c1a96c1a851d8fdde9" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>searchForFolder</name></member>
+      <member refid="class_hacknet_1_1_folder_1aec070d0aecd9ccd0557b859fa6cca232" prot="public" virt="non-virtual"><scope>Hacknet::Folder</scope><name>TestEqualsFolder</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

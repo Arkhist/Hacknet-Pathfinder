@@ -10,7 +10,7 @@
         <argsstring>(Hacknet.OS os)</argsstring>
         <name>OSUnloadContentEvent</name>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
           <declname>os</declname>
         </param>
         <briefdescription>
@@ -27,38 +27,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="462">
+      <node id="778">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="463" relation="public-inheritance">
+        <childnode refid="779" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="463">
+      <node id="779">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="461">
+      <node id="777">
         <label>Pathfinder.Event.OSUnloadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_unload_content_event"/>
-        <childnode refid="462" relation="public-inheritance">
+        <childnode refid="778" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="465">
+      <node id="781">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="466" relation="public-inheritance">
+        <childnode refid="782" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="466">
+      <node id="782">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="464">
+      <node id="780">
         <label>Pathfinder.Event.OSUnloadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_unload_content_event"/>
-        <childnode refid="465" relation="public-inheritance">
+        <childnode refid="781" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

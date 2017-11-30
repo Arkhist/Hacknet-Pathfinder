@@ -1,10 +1,24 @@
 var searchData=
 [
-  ['clickpositionoffset',['ClickPositionOffset',['../class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle.html#acae620b199681040136c05f4f2125a61',1,'Pathfinder::GUI::DynamicRectangle']]],
-  ['clientcomputer',['ClientComputer',['../class_pathfinder_1_1_util_1_1_utility.html#a391ca6ebd90f658afe070baea5049dfa',1,'Pathfinder::Util::Utility']]],
-  ['clientnetworkmap',['ClientNetworkMap',['../class_pathfinder_1_1_util_1_1_utility.html#a78d3804724a5dcd91a5449ec648b09c0',1,'Pathfinder::Util::Utility']]],
-  ['clientos',['ClientOS',['../class_pathfinder_1_1_util_1_1_utility.html#a76906f5cd3901e82fd4f66842090a82e',1,'Pathfinder::Util::Utility']]],
-  ['currentcomputer',['CurrentComputer',['../class_pathfinder_1_1_util_1_1_utility.html#a3e284b53efd6e797d8d6f8dfd50dc945',1,'Pathfinder::Util::Utility']]],
-  ['currentdirectory',['CurrentDirectory',['../class_pathfinder_1_1_game_filesystem_1_1_filesystem.html#afd5ca4f1e03772ec93acf6bb2c02a428',1,'Pathfinder::GameFilesystem::Filesystem']]],
-  ['currentmod',['CurrentMod',['../class_pathfinder_1_1_pathfinder.html#afd4dd9898d2edd374d29e51e59e71918',1,'Pathfinder::Pathfinder']]]
+  ['backgroundimagefillcolor',['BackgroundImageFillColor',['../class_hacknet_1_1_o_s.html#a2aa7e342b376ffa7b5ea5b79a9d54b9f',1,'Hacknet::OS']]],
+  ['base_5fboot_5ftime',['BASE_BOOT_TIME',['../class_hacknet_1_1_computer.html#ac4d8619e95be57430ce474415873325d',1,'Hacknet::Computer']]],
+  ['base_5fproxy_5fticks',['BASE_PROXY_TICKS',['../class_hacknet_1_1_computer.html#ab7db3dbcad72e00e23eb85a424104610',1,'Hacknet::Computer']]],
+  ['base_5fram_5fcost',['BASE_RAM_COST',['../class_hacknet_1_1_shell_exe.html#ae69f0e050e25ffa61f677e7d8bc226ce',1,'Hacknet::ShellExe']]],
+  ['base_5freboot_5ftime',['BASE_REBOOT_TIME',['../class_hacknet_1_1_computer.html#a7d7c6b883fb991a5ab52830ee6a5d674',1,'Hacknet::Computer']]],
+  ['base_5ftrace_5ftime',['BASE_TRACE_TIME',['../class_hacknet_1_1_computer.html#a5329978eae49227d208fc3ba82fe3412',1,'Hacknet::Computer']]],
+  ['beepsound',['beepSound',['../class_hacknet_1_1_o_s.html#a1b215f373b715ea9fa552399a093851d',1,'Hacknet::OS']]],
+  ['bigfont',['bigFont',['../struct_hacknet_1_1_gui_data_1_1_font_congif_option.html#a03fd89ee11c213d99e7149d2f1b75a37',1,'Hacknet::GuiData::FontCongifOption']]],
+  ['black_5ftime',['BLACK_TIME',['../class_hacknet_1_1_crash_module.html#a40827556319c9622b4df50eeb78f3e08',1,'Hacknet::CrashModule']]],
+  ['blockinginput',['blockingInput',['../class_hacknet_1_1_gui_data.html#a138851c182d1afed563fac77cbca81ae',1,'Hacknet::GuiData']]],
+  ['blockingtextinput',['blockingTextInput',['../class_hacknet_1_1_gui_data.html#a132580b83fa631bfc6e2e8e4c851494a',1,'Hacknet::GuiData']]],
+  ['bluescreen_5ftime',['BLUESCREEN_TIME',['../class_hacknet_1_1_crash_module.html#a5bdc8718fdf2a9e7520a047c3ddca5fc',1,'Hacknet::CrashModule']]],
+  ['bluescreenblue',['bluescreenBlue',['../class_hacknet_1_1_crash_module.html#a2d6e71cdae59b88605cea77f03a727c2',1,'Hacknet::CrashModule']]],
+  ['bluescreengrey',['bluescreenGrey',['../class_hacknet_1_1_crash_module.html#afca28f0abe1df40a84d11b43a380469e',1,'Hacknet::CrashModule']]],
+  ['boot_5ftime',['BOOT_TIME',['../class_hacknet_1_1_crash_module.html#ac0a6ab0d2a81d73258890eb54bddd4ba',1,'Hacknet::CrashModule']]],
+  ['bootassitancemodule',['BootAssitanceModule',['../class_hacknet_1_1_o_s.html#afd5844b4490d76220cc1bf8b33aea1b7',1,'Hacknet::OS']]],
+  ['bootloaderrors',['BootLoadErrors',['../class_hacknet_1_1_crash_module.html#aded2a07879bd538a190a3d8e10c00161',1,'Hacknet::CrashModule']]],
+  ['bounds',['bounds',['../class_hacknet_1_1_module.html#a9f5568515780ca1149d57051fc2f7c77',1,'Hacknet::Module']]],
+  ['branchmissions',['branchMissions',['../class_hacknet_1_1_o_s.html#a04ce6eb7ccfd023f24d513b7ffacc525',1,'Hacknet::OS']]],
+  ['brightlockedcolor',['brightLockedColor',['../class_hacknet_1_1_o_s.html#aac1616b43e1dd3c167739d135d0db1c9',1,'Hacknet::OS']]],
+  ['brightunlockedcolor',['brightUnlockedColor',['../class_hacknet_1_1_o_s.html#a767e6afcfa79a9656514ed41789095d2',1,'Hacknet::OS']]]
 ];

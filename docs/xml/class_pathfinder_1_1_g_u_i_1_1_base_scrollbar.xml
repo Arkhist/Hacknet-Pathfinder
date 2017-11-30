@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GUI/Scrollbar.cs" line="10" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="10" bodyend="-1"/>
+        <location file="Pathfinder/GUI/Scrollbar.cs" line="9" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="9" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1a2e3274d66112d69940c6b94ab0aa7843" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>float</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GUI/Scrollbar.cs" line="11" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="11" bodyend="-1"/>
+        <location file="Pathfinder/GUI/Scrollbar.cs" line="10" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="10" bodyend="-1"/>
       </memberdef>
       <memberdef kind="property" id="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1ad495962a728c6f68bf43fb9e50e9bbc2" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
         <type>bool</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GUI/Scrollbar.cs" line="12" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="12" bodyend="-1"/>
+        <location file="Pathfinder/GUI/Scrollbar.cs" line="11" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="11" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -85,7 +85,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GUI/Scrollbar.cs" line="14" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="14" bodyend="20"/>
+        <location file="Pathfinder/GUI/Scrollbar.cs" line="13" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="13" bodyend="19"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -100,7 +100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/GUI/Scrollbar.cs" line="22" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="22" bodyend="26"/>
+        <location file="Pathfinder/GUI/Scrollbar.cs" line="21" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="21" bodyend="25"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -137,7 +137,7 @@
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/GUI/Scrollbar.cs" line="9" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="8" bodyend="27"/>
+    <location file="Pathfinder/GUI/Scrollbar.cs" line="8" column="1" bodyfile="Pathfinder/GUI/Scrollbar.cs" bodystart="7" bodyend="26"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle_1a97499babf4182dab76805bdb57ba9db3" prot="protected" virt="non-virtual"><scope>Pathfinder::GUI::BaseScrollbar</scope><name>BaseInteractiveRectangle</name></member>
       <member refid="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar_1a89fb81855bebfe4ba0bf43012b68ae38" prot="protected" virt="non-virtual"><scope>Pathfinder::GUI::BaseScrollbar</scope><name>BaseScrollbar</name></member>

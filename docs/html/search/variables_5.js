@@ -1,6 +1,23 @@
 var searchData=
 [
-  ['haltoffset',['HaltOffset',['../class_pathfinder_1_1_util_1_1_utility.html#a080150d60f2ae63ddca5f21784f681e0',1,'Pathfinder::Util::Utility']]],
-  ['head',['Head',['../class_pathfinder_1_1_game_filesystem_1_1_file.html#a54081accd395035618e372cbe43fbb81',1,'Pathfinder::GameFilesystem::File']]],
-  ['helpcount',['HelpCount',['../class_pathfinder_1_1_command_1_1_help.html#aaf2e891b0f764a37051f91a65d4a9a96',1,'Pathfinder::Command::Help']]]
+  ['fade',['fade',['../class_hacknet_1_1_exe_module.html#a7d216de66934ba4ac989a43306af8bf6',1,'Hacknet::ExeModule']]],
+  ['fade_5ftime',['FADE_TIME',['../class_hacknet_1_1_music_manager.html#ac0d612267363ef45532e63939e759527',1,'Hacknet::MusicManager']]],
+  ['fadeout_5frate',['FADEOUT_RATE',['../class_hacknet_1_1_exe_module.html#aa98145eac71b6b1a857890ced3be37ae',1,'Hacknet::ExeModule']]],
+  ['fastboottext',['FastBootText',['../class_hacknet_1_1_settings.html#a35537c1925ce85518de4f462c3282958',1,'Hacknet::Settings']]],
+  ['filecount',['FileCount',['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#ac5177b6ca780d3020ac76421ab8f2651',1,'Pathfinder::GameFilesystem::Directory']]],
+  ['filedata',['fileData',['../class_hacknet_1_1_file_entry.html#a67385464824722be478650f569103ed9',1,'Hacknet::FileEntry']]],
+  ['filename',['Filename',['../class_pathfinder_1_1_game_filesystem_1_1_file_path.html#aeda33548b37d13b1352f93f8a2636550',1,'Pathfinder::GameFilesystem::FilePath']]],
+  ['filenames',['filenames',['../class_hacknet_1_1_file_entry.html#a6f6e528815343946eee85b12b25d42f2',1,'Hacknet::FileEntry']]],
+  ['files',['files',['../class_hacknet_1_1_computer.html#ac2dd6b08f34598c8e6a0b8e8aa8a36cf',1,'Hacknet.Computer.files()'],['../class_hacknet_1_1_folder.html#abe7e4c9c07c5084be1ae5685ed4de5bd',1,'Hacknet.Folder.files()'],['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#ae4e6c7c56f155c65887ac89ea33c6966',1,'Pathfinder.GameFilesystem.Directory.Files()']]],
+  ['firewall',['firewall',['../class_hacknet_1_1_computer.html#a8f271f468efea54efe2839663fc33206',1,'Hacknet::Computer']]],
+  ['firewallanalysisinprogress',['firewallAnalysisInProgress',['../class_hacknet_1_1_computer.html#ae86b2645da52df1d1ae05efc4a42cc30',1,'Hacknet::Computer']]],
+  ['firsttimestartup',['FirstTimeStartup',['../class_hacknet_1_1_o_s.html#ab8fecba8fbb73b3b2c02fe6b23e3b012',1,'Hacknet::OS']]],
+  ['flags',['Flags',['../class_hacknet_1_1_o_s.html#a86713dc1ce930ac5da0cefd73c0bc25d',1,'Hacknet::OS']]],
+  ['flash_5ftime',['FLASH_TIME',['../class_hacknet_1_1_ram_module.html#a3c4f1d32c125d32232d0bfd1152e2ba1',1,'Hacknet::RamModule']]],
+  ['folders',['folders',['../class_hacknet_1_1_folder.html#a672115d4ce5f35ec0f5c76c39e243789',1,'Hacknet::Folder']]],
+  ['font',['font',['../class_hacknet_1_1_gui_data.html#a91179e52941580c038dffddda25805ef',1,'Hacknet::GuiData']]],
+  ['fontconfigs',['FontConfigs',['../class_hacknet_1_1_gui_data.html#a8a8f0d7d7779afe4e09e0e09476d2f93',1,'Hacknet::GuiData']]],
+  ['forcecompleteenabled',['forceCompleteEnabled',['../class_hacknet_1_1_settings.html#afdc8879203e1f3980a7526bfccde2cfb',1,'Hacknet::Settings']]],
+  ['forceenglish',['ForceEnglish',['../class_hacknet_1_1_settings.html#a21aaeb6b70317cb6f348aa1aa665ef37',1,'Hacknet::Settings']]],
+  ['fullscreen',['fullscreen',['../class_hacknet_1_1_o_s.html#aa9235fd5dabc290bfe0a573d2c248a9f',1,'Hacknet::OS']]]
 ];

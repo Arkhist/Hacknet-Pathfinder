@@ -5,7 +5,7 @@
     <basecompoundref refid="class_pathfinder_1_1_event_1_1_executable_event" prot="public" virt="non-virtual">Pathfinder.Event.ExecutableEvent</basecompoundref>
       <sectiondef kind="property">
       <memberdef kind="property" id="class_pathfinder_1_1_event_1_1_executable_execute_event_1af7fa3eec454dcfabde09f24a6a509ab6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
-        <type>Folder</type>
+        <type><ref refid="class_hacknet_1_1_folder" kindref="compound">Folder</ref></type>
         <definition>Folder Pathfinder.Event.ExecutableExecuteEvent.Folder</definition>
         <argsstring></argsstring>
         <name>Folder</name>
@@ -86,7 +86,7 @@
       </sectiondef>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="class_pathfinder_1_1_event_1_1_executable_execute_event_1a68dfdeba14a358adb93d5a62d0589695" prot="public" static="no" mutable="no">
-        <type>FileEntry</type>
+        <type><ref refid="class_hacknet_1_1_file_entry" kindref="compound">FileEntry</ref></type>
         <definition>FileEntry Pathfinder.Event.ExecutableExecuteEvent.ExecutableFile</definition>
         <argsstring></argsstring>
         <name>ExecutableFile</name>
@@ -101,17 +101,17 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_executable_execute_event_1aa7268386dee2d7c08918aa54bb323099" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_executable_execute_event_1a9fd3a0079e98d042fecd90dd9bac68b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>Pathfinder.Event.ExecutableExecuteEvent.ExecutableExecuteEvent</definition>
-        <argsstring>(Hacknet.Computer com, Folder fol, int finde, GameFilesystem.File file, Hacknet.OS os, string[] args)</argsstring>
+        <argsstring>(Computer com, Folder fol, int finde, GameFilesystem.File file, OS os, string[] args)</argsstring>
         <name>ExecutableExecuteEvent</name>
         <param>
-          <type>Hacknet.Computer</type>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
           <declname>com</declname>
         </param>
         <param>
-          <type><ref refid="class_pathfinder_1_1_event_1_1_executable_execute_event_1af7fa3eec454dcfabde09f24a6a509ab6" kindref="member">Folder</ref></type>
+          <type><ref refid="class_hacknet_1_1_folder" kindref="compound">Folder</ref></type>
           <declname>fol</declname>
         </param>
         <param>
@@ -123,7 +123,7 @@
           <declname>file</declname>
         </param>
         <param>
-          <type>Hacknet.OS</type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
           <declname>os</declname>
         </param>
         <param>
@@ -144,56 +144,69 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="146">
+      <node id="250">
         <label>Pathfinder.Event.ExecutableExecuteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_execute_event"/>
-        <childnode refid="147" relation="public-inheritance">
+        <childnode refid="251" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="147">
+      <node id="251">
         <label>ExecutableEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_event"/>
-        <childnode refid="148" relation="public-inheritance">
+        <childnode refid="252" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="148">
+      <node id="252">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="149">
+      <node id="253">
         <label>Pathfinder.Event.ExecutableExecuteEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_execute_event"/>
-        <childnode refid="150" relation="public-inheritance">
+        <childnode refid="254" relation="public-inheritance">
+        </childnode>
+        <childnode refid="256" relation="usage">
+          <edgelabel>ExecutableFile</edgelabel>
         </childnode>
       </node>
-      <node id="150">
+      <node id="254">
         <label>ExecutableEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_executable_event"/>
-        <childnode refid="151" relation="public-inheritance">
+        <childnode refid="255" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="151">
+      <node id="255">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="257">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="256">
+        <label>Hacknet.FileEntry</label>
+        <link refid="class_hacknet_1_1_file_entry"/>
+        <childnode refid="257" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
     <location file="Pathfinder/Event/ExecutableEvents.cs" line="36" column="1" bodyfile="Pathfinder/Event/ExecutableEvents.cs" bodystart="35" bodyend="73"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a456d3ea9ab10d4a0abcf7272ff1a1360" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>Arguments</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>CallEvent</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a1ecedbd61b1080fd55f39ccf7f006655" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>Computer</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a0653bfb5d864b97a9f45a9835892580b" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>Computer</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_execute_event_1a822b0038663a8063746657a19044d48f" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>ExecutableData</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a3f6c27d51855a12cd6a4fcb50fff0821" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>ExecutableEvent</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_executable_execute_event_1aa7268386dee2d7c08918aa54bb323099" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>ExecutableExecuteEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_executable_event_1ad93bfd4840efbdd5579765b872d50307" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>ExecutableEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_executable_execute_event_1a9fd3a0079e98d042fecd90dd9bac68b0" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>ExecutableExecuteEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_execute_event_1a68dfdeba14a358adb93d5a62d0589695" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>ExecutableFile</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_execute_event_1ae3627b43ef2b7eda91eb6fbbdee19e1f" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>ExecutableName</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_execute_event_1ab64ca0691f6d69913bf820aa32e28227" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>File</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_execute_event_1a4407d9374db0a9a72cf5eddb35e69797" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>FileIndex</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_execute_event_1af7fa3eec454dcfabde09f24a6a509ab6" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>Folder</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>IsCancelled</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a3821192b81da6ca72c15a9e8c40ca934" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>OS</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_executable_event_1a4c14b0aa1c1d4260eafc86327df31f52" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>OS</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_execute_event_1aa93d64b15191fe49c8d2a455ab7d08bb" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>Result</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_executable_event_1acb54933cce060e98153d4f2b1191ba3c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::ExecutableExecuteEvent</scope><name>this[int index]</name></member>
     </listofallmembers>

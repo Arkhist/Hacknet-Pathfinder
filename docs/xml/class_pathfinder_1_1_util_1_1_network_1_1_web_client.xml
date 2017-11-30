@@ -27,24 +27,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="581">
+      <node id="1006">
         <label>System::Net::WebClient</label>
       </node>
-      <node id="580">
+      <node id="1005">
         <label>Pathfinder.Util.Network.WebClient</label>
         <link refid="class_pathfinder_1_1_util_1_1_network_1_1_web_client"/>
-        <childnode refid="581" relation="public-inheritance">
+        <childnode refid="1006" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="583">
+      <node id="1008">
         <label>System::Net::WebClient</label>
       </node>
-      <node id="582">
+      <node id="1007">
         <label>Pathfinder.Util.Network.WebClient</label>
         <link refid="class_pathfinder_1_1_util_1_1_network_1_1_web_client"/>
-        <childnode refid="583" relation="public-inheritance">
+        <childnode refid="1008" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

@@ -1,0 +1,811 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_hacknet_1_1_network_map" kind="class" language="C#" prot="public">
+    <compoundname>Hacknet::NetworkMap</compoundname>
+    <basecompoundref refid="class_hacknet_1_1_core_module" prot="public" virt="non-virtual">Hacknet.CoreModule</basecompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1aed6a660e59c2200ae4c7a9b1d02dd118" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int Hacknet.NetworkMap.NODE_SIZE</definition>
+        <argsstring></argsstring>
+        <name>NODE_SIZE</name>
+        <initializer>= 26</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="728" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="728" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1a1d1fc45ddfe0d5fac5b3dd63841b8c7c" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.NetworkMap.ADMIN_CIRCLE_SCALE</definition>
+        <argsstring></argsstring>
+        <name>ADMIN_CIRCLE_SCALE</name>
+        <initializer>= 0.62f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="729" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="729" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1a9cc426f4cc8987951fed3d9cb3122f12" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.NetworkMap.PULSE_DECAY</definition>
+        <argsstring></argsstring>
+        <name>PULSE_DECAY</name>
+        <initializer>= 0.5f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="730" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="730" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1a2b192c49cc4e12ba34b28dc7787332f7" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Hacknet.NetworkMap.PULSE_FREQUENCY</definition>
+        <argsstring></argsstring>
+        <name>PULSE_FREQUENCY</name>
+        <initializer>= 0.8f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="731" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="731" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1a3a3be114e528bd553dce0e9b41830ef7" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+        <definition>Computer Hacknet.NetworkMap.academicDatabase</definition>
+        <argsstring></argsstring>
+        <name>academicDatabase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="733" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="733" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1aef04e36e215ae63cd2ea7bfe85085557" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+        <definition>Computer Hacknet.NetworkMap.mailServer</definition>
+        <argsstring></argsstring>
+        <name>mailServer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="734" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="734" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1aff2db1968ab788139b09ba6b4220229c" prot="public" static="no" mutable="no">
+        <type><ref refid="namespace_hacknet_1a0774049c781d940d0c03ff0cad572110" kindref="member">NetmapSortingAlgorithm</ref></type>
+        <definition>NetmapSortingAlgorithm Hacknet.NetworkMap.SortingAlgorithm</definition>
+        <argsstring></argsstring>
+        <name>SortingAlgorithm</name>
+        <initializer>= <ref refid="namespace_hacknet_1a0774049c781d940d0c03ff0cad572110a09870720ca8134284e4e305ac6ce5f19" kindref="member">NetmapSortingAlgorithm.Scatter</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="735" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="735" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1a947e5c6ecb10d14cee2988c98d3b33f1" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Hacknet.NetworkMap.DimNonConnectedNodes</definition>
+        <argsstring></argsstring>
+        <name>DimNonConnectedNodes</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="736" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="736" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1aba13229b2b5dd8e626e8e8ae7c8fafad" prot="public" static="no" mutable="no">
+        <type>ConnectedNodeEffect</type>
+        <definition>ConnectedNodeEffect Hacknet.NetworkMap.adminNodeEffect</definition>
+        <argsstring></argsstring>
+        <name>adminNodeEffect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="737" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="737" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1a1b5d70266367af72c58d9ec982f36817" prot="public" static="no" mutable="no">
+        <type>ConnectedNodeEffect</type>
+        <definition>ConnectedNodeEffect Hacknet.NetworkMap.nodeEffect</definition>
+        <argsstring></argsstring>
+        <name>nodeEffect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="738" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="738" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1a0ce53f7d2ca80473b945b85ab993ae58" prot="public" static="no" mutable="no">
+        <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+        <definition>Computer Hacknet.NetworkMap.lastAddedNode</definition>
+        <argsstring></argsstring>
+        <name>lastAddedNode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="739" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="739" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1a55c627806dd091b9895a5657a925c5a0" prot="public" static="no" mutable="no">
+        <type>List&lt; Corporation &gt;</type>
+        <definition>List&lt;Corporation&gt; Hacknet.NetworkMap.corporations</definition>
+        <argsstring></argsstring>
+        <name>corporations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="740" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="740" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1a58b6ac40e26bf7652dea3b1c0cb53323" prot="public" static="no" mutable="no">
+        <type>List&lt; int &gt;</type>
+        <definition>List&lt;int&gt; Hacknet.NetworkMap.visibleNodes</definition>
+        <argsstring></argsstring>
+        <name>visibleNodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="741" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="741" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hacknet_1_1_network_map_1a126327bb47c8411cc7b2a4d35fcd48fc" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref> &gt;</type>
+        <definition>List&lt;Computer&gt; Hacknet.NetworkMap.nodes</definition>
+        <argsstring></argsstring>
+        <name>nodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="742" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="742" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a12ad9192bdcfc35942da638b37eaf143" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Hacknet.NetworkMap.NetworkMap</definition>
+        <argsstring>(Rectangle location, OS operatingSystem)</argsstring>
+        <name>NetworkMap</name>
+        <param>
+          <type><ref refid="_vector_8cs_1a9e9352b983f7014fddce7c6530f054d7" kindref="member">Rectangle</ref></type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
+          <declname>operatingSystem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="744" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a76b5e3e6f7382674edc273d793f01429" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.NetworkMap.CleanVisibleListofDuplicates</definition>
+        <argsstring>()</argsstring>
+        <name>CleanVisibleListofDuplicates</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="748" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a0ed6dc5929951ba7e6136a78eb444c9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Hacknet.NetworkMap.collides</definition>
+        <argsstring>(Vector2 location, float minSeperation=-1f)</argsstring>
+        <name>collides</name>
+        <param>
+          <type>Vector2</type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>minSeperation</declname>
+          <defval>-1f</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="749" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a52af9d78dcf97f02609c74d78fe0a93a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.NetworkMap.discoverNode</definition>
+        <argsstring>(Computer c)</argsstring>
+        <name>discoverNode</name>
+        <param>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="750" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a2615f6845ed4c5a75b876ffa7802dbb8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.NetworkMap.discoverNode</definition>
+        <argsstring>(string cName)</argsstring>
+        <name>discoverNode</name>
+        <param>
+          <type>string</type>
+          <declname>cName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="751" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1ac570f752d60d32acabd8440e6dcd6c40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.NetworkMap.doGui</definition>
+        <argsstring>(float t)</argsstring>
+        <name>doGui</name>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="752" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a11a6c67afa583799af6a67cfe86dbf25" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.NetworkMap.Draw</definition>
+        <argsstring>(float t)</argsstring>
+        <name>Draw</name>
+        <reimplements refid="class_hacknet_1_1_module_1a15f0e31db7bd178fbac0a3ae6688272a">Draw</reimplements>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="753" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1ab66062f07ae5b62a15ef1490c7342dd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.NetworkMap.drawLine</definition>
+        <argsstring>(Vector2 origin, Vector2 dest, Vector2 offset)</argsstring>
+        <name>drawLine</name>
+        <param>
+          <type>Vector2</type>
+          <declname>origin</declname>
+        </param>
+        <param>
+          <type>Vector2</type>
+          <declname>dest</declname>
+        </param>
+        <param>
+          <type>Vector2</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="754" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a402c2544534c1dc4faf40fc6658e4c1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List&lt; Corporation &gt;</type>
+        <definition>List&lt;Corporation&gt; Hacknet.NetworkMap.generateCorporations</definition>
+        <argsstring>()</argsstring>
+        <name>generateCorporations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="755" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1af18c24aef52f9fa48384232fb2130be8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List&lt; <ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref> &gt;</type>
+        <definition>List&lt;Computer&gt; Hacknet.NetworkMap.generateDemoNodes</definition>
+        <argsstring>()</argsstring>
+        <name>generateDemoNodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="756" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a6bd8595766631bd76973f5027cf910dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List&lt; <ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref> &gt;</type>
+        <definition>List&lt;Computer&gt; Hacknet.NetworkMap.generateGameNodes</definition>
+        <argsstring>()</argsstring>
+        <name>generateGameNodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="757" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1aeeac99c66417a03e03dd690ff9aa8c72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List&lt; <ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref> &gt;</type>
+        <definition>List&lt;Computer&gt; Hacknet.NetworkMap.generateNetwork</definition>
+        <argsstring>(OS os)</argsstring>
+        <name>generateNetwork</name>
+        <param>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="758" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1ad0738a88e611142eb8d1b33416a5d7d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List&lt; <ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref> &gt;</type>
+        <definition>List&lt;Computer&gt; Hacknet.NetworkMap.generateSPNetwork</definition>
+        <argsstring>(OS os)</argsstring>
+        <name>generateSPNetwork</name>
+        <param>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="759" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a5ebff3d767f3de824a1c061abd6d06a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector2</type>
+        <definition>Vector2 Hacknet.NetworkMap.GetNodeDrawPos</definition>
+        <argsstring>(Computer node, int nodeIndex)</argsstring>
+        <name>GetNodeDrawPos</name>
+        <param>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nodeIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="760" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1aa47f9e165ac2ad6749270f5c2453cf86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector2</type>
+        <definition>Vector2 Hacknet.NetworkMap.GetNodeDrawPos</definition>
+        <argsstring>(Computer node)</argsstring>
+        <name>GetNodeDrawPos</name>
+        <param>
+          <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Computer</ref></type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="761" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1ace3327744897a825dc30821f6240eca0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector2</type>
+        <definition>Vector2 Hacknet.NetworkMap.GetNodeDrawPosDebug</definition>
+        <argsstring>(Vector2 nodeLocation)</argsstring>
+        <name>GetNodeDrawPosDebug</name>
+        <param>
+          <type>Vector2</type>
+          <declname>nodeLocation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="762" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a084a9ad7c3ae8ab2cccbe02a3dbaf112" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector2</type>
+        <definition>Vector2 Hacknet.NetworkMap.getRandomPosition</definition>
+        <argsstring>()</argsstring>
+        <name>getRandomPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="763" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a224d283efabc177969e20b9d41b66c47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Hacknet.NetworkMap.getSaveString</definition>
+        <argsstring>()</argsstring>
+        <name>getSaveString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="764" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a890c99f522ad9b86cd731618f7480921" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Hacknet.NetworkMap.getVisibleNodesString</definition>
+        <argsstring>()</argsstring>
+        <name>getVisibleNodesString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="765" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1aa682d7fd604caecfdb18a030e328499a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.NetworkMap.load</definition>
+        <argsstring>(XmlReader reader)</argsstring>
+        <name>load</name>
+        <param>
+          <type>XmlReader</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="766" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1af361781e9e5070e5881eead1e2f3713f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.NetworkMap.LoadContent</definition>
+        <argsstring>()</argsstring>
+        <name>LoadContent</name>
+        <reimplements refid="class_hacknet_1_1_core_module_1a3152fd15281c36fa3a894900ac6d9b3f">LoadContent</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="767" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1af9e1b07f91233620316600ff46435e1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Hacknet.NetworkMap.randomizeNetwork</definition>
+        <argsstring>()</argsstring>
+        <name>randomizeNetwork</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="768" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1a1f3ece716ed026042bfafba4493a68bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>override void</type>
+        <definition>override void Hacknet.NetworkMap.Update</definition>
+        <argsstring>(float t)</argsstring>
+        <name>Update</name>
+        <reimplements refid="class_hacknet_1_1_module_1a7740ee2ced93f5fa1c3b27d9785996ed">Update</reimplements>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="769" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hacknet_1_1_network_map_1ad90c999a95bd27d2b26803dceb282997" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Hacknet.NetworkMap.generateRandomIP</definition>
+        <argsstring>()</argsstring>
+        <name>generateRandomIP</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Pathfinder/Docs/Hacknet.cs" line="746" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="639">
+        <label>Module</label>
+        <link refid="class_hacknet_1_1_module"/>
+      </node>
+      <node id="638">
+        <label>CoreModule</label>
+        <link refid="class_hacknet_1_1_core_module"/>
+        <childnode refid="639" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="637">
+        <label>Hacknet.NetworkMap</label>
+        <link refid="class_hacknet_1_1_network_map"/>
+        <childnode refid="638" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="656">
+        <label>Framework</label>
+      </node>
+      <node id="647">
+        <label>Hacknet.DisplayModule</label>
+        <link refid="class_hacknet_1_1_display_module"/>
+        <childnode refid="641" relation="public-inheritance">
+        </childnode>
+        <childnode refid="648" relation="usage">
+          <edgelabel>LastDisplayedFileFolder</edgelabel>
+        </childnode>
+      </node>
+      <node id="651">
+        <label>Hacknet.Computer</label>
+        <link refid="class_hacknet_1_1_computer"/>
+        <childnode refid="652" relation="usage">
+          <edgelabel>reportingShell</edgelabel>
+        </childnode>
+        <childnode refid="654" relation="usage">
+          <edgelabel>files</edgelabel>
+        </childnode>
+        <childnode refid="655" relation="usage">
+          <edgelabel>firewall</edgelabel>
+        </childnode>
+      </node>
+      <node id="644">
+        <label>GameScreen</label>
+        <link refid="class_hacknet_1_1_game_screen"/>
+      </node>
+      <node id="642">
+        <label>Module</label>
+        <link refid="class_hacknet_1_1_module"/>
+        <childnode refid="643" relation="usage">
+          <edgelabel>os</edgelabel>
+        </childnode>
+        <childnode refid="656" relation="usage">
+          <edgelabel>bounds</edgelabel>
+        </childnode>
+      </node>
+      <node id="641">
+        <label>CoreModule</label>
+        <link refid="class_hacknet_1_1_core_module"/>
+        <childnode refid="642" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="653">
+        <label>ExeModule</label>
+        <link refid="class_hacknet_1_1_exe_module"/>
+        <childnode refid="642" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="640">
+        <label>Hacknet.NetworkMap</label>
+        <link refid="class_hacknet_1_1_network_map"/>
+        <childnode refid="641" relation="public-inheritance">
+        </childnode>
+        <childnode refid="651" relation="usage">
+          <edgelabel>mailServer</edgelabel>
+          <edgelabel>academicDatabase</edgelabel>
+          <edgelabel>lastAddedNode</edgelabel>
+        </childnode>
+      </node>
+      <node id="652">
+        <label>Hacknet.ShellExe</label>
+        <link refid="class_hacknet_1_1_shell_exe"/>
+        <childnode refid="653" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="655">
+        <label>Hacknet.Firewall</label>
+        <link refid="class_hacknet_1_1_firewall"/>
+      </node>
+      <node id="654">
+        <label>Hacknet.FileSystem</label>
+        <link refid="class_hacknet_1_1_file_system"/>
+        <childnode refid="648" relation="usage">
+          <edgelabel>root</edgelabel>
+        </childnode>
+      </node>
+      <node id="650">
+        <label>Hacknet.Terminal</label>
+        <link refid="class_hacknet_1_1_terminal"/>
+        <childnode refid="641" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="646">
+        <label>Hacknet.CrashModule</label>
+        <link refid="class_hacknet_1_1_crash_module"/>
+        <childnode refid="642" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="649">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="643">
+        <label>Hacknet.OS</label>
+        <link refid="class_hacknet_1_1_o_s"/>
+        <childnode refid="644" relation="public-inheritance">
+        </childnode>
+        <childnode refid="645" relation="usage">
+          <edgelabel>ram</edgelabel>
+        </childnode>
+        <childnode refid="646" relation="usage">
+          <edgelabel>crashModule</edgelabel>
+        </childnode>
+        <childnode refid="647" relation="usage">
+          <edgelabel>display</edgelabel>
+        </childnode>
+        <childnode refid="650" relation="usage">
+          <edgelabel>terminal</edgelabel>
+        </childnode>
+        <childnode refid="640" relation="usage">
+          <edgelabel>netMap</edgelabel>
+        </childnode>
+        <childnode refid="651" relation="usage">
+          <edgelabel>opponentComputer</edgelabel>
+          <edgelabel>connectedComp</edgelabel>
+          <edgelabel>thisComputer</edgelabel>
+        </childnode>
+        <childnode refid="656" relation="usage">
+          <edgelabel>fullscreen</edgelabel>
+        </childnode>
+        <childnode refid="643" relation="usage">
+          <edgelabel>currentInstance</edgelabel>
+        </childnode>
+      </node>
+      <node id="648">
+        <label>Hacknet.Folder</label>
+        <link refid="class_hacknet_1_1_folder"/>
+        <childnode refid="649" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="645">
+        <label>Hacknet.RamModule</label>
+        <link refid="class_hacknet_1_1_ram_module"/>
+        <childnode refid="641" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Pathfinder/Docs/Hacknet.cs" line="727" column="1" bodyfile="Pathfinder/Docs/Hacknet.cs" bodystart="726" bodyend="770"/>
+    <listofallmembers>
+      <member refid="class_hacknet_1_1_network_map_1a3a3be114e528bd553dce0e9b41830ef7" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>academicDatabase</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a1d1fc45ddfe0d5fac5b3dd63841b8c7c" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>ADMIN_CIRCLE_SCALE</name></member>
+      <member refid="class_hacknet_1_1_network_map_1aba13229b2b5dd8e626e8e8ae7c8fafad" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>adminNodeEffect</name></member>
+      <member refid="class_hacknet_1_1_module_1a9f5568515780ca1149d57051fc2f7c77" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>bounds</name></member>
+      <member refid="class_hacknet_1_1_module_1a5ea045ba822711fc59f9e10766955f73" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>Bounds</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a76b5e3e6f7382674edc273d793f01429" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>CleanVisibleListofDuplicates</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a0ed6dc5929951ba7e6136a78eb444c9c" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>collides</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a55c627806dd091b9895a5657a925c5a0" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>corporations</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a947e5c6ecb10d14cee2988c98d3b33f1" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>DimNonConnectedNodes</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a52af9d78dcf97f02609c74d78fe0a93a" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>discoverNode</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a2615f6845ed4c5a75b876ffa7802dbb8" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>discoverNode</name></member>
+      <member refid="class_hacknet_1_1_network_map_1ac570f752d60d32acabd8440e6dcd6c40" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>doGui</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a11a6c67afa583799af6a67cfe86dbf25" prot="public" virt="virtual"><scope>Hacknet::NetworkMap</scope><name>Draw</name></member>
+      <member refid="class_hacknet_1_1_module_1a61074e32ce3d681fb28e41c71a92889d" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>drawFrame</name></member>
+      <member refid="class_hacknet_1_1_network_map_1ab66062f07ae5b62a15ef1490c7342dd7" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>drawLine</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a402c2544534c1dc4faf40fc6658e4c1e" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>generateCorporations</name></member>
+      <member refid="class_hacknet_1_1_network_map_1af18c24aef52f9fa48384232fb2130be8" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>generateDemoNodes</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a6bd8595766631bd76973f5027cf910dd" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>generateGameNodes</name></member>
+      <member refid="class_hacknet_1_1_network_map_1aeeac99c66417a03e03dd690ff9aa8c72" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>generateNetwork</name></member>
+      <member refid="class_hacknet_1_1_network_map_1ad90c999a95bd27d2b26803dceb282997" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>generateRandomIP</name></member>
+      <member refid="class_hacknet_1_1_network_map_1ad0738a88e611142eb8d1b33416a5d7d2" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>generateSPNetwork</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a5ebff3d767f3de824a1c061abd6d06a1" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>GetNodeDrawPos</name></member>
+      <member refid="class_hacknet_1_1_network_map_1aa47f9e165ac2ad6749270f5c2453cf86" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>GetNodeDrawPos</name></member>
+      <member refid="class_hacknet_1_1_network_map_1ace3327744897a825dc30821f6240eca0" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>GetNodeDrawPosDebug</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a084a9ad7c3ae8ab2cccbe02a3dbaf112" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>getRandomPosition</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a224d283efabc177969e20b9d41b66c47" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>getSaveString</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a890c99f522ad9b86cd731618f7480921" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>getVisibleNodesString</name></member>
+      <member refid="class_hacknet_1_1_core_module_1a9e07c7e2852ea839082bba068cda5b19" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>inputLocked</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a0ce53f7d2ca80473b945b85ab993ae58" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>lastAddedNode</name></member>
+      <member refid="class_hacknet_1_1_network_map_1aa682d7fd604caecfdb18a030e328499a" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>load</name></member>
+      <member refid="class_hacknet_1_1_network_map_1af361781e9e5070e5881eead1e2f3713f" prot="public" virt="virtual"><scope>Hacknet::NetworkMap</scope><name>LoadContent</name></member>
+      <member refid="class_hacknet_1_1_network_map_1aef04e36e215ae63cd2ea7bfe85085557" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>mailServer</name></member>
+      <member refid="class_hacknet_1_1_module_1aac9b4cea405a9ba9e385e1107de7c507" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>Module</name></member>
+      <member refid="class_hacknet_1_1_module_1ac87b80233cd3d601009c98d29b926b9f" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>name</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a12ad9192bdcfc35942da638b37eaf143" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>NetworkMap</name></member>
+      <member refid="class_hacknet_1_1_network_map_1aed6a660e59c2200ae4c7a9b1d02dd118" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>NODE_SIZE</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a1b5d70266367af72c58d9ec982f36817" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>nodeEffect</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a126327bb47c8411cc7b2a4d35fcd48fc" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>nodes</name></member>
+      <member refid="class_hacknet_1_1_module_1a5f28f2631470430dfc7ce75e3a1ceaed" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>os</name></member>
+      <member refid="class_hacknet_1_1_module_1a7cf1a874d7c2ab76e6ed26471cfaa556" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>PANEL_HEIGHT</name></member>
+      <member refid="class_hacknet_1_1_core_module_1a163b3d4f37172dbb43cd570908fad1ed" prot="public" virt="virtual"><scope>Hacknet::NetworkMap</scope><name>PostDrawStep</name></member>
+      <member refid="class_hacknet_1_1_core_module_1ac2dd0e7330981cec99958caabfa08a1e" prot="public" virt="virtual"><scope>Hacknet::NetworkMap</scope><name>PreDrawStep</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a9cc426f4cc8987951fed3d9cb3122f12" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>PULSE_DECAY</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a2b192c49cc4e12ba34b28dc7787332f7" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>PULSE_FREQUENCY</name></member>
+      <member refid="class_hacknet_1_1_network_map_1af9e1b07f91233620316600ff46435e1c" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>randomizeNetwork</name></member>
+      <member refid="class_hacknet_1_1_network_map_1aff2db1968ab788139b09ba6b4220229c" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>SortingAlgorithm</name></member>
+      <member refid="class_hacknet_1_1_module_1a3c22224a83a15603c5f6bfbb778613b2" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>spriteBatch</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a1f3ece716ed026042bfafba4493a68bc" prot="public" virt="virtual"><scope>Hacknet::NetworkMap</scope><name>Update</name></member>
+      <member refid="class_hacknet_1_1_module_1ad92e134fd646691737cc24aa434a336f" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>visible</name></member>
+      <member refid="class_hacknet_1_1_network_map_1a58b6ac40e26bf7652dea3b1c0cb53323" prot="public" virt="non-virtual"><scope>Hacknet::NetworkMap</scope><name>visibleNodes</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

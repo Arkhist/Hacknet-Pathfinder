@@ -1,0 +1,1541 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pathfinder</name>
+    </assembly>
+    <members>
+        <member name="M:Pathfinder.Event.EventManager.RegisterListener(System.Type,System.Action{Pathfinder.Event.PathfinderEvent},System.String)">
+            <summary>
+            Registers an event listener by runtime type.
+            </summary>
+            <param name="pathfinderEventType">The PathfinderEvent Runtime Type to register for</param>
+            <param name="listener">The listener function that will be executed on an event call</param>
+            <param name="debugName">Name to assign for debug purposes</param>
+        </member>
+        <member name="M:Pathfinder.Event.EventManager.RegisterListener``1(System.Action{``0},System.String)">
+            <summary>
+            Registers an event listener by compile time type.
+            </summary>
+            <param name="listener">The listener function that will be executed on an event call</param>
+            <param name="debugName">Name to assign for debug purposes</param>
+            <typeparam name="T">The PathfinderEvent Compile time Type to listen for</typeparam>
+        </member>
+        <member name="M:Pathfinder.Event.EventManager.UnregisterListener(System.Type,System.Action{Pathfinder.Event.PathfinderEvent})">
+            <summary>
+            Removes an event listener by runtime type.
+            </summary>
+            <param name="pathfinderEventType">The PathfinderEvent Runtime Type to remove for</param>
+            <param name="listener">The listener function to remove</param>
+        </member>
+        <member name="M:Pathfinder.Event.EventManager.UnregisterListener``1(System.Action{``0})">
+            <summary>
+            Removes an event listener by compile time type.
+            </summary>
+            <param name="listener">The listener function to remove</param>
+            <typeparam name="T">The PathfinderEvent Compile time Type to remove for</typeparam>
+        </member>
+        <member name="M:Pathfinder.Event.EventManager.CallEvent(Pathfinder.Event.PathfinderEvent)">
+            <summary>
+            Calls a PathfinderEvent.
+            </summary>
+            <param name="pathfinderEvent">The PathfinderEvent to call.</param>
+        </member>
+        <member name="P:Pathfinder.Pathfinder.LoadedModIdentifiers">
+            <summary>
+            Gets the loaded mod identifiers.
+            </summary>
+            <value>The loaded mod identifiers.</value>
+        </member>
+        <member name="P:Pathfinder.Pathfinder.UnloadedModIdentifiers">
+            <summary>
+            Gets the unloaded mod identifiers.
+            </summary>
+            <value>The  mod identifiers.</value>
+        </member>
+        <member name="M:Pathfinder.Pathfinder.IsModLoaded(System.String)">
+            <summary>
+            Determines whether a mod is loaded
+            </summary>
+            <returns><c>true</c>, if mod is loaded, <c>false</c> otherwise.</returns>
+            <param name="id">Mod Identifier.</param>
+        </member>
+        <member name="M:Pathfinder.Pathfinder.IsModIdentifierValid(System.String,System.Boolean)">
+            <summary>
+            Determines whether a mod identifier is valid
+            </summary>
+            <returns><c>true</c>, if mod identifier is valid, <c>false</c> otherwise.</returns>
+            <param name="id">The Mod Identifier.</param>
+            <param name="shouldThrowReason">If set to <c>true</c> then this method will throw.</param>
+        </member>
+        <member name="T:Pathfinder.PathfinderHooks">
+            <summary>
+            Function hooks for the Pathfinder mod system
+            </summary>
+            Place all functions to be hooked into Hacknet here
+        </member>
+        <member name="M:Pathfinder.Executable.IInterface.DrawOutline(Pathfinder.Executable.Instance)">
+            <summary>
+            Draws the outline.
+            </summary>
+            <returns><c>true</c>, if vanilla outline draw should continue, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Pathfinder.Executable.IInterface.DrawTarget(Pathfinder.Executable.Instance,System.String)">
+            <summary>
+            Draws the target.
+            </summary>
+            <returns><c>true</c>, if vanilla target draw should continue, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Pathfinder.Executable.IInterface.Update(Pathfinder.Executable.Instance,System.Single)">
+            <summary>
+            Runs an update tick for the executable
+            </summary>
+            <returns>Whether isExiting should be set to true or not (thus exiting the program), null doesn't set it</returns>
+        </member>
+        <member name="M:Pathfinder.Executable.Interface.DrawOutline(Pathfinder.Executable.Instance)">
+            <summary>
+            Draws the outline.
+            </summary>
+            <returns><c>true</c>, if vanilla outline draw should continue, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Pathfinder.Executable.Interface.DrawTarget(Pathfinder.Executable.Instance,System.String)">
+            <summary>
+            Draws the target.
+            </summary>
+            <returns><c>true</c>, if vanilla target draw should continue, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Pathfinder.Executable.Interface.Update(Pathfinder.Executable.Instance,System.Single)">
+            <summary>
+            Runs an update tick for the executable
+            </summary>
+            <returns>Whether isExiting should be set to true or not (thus exiting the program), null doesn't set it</returns>
+        </member>
+        <member name="M:Pathfinder.Executable.Handler.RegisterExecutable(System.String,Pathfinder.Executable.IInterface)">
+            <summary>
+            Adds an executable interface by id.
+            </summary>
+            <returns>The full mod id if added to the game, <c>null</c> otherwise.</returns>
+            <param name="id">The Executable Identifier to try and add.</param>
+            <param name="inter">The interface object.</param>
+        </member>
+        <member name="M:Pathfinder.Executable.Handler.IsFileDataForModExe(System.String)">
+            <summary>
+            Determines whether the file data is for a mod interface.
+            </summary>
+            <returns><c>true</c>, if the file data is for a mod interface, <c>false</c> otherwise.</returns>
+            <param name="fileData">File data.</param>
+        </member>
+        <member name="M:Pathfinder.Executable.Handler.GetStandardFileDataBy(System.String,System.Boolean)">
+            <summary>
+            Gets the standard file data by id.
+            </summary>
+            <returns>The standard file data or <c>null</c> if it doesn't exist.</returns>
+            <param name="id">Executable Identifier.</param>
+            <param name="requiresModId">If set to <c>true</c> id requires a prefixing mod identifier delimated by period.</param>
+        </member>
+        <member name="M:Pathfinder.Executable.Handler.GetStandardFileDataBy(Pathfinder.Executable.IInterface)">
+            <summary>
+            Gets the first standard file data by interface.
+            </summary>
+            <returns>The standard file data or <c>null</c> if it doesn't exist.</returns>
+            <param name="inter">The Executable Interface</param>
+        </member>
+        <member name="M:Pathfinder.Command.Handler.RegisterCommand(System.String,Pathfinder.Command.Handler.CommandFunc,System.String,System.Boolean)">
+            <summary>
+            Adds a command to the game.
+            </summary>
+            <returns>The full mod command id if added to the game, <c>null</c> otherwise</returns>
+            <param name="key">The key used to run the command.</param>
+            <param name="function">The function run when command is input.</param>
+            <param name="description">A description to input when help is command is run (if not null).</param>
+            <param name="autoComplete">If set to <c>true</c> then autocomplete for command is enabled.</param>
+        </member>
+        <member name="P:Pathfinder.Command.Help.PageCount">
+            <summary>
+            Gets the help page count.
+            </summary>
+            <value>The help page count.</value>
+        </member>
+        <member name="M:Pathfinder.Command.Help.GetStringFor(System.String)">
+            <summary>
+            Gets the help string for a command.
+            </summary>
+            <returns>The resulting help string or <c>null</c> if it doesn't exist.</returns>
+            <param name="cmd">The Command key.</param>
+        </member>
+        <member name="M:Pathfinder.Command.Help.GetPageString(System.Int32)">
+            <summary>
+            Gets the help string for a page.
+            </summary>
+            <returns>The string for a page.</returns>
+            <param name="page">The page to get the string for.</param>
+        </member>
+        <member name="M:Pathfinder.Daemon.Handler.RegisterDaemon(System.String,Pathfinder.Daemon.IInterface)">
+            <summary>
+            Registers a daemon interface.
+            </summary>
+            <returns>The daemon's full id if added to the game, <c>null</c> otherwise.</returns>
+            <param name="id">The daemon interface id to insert.</param>
+            <param name="inter">The interface to add.</param>
+        </member>
+        <member name="P:Pathfinder.Util.ExeInfoManager.ExecutableInfo.PortNumber">
+            <summary>
+            Gets the port number for the info.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.Util.ExeInfoManager.ExecutableInfo.Number">
+            <summary>
+            Gets the number within <see cref="F:Hacknet.PortExploits.exeNums"/>.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.Util.ExeInfoManager.ExecutableInfo.NumberIndex">
+            <summary>
+            Gets the index within <see cref="F:Hacknet.PortExploits.exeNums"/>.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.Util.ExeInfoManager.ExecutableInfo.Name">
+            <summary>
+            Gets the executable name.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.Util.ExeInfoManager.ExecutableInfo.ServiceName">
+            <summary>
+            Gets the name of the port service.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.Util.ExeInfoManager.ExecutableInfo.NeedsPort">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Pathfinder.Util.ExeInfoManager.ExecutableInfo"/> needs port.
+            </summary>
+            <value><c>true</c> if needs port; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Pathfinder.Util.ExeInfoManager.ExecutableInfo.Data">
+            <summary>
+            Gets the standard game data for the executable.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.Util.ExeInfoManager.ExecutableInfo.LocalData">
+            <summary>
+            Gets the local game data for the executable.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.Util.ExeInfoManager.ExecutableInfo.IsEmpty">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Pathfinder.Util.ExeInfoManager.ExecutableInfo"/> is empty.
+            </summary>
+            <value><c>true</c> if is empty; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:Pathfinder.Util.Utility.Array`1">
+            <summary>
+            Type specific Array Utilities
+            </summary>
+        </member>
+        <member name="F:Pathfinder.Util.Utility.Array`1.Empty">
+            <summary>
+            An Empty Array of T
+            </summary>
+        </member>
+        <member name="M:Pathfinder.Util.Utility.ConvertToValidXmlAttributeName(System.String)">
+            <summary>
+            Converts the input to a valid xml attribute name.
+            </summary>
+            <returns>A valid xml attribute name.</returns>
+            <param name="input">Input to convert.</param>
+        </member>
+        <member name="P:Pathfinder.Util.Utility.ActiveModId">
+            <summary>
+            Gets the active mod's identifier.
+            </summary>
+            <value>The active mod identifier or Pathfinder if there is no active mod.</value>
+        </member>
+        <member name="M:Pathfinder.Util.Utility.GetId(System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Retrieves an identifier for the input.
+            </summary>
+            <returns>The resulting identifier.</returns>
+            <param name="inputId">Input identifier.</param>
+            <param name="ignorePeriod">If set to <c>true</c> ignore period.</param>
+            <param name="ignoreValidXml">If set to <c>true</c> ignore valid xml.</param>
+        </member>
+        <member name="P:Pathfinder.Util.Utility.ClientOS">
+            <summary>
+            Gets the current client OS.
+            </summary>
+            <returns>The client's current OS.</returns>
+        </member>
+        <member name="P:Pathfinder.Util.Utility.ClientComputer">
+            <summary>
+            Gets the current client's Computer.
+            </summary>
+            <returns>The client's Current Computer.</returns>
+        </member>
+        <member name="P:Pathfinder.Util.Utility.ClientNetworkMap">
+            <summary>
+            Gets the current client's NetworkMap for the current client OS.
+            </summary>
+            <returns>The client's current Network Map.</returns>
+        </member>
+        <member name="M:Pathfinder.Util.Utility.GetCurrentComputer(Hacknet.OS)">
+            <summary>
+            Gets the current Computer the OS is active in.
+            </summary>
+            <returns>The currently active Computer.</returns>
+            <param name="os">The OS to get the current Computer, or equal to <see cref="P:Pathfinder.Util.Utility.ClientOS"/> if <c>null</c>.</param>
+        </member>
+        <member name="P:Pathfinder.Util.Utility.CurrentComputer">
+            <summary>
+            Gets the current Computer the client is connected to.
+            </summary>
+            <value>The current Computer.</value>
+        </member>
+        <member name="T:Pathfinder.Util.Logger.LogLevel">
+            <summary>
+            Log Levels for the Logger
+            </summary>
+        </member>
+        <member name="P:Pathfinder.Util.Logger.IncludeModId">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Pathfinder.Util.Logger"/> should include mod identifier.
+            </summary>
+            <value><c>true</c> if mod identifier should be included; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Pathfinder.Util.Logger.LogHistory">
+            <summary>
+            Gets the log history.
+            </summary>
+            <value>The log history for the past 100 log calls.</value>
+        </member>
+        <member name="M:Pathfinder.Util.Logger.AddFlag(Pathfinder.Util.Logger.LogLevel)">
+            <summary>
+            Adds flag(s) to this <see cref="T:Pathfinder.Util.Logger"/>'s flags.
+            </summary>
+            <param name="levels">Log Level(s) to add.</param>
+        </member>
+        <member name="M:Pathfinder.Util.Logger.SetFlags(Pathfinder.Util.Logger.LogLevel)">
+            <summary>
+            Sets showFlags to exact levels.
+            </summary>
+            <param name="levels">Log Levels to set this <see cref="T:Pathfinder.Util.Logger"/>'s showFlags to.</param>
+        </member>
+        <member name="M:Pathfinder.Util.Logger.RemoveFlag(Pathfinder.Util.Logger.LogLevel)">
+            <summary>
+            Removes a flag(s) from this <see cref="T:Pathfinder.Util.Logger"/>'s flags.
+            </summary>
+            <param name="levels">Log Level(s) to remove.</param>
+        </member>
+        <member name="M:Pathfinder.Util.Logger.HasFlag(Pathfinder.Util.Logger.LogLevel)">
+            <summary>
+            Determines whether this <see cref="T:Pathfinder.Util.Logger"/> has the flag(s).
+            </summary>
+            <returns><c>true</c>, has flag, <c>false</c> otherwise.</returns>
+            <param name="level">Log Level(s) to test for.</param>
+        </member>
+        <member name="M:Pathfinder.Util.Logger.Log(Pathfinder.Util.Logger.LogLevel,System.Object[])">
+            <summary>
+            Logs the specified level and input.
+            </summary>
+            <param name="level">Log Level to log for.</param>
+            <param name="input">Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</param>
+        </member>
+        <member name="M:Pathfinder.Util.Logger.Verbose(System.Object[])">
+            <summary>
+            Logs on <see cref="T:Pathfinder.Util.Logger.LogLevel.VERBOSE"/> the specified input.
+            </summary>
+            <param name="input">Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</param>
+        </member>
+        <member name="M:Pathfinder.Util.Logger.Debug(System.Object[])">
+            <summary>
+            Logs on <see cref="T:Pathfinder.Util.Logger.LogLevel.DEBUG"/> the specified input.
+            </summary>
+            <param name="input">Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</param>
+        </member>
+        <member name="M:Pathfinder.Util.Logger.Info(System.Object[])">
+            <summary>
+            Logs on <see cref="T:Pathfinder.Util.Logger.LogLevel.INFO"/> the specified input.
+            </summary>
+            <param name="input">Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</param>
+        </member>
+        <member name="M:Pathfinder.Util.Logger.Warn(System.Object[])">
+            <summary>
+            Logs on <see cref="T:Pathfinder.Util.Logger.LogLevel.WARN"/> the specified input.
+            </summary>
+            <param name="input">Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</param>
+        </member>
+        <member name="M:Pathfinder.Util.Logger.Error(System.Object[])">
+            <summary>
+            Logs on <see cref="T:Pathfinder.Util.Logger.LogLevel.ERROR"/> the specified input.
+            </summary>
+            <param name="input">Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</param>
+        </member>
+        <member name="M:Pathfinder.Util.Logger.Fatal(System.Object[])">
+            <summary>
+            Logs on <see cref="T:Pathfinder.Util.Logger.LogLevel.FATAL"/> the specified input.
+            </summary>
+            <param name="input">Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</param>
+        </member>
+        <member name="T:Pathfinder.Util.Attribute.EventPriorityAttribute">
+            <summary>
+            Event priority attribute for designating event listener call order.
+            </summary>
+        </member>
+        <member name="T:Pathfinder.Util.Attribute.LoadOrderAttribute">
+            <summary>
+            Load order attribute for designating mod load orders. (in case of mod reliance or relation)
+            </summary>
+        </member>
+        <member name="T:Pathfinder.Util.Attribute.AllowOrderUnloadAttribute">
+            <summary>
+            Allow order unload attribute for allowing load order to be responsible for unloading the mod.
+            </summary>
+        </member>
+        <member name="T:Pathfinder.Util.Attribute.ModOptionsAttribute">
+            <summary>
+            Mod options attribute which allows assignment of a derived <see cref="T:Pathfinder.GUI.ModOptions.AbstractOptions"/> class for a mod.
+            </summary>
+        </member>
+        <member name="T:Pathfinder.Util.ConvertAny">
+            <summary>
+            Extended conversion utilities to convert any type to any other type provided the conversion is valid.
+            </summary>
+        </member>
+        <member name="M:Pathfinder.Util.ConvertAny.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:Pathfinder.Util.ConvertAny"/> class.
+            </summary>
+        </member>
+        <member name="M:Pathfinder.Util.ConvertAny.CanConvert``1(System.Object)">
+            <summary>
+            Determines whether this instance can convert the specified value.
+            </summary>
+            <typeparam name="ToType">The type of to type.</typeparam>
+            <param name="value">From value.</param>
+            <returns><c>true</c> if this instance can convert the specified from value; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Pathfinder.Util.ConvertAny.CanConvert(System.Type,System.Type)">
+            <summary>
+            Determines whether this instance can convert the specified <paramref name="fromType"/> to the <paramref name="toType"/>.
+            </summary>
+            <param name="fromType">From type.</param>
+            <param name="toType">To type.</param>
+            <returns><c>true</c> if the conversion is valid; otherwise, <c>false</c>.</returns>
+            <remarks>
+            This method checks 4 types of conversions:
+            
+            1. If they are the same type, returns true.
+            2. If they are both IConvertible types, return true.
+            3. If the toType is part of the inheritance chain of fromType.
+            4. Direct casting, only returns true if both types have default constructors.
+            </remarks>
+        </member>
+        <member name="M:Pathfinder.Util.ConvertAny.TryConvert``1(System.Object,``0@)">
+            <summary>
+            Attempts to convert the value to the specified type. 
+            </summary>
+            <typeparam name="ToType">The type to convert to.</typeparam>
+            <param name="value">Value to convert.</param>
+            <param name="toValue">Converted value.</param>
+            <returns><c>true</c> if conversion succeeds, <c>false</c> otherwise.</returns>
+            <remarks>
+            If the conversion fails, the value of <paramref name="toValue"/> is the default
+            of that particular type.
+            </remarks>
+        </member>
+        <member name="M:Pathfinder.Util.ConvertAny.Convert``1(System.Object)">
+            <summary>
+            Converts the specified from value.
+            </summary>
+            <typeparam name="ToType">The type to convert to.</typeparam>
+            <param name="fromValue">The value to convert.</param>
+            <returns>Converted value.</returns>
+            <exception cref="T:System.InvalidCastException">Raised when the value cannot be converted to the specified type.</exception>
+        </member>
+        <member name="M:Pathfinder.Util.ConvertAny.ConvertByType(System.Object,System.Type)">
+            <summary>
+            Converts value to the specified type.
+            </summary>
+            <param name="fromValue">The value to convert.</param>
+            <param name="toType">The type to convert to.</param>
+            <returns>Object that represents the converted type.</returns>
+        </member>
+        <member name="M:Pathfinder.Util.ConvertAny.Default``1">
+            <summary>
+            Creates a default instance of <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">Type to create a default instance of.</typeparam>
+            <returns>Default instance of <typeparamref name="T"/>.</returns>
+            <remarks>
+            For primitive types this will create a value of 0 with the specified type. For
+            objects, if the object has a default constructor it will return a default instance
+            of the type. If the object does not have a default constructor, it will return
+            null.
+            </remarks>
+        </member>
+        <member name="M:Pathfinder.Util.ConvertAny.DefaultByType(System.Type)">
+            <summary>
+            Creates a default instance of <paramref name="type"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>Instance of the specified type.</returns>
+            <remarks>
+            This method uses the generic <see cref="M:Pathfinder.Util.ConvertAny.Default``1"/> method to create an instance
+            of the type.
+            </remarks>
+        </member>
+        <member name="M:Pathfinder.Util.Locale.Get(System.String,System.Object[])">
+            <summary>
+            Retrieves the localized formatted (based on the extra arguments) string of the input along.
+            </summary>
+            <returns>The localized formatted string of the input, otherwise defaulting to LocaleTerms.Loc.</returns>
+            <param name="input">The input string to search in the locale for.</param>
+            <param name="extraArgs">Any extra formatting arguments.</param>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.FileObject`1.Path">
+            <summary>
+            Gets or sets the object's full path, setting changes the object's parent
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.FileObject`1.Name">
+            <summary>
+            Gets or sets the object's name
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.FileObject`1.Object">
+            <summary>
+            Gets the vanilla object
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.FileObject`1.Parent">
+            <summary>
+            Gets the object's parent
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.FileObject`1.Index">
+            <summary>
+            Gets the index inside its parent's respective list
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.FileObject`1.Root">
+            <summary>
+            Gets the root Filesystem the object is within
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.FileObject`1.Type">
+            <summary>
+            Gets the FileType of the object.
+            </summary>
+            <value>The type.</value>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.IFileObject.Path">
+            <summary>
+            Gets or sets the object's full path, setting changes the object's parent
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.IFileObject.Name">
+            <summary>
+            Gets or sets the object's name
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.IFileObject.Object">
+            <summary>
+            Gets the vanilla object
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.IFileObject.Parent">
+            <summary>
+            Gets the object's parent
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.IFileObject.Index">
+            <summary>
+            Gets the index inside its parent's respective list
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.IFileObject.Root">
+            <summary>
+            Gets the root Filesystem the object is within
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.IFileObject.Type">
+            <summary>
+            Gets the FileType of the object.
+            </summary>
+        </member>
+        <member name="F:Pathfinder.GameFilesystem.FileOpLogType.CreateFile">
+            Input
+            0 = file owner's ip
+            1 = accessor's ip
+            2 = name
+            3 = data
+            4 = folderPath
+        </member>
+        <member name="F:Pathfinder.GameFilesystem.FileOpLogType.CreateFolder">
+            Input
+            0 = file owner's ip
+            1 = accessor's ip
+            2 = name
+            3 = folderPath
+        </member>
+        <member name="F:Pathfinder.GameFilesystem.FileOpLogType.ReadFile">
+            Input
+            0 = file owner's ip
+            1 = accessor's ip
+            2 = name
+            3 = parentIndex
+        </member>
+        <member name="F:Pathfinder.GameFilesystem.FileOpLogType.CopyFile">
+            Input
+            0 = file owner's ip
+            1 = accessor's ip
+            2 = name
+        </member>
+        <member name="F:Pathfinder.GameFilesystem.FileOpLogType.DeleteFile">
+            Input
+            0 = file owner's ip
+            1 = accessor's ip
+            2 = name
+            3 = folderPath
+        </member>
+        <member name="F:Pathfinder.GameFilesystem.FileOpLogType.DeleteFolder">
+            Input
+            0 = file owner's ip
+            1 = accessor's ip
+            2 = name
+            3 = folderPath
+        </member>
+        <member name="F:Pathfinder.GameFilesystem.FileOpLogType.MoveFile">
+            Input
+            0 = file owner's ip
+            1 = accessor's ip
+            2 = oldName
+            3 = newName
+            4 = oldFolderPath
+            5 = newFolderPath
+        </member>
+        <member name="F:Pathfinder.GameFilesystem.FileOpLogType.MoveFolder">
+            Input
+            0 = file owner's ip
+            1 = accessor's ip
+            2 = oldName
+            3 = newName
+            4 = oldFolderPath
+            5 = newFolderPath
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Filesystem.SearchForDirectory(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Searchs for a Directory's path as far as possible.
+            </summary>
+            <returns>The Directory to search for, or the deepest Directory found in the path, or <c>null</c> if nullOut is true.</returns>
+            <param name="path">The path to search by.</param>
+            <param name="ignoreRootSymbol">If set to <c>true</c> ignores the root (/) symbol at the start.</param>
+            <param name="nullOut">If set to <c>true</c> then nulls out on failure, otherwise returns furthest depth</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Filesystem.SearchForFile(System.String,System.Boolean)">
+            <summary>
+            Searchs for a File's path as far as possible.
+            </summary>
+            <returns>The File to search for, or <c>null</c> if not found.</returns>
+            <param name="path">The path to search by.</param>
+            <param name="ignoreRootSymbol">If set to <c>true</c> ignores the root (/) symbol at the start.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Filesystem.GetDirectoryAtDepth(System.Int32,Hacknet.OS)">
+            <summary>
+            Gets the Directory at the specified depth.
+            </summary>
+            <returns>The Directory at the inputed depth.</returns>
+            <param name="depth">The depth to retrieve.</param>
+            <param name="os">The OS responsible for the data relating to the Directory's depth.</param>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.Directory.Name">
+            <summary>
+            Gets or sets the directory name.
+            </summary>
+            <value>The name of the directory.</value>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.Directory.Path">
+            <summary>
+            Gets or sets the directory's path, both renames and modifies the directory's location.
+            </summary>
+            <value>The directory's path.</value>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.Directory.Index">
+            <summary>
+            Gets the index inside its parent's respective list
+            </summary>
+            <value>The folder index in the parent or <c>-1</c> if root directory.</value>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.Directory.Root">
+            <summary>
+            Gets the root Filesystem the Directory is within.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.Directory.Type">
+            <summary>
+            Returns FileType.Directory
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.Directory.ParentDirectory">
+            <summary>
+            Casts the Parent FileObject to a Directory
+            </summary>
+            <value>The Parent as Directory</value>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.FindFile(System.String)">
+            <summary>
+            Finds a File within the Directory based on its name.
+            </summary>
+            <returns>The File or <c>null</c> if not found.</returns>
+            <param name="name">The name to find.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.FindDirectory(System.String)">
+            <summary>
+            Finds a Directory within the Directory based on its name.
+            </summary>
+            <returns>The Directory or <c>null</c> if not found.</returns>
+            <param name="name">The name to find.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.SearchForDirectory(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Searchs for a Directory's path as far as possible.
+            </summary>
+            <returns>The Directory to search for, or the deepest Directory found in the path, or <c>null</c> if nullOut is true.</returns>
+            <param name="path">The path to search by.</param>
+            <param name="ignoreRootSymbol">If set to <c>true</c> ignores the root (/) symbol at the start.</param>
+            <param name="nullOut">If set to <c>true</c> then nulls out on failure, otherwise returns furthest depth</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.SearchForDirectory(System.String)">
+            <summary>
+            Searchs for a Directory's path as far as possible.
+            </summary>
+            <returns>The Directory to search for, or the deepest Directory found in the path.</returns>
+            <param name="path">The path to search by.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.SearchForFile(System.String,System.Boolean)">
+            <summary>
+            Searchs for a File's path as far as possible.
+            </summary>
+            <returns>The File to search for, or <c>null</c> if not found.</returns>
+            <param name="path">The path to search by.</param>
+            <param name="ignoreRootSymbol">If set to <c>true</c> ignores the root (/) symbol at the start.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.SearchForFile(System.String)">
+            <summary>
+            Searchs for a File's path as far as possible.
+            </summary>
+            <returns>The File to search for, or <c>null</c> if not found.</returns>
+            <param name="path">The path to search by.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.GetFile(System.Int32)">
+            <summary>
+            Gets a File based on its Index.
+            </summary>
+            <remarks>This method is the most bare and unsafe method of File retrieval</remarks>
+            <returns>The File who contains said Index.</returns>
+            <param name="index">The Index to find.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.GetDirectory(System.Int32)">
+            <summary>
+            Gets a Directory based on its Index.
+            </summary>
+            <remarks>This method is the most bare and unsafe method of Directory retrieval</remarks>
+            <returns>The Directory who contains said Index.</returns>
+            <param name="index">The Index to find.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.CreateFile(System.String,System.String)">
+            <summary>
+            Creates a new File based on the name and data.
+            </summary>
+            <returns>The File that was created.</returns>
+            <param name="name">The name to assign to the File.</param>
+            <param name="data">The data to assign to the File.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.CreateFile(System.String,Pathfinder.Executable.IInterface)">
+            <summary>
+            Creates a File based on the name and the Executable.IInterface generated file data.
+            </summary>
+            <returns>The File that was created.</returns>
+            <param name="name">The name to assign to the File.</param>
+            <param name="exeInterface">The Executable.IInterface whose file data is to be generated.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.CreateExecutableFile(System.String,System.String)">
+            <summary>
+            Creates an executable File based on the name and the file data string id.
+            </summary>
+            <returns>The executable File that was created.</returns>
+            <param name="name">The name to assign to the File.</param>
+            <param name="exeId">The file data string id.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.CreateExecutableFile(System.String,System.Int32)">
+            <summary>
+            Creates a vanilla executable File based on the name and the vanilla data index.
+            </summary>
+            <returns>The executable File that was created.</returns>
+            <param name="name">The name to assign to the File.</param>
+            <param name="vanillaIndex">The vanilla data index.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.CreateDirectory(System.String)">
+            <summary>
+            Creates a new Directory based on the name.
+            </summary>
+            <returns>The Directory that was created.</returns>
+            <param name="name">The name to assign to the Directory.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.RemoveFile(System.String)">
+            <summary>
+            Removes a File in the Directory by its name.
+            </summary>
+            <returns><c>true</c>, if File was found and removed, <c>false</c> otherwise.</returns>
+            <param name="name">The name to find.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.RemoveFile(Pathfinder.GameFilesystem.File)">
+            <summary>
+            Removes a File in the Directory.
+            </summary>
+            <returns><c>true</c>, if File was found and removed, <c>false</c> otherwise.</returns>
+            <param name="f">The File to find.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.RemoveDirectory(System.String)">
+            <summary>
+            Removes a Directory in the Directory by its name.
+            </summary>
+            <returns><c>true</c>, if Directory was found and removed, <c>false</c> otherwise.</returns>
+            <param name="name">The name to find.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.RemoveDirectory(Pathfinder.GameFilesystem.Directory)">
+            <summary>
+            Removes a Directory in the Directory.
+            </summary>
+            <returns><c>true</c>, if Directory was found and removed, <c>false</c> otherwise.</returns>
+            <param name="d">The Directory to find.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.MoveFile(Pathfinder.GameFilesystem.File,Pathfinder.GameFilesystem.Directory)">
+            <summary>
+            Moves a File to a new Directory.
+            </summary>
+            <returns>The moved File.</returns>
+            <param name="f">The File to move.</param>
+            <param name="newDir">The new Directory.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.MoveDirectory(Pathfinder.GameFilesystem.Directory,Pathfinder.GameFilesystem.Directory)">
+            <summary>
+            Moves a Directory to a new Directory.
+            </summary>
+            <returns>The moved Directory.</returns>
+            <param name="d">The Directory to move.</param>
+            <param name="newDir">The new Directory.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.MoveTo(Pathfinder.GameFilesystem.Directory)">
+            <summary>
+            Moves the Directory to a new Directory.
+            </summary>
+            <returns>The Directory to move to.</returns>
+            <param name="to">The moved Directory.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.Contains(Pathfinder.GameFilesystem.File)">
+            <summary>
+            Determines whether the specified File is contained within the Directory.
+            </summary>
+            <returns><c>true</c>, if the File isn't null and contained within the Directory, <c>false</c> otherwise.</returns>
+            <param name="f">The File to determine is contained within.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.Contains(Pathfinder.GameFilesystem.Directory)">
+            <summary>
+            Determines whether the specified Directory is contained within the Directory.
+            </summary>
+            <returns><c>true</c>, if the Directory isn't null and contained within the Directory, <c>false</c> otherwise.</returns>
+            <param name="d">The Directory to determine is contained within.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.ContainsFile(System.String,System.String)">
+            <summary>
+            Determines whether a File with the specified name and/or data is contained within the Directory
+            </summary>
+            <returns><c>true</c>, if File is contained in the Directory, <c>false</c> otherwise.</returns>
+            <param name="name">The name to search for or <c>null</c>.</param>
+            <param name="data">The data to search for or <c>null</c>.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Pathfinder.GameFilesystem.Directory.ContainsDirectory(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32})" -->
+        <member name="P:Pathfinder.GameFilesystem.Directory.Item(System.String)">
+            <summary>
+            Gets the first <see cref="T:Pathfinder.GameFilesystem.IFileObject"/> that contains the specified name,
+            searching through files first.
+            </summary>
+            <param name="name">Name.</param>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.Directory.Files">
+            <summary>
+            Retrieves a list of Files contained within the Directory.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.Directory.Directories">
+            <summary>
+            Retrieves a list of Directories contained within the Directory.
+            </summary>
+            <value>The directories.</value>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.Directory.FileCount">
+            <summary>
+            Retrieves the amount of Files within the Directory.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.Directory.DirectoryCount">
+            <summary>
+            Retrieves the amount of Directories within the Directory.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.File.Name">
+            <summary>
+            Gets or sets the File's name. (logs as move if change is attempted)
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.File.Index">
+            <summary>
+            Gets the index inside its parent's respective list
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.File.Root">
+            <summary>
+            Gets the root Filesystem the File is within.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.File.Type">
+            <summary>
+            Returns FileType.File
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.File.Path">
+            <summary>
+            Gets or sets the File's full path, setting changes the File's parent.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.File.Data">
+            <summary>
+            Gets or sets the File's data.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.File.Size">
+            <summary>
+            Gets or sets the File's size.
+            </summary>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.File.UpdateFileSize">
+            <summary>
+            Updates the size of the File according to the standard set in Hacknet.
+            </summary>
+        </member>
+        <member name="P:Pathfinder.GameFilesystem.File.Head">
+            <summary>
+            Retrieves the head of the file, or the first 50 characters of the File's data before a newline.
+            </summary>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.File.MoveTo(Pathfinder.GameFilesystem.Directory)">
+            <summary>
+            Moves the File to a different Directory.
+            </summary>
+            <returns>The File after its been moved.</returns>
+            <param name="to">The Directory to move the File to.</param>
+        </member>
+        <member name="P:Pathfinder.Extension.Info.Id">
+            <summary>
+            Gets the extension identifier.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="P:Pathfinder.Extension.Info.IsActive">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Pathfinder.Extension.Info"/> is active.
+            </summary>
+            <value><c>true</c> if is active; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Pathfinder.Extension.Info.Name">
+            <summary>
+            Gets the extension's name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:Pathfinder.Extension.Info.Description">
+            <summary>
+            Gets the extension's description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:Pathfinder.Extension.Info.LogoPath">
+            <summary>
+            Gets the extension's logo path. (if it does not exist or is null, chooses the default logo)
+            </summary>
+            <value>The logo path.</value>
+        </member>
+        <member name="P:Pathfinder.Extension.Info.AllowSaves">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Pathfinder.Extension.Info"/> allows saves.
+            </summary>
+            <value><c>true</c> if allows saves; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:Pathfinder.Extension.Info.OnConstruct(Hacknet.OS)">
+            <summary>
+            Executes on extension construction.
+            </summary>
+            <param name="os">The Os.</param>
+        </member>
+        <member name="M:Pathfinder.Extension.Info.OnLoad(Hacknet.OS,System.IO.Stream)">
+            <summary>
+            Executes on extension loading.
+            </summary>
+            <param name="os">The Os.</param>
+            <param name="loadingStream">The Loading stream.</param>
+        </member>
+        <member name="P:Pathfinder.ModManager.IMod.Identifier">
+            <summary>
+            Retrieves the Mod's identifier.
+            </summary>
+            <value>The Mod's identifier</value>
+        </member>
+        <member name="P:Pathfinder.ModManager.Mod.Identifier">
+            <summary>
+            Retrieves the Mod's identifier.
+            </summary>
+            <value>The Mod's identifier</value>
+        </member>
+        <member name="M:Pathfinder.ModManager.Mod.Load">
+            <summary>
+            Called when the mod is being loaded, use to ensure all mod related stuff is ready to be loaded
+            </summary>
+            <remarks>DO NOT USE TO LOAD CONTENT</remarks>
+        </member>
+        <member name="M:Pathfinder.ModManager.Mod.LoadContent">
+            <summary>
+            Loads the mod's content.
+            </summary>
+        </member>
+        <member name="M:Pathfinder.ModManager.Mod.Unload">
+            <summary>
+            Called when the mod is being unloaded
+            </summary>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.AddModdedDaemon(Hacknet.Computer,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Adds a modded Daemon via the interface id string to the Computer.
+            </summary>
+            <returns>The modded Daemon instance.</returns>
+            <param name="comp">The Computer</param>
+            <param name="interfaceId">Interface Identifier.</param>
+            <param name="input">The input for the LoadInstance interface function.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetDaemonList(Hacknet.Computer,System.Type)">
+            <summary>
+            Retrieves a List of daemons exactly of Daemon from the Computer
+            </summary>
+            /// <param name="daemonType">The exact Type to search for</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetDaemonList``1(Hacknet.Computer)">
+            <summary>
+            Retrieves a List of Daemons whose Type is or is derived from T, pulled from Computer
+            </summary>
+            <typeparam name="T">The Type or derivative of the type to search for in the Daemon List</typeparam>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetModdedDaemon(Hacknet.Computer,System.Type)">
+            <summary>
+            Retrieves the first Daemon.Instance whose interface Type is exactly modInterface.
+            </summary>
+            <param name="modInterface">The exact Type to find</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetModdedDaemon``1(Hacknet.Computer)">
+            <summary>
+            Retrieves the first mod Daemon.Instance whose interface Type is or is derived from T.
+            </summary>
+            <typeparam name="T">The Type or derivative of the type to search for in the Daemon List</typeparam>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetModdedDaemonList(Hacknet.Computer,System.Type)">
+            <summary>
+            Retrieves a List of Daemon.Instance whose interface Type is exactly modInterface.
+            </summary>
+            /// <param name="modInterface">The exact Type to find</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetModdedDaemonList``1(Hacknet.Computer)">
+            <summary>
+            Retrieves a List of mod Daemon.Instance whose interface Type is or is derived from T
+            </summary>
+            <typeparam name="T">The Type or derivative of the type to search for in the Daemon List</typeparam>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.AddLink(Hacknet.Computer,Hacknet.Computer)">
+            <summary>
+            Adds a link on the NetworkMap from Computer connecting to newLink.
+            </summary>
+            <returns><c>true</c>, if the link was added, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="newLink">The New link.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetOS(Hacknet.Computer)">
+            <summary>
+            Retireves the OS of Computer.
+            </summary>
+            <returns>The OS.</returns>
+            <param name="comp">The Computer</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetNetworkMap(Hacknet.Computer)">
+            <summary>
+            Retrieves the NetworkMap of Computer.
+            </summary>
+            <returns>The NetworkMap.</returns>
+            <param name="comp">The Computer</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.AddVanillaPort(Hacknet.Computer,Pathfinder.Util.ExeInfoManager.ExecutableInfo,System.Boolean)">
+            <summary>
+            Adds a vanilla port by ExecutableInfo.
+            </summary>
+            <returns><c>true</c>, if vanilla port was added, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="info">The ExecutableInfo for the port</param>
+            <param name="unlocked">If set to <c>true</c> then sets the port to be unlocked.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.AddVanillaPort(Hacknet.Computer,System.String,System.Boolean)">
+            <summary>
+            Adds a vanilla port by port name.
+            </summary>
+            <returns><c>true</c>, if vanilla port was added, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="portName">The name for the port</param>
+            <param name="unlocked">If set to <c>true</c> then sets the port to be unlocked.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.AddVanillaPort(Hacknet.Computer,System.Int32,System.Boolean)">
+            <summary>
+            Adds a vanilla port by port number.
+            </summary>
+            <returns><c>true</c>, if vanilla port was added, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="portNum">The number for the port</param>
+            <param name="unlocked">If set to <c>true</c> then sets the port to be unlocked.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.AddModPort(Hacknet.Computer,Pathfinder.Port.Type,System.Boolean)">
+            <summary>
+            Adds the mod port by port type.
+            </summary>
+            <returns><c>true</c>, if mod port was added, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="port">The Port.Type to add to Computer</param>
+            <param name="unlocked">If set to <c>true</c> then sets the port to be unlocked.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.AddModPort(Hacknet.Computer,System.String,System.Boolean)">
+            <summary>
+            Adds the mod port by the modded port's registry id.
+            </summary>
+            <returns><c>true</c>, if mod port was added, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="id">The modded port's registry id to add to Computer</param>
+            <param name="unlocked">If set to <c>true</c> then sets the port to be unlocked.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.RemoveVanillaPort(Hacknet.Computer,Pathfinder.Util.ExeInfoManager.ExecutableInfo)">
+            <summary>
+            Removes a vanilla port by ExecutableInfo.
+            </summary>
+            <returns><c>true</c>, if vanilla port was found and removed, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="info">The ExecutableInfo for the port</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.RemoveVanillaPort(Hacknet.Computer,System.String)">
+            <summary>
+            Removes a vanilla port by port name.
+            </summary>
+            <returns><c>true</c>, if vanilla port was found and removed, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="portName">The name for the port</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.RemoveVanillaPort(Hacknet.Computer,System.Int32)">
+            <summary>
+            Removes a vanilla port by port number.
+            </summary>
+            <returns><c>true</c>, if vanilla port was found and removed, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="portNum">The number for the port</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetModdedPortList(Hacknet.Computer)">
+            <summary>
+            Gets a read-only list of modded ports.
+            </summary>
+            <returns>The list of modded ports.</returns>
+            <param name="comp">The Computer</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.HasVanilaPort(Hacknet.Computer,Pathfinder.Util.ExeInfoManager.ExecutableInfo)">
+            <summary>
+            Determines whether Computer has a certain vanilla port.
+            </summary>
+            <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
+            <param name="info">The ExecutableInfo to search by.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.HasVanillaPort(Hacknet.Computer,System.String)">
+            <summary>
+            Determines whether Computer has a certain vanilla port.
+            </summary>
+            <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
+            <param name="portName">The port name to search by.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.HasVanillaPort(Hacknet.Computer,System.Int32)">
+            <summary>
+            Determines whether Computer has a certain vanilla port.
+            </summary>
+            <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
+            <param name="portNum">The port number to search by.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.HasModPort(Hacknet.Computer,Pathfinder.Port.Type)">
+            <summary>
+            Determines whether Computer has a certain mod port.
+            </summary>
+            <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
+            <param name="port">The Port.Type to search by.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.HasModPort(Hacknet.Computer,System.String)">
+            <summary>
+            Determines whether Computer has a certain mod port.
+            </summary>
+            <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
+            <param name="id">The modded port's registry id to search by.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.IsVanillaPortOpen(Hacknet.Computer,Pathfinder.Util.ExeInfoManager.ExecutableInfo)">
+            <summary>
+            Determines whether the vanilla port is open.
+            </summary>
+            <returns><c>true</c>, if the port exists and is open, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="info">The ExecutableInfo to search by</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.IsVanillaPortOpen(Hacknet.Computer,System.String)">
+            <summary>
+            Determines whether the vanilla port is open.
+            </summary>
+            <returns><c>true</c>, if the port exists and is open, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="portName">The port name to search by</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.IsVanillaPortOpen(Hacknet.Computer,System.Int32)">
+            <summary>
+            Determines whether the vanilla port is open.
+            </summary>
+            <returns><c>true</c>, if the port exists and is open, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="portNum">The port number to search by</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.IsModPortOpen(Hacknet.Computer,Pathfinder.Port.Type)">
+            <summary>
+            Determines whether the modded port is open.
+            </summary>
+            <returns><c>true</c>, if the port exists and is open, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="port">The Port.Type to find</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.IsModPortOpen(Hacknet.Computer,System.String)">
+            <summary>
+            Determines whether the mod port is open.
+            </summary>
+            <returns><c>true</c>, if the port exists and is open, <c>false</c> otherwise.</returns>
+            <param name="comp">The Computer</param>
+            <param name="id">The modded port's registry id to search by</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.OpenVanillaPort(Hacknet.Computer,Pathfinder.Util.ExeInfoManager.ExecutableInfo,System.String)">
+            <summary>
+            Opens a vanilla port. Doesn't add a port
+            </summary>
+            <param name="comp">The Computer.</param>
+            <param name="info">The ExecutableInfo to search for.</param>
+            <param name="ipFrom">The ip responsible for the change.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.OpenVanillaPort(Hacknet.Computer,System.String,System.String)">
+            <summary>
+            Opens a vanilla port. Doesn't add a port
+            </summary>
+            <param name="comp">The Computer.</param>
+            <param name="portName">The port name to search for.</param>
+            <param name="ipFrom">The ip responsible for the change.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.OpenVanillaPort(Hacknet.Computer,System.Int32,System.String)">
+            <summary>
+            Opens a vanilla port. Doesn't add a port
+            </summary>
+            <param name="comp">The Computer.</param>
+            <param name="portNum">The port number to search for.</param>
+            <param name="ipFrom">The ip responsible for the change.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.OpenModPort(Hacknet.Computer,Pathfinder.Port.Type,System.String)">
+            <summary>
+            Opens a mod port. Doesn't add a port
+            </summary>
+            <param name="comp">The Computer.</param>
+            <param name="port">The Port.Type to search for.</param>
+            <param name="ipFrom">The ip responsible for the change.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.OpenModPort(Hacknet.Computer,System.String,System.String)">
+            <summary>
+            Opens a mod port. Doesn't add a port
+            </summary>
+            <param name="comp">The Computer.</param>
+            <param name="id">The Type id to search for.</param>
+            <param name="ipFrom">The ip responsible for the change.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.CloseVanillaPort(Hacknet.Computer,Pathfinder.Util.ExeInfoManager.ExecutableInfo,System.String)">
+            <summary>
+            Closes a vanilla port. Doesn't add a port
+            </summary>
+            <param name="comp">The Computer.</param>
+            <param name="info">The ExecutableInfo to search for.</param>
+            <param name="ipFrom">The ip responsible for the change.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.CloseVanillaPort(Hacknet.Computer,System.String,System.String)">
+            <summary>
+            Closes a vanilla port. Doesn't add a port
+            </summary>
+            <param name="comp">The Computer.</param>
+            <param name="portName">The port name to search for.</param>
+            <param name="ipFrom">The ip responsible for the change.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.CloseVanillaPort(Hacknet.Computer,System.Int32,System.String)">
+            <summary>
+            Closes a vanilla port. Doesn't add a port
+            </summary>
+            <param name="comp">The Computer.</param>
+            <param name="portNum">The port number to search for.</param>
+            <param name="ipFrom">The ip responsible for the change.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.CloseModPort(Hacknet.Computer,Pathfinder.Port.Type,System.String)">
+            <summary>
+            Closes a mod port. Doesn't add a port
+            </summary>
+            <param name="comp">The Computer.</param>
+            <param name="port">The Port.Type to search for.</param>
+            <param name="ipFrom">The ip responsible for the change.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.CloseModPort(Hacknet.Computer,System.String,System.String)">
+            <summary>
+            Closes a mod port. Doesn't add a port
+            </summary>
+            <param name="comp">The Computer.</param>
+            <param name="id">The Type id to search for.</param>
+            <param name="ipFrom">The ip responsible for the change.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.AddEOSDevice(Hacknet.Computer,Hacknet.Computer)">
+            <summary>
+            Adds a EOS Device connection represented by device
+            </summary>
+            <param name="comp">The Computer.</param>
+            <param name="device">The Computer device to link to.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.CreateEOSDeviceOn(Hacknet.Computer,System.String,System.String,System.String,System.Nullable{Microsoft.Xna.Framework.Vector2},System.String,System.Collections.Generic.List{System.Int32},System.Int32,Hacknet.Folder,System.Collections.Generic.List{Pathfinder.Port.Type})">
+            <summary>
+            Creates the EOS Device connected to Computer.
+            </summary>
+            <returns>The created EOS Device.</returns>
+            <param name="comp">The Computer.</param>
+            <param name="name">The device's name.</param>
+            <param name="ip">The device's ip.</param>
+            <param name="icon">The device's icon.</param>
+            <param name="location">The device's NetworkMap position.</param>
+            <param name="password">The device's password, by game default should be alpine.</param>
+            <param name="vanillaPorts">The device's closed vanilla port numbers.</param>
+            <param name="portCracksRequired">The device's cracked ports required to unlock.</param>
+            <param name="eosFolder">The device's eos folder.</param>
+            <param name="modPorts">The device's closed modded Port.Type List.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetEOSDevicesBy(Hacknet.Computer,Pathfinder.Util.RetrieveType)">
+            <summary>
+            Gets the EOS Devices sorted by retType.
+            </summary>
+            <returns>The EOS Devices.</returns>
+            <param name="comp">The Computer.</param>
+            <param name="retType">Determines how to sort the devices.</param>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetEOSDevicesById(Hacknet.Computer)">
+            <summary>
+            Sorts EOS Devices by ids
+            </summary>
+            <see cref="M:Pathfinder.Game.Computer.Extensions.GetEOSDevicesBy(Hacknet.Computer,Pathfinder.Util.RetrieveType)"/>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetEOSDevicesByIp(Hacknet.Computer)">
+            <summary>
+            Sorts EOS Devices by ips
+            </summary>
+            <see cref="M:Pathfinder.Game.Computer.Extensions.GetEOSDevicesBy(Hacknet.Computer,Pathfinder.Util.RetrieveType)"/>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetEOSDevicesByName(Hacknet.Computer)">
+            <summary>
+            Sorts EOS Devices by names
+            </summary>
+            <see cref="M:Pathfinder.Game.Computer.Extensions.GetEOSDevicesBy(Hacknet.Computer,Pathfinder.Util.RetrieveType)"/>
+        </member>
+        <member name="M:Pathfinder.Game.Computer.Extensions.GetEOSDevicesByIndex(Hacknet.Computer)">
+            <summary>
+            Sorts EOS Devices by NetworkMap indexes
+            </summary>
+            <see cref="M:Pathfinder.Game.Computer.Extensions.GetEOSDevicesBy(Hacknet.Computer,Pathfinder.Util.RetrieveType)"/>
+        </member>
+        <member name="M:Pathfinder.Game.NetworkMap.Extensions.DiscoverNode(Hacknet.NetworkMap,Hacknet.Computer,System.Single)">
+            <summary>
+            Discovers a Computer node if it exists.
+            </summary>
+            <returns><c>true</c>, if node exists and was discovered, <c>false</c> otherwise.</returns>
+            <param name="netmap">The NetworkMap</param>
+            <param name="comp">The Computer node to discover</param>
+            <param name="flashTime">The flash time length for the discovery</param>
+        </member>
+        <member name="M:Pathfinder.Game.NetworkMap.Extensions.DiscoverNodeByName(Hacknet.NetworkMap,System.String,System.Single)">
+            <summary>
+            Discovers a Computer node by name if it exists.
+            </summary>
+            <returns><c>true</c>, if node exists and was discovered, <c>false</c> otherwise.</returns>
+            <param name="netmap">The NetworkMap</param>
+            <param name="name">The Computer name to discover</param>
+            <param name="flashTime">The flash time length for the discovery</param>
+        </member>
+        <member name="M:Pathfinder.Game.NetworkMap.Extensions.DiscoverNodeByIp(Hacknet.NetworkMap,System.String,System.Single)">
+            <summary>
+            Discovers a Computer node by ip if it exists.
+            </summary>
+            <returns><c>true</c>, if node exists and was discovered, <c>false</c> otherwise.</returns>
+            <param name="netmap">The NetworkMap</param>
+            <param name="ip">The Computer ip to discover</param>
+            <param name="flashTime">The flash time length for the discovery</param>
+        </member>
+        <member name="M:Pathfinder.Game.NetworkMap.Extensions.DiscoverNodes(Hacknet.NetworkMap,System.Collections.Generic.IEnumerable{Hacknet.Computer},System.Single)">
+            <summary>
+            Discovers nodes by a Computer enumerable.
+            </summary>
+            <returns>A List of booleans for each discovered node</returns>
+            <param name="netmap">The NetworkMap</param>
+            <param name="comps">The Computer nodes to discover</param>
+            <param name="flashTime">The flash time length for the discovery</param>
+            <seealso cref="M:Pathfinder.Game.NetworkMap.Extensions.DiscoverNode(Hacknet.NetworkMap,Hacknet.Computer,System.Single)"/>
+        </member>
+        <member name="M:Pathfinder.Game.NetworkMap.Extensions.DiscoverNodesByNames(Hacknet.NetworkMap,System.Collections.Generic.IEnumerable{System.String},System.Single)">
+            <summary>
+            Discovers Computer nodes by a name enumerable.
+            </summary>
+            <returns>A List of booleans for each discovered node</returns>
+            <param name="netmap">The NetworkMap</param>
+            <param name="names">The Computer names to discover</param>
+            <param name="flashTime">The flash time length for the discovery</param>
+            <seealso cref="M:Pathfinder.Game.NetworkMap.Extensions.DiscoverNodeByName(Hacknet.NetworkMap,System.String,System.Single)"/>
+        </member>
+        <member name="M:Pathfinder.Game.NetworkMap.Extensions.DiscoverNodesByIps(Hacknet.NetworkMap,System.Collections.Generic.IEnumerable{System.String},System.Single)">
+            <summary>
+            Discovers Computer nodes by an ip enumerable.
+            </summary>
+            <returns>A List of booleans for each discovered node</returns>
+            <param name="netmap">The NetworkMap</param>
+            <param name="ips">The Computer ips to discover</param>
+            <param name="flashTime">The flash time length for the discovery</param>
+            <seealso cref="M:Pathfinder.Game.NetworkMap.Extensions.DiscoverNodeByIp(Hacknet.NetworkMap,System.String,System.Single)"/>
+        </member>
+        <member name="M:Pathfinder.Game.NetworkMap.Extensions.GetComputer(Hacknet.NetworkMap,System.Int32)">
+            <summary>
+            Retrieves a Computer by index.
+            </summary>
+            <returns>The Computer or <c>null</c> if not found.</returns>
+            <param name="netmap">The NetworkMap</param>
+            <param name="index">The index to get.</param>
+        </member>
+        <member name="M:Pathfinder.Game.NetworkMap.Extensions.GetComputerByName(Hacknet.NetworkMap,System.String)">
+            <summary>
+            Retrieves a Computer by name.
+            </summary>
+            <returns>The Computer or <c>null</c> if not found.</returns>
+            <param name="netmap">The NetworkMap</param>
+            <param name="name">The name to get.</param>
+        </member>
+        <member name="M:Pathfinder.Game.NetworkMap.Extensions.GetComputerByIp(Hacknet.NetworkMap,System.String)">
+            <summary>
+            Retrieves a Computer by ip.
+            </summary>
+            <returns>The Computer or <c>null</c> if not found.</returns>
+            <param name="netmap">The NetworkMap</param>
+            <param name="ip">The ip to get.</param>
+        </member>
+        <member name="M:Pathfinder.Game.NetworkMap.Extensions.GetComputerById(Hacknet.NetworkMap,System.String)">
+            <summary>
+            Retrieves a Computer by identifier.
+            </summary>
+            <returns>The Computer or <c>null</c> if not found.</returns>
+            <param name="netmap">The NetworkMap.</param>
+            <param name="id">The id to get.</param>
+        </member>
+        <member name="M:Pathfinder.Game.NetworkMap.Extensions.AddLink(Hacknet.NetworkMap,Hacknet.Computer,Hacknet.Computer)">
+            <summary>
+            Adds a link to linkStart connecting to linkEnd.
+            </summary>
+            <returns><c>true</c>, if the link was added, <c>false</c> otherwise.</returns>
+            <param name="netmap">The NetworkMap</param>
+            <param name="linkStart">The link start.</param>
+            <param name="linkEnd">The link end.</param>
+        </member>
+        <member name="M:Pathfinder.Game.OS.Extensions.GetExesFor(Hacknet.OS,System.Type)">
+            <summary>
+            Retrieves the List of ExeModule whose Type is exactly instanceType 
+            </summary>
+            <param name="instanceType">The exact Type to search for in the Executable List</param>
+        </member>
+        <member name="M:Pathfinder.Game.OS.Extensions.GetExesFor``1(Hacknet.OS)">
+            <summary>
+            Retrieves the List of ExeModule List whose Type is or is derived from T 
+            </summary>
+            <typeparam name="T">The Type or derivative of the type to search for in the Executable List</typeparam>
+        </member>
+        <member name="M:Pathfinder.Game.OS.Extensions.GetModExeInterfaceFor(Hacknet.OS,System.Type)">
+            <summary>
+            Retrieves the List of Executable.Instance whose Type is exactly instanceType 
+            </summary>
+            <param name="interfaceType">The exact Type to search for in the Executable List</param>
+        </member>
+        <member name="M:Pathfinder.Game.OS.Extensions.GetModExeInterfaceFor``1(Hacknet.OS)">
+            <summary>
+            Retrieves the List of Executable.Instance List whose Type is or is derived from T 
+            </summary>
+            <typeparam name="T">The Type or derivative of the type to search for in the Executable List</typeparam>
+        </member>
+        <member name="M:Pathfinder.Game.OS.Extensions.KillExecutableModule(Hacknet.OS,Hacknet.ExeModule,System.Boolean)">
+            <summary>
+            Kills the ExeModules on the OS.
+            </summary>
+            <returns><c>true</c>, if ExeModule was killed, <c>false</c> otherwise.</returns>
+            <param name="os">The OS.</param>
+            <param name="module">The ExeModule to kill.</param>
+            <param name="shouldWrite">If set to <c>true</c> then success will be written to the OS.</param>
+        </member>
+        <member name="M:Pathfinder.Game.OS.Extensions.KillExecutableModule(Hacknet.OS,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Kills the first ExeModules on the OS that matches the string.
+            </summary>
+            <returns><c>true</c>, if ExeModule was killed, <c>false</c> otherwise.</returns>
+            <param name="os">The OS.</param>
+            <param name="input">The input string (or string representation of the integer PID) to search against.</param>
+            <param name="searchName">If set to <c>true</c> then can search by IdentifierName.</param>
+            <param name="shouldWrite">If set to <c>true</c> will write success and failure to the OS.</param>
+        </member>
+        <member name="M:Pathfinder.Game.OS.Extensions.KillAllExecutableModules(Hacknet.OS,System.Boolean)">
+            <summary>
+            Kills all ExeModules.
+            </summary>
+            <param name="os">The OS.</param>
+            <param name="shouldWrite">If set to <c>true</c> will write success to the OS.</param>
+        </member>
+        <member name="M:Pathfinder.Game.OS.Extensions.GetCurrentComputer(Hacknet.OS)">
+            <summary>
+            Retrieves the active network Computer according to the OS
+            </summary>
+        </member>
+        <member name="M:Pathfinder.Game.OS.Extensions.Write(Hacknet.OS,System.String,System.Object[])">
+            <summary>
+            Writes the formatted string to OS terminal.
+            </summary>
+            <param name="os">The OS.</param>
+            <param name="write">The formatted string to write.</param>
+        </member>
+        <member name="M:Pathfinder.Game.OS.Extensions.WriteSingle(Hacknet.OS,System.String,System.Object[])">
+            <summary>
+            Writes the formatted string directly to OS terminal. Less safe then <see cref="M:Pathfinder.Game.OS.Extensions.Write(Hacknet.OS,System.String,System.Object[])"/>
+            </summary>
+            <param name="os">The OS.</param>
+            <param name="write">The formatted string to write.</param>
+        </member>
+        <member name="M:Pathfinder.Game.ExeModule.Extensions.Kill(Hacknet.ExeModule,System.Boolean)">
+            <summary>
+            Kill the ExeModule.
+            </summary>
+            <returns><c>true</c>, if ExeModule was found, killed, and removed, <c>false</c> otherwise.</returns>
+            <param name="module">The ExeModule to kill.</param>
+            <param name="shouldWrite">If set to <c>true</c> then success will be written to the OS.</param>
+        </member>
+    </members>
+</doc>
