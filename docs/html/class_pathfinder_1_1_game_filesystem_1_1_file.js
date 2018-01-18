@@ -10,5 +10,6 @@ var class_pathfinder_1_1_game_filesystem_1_1_file =
     [ "Index", "class_pathfinder_1_1_game_filesystem_1_1_file.html#a2611697af53f7740f524ae8db89b8651", null ],
     [ "Name", "class_pathfinder_1_1_game_filesystem_1_1_file.html#af5ebf4de669771078f0df15cabc50bfd", null ],
     [ "Path", "class_pathfinder_1_1_game_filesystem_1_1_file.html#a4f5d79b9a6e92d662c9e759afd38441c", null ],
-    [ "Size", "class_pathfinder_1_1_game_filesystem_1_1_file.html#a0d164f88c76532d949b585428fd6948c", null ]
+    [ "Size", "class_pathfinder_1_1_game_filesystem_1_1_file.html#a0d164f88c76532d949b585428fd6948c", null ],
+    [ "TimeCreated", "class_pathfinder_1_1_game_filesystem_1_1_file.html#a40d433c5d6d3155e986b486816149060", null ]
 ];

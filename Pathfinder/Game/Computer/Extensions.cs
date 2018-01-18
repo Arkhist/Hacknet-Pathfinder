@@ -478,7 +478,7 @@ namespace Pathfinder.Game.Computer
                                                          string password = "alpine",
                                                          List<int> vanillaPorts = null,
                                                          int portCracksRequired = 2,
-                                                         Folder eosFolder = null,
+                                                         Hacknet.Folder eosFolder = null,
                                                          List<Port.Type> modPorts = null)
         {
             if (name == null)

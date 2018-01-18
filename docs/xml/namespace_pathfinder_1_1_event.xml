@@ -30,12 +30,15 @@
     <innerclass refid="class_pathfinder_1_1_event_1_1_options_menu_event" prot="public">Pathfinder::Event::OptionsMenuEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_options_menu_load_content_event" prot="public">Pathfinder::Event::OptionsMenuLoadContentEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_options_menu_update_event" prot="public">Pathfinder::Event::OptionsMenuUpdateEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_draw_event" prot="public">Pathfinder::Event::OSDrawEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_end_draw_event" prot="public">Pathfinder::Event::OSEndDrawEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_event" prot="public">Pathfinder::Event::OSEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event" prot="public">Pathfinder::Event::OSLoadContentEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event" prot="public">Pathfinder::Event::OSLoadSaveFileEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event" prot="public">Pathfinder::Event::OSPostLoadContentEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event" prot="public">Pathfinder::Event::OSSaveFileEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_save_write_event" prot="public">Pathfinder::Event::OSSaveWriteEvent</innerclass>
+    <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_start_draw_event" prot="public">Pathfinder::Event::OSStartDrawEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_o_s_unload_content_event" prot="public">Pathfinder::Event::OSUnloadContentEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_pathfinder_event" prot="public">Pathfinder::Event::PathfinderEvent</innerclass>
     <innerclass refid="class_pathfinder_1_1_event_1_1_start_up_event" prot="public">Pathfinder::Event::StartUpEvent</innerclass>

@@ -4,13 +4,13 @@
     <compoundname>Pathfinder::Event::OSPostLoadContentEvent</compoundname>
     <basecompoundref refid="class_pathfinder_1_1_event_1_1_o_s_event" prot="public" virt="non-virtual">Pathfinder.Event.OSEvent</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event_1abf9ead785518e309076d60bb9844f39a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event_1a476910dc48ab302606d6e2f0d37962e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>Pathfinder.Event.OSPostLoadContentEvent.OSPostLoadContentEvent</definition>
-        <argsstring>(Hacknet.OS os)</argsstring>
+        <argsstring>(OS os)</argsstring>
         <name>OSPostLoadContentEvent</name>
         <param>
-          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">Hacknet.OS</ref></type>
+          <type><ref refid="class_hacknet_1_1_o_s" kindref="compound">OS</ref></type>
           <declname>os</declname>
         </param>
         <briefdescription>
@@ -19,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Pathfinder/Event/OSEvents.cs" line="19" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="19" bodyend="19"/>
+        <location file="Pathfinder/Event/OSEvents.cs" line="21" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="21" bodyend="21"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -27,48 +27,48 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="757">
+      <node id="778">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="758" relation="public-inheritance">
+        <childnode refid="779" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="756">
+      <node id="777">
         <label>Pathfinder.Event.OSPostLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event"/>
-        <childnode refid="757" relation="public-inheritance">
+        <childnode refid="778" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="758">
+      <node id="779">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="760">
+      <node id="781">
         <label>OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="761" relation="public-inheritance">
+        <childnode refid="782" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="759">
+      <node id="780">
         <label>Pathfinder.Event.OSPostLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event"/>
-        <childnode refid="760" relation="public-inheritance">
+        <childnode refid="781" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="761">
+      <node id="782">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
     </collaborationgraph>
-    <location file="Pathfinder/Event/OSEvents.cs" line="18" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="17" bodyend="20"/>
+    <location file="Pathfinder/Event/OSEvents.cs" line="20" column="1" bodyfile="Pathfinder/Event/OSEvents.cs" bodystart="19" bodyend="22"/>
     <listofallmembers>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1aeb3a0567a7e7912057865d19a0e986fe" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSPostLoadContentEvent</scope><name>CallEvent</name></member>
       <member refid="class_pathfinder_1_1_event_1_1_pathfinder_event_1a97787d999e89e0e767f3d8961d2981fa" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSPostLoadContentEvent</scope><name>IsCancelled</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1a59c0db53d1a98f303716f74f9ae844e5" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSPostLoadContentEvent</scope><name>OS</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1afbed2fcd726a384a8baf01375de0e96c" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSPostLoadContentEvent</scope><name>OSEvent</name></member>
-      <member refid="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event_1abf9ead785518e309076d60bb9844f39a" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSPostLoadContentEvent</scope><name>OSPostLoadContentEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1ab611363273c3501ee85d3283f32b46ef" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSPostLoadContentEvent</scope><name>OS</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_event_1ab579e29ac795986f9ee67758c7103d58" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSPostLoadContentEvent</scope><name>OSEvent</name></member>
+      <member refid="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event_1a476910dc48ab302606d6e2f0d37962e2" prot="public" virt="non-virtual"><scope>Pathfinder::Event::OSPostLoadContentEvent</scope><name>OSPostLoadContentEvent</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -13,7 +13,7 @@ var class_pathfinder_1_1_game_1_1_computer_1_1_extensions =
     [ "CloseVanillaPort", "class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#a3122aef93de0c4093c8643da642c9d7b", null ],
     [ "CloseVanillaPort", "class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#adcc50885e37f7ba1e89f30a23ee6233c", null ],
     [ "CloseVanillaPort", "class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#a4fab6d4d53f2d536b4df82cd28f3c6fe", null ],
-    [ "CreateEOSDeviceOn", "class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#a7ed8030625798e10d73f17788a8a7b6f", null ],
+    [ "CreateEOSDeviceOn", "class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#a9ebbd3b9d1cc28b8602715f39df3295d", null ],
     [ "GetDaemonList", "class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#ad489bbc2bd3b21595bdc1c93a9816536", null ],
     [ "GetDaemonList< T >", "class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#abc9d14c4d4506aed6ce38c9bb22b4de0", null ],
     [ "GetEOSDevicesBy", "class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#a5de7264ce9c8b04d2e4e4bfb1c495092", null ],

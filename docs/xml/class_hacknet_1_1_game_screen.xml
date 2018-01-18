@@ -301,14 +301,14 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="386">
+      <node id="388">
         <label>Hacknet.GameScreen</label>
         <link refid="class_hacknet_1_1_game_screen"/>
       </node>
-      <node id="387">
+      <node id="389">
         <label>Hacknet.OS</label>
         <link refid="class_hacknet_1_1_o_s"/>
-        <childnode refid="386" relation="public-inheritance">
+        <childnode refid="388" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>

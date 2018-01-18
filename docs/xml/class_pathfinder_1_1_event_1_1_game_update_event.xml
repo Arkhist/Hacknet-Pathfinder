@@ -46,38 +46,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="397">
+      <node id="399">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="395">
+      <node id="397">
         <label>Pathfinder.Event.GameUpdateEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_update_event"/>
-        <childnode refid="396" relation="public-inheritance">
+        <childnode refid="398" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="396">
+      <node id="398">
         <label>GameEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_event"/>
-        <childnode refid="397" relation="public-inheritance">
+        <childnode refid="399" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="400">
+      <node id="402">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="398">
+      <node id="400">
         <label>Pathfinder.Event.GameUpdateEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_update_event"/>
-        <childnode refid="399" relation="public-inheritance">
+        <childnode refid="401" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="399">
+      <node id="401">
         <label>GameEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_event"/>
-        <childnode refid="400" relation="public-inheritance">
+        <childnode refid="402" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

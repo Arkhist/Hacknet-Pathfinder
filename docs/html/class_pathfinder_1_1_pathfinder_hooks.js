@@ -21,6 +21,7 @@ var class_pathfinder_1_1_pathfinder_hooks =
     [ "onOptionsMenuDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a18a1ab4b0e0cfccda8284e44590b645d", null ],
     [ "onOptionsMenuLoadContent", "class_pathfinder_1_1_pathfinder_hooks.html#a1e9ecaba7d67d516c69eb6fd18b72577", null ],
     [ "onOptionsMenuUpdate", "class_pathfinder_1_1_pathfinder_hooks.html#a4ed652f029264a5d35436ae0cb7c9ba0", null ],
+    [ "onOSDraw", "class_pathfinder_1_1_pathfinder_hooks.html#ac75db6e65119eee153abfefb1622b676", null ],
     [ "onPortExecutableExecute", "class_pathfinder_1_1_pathfinder_hooks.html#a5a3dbcc066c3af0dd98b360a8d6d3ca5", null ],
     [ "onPortNameDraw", "class_pathfinder_1_1_pathfinder_hooks.html#a520dd10b5fb1b3097909dd4d9b975a54", null ],
     [ "onPostLoadSession", "class_pathfinder_1_1_pathfinder_hooks.html#a62f4e8f55e5bb8022bc1522c2b0a12f0", null ],

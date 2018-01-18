@@ -47,218 +47,236 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="800">
+      <node id="829">
         <label>Pathfinder.Event.DrawMainMenuButtonsEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_buttons_event"/>
-        <childnode refid="799" relation="public-inheritance">
+        <childnode refid="828" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="805">
+      <node id="834">
         <label>Pathfinder.Event.DisplayModuleDrawEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_display_module_draw_event"/>
-        <childnode refid="804" relation="public-inheritance">
+        <childnode refid="833" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="817">
+      <node id="849">
         <label>Pathfinder.Event.OSPostLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event"/>
-        <childnode refid="813" relation="public-inheritance">
+        <childnode refid="842" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="801">
+      <node id="830">
         <label>Pathfinder.Event.DrawMainMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_event"/>
-        <childnode refid="799" relation="public-inheritance">
+        <childnode refid="828" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="809">
+      <node id="838">
         <label>Pathfinder.Event.OptionsMenuApplyEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_options_menu_apply_event"/>
-        <childnode refid="808" relation="public-inheritance">
+        <childnode refid="837" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="802">
+      <node id="831">
         <label>Pathfinder.Event.DrawMainMenuTitlesEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event"/>
-        <childnode refid="799" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="790">
-        <label>Pathfinder.Event.ExecutableExecuteEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_executable_execute_event"/>
-        <childnode refid="789" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="807">
-        <label>Pathfinder.Event.NetworkMapLoadContentEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event"/>
-        <childnode refid="786" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="818">
-        <label>Pathfinder.Event.OSSaveFileEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event"/>
-        <childnode refid="813" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="791">
-        <label>Pathfinder.Event.ExecutablePortExecuteEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_executable_port_execute_event"/>
-        <childnode refid="789" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="796">
-        <label>Pathfinder.Event.GameLoadContentEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_game_load_content_event"/>
-        <childnode refid="795" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="786">
-        <label>Pathfinder.Event.PathfinderEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
-      </node>
-      <node id="815">
-        <label>Pathfinder.Event.OSLoadContentEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event"/>
-        <childnode refid="813" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="810">
-        <label>Pathfinder.Event.OptionsMenuDrawEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_options_menu_draw_event"/>
-        <childnode refid="808" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="794">
-        <label>Pathfinder.Event.DrawExtensionMenuListEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_list_event"/>
-        <childnode refid="792" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="788">
-        <label>Pathfinder.Event.LoadComputerXmlReadEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event"/>
-        <childnode refid="787" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="798">
-        <label>Pathfinder.Event.GameUpdateEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_game_update_event"/>
-        <childnode refid="795" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="821">
-        <label>Pathfinder.Event.StartUpEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_start_up_event"/>
-        <childnode refid="786" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="811">
-        <label>Pathfinder.Event.OptionsMenuLoadContentEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_options_menu_load_content_event"/>
-        <childnode refid="808" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="814">
-        <label>Pathfinder.Event.CommandSentEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_command_sent_event"/>
-        <childnode refid="813" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="820">
-        <label>Pathfinder.Event.OSUnloadContentEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_o_s_unload_content_event"/>
-        <childnode refid="813" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="803">
-        <label>Pathfinder.Event.ModuleEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_module_event"/>
-        <childnode refid="786" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="816">
-        <label>Pathfinder.Event.OSLoadSaveFileEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event"/>
-        <childnode refid="813" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="792">
-        <label>Pathfinder.Event.ExtensionMenuEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_extension_menu_event"/>
-        <childnode refid="786" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="799">
-        <label>Pathfinder.Event.MainMenuEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
-        <childnode refid="786" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="804">
-        <label>Pathfinder.Event.DisplayModuleEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_display_module_event"/>
-        <childnode refid="803" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="793">
-        <label>Pathfinder.Event.DrawExtensionMenuEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_event"/>
-        <childnode refid="792" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="808">
-        <label>Pathfinder.Event.OptionsMenuEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_options_menu_event"/>
-        <childnode refid="786" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="789">
-        <label>Pathfinder.Event.ExecutableEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_executable_event"/>
-        <childnode refid="786" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="787">
-        <label>Pathfinder.Event.ComputerEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_computer_event"/>
-        <childnode refid="786" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="797">
-        <label>Pathfinder.Event.GameUnloadEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_game_unload_event"/>
-        <childnode refid="795" relation="public-inheritance">
+        <childnode refid="828" relation="public-inheritance">
         </childnode>
       </node>
       <node id="819">
-        <label>Pathfinder.Event.OSSaveWriteEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_o_s_save_write_event"/>
+        <label>Pathfinder.Event.ExecutableExecuteEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_executable_execute_event"/>
         <childnode refid="818" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="812">
+      <node id="836">
+        <label>Pathfinder.Event.NetworkMapLoadContentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_network_map_load_content_event"/>
+        <childnode refid="815" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="850">
+        <label>Pathfinder.Event.OSSaveFileEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_save_file_event"/>
+        <childnode refid="842" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="844">
+        <label>Pathfinder.Event.OSDrawEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_draw_event"/>
+        <childnode refid="842" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="820">
+        <label>Pathfinder.Event.ExecutablePortExecuteEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_executable_port_execute_event"/>
+        <childnode refid="818" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="825">
+        <label>Pathfinder.Event.GameLoadContentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_game_load_content_event"/>
+        <childnode refid="824" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="845">
+        <label>Pathfinder.Event.OSEndDrawEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_end_draw_event"/>
+        <childnode refid="844" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="815">
+        <label>Pathfinder.Event.PathfinderEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
+      </node>
+      <node id="847">
+        <label>Pathfinder.Event.OSLoadContentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_load_content_event"/>
+        <childnode refid="842" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="846">
+        <label>Pathfinder.Event.OSStartDrawEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_start_draw_event"/>
+        <childnode refid="844" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="839">
+        <label>Pathfinder.Event.OptionsMenuDrawEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_options_menu_draw_event"/>
+        <childnode refid="837" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="823">
+        <label>Pathfinder.Event.DrawExtensionMenuListEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_list_event"/>
+        <childnode refid="821" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="817">
+        <label>Pathfinder.Event.LoadComputerXmlReadEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_load_computer_xml_read_event"/>
+        <childnode refid="816" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="827">
+        <label>Pathfinder.Event.GameUpdateEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_game_update_event"/>
+        <childnode refid="824" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="853">
+        <label>Pathfinder.Event.StartUpEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_start_up_event"/>
+        <childnode refid="815" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="840">
+        <label>Pathfinder.Event.OptionsMenuLoadContentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_options_menu_load_content_event"/>
+        <childnode refid="837" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="843">
+        <label>Pathfinder.Event.CommandSentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_command_sent_event"/>
+        <childnode refid="842" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="852">
+        <label>Pathfinder.Event.OSUnloadContentEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_unload_content_event"/>
+        <childnode refid="842" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="832">
+        <label>Pathfinder.Event.ModuleEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_module_event"/>
+        <childnode refid="815" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="848">
+        <label>Pathfinder.Event.OSLoadSaveFileEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event"/>
+        <childnode refid="842" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="821">
+        <label>Pathfinder.Event.ExtensionMenuEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_extension_menu_event"/>
+        <childnode refid="815" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="828">
+        <label>Pathfinder.Event.MainMenuEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_main_menu_event"/>
+        <childnode refid="815" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="833">
+        <label>Pathfinder.Event.DisplayModuleEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_display_module_event"/>
+        <childnode refid="832" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="822">
+        <label>Pathfinder.Event.DrawExtensionMenuEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_draw_extension_menu_event"/>
+        <childnode refid="821" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="837">
+        <label>Pathfinder.Event.OptionsMenuEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_options_menu_event"/>
+        <childnode refid="815" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="818">
+        <label>Pathfinder.Event.ExecutableEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_executable_event"/>
+        <childnode refid="815" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="816">
+        <label>Pathfinder.Event.ComputerEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_computer_event"/>
+        <childnode refid="815" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="826">
+        <label>Pathfinder.Event.GameUnloadEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_game_unload_event"/>
+        <childnode refid="824" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="851">
+        <label>Pathfinder.Event.OSSaveWriteEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_o_s_save_write_event"/>
+        <childnode refid="850" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="841">
         <label>Pathfinder.Event.OptionsMenuUpdateEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_options_menu_update_event"/>
-        <childnode refid="808" relation="public-inheritance">
+        <childnode refid="837" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="813">
+      <node id="842">
         <label>Pathfinder.Event.OSEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_o_s_event"/>
-        <childnode refid="786" relation="public-inheritance">
+        <childnode refid="815" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="806">
+      <node id="835">
         <label>Pathfinder.Event.DisplayModuleUpdateEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_display_module_update_event"/>
-        <childnode refid="804" relation="public-inheritance">
+        <childnode refid="833" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="795">
+      <node id="824">
         <label>Pathfinder.Event.GameEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_game_event"/>
-        <childnode refid="786" relation="public-inheritance">
+        <childnode refid="815" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>

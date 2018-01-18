@@ -250,25 +250,25 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="535">
+      <node id="541">
         <label>Pathfinder.Executable.Interface</label>
         <link refid="class_pathfinder_1_1_executable_1_1_interface"/>
-        <childnode refid="536" relation="public-inheritance">
+        <childnode refid="542" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="536">
+      <node id="542">
         <label>IInterface</label>
         <link refid="interface_pathfinder_1_1_executable_1_1_i_interface"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="537">
+      <node id="543">
         <label>Pathfinder.Executable.Interface</label>
         <link refid="class_pathfinder_1_1_executable_1_1_interface"/>
-        <childnode refid="538" relation="public-inheritance">
+        <childnode refid="544" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="538">
+      <node id="544">
         <label>IInterface</label>
         <link refid="interface_pathfinder_1_1_executable_1_1_i_interface"/>
       </node>

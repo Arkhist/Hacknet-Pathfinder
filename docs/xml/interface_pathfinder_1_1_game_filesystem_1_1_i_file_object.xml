@@ -101,13 +101,13 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="434">
+      <node id="436">
         <label>Pathfinder.GameFilesystem.FileObject&lt; VanillaT &gt;</label>
         <link refid="class_pathfinder_1_1_game_filesystem_1_1_file_object"/>
-        <childnode refid="433" relation="public-inheritance">
+        <childnode refid="435" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="433">
+      <node id="435">
         <label>Pathfinder.GameFilesystem.IFileObject</label>
         <link refid="interface_pathfinder_1_1_game_filesystem_1_1_i_file_object"/>
       </node>

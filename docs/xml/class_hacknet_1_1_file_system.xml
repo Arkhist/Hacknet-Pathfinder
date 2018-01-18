@@ -129,21 +129,21 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="341">
+      <node id="343">
         <label>Hacknet.FileSystem</label>
         <link refid="class_hacknet_1_1_file_system"/>
-        <childnode refid="342" relation="usage">
+        <childnode refid="344" relation="usage">
           <edgelabel>root</edgelabel>
         </childnode>
       </node>
-      <node id="343">
+      <node id="345">
         <label>FileType</label>
         <link refid="interface_hacknet_1_1_file_type"/>
       </node>
-      <node id="342">
+      <node id="344">
         <label>Hacknet.Folder</label>
         <link refid="class_hacknet_1_1_folder"/>
-        <childnode refid="343" relation="public-inheritance">
+        <childnode refid="345" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

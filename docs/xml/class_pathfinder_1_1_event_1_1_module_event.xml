@@ -43,44 +43,44 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="629">
+      <node id="631">
         <label>Pathfinder.Event.DisplayModuleDrawEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_display_module_draw_event"/>
-        <childnode refid="628" relation="public-inheritance">
+        <childnode refid="630" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="627">
+      <node id="629">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="626">
+      <node id="628">
         <label>Pathfinder.Event.ModuleEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_module_event"/>
-        <childnode refid="627" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="628">
-        <label>Pathfinder.Event.DisplayModuleEvent</label>
-        <link refid="class_pathfinder_1_1_event_1_1_display_module_event"/>
-        <childnode refid="626" relation="public-inheritance">
+        <childnode refid="629" relation="public-inheritance">
         </childnode>
       </node>
       <node id="630">
+        <label>Pathfinder.Event.DisplayModuleEvent</label>
+        <link refid="class_pathfinder_1_1_event_1_1_display_module_event"/>
+        <childnode refid="628" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="632">
         <label>Pathfinder.Event.DisplayModuleUpdateEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_display_module_update_event"/>
-        <childnode refid="628" relation="public-inheritance">
+        <childnode refid="630" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="632">
+      <node id="634">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="631">
+      <node id="633">
         <label>Pathfinder.Event.ModuleEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_module_event"/>
-        <childnode refid="632" relation="public-inheritance">
+        <childnode refid="634" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

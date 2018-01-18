@@ -28,7 +28,7 @@
         </Command>
         <Command>
           <type>AfterBuild</type>
-          <command>lib\PathfinderPatcher.exe -pathfinderDir "..\bin\Release" -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet"</command>
+          <command>lib\PathfinderPatcher.exe -pathfinderDir "..\lib" -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet"</command>
           <workingdir>lib\</workingdir>
           <externalConsole>True</externalConsole>
         </Command>
@@ -54,7 +54,7 @@
         </Command>
         <Command>
           <type>AfterBuild</type>
-          <command>lib\PathfinderPatcher.exe -pathfinderDir "..\bin\Release" -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet"</command>
+          <command>lib\PathfinderPatcher.exe -pathfinderDir "..\lib" -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet"</command>
           <workingdir>lib\</workingdir>
           <externalConsole>True</externalConsole>
         </Command>
@@ -173,6 +173,7 @@
     <Compile Include="Pathfinder\Util\Network\Updater.cs" />
     <Compile Include="Pathfinder\Util\Locale.cs" />
     <Compile Include="Pathfinder\Docs\Hacknet.cs" />
+    <Compile Include="Pathfinder\Game\Folder\Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Util\" />
@@ -197,10 +198,19 @@
     </Folder>
     <Folder Include="Pathfinder\Docs\">
     </Folder>
+    <Folder Include="Pathfinder\Game\Folder\">
+      <DependentUpon>Folder</DependentUpon>
+    </Folder>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <None Include="Pathfinder\Docs\Pathfinder.doc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="PathfinderPatcher\PathfinderPatcher.csproj">
+      <Project>{FCD7FD47-6B38-47F4-9761-FC4290110125}</Project>
+      <Name>PathfinderPatcher</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

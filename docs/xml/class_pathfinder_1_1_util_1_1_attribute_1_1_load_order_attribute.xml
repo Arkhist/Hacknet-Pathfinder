@@ -61,17 +61,6 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="559">
-        <label>Pathfinder.Util.Attribute.LoadOrderAttribute</label>
-        <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute"/>
-        <childnode refid="560" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="560">
-        <label>System::Attribute</label>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="561">
         <label>Pathfinder.Util.Attribute.LoadOrderAttribute</label>
         <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute"/>
@@ -79,6 +68,17 @@
         </childnode>
       </node>
       <node id="562">
+        <label>System::Attribute</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="563">
+        <label>Pathfinder.Util.Attribute.LoadOrderAttribute</label>
+        <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_load_order_attribute"/>
+        <childnode refid="564" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="564">
         <label>System::Attribute</label>
       </node>
     </collaborationgraph>

@@ -53,6 +53,7 @@ var hierarchy =
     ] ],
     [ "Pathfinder.Game.Computer.Extensions", "class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html", null ],
     [ "Pathfinder.Game.ExeModule.Extensions", "class_pathfinder_1_1_game_1_1_exe_module_1_1_extensions.html", null ],
+    [ "Pathfinder.Game.Folder.Extensions", "class_pathfinder_1_1_game_1_1_folder_1_1_extensions.html", null ],
     [ "Pathfinder.Game.NetworkMap.Extensions", "class_pathfinder_1_1_game_1_1_network_map_1_1_extensions.html", null ],
     [ "Pathfinder.Game.OS.Extensions", "class_pathfinder_1_1_game_1_1_o_s_1_1_extensions.html", null ],
     [ "Pathfinder.GameFilesystem.Extensions", "class_pathfinder_1_1_game_filesystem_1_1_extensions.html", null ],
@@ -91,8 +92,8 @@ var hierarchy =
     [ "Pathfinder.Executable.Handler", "class_pathfinder_1_1_executable_1_1_handler.html", null ],
     [ "Pathfinder.Extension.Handler", "class_pathfinder_1_1_extension_1_1_handler.html", null ],
     [ "Pathfinder.Command.Handler", "class_pathfinder_1_1_command_1_1_handler.html", null ],
-    [ "Pathfinder.GUI.ModOptions.Handler", "class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_handler.html", null ],
     [ "Pathfinder.Daemon.Handler", "class_pathfinder_1_1_daemon_1_1_handler.html", null ],
+    [ "Pathfinder.GUI.ModOptions.Handler", "class_pathfinder_1_1_g_u_i_1_1_mod_options_1_1_handler.html", null ],
     [ "Pathfinder.Mission.Handler", "class_pathfinder_1_1_mission_1_1_handler.html", null ],
     [ "Pathfinder.Internal.HandlerListener", "class_pathfinder_1_1_internal_1_1_handler_listener.html", null ],
     [ "Pathfinder.Command.Help", "class_pathfinder_1_1_command_1_1_help.html", null ],
@@ -113,14 +114,14 @@ var hierarchy =
     [ "Pathfinder.Mission.IGoal", "interface_pathfinder_1_1_mission_1_1_i_goal.html", [
       [ "Pathfinder.Mission.GoalImpl", "class_pathfinder_1_1_mission_1_1_goal_impl.html", null ]
     ] ],
-    [ "Pathfinder.Daemon.IInterface", "interface_pathfinder_1_1_daemon_1_1_i_interface.html", [
-      [ "Pathfinder.Daemon.Interface", "class_pathfinder_1_1_daemon_1_1_interface.html", null ]
+    [ "Pathfinder.Mission.IInterface", "interface_pathfinder_1_1_mission_1_1_i_interface.html", [
+      [ "Pathfinder.Mission.Interface", "class_pathfinder_1_1_mission_1_1_interface.html", null ]
     ] ],
     [ "Pathfinder.Executable.IInterface", "interface_pathfinder_1_1_executable_1_1_i_interface.html", [
       [ "Pathfinder.Executable.Interface", "class_pathfinder_1_1_executable_1_1_interface.html", null ]
     ] ],
-    [ "Pathfinder.Mission.IInterface", "interface_pathfinder_1_1_mission_1_1_i_interface.html", [
-      [ "Pathfinder.Mission.Interface", "class_pathfinder_1_1_mission_1_1_interface.html", null ]
+    [ "Pathfinder.Daemon.IInterface", "interface_pathfinder_1_1_daemon_1_1_i_interface.html", [
+      [ "Pathfinder.Daemon.Interface", "class_pathfinder_1_1_daemon_1_1_interface.html", null ]
     ] ],
     [ "Pathfinder.Executable.IMainDisplayOverride", "interface_pathfinder_1_1_executable_1_1_i_main_display_override.html", null ],
     [ "Pathfinder.ModManager.IMod", "interface_pathfinder_1_1_mod_manager_1_1_i_mod.html", [
@@ -200,6 +201,10 @@ var hierarchy =
       ] ],
       [ "Pathfinder.Event.OSEvent", "class_pathfinder_1_1_event_1_1_o_s_event.html", [
         [ "Pathfinder.Event.CommandSentEvent", "class_pathfinder_1_1_event_1_1_command_sent_event.html", null ],
+        [ "Pathfinder.Event.OSDrawEvent", "class_pathfinder_1_1_event_1_1_o_s_draw_event.html", [
+          [ "Pathfinder.Event.OSEndDrawEvent", "class_pathfinder_1_1_event_1_1_o_s_end_draw_event.html", null ],
+          [ "Pathfinder.Event.OSStartDrawEvent", "class_pathfinder_1_1_event_1_1_o_s_start_draw_event.html", null ]
+        ] ],
         [ "Pathfinder.Event.OSLoadContentEvent", "class_pathfinder_1_1_event_1_1_o_s_load_content_event.html", null ],
         [ "Pathfinder.Event.OSLoadSaveFileEvent", "class_pathfinder_1_1_event_1_1_o_s_load_save_file_event.html", null ],
         [ "Pathfinder.Event.OSPostLoadContentEvent", "class_pathfinder_1_1_event_1_1_o_s_post_load_content_event.html", null ],

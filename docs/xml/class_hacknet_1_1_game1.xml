@@ -135,36 +135,36 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="367">
-        <label>Hacknet.Game1</label>
-        <link refid="class_hacknet_1_1_game1"/>
-        <childnode refid="368" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="368">
-        <label>Game</label>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="369">
         <label>Hacknet.Game1</label>
         <link refid="class_hacknet_1_1_game1"/>
         <childnode refid="370" relation="public-inheritance">
         </childnode>
-        <childnode refid="371" relation="usage">
+      </node>
+      <node id="370">
+        <label>Game</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="371">
+        <label>Hacknet.Game1</label>
+        <link refid="class_hacknet_1_1_game1"/>
+        <childnode refid="372" relation="public-inheritance">
+        </childnode>
+        <childnode refid="373" relation="usage">
           <edgelabel>sman</edgelabel>
         </childnode>
       </node>
-      <node id="371">
+      <node id="373">
         <label>Hacknet.ScreenManager</label>
         <link refid="class_hacknet_1_1_screen_manager"/>
-        <childnode refid="372" relation="public-inheritance">
+        <childnode refid="374" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="372">
+      <node id="374">
         <label>DrawableGameComponent</label>
       </node>
-      <node id="370">
+      <node id="372">
         <label>Game</label>
       </node>
     </collaborationgraph>

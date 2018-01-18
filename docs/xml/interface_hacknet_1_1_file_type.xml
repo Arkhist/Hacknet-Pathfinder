@@ -26,20 +26,20 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="353">
+      <node id="355">
         <label>Hacknet.FileType</label>
         <link refid="interface_hacknet_1_1_file_type"/>
       </node>
-      <node id="354">
+      <node id="356">
         <label>Hacknet.FileEntry</label>
         <link refid="class_hacknet_1_1_file_entry"/>
-        <childnode refid="353" relation="public-inheritance">
+        <childnode refid="355" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="355">
+      <node id="357">
         <label>Hacknet.Folder</label>
         <link refid="class_hacknet_1_1_folder"/>
-        <childnode refid="353" relation="public-inheritance">
+        <childnode refid="355" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>

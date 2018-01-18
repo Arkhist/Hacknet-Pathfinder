@@ -1578,10 +1578,10 @@
         </inbodydescription>
         <location file="Pathfinder/Game/Computer/Extensions.cs" line="446" column="1" bodyfile="Pathfinder/Game/Computer/Extensions.cs" bodystart="446" bodyend="457"/>
       </memberdef>
-      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7ed8030625798e10d73f17788a8a7b6f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a9ebbd3b9d1cc28b8602715f39df3295d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
         <definition>static Hacknet.Computer Pathfinder.Game.Computer.Extensions.CreateEOSDeviceOn</definition>
-        <argsstring>(this Hacknet.Computer comp, string name=&quot;Unregistered eOS Device&quot;, string ip=null, string icon=&quot;ePhone&quot;, Vector2? location=null, string password=&quot;alpine&quot;, List&lt; int &gt; vanillaPorts=null, int portCracksRequired=2, Folder eosFolder=null, List&lt; Port.Type &gt; modPorts=null)</argsstring>
+        <argsstring>(this Hacknet.Computer comp, string name=&quot;Unregistered eOS Device&quot;, string ip=null, string icon=&quot;ePhone&quot;, Vector2? location=null, string password=&quot;alpine&quot;, List&lt; int &gt; vanillaPorts=null, int portCracksRequired=2, Hacknet.Folder eosFolder=null, List&lt; Port.Type &gt; modPorts=null)</argsstring>
         <name>CreateEOSDeviceOn</name>
         <param>
           <type>this <ref refid="class_hacknet_1_1_computer" kindref="compound">Hacknet.Computer</ref></type>
@@ -1623,7 +1623,7 @@
           <defval>2</defval>
         </param>
         <param>
-          <type><ref refid="class_hacknet_1_1_folder" kindref="compound">Folder</ref></type>
+          <type><ref refid="class_hacknet_1_1_folder" kindref="compound">Hacknet.Folder</ref></type>
           <declname>eosFolder</declname>
           <defval>null</defval>
         </param>
@@ -1837,7 +1837,7 @@
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a3122aef93de0c4093c8643da642c9d7b" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseVanillaPort</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1adcc50885e37f7ba1e89f30a23ee6233c" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseVanillaPort</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a4fab6d4d53f2d536b4df82cd28f3c6fe" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CloseVanillaPort</name></member>
-      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a7ed8030625798e10d73f17788a8a7b6f" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CreateEOSDeviceOn</name></member>
+      <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a9ebbd3b9d1cc28b8602715f39df3295d" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>CreateEOSDeviceOn</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1ad489bbc2bd3b21595bdc1c93a9816536" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>GetDaemonList</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1abc9d14c4d4506aed6ce38c9bb22b4de0" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>GetDaemonList&lt; T &gt;</name></member>
       <member refid="class_pathfinder_1_1_game_1_1_computer_1_1_extensions_1a5de7264ce9c8b04d2e4e4bfb1c495092" prot="public" virt="non-virtual"><scope>Pathfinder::Game::Computer::Extensions</scope><name>GetEOSDevicesBy</name></member>

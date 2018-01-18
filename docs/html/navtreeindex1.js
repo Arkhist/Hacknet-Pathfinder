@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"class_hacknet_1_1_core_module.html#ac2dd0e7330981cec99958caabfa08a1e":[3,0,0,1,2],
 "class_hacknet_1_1_crash_module.html":[3,0,0,2],
 "class_hacknet_1_1_crash_module.html#a23efed11657cda9a86751d031d1a9911":[3,0,0,2,12],
 "class_hacknet_1_1_crash_module.html#a2d6e71cdae59b88605cea77f03a727c2":[3,0,0,2,8],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "class_hacknet_1_1_module.html#a61074e32ce3d681fb28e41c71a92889d":[3,0,0,20,2],
 "class_hacknet_1_1_module.html#a7740ee2ced93f5fa1c3b27d9785996ed":[3,0,0,20,6],
 "class_hacknet_1_1_module.html#a7cf1a874d7c2ab76e6ed26471cfaa556":[3,0,0,20,10],
-"class_hacknet_1_1_module.html#a9f5568515780ca1149d57051fc2f7c77":[3,0,0,20,7],
-"class_hacknet_1_1_module.html#aac9b4cea405a9ba9e385e1107de7c507":[3,0,0,20,0]
+"class_hacknet_1_1_module.html#a9f5568515780ca1149d57051fc2f7c77":[3,0,0,20,7]
 };

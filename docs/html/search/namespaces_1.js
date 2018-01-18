@@ -9,6 +9,7 @@ var searchData=
   ['exemodule',['ExeModule',['../namespace_pathfinder_1_1_game_1_1_exe_module.html',1,'Pathfinder::Game']]],
   ['extension',['Extension',['../namespace_pathfinder_1_1_extension.html',1,'Pathfinder']]],
   ['file',['File',['../namespace_pathfinder_1_1_util_1_1_file.html',1,'Pathfinder::Util']]],
+  ['folder',['Folder',['../namespace_pathfinder_1_1_game_1_1_folder.html',1,'Pathfinder::Game']]],
   ['game',['Game',['../namespace_pathfinder_1_1_game.html',1,'Pathfinder']]],
   ['gamefilesystem',['GameFilesystem',['../namespace_pathfinder_1_1_game_filesystem.html',1,'Pathfinder']]],
   ['gui',['GUI',['../namespace_pathfinder_1_1_g_u_i.html',1,'Pathfinder.GUI'],['../namespace_pathfinder_1_1_internal_1_1_g_u_i.html',1,'Pathfinder.Internal.GUI']]],

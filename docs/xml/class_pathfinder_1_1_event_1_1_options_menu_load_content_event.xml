@@ -27,38 +27,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="704">
+      <node id="706">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="703">
+      <node id="705">
         <label>OptionsMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_options_menu_event"/>
-        <childnode refid="704" relation="public-inheritance">
+        <childnode refid="706" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="702">
+      <node id="704">
         <label>Pathfinder.Event.OptionsMenuLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_options_menu_load_content_event"/>
-        <childnode refid="703" relation="public-inheritance">
+        <childnode refid="705" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="707">
+      <node id="709">
         <label>PathfinderEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_pathfinder_event"/>
       </node>
-      <node id="706">
+      <node id="708">
         <label>OptionsMenuEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_options_menu_event"/>
-        <childnode refid="707" relation="public-inheritance">
+        <childnode refid="709" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="705">
+      <node id="707">
         <label>Pathfinder.Event.OptionsMenuLoadContentEvent</label>
         <link refid="class_pathfinder_1_1_event_1_1_options_menu_load_content_event"/>
-        <childnode refid="706" relation="public-inheritance">
+        <childnode refid="708" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

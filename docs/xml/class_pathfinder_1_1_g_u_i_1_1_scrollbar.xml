@@ -161,38 +161,38 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="865">
+      <node id="897">
         <label>Pathfinder.GUI.Scrollbar</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_scrollbar"/>
-        <childnode refid="866" relation="public-inheritance">
+        <childnode refid="898" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="867">
+      <node id="899">
         <label>BaseInteractiveRectangle&lt; int &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
       </node>
-      <node id="866">
+      <node id="898">
         <label>BaseScrollbar</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar"/>
-        <childnode refid="867" relation="public-inheritance">
+        <childnode refid="899" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="868">
+      <node id="900">
         <label>Pathfinder.GUI.Scrollbar</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_scrollbar"/>
-        <childnode refid="869" relation="public-inheritance">
+        <childnode refid="901" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="870">
+      <node id="902">
         <label>BaseInteractiveRectangle&lt; int &gt;</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_interactive_rectangle"/>
       </node>
-      <node id="869">
+      <node id="901">
         <label>BaseScrollbar</label>
         <link refid="class_pathfinder_1_1_g_u_i_1_1_base_scrollbar"/>
-        <childnode refid="870" relation="public-inheritance">
+        <childnode refid="902" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

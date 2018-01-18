@@ -172,18 +172,6 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="327">
-        <label>FileType</label>
-        <link refid="interface_hacknet_1_1_file_type"/>
-      </node>
-      <node id="326">
-        <label>Hacknet.FileEntry</label>
-        <link refid="class_hacknet_1_1_file_entry"/>
-        <childnode refid="327" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="329">
         <label>FileType</label>
         <link refid="interface_hacknet_1_1_file_type"/>
@@ -192,6 +180,18 @@
         <label>Hacknet.FileEntry</label>
         <link refid="class_hacknet_1_1_file_entry"/>
         <childnode refid="329" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="331">
+        <label>FileType</label>
+        <link refid="interface_hacknet_1_1_file_type"/>
+      </node>
+      <node id="330">
+        <label>Hacknet.FileEntry</label>
+        <link refid="class_hacknet_1_1_file_entry"/>
+        <childnode refid="331" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

@@ -83,7 +83,7 @@ var searchData=
   ['crash',['crash',['../class_hacknet_1_1_computer.html#a7dfd74eba1565a055eabfd1bfe55a649',1,'Hacknet::Computer']]],
   ['crashmodule',['CrashModule',['../class_hacknet_1_1_crash_module.html',1,'Hacknet.CrashModule'],['../class_hacknet_1_1_crash_module.html#aceda0e1a1b609a4dd258bff1a4e5278d',1,'Hacknet.CrashModule.CrashModule()'],['../class_hacknet_1_1_o_s.html#ad8515a8a9871e762a4dd73c2e9d12adc',1,'Hacknet.OS.crashModule()']]],
   ['createdirectory',['CreateDirectory',['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#a772d9f319a094cf61f5113c1058e8fec',1,'Pathfinder::GameFilesystem::Directory']]],
-  ['createeosdeviceon',['CreateEOSDeviceOn',['../class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#a7ed8030625798e10d73f17788a8a7b6f',1,'Pathfinder::Game::Computer::Extensions']]],
+  ['createeosdeviceon',['CreateEOSDeviceOn',['../class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#a9ebbd3b9d1cc28b8602715f39df3295d',1,'Pathfinder::Game::Computer::Extensions']]],
   ['createexecutablefile',['CreateExecutableFile',['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#a88640a8b7f846c78400033f82f0d9316',1,'Pathfinder.GameFilesystem.Directory.CreateExecutableFile(string name, string exeId)'],['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#acbc965f3f35d16bdadc17d8336b6f648',1,'Pathfinder.GameFilesystem.Directory.CreateExecutableFile(string name, int vanillaIndex)']]],
   ['createfile',['CreateFile',['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#a37e5becd1b34d0b4f371845103513179',1,'Pathfinder.GameFilesystem.Directory.CreateFile(string name, string data=null)'],['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#a625f8401423b069a9649ee46d4b34ab5',1,'Pathfinder.GameFilesystem.Directory.CreateFile(string name, Executable.IInterface exeInterface)'],['../namespace_pathfinder_1_1_game_filesystem.html#a03dead9151c6fa847caa5f40346a6a6aaf83dd7896428e470a486020feb820863',1,'Pathfinder.GameFilesystem.CreateFile()']]],
   ['createfolder',['CreateFolder',['../namespace_pathfinder_1_1_game_filesystem.html#a03dead9151c6fa847caa5f40346a6a6aa6e3016ffc7ec31d02806bc10b74faf8b',1,'Pathfinder::GameFilesystem']]],
@@ -91,6 +91,7 @@ var searchData=
   ['createmissionhubdaemon',['CreateMissionHubDaemon',['../class_pathfinder_1_1_mission_1_1_mission_manager.html#a7bd7571226e865848c007b409f7026ac',1,'Pathfinder::Mission::MissionManager']]],
   ['createmissionlistingdaemon',['CreateMissionListingDaemon',['../class_pathfinder_1_1_mission_1_1_mission_manager.html#a623335fb4e4154f6730fd82ed79c1ce9',1,'Pathfinder::Mission::MissionManager']]],
   ['createmod',['CreateMod',['../class_pathfinder_1_1_mod_manager_1_1_manager.html#a61acc43fa51401f4d2081193f8434c79',1,'Pathfinder::ModManager::Manager']]],
+  ['createrandomfile',['CreateRandomFile',['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#a9fa04ce1894cb8042b1e858df8028512',1,'Pathfinder.GameFilesystem.Directory.CreateRandomFile(string name=null, string data=null)'],['../class_pathfinder_1_1_game_filesystem_1_1_directory.html#a34645c3c97ecce7e5ced6f0a80bd4bf3',1,'Pathfinder.GameFilesystem.Directory.CreateRandomFile(uint nameIndex, uint? dataIndex=null)']]],
   ['culture',['culture',['../class_hacknet_1_1_game1.html#ad0271f4c9898f8e98836bdca3564368d',1,'Hacknet::Game1']]],
   ['curentsong',['curentSong',['../class_hacknet_1_1_music_manager.html#a0d41336ca1b36491ac465d6847c82026',1,'Hacknet::MusicManager']]],
   ['currentcomputer',['CurrentComputer',['../class_pathfinder_1_1_util_1_1_utility.html#ada02dd596561417caf6b8c918868976c',1,'Pathfinder::Util::Utility']]],
@@ -104,5 +105,6 @@ var searchData=
   ['currentpid',['currentPID',['../class_hacknet_1_1_o_s.html#abf01772f1f9e70e14507a15f9c374af7',1,'Hacknet::OS']]],
   ['currentscroll',['CurrentScroll',['../class_pathfinder_1_1_g_u_i_1_1_base_scrollbar.html#a2e3274d66112d69940c6b94ab0aa7843',1,'Pathfinder::GUI::BaseScrollbar']]],
   ['currentsongname',['currentSongName',['../class_hacknet_1_1_music_manager.html#a97b823d10c8126128d2b7cce4c672ef7',1,'Hacknet::MusicManager']]],
-  ['currentuser',['currentUser',['../class_hacknet_1_1_computer.html#a37f41459206aa29671ce4bbab07e0fda',1,'Hacknet::Computer']]]
+  ['currentuser',['currentUser',['../class_hacknet_1_1_computer.html#a37f41459206aa29671ce4bbab07e0fda',1,'Hacknet::Computer']]],
+  ['custom',['Custom',['../class_pathfinder_1_1_event_1_1_o_s_draw_event.html#a7e678dfb5a1bb26cf1b991a4ed7366bca90589c47f06eb971d548591f23c285af',1,'Pathfinder::Event::OSDrawEvent']]]
 ];

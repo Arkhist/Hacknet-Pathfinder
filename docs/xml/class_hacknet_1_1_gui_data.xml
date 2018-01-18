@@ -791,10 +791,10 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="410">
+      <node id="412">
         <label>Hacknet.GuiData</label>
         <link refid="class_hacknet_1_1_gui_data"/>
-        <childnode refid="410" relation="usage">
+        <childnode refid="412" relation="usage">
           <edgelabel>ActiveFontConfig</edgelabel>
         </childnode>
       </node>

@@ -11,6 +11,8 @@ var class_pathfinder_1_1_game_filesystem_1_1_directory =
     [ "CreateExecutableFile", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#acbc965f3f35d16bdadc17d8336b6f648", null ],
     [ "CreateFile", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a37e5becd1b34d0b4f371845103513179", null ],
     [ "CreateFile", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a625f8401423b069a9649ee46d4b34ab5", null ],
+    [ "CreateRandomFile", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a9fa04ce1894cb8042b1e858df8028512", null ],
+    [ "CreateRandomFile", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a34645c3c97ecce7e5ced6f0a80bd4bf3", null ],
     [ "FindDirectory", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#a18c88697e01d90c77c6a5f8d7d1daab0", null ],
     [ "FindFile", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#ad1299c0bbb0255b3c2582d8ece06ae9d", null ],
     [ "GetDirectory", "class_pathfinder_1_1_game_filesystem_1_1_directory.html#aa553f4b04a0f81bcf3b6090fcc896524", null ],

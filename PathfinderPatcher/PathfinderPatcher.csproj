@@ -51,7 +51,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <StartAction>Project</StartAction>
-    <StartArguments>-pathfinderDir "..\bin\Release" -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet"</StartArguments>
+    <StartArguments>-pathfinderDir "..\lib" -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet"</StartArguments>
     <ExternalConsole>false</ExternalConsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Spit' ">
@@ -64,7 +64,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType />
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>anycpu</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>

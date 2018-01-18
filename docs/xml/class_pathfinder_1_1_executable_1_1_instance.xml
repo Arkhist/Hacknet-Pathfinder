@@ -373,173 +373,173 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="484">
+      <node id="490">
         <label>Pathfinder.Executable.Instance</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance"/>
-        <childnode refid="485" relation="public-inheritance">
+        <childnode refid="491" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="486">
+      <node id="492">
         <label>Module</label>
         <link refid="class_hacknet_1_1_module"/>
       </node>
-      <node id="485">
+      <node id="491">
         <label>ExeModule</label>
         <link refid="class_hacknet_1_1_exe_module"/>
-        <childnode refid="486" relation="public-inheritance">
+        <childnode refid="492" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="487">
+      <node id="493">
         <label>Pathfinder.Executable.Instance.InstanceOverrideDisplay</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance_1_1_instance_override_display"/>
-        <childnode refid="484" relation="public-inheritance">
+        <childnode refid="490" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="505">
+      <node id="511">
         <label>Framework</label>
       </node>
-      <node id="496">
+      <node id="502">
         <label>Hacknet.DisplayModule</label>
         <link refid="class_hacknet_1_1_display_module"/>
-        <childnode refid="494" relation="public-inheritance">
+        <childnode refid="500" relation="public-inheritance">
         </childnode>
-        <childnode refid="497" relation="usage">
+        <childnode refid="503" relation="usage">
           <edgelabel>LastDisplayedFileFolder</edgelabel>
         </childnode>
       </node>
-      <node id="501">
+      <node id="507">
         <label>Hacknet.Computer</label>
         <link refid="class_hacknet_1_1_computer"/>
-        <childnode refid="502" relation="usage">
+        <childnode refid="508" relation="usage">
           <edgelabel>reportingShell</edgelabel>
         </childnode>
-        <childnode refid="503" relation="usage">
+        <childnode refid="509" relation="usage">
           <edgelabel>files</edgelabel>
         </childnode>
-        <childnode refid="504" relation="usage">
+        <childnode refid="510" relation="usage">
           <edgelabel>firewall</edgelabel>
         </childnode>
       </node>
-      <node id="488">
+      <node id="494">
         <label>Pathfinder.Executable.Instance</label>
         <link refid="class_pathfinder_1_1_executable_1_1_instance"/>
-        <childnode refid="489" relation="public-inheritance">
+        <childnode refid="495" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="492">
+      <node id="498">
         <label>GameScreen</label>
         <link refid="class_hacknet_1_1_game_screen"/>
       </node>
-      <node id="490">
+      <node id="496">
         <label>Module</label>
         <link refid="class_hacknet_1_1_module"/>
-        <childnode refid="491" relation="usage">
+        <childnode refid="497" relation="usage">
           <edgelabel>os</edgelabel>
         </childnode>
-        <childnode refid="505" relation="usage">
+        <childnode refid="511" relation="usage">
           <edgelabel>bounds</edgelabel>
         </childnode>
       </node>
-      <node id="494">
+      <node id="500">
         <label>CoreModule</label>
         <link refid="class_hacknet_1_1_core_module"/>
-        <childnode refid="490" relation="public-inheritance">
+        <childnode refid="496" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="489">
+      <node id="495">
         <label>ExeModule</label>
         <link refid="class_hacknet_1_1_exe_module"/>
-        <childnode refid="490" relation="public-inheritance">
+        <childnode refid="496" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="500">
+      <node id="506">
         <label>Hacknet.NetworkMap</label>
         <link refid="class_hacknet_1_1_network_map"/>
-        <childnode refid="494" relation="public-inheritance">
+        <childnode refid="500" relation="public-inheritance">
         </childnode>
-        <childnode refid="501" relation="usage">
+        <childnode refid="507" relation="usage">
           <edgelabel>mailServer</edgelabel>
           <edgelabel>academicDatabase</edgelabel>
           <edgelabel>lastAddedNode</edgelabel>
         </childnode>
       </node>
-      <node id="502">
+      <node id="508">
         <label>Hacknet.ShellExe</label>
         <link refid="class_hacknet_1_1_shell_exe"/>
-        <childnode refid="489" relation="public-inheritance">
+        <childnode refid="495" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="504">
+      <node id="510">
         <label>Hacknet.Firewall</label>
         <link refid="class_hacknet_1_1_firewall"/>
       </node>
-      <node id="503">
+      <node id="509">
         <label>Hacknet.FileSystem</label>
         <link refid="class_hacknet_1_1_file_system"/>
-        <childnode refid="497" relation="usage">
+        <childnode refid="503" relation="usage">
           <edgelabel>root</edgelabel>
         </childnode>
       </node>
-      <node id="499">
+      <node id="505">
         <label>Hacknet.Terminal</label>
         <link refid="class_hacknet_1_1_terminal"/>
-        <childnode refid="494" relation="public-inheritance">
+        <childnode refid="500" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="495">
+      <node id="501">
         <label>Hacknet.CrashModule</label>
         <link refid="class_hacknet_1_1_crash_module"/>
-        <childnode refid="490" relation="public-inheritance">
+        <childnode refid="496" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="498">
+      <node id="504">
         <label>FileType</label>
         <link refid="interface_hacknet_1_1_file_type"/>
       </node>
-      <node id="491">
+      <node id="497">
         <label>Hacknet.OS</label>
         <link refid="class_hacknet_1_1_o_s"/>
-        <childnode refid="492" relation="public-inheritance">
-        </childnode>
-        <childnode refid="493" relation="usage">
-          <edgelabel>ram</edgelabel>
-        </childnode>
-        <childnode refid="495" relation="usage">
-          <edgelabel>crashModule</edgelabel>
-        </childnode>
-        <childnode refid="496" relation="usage">
-          <edgelabel>display</edgelabel>
+        <childnode refid="498" relation="public-inheritance">
         </childnode>
         <childnode refid="499" relation="usage">
-          <edgelabel>terminal</edgelabel>
-        </childnode>
-        <childnode refid="500" relation="usage">
-          <edgelabel>netMap</edgelabel>
+          <edgelabel>ram</edgelabel>
         </childnode>
         <childnode refid="501" relation="usage">
+          <edgelabel>crashModule</edgelabel>
+        </childnode>
+        <childnode refid="502" relation="usage">
+          <edgelabel>display</edgelabel>
+        </childnode>
+        <childnode refid="505" relation="usage">
+          <edgelabel>terminal</edgelabel>
+        </childnode>
+        <childnode refid="506" relation="usage">
+          <edgelabel>netMap</edgelabel>
+        </childnode>
+        <childnode refid="507" relation="usage">
           <edgelabel>opponentComputer</edgelabel>
           <edgelabel>connectedComp</edgelabel>
           <edgelabel>thisComputer</edgelabel>
         </childnode>
-        <childnode refid="505" relation="usage">
+        <childnode refid="511" relation="usage">
           <edgelabel>fullscreen</edgelabel>
         </childnode>
-        <childnode refid="491" relation="usage">
+        <childnode refid="497" relation="usage">
           <edgelabel>currentInstance</edgelabel>
         </childnode>
       </node>
-      <node id="497">
+      <node id="503">
         <label>Hacknet.Folder</label>
         <link refid="class_hacknet_1_1_folder"/>
-        <childnode refid="498" relation="public-inheritance">
+        <childnode refid="504" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="493">
+      <node id="499">
         <label>Hacknet.RamModule</label>
         <link refid="class_hacknet_1_1_ram_module"/>
-        <childnode refid="494" relation="public-inheritance">
+        <childnode refid="500" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

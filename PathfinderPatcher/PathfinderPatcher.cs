@@ -442,6 +442,11 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance
                 );
 
+                ad.MainModule.GetType("Hacknet.OS").GetMethod("Draw").InjectWith(
+                    hooks.GetMethod("onOSDraw"),
+                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
+                );
+
                 ad?.Write("HacknetPathfinder.exe");
             }
             catch (Exception ex)

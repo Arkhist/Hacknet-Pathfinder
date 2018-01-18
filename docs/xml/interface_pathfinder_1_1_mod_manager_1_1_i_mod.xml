@@ -72,24 +72,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="452">
+      <node id="454">
         <label>Pathfinder.ModManager.Placeholder</label>
         <link refid="class_pathfinder_1_1_mod_manager_1_1_placeholder"/>
-        <childnode refid="450" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="451">
-        <label>Pathfinder.ModManager.Mod</label>
-        <link refid="class_pathfinder_1_1_mod_manager_1_1_mod"/>
-        <childnode refid="450" relation="public-inheritance">
+        <childnode refid="452" relation="public-inheritance">
         </childnode>
       </node>
       <node id="453">
-        <label>TemplateMod.TemplateMod</label>
-        <childnode refid="450" relation="public-inheritance">
+        <label>Pathfinder.ModManager.Mod</label>
+        <link refid="class_pathfinder_1_1_mod_manager_1_1_mod"/>
+        <childnode refid="452" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="450">
+      <node id="455">
+        <label>TemplateMod.TemplateMod</label>
+        <childnode refid="452" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="452">
         <label>Pathfinder.ModManager.IMod</label>
         <link refid="interface_pathfinder_1_1_mod_manager_1_1_i_mod"/>
       </node>

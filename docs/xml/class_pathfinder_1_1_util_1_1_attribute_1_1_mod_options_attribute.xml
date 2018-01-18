@@ -59,17 +59,6 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="592">
-        <label>Pathfinder.Util.Attribute.ModOptionsAttribute</label>
-        <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute"/>
-        <childnode refid="593" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="593">
-        <label>System::Attribute</label>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="594">
         <label>Pathfinder.Util.Attribute.ModOptionsAttribute</label>
         <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute"/>
@@ -77,6 +66,17 @@
         </childnode>
       </node>
       <node id="595">
+        <label>System::Attribute</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="596">
+        <label>Pathfinder.Util.Attribute.ModOptionsAttribute</label>
+        <link refid="class_pathfinder_1_1_util_1_1_attribute_1_1_mod_options_attribute"/>
+        <childnode refid="597" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="597">
         <label>System::Attribute</label>
       </node>
     </collaborationgraph>

@@ -35,14 +35,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_abstract_options_8cs.html",
-"class_hacknet_1_1_crash_module.html",
-"class_hacknet_1_1_module.html#ac59d8e2d982af379d6ea413cbbd235d5",
-"class_hacknet_1_1_program_list.html",
-"class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html#a08418295a0d8c09117478309894cf231",
-"class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#a193ef2545fc2d855e414717dd5a06ead",
-"class_pathfinder_1_1_mission_1_1_interface.html#a3e09bea3c138dbfab6e70be038441da1",
-"class_pathfinder_1_1_util_1_1_vector2.html#ad3905cae53fc9dcdfd7714daf8d28c5a",
-"namespace_pathfinder_1_1_mission.html"
+"class_hacknet_1_1_core_module.html#ac2dd0e7330981cec99958caabfa08a1e",
+"class_hacknet_1_1_module.html#aac9b4cea405a9ba9e385e1107de7c507",
+"class_hacknet_1_1_o_s.html#afd5844b4490d76220cc1bf8b33aea1b7",
+"class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html#a0458094d81fff54fac6c9067595a01ec",
+"class_pathfinder_1_1_g_u_i_1_1_dynamic_rectangle.html#a8768240cc6335cf26ebbf818b30c0867",
+"class_pathfinder_1_1_mission_1_1_goal_instance.html#a4ea89f3bc9aa9b41c6cdf3d4f218b5a5",
+"class_pathfinder_1_1_util_1_1_logger.html#aacfc0d30763fd5bebd00239d6e125d49",
+"interface_pathfinder_1_1_mission_1_1_i_interface.html#a6cacb91eac2e5f80ab6a3ed5475c38e1"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

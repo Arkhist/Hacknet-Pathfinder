@@ -101,18 +101,6 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="311">
-        <label>DelayableActionSystem</label>
-        <link refid="class_hacknet_1_1_delayable_action_system"/>
-      </node>
-      <node id="310">
-        <label>Hacknet.FastDelayableActionSystem</label>
-        <link refid="class_hacknet_1_1_fast_delayable_action_system"/>
-        <childnode refid="311" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="313">
         <label>DelayableActionSystem</label>
         <link refid="class_hacknet_1_1_delayable_action_system"/>
@@ -121,6 +109,18 @@
         <label>Hacknet.FastDelayableActionSystem</label>
         <link refid="class_hacknet_1_1_fast_delayable_action_system"/>
         <childnode refid="313" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="315">
+        <label>DelayableActionSystem</label>
+        <link refid="class_hacknet_1_1_delayable_action_system"/>
+      </node>
+      <node id="314">
+        <label>Hacknet.FastDelayableActionSystem</label>
+        <link refid="class_hacknet_1_1_fast_delayable_action_system"/>
+        <childnode refid="315" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

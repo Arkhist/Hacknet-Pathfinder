@@ -98,6 +98,19 @@ namespace Pathfinder.GameFilesystem
             }
         }
 
+        public int TimeCreated
+        {
+            get
+            {
+                return Object.secondCreatedAt;
+            }
+
+            set
+            {
+                Object.secondCreatedAt = value;
+            }
+        }
+
         /// <summary>
         /// Updates the size of the File according to the standard set in Hacknet.
         /// </summary>

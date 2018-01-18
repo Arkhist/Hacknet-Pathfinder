@@ -175,13 +175,13 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="440">
+      <node id="448">
         <label>Pathfinder.Daemon.Interface</label>
         <link refid="class_pathfinder_1_1_daemon_1_1_interface"/>
-        <childnode refid="439" relation="public-inheritance">
+        <childnode refid="447" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="439">
+      <node id="447">
         <label>Pathfinder.Daemon.IInterface</label>
         <link refid="interface_pathfinder_1_1_daemon_1_1_i_interface"/>
       </node>

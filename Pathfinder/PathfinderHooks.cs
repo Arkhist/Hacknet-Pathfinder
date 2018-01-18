@@ -91,6 +91,126 @@ namespace Pathfinder
             return false;
         }
 
+        public static bool onOSDraw(OS self, ref GameTime time)
+        {
+            var osStartDrawEvent = new Event.OSStartDrawEvent(self, time);
+            Event.OSEndDrawEvent osEndDrawEvent = null;
+            try
+            {
+                if (self.lastGameTime == null) self.lastGameTime = time;
+                switch (osStartDrawEvent.DrawType)
+                {
+                    case Event.OSDrawEvent.Type.Standard:
+                        PostProcessor.begin();
+                        GuiData.startDraw();
+                        osStartDrawEvent.CallEvent();
+                        if (osStartDrawEvent.IsCancelled) break;
+                        try
+                        {
+                            if (!self.TraceDangerSequence.PreventOSRendering)
+                            {
+                                self.drawBackground();
+                                if (self.terminalOnlyMode) self.terminal.Draw((float)time.ElapsedGameTime.TotalSeconds);
+                                else self.drawModules(time);
+                                SFX.Draw(GuiData.spriteBatch);
+                            }
+                            if (self.TraceDangerSequence.IsActive) self.TraceDangerSequence.Draw();
+                        }
+                        catch (Exception ex)
+                        {
+
+                            self.drawErrorCount++;
+                            if (self.drawErrorCount < 5)
+                                Utils.AppendToErrorFile(Utils.GenerateReportFromException(ex) + "\r\n\r\n");
+                        }
+                        break;
+                    case Event.OSDrawEvent.Type.BootingSequence:
+                        osStartDrawEvent.IgnoreScanlines = true;
+                        goto case Event.OSDrawEvent.Type.EndingSequence;
+                    case Event.OSDrawEvent.Type.BootAssistance:
+                    case Event.OSDrawEvent.Type.EndingSequence:
+                        PostProcessor.begin();
+                        osStartDrawEvent.CallEvent();
+                        if (osStartDrawEvent.IsCancelled) break;
+                        self.ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                        switch (osStartDrawEvent.DrawType)
+                        {
+                            case Event.OSDrawEvent.Type.BootAssistance:
+                                self.BootAssitanceModule.Draw((float)time.ElapsedGameTime.TotalSeconds);
+                                break;
+                            case Event.OSDrawEvent.Type.BootingSequence:
+                                if (self.thisComputer.disabled)
+                                {
+                                    self.RequestRemovalOfAllPopups();
+                                    if (self.TraceDangerSequence.IsActive)
+                                        self.TraceDangerSequence.CancelTraceDangerSequence();
+                                    self.crashModule.Draw((float)time.ElapsedGameTime.TotalSeconds);
+                                }
+                                else self.introTextModule.Draw((float)time.ElapsedGameTime.TotalSeconds);
+                                break;
+                            case Event.OSDrawEvent.Type.EndingSequence:
+                                self.endingSequence.Draw((float)time.ElapsedGameTime.TotalSeconds);
+                                break;
+
+                        }
+                        if(!osStartDrawEvent.IgnoreScanlines) self.drawScanlines();
+                        break;
+                    case Event.OSDrawEvent.Type.Loading:
+                        GuiData.startDraw();
+                        osStartDrawEvent.CallEvent();
+                        if (osStartDrawEvent.IsCancelled) break;
+                        TextItem.doSmallLabel(new Vector2(0f, 700f), LocaleTerms.Loc("Loading..."), null);
+                        break;
+                    case Event.OSDrawEvent.Type.Custom:
+                        osStartDrawEvent.CallEvent();
+                        if (osStartDrawEvent.IsCancelled) return true;
+                        break;
+                }
+                osEndDrawEvent = new Event.OSEndDrawEvent(self, time, osStartDrawEvent.DrawType);
+                switch (osEndDrawEvent.DrawType)
+                {
+                    case Event.OSDrawEvent.Type.Standard:
+                        GuiData.endDraw();
+                        PostProcessor.end();
+                        if (!osStartDrawEvent.IgnorePostFXDraw)
+                        {
+                            GuiData.startDraw();
+                            if (self.postFXDrawActions != null)
+                            {
+                                self.postFXDrawActions.Invoke();
+                                self.postFXDrawActions = null;
+                            }
+                            if (!osStartDrawEvent.IgnoreScanlines) self.drawScanlines();
+                            GuiData.endDraw();
+                        }
+                        break;
+                    case Event.OSDrawEvent.Type.BootAssistance:
+                    case Event.OSDrawEvent.Type.BootingSequence:
+                    case Event.OSDrawEvent.Type.EndingSequence:
+                        self.ScreenManager.SpriteBatch.End();
+                        PostProcessor.end();
+                        break;
+                    case Event.OSDrawEvent.Type.Loading:
+                        GuiData.endDraw();
+                        break;
+                    default:
+                        osEndDrawEvent.CallEvent();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                osEndDrawEvent = new Event.OSEndDrawEvent(self, time, Event.OSDrawEvent.Type.Error);
+                osEndDrawEvent.CallEvent();
+                if (osEndDrawEvent.IsCancelled)
+                    return true;
+                self.drawErrorCount++;
+                if (self.drawErrorCount >= 3) self.handleDrawError();
+                else Utils.AppendToErrorFile(Utils.GenerateReportFromException(ex));
+            }
+            return true;
+        }
+
         // Hook location : OS.LoadContent()
         public static bool onLoadSession(OS self)
         {

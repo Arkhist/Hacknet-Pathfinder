@@ -129,49 +129,49 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="995">
+      <node id="1027">
         <label>Vector2&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector2"/>
-        <childnode refid="996" relation="public-inheritance">
+        <childnode refid="1028" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="994">
+      <node id="1026">
         <label>Vector3&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector3"/>
-        <childnode refid="995" relation="public-inheritance">
+        <childnode refid="1027" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="993">
+      <node id="1025">
         <label>Pathfinder.Util.Vector4&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector4"/>
-        <childnode refid="994" relation="public-inheritance">
+        <childnode refid="1026" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="996">
+      <node id="1028">
         <label>Vector1&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector1"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="999">
+      <node id="1031">
         <label>Vector2&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector2"/>
-        <childnode refid="1000" relation="public-inheritance">
+        <childnode refid="1032" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="998">
+      <node id="1030">
         <label>Vector3&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector3"/>
-        <childnode refid="999" relation="public-inheritance">
+        <childnode refid="1031" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="997">
+      <node id="1029">
         <label>Pathfinder.Util.Vector4&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector4"/>
-        <childnode refid="998" relation="public-inheritance">
+        <childnode refid="1030" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1000">
+      <node id="1032">
         <label>Vector1&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector1"/>
       </node>

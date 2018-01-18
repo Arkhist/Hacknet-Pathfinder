@@ -59,7 +59,10 @@ var dir_64d253ef1f79ff8128c877fa1dc35bc4 =
       [ "OSUnloadContentEvent", "class_pathfinder_1_1_event_1_1_o_s_unload_content_event.html", "class_pathfinder_1_1_event_1_1_o_s_unload_content_event" ],
       [ "OSLoadSaveFileEvent", "class_pathfinder_1_1_event_1_1_o_s_load_save_file_event.html", "class_pathfinder_1_1_event_1_1_o_s_load_save_file_event" ],
       [ "OSSaveFileEvent", "class_pathfinder_1_1_event_1_1_o_s_save_file_event.html", "class_pathfinder_1_1_event_1_1_o_s_save_file_event" ],
-      [ "OSSaveWriteEvent", "class_pathfinder_1_1_event_1_1_o_s_save_write_event.html", "class_pathfinder_1_1_event_1_1_o_s_save_write_event" ]
+      [ "OSSaveWriteEvent", "class_pathfinder_1_1_event_1_1_o_s_save_write_event.html", "class_pathfinder_1_1_event_1_1_o_s_save_write_event" ],
+      [ "OSDrawEvent", "class_pathfinder_1_1_event_1_1_o_s_draw_event.html", "class_pathfinder_1_1_event_1_1_o_s_draw_event" ],
+      [ "OSStartDrawEvent", "class_pathfinder_1_1_event_1_1_o_s_start_draw_event.html", "class_pathfinder_1_1_event_1_1_o_s_start_draw_event" ],
+      [ "OSEndDrawEvent", "class_pathfinder_1_1_event_1_1_o_s_end_draw_event.html", "class_pathfinder_1_1_event_1_1_o_s_end_draw_event" ]
     ] ],
     [ "PathfinderEvent.cs", "_pathfinder_event_8cs.html", [
       [ "PathfinderEvent", "class_pathfinder_1_1_event_1_1_pathfinder_event.html", "class_pathfinder_1_1_event_1_1_pathfinder_event" ]

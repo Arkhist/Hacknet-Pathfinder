@@ -383,24 +383,24 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="861">
+      <node id="893">
         <label>Hacknet.ScreenManager</label>
         <link refid="class_hacknet_1_1_screen_manager"/>
-        <childnode refid="862" relation="public-inheritance">
+        <childnode refid="894" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="862">
+      <node id="894">
         <label>DrawableGameComponent</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="863">
+      <node id="895">
         <label>Hacknet.ScreenManager</label>
         <link refid="class_hacknet_1_1_screen_manager"/>
-        <childnode refid="864" relation="public-inheritance">
+        <childnode refid="896" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="864">
+      <node id="896">
         <label>DrawableGameComponent</label>
       </node>
     </collaborationgraph>

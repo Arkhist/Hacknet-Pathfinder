@@ -6,11 +6,14 @@ var searchData=
   ['optionsmenuloadcontentevent',['OptionsMenuLoadContentEvent',['../class_pathfinder_1_1_event_1_1_options_menu_load_content_event.html',1,'Pathfinder::Event']]],
   ['optionsmenuupdateevent',['OptionsMenuUpdateEvent',['../class_pathfinder_1_1_event_1_1_options_menu_update_event.html',1,'Pathfinder::Event']]],
   ['os',['OS',['../class_hacknet_1_1_o_s.html',1,'Hacknet']]],
+  ['osdrawevent',['OSDrawEvent',['../class_pathfinder_1_1_event_1_1_o_s_draw_event.html',1,'Pathfinder::Event']]],
+  ['osenddrawevent',['OSEndDrawEvent',['../class_pathfinder_1_1_event_1_1_o_s_end_draw_event.html',1,'Pathfinder::Event']]],
   ['osevent',['OSEvent',['../class_pathfinder_1_1_event_1_1_o_s_event.html',1,'Pathfinder::Event']]],
   ['osloadcontentevent',['OSLoadContentEvent',['../class_pathfinder_1_1_event_1_1_o_s_load_content_event.html',1,'Pathfinder::Event']]],
   ['osloadsavefileevent',['OSLoadSaveFileEvent',['../class_pathfinder_1_1_event_1_1_o_s_load_save_file_event.html',1,'Pathfinder::Event']]],
   ['ospostloadcontentevent',['OSPostLoadContentEvent',['../class_pathfinder_1_1_event_1_1_o_s_post_load_content_event.html',1,'Pathfinder::Event']]],
   ['ossavefileevent',['OSSaveFileEvent',['../class_pathfinder_1_1_event_1_1_o_s_save_file_event.html',1,'Pathfinder::Event']]],
   ['ossavewriteevent',['OSSaveWriteEvent',['../class_pathfinder_1_1_event_1_1_o_s_save_write_event.html',1,'Pathfinder::Event']]],
+  ['osstartdrawevent',['OSStartDrawEvent',['../class_pathfinder_1_1_event_1_1_o_s_start_draw_event.html',1,'Pathfinder::Event']]],
   ['osunloadcontentevent',['OSUnloadContentEvent',['../class_pathfinder_1_1_event_1_1_o_s_unload_content_event.html',1,'Pathfinder::Event']]]
 ];

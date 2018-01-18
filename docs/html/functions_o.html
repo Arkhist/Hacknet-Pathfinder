@@ -196,6 +196,9 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 <li>onOptionsMenuUpdate()
 : <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a4ed652f029264a5d35436ae0cb7c9ba0">Pathfinder.PathfinderHooks</a>
 </li>
+<li>onOSDraw()
+: <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#ac75db6e65119eee153abfefb1622b676">Pathfinder.PathfinderHooks</a>
+</li>
 <li>onPortExecutableExecute()
 : <a class="el" href="class_pathfinder_1_1_pathfinder_hooks.html#a5a3dbcc066c3af0dd98b360a8d6d3ca5">Pathfinder.PathfinderHooks</a>
 </li>
@@ -244,7 +247,7 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 : <a class="el" href="class_hacknet_1_1_computer.html#a30b9cfc92055e63950a03446f8521ded">Hacknet.Computer</a>
 </li>
 <li>OpenVanillaPort()
-: <a class="el" href="class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#a454cd42d7f0b3fbc2112f3aaa1e09ffd">Pathfinder.Game.Computer.Extensions</a>
+: <a class="el" href="class_pathfinder_1_1_game_1_1_computer_1_1_extensions.html#a631e8f036e1bca2edcf518a3c0dea422">Pathfinder.Game.Computer.Extensions</a>
 </li>
 <li>OperationalMods
 : <a class="el" href="class_pathfinder_1_1_mod_manager_1_1_manager.html#a38383fff7c6ff0f6e198f8a48d7873b1">Pathfinder.ModManager.Manager</a>
@@ -342,31 +345,40 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 </li>
 <li>OS
 : <a class="el" href="class_pathfinder_1_1_event_1_1_executable_event.html#a4c14b0aa1c1d4260eafc86327df31f52">Pathfinder.Event.ExecutableEvent</a>
-, <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_event.html#a59c0db53d1a98f303716f74f9ae844e5">Pathfinder.Event.OSEvent</a>
+, <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_event.html#ab611363273c3501ee85d3283f32b46ef">Pathfinder.Event.OSEvent</a>
+</li>
+<li>OSDrawEvent()
+: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_draw_event.html#ad20f7474a2aa5ffd80af0ccd0d8e4c31">Pathfinder.Event.OSDrawEvent</a>
+</li>
+<li>OSEndDrawEvent()
+: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_end_draw_event.html#a5b536b71ce80f1caf8a2831f9c3c5f8d">Pathfinder.Event.OSEndDrawEvent</a>
 </li>
 <li>OSEvent()
-: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_event.html#afbed2fcd726a384a8baf01375de0e96c">Pathfinder.Event.OSEvent</a>
+: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_event.html#ab579e29ac795986f9ee67758c7103d58">Pathfinder.Event.OSEvent</a>
 </li>
 <li>OSLoadContentEvent()
-: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_load_content_event.html#ad044d209fe5c6e31d655c084ace9691e">Pathfinder.Event.OSLoadContentEvent</a>
+: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_load_content_event.html#ab6c7bd27647e5a2644f9513a48cbb442">Pathfinder.Event.OSLoadContentEvent</a>
 </li>
 <li>OSLoadSaveFileEvent()
-: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event.html#a89a93fbdc7efb2e789956eb29876330a">Pathfinder.Event.OSLoadSaveFileEvent</a>
+: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_load_save_file_event.html#a975f5b0d5b7702bc791cf1efa8dc6373">Pathfinder.Event.OSLoadSaveFileEvent</a>
 </li>
 <li>OSPostLoadContentEvent()
-: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event.html#abf9ead785518e309076d60bb9844f39a">Pathfinder.Event.OSPostLoadContentEvent</a>
+: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_post_load_content_event.html#a476910dc48ab302606d6e2f0d37962e2">Pathfinder.Event.OSPostLoadContentEvent</a>
 </li>
 <li>OSSaveFileEvent()
-: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_save_file_event.html#a8682239e6bb736a8d5c7618228de115e">Pathfinder.Event.OSSaveFileEvent</a>
+: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_save_file_event.html#a0f166580215f13a263a67c63126515b0">Pathfinder.Event.OSSaveFileEvent</a>
 </li>
 <li>OSSaveWriteEvent()
-: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_save_write_event.html#a7d289a69d9232b562286b6c668ed4abb">Pathfinder.Event.OSSaveWriteEvent</a>
+: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_save_write_event.html#a5bb84005be5a80ef4bc7406028cfb77c">Pathfinder.Event.OSSaveWriteEvent</a>
+</li>
+<li>OSStartDrawEvent()
+: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_start_draw_event.html#a20dcd72b7ef84eae7e267e5aaf6c247f">Pathfinder.Event.OSStartDrawEvent</a>
 </li>
 <li>osStartsWithTutorial
 : <a class="el" href="class_hacknet_1_1_settings.html#a56def32586993aa2cd4179807af01dcd">Hacknet.Settings</a>
 </li>
 <li>OSUnloadContentEvent()
-: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_unload_content_event.html#aef2934c959829c6b616b7e93cfee9f2b">Pathfinder.Event.OSUnloadContentEvent</a>
+: <a class="el" href="class_pathfinder_1_1_event_1_1_o_s_unload_content_event.html#a5b48e76e434acec6fff3b37c714796ac">Pathfinder.Event.OSUnloadContentEvent</a>
 </li>
 <li>outlineColor
 : <a class="el" href="class_hacknet_1_1_o_s.html#aeb8abd4784e2dd42dbf5e1e67625532e">Hacknet.OS</a>

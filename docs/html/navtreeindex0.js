@@ -65,6 +65,7 @@ var NAVTREEINDEX0 =
 "_file_object_8cs.html#a873ecba342eff829005d86481960c19dae73cda510e8bb947f7e61089e5581494":[4,0,0,7,3,5,1],
 "_file_path_8cs.html":[4,0,0,7,4],
 "_filesystem_8cs.html":[4,0,0,7,5],
+"_folder_2_extensions_8cs.html":[4,0,0,6,2,0],
 "_g_u_i_2_mod_options_2_handler_8cs.html":[4,0,0,8,0,2],
 "_game_events_8cs.html":[4,0,0,3,7],
 "_goal_instance_8cs.html":[4,0,0,10,0],
@@ -102,8 +103,8 @@ var NAVTREEINDEX0 =
 "_mod_list_8cs.html#adb362a27beca42786358af736adf75e3":[4,0,0,9,0,1,1],
 "_mod_options_attribute_8cs.html":[4,0,0,13,0,3],
 "_module_events_8cs.html":[4,0,0,3,9],
-"_network_map_2_extensions_8cs.html":[4,0,0,6,2,0],
-"_o_s_2_extensions_8cs.html":[4,0,0,6,3,0],
+"_network_map_2_extensions_8cs.html":[4,0,0,6,3,0],
+"_o_s_2_extensions_8cs.html":[4,0,0,6,4,0],
 "_o_s_events_8cs.html":[4,0,0,3,11],
 "_options_menu_events_8cs.html":[4,0,0,3,10],
 "_pathfinder_8cs.html":[4,0,0,14],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "class_hacknet_1_1_core_module.html":[3,0,0,1],
 "class_hacknet_1_1_core_module.html#a163b3d4f37172dbb43cd570908fad1ed":[3,0,0,1,1],
 "class_hacknet_1_1_core_module.html#a3152fd15281c36fa3a894900ac6d9b3f":[3,0,0,1,0],
-"class_hacknet_1_1_core_module.html#a9e07c7e2852ea839082bba068cda5b19":[3,0,0,1,3],
-"class_hacknet_1_1_core_module.html#ac2dd0e7330981cec99958caabfa08a1e":[3,0,0,1,2]
+"class_hacknet_1_1_core_module.html#a9e07c7e2852ea839082bba068cda5b19":[3,0,0,1,3]
 };

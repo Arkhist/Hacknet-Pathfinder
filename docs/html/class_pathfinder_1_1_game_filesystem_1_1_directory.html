@@ -143,6 +143,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acbc965f3f35d16bdadc17d8336b6f648"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#acbc965f3f35d16bdadc17d8336b6f648">CreateExecutableFile</a> (string name, int vanillaIndex)</td></tr>
 <tr class="memdesc:acbc965f3f35d16bdadc17d8336b6f648"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a vanilla executable <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a> based on the name and the vanilla data index.  <a href="#acbc965f3f35d16bdadc17d8336b6f648">More...</a><br /></td></tr>
 <tr class="separator:acbc965f3f35d16bdadc17d8336b6f648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fa04ce1894cb8042b1e858df8028512"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#a9fa04ce1894cb8042b1e858df8028512">CreateRandomFile</a> (string name=null, string data=null)</td></tr>
+<tr class="memdesc:a9fa04ce1894cb8042b1e858df8028512"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a random <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a> based either on the name or data. (if neither are null then same as CreateFile)  <a href="#a9fa04ce1894cb8042b1e858df8028512">More...</a><br /></td></tr>
+<tr class="separator:a9fa04ce1894cb8042b1e858df8028512"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34645c3c97ecce7e5ced6f0a80bd4bf3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#a34645c3c97ecce7e5ced6f0a80bd4bf3">CreateRandomFile</a> (uint nameIndex, uint? dataIndex=null)</td></tr>
+<tr class="memdesc:a34645c3c97ecce7e5ced6f0a80bd4bf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a random <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a> based on the nameIndex and dataIndex.  <a href="#a34645c3c97ecce7e5ced6f0a80bd4bf3">More...</a><br /></td></tr>
+<tr class="separator:a34645c3c97ecce7e5ced6f0a80bd4bf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a772d9f319a094cf61f5113c1058e8fec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html#a772d9f319a094cf61f5113c1058e8fec">CreateDirectory</a> (string name)</td></tr>
 <tr class="memdesc:a772d9f319a094cf61f5113c1058e8fec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_directory.html">Directory</a> based on the name.  <a href="#a772d9f319a094cf61f5113c1058e8fec">More...</a><br /></td></tr>
 <tr class="separator:a772d9f319a094cf61f5113c1058e8fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -562,6 +568,78 @@ Properties</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name to assign to the <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a>.</td></tr>
     <tr><td class="paramname">exeInterface</td><td>The <a class="el" href="interface_pathfinder_1_1_executable_1_1_i_interface.html">Executable.IInterface</a> whose file data is to be generated.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9fa04ce1894cb8042b1e858df8028512"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fa04ce1894cb8042b1e858df8028512">&#9670;&nbsp;</a></span>CreateRandomFile() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a> Pathfinder.GameFilesystem.Directory.CreateRandomFile </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>data</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The random <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a> that was created.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name to assign to the <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a> or <code>null</code> to apply a random name.</td></tr>
+    <tr><td class="paramname">data</td><td>The data to assign to the <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a> or <code>null</code> to apply random data.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a34645c3c97ecce7e5ced6f0a80bd4bf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34645c3c97ecce7e5ced6f0a80bd4bf3">&#9670;&nbsp;</a></span>CreateRandomFile() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a> Pathfinder.GameFilesystem.Directory.CreateRandomFile </td>
+          <td>(</td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>nameIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint?&#160;</td>
+          <td class="paramname"><em>dataIndex</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The random <a class="el" href="class_pathfinder_1_1_game_filesystem_1_1_file.html">File</a> that was created.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nameIndex</td><td>The FileEntry filenames index. (which will max out at the largest index)</td></tr>
+    <tr><td class="paramname">dataIndex</td><td>The FileEntry fileData index, or nameIndex if <code>null</code>. (which will max out at the largest index)</td></tr>
   </table>
   </dd>
 </dl>

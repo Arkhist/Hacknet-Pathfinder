@@ -92,43 +92,43 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="987">
+      <node id="1019">
         <label>Vector2&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector2"/>
-        <childnode refid="988" relation="public-inheritance">
+        <childnode refid="1020" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="989">
+      <node id="1021">
         <label>Pathfinder::Util::Vector4&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector4"/>
-        <childnode refid="986" relation="public-inheritance">
+        <childnode refid="1018" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="986">
+      <node id="1018">
         <label>Pathfinder.Util.Vector3&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector3"/>
-        <childnode refid="987" relation="public-inheritance">
+        <childnode refid="1019" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="988">
+      <node id="1020">
         <label>Vector1&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector1"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="991">
+      <node id="1023">
         <label>Vector2&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector2"/>
-        <childnode refid="992" relation="public-inheritance">
+        <childnode refid="1024" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="990">
+      <node id="1022">
         <label>Pathfinder.Util.Vector3&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector3"/>
-        <childnode refid="991" relation="public-inheritance">
+        <childnode refid="1023" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="992">
+      <node id="1024">
         <label>Vector1&lt; T &gt;</label>
         <link refid="class_pathfinder_1_1_util_1_1_vector1"/>
       </node>

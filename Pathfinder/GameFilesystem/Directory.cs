@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Hacknet;
@@ -232,6 +233,32 @@ namespace Pathfinder.GameFilesystem
         /// <param name="vanillaIndex">The vanilla data index.</param>
         public File CreateExecutableFile(string name, int vanillaIndex) =>
             CreateFile(name, ExeInfoManager.GetExecutableInfo(vanillaIndex).Data);
+
+        /// <summary>
+        /// Creates a random File based either on the name or data. (if neither are null then same as CreateFile)
+        /// </summary>
+        /// <returns>The random File that was created.</returns>
+        /// <param name="name">The name to assign to the File or <c>null</c> to apply a random name.</param>
+        /// <param name="data">The data to assign to the File or <c>null</c> to apply random data.</param>
+        public File CreateRandomFile(string name = null, string data = null)
+        {
+            var i = Utils.random.Next(FileEntry.filenames.Count - 1);
+            return CreateFile(name ?? FileEntry.filenames[i], data ?? FileEntry.fileData[i]);
+        }
+
+        /// <summary>
+        /// Creates a random File based on the nameIndex and dataIndex.
+        /// </summary>
+        /// <returns>The random File that was created.</returns>
+        /// <param name="nameIndex">The FileEntry filenames index. (which will max out at the largest index)</param>
+        /// <param name="dataIndex">The FileEntry fileData index, or nameIndex if <c>null</c>.
+        /// (which will max out at the largest index)</param>
+        public File CreateRandomFile(uint nameIndex, uint? dataIndex = null)
+        {
+            if (!dataIndex.HasValue) dataIndex = nameIndex;
+            return CreateFile(FileEntry.filenames[(int)Math.Min(nameIndex, FileEntry.filenames.Count - 1)],
+                       FileEntry.fileData[(int)Math.Min(dataIndex.Value, FileEntry.filenames.Count - 1)]);
+        }
 
         /// <summary>
         /// Creates a new Directory based on the name.

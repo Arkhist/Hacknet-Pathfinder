@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"class_hacknet_1_1_o_s.html#afd5844b4490d76220cc1bf8b33aea1b7":[3,0,0,24,54],
 "class_hacknet_1_1_program_list.html":[3,0,0,25],
 "class_hacknet_1_1_program_list.html#a049e8af40a473565d38ca44faa67ef76":[3,0,0,25,1],
 "class_hacknet_1_1_program_list.html#a3daaaa95d794d131230b4ba2917dc0ae":[3,0,0,25,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "class_pathfinder_1_1_event_1_1_draw_main_menu_event.html":[3,0,1,2,8],
 "class_pathfinder_1_1_event_1_1_draw_main_menu_event.html#a99fdbb21a3290032720b02fab7c59ba2":[3,0,1,2,8,0],
 "class_pathfinder_1_1_event_1_1_draw_main_menu_event.html#abd07fdacaa7cd03b8b91554c27994242":[3,0,1,2,8,1],
-"class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html":[3,0,1,2,9],
-"class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html#a0458094d81fff54fac6c9067595a01ec":[3,0,1,2,9,4]
+"class_pathfinder_1_1_event_1_1_draw_main_menu_titles_event.html":[3,0,1,2,9]
 };

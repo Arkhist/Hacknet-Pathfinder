@@ -771,6 +771,23 @@
             <param name="name">The name to assign to the File.</param>
             <param name="vanillaIndex">The vanilla data index.</param>
         </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.CreateRandomFile(System.String,System.String)">
+            <summary>
+            Creates a random File based either on the name or data. (if neither are null then same as CreateFile)
+            </summary>
+            <returns>The random File that was created.</returns>
+            <param name="name">The name to assign to the File or <c>null</c> to apply a random name.</param>
+            <param name="data">The data to assign to the File or <c>null</c> to apply random data.</param>
+        </member>
+        <member name="M:Pathfinder.GameFilesystem.Directory.CreateRandomFile(System.UInt32,System.Nullable{System.UInt32})">
+            <summary>
+            Creates a random File based on the nameIndex and dataIndex.
+            </summary>
+            <returns>The random File that was created.</returns>
+            <param name="nameIndex">The FileEntry filenames index. (which will max out at the largest index)</param>
+            <param name="dataIndex">The FileEntry fileData index, or nameIndex if <c>null</c>.
+            (which will max out at the largest index)</param>
+        </member>
         <member name="M:Pathfinder.GameFilesystem.Directory.CreateDirectory(System.String)">
             <summary>
             Creates a new Directory based on the name.
