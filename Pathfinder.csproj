@@ -85,6 +85,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.XML" />
+    <Reference Include="System.Xml" />
     <Reference Include="HacknetPathfinder">
       <HintPath>lib\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
