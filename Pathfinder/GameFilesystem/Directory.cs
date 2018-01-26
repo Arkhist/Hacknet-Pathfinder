@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Hacknet;
+using Pathfinder.Game.Folder;
 using Pathfinder.Util;
 
 namespace Pathfinder.GameFilesystem
 {
     public class Directory : FileObject<Folder, IFileObject>, IEnumerable<IFileObject>
     {
-        private string path;
-
         public Directory(Folder obj, IFileObject parent) : base(obj, parent)
         {
             var d = Parent as Directory;
@@ -60,6 +59,15 @@ namespace Pathfinder.GameFilesystem
                 name = name.Length > 0 ? name : Name;
                 LogOperation(FileOpLogType.MoveFolder, name, Path, Parent.Path + FilePath.SEPERATOR + Name);
                 Object.name = name;
+                path = Parent.Path + FilePath.SEPERATOR + Name;
+            }
+        }
+
+        internal void CorrectPath()
+        {
+            if (!Path.Contains(Parent.Path))
+            {
+                LogOperation(FileOpLogType.MoveFile, Name, Path, Parent.Path + FilePath.SEPERATOR + Name);
                 path = Parent.Path + FilePath.SEPERATOR + Name;
             }
         }
@@ -203,7 +211,7 @@ namespace Pathfinder.GameFilesystem
                 data = "";
             var r = new File(new FileEntry(data, name), this);
             r.LogOperation(FileOpLogType.CreateFile, data, Path);
-            Object.files.Add(r.Object);
+            Object.Add(r.Object);
             return r;
         }
 
@@ -269,7 +277,7 @@ namespace Pathfinder.GameFilesystem
         {
             var r = new Directory(new Folder(name), this);
             r.LogOperation(FileOpLogType.CreateFolder, Path);
-            Object.folders.Add(r.Object);
+            Object.Add(r.Object);
             return r;
         }
 
@@ -324,11 +332,10 @@ namespace Pathfinder.GameFilesystem
             if (!Contains(f))
                 return null;
             f.LogOperation(FileOpLogType.MoveFile, f.Name, Path, newDir.Path);
-            Object.files.RemoveAt(f.Index);
-            f.Parent = newDir;
             f.Index = newDir.Object.files.Count;
-            newDir.Object.files.Add(f.Object);
-            f.Name = f.Name;
+            f.Parent = newDir;
+            Object.Move(f.Object, newDir.Object);
+            f.CorrectPath();
             return f;
         }
 
@@ -343,11 +350,10 @@ namespace Pathfinder.GameFilesystem
             if (!Contains(d))
                 return null;
             d.LogOperation(FileOpLogType.MoveFolder, d.Name, Path, newDir.Path);
-            Object.folders.RemoveAt(d.Index);
+            d.Index = newDir.Object.files.Count;
             d.Parent = newDir;
-            d.Index = newDir.Object.folders.Count;
-            newDir.Object.folders.Add(d.Object);
-            d.Name = d.Name;
+            Object.Move(d.Object, newDir.Object);
+            d.CorrectPath();
             return d;
         }
 

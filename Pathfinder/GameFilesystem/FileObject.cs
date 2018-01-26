@@ -25,6 +25,7 @@ namespace Pathfinder.GameFilesystem
     public abstract class FileObject<VanillaT> : IFileObject where VanillaT : class
     {
         protected object parent;
+        internal string path;
 
         /// <summary>
         /// Gets or sets the object's full path, setting changes the object's parent

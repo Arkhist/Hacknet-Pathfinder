@@ -4,8 +4,6 @@ namespace Pathfinder.GameFilesystem
 {
     public class File : FileObject<FileEntry, Directory>
     {
-        private string path;
-
         public File(FileEntry vanila, Directory parent) : base(vanila, parent)
         {
             Index = Parent.Object.files.IndexOf(Object);
@@ -24,8 +22,16 @@ namespace Pathfinder.GameFilesystem
 
             set
             {
-                LogOperation(FileOpLogType.MoveFile, value, Path, Parent.Path + FilePath.SEPERATOR + Name);
                 Object.name = value;
+                CorrectPath();
+            }
+        }
+
+        internal void CorrectPath()
+        {
+            if (!Path.Contains(Parent.Path))
+            {
+                LogOperation(FileOpLogType.MoveFile, Name, Path, Parent.Path + FilePath.SEPERATOR + Name);
                 path = Parent.Path + FilePath.SEPERATOR + Name;
             }
         }
