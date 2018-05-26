@@ -38,9 +38,9 @@ namespace Pathfinder.Executable
         }
 
         /// <summary>
-        /// Removes an executable by mod id
+        /// Removes an executable by it's id
         /// </summary>
-        /// <param name="id">The fill id of the mod</param>
+        /// <param name="id">The full id of the executable</param>
         /// <returns>If successful</returns>
         public static bool UnregisterExecutable(string id)
         {
