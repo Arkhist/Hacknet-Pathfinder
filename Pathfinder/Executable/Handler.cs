@@ -7,7 +7,7 @@ namespace Pathfinder.Executable
 {
     public static class Handler
     {
-        internal static Dictionary<string, Tuple<IInterface, string>> ModExecutables =
+        internal static readonly Dictionary<string, Tuple<IInterface, string>> ModExecutables =
             new Dictionary<string, Tuple<IInterface, string>>();
 
         /// <summary>
@@ -40,9 +40,7 @@ namespace Pathfinder.Executable
         internal static bool UnregisterExecutable(string id)
         {
             id = Utility.GetId(id);
-            if (!ModExecutables.ContainsKey(id))
-                return true;
-            return ModExecutables.Remove(id);
+            return !ModExecutables.ContainsKey(id) || ModExecutables.Remove(id);
         }
 
         /// <summary>
@@ -70,10 +68,7 @@ namespace Pathfinder.Executable
             if (requiresModId && id.IndexOf('.') == -1)
                 throw new ArgumentException("must contain a mod id and delimter (.)", nameof(id));
             id = Utility.GetId(id, requiresModId, true);
-            Tuple<IInterface, string> result;
-            if (ModExecutables.TryGetValue(id, out result))
-                return result.Item2;
-            return null;
+            return ModExecutables.TryGetValue(id, out var result) ? result.Item2 : null;
         }
 
         /// <summary>
@@ -84,7 +79,7 @@ namespace Pathfinder.Executable
         public static string GetStandardFileDataBy(IInterface inter)
         {
             foreach (var pair in ModExecutables)
-                if (pair.Value == inter)
+                if (pair.Value.Item1 == inter)
                     return GetStandardFileDataBy(pair.Key);
             return null;
         }
