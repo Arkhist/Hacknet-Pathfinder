@@ -37,7 +37,12 @@ namespace Pathfinder.Executable
             return id;
         }
 
-        internal static bool UnregisterExecutable(string id)
+        /// <summary>
+        /// Removes an executable by mod id
+        /// </summary>
+        /// <param name="id">The fill id of the mod</param>
+        /// <returns>If successful</returns>
+        public static bool UnregisterExecutable(string id)
         {
             id = Utility.GetId(id);
             return !ModExecutables.ContainsKey(id) || ModExecutables.Remove(id);
