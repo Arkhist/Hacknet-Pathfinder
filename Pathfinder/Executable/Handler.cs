@@ -55,11 +55,24 @@ namespace Pathfinder.Executable
         /// <param name="fileData">File data.</param>
         public static bool IsFileDataForModExe(string fileData)
         {
+            bool isFileData = true;
             var dataLines = fileData.Split('\n');
-            return dataLines.Length >= 3 && dataLines[1] == "ldloc.args"
+
+            if (!(dataLines.Length >= 3))
+                isFileData = false;
+            if (!(dataLines[1] == "ldloc.args"))
+                isFileData = false;
+            if (!(dataLines[2].StartsWith("call Pathfinder.Executable.Instance", StringComparison.Ordinal)))
+                isFileData = false;
+            if (!(dataLines[2].EndsWith("=" + dataLines[0] + "()", StringComparison.Ordinal)))
+                isFileData = false;
+            if (!(ModExecutables.Any(pair => pair.Value.Item2 == fileData)))
+                isFileData = false;
+            /*bool isFileData = dataLines.Length >= 3 && dataLines[1] == "ldloc.args"
                             && dataLines[2].StartsWith("call Pathfinder.Executable.Instance", StringComparison.Ordinal)
                             && dataLines[2].EndsWith("=" + dataLines[0] + "()", StringComparison.Ordinal)
-                            && ModExecutables.Any(pair => pair.Value.Item2 == dataLines[0]);
+                            && ModExecutables.Any(pair => pair.Value.Item2 == fileData);*/
+            return isFileData;
         }
 
         /// <summary>

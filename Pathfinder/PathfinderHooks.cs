@@ -295,7 +295,7 @@ namespace Pathfinder
             return false;
         }
 
-        // Hook location : OS.launchExecutable
+        // Hook location : ProgramRunner.AttemptExeProgramExecution
         public static bool onExecutableExecute(out int result,
                                                ref Computer com,
                                                ref Folder fol,
@@ -317,6 +317,7 @@ namespace Pathfinder
             return false;
         }
 
+        // Hook location : OS.launchExecutable
         public static bool onPortExecutableExecute(OS self,
                                                      ref Rectangle dest,
                                                      ref string name,
