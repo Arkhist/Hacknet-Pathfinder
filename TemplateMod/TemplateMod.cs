@@ -4,7 +4,6 @@ using System.IO;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Pathfinder.Computer;
 using Pathfinder.Event;
 using Pathfinder.ModManager;
 using Pathfinder.Util;
@@ -75,7 +74,14 @@ namespace TemplateMod
             public override bool? Update(Executable.Instance instance, float time)
             {
                 Logger.Verbose("TempExe");
+                Logger.Info("Template Exe updating");
                 return true;
+            }
+
+            public override void OnComplete(Executable.Instance instance)
+            {
+                Logger.Info("Template exe finished");
+                base.OnKilled(instance);
             }
         }
 
@@ -126,7 +132,7 @@ namespace TemplateMod
             {
                 var derp = new Computer("Derpy", "101.101.101.10", new Vector2(10, 10), 0);
                 os.netMap.nodes.Add(derp);
-                os.thisComputer.AddLink(derp);
+                //os.thisComputer.AddLink(derp);
             }
 
             public override void OnLoad(OS os, Stream loadingStream) {}

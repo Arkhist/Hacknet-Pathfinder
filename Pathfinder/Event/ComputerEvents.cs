@@ -11,11 +11,13 @@ namespace Pathfinder.Event
     public class LoadComputerXmlReadEvent : ComputerEvent
     {
         public XmlReader Reader { get; private set; }
+        public bool FromSave { get; private set; }
         public string Filename { get; private set; }
         public bool PreventNetmapAdd { get; private set; }
         public bool PreventDaemonInit { get; private set; }
-        public LoadComputerXmlReadEvent(Hacknet.Computer com, XmlReader red, string fnam, bool prevNetmap, bool prevDaeInit) : base(com)
+        public LoadComputerXmlReadEvent(Hacknet.Computer com, XmlReader red, string fnam, bool prevNetmap, bool prevDaeInit, bool fromSave) : base(com)
         {
+            FromSave = fromSave;
             Reader = red;
             Filename = fnam;
             PreventNetmapAdd = prevNetmap;

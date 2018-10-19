@@ -46,10 +46,6 @@
       <HintPath>..\lib\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Pathfinder">
-      <HintPath>..\bin\Release\Pathfinder.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="FNA">
       <HintPath>..\lib\FNA.dll</HintPath>
       <Private>False</Private>
@@ -59,6 +55,12 @@
     <Compile Include="Commands.cs" />
     <Compile Include="TemplateMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pathfinder.csproj">
+      <Project>{F321B880-D4FC-4DF6-8CE3-666B29EF41C7}</Project>
+      <Name>Pathfinder</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

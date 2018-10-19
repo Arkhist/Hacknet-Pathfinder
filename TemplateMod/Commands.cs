@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Pathfinder.Computer;
 using Pathfinder.GameFilesystem;
 using Pathfinder.Util;
 
@@ -11,8 +10,8 @@ namespace TemplateMod
         public static bool TemplateModVersion(Hacknet.OS os, List<string> args)
         {
             os.write("Template Mod version 1 !");
-            if (os.thisComputer.AddModPort("Template Mod.tempPort"))
-                os.write("tempPort added");
+            //if (os.thisComputer.AddModPort("Template Mod.tempPort"))
+                //os.write("tempPort added");
             var bin = os.thisComputer.GetFilesystem().Directory.FindDirectory("bin");
             if (Pathfinder.Executable.Handler.GetStandardFileDataBy("Template Mod.TempExe") != null)
                 Logger.Info("working");

@@ -348,7 +348,21 @@ namespace Pathfinder
                                                                 reader,
                                                                 filename,
                                                                 preventAddingToNetmap,
-                                                                preventInitDaemons);
+                                                                preventInitDaemons, 
+                                                                false);
+            loadComputerEvent.CallEvent();
+        }
+
+        public static void onLoadSaveComputer(/*ref XmlReader reader,
+                                            ref OS os,
+                                            ref Computer c*/)
+        {
+            var loadComputerEvent = new Event.LoadComputerXmlReadEvent(null/*c*/,
+                                                                null/*reader*/,
+                                                                "",
+                                                                false,
+                                                                false,
+                                                                true);
             loadComputerEvent.CallEvent();
         }
 

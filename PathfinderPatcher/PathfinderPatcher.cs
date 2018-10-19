@@ -279,7 +279,7 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance
                 );
 
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onMainMenuDraw to MainMenu.Draw
                 ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("Draw").InjectWith(
                     hooks.GetMethod("onMainMenuDraw"),
@@ -295,7 +295,7 @@ namespace PathfinderPatcher
                     localsID: new int[] { 0, 4 }
                 );
 
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onLoadSaveFile to OS.loadSaveFile
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("loadSaveFile").InjectWith(
                     hooks.GetMethod("onLoadSaveFile"),
@@ -324,7 +324,7 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn
                 );
 
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onExecutableExecute to ProgramRunner.AttemptExeProgramExecution
                 ad.MainModule.GetType("Hacknet.ProgramRunner").GetMethod("AttemptExeProgramExecution").InjectWith(
                     hooks.GetMethod("onExecutableExecute"),
@@ -333,7 +333,7 @@ namespace PathfinderPatcher
                     localsID: new int[] { 0, 1, 2, 6 }
                 );
 
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onDrawMainMenuTitles to MainMenu.DrawBackgroundAndTitle
                 ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("DrawBackgroundAndTitle").InjectWith(
                     hooks.GetMethod("onDrawMainMenuTitles"),
@@ -342,7 +342,7 @@ namespace PathfinderPatcher
                     localsID: new int[] { 0 }
                 );
 
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onPortExecutableExecute to OS.launchExecutable
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("launchExecutable").InjectWith(
                     hooks.GetMethod("onPortExecutableExecute"),
@@ -351,7 +351,7 @@ namespace PathfinderPatcher
                     localsID: new int[] { 2 }
                 );
 
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onLoadComputer to ComputerLoader.loadComputer
                 // adds the obsfuscated c value in <>c__DisplayClass4 as a parameter (seen as nearbyNodeOffset decompiled)
                 // 232 puts it right before the nearbyNodeOffset.type == 4 if statement that erases all home folder data
@@ -368,12 +368,15 @@ namespace PathfinderPatcher
                     new int[] { 1 }
                 );
                 method.AdjustInstruction(240, operand: method.Inst(265));
-                /*method.InjectWith(
-                    hooks.GetMethod("onLoadComputer"),
-                    266,
-                    flags: InjectFlags.PassParametersVal | InjectFlags.PassLocals,
-                    localsID: new int[] { 1 }
-                );*/
+
+                // Hook onLoadSaveComputer to Hacknet.Computer
+                // TODO : make this work
+                ad.MainModule.GetType("Hacknet.Computer").GetMethod("load").InjectWith(
+                    hooks.GetMethod("onLoadSaveComputer"),
+                    100,
+                    flags: 0/*InjectFlags.PassParametersRef | InjectFlags.PassLocals*/,
+                    localsID: new int[] { 23 }
+                );
 
                 // Hook onGameUnloadContent to Game1.UnloadContent
                 ad.MainModule.GetType("Hacknet.Game1").GetMethod("UnloadContent").InjectWith(
@@ -389,7 +392,7 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef
                 );
 
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onPortNameDraw to DisplayModule.doProbeDisplay
                 ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("doProbeDisplay").InjectWith(
                     hooks.GetMethod("onPortNameDraw"),
@@ -410,7 +413,7 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onExtensionsMenuScreenDraw to ExtensionsMenuScreen.Draw
                 ad.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen").GetMethod("Draw").InjectWith(
                     hooks.GetMethod("onExtensionsMenuScreenDraw"),
@@ -425,7 +428,7 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
+                // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onOptionsMenuDraw to OptionsMenu.Draw
                 ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("Draw").InjectWith(
                     hooks.GetMethod("onOptionsMenuDraw"),
@@ -456,6 +459,7 @@ namespace PathfinderPatcher
                     hooks.GetMethod("onOSDraw"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
+                    
 
                 ad?.Write("HacknetPathfinder.exe");
             }
