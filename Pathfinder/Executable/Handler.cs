@@ -86,7 +86,8 @@ namespace Pathfinder.Executable
             if (requiresModId && id.IndexOf('.') == -1)
                 throw new ArgumentException("must contain a mod id and delimter (.)", nameof(id));
             id = Utility.GetId(id, requiresModId, true);
-            return ModExecutables.TryGetValue(id, out var result) ? result.Item2 : null;
+            Tuple<IInterface, string> result;
+            return ModExecutables.TryGetValue(id, out result) ? result.Item2 : null;
         }
 
         /// <summary>

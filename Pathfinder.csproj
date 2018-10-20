@@ -72,6 +72,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml" />
+    <Reference Include="HacknetPathfinder">
+      <HintPath>lib\HacknetPathfinder.exe</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="AlienFXManagedWrapper3.5">
       <HintPath>lib\AlienFXManagedWrapper3.5.dll</HintPath>
       <Private>False</Private>
@@ -82,12 +88,6 @@
     </Reference>
     <Reference Include="Steamworks.NET">
       <HintPath>lib\Steamworks.NET.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml" />
-    <Reference Include="HacknetPathfinder">
-      <HintPath>lib\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -200,7 +200,6 @@
     <Folder Include="Pathfinder\Docs\">
     </Folder>
     <Folder Include="Pathfinder\Game\Folder\">
-      <DependentUpon>Folder</DependentUpon>
     </Folder>
   </ItemGroup>
   <ItemGroup />

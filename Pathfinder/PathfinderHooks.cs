@@ -3,11 +3,11 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Hacknet;
 using Hacknet.Effects;
 using Hacknet.Gui;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.GameFilesystem;
 using Pathfinder.GUI;
 using Pathfinder.ModManager;
@@ -353,12 +353,12 @@ namespace Pathfinder
             loadComputerEvent.CallEvent();
         }
 
-        public static void onLoadSaveComputer(/*ref XmlReader reader,
-                                            ref OS os,
-                                            ref Computer c*/)
+        public static void onLoadSaveComputer(ref Computer c,
+                                              ref XmlReader reader,
+                                              ref OS os)
         {
-            var loadComputerEvent = new Event.LoadComputerXmlReadEvent(null/*c*/,
-                                                                null/*reader*/,
+            var loadComputerEvent = new Event.LoadComputerXmlReadEvent(c,
+                                                                reader,
                                                                 "",
                                                                 false,
                                                                 false,

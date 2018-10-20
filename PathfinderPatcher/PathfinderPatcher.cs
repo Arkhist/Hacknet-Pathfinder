@@ -370,11 +370,10 @@ namespace PathfinderPatcher
                 method.AdjustInstruction(240, operand: method.Inst(265));
 
                 // Hook onLoadSaveComputer to Hacknet.Computer
-                // TODO : make this work
                 ad.MainModule.GetType("Hacknet.Computer").GetMethod("load").InjectWith(
                     hooks.GetMethod("onLoadSaveComputer"),
-                    100,
-                    flags: 0/*InjectFlags.PassParametersRef | InjectFlags.PassLocals*/,
+                    355,
+                    flags: InjectFlags.PassParametersRef | InjectFlags.PassLocals,
                     localsID: new int[] { 23 }
                 );
 
