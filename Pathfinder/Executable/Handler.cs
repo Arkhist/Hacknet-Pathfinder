@@ -47,11 +47,11 @@ namespace Pathfinder.Executable
         {
             id = Utility.ConvertToHexBlocks(id);
             return id +
-                "\n6c 64 6c 6f 63 2e 61 72 67 73\n" +                               // \nldloc.args\n
-                "63 61 6c 6c 20 50 61 74 68 66 69 6e 64 65 72 2e 45 " +             // call Pathfinder.E
-                "78 65 63 75 74 61 62 6c 65 2e 49 6e 73 74 61 6e 63 65 20 5b " +    // xecutable.Instance [
+                "\n6C 64 6C 6F 63 2E 61 72 67 73\n" +                               // \nldloc.args\n
+                "63 61 6C 6C 20 50 61 74 68 66 69 6E 64 65 72 2E 45 " +             // call Pathfinder.E
+                "78 65 63 75 74 61 62 6C 65 2E 49 6E 73 74 61 6E 63 65 20 5B " +    // xecutable.Instance [
                 Utility.ConvertToHexBlocks(assemblyName) +
-                "2e 64 6c 6c 5d " + Utility.ConvertToHexBlocks(typeFullname) + " 3d " + id + " 28 29"; // .dll]_=_()
+                "2E 64 6C 6C 5D " + Utility.ConvertToHexBlocks(typeFullname) + " 3D " + id + " 28 29"; // .dll]_=_()
         }
 
         /// <summary>
@@ -75,10 +75,10 @@ namespace Pathfinder.Executable
             var dataLines = fileData.Split('\n');
             return dataLines.Length >= 3
                             &&
-                                (dataLines[1] == "6c 64 6c 6f 63 2e 61 72 67 73"
-                                && dataLines[2].StartsWith("63 61 6c 6c 20 50 61 74 68 66 69 6e 64 65 72 2e 45 78 65 63 75 74 61 62 6c 65 2e 49 6e 73 74 61 6e 63 65",
-                                                           StringComparison.Ordinal)
-                                && dataLines[2].EndsWith("3d " + dataLines[0] + " 28 29", StringComparison.Ordinal))
+                                (dataLines[1].Equals("6C 64 6C 6F 63 2E 61 72 67 73", StringComparison.OrdinalIgnoreCase)
+                                && dataLines[2].StartsWith("63 61 6C 6C 20 50 61 74 68 66 69 6E 64 65 72 2E 45 78 65 63 75 74 61 62 6C 65 2E 49 6E 73 74 61 6E 63 65",
+                                                           StringComparison.OrdinalIgnoreCase)
+                                && dataLines[2].EndsWith("3D " + dataLines[0] + " 28 29", StringComparison.OrdinalIgnoreCase))
                             ||
                                 (dataLines[1] == "ldloc.args"
                                 && dataLines[2].StartsWith("call Pathfinder.Executable.Instance",
