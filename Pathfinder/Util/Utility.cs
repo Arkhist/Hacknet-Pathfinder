@@ -140,5 +140,26 @@ namespace Pathfinder.Util
                 return type.GetCustomAttributes(typeof(T), inherit)[0] as T;
             return null;
         }
+
+        public static string ConvertToHexBlocks(string toConvert, bool keepNewline = true)
+        {
+            string result = "";
+            bool firstRound = true;
+            foreach (var c in toConvert)
+            {
+                if (keepNewline && c == '\n') continue;
+                result += (firstRound ? "" : " ") + Convert.ToByte(c).ToString("X2");
+                if (firstRound) firstRound = false;
+            }
+            return result;
+        }
+
+        public static string ConvertFromHexBlocks(string fromConvert, bool ignoreNewline = true)
+        {
+            string result = "";
+            foreach (var n in fromConvert.Split(' '))
+                result += ignoreNewline && n.Contains("\n") ? 0 : Convert.ToChar(Convert.ToInt32(n, 16));
+            return result;
+        }
     }
 }

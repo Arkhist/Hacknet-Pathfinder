@@ -29,12 +29,29 @@ namespace Pathfinder.Executable
             if (ModExecutables.ContainsKey(id))
                 return null;
             var type = inter.GetType();
-            var fileData = id + "\nldloc.args\ncall Pathfinder.Executable.Instance [" + type.Assembly.GetName().Name + ".dll]"
-                                                     + type.FullName + "=" + id + "()";
+            var fileData = GenerateFileDataString(type.Assembly.GetName().Name, type.FullName, id);
             if (fileData.Length < 1 || ModExecutables.Any(pair => pair.Value.Item2 == fileData))
                 throw new ArgumentException("created data for '" + id + "' is not unique");
             ModExecutables.Add(id, new Tuple<IInterface, string>(inter, fileData));
             return id;
+        }
+
+        /// <summary>
+        /// Generates a file data string for inputs.
+        /// </summary>
+        /// <returns>The resulting file data string.</returns>
+        /// <param name="assemblyName">The Assembly's Name.</param>
+        /// <param name="typeFullname">The Type's FullName value.</param>
+        /// <param name="id">The current mod's Identifier.</param>
+        public static string GenerateFileDataString(string assemblyName, string typeFullname, string id)
+        {
+            id = Utility.ConvertToHexBlocks(id);
+            return id +
+                "\n6c 64 6c 6f 63 2e 61 72 67 73\n" +                               // \nldloc.args\n
+                "63 61 6c 6c 20 50 61 74 68 66 69 6e 64 65 72 2e 45 " +             // call Pathfinder.E
+                "78 65 63 75 74 61 62 6c 65 2e 49 6e 73 74 61 6e 63 65 20 5b " +    // xecutable.Instance [
+                Utility.ConvertToHexBlocks(assemblyName) +
+                "2e 64 6c 6c 5d " + Utility.ConvertToHexBlocks(typeFullname) + " 3d " + id + " 28 29"; // .dll]_=_()
         }
 
         /// <summary>
@@ -52,27 +69,23 @@ namespace Pathfinder.Executable
         /// Determines whether the file data is for a mod interface.
         /// </summary>
         /// <returns><c>true</c>, if the file data is for a mod interface, <c>false</c> otherwise.</returns>
-        /// <param name="fileData">File data.</param>
+        /// <param name="fileData">The Filedata to check against.</param>
         public static bool IsFileDataForModExe(string fileData)
         {
-            bool isFileData = true;
             var dataLines = fileData.Split('\n');
-
-            if (!(dataLines.Length >= 3))
-                isFileData = false;
-            if (!(dataLines[1] == "ldloc.args"))
-                isFileData = false;
-            if (!(dataLines[2].StartsWith("call Pathfinder.Executable.Instance", StringComparison.Ordinal)))
-                isFileData = false;
-            if (!(dataLines[2].EndsWith("=" + dataLines[0] + "()", StringComparison.Ordinal)))
-                isFileData = false;
-            if (!(ModExecutables.Any(pair => pair.Value.Item2 == fileData)))
-                isFileData = false;
-            /*bool isFileData = dataLines.Length >= 3 && dataLines[1] == "ldloc.args"
-                            && dataLines[2].StartsWith("call Pathfinder.Executable.Instance", StringComparison.Ordinal)
-                            && dataLines[2].EndsWith("=" + dataLines[0] + "()", StringComparison.Ordinal)
-                            && ModExecutables.Any(pair => pair.Value.Item2 == fileData);*/
-            return isFileData;
+            return dataLines.Length >= 3
+                            &&
+                                (dataLines[1] == "6c 64 6c 6f 63 2e 61 72 67 73"
+                                && dataLines[2].StartsWith("63 61 6c 6c 20 50 61 74 68 66 69 6e 64 65 72 2e 45 78 65 63 75 74 61 62 6c 65 2e 49 6e 73 74 61 6e 63 65",
+                                                           StringComparison.Ordinal)
+                                && dataLines[2].EndsWith("3d " + dataLines[0] + " 28 29", StringComparison.Ordinal))
+                            ||
+                                (dataLines[1] == "ldloc.args"
+                                && dataLines[2].StartsWith("call Pathfinder.Executable.Instance",
+                                                           StringComparison.Ordinal)
+                                && dataLines[2].EndsWith("=" + dataLines[0] + "()", StringComparison.Ordinal))
+                            && ModExecutables.Any(pair => pair.Value.Item2 == fileData
+                                                  || Utility.ConvertToHexBlocks(pair.Value.Item2) == fileData);
         }
 
         /// <summary>
