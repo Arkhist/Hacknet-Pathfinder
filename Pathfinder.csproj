@@ -35,6 +35,7 @@
       </CustomCommands>
     </CustomCommands>
     <NoStdLib>false</NoStdLib>
+    <NoWarn></NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -90,6 +91,7 @@
       <HintPath>lib\Steamworks.NET.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pathfinder\Event\BasicEvents.cs" />
@@ -177,11 +179,53 @@
     <Compile Include="Pathfinder\Util\Locale.cs" />
     <Compile Include="Pathfinder\Docs\Hacknet.cs" />
     <Compile Include="Pathfinder\Game\Folder\Extensions.cs" />
+    <Compile Include="Pathfinder\Util\SaxProcessor.cs" />
+    <Compile Include="Pathfinder\Util\ReadOnlyDictionary.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Pathfinder\Internal\SaveLoaderReplacement.cs" />
+    <Compile Include="Pathfinder\Util\Sax\IAttributes.cs" />
+    <Compile Include="Pathfinder\Util\Sax\IContentHandler.cs" />
+    <Compile Include="Pathfinder\Util\Sax\IDTDHandler.cs" />
+    <Compile Include="Pathfinder\Util\Sax\IEntityResolver.cs" />
+    <Compile Include="Pathfinder\Util\Sax\IErrorHandler.cs" />
+    <Compile Include="Pathfinder\Util\Sax\ILocator.cs" />
+    <Compile Include="Pathfinder\Util\Sax\InputSource.cs" />
+    <Compile Include="Pathfinder\Util\Sax\IXmlFilter.cs" />
+    <Compile Include="Pathfinder\Util\Sax\IXmlReader.cs" />
+    <Compile Include="Pathfinder\Util\Sax\SAXException.cs" />
+    <Compile Include="Pathfinder\Util\Sax\SAXNotRecognizedException.cs" />
+    <Compile Include="Pathfinder\Util\Sax\SAXNotSupportedException.cs" />
+    <Compile Include="Pathfinder\Util\Sax\SAXParseException.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Ext\Attributes2.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Ext\DefaultHandler2.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Ext\IAttributes2.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Ext\IDeclHandler.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Ext\IEntityResolver2.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Ext\ILexicalHandler.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Ext\ILocator2.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Ext\Locator2.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Helpers\Attributes.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Helpers\BaseXmlReaderFactory.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Helpers\DefaultHandler.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Helpers\IXmlReaderFactory.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Helpers\Locator.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Helpers\NamespaceSupport.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Helpers\SaxConfigurationSection.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Helpers\XmlFilter.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Helpers\XmlReaderFactory.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Properties\AssemblyInfo.cs" />
+    <Compile Include="Pathfinder\Internal\ContentLoaderReplacement.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
     <None Include="Pathfinder\Docs\Pathfinder.doc" />
+    <None Include="Pathfinder\Util\Sax\LICENSE">
+      <DependentUpon>LICENSE</DependentUpon>
+    </None>
+    <None Include="Pathfinder\Util\Sax\README.md" />
+    <None Include="Pathfinder\Util\Sax\Ext\package.html" />
+    <None Include="Pathfinder\Util\Sax\Helpers\package.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="PathfinderPatcher\PathfinderPatcher.csproj">
