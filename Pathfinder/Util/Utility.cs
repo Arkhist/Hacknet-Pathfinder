@@ -4,7 +4,9 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Hacknet;
+using Microsoft.Xna.Framework;
 using Pathfinder.ModManager;
+using Sax.Net;
 
 namespace Pathfinder.Util
 {
@@ -160,6 +162,48 @@ namespace Pathfinder.Util
             foreach (var n in fromConvert.Split(' '))
                 result += ignoreNewline && n.Contains("\n") ? 0 : Convert.ToChar(Convert.ToInt32(n, 16));
             return result;
+        }
+
+        public static Color GetColorFromString(string input, Color? defaultColor = null)
+        {
+            if (input == null) return defaultColor.HasValue ? defaultColor.Value : Color.White;
+            var colorArr = input.Split(new char[] { ',', ' ', '/' }, StringSplitOptions.RemoveEmptyEntries);
+            var rgba = new int[4];
+            if (colorArr.Length >= 3)
+                for (var i = 0; i < rgba.Length; i++)
+                    rgba[i] = colorArr.Length < i ? 255 : Convert.ToInt32(colorArr[i]);
+            else return defaultColor.HasValue ? defaultColor.Value : Color.White;
+            return new Color(rgba[0], rgba[1], rgba[2], rgba[3]);
+        }
+
+        public static bool Contains(this IAttributes atts, string name)
+        {
+            for (var i = 0; i < atts.Length; i++)
+                if (atts.GetQName(i) == name) return true;
+            return false;
+        }
+
+        public static Administrator GetAdminFromString(string input, bool resetsPass = true, bool isSuper = true)
+        {
+            Administrator basicAdmin = null;
+            switch (input)
+            {
+                case "fast":
+                    basicAdmin = new FastBasicAdministrator();
+                    break;
+                case "basic":
+                    basicAdmin = new BasicAdministrator();
+                    break;
+                case "progress":
+                    basicAdmin = new FastProgressOnlyAdministrator();
+                    break;
+            }
+            if (basicAdmin != null)
+            {
+                basicAdmin.ResetsPassword = resetsPass;
+                basicAdmin.IsSuper = isSuper;
+            }
+            return basicAdmin;
         }
     }
 }
