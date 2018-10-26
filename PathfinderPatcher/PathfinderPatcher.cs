@@ -458,7 +458,18 @@ namespace PathfinderPatcher
                     hooks.GetMethod("onOSDraw"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
-                    
+
+
+                // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
+                // Hook onAddSerializableConditions to SerializableCondition.Deserialize
+                ad.MainModule.GetType("Hacknet.SerializableCondition").GetMethod("Deserialize").InjectWith(
+                    hooks.GetMethod("onAddSerializableConditions"),
+                    3,
+                    flags: InjectFlags.PassLocals,
+                    localsID:new int[]{ 0 }
+                );
+
+
 
                 ad?.Write("HacknetPathfinder.exe");
             }

@@ -96,6 +96,8 @@
     <Compile Include="Pathfinder\Event\MainMenuEvents.cs" />
     <Compile Include="Pathfinder\Event\EventManager.cs" />
     <Compile Include="Pathfinder\Event\PathfinderEvent.cs" />
+    <Compile Include="Pathfinder\Actions\SerializableCondition\ConditionHandler.cs" />
+    <Compile Include="Pathfinder\Actions\SerializableCondition\Interface.cs" />
     <Compile Include="Pathfinder\Pathfinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pathfinder\PathfinderHooks.cs" />
@@ -176,32 +178,7 @@
     <Compile Include="Pathfinder\Docs\Hacknet.cs" />
     <Compile Include="Pathfinder\Game\Folder\Extensions.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pathfinder\Util\" />
-    <Folder Include="Pathfinder\Util\File\" />
-    <Folder Include="Pathfinder\GameFilesystem\" />
-    <Folder Include="Pathfinder\Mission\" />
-    <Folder Include="Pathfinder\Port\" />
-    <Folder Include="Pathfinder\Extension\" />
-    <Folder Include="Pathfinder\Internal\" />
-    <Folder Include="Pathfinder\Internal\GUI\" />
-    <Folder Include="Pathfinder\Util\Attribute\" />
-    <Folder Include="Pathfinder\GUI\ModOptions\" />
-    <Folder Include="Pathfinder\ModManager\" />
-    <Folder Include="Pathfinder\ModManager\Attribute\" />
-    <Folder Include="Pathfinder\Game\" />
-    <Folder Include="Pathfinder\Game\Computer\" />
-    <Folder Include="Pathfinder\Game\NetworkMap\" />
-    <Folder Include="Pathfinder\Game\OS\" />
-    <Folder Include="Pathfinder\Game\ExeModule\">
-    </Folder>
-    <Folder Include="Pathfinder\Util\Network\">
-    </Folder>
-    <Folder Include="Pathfinder\Docs\">
-    </Folder>
-    <Folder Include="Pathfinder\Game\Folder\">
-    </Folder>
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <ItemGroup>
     <None Include="Pathfinder\Docs\Pathfinder.doc" />

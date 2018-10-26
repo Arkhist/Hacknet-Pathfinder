@@ -15,6 +15,7 @@ using Pathfinder.Util;
 
 using MainTitleData = Pathfinder.Event.DrawMainMenuTitlesEvent.TitleData<int>;
 using SubTitleData = Pathfinder.Event.DrawMainMenuTitlesEvent.TitleData<float>;
+using System.Collections.Generic;
 
 namespace Pathfinder
 {
@@ -539,6 +540,19 @@ namespace Pathfinder
         {
             var optionsMenuApplyEvent = new Event.OptionsMenuApplyEvent(self);
             optionsMenuApplyEvent.CallEvent();
+        }
+
+
+        public static void onAddSerializableConditions(ref Dictionary<string, Func<XmlReader, SerializableCondition>> dict)
+        {
+            // HACKNET BUG FIX : DoesNotHaveFlags not in dictionary
+            dict.Add("DoesNotHaveFlags", new Func<XmlReader, SerializableCondition>(SCDoesNotHaveFlags.DeserializeFromReader));
+
+            Dictionary<string, Actions.SerializableCondition.ConditionHandler.Deserializer> deserializers =
+                 Actions.SerializableCondition.ConditionHandler.GetDeserializers();
+
+            foreach(KeyValuePair<string, Actions.SerializableCondition.ConditionHandler.Deserializer> pair in deserializers)
+                dict.Add(pair.Key, new Func<XmlReader, Hacknet.SerializableCondition>(pair.Value));
         }
     }
 }
