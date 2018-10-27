@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Hacknet;
@@ -158,10 +159,11 @@ namespace Pathfinder.Util
 
         public static string ConvertFromHexBlocks(string fromConvert, bool ignoreNewline = true)
         {
-            string result = "";
+            var builder = new StringBuilder();
             foreach (var n in fromConvert.Split(' '))
-                result += ignoreNewline && n.Contains("\n") ? 0 : Convert.ToChar(Convert.ToInt32(n, 16));
-            return result;
+                if (!ignoreNewline || !n.Contains("\n"))
+                    builder.Append(Convert.ToChar(Convert.ToInt32(n, 16)));
+            return builder.ToString();
         }
 
         public static Color GetColorFromString(string input, Color? defaultColor = null)

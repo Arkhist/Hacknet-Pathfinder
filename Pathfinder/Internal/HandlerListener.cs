@@ -4,6 +4,7 @@ using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 using Pathfinder.Game.OS;
+using Pathfinder.Util;
 using ModOptions = Pathfinder.GUI.ModOptions;
 
 namespace Pathfinder.Internal
@@ -46,8 +47,9 @@ namespace Pathfinder.Internal
         public static void ExecutableListener(ExecutableExecuteEvent e)
         {
             Tuple<Executable.IInterface, string> tuple;
+            Console.WriteLine(Utility.ConvertFromHexBlocks(e.ExecutableFile.data.Split('\n')[0]));
             if (Executable.Handler.IsFileDataForModExe(e.ExecutableFile.data)
-                && Executable.Handler.ModExecutables.TryGetValue(e.ExecutableFile.data.Split('\n')[0], out tuple))
+                && Executable.Handler.ModExecutables.TryGetValue(Utility.ConvertFromHexBlocks(e.ExecutableFile.data.Split('\n')[0]), out tuple))
             {
                 int num = e.OS.ram.bounds.Y + RamModule.contentStartOffset;
                 foreach (var exe in e.OS.exes)
