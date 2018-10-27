@@ -8,6 +8,11 @@ namespace Pathfinder.Actions.SerializableCondition
 {
     public abstract class Interface : Hacknet.SerializableCondition
     {
-        public virtual bool Check(OS os) { return true; }
+        public abstract bool Check(OS os);
+
+        public override bool Check(object os_obj)
+        {
+            return Check((Hacknet.OS)os_obj);
+        }
     }
 }
