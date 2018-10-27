@@ -469,6 +469,15 @@ namespace PathfinderPatcher
                     localsID:new int[]{ 0 }
                 );
 
+                // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
+                // Hook onAddSerializableConditions to SerializableCondition.Deserialize
+                ad.MainModule.GetType("Hacknet.SerializableAction").GetMethod("Deserialize").InjectWith(
+                    hooks.GetMethod("onAddSerializableActions"),
+                    3,
+                    flags: InjectFlags.PassLocals,
+                    localsID: new int[] { 0 }
+                );
+
 
 
                 ad?.Write("HacknetPathfinder.exe");

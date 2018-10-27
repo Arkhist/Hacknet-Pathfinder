@@ -35,7 +35,8 @@
       </CustomCommands>
     </CustomCommands>
     <NoStdLib>false</NoStdLib>
-    <NoWarn></NoWarn>
+    <NoWarn>
+    </NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -94,6 +95,8 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pathfinder\Actions\SerializableAction\ActionHandler.cs" />
+    <Compile Include="Pathfinder\Actions\SerializableAction\Interface.cs" />
     <Compile Include="Pathfinder\Event\BasicEvents.cs" />
     <Compile Include="Pathfinder\Event\MainMenuEvents.cs" />
     <Compile Include="Pathfinder\Event\EventManager.cs" />

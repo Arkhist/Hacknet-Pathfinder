@@ -554,5 +554,14 @@ namespace Pathfinder
             foreach(KeyValuePair<string, Actions.SerializableCondition.ConditionHandler.Deserializer> pair in deserializers)
                 dict.Add(pair.Key, new Func<XmlReader, Hacknet.SerializableCondition>(pair.Value));
         }
+
+        public static void onAddSerializableActions(ref Dictionary<string, Func<XmlReader, SerializableAction>> dict)
+        {
+            Dictionary<string, Actions.SerializableAction.ActionHandler.Deserializer> deserializers =
+                 Actions.SerializableAction.ActionHandler.GetDeserializers();
+
+            foreach (KeyValuePair<string, Actions.SerializableAction.ActionHandler.Deserializer> pair in deserializers)
+                dict.Add(pair.Key, new Func<XmlReader, Hacknet.SerializableAction>(pair.Value));
+        }
     }
 }
