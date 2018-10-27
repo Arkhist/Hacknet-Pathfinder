@@ -1,5 +1,6 @@
 # Pathfinder
-An extensive modding API and loader for Hacknet that enables practically limitless programable extensions to the game
+An extensive modding API and loader for Hacknet that enables practically limitless programable extensions to the game.
+Patches bugs from the original game.
 
 ### Installation
 
@@ -24,6 +25,9 @@ An extensive modding API and loader for Hacknet that enables practically limitle
 3. Open the solution file in a .NET 4.0 compatible IDE
 4. Build the PathfinderPatcher and Pathfinder projects (if you're using an IDE other then Xamarin Studio on Windows, build.bat should prevent any problematic IDE annoyances)
 5. And now you're ready to contribute to the development of the mod
+
+## Bugs patched
+DoesNotLoadFlags extension conditional not being parsed.
 
 ## Links
 
