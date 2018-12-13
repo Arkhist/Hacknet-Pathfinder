@@ -1,21 +1,20 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Hacknet;
 using Hacknet.Effects;
 using Hacknet.Gui;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.GameFilesystem;
 using Pathfinder.GUI;
 using Pathfinder.ModManager;
 using Pathfinder.Util;
-
 using MainTitleData = Pathfinder.Event.DrawMainMenuTitlesEvent.TitleData<int>;
 using SubTitleData = Pathfinder.Event.DrawMainMenuTitlesEvent.TitleData<float>;
-using System.Collections.Generic;
 
 namespace Pathfinder
 {
@@ -548,20 +547,18 @@ namespace Pathfinder
             // HACKNET BUG FIX : DoesNotHaveFlags not in dictionary
             dict.Add("DoesNotHaveFlags", new Func<XmlReader, SerializableCondition>(SCDoesNotHaveFlags.DeserializeFromReader));
 
-            Dictionary<string, Actions.SerializableCondition.ConditionHandler.Deserializer> deserializers =
-                 Actions.SerializableCondition.ConditionHandler.GetDeserializers();
+            var deserializers = Actions.SerializableCondition.ConditionHandler.GetDeserializers();
 
             foreach(KeyValuePair<string, Actions.SerializableCondition.ConditionHandler.Deserializer> pair in deserializers)
-                dict.Add(pair.Key, new Func<XmlReader, Hacknet.SerializableCondition>(pair.Value));
+                dict.Add(pair.Key, new Func<XmlReader, SerializableCondition>(pair.Value));
         }
 
         public static void onAddSerializableActions(ref Dictionary<string, Func<XmlReader, SerializableAction>> dict)
         {
-            Dictionary<string, Actions.SerializableAction.ActionHandler.Deserializer> deserializers =
-                 Actions.SerializableAction.ActionHandler.GetDeserializers();
+            var deserializers = Actions.SerializableAction.ActionHandler.GetDeserializers();
 
             foreach (KeyValuePair<string, Actions.SerializableAction.ActionHandler.Deserializer> pair in deserializers)
-                dict.Add(pair.Key, new Func<XmlReader, Hacknet.SerializableAction>(pair.Value));
+                dict.Add(pair.Key, new Func<XmlReader, SerializableAction>(pair.Value));
         }
     }
 }

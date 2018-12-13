@@ -425,7 +425,12 @@ namespace Sax.Net.Helpers {
       }
       _length = 0;
     }
-  }
+
+        public IAttributes Clone()
+        {
+            return new Attributes(this);
+        }
+    }
 
   // end of AttributesImpl.java
 }

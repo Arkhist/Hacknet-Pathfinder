@@ -1,70 +1,55 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
 using Hacknet;
 using Hacknet.Security;
 using Microsoft.Xna.Framework;
+using Pathfinder.Game.Computer;
+using Pathfinder.Game.Folder;
 using Pathfinder.Util;
+using Sax.Net;
 
 namespace Pathfinder.Internal
 {
     public static class SaveLoaderReplacement
     {
-        public static Computer loadComputer(XmlReader reader, OS os)
+        public static Computer LoadComputer(XmlReader reader, OS os)
         {
             Computer computer = null;
             var processor = new SaxProcessor();
             processor.AddActionForTag("computer", (info) =>
             {
-                var name = info.Attributes.GetValue("name");
-                var ip = info.Attributes.GetValue("ip");
-                byte type;
-                byte.TryParse(info.Attributes.GetValue("type"), out type);
                 var spec = info.Attributes.GetValue("spec");
-                var id = info.Attributes.GetValue("id");
-                var devices = info.Attributes.GetValue("devices");
-                var icon = info.Attributes.GetValue("icon");
-                var tracker = info.Attributes.GetValue("tracker").ToLower() == "true";
+                var security = info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "security");
+                var proxyTime = (security?.Attributes).GetFloat("proxyTime", -1f);
+                var admin = info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "admin");
+                var portsOpen = info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "portsOpen")?.Value;
 
-                var location = info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "location");
-                float x;
-                float y;
-                float.TryParse(location?.Attributes.GetValue("x"), out x);
-                float.TryParse(location?.Attributes.GetValue("y"), out y);
-
-
-                var security = info.Elements.First((ininfo) => ininfo.Name == "security");
-                int level;
-                int.TryParse(security?.Attributes.GetValue("level"), out level);
-                level = level == 0 ? 1 : level;
-                float traceTime = -1f;
-                float.TryParse(security?.Attributes.GetValue("traceTime"), out traceTime);
-#pragma warning disable RECS0018 // Comparison of floating point numbers with equality operator
-                traceTime = traceTime == 0.0f ? -1f : traceTime;
-#pragma warning restore RECS0018 // Comparison of floating point numbers with equality operator
-                int portsToCrack;
-                int.TryParse(security?.Attributes.GetValue("portsToCrack"), out portsToCrack);
-                var adminIP = security?.Attributes.GetValue("adminIP") ?? "192.167.1.111";
-                float proxyTime = -1f;
-                float.TryParse(security?.Attributes.GetValue("proxyTime"), out proxyTime);
-#pragma warning disable RECS0018 // Comparison of floating point numbers with equality operator
-                proxyTime = proxyTime == 0.0f ? -1f : proxyTime;
-#pragma warning restore RECS0018 // Comparison of floating point numbers with equality operator
-
-                var admin = info.Elements.First((ininfo) => ininfo.Name == "admin");
-
-                var firewall = loadFirewall(info);
-                var portsOpen = info.Elements.First((ininfo) => ininfo.Name == "portsOpen")?.Value;
-
-                computer = new Computer(name, ip, new Vector2(x, y), level, type, os)
+                computer = new Computer(
+                    info.Attributes.GetValue("name"),
+                    info.Attributes.GetValue("ip"),
+                    (info.Elements.FirstOrDefault(
+                        (ininfo) => ininfo.Name == "location"
+                    )?.Attributes).GetVector2("x", "y"),
+                    (security?.Attributes).GetInt("level", 1),
+                    info.Attributes.GetByte("type"),
+                    os
+                )
                 {
-                    firewall = firewall,
+                    firewall = LoadFirewall(info),
                     admin = Utility.GetAdminFromString(
-                        admin?.Attributes.GetValue("type") ?? "none",
-                        admin.Attributes.GetValue("resetPass").ToLower() == "true",
-                        admin.Attributes.GetValue("isSuper").ToLower() == "true"),
-                    HasTracker = tracker
+                        (admin?.Attributes).GetValueOrDefault("type", "none"),
+                        (admin?.Attributes).GetBool("resetPass"),
+                        (admin?.Attributes).GetBool("isSuper")),
+                    HasTracker = info.Attributes.GetBool("tracker"),
+                    traceTime = (security?.Attributes).GetFloat("traceTime", -1f),
+                    portsNeededForCrack = (security?.Attributes).GetInt("portsToCrack"),
+                    adminIP = (security?.Attributes).GetValue("adminIP", "192.167.1.111"),
+                    idName = info.Attributes.GetValue("id"),
+                    icon = info.Attributes.GetValue("icon"),
+                    attatchedDeviceIDs = info.Attributes.GetValue("devices")
                 };
                 if (proxyTime <= 0f)
                 {
@@ -74,9 +59,9 @@ namespace Pathfinder.Internal
                 else computer.addProxy(proxyTime);
 
                 computer.PortRemapping = PortRemappingSerializer.Deserialize(
-                    info.Elements.First((ininfo) => ininfo.Name == "portRemap")?.Value);
+                    info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "portRemap")?.Value);
 
-                var userDetail = loadUserDetail(info);
+                var userDetail = LoadUserDetail(info);
                 computer.users.Clear();
                 if (userDetail.HasValue)
                 {
@@ -84,217 +69,190 @@ namespace Pathfinder.Internal
                     computer.users.Add(userDetail.Value);
                 }
 
-                computer.Memory = ContentLoaderReplacement.deserializeMemoryContent(info);
+                computer.Memory = ContentLoaderReplacement.DeserializeMemoryContent(info);
 
                 foreach (var daemonInfo in info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "daemons").Elements)
                 {
                     switch (daemonInfo.Name)
                     {
                         case "MailServer":
-                            var mailServer = new MailServer(computer, daemonInfo.Attributes.GetValue("name"), os);
-                            computer.daemons.Add(mailServer);
-                            var mailServerColor = daemonInfo.Attributes.GetValue("color");
+                            var mailServer = computer.AddDaemon<MailServer>(daemonInfo.Attributes.GetValue("name"), os);
+                            var mailServerColor = daemonInfo.Attributes.GetColor("color", true);
                             if (mailServerColor != null)
-                                mailServer.setThemeColor(Utils.convertStringToColor(mailServerColor));
+                                mailServer.setThemeColor(mailServerColor.Value);
                             break;
                         case "MissionListingServer":
-                            string listingName = daemonInfo.Attributes.GetValue("name"),
-                            listingGroup = daemonInfo.Attributes.GetValue("group"),
-                            listingTitle = daemonInfo.Attributes.GetValue("title"),
-                            listingIcon = daemonInfo.Attributes.GetValue("icon"),
-                            listingColor = daemonInfo.Attributes.GetValue("color"),
-                            listingArticles = daemonInfo.Attributes.GetValue("articles");
-                            bool listingAssign = daemonInfo.Attributes.GetValue("assign").ToLower().Equals("true"),
-                            listingPublic = daemonInfo.Attributes.GetValue("public").ToLower().Equals("true");
-                            var missionListingServer =
-                                listingIcon == null || listingColor == null
-                                 ? new MissionListingServer(computer, listingName, listingGroup,
-                                                            os, listingPublic, listingAssign)
-                                 : new MissionListingServer(computer, listingName, listingIcon, listingArticles,
-                                                            Utils.convertStringToColor(listingColor), os,
-                                                            listingPublic, listingAssign);
+                            var input = new List<object>
+                            {
+                                daemonInfo.Attributes.GetValue("name")
+                            };
+                            var listingIcon = daemonInfo.Attributes.GetValue("icon");
+                            var listingColor = daemonInfo.Attributes.GetColor("color", true);
+                            if (listingIcon == null || listingColor == null)
+                                input.Add(daemonInfo.Attributes.GetValue("group"));
+                            else
+                                input.AddRange(new object[]
+                                {
+                                    listingIcon,
+                                    daemonInfo.Attributes.GetValue("articles"),
+                                    listingColor
+                                });
+                            input.AddRange(new object[]
+                            {
+                                os,
+                                daemonInfo.Attributes.GetBool("public"),
+                                daemonInfo.Attributes.GetBool("assign")
+                            });
+                            var missionListingServer = computer.AddDaemon<MissionListingServer>(input.ToArray());
+
+                            var listingTitle = daemonInfo.Attributes.GetValue("title");
                             if (listingTitle != null)
                                 missionListingServer.listingTitle = listingTitle;
-                            computer.daemons.Add(missionListingServer);
                             break;
                         case "AddEmailServer":
-                            var addEmailDaemon = new AddEmailDaemon(computer,
-                                                                    daemonInfo.Attributes.GetValue("name"), os);
-                            computer.daemons.Add(addEmailDaemon);
+                            computer.AddDaemon<AddEmailDaemon>(daemonInfo.Attributes.GetValue("name"), os);
                             break;
                         case "MessageBoard":
-                            var messageBoardDaemon = new MessageBoardDaemon(computer, os)
-                            {
-                                name = daemonInfo.Attributes.GetValue("name")
-                            };
+                            var messageBoardDaemon = computer.AddDaemon<MessageBoardDaemon>(os);
+                            messageBoardDaemon.name = daemonInfo.Attributes.GetValue("name");
                             var boardName = daemonInfo.Attributes.GetValue("boardName");
                             if (boardName != null)
                                 messageBoardDaemon.BoardName = boardName;
                             computer.daemons.Add(messageBoardDaemon);
                             break;
                         case "WebServer":
-                            computer.daemons.Add(new WebServerDaemon(computer, daemonInfo.Attributes.GetValue("name"),
-                                                                     os,
-                                                                     daemonInfo.Attributes.GetValue("url")));
+                            computer.AddDaemon<WebServerDaemon>(daemonInfo.Attributes.GetValue("name"),
+                                                                os,
+                                                                daemonInfo.Attributes.GetValue("url"));
                             break;
                         case "OnlineWebServer":
                             var onlineWebServerDaemon =
-                                new OnlineWebServerDaemon(computer, daemonInfo.Attributes.GetValue("name"), os);
+                                computer.AddDaemon<OnlineWebServerDaemon>(daemonInfo.Attributes.GetValue("name"), os);
                             onlineWebServerDaemon.setURL(daemonInfo.Attributes.GetValue("url"));
-                            computer.daemons.Add(onlineWebServerDaemon);
                             break;
                         case "AcademicDatabse":
-                            computer.daemons.Add(new AcademicDatabaseDaemon(computer,
-                                                                            daemonInfo.Attributes.GetValue("name"),
-                                                                            os));
+                            computer.AddDaemon<AcademicDatabaseDaemon>(daemonInfo.Attributes.GetValue("name"), os);
                             break;
                         case "MissionHubServer":
-                            computer.daemons.Add(new MissionHubServer(computer, "unknown", "unknown", os));
+                            computer.AddDaemon<MissionHubServer>("unknown", "unknown", os);
                             break;
                         case "DeathRowDatabase":
-                            computer.daemons.Add(new DeathRowDatabaseDaemon(computer, "Death Row Database", os));
+                            computer.AddDaemon<DeathRowDatabaseDaemon>("Death Row Database", os);
                             break;
                         case "MedicalDatabase":
-                            computer.daemons.Add(new MedicalDatabaseDaemon(computer, os));
+                            computer.AddDaemon<MedicalDatabaseDaemon>(os);
                             break;
                         case "HeartMonitor":
-                            computer.daemons.Add(new HeartMonitorDaemon(computer, os)
-                            {
-                                PatientID = daemonInfo.Attributes.GetValue("patient") ?? "UNKNOWN"
-                            });
+                            computer.AddDaemon<HeartMonitorDaemon>(os)
+                                    .PatientID = daemonInfo.Attributes.GetValue("patient") ?? "UNKNOWN";
                             break;
                         case "PointClicker":
-                            computer.daemons.Add(new PointClickerDaemon(computer, "Point Clicker!", os));
+                            computer.AddDaemon<PointClickerDaemon>("Point Clicker!", os);
                             break;
                         case "ispSystem":
-                            computer.daemons.Add(new ISPDaemon(computer, os));
+                            computer.AddDaemon<ISPDaemon>(os);
                             break;
                         case "porthackheart":
-                            computer.daemons.Add(new PorthackHeartDaemon(computer, os));
+                            computer.AddDaemon<PorthackHeartDaemon>(os);
                             break;
                         case "SongChangerDaemon":
-                            computer.daemons.Add(new SongChangerDaemon(computer, os));
+                            computer.AddDaemon<SongChangerDaemon>(os);
                             break;
                         case "UploadServerDaemon":
-                            computer.daemons.Add(
-                                new UploadServerDaemon(computer,
-                                                       daemonInfo.Attributes.GetValue("name") ?? "",
-                                                       Utility.GetColorFromString(
-                                                           daemonInfo.Attributes.GetValue("color")
-                                                          ),
-                                                       os,
-                                                       daemonInfo.Attributes.GetValue("foldername") ?? "",
-                                                       daemonInfo.Attributes.GetValue("needsAuh").ToLower() == "true")
-                                {
-                                    hasReturnViewButton = daemonInfo.Attributes.GetValue("hasReturnViewButton").ToLower() == "true"
-                                });
+                            computer.AddDaemon<UploadServerDaemon>(
+                                daemonInfo.Attributes.GetValueOrDefault("name", ""),
+                                daemonInfo.Attributes.GetColor("color"),
+                                os,
+                                daemonInfo.Attributes.GetValueOrDefault("foldername", ""),
+                                daemonInfo.Attributes.GetBool("needsAuh"))
+                                    .hasReturnViewButton = daemonInfo.Attributes.GetBool("hasReturnViewButton");
                             break;
                         case "DHSDaemon":
-                            computer.daemons.Add(new DLCHubServer(computer, "unknown", "unknown", os));
+                            computer.AddDaemon<DLCHubServer>("unknown", "unknown", os);
                             break;
                         case "CustomConnectDisplayDaemon":
-                            computer.daemons.Add(new CustomConnectDisplayDaemon(computer, os));
+                            computer.AddDaemon<CustomConnectDisplayDaemon>(os);
                             break;
                         case "DatabaseDaemon":
                             var databaseAdminEmail = daemonInfo.Attributes.GetValue("AdminEmailAccount");
                             var databaseDaemon =
-                                new DatabaseDaemon(computer,
-                                                   os,
-                                                   daemonInfo.Attributes.GetValue("Name"),
-                                                   daemonInfo.Attributes.GetValue("Permissions"),
-                                                   daemonInfo.Attributes.GetValue("DataType"),
-                                                   daemonInfo.Attributes.GetValue("Foldername"),
-                                                   Utility.GetColorFromString(daemonInfo.Attributes.GetValue("Color")));
+                                computer.AddDaemon<DatabaseDaemon>(
+                                    os,
+                                    daemonInfo.Attributes.GetValue("Name"),
+                                    daemonInfo.Attributes.GetValue("Permissions"),
+                                    daemonInfo.Attributes.GetValue("DataType"),
+                                    daemonInfo.Attributes.GetValue("Foldername"),
+                                    daemonInfo.Attributes.GetColor("Color"));
                             if (!string.IsNullOrWhiteSpace(databaseAdminEmail))
                             {
                                 databaseDaemon.adminResetEmailHostID = daemonInfo.Attributes.GetValue("AdminEmailHostID");
                                 databaseDaemon.adminResetPassEmailAccount = databaseAdminEmail;
                             }
-                            computer.daemons.Add(databaseDaemon);
                             break;
                         case "WhitelistAuthenticatorDaemon":
-                            computer.daemons.Add(new WhitelistConnectionDaemon(computer, os)
-                            {
-                                AuthenticatesItself =
-                                    daemonInfo.Attributes.GetValue("SelfAuthenticating").ToLower() != "false"
-                            });
+                            computer.AddDaemon<WhitelistConnectionDaemon>(os).AuthenticatesItself =
+                                    daemonInfo.Attributes.GetBool("SelfAuthenticating", true);
                             break;
                         case "IRCDaemon":
-                            computer.daemons.Add(new IRCDaemon(computer, os, "LOAD ERROR"));
+                            computer.AddDaemon<IRCDaemon>(os, "LOAD ERROR");
                             break;
                         case "MarkovTextDaemon":
-                            computer.daemons.Add(
-                                new MarkovTextDaemon(computer, os, daemonInfo.Attributes.GetValue("Name"),
-                                                     daemonInfo.Attributes.GetValue("SourceFilesContentFolder")));
-                            break;
-                        case "AircraftDaemon":
-                            var origin = Vector2.Zero;
-                            if (daemonInfo.Attributes.Contains("OriginX"))
-                                origin.X = Convert.ToSingle(daemonInfo.Attributes.GetValue("OriginX").Replace(",", "."));
-                            if (daemonInfo.Attributes.Contains("OriginY"))
-                                origin.Y = Convert.ToSingle(daemonInfo.Attributes.GetValue("OriginY").Replace(",", "."));
-                            var dest = Vector2.One * 0.5f;
-                            if (daemonInfo.Attributes.Contains("DestX"))
-                                dest.Y = Convert.ToSingle(daemonInfo.Attributes.GetValue("DestX").Replace(",", "."));
-                            if (daemonInfo.Attributes.Contains("DestY"))
-                                dest.Y = Convert.ToSingle(daemonInfo.Attributes.GetValue("DestY").Replace(",", "."));
-                            var progress = 0.5f;
-                            if (daemonInfo.Attributes.Contains("Progress"))
-                                progress = Convert.ToSingle(daemonInfo.Attributes.GetValue("Progress").Replace(",", "."));
-                            computer.daemons.Add(
-                                new AircraftDaemon(computer, os,
-                                                   daemonInfo.Attributes.GetValue("Name") ?? "Pacific Charter Flight",
-                                                   origin, dest, progress));
-                            break;
-                        case "LogoCustomConnectDisplayDaemon":
-                            computer.daemons.Add(
-                                new LogoCustomConnectDisplayDaemon(
-                                    computer, os,
-                                    daemonInfo.Attributes.GetValue("logo"),
-                                    daemonInfo.Attributes.GetValue("title"),
-                                    daemonInfo.Attributes.GetValue("overdrawLogo").ToLower() == "true",
-                                    daemonInfo.Attributes.GetValue("buttonAlignment")));
-                            break;
-                        case "LogoDaemon":
-                            computer.daemons.Add(
-                                new LogoDaemon(computer, os, name,
-                                               daemonInfo.Attributes.GetValue("ShowsTitle") != "false",
-                                               daemonInfo.Attributes.GetValue("LogoImagePath"))
-                                {
-                                    TextColor = Utility.GetColorFromString(daemonInfo.Attributes.GetValue("Color"))
-                                }
+                            computer.AddDaemon<MarkovTextDaemon>(
+                                os,
+                                daemonInfo.Attributes.GetValue("Name"),
+                                daemonInfo.Attributes.GetValue("SourceFilesContentFolder")
                             );
                             break;
+                        case "AircraftDaemon":
+                            computer.AddDaemon<AircraftDaemon>(
+                                os,
+                                daemonInfo.Attributes.GetValueOrDefault("Name", "Pacific Charter Flight"),
+                                daemonInfo.Attributes.GetVector2("Origin"),
+                                daemonInfo.Attributes.GetVector2("Dest", defaultVal: Vector2.One * 0.5f),
+                                daemonInfo.Attributes.GetFloat("Progress", 0.5f)
+                            );
+                            break;
+                        case "LogoCustomConnectDisplayDaemon":
+                            computer.AddDaemon<LogoCustomConnectDisplayDaemon>(
+                                os,
+                                daemonInfo.Attributes.GetValue("logo"),
+                                daemonInfo.Attributes.GetValue("title"),
+                                daemonInfo.Attributes.GetBool("overdrawLogo"),
+                                daemonInfo.Attributes.GetValue("buttonAlignment")
+                            );
+                            break;
+                        case "LogoDaemon":
+                            computer.AddDaemon<LogoDaemon>(
+                                os,
+                                computer.name,
+                                daemonInfo.Attributes.GetBool("ShowsTitle", true),
+                                daemonInfo.Attributes.GetValue("LogoImagePath")
+                            ).TextColor = daemonInfo.Attributes.GetColor("Color");
+                            break;
                         case "DLCCredits":
-                            string dlcCreditsButton = daemonInfo.Attributes.GetValue("Button"),
-                            dlcCreditsTitle = daemonInfo.Attributes.GetValue("Title");
-                            var dLCCreditsDaemon =
-                                ((dlcCreditsTitle == null && dlcCreditsButton == null)
-                                 ? new DLCCreditsDaemon(computer, os)
-                                 : new DLCCreditsDaemon(computer, os, dlcCreditsTitle, dlcCreditsButton));
-                            if (daemonInfo.Attributes.Contains("Action"))
-                                dLCCreditsDaemon.ConditionalActionsToLoadOnButtonPress =
-                                                    daemonInfo.Attributes.GetValue("Action");
-                            computer.daemons.Add(dLCCreditsDaemon);
+                            input = new List<object>
+                            {
+                                os,
+                                daemonInfo.Attributes.GetValue("Title"),
+                                daemonInfo.Attributes.GetValue("Button")
+                            };
+                            input.Where((i) => i != null);
+                            computer.AddDaemon<DLCCreditsDaemon>(input.ToArray())
+                                            .ConditionalActionsToLoadOnButtonPress =
+                                        daemonInfo.Attributes.GetValue("ConditionalActionSetToRunOnButtonPressPath");
                             break;
                         case "FastActionHost":
-                            computer.daemons.Add(new FastActionHost(computer, os, name));
+                            computer.AddDaemon<FastActionHost>(os, computer.name);
                             break;
                     }
                 }
 
-                computer.files = loadFilesystem(info);
-                computer.traceTime = traceTime;
-                computer.portsNeededForCrack = portsToCrack;
-                computer.adminIP = adminIP;
-                computer.idName = id;
-                computer.icon = icon;
-                computer.attatchedDeviceIDs = devices;
+                computer.files = LoadFilesystem(info);
 
                 var links = info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "links");
                 if (links != null)
-                    foreach (var c in links.Value.Split(new char[0]))
-                        if (c != "") computer.links.Add(Convert.ToInt32(c));
+                    foreach (var c in links.Value.Split())
+                        if (c.Trim() != "") computer.links.Add(Convert.ToInt32(c));
 
                 if (portsOpen.Length > 0) ComputerLoader.loadPortsIntoComputer(portsOpen, computer);
 
@@ -305,38 +263,38 @@ namespace Pathfinder.Internal
             return computer;
         }
 
-        public static Firewall loadFirewall(SaxProcessor.ElementInfo info)
+        public static Firewall LoadFirewall(SaxProcessor.ElementInfo info)
         {
             var firewallInfo = info.Elements.First((ininfo) => ininfo.Name == "firewall");
             return new Firewall(
-                Convert.ToInt32(firewallInfo.Attributes.GetValue("complexity")),
+                firewallInfo.Attributes.GetInt("complexity"),
                 firewallInfo.Attributes.GetValue("solution"),
-                Convert.ToSingle(firewallInfo.Attributes.GetValue("additionalDelay")));
+                firewallInfo.Attributes.GetFloat("additionalDelay")
+            );
         }
 
-        public static UserDetail? loadUserDetail(SaxProcessor.ElementInfo info)
+        public static UserDetail? LoadUserDetail(SaxProcessor.ElementInfo info)
         {
             var userInfo = info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "users");
             if (userInfo == null) return null;
             return new UserDetail(userInfo.Attributes.GetValue("name"),
                                   userInfo.Attributes.GetValue("pass"),
-                                  Convert.ToByte(userInfo.Attributes.GetValue("type")))
+                                  userInfo.Attributes.GetByte("type")
+                                 )
             {
-                known = userInfo.Attributes.GetValue("known").ToLower() == "true"
+                known = userInfo.Attributes.GetBool("known")
             };
         }
 
 
 
-        public static FileSystem loadFilesystem(SaxProcessor.ElementInfo info)
-        {
-            return new FileSystem(true)
+        public static FileSystem LoadFilesystem(SaxProcessor.ElementInfo info)
+            => new FileSystem(true)
             {
-                root = loadFolder(info.Elements.First((ininfo) => ininfo.Name == "filesystem"))
+                root = LoadFolder(info.Elements.First((ininfo) => ininfo.Name == "filesystem"))
             };
-        }
 
-        public static Folder loadFolder(SaxProcessor.ElementInfo info)
+        public static Folder LoadFolder(SaxProcessor.ElementInfo info)
         {
             if (info.Elements.Count == 0) return null;
             var outFolderInfo = info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "folder");
@@ -345,14 +303,13 @@ namespace Pathfinder.Internal
             {
                 if (element.Name == "folder")
                     foreach (var inElement in element.Elements)
-                        outFolder.folders.Add(loadFolder(inElement));
+                        outFolder.folders.Add(LoadFolder(inElement));
                 if (element.Name == "file"
-                    && (element.Attributes.GetValue("EduSafe").ToLower() != "false" || !Settings.EducationSafeBuild))
-                    outFolder.files.Add(
-                        new FileEntry(
-                            Folder.deFilter(element.Attributes.GetValue("name")),
-                            Folder.deFilter(element.Value)));
-
+                    && (element.Attributes.GetBool("EduSafe", true) || !Settings.EducationSafeBuild))
+                    outFolder.AddFile(
+                        Folder.deFilter(element.Attributes.GetValue("name")),
+                        Folder.deFilter(element.Value)
+                    );
             }
             return outFolder;
         }
@@ -373,10 +330,11 @@ namespace Pathfinder.Internal
 
         public static void CopyTo(this XmlReader reader, Stream s)
         {
-            var settings = new XmlWriterSettings();
-            settings.CheckCharacters = false; // don't get hung up on technically invalid XML characters
-            settings.CloseOutput = false; // leave the stream open
-            using (XmlWriter writer = XmlWriter.Create(s, settings))
+            using (var writer = XmlWriter.Create(s, new XmlWriterSettings
+            {
+                CheckCharacters = false, // don't get hung ually invalid XML characters
+                CloseOutput = false // leave the stream open
+            }))
             {
                 writer.WriteNode(reader, true);
             }

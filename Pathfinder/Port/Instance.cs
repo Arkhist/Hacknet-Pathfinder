@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Pathfinder.Port
 {
@@ -19,12 +20,19 @@ namespace Pathfinder.Port
             Unlocked = unlocked;
         }
 
-        public static bool AssignTo(Instance ins, Hacknet.Computer c)
+        public static bool AssignTo(Instance ins, Hacknet.Computer c, bool replace = false)
         {
             if (!compToInst.ContainsKey(c))
                 compToInst.Add(c, new List<Instance>());
-            if (!compToInst[c].Contains(ins))
+            var sameDisplay = compToInst[c].FirstOrDefault((i) => i.Port.PortDisplay == ins.Port.PortDisplay);
+            if (!compToInst[c].Contains(ins) && sameDisplay == null)
             {
+                compToInst[c].Add(ins);
+                return true;
+            }
+            if (sameDisplay != null && replace)
+            {
+                compToInst[c].Remove(sameDisplay);
                 compToInst[c].Add(ins);
                 return true;
             }
@@ -46,7 +54,7 @@ namespace Pathfinder.Port
             return r;
         }
 
-        public bool AssignTo(Hacknet.Computer c) => AssignTo(this, c);
+        public bool AssignTo(Hacknet.Computer c, bool replace = false) => AssignTo(this, c , replace);
         public bool RemoveFrom(Hacknet.Computer c) => RemoveFrom(this, c);
 
         public bool Equals(Type other) => other.Equals(this);

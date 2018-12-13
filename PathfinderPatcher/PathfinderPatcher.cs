@@ -227,6 +227,14 @@ namespace PathfinderPatcher
                     f.IsPublic = true;
                 }
 
+                type = ad.MainModule.GetType("Hacknet.DatabaseDaemon");
+                foreach (var f in type.Fields)
+                {
+                    if (!f.IsPrivate) continue;
+                    f.IsPrivate = false;
+                    f.IsPublic = true;
+                }
+
                 // Spit out changes and exit
                 if (spitOutHacknetOnly)
                 {

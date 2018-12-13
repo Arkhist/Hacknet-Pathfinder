@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Pathfinder.Actions.SerializableAction
+﻿namespace Pathfinder.Actions.SerializableAction
 {
     public abstract class Interface : Hacknet.SerializableAction
     {
