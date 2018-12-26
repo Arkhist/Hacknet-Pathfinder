@@ -59,6 +59,7 @@ namespace Sax.Net.Helpers
 
         public override IXmlReader CreateXmlReader()
         {
+            if (_section?.XmlReaderType == null) return new SaxDriver();
             return CreateXmlReader(_section.XmlReaderType);
         }
 

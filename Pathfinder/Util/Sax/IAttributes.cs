@@ -250,6 +250,8 @@ namespace Sax.Net
     ///   are not available.
     /// </returns>
     string GetValue(string qName);
+
+    IAttributes Clone();
   }
 
   // end of Attributes.java

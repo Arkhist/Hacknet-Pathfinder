@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml;
 using Hacknet;
+using Hacknet.Extensions;
 using Hacknet.Security;
 using Microsoft.Xna.Framework;
+using Pathfinder.Game.Computer;
+using Pathfinder.Game.MailServer;
 using Pathfinder.Util;
+using Sax.Net;
 
 namespace Pathfinder.Internal
 {
@@ -17,15 +20,14 @@ namespace Pathfinder.Internal
             filename = LocalizedFileLoader.GetLocalizedFilepath(filename);
             Computer nearbyNodeOffset = null;
             Stream stream = null;
-            XmlReader xmlReader = null;
             string themeData;
             if (!filename.EndsWith("ExampleComputer.xml")) stream = File.OpenRead(filename);
             else
             {
                 themeData = File.ReadAllText(filename);
-                int num = themeData.IndexOf("<!--START_LABYRINTHS_ONLY_CONTENT-->");
+                var num = themeData.IndexOf("<!--START_LABYRINTHS_ONLY_CONTENT-->");
                 string str12 = "<!--END_LABYRINTHS_ONLY_CONTENT-->";
-                int num1 = themeData.IndexOf(str12);
+                var num1 = themeData.IndexOf(str12);
                 if (num >= 0 && num1 >= 0)
                     themeData = string.Concat(themeData.Substring(0, num), themeData.Substring(num1 + str12.Length));
                 stream = Utils.GenerateStreamFromString(themeData);
@@ -37,12 +39,12 @@ namespace Pathfinder.Internal
             {
                 var compType = info.Attributes.GetValue("type");
                 nearbyNodeOffset = new Computer(
-                    ComputerLoader.filter(info.Attributes.GetValue("name") ?? "UNKNOWN"),
-                    ComputerLoader.filter(info.Attributes.GetValue("ip") ?? Utility.GenerateRandomIP()),
-                    ComputerLoader.os.netMap.getRandomPosition(),
-                    Convert.ToInt32(info.Attributes.GetValue("security")),
-                    compType?.ToLower() == "empty" ? (byte)4 : Convert.ToByte(compType),
-                    os)
+                        info.Attributes.GetValue("name")?.HacknetConvert() ?? "UNKNOWN",
+                        info.Attributes.GetValue("ip")?.HacknetConvert() ?? Utility.GenerateRandomIP(),
+                        os.netMap.getRandomPosition(),
+                        Convert.ToInt32(info.Attributes.GetValue("security")),
+                        compType?.ToLower() == "empty" ? (byte)4 : Convert.ToByte(compType),
+                        os)
                 {
                     idName = info.Attributes.GetValue("id") ?? "UNKNOWN",
                     AllowsDefaultBootModule = info.Attributes.GetValue("allowsDefaultBootModule")?.ToLower() != "false",
@@ -59,17 +61,15 @@ namespace Pathfinder.Internal
                     switch (elementInfo.Name.ToLower())
                     {
                         case "file":
-                            var encodedFileStr = ComputerLoader.filter(elementInfo.Attributes.GetValue("name") ?? "Data");
-                            var eduSafe = info.Attributes.GetValue("EduSafe")?.ToLower() != "false";
-                            var eduSafeOnly = info.Attributes.GetValue("EduSafeOnly")?.ToLower() == "true";
+                            var encodedFileStr = elementInfo.Attributes.GetValueOrDefault("name", "Data", true);
                             themeData = elementInfo.Value;
-                            if (string.IsNullOrEmpty(themeData)) themeData = Computer.generateBinaryString(500);
-                            themeData = ComputerLoader.filter(themeData);
+                            if (string.IsNullOrEmpty(themeData)) themeData = Utility.GenerateBinString();
+                            themeData = themeData.HacknetConvert();
                             var folderFromPath = nearbyNodeOffset.getFolderFromPath(
-                                elementInfo.Attributes.GetValue("path") ?? "home", true);
-                            if (info.Attributes.GetValue("EduSafe")?.ToLower() != "false"
+                                elementInfo.Attributes.GetValueOrDefault("path", "home"), true);
+                            if (info.Attributes.GetBool("EduSafe", true)
                                 || !Settings.EducationSafeBuild
-                                && Settings.EducationSafeBuild || !eduSafeOnly)
+                                && Settings.EducationSafeBuild || !info.Attributes.GetBool("EduSafeOnly"))
                             {
                                 if (folderFromPath.searchForFile(encodedFileStr) == null)
                                     folderFromPath.files.Add(new FileEntry(themeData, encodedFileStr));
@@ -78,16 +78,16 @@ namespace Pathfinder.Internal
                             }
                             break;
                         case "encryptedfile":
-                            encodedFileStr = ComputerLoader.filter(elementInfo.Attributes.GetValue("name") ?? "Data");
-                            var header = elementInfo.Attributes.GetValue("header") ?? "ERROR";
-                            var ip = elementInfo.Attributes.GetValue("ip") ?? "ERROR";
-                            var pass = elementInfo.Attributes.GetValue("pass") ?? "";
+                            encodedFileStr = elementInfo.Attributes.GetValueOrDefault("name", "Data", true);
+                            var header = elementInfo.Attributes.GetValueOrDefault("header", "ERROR");
+                            var ip = elementInfo.Attributes.GetValueOrDefault("ip", "ERROR");
+                            var pass = elementInfo.Attributes.GetValueOrDefault("pass", "");
                             var extension = elementInfo.Attributes.GetValue("extension");
-                            var doubleAttr = elementInfo.Attributes.GetValue("double")?.ToLower() == "true";
+                            var doubleAttr = elementInfo.Attributes.GetBool("double");
                             themeData = elementInfo.Value;
-                            if (string.IsNullOrEmpty(themeData)) themeData = Computer.generateBinaryString(500);
-                            themeData = ComputerLoader.filter(themeData);
-                            if (elementInfo.Attributes.GetValue("double")?.ToLower() == "true")
+                            if (string.IsNullOrEmpty(themeData)) themeData = Utility.GenerateBinString();
+                            themeData = themeData.HacknetConvert();
+                            if (doubleAttr)
                                 themeData = FileEncrypter.EncryptString(themeData, header, ip, pass, extension);
                             themeData = FileEncrypter.EncryptString(themeData, header, ip, pass,
                                                                     (doubleAttr ? "_LAYER2.dec" : extension));
@@ -99,10 +99,10 @@ namespace Pathfinder.Internal
                                 folderFromPath.searchForFile(encodedFileStr).data = themeData;
                             break;
                         case "memorydumpfile":
-                            encodedFileStr = elementInfo.Attributes.GetValue("name") ?? "Data";
-                            var memoryContent = deserializeMemoryContent(elementInfo);
+                            encodedFileStr = elementInfo.Attributes.GetValueOrDefault("name", "Data");
+                            var memoryContent = DeserializeMemoryContent(elementInfo);
                             folderFromPath = nearbyNodeOffset.getFolderFromPath(
-                                elementInfo.Attributes.GetValue("path") ?? "home", true);
+                                elementInfo.Attributes.GetValueOrDefault("path", "home"), true);
                             if (folderFromPath.searchForFile(encodedFileStr) == null)
                                 folderFromPath.files.Add(
                                     new FileEntry(memoryContent.GetEncodedFileString(), encodedFileStr)
@@ -111,14 +111,13 @@ namespace Pathfinder.Internal
                                 folderFromPath.searchForFile(encodedFileStr).data = memoryContent.GetEncodedFileString();
                             break;
                         case "customthemefile":
-                            encodedFileStr = ComputerLoader.filter(elementInfo.Attributes.GetValue("name") ?? "Data");
+                            encodedFileStr = elementInfo.Attributes.GetValueOrDefault("name", "Data", true);
                             themeData = ThemeManager.getThemeDataStringForCustomTheme(elementInfo.Attributes.GetValue("themePath"));
-                            themeData = ComputerLoader.filter(
-                                string.IsNullOrEmpty(themeData)
+                            themeData = string.IsNullOrEmpty(themeData)
                                 ? "DEFINITION ERROR - Theme generated incorrectly. No Custom theme found at definition path"
-                                : themeData);
+                                : themeData.HacknetConvert();
                             folderFromPath = nearbyNodeOffset.getFolderFromPath(
-                                elementInfo.Attributes.GetValue("path") ?? "home", true);
+                                elementInfo.Attributes.GetValueOrDefault("path", "home"), true);
                             if (folderFromPath.searchForFile(encodedFileStr) == null)
                                 folderFromPath.files.Add(new FileEntry(themeData, encodedFileStr));
                             else
@@ -128,35 +127,28 @@ namespace Pathfinder.Internal
                             ComputerLoader.loadPortsIntoComputer(elementInfo.Value, nearbyNodeOffset);
                             break;
                         case "positionnear":
-                            var target = elementInfo.Attributes.GetValue("target") ?? "";
-                            var position = elementInfo.Attributes.Contains("position")
-                                                      ? Convert.ToInt32(elementInfo.Attributes.GetValue("position"))
-                                                      : 1;
-                            var total = elementInfo.Attributes.Contains("total")
-                                                      ? Convert.ToInt32(elementInfo.Attributes.GetValue("total"))
-                                                      : 3;
-                            var force = elementInfo.Attributes.GetValue("force")?.ToLower() == "true";
-                            var extraDistance = elementInfo.Attributes.Contains("extraDistance")
-                                                      ? Convert.ToSingle(elementInfo.Attributes.GetValue("extraDistance"))
-                                                      : 0f;
-                            extraDistance = Math.Max(-1f, Math.Min(1f, extraDistance));
+                            var target = elementInfo.Attributes.GetValueOrDefault("target", "");
+                            var position = elementInfo.Attributes.GetInt("position", 1);
+                            var total = elementInfo.Attributes.GetInt("total", 3);
+                            var force = elementInfo.Attributes.GetBool("force");
+                            var extraDistance =
+                                Math.Max(-1f, Math.Min(1f, elementInfo.Attributes.GetFloat("extraDistance")));
                             ComputerLoader.postAllLoadedActions += () =>
                             {
-                                var c = Programs.getComputer(ComputerLoader.os, target);
+                                var c = Programs.getComputer(os, target);
                                 if (c != null)
                                     nearbyNodeOffset.location = c.location
                                         + Corporation.getNearbyNodeOffset(
                                             c.location,
                                             position,
                                             total,
-                                            ComputerLoader.os.netMap,
+                                            os.netMap,
                                             extraDistance,
                                             force);
                             };
                             break;
                         case "proxy":
-                            var time = elementInfo.Attributes.Contains("time")
-                                ? Convert.ToSingle(elementInfo.Attributes.GetValue("time")) : 1f;
+                            var time = elementInfo.Attributes.GetFloat("time", 1);
                             if (time <= 0f)
                             {
                                 nearbyNodeOffset.hasProxy = false;
@@ -166,14 +158,12 @@ namespace Pathfinder.Internal
                                 nearbyNodeOffset.addProxy(Computer.BASE_PROXY_TICKS * time);
                             break;
                         case "portsforcrack":
-                            var val = elementInfo.Attributes.Contains("val")
-                                ? Convert.ToInt32(elementInfo.Attributes.GetValue("val")) : -1;
+                            var val = elementInfo.Attributes.GetInt("val", -1);
                             if (val != -1)
                                 nearbyNodeOffset.portsNeededForCrack = val - 1;
                             break;
                         case "firewall":
-                            var level = elementInfo.Attributes.Contains("level")
-                                ? Convert.ToInt32(elementInfo.Attributes.GetValue("level")) : 1;
+                            var level = elementInfo.Attributes.GetInt("level", 1);
                             if (level <= 0) nearbyNodeOffset.firewall = null;
                             else
                             {
@@ -182,43 +172,38 @@ namespace Pathfinder.Internal
                                     nearbyNodeOffset.addFirewall(level);
                                 else
                                     nearbyNodeOffset.addFirewall(
-                                        level, solution, elementInfo.Attributes.Contains("additionalTime")
-                                            ? Convert.ToSingle(elementInfo.Attributes.GetValue("additionalTime")) : 0f);
+                                        level, solution, elementInfo.Attributes.GetFloat("additionalTime"));
                             }
                             break;
                         case "link":
                             var linkedComp =
-                                Programs.getComputer(ComputerLoader.os,
-                                                     elementInfo.Attributes.GetValue("target") ?? "");
+                                Programs.getComputer(os, elementInfo.Attributes.GetValueOrDefault("target", ""));
                             if (linkedComp != null)
-                                nearbyNodeOffset.links.Add(ComputerLoader.os.netMap.nodes.IndexOf(linkedComp));
+                                nearbyNodeOffset.links.Add(os.netMap.nodes.IndexOf(linkedComp));
                             break;
                         case "dlink":
                             var offsetComp = nearbyNodeOffset;
                             ComputerLoader.postAllLoadedActions += () =>
                             {
                                 linkedComp =
-                                    Programs.getComputer(ComputerLoader.os,
-                                                         elementInfo.Attributes.GetValue("target") ?? "");
+                                    Programs.getComputer(os, elementInfo.Attributes.GetValueOrDefault("target", ""));
                                 if (linkedComp != null)
-                                    offsetComp.links.Add(ComputerLoader.os.netMap.nodes.IndexOf(linkedComp));
+                                    offsetComp.links.Add(os.netMap.nodes.IndexOf(linkedComp));
                             };
                             break;
                         case "trace":
-                            nearbyNodeOffset.traceTime = elementInfo.Attributes.Contains("time")
-                                ? Convert.ToSingle(elementInfo.Attributes.GetValue("time")) : 1f;
+                            nearbyNodeOffset.traceTime = elementInfo.Attributes.GetFloat("time", 1);
                             break;
                         case "adminpass":
                             nearbyNodeOffset.setAdminPassword(
-                                elementInfo.Attributes.Contains("pass")
-                                ? ComputerLoader.filter(elementInfo.Attributes.GetValue("pass"))
-                                : PortExploits.getRandomPassword());
+                                elementInfo.Attributes.GetValue("pass", true) ?? PortExploits.getRandomPassword());
                             break;
                         case "admin":
                             nearbyNodeOffset.admin = Utility.GetAdminFromString(
-                                elementInfo.Attributes.GetValue("type") ?? "basic",
-                                elementInfo.Attributes.GetValue("resetPassword")?.ToLower() != "false",
-                                elementInfo.Attributes.GetValue("isSuper")?.ToLower() == "true");
+                                elementInfo.Attributes.GetValueOrDefault("type", "basic"),
+                                elementInfo.Attributes.GetBool("resetPassword", true),
+                                elementInfo.Attributes.GetBool("isSuper")
+                            );
                             break;
                         case "portremap":
                             if (elementInfo.Value != null)
@@ -233,8 +218,8 @@ namespace Pathfinder.Internal
                         case "account":
                             byte type = 3;
                             string typeStr = elementInfo.Attributes.GetValue("type").ToLower(),
-                            password = ComputerLoader.filter(elementInfo.Attributes.GetValue("password") ?? "ERROR"),
-                            username = ComputerLoader.filter(elementInfo.Attributes.GetValue("username") ?? "ERROR");
+                            password = elementInfo.Attributes.GetValueOrDefault("password", "ERROR", true),
+                            username = elementInfo.Attributes.GetValueOrDefault("username", "ERROR", true);
                             switch (typeStr)
                             {
                                 case "admin":
@@ -268,125 +253,351 @@ namespace Pathfinder.Internal
                                 }
                             }
                             if (addUser)
-                                nearbyNodeOffset.users.Add(new UserDetail(username, password, type));
+                                nearbyNodeOffset.AddUserDetail(username, password, type);
                             break;
                         case "tracker":
                             nearbyNodeOffset.HasTracker = true;
                             break;
                         case "missionlistingserver":
-                            nearbyNodeOffset.daemons.Add(
-                                new MissionListingServer(nearbyNodeOffset,
-                                                         ComputerLoader.filter(
-                                                             elementInfo.Attributes.GetValue("name") ?? "ERROR"),
-                                                         ComputerLoader.filter(
-                                                             elementInfo.Attributes.GetValue("group") ?? "ERROR"),
-                                                         os,
-                                                         elementInfo.Attributes.GetValue("public")?.ToLower() == "true",
-                                                         elementInfo.Attributes.GetValue("assigner")?.ToLower() == "true"));
+                            nearbyNodeOffset.AddDaemon<MissionListingServer>(
+                                elementInfo.Attributes.GetValueOrDefault("name", "ERROR", true),
+                                elementInfo.Attributes.GetValueOrDefault("group", "ERROR", true),
+                                os,
+                                elementInfo.Attributes.GetBool("public"),
+                                elementInfo.Attributes.GetBool("assigner"));
                             break;
                         case "variablemissionlistingserver":
-                            var title = elementInfo.Attributes.Contains("title")
-                                              ? ComputerLoader.filter(elementInfo.Attributes.GetValue("title"))
-                                              : null;
-                            var missionListingServer = 
-                                new MissionListingServer(nearbyNodeOffset,
-                                                         elementInfo.Attributes.Contains("name")
-                                                            ? ComputerLoader.filter(
-                                                                elementInfo.Attributes.GetValue("name")) 
-                                                            : null,
-                                                         elementInfo.Attributes.GetValue("iconPath"),
-                                                         elementInfo.Attributes.GetValue("articleFolderPath"),
-                                                         Utility.GetColorFromString(
-                                                             elementInfo.Attributes.GetValue("color"),
-                                                             Color.IndianRed),
-                                                         os,
-                                                         elementInfo.Attributes.GetValue("public")?.ToLower() == "true",
-                                                         elementInfo.Attributes.GetValue("assigner")?.ToLower() == "true");
+                            var title = elementInfo.Attributes.GetValue("title", true);
+                            var missionListingServer = nearbyNodeOffset.AddDaemon<MissionListingServer>(
+                                elementInfo.Attributes.GetValue("name", true),
+                                elementInfo.Attributes.GetValue("iconPath"),
+                                elementInfo.Attributes.GetValue("articleFolderPath"),
+                                Utility.GetColorFromString(elementInfo.Attributes.GetValue("color"), Color.IndianRed),
+                                os,
+                                elementInfo.Attributes.GetBool("public"),
+                                elementInfo.Attributes.GetBool("assigner")
+                            );
                             if (title != null) missionListingServer.listingTitle = title;
-                            nearbyNodeOffset.daemons.Add(missionListingServer);
                             break;
                         case "missionhubserver":
+                            var missionPath = elementInfo.Attributes.GetValueOrDefault("missionFolderPath", "").Replace('\\', '/');
+                            if (!missionPath.EndsWith("/"))
+                                missionPath += "/";
+                            var hubServer = nearbyNodeOffset.AddDaemon<MissionHubServer>(
+                                elementInfo.Attributes.GetValue("serviceName"),
+                                elementInfo.Attributes.GetValueOrDefault("groupName", "", true),
+                                os
+                            );
+                            hubServer.MissionSourceFolderPath =
+                                "Content/Missions/" + (Settings.IsInExtensionMode
+                                                       ? ExtensionLoader.ActiveExtensionInfo.FolderPath + "/"
+                                                       : "") + missionPath;
+                            hubServer.themeColor = elementInfo.Attributes.GetColor("themeColor", Color.PaleTurquoise);
+                            hubServer.themeColorBackground = elementInfo.Attributes.GetColor("backgroundColor", Color.PaleTurquoise);
+                            hubServer.themeColorLine = elementInfo.Attributes.GetColor("line Color", Color.PaleTurquoise);
+                            hubServer.allowAbandon = elementInfo.Attributes.GetBool("allowAbandon", true);
                             break;
                         case "mailserver":
+                            var mailServer = nearbyNodeOffset.AddDaemon<MailServer>(
+                                elementInfo.Attributes.GetValueOrDefault("name", "Mail Server"),
+                                os
+                            );
+                            mailServer.shouldGenerateJunkEmails = elementInfo.Attributes.GetBool("generateJunk", true);
+                            var color = elementInfo.Attributes.GetColor("color", true);
+                            if (color.HasValue)
+                                mailServer.setThemeColor(color.Value);
+                            foreach (var ininfo in elementInfo.Elements.Where((iinfo) => iinfo.Name.ToLower() == "email"))
+                                mailServer.AddEmailToServer(
+                                    ininfo.Attributes.GetValue("sender"),
+                                    ininfo.Attributes.GetValue("recipient"),
+                                    ininfo.Attributes.GetValue("subject"),
+                                    ininfo.Value
+                                );
                             break;
                         case "addemaildaemon":
+                            nearbyNodeOffset.AddDaemon<AddEmailDaemon>("Final Task", os);
                             break;
                         case "deathrowdatabase":
+                            nearbyNodeOffset.AddDaemon<DeathRowDatabaseDaemon>("Death Row Database", os);
                             break;
                         case "academicdatabase":
+                            nearbyNodeOffset.AddDaemon<AcademicDatabaseDaemon>("International Academic Database", os);
                             break;
                         case "ispsystem":
+                            nearbyNodeOffset.AddDaemon<ISPDaemon>(os);
                             break;
                         case "messageboard":
+                            var messageBoardDaemon = nearbyNodeOffset.AddDaemon<MessageBoardDaemon>(os);
+                            messageBoardDaemon.name = elementInfo.Attributes.GetValueOrDefault("name", "Anonymous");
+                            messageBoardDaemon.BoardName = messageBoardDaemon.name;
+                            var threadInfo =
+                                elementInfo.Elements.FirstOrDefault((ininfo) => ininfo.Name.ToLower() == "thread");
+                            var threadLoc = threadInfo?.Value ?? "UNKNOWN";
+                            const string content = "Content/Missions/";
+                            if (threadLoc?.StartsWith(content) == true)
+                                threadLoc = threadLoc.Substring(content.Length);
+                            if (threadLoc != null)
+                                messageBoardDaemon.AddThread(Utils.readEntireFile(
+                                    content + (Settings.IsInExtensionMode
+                                               ? ExtensionLoader.ActiveExtensionInfo.FolderPath + "/"
+                                               : "") + threadLoc));
                             break;
                         case "addavcondemoenddaemon":
+                            nearbyNodeOffset.AddDaemon<AvconDemoEndDaemon>("Demo End", os);
                             break;
                         case "addwebserver":
+                            nearbyNodeOffset.AddDaemon<WebServerDaemon>(
+                                elementInfo.Attributes.GetValueOrDefault("name", "Web Server"),
+                                os,
+                                elementInfo.Attributes.GetValue("url")
+                            ).registerAsDefaultBootDaemon();
                             break;
                         case "addonlinewebserver":
+                            var webOnlineServerDaemon = nearbyNodeOffset.AddDaemon<OnlineWebServerDaemon>(
+                                elementInfo.Attributes.GetValueOrDefault("name", "Web Server"),
+                                os);
+                            webOnlineServerDaemon.setURL(
+                                elementInfo.Attributes.GetValueOrDefault("url", webOnlineServerDaemon.webURL));
+                            webOnlineServerDaemon.registerAsDefaultBootDaemon();
                             break;
                         case "uploadserverdaemon":
+                            var uploadServerDaemon = nearbyNodeOffset.AddDaemon<UploadServerDaemon>(
+                                    elementInfo.Attributes.GetValueOrDefault("name", "File Upload Server"),
+                                    elementInfo.Attributes.GetColor("color", new Color(0, 94, 38)),
+                                    os,
+                                    elementInfo.Attributes.GetValue("folder"),
+                                    elementInfo.Attributes.GetBool("needsAuth")
+                            );
+                            uploadServerDaemon.hasReturnViewButton = elementInfo.Attributes.GetBool("hasReturnViewButton");
+                            uploadServerDaemon.registerAsDefaultBootDaemon();
                             break;
                         case "medicaldatabase":
+                            nearbyNodeOffset.AddDaemon<MedicalDatabaseDaemon>(os);
                             break;
                         case "heartmonitor":
+                            nearbyNodeOffset.AddDaemon<HeartMonitorDaemon>(os)
+                                            .PatientID = elementInfo.Attributes.GetValueOrDefault("patient", "UNKNOWN");
                             break;
                         case "pointclicker":
+                            nearbyNodeOffset.AddDaemon<PointClickerDaemon>("Point Clicker!", os);
                             break;
                         case "porthackheart":
+                            nearbyNodeOffset.AddDaemon<PorthackHeartDaemon>(os);
                             break;
                         case "songchangerdaemon":
+                            nearbyNodeOffset.AddDaemon<SongChangerDaemon>(os);
                             break;
                         case "dhsdaemon":
                             break;
                         case "customconnectdisplaydaemon":
+                            nearbyNodeOffset.AddDaemon<CustomConnectDisplayDaemon>(os);
                             break;
                         case "databasedaemon":
+                            elementInfo.Name.ThrowNoLabyrinths();
+                            var emailAccount = elementInfo.Attributes.GetValue("AdminEmailAccount");
+                            var databaseDaemon = nearbyNodeOffset.AddDaemon<DatabaseDaemon>(
+                                os,
+                                elementInfo.Attributes.GetValueOrDefault("Name", "Database"),
+                                DatabaseDaemon.GetDatabasePermissionsFromString(
+                                    elementInfo.Attributes.GetValueOrDefault("Permissions", "")
+                                ),
+                                elementInfo.Attributes.GetValue("DataType"),
+                                elementInfo.Attributes.GetValue("Foldername"),
+                                elementInfo.Attributes.GetColor("Color", true));
+                            if (!string.IsNullOrWhiteSpace(emailAccount))
+                            {
+                                databaseDaemon.adminResetEmailHostID = elementInfo.Attributes.GetValue("AdminEmailHostID");
+                                databaseDaemon.adminResetPassEmailAccount = emailAccount;
+                            }
+                            if (elementInfo.Elements.Count > 0)
+                            {
+                                var dataset = databaseDaemon.GetDataset();
+                                foreach (var e in elementInfo.Elements)
+                                    if (e.Name == databaseDaemon.DataTypeIdentifier)
+                                        dataset.Add(new DatabaseDaemonHandler.DataInfo(e));
+                            }
                             break;
                         case "whitelistauthenticatordaemon":
+                            var whitelistDaemon = nearbyNodeOffset.AddDaemon<WhitelistConnectionDaemon>(os);
+                            whitelistDaemon.RemoteSourceIP = elementInfo.Attributes.GetValue("Remote");
+                            whitelistDaemon.AuthenticatesItself =
+                                elementInfo.Attributes.GetBool("SelfAuthenticating", true);
                             break;
                         case "markovtextdaemon":
+                            nearbyNodeOffset.AddDaemon<MarkovTextDaemon>(
+                                os,
+                                elementInfo.Attributes.GetValue("Name"),
+                                elementInfo.Attributes.GetValue("SourceFilesContentFolder")
+                            );
                             break;
                         case "ircdaemon":
+                            var rCDaemon = nearbyNodeOffset.AddDaemon<IRCDaemon>(
+                                os,
+                                elementInfo.Attributes.GetValueOrDefault("Remote", "IRC Server")
+                            );
+                            rCDaemon.ThemeColor = elementInfo.Attributes.GetColor("themeColor", new Color(184, 2, 141));
+                            rCDaemon.RequiresLogin = elementInfo.Attributes.GetBool("needsLogin");
+                            foreach (var ininfo in elementInfo.Elements)
+                            {
+                                switch (ininfo.Name.ToLower())
+                                {
+                                    case "user":
+                                    case "agent":
+                                        var name = ininfo.Attributes.GetValue("name", true);
+                                        if (!string.IsNullOrWhiteSpace(name))
+                                            rCDaemon.UserColors.Add(name,
+                                                                    ininfo.Attributes.GetColor("color", Color.LightGreen));
+                                        break;
+                                    case "post":
+                                        var user = ininfo.Attributes.GetValue("user", true);
+                                        if (!string.IsNullOrWhiteSpace(user))
+                                            rCDaemon.StartingMessages.Add(
+                                                new KeyValuePair<string, string>(user, ininfo.Value?.HacknetConvert()));
+                                        break;
+                                }
+                            }
                             break;
                         case "aircraftdaemon":
+                            elementInfo.Name.ThrowNoLabyrinths();
+                            nearbyNodeOffset.AddDaemon<AircraftDaemon>(
+                                os,
+                                elementInfo.Attributes.GetValue("Name"),
+                                elementInfo.Attributes.GetVector2(defaultVal: Vector2.Zero),
+                                elementInfo.Attributes.GetVector2("Dest", defaultVal: Vector2.One * 0.5f),
+                                elementInfo.Attributes.GetFloat("Progress", 0.5f)
+                            );
                             break;
                         case "logocustomconnectdisplaydaemon":
+                            nearbyNodeOffset.AddDaemon<LogoCustomConnectDisplayDaemon>(
+                                os,
+                                elementInfo.Attributes.GetValue("logo"),
+                                elementInfo.Attributes.GetValue("title", true),
+                                elementInfo.Attributes.GetBool("overdrawLogo"),
+                                elementInfo.Attributes.GetValue("buttonAlignment")
+                            );
                             break;
                         case "logodaemon":
+                            var logoDaemon = nearbyNodeOffset.AddDaemon<LogoDaemon>(
+                                os,
+                                nearbyNodeOffset.name,
+                                elementInfo.Attributes.GetBool("ShowsTitle", true),
+                                elementInfo.Attributes.GetValue("LogoImagePath")
+                            );
+                            logoDaemon.TextColor = elementInfo.Attributes.GetColor("TextColor", Color.White);
+                            logoDaemon.BodyText = elementInfo.Value;
                             break;
                         case "dlccredits":
                         case "creditsdaemon":
-                            var buttonText = ComputerLoader.filter(elementInfo.Attributes.GetValue("ButtonText") ?? "");
-                            title = ComputerLoader.filter(elementInfo.Attributes.GetValue("Title") ?? "");
-                            var dLCCreditsDaemon =
-                                string.IsNullOrEmpty(buttonText) && string.IsNullOrEmpty(title)
-                                      ? new DLCCreditsDaemon(nearbyNodeOffset, ComputerLoader.os)
-                                      : new DLCCreditsDaemon(nearbyNodeOffset, ComputerLoader.os, title, buttonText);
-
-                            dLCCreditsDaemon.ConditionalActionsToLoadOnButtonPress =
-                                elementInfo.Attributes.GetValue("ConditionalActionSetToRunOnButtonPressPath");
-                            nearbyNodeOffset.daemons.Add(dLCCreditsDaemon);
+                            var input = new List<object>
+                            {
+                                os,
+                                elementInfo.Attributes.GetValue("Title", true),
+                                elementInfo.Attributes.GetValue("ButtonText", true)
+                            };
+                            input.Where((i) => i != null);
+                            nearbyNodeOffset.AddDaemon<DLCCreditsDaemon>(input.ToArray())
+                                            .ConditionalActionsToLoadOnButtonPress =
+                                                elementInfo.Attributes.GetValue("ConditionalActionSetToRunOnButtonPressPath");
                             break;
                         case "fastactionhost":
+                            nearbyNodeOffset.AddDaemon<FastActionHost>(os);
                             break;
                         case "eosdevice":
+                            AddEosComputer(elementInfo, nearbyNodeOffset, os);
                             break;
                         case "memory":
+                            nearbyNodeOffset.Memory = DeserializeMemoryContent(elementInfo);
                             break;
                     }
                 }
                 if (!preventInitDaemons) nearbyNodeOffset.initDaemons();
-                if (!preventAddingToNetmap) ComputerLoader.os.netMap.nodes.Add(nearbyNodeOffset);
+                if (!preventAddingToNetmap) os.netMap.nodes.Add(nearbyNodeOffset);
                 result = nearbyNodeOffset;
             });
             processor.Process(stream);
             return result;
         }
 
-        public static MemoryContents deserializeMemoryContent(SaxProcessor.ElementInfo info)
+        public static void AddEosComputer(SaxProcessor.ElementInfo info, Computer attached, OS os)
         {
-            var memoryInfo = info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "Memory");
+            var empty = info.Attributes.GetBool("empty");
+            var computer = new Computer(
+                info.Attributes.GetValueOrDefault("name", "Unregistered eOS Device", true),
+                Utility.GenerateRandomIP(),
+                os.netMap.getRandomPosition(),
+                0,
+                5,
+                os
+            )
+            {
+                idName = info.Attributes.GetValueOrDefault("id", attached.idName + "_eos"),
+                icon = info.Attributes.GetValueOrDefault("icon", "ePhone"),
+                location = attached.location + Corporation.getNearbyNodeOffset(attached.location, Utility.Random.Next(12), 12, os.netMap),
+                portsNeededForCrack = 2
+            };
+            computer.setAdminPassword(info.Attributes.GetValueOrDefault("passOverride", "alpine"));
+            ComputerLoader.loadPortsIntoComputer("22,3659", computer);
+            EOSComp.GenerateEOSFilesystem(computer);
+            var eos = computer.files.root.searchForFolder("eos");
+            var notes = eos.searchForFolder("notes");
+            var mail = eos.searchForFolder("mail");
+
+            foreach (var ininfo in info.Elements)
+            {
+                switch (ininfo.Name.ToLower())
+                {
+                    case "note":
+                        var val = ininfo.Value.TrimStart().HacknetConvert();
+                        var filename = ininfo.Attributes.GetValue("filename", true);
+                        if (filename == null)
+                        {
+                            var length = val.IndexOf('\n');
+                            if (length == -1) length = val.Length;
+                            filename = val.Substring(0, length);
+                            if (filename.Length > 50) filename = filename.Substring(0, 47) + "...";
+                            filename = filename.Replace(" ", "_").Replace(":", "").ToLower().Trim() + ".txt";
+                        }
+                        notes.files.Add(new FileEntry(val, filename));
+                        break;
+                    case "mail":
+                        var username = ininfo.Attributes.GetValue("username", true);
+                        mail.files.Add(new FileEntry(
+                            "MAIL ACCOUNT : " + username + "\nAccount   :" + username + "\nPassword :"
+                            + ininfo.Attributes.GetValue("pass", true) + "\nLast Sync :" + DateTime.Now + "\n\n"
+                            + Utility.GenerateBinString(512),
+                            username + ".act"
+                        ));
+                        break;
+                    case "file":
+                        computer.getFolderFromPath(
+                            ininfo.Attributes.GetValueOrDefault("path", "home"),
+                            true
+                        ).files.Add(
+                            new FileEntry(
+                                ininfo.Value?.HacknetConvert().TrimStart(),
+                                ininfo.Attributes.GetValue("name"))
+                        );
+                        break;
+                }
+            }
+            if (empty)
+            {
+                var folder3 = eos.searchForFolder("apps");
+                if (folder3 != null)
+                {
+                    folder3.files.Clear();
+                    folder3.folders.Clear();
+                }
+            }
+            os.netMap.nodes.Add(computer);
+            ComputerLoader.postAllLoadedActions += () => computer.links.Add(os.netMap.nodes.IndexOf(attached));
+            if (attached.attatchedDeviceIDs != null)
+                attached.attatchedDeviceIDs += ",";
+            attached.attatchedDeviceIDs += computer.idName;
+        }
+
+        public static MemoryContents DeserializeMemoryContent(SaxProcessor.ElementInfo memoryInfo)
+        {
             if (memoryInfo == null) throw new FormatException("Unexpected end of file looking for start of Memory tag");
             var memoryContent = new MemoryContents();
 
@@ -400,10 +611,11 @@ namespace Pathfinder.Internal
                     {
                         var cmdArr = commandString.Split(Utils.robustNewlineDelim, StringSplitOptions.None);
                         foreach (var cmdStr in cmdArr)
-                            memoryContent.CommandsRun.Add(ComputerLoader.filter(Folder.deFilter(
-                                string.IsNullOrEmpty(cmdStr) ? " " : cmdStr)));
+                            memoryContent.CommandsRun.Add(Folder
+                                                          .deFilter(string.IsNullOrEmpty(cmdStr) ? " " : cmdStr)
+                                                          .HacknetConvert());
                     }
-                    else memoryContent.CommandsRun.Add(ComputerLoader.filter(Folder.deFilter(commandString)));
+                    else memoryContent.CommandsRun.Add(Folder.deFilter(commandString).HacknetConvert());
                 }
 
             var dataListInfo = memoryInfo.Elements.FirstOrDefault((ininfo) => ininfo.Name == "Data");
@@ -411,7 +623,7 @@ namespace Pathfinder.Internal
                 foreach (var blockInfo in dataListInfo.Elements)
                 {
                     if (blockInfo.Name != "Block") continue;
-                    memoryContent.DataBlocks.Add(ComputerLoader.filter(Folder.deFilter(blockInfo.Value)));
+                    memoryContent.DataBlocks.Add(Folder.deFilter(blockInfo.Value).HacknetConvert());
                 }
 
             var fileFragListInfo = memoryInfo.Elements.FirstOrDefault((ininfo) => ininfo.Name == "FileFragments");

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Hacknet;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
@@ -13,11 +14,11 @@ namespace Pathfinder
 {
     public static class Pathfinder
     {
-        /*private static readonly Version AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
+        private static readonly Version AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
         public static readonly Version Version = new Version(AssemblyVersion.Major, AssemblyVersion.Minor);
-        private static Version latestVersion;*/
+        private static Version latestVersion;
 
-        class InvalidIdException : ArgumentException { public InvalidIdException(string msg) : base(msg) {} }
+        class InvalidIdException : ArgumentException { public InvalidIdException(string msg) : base(msg) { } }
 
         public static string ModFolderPath => Manager.ModFolderPath;
         public static string DepFolderPath => Manager.DepFolderPath;
@@ -41,15 +42,27 @@ namespace Pathfinder
             Manager.LoadedMods.Add("Pathfinder", new Placeholder("Pathfinder"));
         }
 
+        private class Release
+        {
+            public string Tag_Name { get; set; }
+        }
+
         internal static void Initialize()
         {
             Logger.Verbose("Registering Pathfinder listeners");
 
+            //var request = new RestRequest("repos/Arkhist/Hacknet-Pathfinder/releases/latest");
+            //request.AddHeader("Content-Type", "application/json");
             /*var verStr = Updater.GetString("https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases/latest",
-                                           "tag_name"); // Does not work, IDK
-            if (Version.TryParse(verStr.Select(c => Char.IsDigit(c) || c == '.' ? c : (char)0).ToString(), out latestVersion)
-               && latestVersion > Version)
-                EventManager.RegisterListener<DrawMainMenuEvent>(DrawNewReleaseGraphic);*/
+                                           "tag_name"); // Does not work, IDK*/
+            /*if (Version.TryParse(
+                    new RestClient("https://api.github.com")
+                        .Execute<Release>(request).Data.Tag_Name.Select(
+                            c => Char.IsDigit(c) || c == '.' ? c : (char)0
+                        ).ToString(),
+                    out latestVersion)
+                && latestVersion > Version)*/
+            EventManager.RegisterListener<DrawMainMenuEvent>(DrawNewReleaseGraphic);
 
             EventManager.RegisterListener<CommandSentEvent>(Internal.ExecutionOverride.OverrideCommands);
             EventManager.RegisterListener<ExecutablePortExecuteEvent>(Internal.ExecutionOverride.OverridePortHack);
@@ -139,10 +152,21 @@ namespace Pathfinder
             e.SaveString = e.SaveString.Insert(i, "\n<PathfinderMods>\n" + modListStr + "</PathfinderMods>\n");
         }
 
+        private static bool isOn = false;
         internal static void DrawNewReleaseGraphic(DrawMainMenuEvent e)
         {
-            if(e.GameTime.ElapsedGameTime.Seconds % 3 != 0)
-                TextItem.doFontLabel(new Vector2(300, 100), "New Release Up", GuiData.font, Color.White);
+            var val = e.GameTime.TotalGameTime.TotalMilliseconds;
+            const double passed = 950;
+            const double epsilon = 20;
+            RawtimePass(val, passed, e: epsilon);
+            RawtimePass(val, passed, passed / 2, epsilon);
+            if (isOn && RawtimePass(val, passed, e: epsilon) || !isOn && RawtimePass(val, passed/2, e: epsilon))
+                isOn = !isOn;
+            if (isOn) TextItem.doFontLabel(new Vector2(180, 100), "New Pathfinder Release", GuiData.font, Color.White);
         }
+
+        public static bool RawtimePass(double value, double secondsPassed, double minCheck = 0, double e = 10)
+        => Math.Abs(value % secondsPassed) - minCheck >= 0.0000000000000001 
+               && Math.Abs(value % secondsPassed) - minCheck + e <= 0.0000000000000001;
     }
 }

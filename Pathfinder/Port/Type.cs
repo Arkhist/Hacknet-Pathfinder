@@ -16,11 +16,11 @@ namespace Pathfinder.Port
             PortDisplay = portDisplay;
         }
 
-        public bool AssignTo(Hacknet.Computer c, bool unlocked = false)
+        public bool AssignTo(Hacknet.Computer c, bool unlocked = false, bool replace = false)
         {
             var i = GetWithin(c);
             if (i == null)
-                return new Instance(this, unlocked).AssignTo(c);
+                return new Instance(this, unlocked).AssignTo(c, replace);
             i.Unlocked = unlocked;
             return false;
         }

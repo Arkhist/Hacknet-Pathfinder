@@ -93,6 +93,9 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Configuration" />
+    <Reference Include="RestSharp">
+      <HintPath>packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pathfinder\Actions\SerializableAction\ActionHandler.cs" />
@@ -218,6 +221,13 @@
     <Compile Include="Pathfinder\Util\Sax\Helpers\XmlReaderFactory.cs" />
     <Compile Include="Pathfinder\Util\Sax\Properties\AssemblyInfo.cs" />
     <Compile Include="Pathfinder\Internal\ContentLoaderReplacement.cs" />
+    <Compile Include="Pathfinder\Game\MailServer\Extensions.cs" />
+    <Compile Include="Pathfinder\Util\Sax\Extensions.cs" />
+    <Compile Include="Pathfinder\Util\Extensions.cs" />
+    <Compile Include="Pathfinder\Internal\DatabaseDaemonHandler.cs" />
+    <Compile Include="Pathfinder\Util\Sax\SaxDriver.cs" />
+    <Compile Include="Pathfinder\Util\Sax\XmlParser.cs" />
+    <Compile Include="Pathfinder\Util\Sax\CharConversionException.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
@@ -229,12 +239,11 @@
     <None Include="Pathfinder\Util\Sax\README.md" />
     <None Include="Pathfinder\Util\Sax\Ext\package.html" />
     <None Include="Pathfinder\Util\Sax\Helpers\package.html" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="PathfinderPatcher\PathfinderPatcher.csproj">
-      <Project>{FCD7FD47-6B38-47F4-9761-FC4290110125}</Project>
-      <Name>PathfinderPatcher</Name>
-    </ProjectReference>
+    <Folder Include="Pathfinder\Game\MailServer\">
+    </Folder>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

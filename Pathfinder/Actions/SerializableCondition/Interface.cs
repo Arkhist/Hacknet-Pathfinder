@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Hacknet;
+﻿using Hacknet;
 
 namespace Pathfinder.Actions.SerializableCondition
 {
@@ -12,7 +8,7 @@ namespace Pathfinder.Actions.SerializableCondition
 
         public override bool Check(object os_obj)
         {
-            return Check((Hacknet.OS)os_obj);
+            return Check((OS)os_obj);
         }
     }
 }

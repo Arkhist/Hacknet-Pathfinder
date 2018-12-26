@@ -28,7 +28,7 @@ namespace Pathfinder.Util
             public string Value { get; internal set; }
             public int StartPosition { get; internal set; }
             public IAttributes Attributes { get; }
-            public ReadOnlyCollection<ElementInfo> Elements { get; internal set; }
+            public ReadOnlyCollection<ElementInfo> Elements => new ReadOnlyCollection<ElementInfo>(elements);
             internal int Depth { get; set; }
             internal Collection<ElementInfo> elements = new Collection<ElementInfo>();
         }
@@ -93,10 +93,10 @@ namespace Pathfinder.Util
 
             if (string.IsNullOrEmpty(uri))
             {
-                if (elementActions.ContainsKey(qName) && elementActions[qName] != null && elementActions[qName].Count > 0)
-                    currentElement = new ElementInfo(qName, ++currentDepth, a: atts);
-                else if (currentElement != null)
+                if (currentElement != null)
                     currentElement.elements.Add(new ElementInfo(qName, ++currentDepth, a: atts));
+                else if (elementActions.ContainsKey(qName) && elementActions[qName] != null && elementActions[qName].Count > 0)
+                    currentElement = new ElementInfo(qName, ++currentDepth, a: atts.Clone());
             }
         }
 
@@ -121,9 +121,9 @@ namespace Pathfinder.Util
         {
             if (string.IsNullOrEmpty(uri))
             {
-                if (qName == currentElement.Name 
+                if (qName == currentElement.Name
                     && currentDepth == currentElement.Depth
-                    && elementActions.ContainsKey(qName) 
+                    && elementActions.ContainsKey(qName)
                     && elementActions[qName] != null
                     && elementActions[qName].Count > 0)
                     foreach (var action in elementActions[qName])
@@ -134,9 +134,9 @@ namespace Pathfinder.Util
 
         public override void EndDocument()
         {
-            if (currentDepth > 0)
+            if (currentDepth > currentElement?.Depth && currentDepth > 0)
                 throw new SAXParseException("Unexpected end of file", null);
-            if (currentDepth < 0)
+            if (currentDepth < currentElement?.Depth && currentDepth < 0)
                 throw new SAXParseException("Invalid XML formatting", null);
         }
     }

@@ -42,7 +42,9 @@ namespace Pathfinder.Mission
                 }
                 Activator.CreateInstance(type, type.GetConstructors
             }*/
+#pragma warning disable RECS0083 // Shows NotImplementedException throws in the quick task bar
             throw new NotImplementedException();
+#pragma warning restore RECS0083 // Shows NotImplementedException throws in the quick task bar
         }
     }
 }
