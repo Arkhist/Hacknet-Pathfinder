@@ -15,6 +15,7 @@ namespace PathfinderPatcher
         internal static void Main(string[] args)
         {
             AssemblyDefinition ad = null;
+            ModuleDefinition module;
             try
             {
                 Console.WriteLine(String.Join("|", args));
@@ -56,15 +57,15 @@ namespace PathfinderPatcher
                 // Removes internal visibility from types
                 ad.RemoveInternals();
 
-                var mod = ad.MainModule;
+                module = ad.MainModule;
 
                 // Ensure the os field is internal
-                var osField = ad.MainModule.GetType("Hacknet.Computer").GetField("os");
+                var osField = module.GetType("Hacknet.Computer").GetField("os");
                 osField.IsPrivate = false;
                 osField.IsAssembly = true;
 
                 // Ensure MissionListingServer's fields are internal
-                var missionServer = ad.MainModule.GetType("Hacknet.MissionListingServer");
+                var missionServer = module.GetType("Hacknet.MissionListingServer");
                 foreach (var f in missionServer.Fields)
                 {
                     if (!f.IsPrivate) continue;
@@ -73,7 +74,7 @@ namespace PathfinderPatcher
                 }
 
                 // Ensure MissionHubServer's fields are internal
-                missionServer = ad.MainModule.GetType("Hacknet.MissionHubServer");
+                missionServer = module.GetType("Hacknet.MissionHubServer");
                 foreach (var f in missionServer.Fields)
                 {
                     if (!f.IsPrivate) continue;
@@ -82,7 +83,7 @@ namespace PathfinderPatcher
                 }
 
                 // Ensure ActiveMission's methods are virtual
-                var activeMission = ad.MainModule.GetType("Hacknet.ActiveMission");
+                var activeMission = module.GetType("Hacknet.ActiveMission");
                 foreach (var m in activeMission.Methods)
                 {
                     if (m.IsStatic || m.IsConstructor) continue;
@@ -91,12 +92,12 @@ namespace PathfinderPatcher
                 }
 
                 // Ensure Hacknet.Computer.sendNetworkMessage is public
-                var compSendMsg = ad.MainModule.GetType("Hacknet.Computer").GetMethod("sendNetworkMessage");
+                var compSendMsg = module.GetType("Hacknet.Computer").GetMethod("sendNetworkMessage");
                 compSendMsg.IsPrivate = false;
                 compSendMsg.IsPublic = true;
 
                 // Ensure important DisplayModule fields are public
-                var type = ad.MainModule.GetType("Hacknet.DisplayModule");
+                var type = module.GetType("Hacknet.DisplayModule");
                 var typeVars = type.GetField("x");
                 typeVars.IsPrivate = false;
                 typeVars.IsPublic = true;
@@ -111,7 +112,7 @@ namespace PathfinderPatcher
                 typeVars.IsPublic = true;
 
                 // Ensure Button's methods are public
-                type = ad.MainModule.GetType("Hacknet.Gui.Button");
+                type = module.GetType("Hacknet.Gui.Button");
                 foreach (var m in type.Methods)
                 {
                     m.IsPrivate = false;
@@ -119,7 +120,7 @@ namespace PathfinderPatcher
                 }
 
                 // Ensure ExtensionsMenuScreen's methods, fields, and nested type are public
-                type = ad.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen");
+                type = module.GetType("Hacknet.Screens.ExtensionsMenuScreen");
                 foreach (var m in type.Methods)
                 {
                     if (!m.IsPrivate) continue;
@@ -141,7 +142,7 @@ namespace PathfinderPatcher
                 }
 
                 // Ensure Helpfile's fields are internal
-                type = ad.MainModule.GetType("Hacknet.Helpfile");
+                type = module.GetType("Hacknet.Helpfile");
                 foreach (var f in type.Fields)
                 {
                     if (!f.IsPrivate) continue;
@@ -150,40 +151,40 @@ namespace PathfinderPatcher
                 }
 
                 // Retrieve FNA's Vector2 as a type reference
-                var v2 = ad.MainModule.ImportReference(fna.MainModule.GetType("Microsoft.Xna.Framework.Vector2"));
+                var v2 = module.ImportReference(fna.MainModule.GetType("Microsoft.Xna.Framework.Vector2"));
 
                 // Add simplified constructor implictedly referencing Hacknet.OS.currentInstance
-                type = ad.MainModule.GetType("Hacknet.Computer");
+                type = module.GetType("Hacknet.Computer");
                 type.AddRefConstructor(type.GetMethod(".ctor"),
                 new TypeReference[] {
-                    ad.MainModule.TypeSystem.String,
-                    ad.MainModule.TypeSystem.String,
+                    module.TypeSystem.String,
+                    module.TypeSystem.String,
                     v2,
-                    ad.MainModule.TypeSystem.Int32,
-                    ad.MainModule.TypeSystem.Byte
+                    module.TypeSystem.Int32,
+                    module.TypeSystem.Byte
                 },
                 new Instruction[] {
-                    Instruction.Create(OpCodes.Ldsfld, ad.MainModule.GetType("Hacknet.OS").GetField("currentInstance"))
+                    Instruction.Create(OpCodes.Ldsfld, module.GetType("Hacknet.OS").GetField("currentInstance"))
                 });
 
                 // Add simplified constructor assigning the compType value to 0
-                type.AddRefConstructor(type.GetMethod(".ctor", ad.MainModule.TypeSystem.String,
-                                                      ad.MainModule.TypeSystem.String,
+                type.AddRefConstructor(type.GetMethod(".ctor", module.TypeSystem.String,
+                                                      module.TypeSystem.String,
                                                       v2,
-                                                      ad.MainModule.TypeSystem.Int32,
-                                                      ad.MainModule.TypeSystem.Byte),
+                                                      module.TypeSystem.Int32,
+                                                      module.TypeSystem.Byte),
                 new TypeReference[] {
-                    ad.MainModule.TypeSystem.String,
-                    ad.MainModule.TypeSystem.String,
+                    module.TypeSystem.String,
+                    module.TypeSystem.String,
                     v2,
-                    ad.MainModule.TypeSystem.Int32
+                    module.TypeSystem.Int32
                 },
                 new Instruction[] {
                     Instruction.Create(OpCodes.Ldc_I4_0)
                 });
 
                 // Ensure OS's fields and methods are internal, also ensure introTextModule is public
-                type = ad.MainModule.GetType("Hacknet.OS");
+                type = module.GetType("Hacknet.OS");
                 foreach (var f in type.Fields)
                 {
                     if (f.Name == "introTextModule") f.IsPublic = true;
@@ -199,7 +200,7 @@ namespace PathfinderPatcher
                 }
 
                 // Ensure ComputerLoader's fields are internal and nest types nested public
-                type = ad.MainModule.GetType("Hacknet.ComputerLoader");
+                type = module.GetType("Hacknet.ComputerLoader");
                 foreach (var f in type.Fields)
                 {
                     if (!f.IsPrivate) continue;
@@ -210,7 +211,7 @@ namespace PathfinderPatcher
                 foreach (var t in type.NestedTypes) t.IsNestedPublic = true;
 
                 // Ensure IntroTextModule's fields are public
-                type = ad.MainModule.GetType("Hacknet.IntroTextModule");
+                type = module.GetType("Hacknet.IntroTextModule");
                 foreach (var f in type.Fields)
                 {
                     if (!f.IsPrivate) continue;
@@ -219,7 +220,7 @@ namespace PathfinderPatcher
                 }
 
                 // Ensure OptionsMenu's fields are public
-                type = ad.MainModule.GetType("Hacknet.OptionsMenu");
+                type = module.GetType("Hacknet.OptionsMenu");
                 foreach (var f in type.Fields)
                 {
                     if (!f.IsPrivate) continue;
@@ -227,7 +228,7 @@ namespace PathfinderPatcher
                     f.IsPublic = true;
                 }
 
-                type = ad.MainModule.GetType("Hacknet.DatabaseDaemon");
+                type = module.GetType("Hacknet.DatabaseDaemon");
                 foreach (var f in type.Fields)
                 {
                     if (!f.IsPrivate) continue;
@@ -253,14 +254,14 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn);
 
                 // Hook onLoadContent to Game1.LoadContent
-                ad.MainModule.GetType("Hacknet.Game1").GetMethod("LoadContent").InjectWith(
+                module.GetType("Hacknet.Game1").GetMethod("LoadContent").InjectWith(
                     hooks.GetMethod("onLoadContent"),
                     -1,
                     flags: InjectFlags.PassInvokingInstance
                 );
 
                 // Hook onCommandSent to ProgramRunner.ExecuteProgram
-                ad.MainModule.GetType("Hacknet.ProgramRunner").GetMethod("ExecuteProgram").InjectWith(
+                module.GetType("Hacknet.ProgramRunner").GetMethod("ExecuteProgram").InjectWith(
                     hooks.GetMethod("onCommandSent"),
                     13,
                     flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
@@ -268,20 +269,20 @@ namespace PathfinderPatcher
                 );
 
                 // Hook onLoadSession to OS.LoadContent
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("LoadContent").InjectWith(
+                module.GetType("Hacknet.OS").GetMethod("LoadContent").InjectWith(
                     hooks.GetMethod("onLoadSession"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn
                 );
 
                 // Hook onPostLoadSession to OS.LoadContent
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("LoadContent").InjectWith(
+                module.GetType("Hacknet.OS").GetMethod("LoadContent").InjectWith(
                     hooks.GetMethod("onPostLoadSession"),
                     -1,
                     flags: InjectFlags.PassInvokingInstance
                 );
 
                 // Hook onUnloadSession to OS.UnloadContent
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("UnloadContent").InjectWith(
+                module.GetType("Hacknet.OS").GetMethod("UnloadContent").InjectWith(
 					hooks.GetMethod("onUnloadSession"),
                     -1,
                     flags: InjectFlags.PassInvokingInstance
@@ -289,14 +290,14 @@ namespace PathfinderPatcher
 
                 // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onMainMenuDraw to MainMenu.Draw
-                ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("Draw").InjectWith(
+                module.GetType("Hacknet.MainMenu").GetMethod("Draw").InjectWith(
                     hooks.GetMethod("onMainMenuDraw"),
                     120,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassParametersVal
                 );
 
                 // Hook onMainMenuButtonsDraw to MainMenu.drawMainMenuButtons
-                ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("drawMainMenuButtons").InjectWith(
+                module.GetType("Hacknet.MainMenu").GetMethod("drawMainMenuButtons").InjectWith(
                     hooks.GetMethod("onMainMenuButtonsDraw"),
                     248,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals,
@@ -305,7 +306,7 @@ namespace PathfinderPatcher
 
                 // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onLoadSaveFile to OS.loadSaveFile
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("loadSaveFile").InjectWith(
+                module.GetType("Hacknet.OS").GetMethod("loadSaveFile").InjectWith(
                     hooks.GetMethod("onLoadSaveFile"),
                     33,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals | InjectFlags.ModifyReturn,
@@ -313,13 +314,13 @@ namespace PathfinderPatcher
                 );
 
                 // Hook onSaveFile to OS.writeSaveGame
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("writeSaveGame").InjectWith(
+                module.GetType("Hacknet.OS").GetMethod("writeSaveGame").InjectWith(
                     hooks.GetMethod("onSaveFile"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersVal | InjectFlags.ModifyReturn
                 );
 
                 // Hook onSaveWrite to OS.writeSaveGame
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("writeSaveGame").InjectWith(
+                module.GetType("Hacknet.OS").GetMethod("writeSaveGame").InjectWith(
                     hooks.GetMethod("onSaveWrite"),
                     -5,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals | InjectFlags.PassParametersVal,
@@ -327,14 +328,14 @@ namespace PathfinderPatcher
                 );
 
                 // Hook onLoadNetmapContent to NetworkMap.LoadContent
-                ad.MainModule.GetType("Hacknet.NetworkMap").GetMethod("LoadContent").InjectWith(
+                module.GetType("Hacknet.NetworkMap").GetMethod("LoadContent").InjectWith(
                     hooks.GetMethod("onLoadNetmapContent"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn
                 );
 
                 // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onExecutableExecute to ProgramRunner.AttemptExeProgramExecution
-                ad.MainModule.GetType("Hacknet.ProgramRunner").GetMethod("AttemptExeProgramExecution").InjectWith(
+                module.GetType("Hacknet.ProgramRunner").GetMethod("AttemptExeProgramExecution").InjectWith(
                     hooks.GetMethod("onExecutableExecute"),
                     54,
                     flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
@@ -343,7 +344,7 @@ namespace PathfinderPatcher
 
                 // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onDrawMainMenuTitles to MainMenu.DrawBackgroundAndTitle
-                ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("DrawBackgroundAndTitle").InjectWith(
+                module.GetType("Hacknet.MainMenu").GetMethod("DrawBackgroundAndTitle").InjectWith(
                     hooks.GetMethod("onDrawMainMenuTitles"),
                     7,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
@@ -352,7 +353,7 @@ namespace PathfinderPatcher
 
                 // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onPortExecutableExecute to OS.launchExecutable
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("launchExecutable").InjectWith(
+                module.GetType("Hacknet.OS").GetMethod("launchExecutable").InjectWith(
                     hooks.GetMethod("onPortExecutableExecute"),
                     44,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
@@ -363,7 +364,7 @@ namespace PathfinderPatcher
                 // Hook onLoadComputer to ComputerLoader.loadComputer
                 // adds the obsfuscated c value in <>c__DisplayClass4 as a parameter (seen as nearbyNodeOffset decompiled)
                 // 232 puts it right before the nearbyNodeOffset.type == 4 if statement that erases all home folder data
-                type = ad.MainModule.GetType("Hacknet.ComputerLoader");
+                type = module.GetType("Hacknet.ComputerLoader");
                 var method = type.GetMethod("loadComputer");
                 method.InjectWithLocalFieldParameter(
                     hooks.GetMethod("onLoadComputer"),
@@ -378,7 +379,7 @@ namespace PathfinderPatcher
                 method.AdjustInstruction(240, operand: method.Inst(265));
 
                 // Hook onLoadSaveComputer to Hacknet.Computer
-                ad.MainModule.GetType("Hacknet.Computer").GetMethod("load").InjectWith(
+                module.GetType("Hacknet.Computer").GetMethod("load").InjectWith(
                     hooks.GetMethod("onLoadSaveComputer"),
                     355,
                     flags: InjectFlags.PassParametersRef | InjectFlags.PassLocals,
@@ -386,14 +387,14 @@ namespace PathfinderPatcher
                 );
 
                 // Hook onGameUnloadContent to Game1.UnloadContent
-                ad.MainModule.GetType("Hacknet.Game1").GetMethod("UnloadContent").InjectWith(
+                module.GetType("Hacknet.Game1").GetMethod("UnloadContent").InjectWith(
                     hooks.GetMethod("onGameUnloadContent"),
                     -1,
                     flags: InjectFlags.PassInvokingInstance
                 );
 
                 // Hook onGameUpdate to Game1.Update
-                ad.MainModule.GetType("Hacknet.Game1").GetMethod("Update").InjectWith(
+                module.GetType("Hacknet.Game1").GetMethod("Update").InjectWith(
                     hooks.GetMethod("onGameUpdate"),
                     -5,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef
@@ -401,7 +402,7 @@ namespace PathfinderPatcher
 
                 // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onPortNameDraw to DisplayModule.doProbeDisplay
-                ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("doProbeDisplay").InjectWith(
+                module.GetType("Hacknet.DisplayModule").GetMethod("doProbeDisplay").InjectWith(
                     hooks.GetMethod("onPortNameDraw"),
                     -158,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals,
@@ -409,20 +410,20 @@ namespace PathfinderPatcher
                 );
 
                 // Hook onDisplayModuleUpdate to DisplayModule.Update
-                ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("Update").InjectWith(
+                module.GetType("Hacknet.DisplayModule").GetMethod("Update").InjectWith(
                     hooks.GetMethod("onDisplayModuleUpdate"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 
                 // Hook onDisplayModuleDraw to DisplayModule.Draw
-                ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("Draw").InjectWith(
+                module.GetType("Hacknet.DisplayModule").GetMethod("Draw").InjectWith(
                     hooks.GetMethod("onDisplayModuleDraw"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 
                 // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onExtensionsMenuScreenDraw to ExtensionsMenuScreen.Draw
-                ad.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen").GetMethod("Draw").InjectWith(
+                module.GetType("Hacknet.Screens.ExtensionsMenuScreen").GetMethod("Draw").InjectWith(
                     hooks.GetMethod("onExtensionsMenuScreenDraw"),
                     71,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
@@ -430,39 +431,39 @@ namespace PathfinderPatcher
                 );
 
                 // Hook onExtensionsMenuListDraw to ExtensionsMenuScreen.DrawExtensionList
-                ad.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen").GetMethod("DrawExtensionList").InjectWith(
+                module.GetType("Hacknet.Screens.ExtensionsMenuScreen").GetMethod("DrawExtensionList").InjectWith(
                     hooks.GetMethod("onExtensionsMenuListDraw"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 
                 // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onOptionsMenuDraw to OptionsMenu.Draw
-                ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("Draw").InjectWith(
+                module.GetType("Hacknet.OptionsMenu").GetMethod("Draw").InjectWith(
                     hooks.GetMethod("onOptionsMenuDraw"),
                     40,
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 
                 // Hook onOptionsMenuLoadContent to OptionsMenu.LoadContent
-                ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("LoadContent").InjectWith(
+                module.GetType("Hacknet.OptionsMenu").GetMethod("LoadContent").InjectWith(
 					hooks.GetMethod("onOptionsMenuLoadContent"),
                     -1,
                     flags: InjectFlags.PassInvokingInstance
                 );
 
                 // Hook onOptionsMenuUpdate to OptionsMenu.Update
-                ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("Update").InjectWith(
+                module.GetType("Hacknet.OptionsMenu").GetMethod("Update").InjectWith(
 					hooks.GetMethod("onOptionsMenuUpdate"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 
                 // Hook onOptionsApply to OptionsMenu.apply
-                ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("apply").InjectWith(
+                module.GetType("Hacknet.OptionsMenu").GetMethod("apply").InjectWith(
                     hooks.GetMethod("onOptionsApply"),
                     flags: InjectFlags.PassInvokingInstance
                 );
 
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("Draw").InjectWith(
+                module.GetType("Hacknet.OS").GetMethod("Draw").InjectWith(
                     hooks.GetMethod("onOSDraw"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
@@ -470,7 +471,7 @@ namespace PathfinderPatcher
 
                 // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onAddSerializableConditions to SerializableCondition.Deserialize
-                ad.MainModule.GetType("Hacknet.SerializableCondition").GetMethod("Deserialize").InjectWith(
+                module.GetType("Hacknet.SerializableCondition").GetMethod("Deserialize").InjectWith(
                     hooks.GetMethod("onAddSerializableConditions"),
                     3,
                     flags: InjectFlags.PassLocals,
@@ -479,7 +480,7 @@ namespace PathfinderPatcher
 
                 // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onAddSerializableConditions to SerializableCondition.Deserialize
-                ad.MainModule.GetType("Hacknet.SerializableAction").GetMethod("Deserialize").InjectWith(
+                module.GetType("Hacknet.SerializableAction").GetMethod("Deserialize").InjectWith(
                     hooks.GetMethod("onAddSerializableActions"),
                     3,
                     flags: InjectFlags.PassLocals,
