@@ -24,11 +24,12 @@
         <Command>
           <type>BeforeBuild</type>
           <command>PathfinderPatcher -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet" -spit</command>
+          <workingdir>lib\</workingdir>
           <externalConsole>True</externalConsole>
         </Command>
         <Command>
           <type>AfterBuild</type>
-          <command>lib\PathfinderPatcher.exe -pathfinderDir "..\lib" -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet"</command>
+          <command>PathfinderPatcher -pathfinderDir "..\lib" -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet"</command>
           <workingdir>lib\</workingdir>
           <externalConsole>True</externalConsole>
         </Command>

@@ -11,20 +11,7 @@ namespace Pathfinder.GUI
     {
         public string Text { get; set; }
         public Color Color { get; set; }
-        public Texture2D Texture
-        {
-            get
-            {
-                return this.texture;
-            }
-            set
-            {
-                HasCustomTexture = true;
-                this.texture = value;
-            }
-        }
-        protected Texture2D texture = Utils.white;
-        public bool HasCustomTexture { get; private set; }
+        public Texture2D Texture { get; set; } = null;
 
         protected BaseButton(int x, int y, int width, int height, string text, Color? color = null) : base(x, y, width, height)
         {
@@ -50,21 +37,31 @@ namespace Pathfinder.GUI
         {
             int num = (!ForceNoColorTag && Width > 65) ? 13 : 0;
             var rect = new Rectangle(X, Y, Width, Height);
-            if (!HasCustomTexture)
+            if (Texture == null)
             {
-                this.texture = Utils.white;
                 if (!OnlyOutline)
                 {
-                    GuiData.spriteBatch.Draw(Utils.white, rect, (IsActive) ? ((IsHeldDown) ? GuiData.Default_Trans_Grey_Dark : GuiData.Default_Trans_Grey_Bright) : GuiData.Default_Trans_Grey);
+                    GuiData.spriteBatch.Draw(Utils.white, rect,
+                                             IsActive ? (
+                                                 IsHeldDown
+                                                 ? GuiData.Default_Trans_Grey_Dark
+                                                 : GuiData.Default_Trans_Grey_Bright)
+                                             : GuiData.Default_Trans_Grey);
                     rect.Width = num;
                     GuiData.spriteBatch.Draw(Utils.white, rect, Color);
                 }
                 Gui.RenderedRectangle.doRectangleOutline(X, Y, Width, Height, 1,
-                                                     OnlyOutline ?
-                                                     Color : GuiData.Default_Trans_Grey_Solid);
+                                                     OnlyOutline
+                                                         ? Color
+                                                         : GuiData.Default_Trans_Grey_Solid);
             }
             else
-                GuiData.spriteBatch.Draw(Texture, rect, (IsActive) ? ((IsHeldDown) ? GuiData.Default_Unselected_Color : GuiData.Default_Lit_Backing_Color) : Color);
+                GuiData.spriteBatch.Draw(Texture, rect,
+                                         IsActive ? (
+                                             IsHeldDown
+                                             ? GuiData.Default_Unselected_Color
+                                             : GuiData.Default_Lit_Backing_Color)
+                                         : Color);
             SpriteFont spriteFont = SmallButton ? GuiData.detailfont : GuiData.tinyfont;
             var scale = spriteFont.MeasureString(Text);
             float num2 = LocaleActivator.ActiveLocaleIsCJK() ? 4f : 0f;
