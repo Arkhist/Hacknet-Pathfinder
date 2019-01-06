@@ -50,15 +50,8 @@ namespace Pathfinder.Util
         /// </summary>
         /// <returns>The process.</returns>
         /// <param name="input">Input.</param>
-        public void Process(string input)
-        {
-            Parser.Parse(new InputSource(new StringReader(input)));
-        }
-
-        public void Process(Stream stream)
-        {
-            Parser.Parse(new InputSource(stream));
-        }
+        public void Process(string input) => Parser.Parse(new InputSource(new StringReader(input)));
+        public void Process(Stream stream) => Parser.Parse(new InputSource(stream));
 
         /// <summary>
         /// Adds an action for a tag name.
@@ -94,9 +87,9 @@ namespace Pathfinder.Util
             if (string.IsNullOrEmpty(uri))
             {
                 if (currentElement != null)
-                    currentElement.elements.Add(new ElementInfo(qName, ++currentDepth, a: atts));
+                    currentElement.elements.Add(new ElementInfo(qName, ++currentDepth, a: atts.Clone()));
                 else if (elementActions.ContainsKey(qName) && elementActions[qName] != null && elementActions[qName].Count > 0)
-                    currentElement = new ElementInfo(qName, ++currentDepth, a: atts.Clone());
+                    currentElement = new ElementInfo(qName, ++currentDepth, a: atts);
             }
         }
 

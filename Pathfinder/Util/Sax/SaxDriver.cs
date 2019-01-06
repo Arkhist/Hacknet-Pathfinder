@@ -1118,7 +1118,7 @@ namespace Sax.Net
 
         public IAttributes Clone()
         {
-            return new Attributes2(this);
+            return new Attributes(this);
         }
     }
 }

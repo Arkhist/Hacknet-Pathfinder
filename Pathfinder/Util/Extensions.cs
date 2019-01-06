@@ -12,18 +12,19 @@ namespace Pathfinder.Util
     public static class Extensions
     {
         public static T GetFirstAttribute<T>(this MethodInfo info, bool inherit = false) where T : System.Attribute
-        {
-            if (info.GetCustomAttributes(inherit).Length > 0)
-                return info.GetCustomAttributes(typeof(T), inherit)[0] as T;
-            return null;
-        }
+            => info.GetCustomAttributes(inherit).Length > 0
+                ? info.GetCustomAttributes(typeof(T), inherit)[0] as T
+                : null;
 
         public static T GetFirstAttribute<T>(this Type type, bool inherit = false) where T : System.Attribute
-        {
-            if (type.GetCustomAttributes(inherit).Length > 0)
-                return type.GetCustomAttributes(typeof(T), inherit)[0] as T;
-            return null;
-        }
+            => type.GetCustomAttributes(inherit).Length > 0
+                ? type.GetCustomAttributes(typeof(T), inherit)[0] as T
+                : null;
+
+        public static T GetFirstAttribute<T>(this FieldInfo info, bool inherit = false) where T : System.Attribute
+            => info.GetCustomAttributes(inherit).Length > 0
+                ? info.GetCustomAttributes(typeof(T), inherit)[0] as T
+                : null;
 
         private static Dictionary<string, Func<string>> funcReplace = new Dictionary<string, Func<string>>
         {
@@ -101,7 +102,7 @@ namespace Pathfinder.Util
                     else split[i] = new Tuple<string, bool>("#" + split[i].Item1 + "#", split[i].Item2);
                 }
             }
-            return string.Join("", split.Where((t) => t.Item2).Select((t) => t.Item1))
+            return string.Join("", split.Where(t => t.Item2).Select(t => t.Item1))
                          .Replace("\t", "    ")
                          .Replace("&quot;", "'")
                          .Replace("\u00a0", "")

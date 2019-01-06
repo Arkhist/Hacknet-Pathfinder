@@ -11,7 +11,20 @@ namespace Pathfinder.GUI
     {
         public string Text { get; set; }
         public Color Color { get; set; }
-        public Texture2D Texture { get; set; } = Utils.white;
+        public Texture2D Texture
+        {
+            get
+            {
+                return this.texture;
+            }
+            set
+            {
+                HasCustomTexture = true;
+                this.texture = value;
+            }
+        }
+        protected Texture2D texture = Utils.white;
+        public bool HasCustomTexture { get; private set; }
 
         protected BaseButton(int x, int y, int width, int height, string text, Color? color = null) : base(x, y, width, height)
         {
@@ -37,8 +50,9 @@ namespace Pathfinder.GUI
         {
             int num = (!ForceNoColorTag && Width > 65) ? 13 : 0;
             var rect = new Rectangle(X, Y, Width, Height);
-            if (Texture.Equals(Utils.white))
+            if (!HasCustomTexture)
             {
+                this.texture = Utils.white;
                 if (!OnlyOutline)
                 {
                     GuiData.spriteBatch.Draw(Utils.white, rect, (IsActive) ? ((IsHeldDown) ? GuiData.Default_Trans_Grey_Dark : GuiData.Default_Trans_Grey_Bright) : GuiData.Default_Trans_Grey);

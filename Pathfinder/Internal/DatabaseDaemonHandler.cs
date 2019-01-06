@@ -13,17 +13,14 @@ namespace Pathfinder.Internal
 
         public class DataInfo
         {
-            public DataInfo(string name, string value = "")
+            public DataInfo(string name = null, string value = null)
             {
                 Name = name;
                 Value = value;
             }
             public DataInfo(Util.SaxProcessor.ElementInfo info)
             {
-                var data = CopyData(info);
-                Name = data.Name;
-                Value = info.Elements?.Count < 1 ? data.Value : null;
-                elements = data.elements;
+                CopyData(info);
             }
 
             public string Name { get; set; }
@@ -32,20 +29,18 @@ namespace Pathfinder.Internal
 
             public DataInfo this[int index] => elements[index];
 
-            static DataInfo CopyData(Util.SaxProcessor.ElementInfo info)
+            DataInfo CopyData(Util.SaxProcessor.ElementInfo info)
             {
-                var data = new DataInfo(info.Name, info.Elements.Count < 1 ? info.Value : null);
-                data.elements = new DataInfo[info.Elements.Count];
+                Name = info.Name;
+                Value = info.Elements.Count < 1 ? info.Value : null;
+                elements = new DataInfo[info.Elements.Count];
                 for (var i = 0; i < info.Elements.Count; i++)
                 {
                     if (info.Elements[i].Elements.Count < 1)
-                    {
-                        data.elements[i].Name = info.Elements[i].Name;
-                        data.elements[i].Value = info.Elements[i].Value;
-                    }
-                    else data.elements[i] = CopyData(info.Elements[i]);
+                        elements[i] = new DataInfo(info.Elements[i].Name, info.Elements[i].Value);
+                    else elements[i] = new DataInfo(info.Elements[i]);
                 }
-                return data;
+                return this;
             }
 
             public override string ToString()
