@@ -229,6 +229,7 @@
     <Compile Include="Pathfinder\Util\Sax\SaxDriver.cs" />
     <Compile Include="Pathfinder\Util\Sax\XmlParser.cs" />
     <Compile Include="Pathfinder\Util\Sax\CharConversionException.cs" />
+    <Compile Include="Pathfinder\Game\TextLoader.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />

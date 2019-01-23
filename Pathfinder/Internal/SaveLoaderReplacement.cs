@@ -8,13 +8,35 @@ using Hacknet.Security;
 using Microsoft.Xna.Framework;
 using Pathfinder.Game.Computer;
 using Pathfinder.Game.Folder;
+using Pathfinder.ModManager;
 using Pathfinder.Util;
 using Sax.Net;
 
 namespace Pathfinder.Internal
 {
+    /* Found in Computer.load */
     public static class SaveLoaderReplacement
     {
+        public delegate void Injection(SaxProcessor.ElementInfo info);
+
+        private static Dictionary<string, Dictionary<string, Injection>> ActionInject = new Dictionary<string, Dictionary<string, Injection>>();
+
+        public static void AddActionInjection(string id, Injection inject)
+        {
+            if (!ActionInject.ContainsKey(Manager.CurrentMod.GetCleanId()))
+                ActionInject.Add(Manager.CurrentMod.GetCleanId(), new Dictionary<string, Injection> { [id] = inject });
+            else if (!ActionInject[Manager.CurrentMod.GetCleanId()].ContainsKey(id))
+                ActionInject[Manager.CurrentMod.GetCleanId()].Add(id, inject);
+        }
+
+        public static bool RemoveActionInjection(string id)
+        {
+            var inject = ActionInject.FirstOrDefault(i => id.Split('.')[0] == i.Key);
+            if (inject.Value != null)
+                return inject.Value.Remove(id.Substring(id.IndexOf('.') + 1));
+            return ActionInject[Manager.CurrentMod.GetCleanId()].Remove(id);
+        }
+
         public static Computer LoadComputer(XmlReader reader, OS os)
         {
             Computer computer = null;
@@ -25,7 +47,7 @@ namespace Pathfinder.Internal
                 var security = info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "security");
                 var proxyTime = (security?.Attributes).GetFloat("proxyTime", -1f);
                 var admin = info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "admin");
-                var portsOpen = info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "portsOpen")?.Value;
+                var portsOpen = info.Elements.FirstOrDefault((ininfo) => ininfo.Name == "portsOpen")?.Value ?? "";
 
                 computer = new Computer(
                     info.Attributes.GetValue("name"),
@@ -258,6 +280,12 @@ namespace Pathfinder.Internal
 
                 if (spec == "mail") os.netMap.mailServer = computer;
                 else if (spec == "player") os.thisComputer = computer;
+
+                HandlerListener.DaemonLoadListener(computer, info);
+
+                foreach (var dict in ActionInject)
+                    foreach (var inject in dict.Value)
+                        inject.Value(info);
             });
             processor.Process(reader.ToStream());
             return computer;

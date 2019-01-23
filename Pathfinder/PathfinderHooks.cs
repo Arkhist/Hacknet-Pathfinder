@@ -9,6 +9,7 @@ using Hacknet.Effects;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Pathfinder.Game;
 using Pathfinder.GameFilesystem;
 using Pathfinder.GUI;
 using Pathfinder.ModManager;
@@ -153,7 +154,7 @@ namespace Pathfinder
                                 break;
 
                         }
-                        if(!osStartDrawEvent.IgnoreScanlines) self.drawScanlines();
+                        if (!osStartDrawEvent.IgnoreScanlines) self.drawScanlines();
                         break;
                     case Event.OSDrawEvent.Type.Loading:
                         GuiData.startDraw();
@@ -319,12 +320,12 @@ namespace Pathfinder
 
         // Hook location : OS.launchExecutable
         public static bool onPortExecutableExecute(OS self,
-                                                     ref Rectangle dest,
-                                                     ref string name,
-                                                     ref string data,
-                                                     ref int port,
-                                                     ref string[] args,
-                                                     ref string originalName)
+                                                   ref Rectangle dest,
+                                                   ref string name,
+                                                   ref string data,
+                                                   ref int port,
+                                                   ref string[] args,
+                                                   ref string originalName)
         {
             var portExecutableExecuteEvent =
                 new Event.ExecutablePortExecuteEvent(self, dest, name, data, port, args);
@@ -336,9 +337,71 @@ namespace Pathfinder
             return false;
         }
 
+        public static bool onLoadSavedComputerStart(out Computer result,
+                                                    ref XmlReader reader,
+                                                    ref OS os)
+        {
+            var loadSavedComputerStartEvent = new Event.LoadSavedComputerStartEvent(null, reader, os);
+            loadSavedComputerStartEvent.CallEvent();
+            result = loadSavedComputerStartEvent.Computer;
+            if (loadSavedComputerStartEvent.IsCancelled)
+            {
+                onLoadSavedComputerEnd(ref result, ref reader, ref os);
+                return true;
+            }
+            return false;
+        }
+        public static void onLoadSavedComputerEnd(ref Computer loadedComputer,
+                                                  ref XmlReader reader,
+                                                  ref OS os)
+        {
+            var loadSavedComputerEndEvent = new Event.LoadSavedComputerEndEvent(loadedComputer, reader, os);
+            loadSavedComputerEndEvent.CallEvent();
+            loadedComputer = loadSavedComputerEndEvent.Computer;
+            reader = loadSavedComputerEndEvent.Reader;
+        }
+
+        public static bool onLoadContentComputerStart(out object result,
+                                                      ref string filename,
+                                                      ref bool preventAddingToNetmap,
+                                                      ref bool preventInitDaemons)
+        {
+            var loadSavedComputerStartEvent =
+                new Event.LoadContentComputerStartEvent(null, filename, preventAddingToNetmap, preventInitDaemons);
+            loadSavedComputerStartEvent.CallEvent();
+            result = loadSavedComputerStartEvent.Computer;
+            filename = loadSavedComputerStartEvent.Filename;
+            preventAddingToNetmap = loadSavedComputerStartEvent.PreventNetmapAdd;
+            preventInitDaemons = loadSavedComputerStartEvent.PreventDaemonInit;
+            if (loadSavedComputerStartEvent.IsCancelled)
+            {
+                Stream stream = System.IO.File.OpenRead(filename);
+                onLoadContentComputerEnd(ref stream, ref result, ref filename, ref preventAddingToNetmap, ref preventInitDaemons);
+                return true;
+            }
+            return false;
+        }
+
+        public static void onLoadContentComputerEnd(ref Stream stream,
+                                                    ref object loadedComputer,
+                                                    ref string filename,
+                                                    ref bool preventAddingToNetmap,
+                                                    ref bool preventInitDaemons)
+        {
+            var loadContentComputerEndEvent =
+                new Event.LoadContentComputerEndEvent(loadedComputer as Computer,
+                                                      filename,
+                                                      preventAddingToNetmap,
+                                                      preventInitDaemons,
+                                                      stream);
+            loadContentComputerEndEvent.CallEvent();
+            loadedComputer = loadContentComputerEndEvent.Computer;
+        }
+
+
         // createdComputer is from the hidden compiler generated value at Hacknet.ComputerLoader/'<>c__DisplayClass4'::c
         // its an irregular addition via injection
-        public static void onLoadComputer(ref XmlReader reader,
+        /*public static void onLoadComputer(ref XmlReader reader,
                                           string filename,
                                           bool preventAddingToNetmap,
                                           bool preventInitDaemons,
@@ -364,7 +427,7 @@ namespace Pathfinder
                                                                 false,
                                                                 true);
             loadComputerEvent.CallEvent();
-        }
+        }*/
 
         static Color defaultTitleColor = new Color(190, 190, 190, 0);
         static SpriteFont defaultTitleFont;
@@ -549,7 +612,7 @@ namespace Pathfinder
 
             var deserializers = Actions.SerializableCondition.ConditionHandler.GetDeserializers();
 
-            foreach(KeyValuePair<string, Actions.SerializableCondition.ConditionHandler.Deserializer> pair in deserializers)
+            foreach (KeyValuePair<string, Actions.SerializableCondition.ConditionHandler.Deserializer> pair in deserializers)
                 dict.Add(pair.Key, new Func<XmlReader, SerializableCondition>(pair.Value));
         }
 
@@ -559,6 +622,12 @@ namespace Pathfinder
 
             foreach (KeyValuePair<string, Actions.SerializableAction.ActionHandler.Deserializer> pair in deserializers)
                 dict.Add(pair.Key, new Func<XmlReader, SerializableAction>(pair.Value));
+        }
+
+        public static bool onFilterString(out string result, ref string input)
+        {
+            result = input.HacknetFilter();
+            return true;
         }
     }
 }

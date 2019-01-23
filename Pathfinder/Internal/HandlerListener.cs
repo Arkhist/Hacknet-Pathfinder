@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
+using Pathfinder.Game.Computer;
 using Pathfinder.Game.OS;
 using Pathfinder.Util;
 using ModOptions = Pathfinder.GUI.ModOptions;
@@ -29,18 +31,34 @@ namespace Pathfinder.Internal
             }
         }
 
-        public static void DaemonLoadListener(LoadComputerXmlReadEvent e)
+        public static void LoadSavedComputerReplacementStart(LoadSavedComputerStartEvent e)
+        {
+            e.Computer = SaveLoaderReplacement.LoadComputer(e.Reader, e.OS);
+            e.IsCancelled = true;
+        }
+
+        public static void LoadContentComputerReplacementStart(LoadContentComputerStartEvent e)
+        {
+            e.Computer = ContentLoaderReplacement.LoadComputer(e.LocalizedFilename, ComputerLoader.os, e.PreventNetmapAdd, e.PreventDaemonInit);
+            e.IsCancelled = true;
+        }
+
+        public static void DaemonLoadListener(Computer c, SaxProcessor.ElementInfo info)
         {
             Daemon.IInterface i;
-            var id = e.Reader.GetAttribute("interfaceId");
-            if (id != null && Daemon.Handler.ModDaemons.TryGetValue(id, out i))
+            var customDaemonInfos = info.Elements.Where(cdi => cdi.Name.ToLower() == "moddeddamon");
+            foreach (var daemonInfo in customDaemonInfos)
             {
-                var objs = new Dictionary<string, string>();
-                var storedObjects = e.Reader.GetAttribute("storedObjects")?.Split(' ');
-                if (storedObjects != null)
-                    foreach (var s in storedObjects)
-                        objs[s.Remove(s.IndexOf('|'))] = s.Substring(s.IndexOf('|') + 1);
-                e.Computer.daemons.Add(Daemon.Instance.CreateInstance(id, e.Computer, objs));
+                var id = daemonInfo.Attributes.GetValue("interfaceId");
+                if (id != null && Daemon.Handler.ModDaemons.TryGetValue(id, out i))
+                {
+                    var objs = new Dictionary<string, string>();
+                    var storedObjects = daemonInfo.Attributes.GetValue("storedObjects")?.Split(' ');
+                    if (storedObjects != null)
+                        foreach (var s in storedObjects)
+                            objs[s.Remove(s.IndexOf('|'))] = s.Substring(s.IndexOf('|') + 1);
+                    c.AddModdedDaemon(id, objs);
+                }
             }
         }
 

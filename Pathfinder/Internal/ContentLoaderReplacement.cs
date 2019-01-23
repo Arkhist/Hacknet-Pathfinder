@@ -6,16 +6,39 @@ using Hacknet;
 using Hacknet.Extensions;
 using Hacknet.Security;
 using Microsoft.Xna.Framework;
+using Pathfinder.Game;
 using Pathfinder.Game.Computer;
 using Pathfinder.Game.MailServer;
+using Pathfinder.ModManager;
 using Pathfinder.Util;
 using Sax.Net;
 
 namespace Pathfinder.Internal
 {
+    /* Found in ComputerLoader.loadComputer */
     public static class ContentLoaderReplacement
     {
-        public static Computer loadComputer(string filename, OS os, bool preventAddingToNetmap = false, bool preventInitDaemons = false)
+        public delegate void Injection(SaxProcessor.ElementInfo info, string filename, bool preventNetmapAdd, bool preventDaemonInit);
+
+        private static Dictionary<string, Dictionary<string, Injection>> ActionInject = new Dictionary<string, Dictionary<string, Injection>>();
+
+        public static void AddActionInjection(string id, Injection inject)
+        {
+            if (!ActionInject.ContainsKey(Manager.CurrentMod.GetCleanId()))
+                ActionInject.Add(Manager.CurrentMod.GetCleanId(), new Dictionary<string, Injection> { [id] = inject });
+            else if (!ActionInject[Manager.CurrentMod.GetCleanId()].ContainsKey(id))
+                ActionInject[Manager.CurrentMod.GetCleanId()].Add(id, inject);
+        }
+
+        public static bool RemoveActionInjection(string id)
+        {
+            var inject = ActionInject.FirstOrDefault(i => id.Split('.')[0] == i.Key);
+            if (inject.Value != null)
+                return inject.Value.Remove(id.Substring(id.IndexOf('.') + 1));
+            return ActionInject[Manager.CurrentMod.GetCleanId()].Remove(id);
+        }
+
+        public static Computer LoadComputer(string filename, OS os, bool preventAddingToNetmap = false, bool preventInitDaemons = false)
         {
             filename = LocalizedFileLoader.GetLocalizedFilepath(filename);
             Computer nearbyNodeOffset = null;
@@ -39,8 +62,8 @@ namespace Pathfinder.Internal
             {
                 var compType = info.Attributes.GetValue("type");
                 nearbyNodeOffset = new Computer(
-                        info.Attributes.GetValue("name")?.HacknetConvert() ?? "UNKNOWN",
-                        info.Attributes.GetValue("ip")?.HacknetConvert() ?? Utility.GenerateRandomIP(),
+                        info.Attributes.GetValue("name")?.HacknetFilter() ?? "UNKNOWN",
+                        info.Attributes.GetValue("ip")?.HacknetFilter() ?? Utility.GenerateRandomIP(),
                         os.netMap.getRandomPosition(),
                         Convert.ToInt32(info.Attributes.GetValue("security")),
                         compType?.ToLower() == "empty" ? (byte)4 : Convert.ToByte(compType),
@@ -64,7 +87,7 @@ namespace Pathfinder.Internal
                             var encodedFileStr = elementInfo.Attributes.GetValueOrDefault("name", "Data", true);
                             themeData = elementInfo.Value;
                             if (string.IsNullOrEmpty(themeData)) themeData = Utility.GenerateBinString();
-                            themeData = themeData.HacknetConvert();
+                            themeData = themeData.HacknetFilter();
                             var folderFromPath = nearbyNodeOffset.getFolderFromPath(
                                 elementInfo.Attributes.GetValueOrDefault("path", "home"), true);
                             if (info.Attributes.GetBool("EduSafe", true)
@@ -86,7 +109,7 @@ namespace Pathfinder.Internal
                             var doubleAttr = elementInfo.Attributes.GetBool("double");
                             themeData = elementInfo.Value;
                             if (string.IsNullOrEmpty(themeData)) themeData = Utility.GenerateBinString();
-                            themeData = themeData.HacknetConvert();
+                            themeData = themeData.HacknetFilter();
                             if (doubleAttr)
                                 themeData = FileEncrypter.EncryptString(themeData, header, ip, pass, extension);
                             themeData = FileEncrypter.EncryptString(themeData, header, ip, pass,
@@ -115,7 +138,7 @@ namespace Pathfinder.Internal
                             themeData = ThemeManager.getThemeDataStringForCustomTheme(elementInfo.Attributes.GetValue("themePath"));
                             themeData = string.IsNullOrEmpty(themeData)
                                 ? "DEFINITION ERROR - Theme generated incorrectly. No Custom theme found at definition path"
-                                : themeData.HacknetConvert();
+                                : themeData.HacknetFilter();
                             folderFromPath = nearbyNodeOffset.getFolderFromPath(
                                 elementInfo.Attributes.GetValueOrDefault("path", "home"), true);
                             if (folderFromPath.searchForFile(encodedFileStr) == null)
@@ -452,7 +475,7 @@ namespace Pathfinder.Internal
                                         var user = ininfo.Attributes.GetValue("user", true);
                                         if (!string.IsNullOrWhiteSpace(user))
                                             rCDaemon.StartingMessages.Add(
-                                                new KeyValuePair<string, string>(user, ininfo.Value?.HacknetConvert()));
+                                                new KeyValuePair<string, string>(user, ininfo.Value?.HacknetFilter()));
                                         break;
                                 }
                             }
@@ -510,6 +533,12 @@ namespace Pathfinder.Internal
                             break;
                     }
                 }
+
+                HandlerListener.DaemonLoadListener(nearbyNodeOffset, info);
+
+                foreach (var dict in ActionInject)
+                    foreach (var inject in dict.Value)
+                        inject.Value(info, filename, preventAddingToNetmap, preventInitDaemons);
                 if (!preventInitDaemons) nearbyNodeOffset.initDaemons();
                 if (!preventAddingToNetmap) os.netMap.nodes.Add(nearbyNodeOffset);
                 result = nearbyNodeOffset;
@@ -547,7 +576,7 @@ namespace Pathfinder.Internal
                 switch (ininfo.Name.ToLower())
                 {
                     case "note":
-                        var val = ininfo.Value.TrimStart().HacknetConvert();
+                        var val = ininfo.Value.TrimStart().HacknetFilter();
                         var filename = ininfo.Attributes.GetValue("filename", true);
                         if (filename == null)
                         {
@@ -574,7 +603,7 @@ namespace Pathfinder.Internal
                             true
                         ).files.Add(
                             new FileEntry(
-                                ininfo.Value?.HacknetConvert().TrimStart(),
+                                ininfo.Value?.HacknetFilter().TrimStart(),
                                 ininfo.Attributes.GetValue("name"))
                         );
                         break;
@@ -613,9 +642,9 @@ namespace Pathfinder.Internal
                         foreach (var cmdStr in cmdArr)
                             memoryContent.CommandsRun.Add(Folder
                                                           .deFilter(string.IsNullOrEmpty(cmdStr) ? " " : cmdStr)
-                                                          .HacknetConvert());
+                                                          .HacknetFilter());
                     }
-                    else memoryContent.CommandsRun.Add(Folder.deFilter(commandString).HacknetConvert());
+                    else memoryContent.CommandsRun.Add(Folder.deFilter(commandString).HacknetFilter());
                 }
 
             var dataListInfo = memoryInfo.Elements.FirstOrDefault((ininfo) => ininfo.Name == "Data");
@@ -623,7 +652,7 @@ namespace Pathfinder.Internal
                 foreach (var blockInfo in dataListInfo.Elements)
                 {
                     if (blockInfo.Name != "Block") continue;
-                    memoryContent.DataBlocks.Add(Folder.deFilter(blockInfo.Value).HacknetConvert());
+                    memoryContent.DataBlocks.Add(Folder.deFilter(blockInfo.Value).HacknetFilter());
                 }
 
             var fileFragListInfo = memoryInfo.Elements.FirstOrDefault((ininfo) => ininfo.Name == "FileFragments");

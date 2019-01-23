@@ -365,7 +365,50 @@ namespace PathfinderPatcher
                 // 232 puts it right before the nearbyNodeOffset.type == 4 if statement that erases all home folder data
                 type = ad.MainModule.GetType("Hacknet.ComputerLoader");
                 var method = type.GetMethod("loadComputer");
-                method.InjectWithLocalFieldParameter(
+
+                method.InjectWith(
+                    hooks.GetMethod("onLoadContentComputerStart"),
+                    flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
+                );
+
+                method.InjectWith(
+                    hooks.GetMethod("onLoadContentComputerEnd"),
+                    -2,
+                    flags: InjectFlags.PassParametersRef | InjectFlags.PassLocals,
+                    localsID: new int[] { 0, 153 }
+                );
+
+                /*method.InjectWithLocalFieldParameter(
+                    hooks.GetMethod("onLoadContentComputerEnd"),
+                    -1,
+                    152,
+                    type.NestedTypes.First((arg) => arg.Name == "<>c__DisplayClass4").GetField("c"),
+                    true,
+                    InjectDirection.Before,
+                    InjectFlags.PassParametersRef | InjectFlags.PassLocals,
+                    new int[] { 0, 153 }
+                );*/
+
+                method = type.GetMethod("load");
+
+                method.InjectWith(
+                    hooks.GetMethod("onLoadSavedComputerStart"),
+                    flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
+                );
+
+                method.InjectWith(
+                    hooks.GetMethod("onLoadSavedComputerEnd"),
+                    -2,
+                    flags: InjectFlags.PassParametersRef | InjectFlags.PassLocals,
+                    localsID: new int[] { 97 }
+                );
+
+                type.GetMethod("filter").InjectWith(
+                    hooks.GetMethod("onFilterString"),
+                    flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
+                );
+
+                /*method.InjectWithLocalFieldParameter(
                     hooks.GetMethod("onLoadComputer"),
                     266,
                     152,
@@ -375,15 +418,15 @@ namespace PathfinderPatcher
                     InjectFlags.PassParametersVal | InjectFlags.PassLocals,
                     new int[] { 1 }
                 );
-                method.AdjustInstruction(240, operand: method.Inst(265));
+                method.AdjustInstruction(240, operand: method.Inst(265));*/
 
                 // Hook onLoadSaveComputer to Hacknet.Computer
-                ad.MainModule.GetType("Hacknet.Computer").GetMethod("load").InjectWith(
+                /*ad.MainModule.GetType("Hacknet.Computer").GetMethod("load").InjectWith(
                     hooks.GetMethod("onLoadSaveComputer"),
                     355,
                     flags: InjectFlags.PassParametersRef | InjectFlags.PassLocals,
                     localsID: new int[] { 23 }
-                );
+                );*/
 
                 // Hook onGameUnloadContent to Game1.UnloadContent
                 ad.MainModule.GetType("Hacknet.Game1").GetMethod("UnloadContent").InjectWith(
@@ -485,8 +528,6 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassLocals,
                     localsID: new int[] { 0 }
                 );
-
-
 
                 ad?.Write("HacknetPathfinder.exe");
             }
@@ -639,11 +680,11 @@ namespace PathfinderPatcher
         )
         {
             var flags = f.ToValues();
-            if (callLoc == -1) throw new ArgumentOutOfRangeException(nameof(callLoc));
             if (flags.PassLocals && localsID == null) throw new ArgumentNullException(nameof(localsID));
             if (flags.PassFields && typeFields == null) throw new ArgumentNullException(nameof(typeFields));
 
             var body = self.Body;
+            if (callLoc < 0) callLoc = body.Instructions.Count + callLoc;
             var il = body.GetILProcessor();
             var isVoid = self.ReturnType.FullName == "System.Void";
             var inst = body.Instructions[callLoc];

@@ -5,10 +5,10 @@ namespace Pathfinder.Port
     public class Type : IEquatable<Type>, IEquatable<Instance>
     {
         public string PortName { get; private set; }
-        public uint PortDisplay { get; private set; }
+        public int PortDisplay { get; private set; }
         public string PortId { get; internal set; }
 
-        public Type(string portName, uint portDisplay)
+        public Type(string portName, int portDisplay)
         {
             if (portName == null)
                 throw new ArgumentNullException(nameof(portName));

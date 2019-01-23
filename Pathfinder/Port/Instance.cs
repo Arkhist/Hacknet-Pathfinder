@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hacknet;
+using Pathfinder.Util;
 
 namespace Pathfinder.Port
 {
@@ -9,8 +11,34 @@ namespace Pathfinder.Port
         internal static Dictionary<Hacknet.Computer, List<Instance>> compToInst =
             new Dictionary<Hacknet.Computer, List<Instance>>();
 
+        internal Computer activeComputer;
+
         public Type Port { get; private set; }
         public bool Unlocked { get; set; }
+        public bool IsRemapped { get; private set; }
+        public int MappedPort
+        {
+            get
+            {
+                int remap = 0;
+                activeComputer?.PortRemapping.TryGetValue(Port.PortDisplay, out remap);
+                return remap != 0 ? remap : Port.PortDisplay;
+            }
+            set
+            {
+                if (activeComputer == null) return;
+                if (value == 0)
+                {
+                    activeComputer.PortRemapping.Remove(Port.PortDisplay);
+                    IsRemapped = false;
+                }
+                else
+                {
+                    activeComputer.PortRemapping.Add(Port.PortDisplay, value);
+                    IsRemapped = true;
+                }
+            }
+        }
 
         public Instance(Type port, bool unlocked = false)
         {
@@ -25,6 +53,15 @@ namespace Pathfinder.Port
             if (!compToInst.ContainsKey(c))
                 compToInst.Add(c, new List<Instance>());
             var sameDisplay = compToInst[c].FirstOrDefault((i) => i.Port.PortDisplay == ins.Port.PortDisplay);
+            if (c.PortRemapping.ContainsKey(ins.Port.PortDisplay) && !compToInst[c].Contains(ins) && replace || sameDisplay == null)
+            {
+                if (replace)
+                {
+                    c.ports.Remove(ExeInfoManager.GetExecutableInfo(ins.Port.PortDisplay).PortNumber);
+                    c.PortRemapping.Remove(ins.Port.PortDisplay);
+                }
+                else return false;
+            }
             if (!compToInst[c].Contains(ins) && sameDisplay == null)
             {
                 compToInst[c].Add(ins);
@@ -34,6 +71,7 @@ namespace Pathfinder.Port
             {
                 compToInst[c].Remove(sameDisplay);
                 compToInst[c].Add(ins);
+                ins.activeComputer = c;
                 return true;
             }
             return false;
@@ -43,6 +81,7 @@ namespace Pathfinder.Port
         {
             if (!compToInst.ContainsKey(c) || !compToInst[c].Contains(ins))
                 return false;
+            c.PortRemapping.Remove(ins.Port.PortDisplay);
             return compToInst[c].Remove(ins);
         }
 
