@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Pathfinder.Game;
 using Pathfinder.Util;
 
 namespace Sax.Net
@@ -7,10 +8,10 @@ namespace Sax.Net
     public static class Extensions
     {
         public static string GetValue(this IAttributes a, string key, bool convert)
-            => convert ? a?.GetValue(key)?.HacknetConvert() : a?.GetValue(key);
+            => convert ? a?.GetValue(key)?.HacknetFilter() : a?.GetValue(key);
 
         public static string GetValueOrDefault(this IAttributes a, string key, string defaultVal = null, bool convert = false)
-            => (convert ? a?.GetValue(key)?.HacknetConvert() : a?.GetValue(key)) ?? defaultVal;
+            => (convert ? a?.GetValue(key)?.HacknetFilter() : a?.GetValue(key)) ?? defaultVal;
 
         public static bool GetBool(this IAttributes a, string key, bool defaultVal = false)
             => a?.GetValue(key)?.ToBool(defaultVal) == true;
