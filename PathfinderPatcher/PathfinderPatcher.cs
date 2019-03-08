@@ -380,6 +380,11 @@ namespace PathfinderPatcher
                     localsID: new int[] { 0, 153 }
                 );
 
+                type.GetMethod("filter").InjectWith(
+                    hooks.GetMethod("onFilterString"),
+                    flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
+                );
+
                 /*method.InjectWithLocalFieldParameter(
                     hooks.GetMethod("onLoadContentComputerEnd"),
                     -1,
@@ -405,10 +410,7 @@ namespace PathfinderPatcher
                     localsID: new int[] { 97 }
                 );
 
-                type.GetMethod("filter").InjectWith(
-                    hooks.GetMethod("onFilterString"),
-                    flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
-                );
+
 
                 /*method.InjectWithLocalFieldParameter(
                     hooks.GetMethod("onLoadComputer"),
