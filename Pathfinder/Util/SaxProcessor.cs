@@ -9,6 +9,8 @@ namespace Pathfinder.Util
 {
     public class SaxProcessor : DefaultHandler
     {
+        public ILocator Locator { get; protected set; }
+
         /// <summary>
         /// Gets the IXMLReader.
         /// </summary>
@@ -17,18 +19,34 @@ namespace Pathfinder.Util
 
         public class ElementInfo
         {
-            public ElementInfo(string name, int depth, string value = "", IAttributes a = null)
+            private ILocator locator;
+
+            public ElementInfo(string name, int depth, string value = "", IAttributes a = null, ILocator l = null)
             {
                 Name = name;
                 Depth = depth;
                 Value = value;
                 Attributes = a;
+                Locator = l;
             }
             public string Name { get; }
             public string Value { get; internal set; }
             public int StartPosition { get; internal set; }
             public IAttributes Attributes { get; }
             public ReadOnlyCollection<ElementInfo> Elements => new ReadOnlyCollection<ElementInfo>(elements);
+            public ILocator Locator
+            {
+                get
+                {
+                    return locator;
+                }
+                internal set
+                {
+                    foreach (var e in elements)
+                        e.Locator = value;
+                    locator = value;
+                }
+            }
             internal int Depth { get; set; }
             internal Collection<ElementInfo> elements = new Collection<ElementInfo>();
         }
@@ -50,7 +68,7 @@ namespace Pathfinder.Util
         /// </summary>
         /// <returns>The process.</returns>
         /// <param name="input">Input.</param>
-        public void Process(string input) => Parser.Parse(new InputSource(new StringReader(input)));
+        public void Process(string input, string systemId = null) => Parser.Parse(new InputSource(new StringReader(input)) { SystemId = systemId });
         public void Process(Stream stream) => Parser.Parse(new InputSource(stream));
 
         /// <summary>
@@ -79,6 +97,13 @@ namespace Pathfinder.Util
             return elementActions[tag].Remove(action);
         }
 
+        public override void SetDocumentLocator(ILocator locator)
+        {
+            Locator = locator;
+            if (currentElement != null)
+                currentElement.Locator = locator;
+        }
+
         public override void StartElement(string uri, string localName, string qName, IAttributes atts)
         {
             if (currentDepth == 0)
@@ -87,9 +112,9 @@ namespace Pathfinder.Util
             if (string.IsNullOrEmpty(uri))
             {
                 if (currentElement != null)
-                    currentElement.elements.Add(new ElementInfo(qName, ++currentDepth, a: atts.Clone()));
+                    currentElement.elements.Add(new ElementInfo(qName, ++currentDepth, a: atts.Clone(), l: Locator));
                 else if (elementActions.ContainsKey(qName) && elementActions[qName] != null && elementActions[qName].Count > 0)
-                    currentElement = new ElementInfo(qName, ++currentDepth, a: atts);
+                    currentElement = new ElementInfo(qName, ++currentDepth, a: atts.Clone(), l: Locator);
             }
         }
 

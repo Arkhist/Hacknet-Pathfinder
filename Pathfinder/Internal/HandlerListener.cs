@@ -45,7 +45,7 @@ namespace Pathfinder.Internal
 
         public static void DaemonLoadListener(Computer c, SaxProcessor.ElementInfo info)
         {
-            Daemon.IInterface i;
+            Daemon.Interface i;
             var customDaemonInfos = info.Elements.Where(cdi => cdi.Name.ToLower() == "moddeddamon");
             foreach (var daemonInfo in customDaemonInfos)
             {
@@ -64,7 +64,7 @@ namespace Pathfinder.Internal
 
         public static void ExecutableListener(ExecutableExecuteEvent e)
         {
-            Tuple<Executable.IInterface, string> tuple;
+            Tuple<Executable.Interface, string> tuple;
             Console.WriteLine(Utility.ConvertFromHexBlocks(e.ExecutableFile.data.Split('\n')[0]));
             if (Executable.Handler.IsFileDataForModExe(e.ExecutableFile.data)
                 && Executable.Handler.ModExecutables.TryGetValue(Utility.ConvertFromHexBlocks(e.ExecutableFile.data.Split('\n')[0]), out tuple))

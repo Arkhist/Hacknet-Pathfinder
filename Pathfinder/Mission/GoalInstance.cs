@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Pathfinder.Util;
+using System.Linq;
+using System.Text;
 
 namespace Pathfinder.Mission
 {
@@ -14,12 +15,16 @@ namespace Pathfinder.Mission
 
         internal GoalInstance(IGoal inter) { Interface = inter; }
 
-        public static GoalInstance CreateInstance(string id)
+        public static GoalInstance CreateInstance(string id, Dictionary<string, object> objects = null)
         {
             var inter = Handler.GetMissionGoalById(ref id);
             if (inter == null)
                 return null;
-            var i = new GoalInstance(inter) { InterfaceId = id };
+            var i = new GoalInstance(inter)
+            {
+                InterfaceId = id,
+                keyToObject = objects?.ToDictionary(p => p.Key, p => new Tuple<bool, object>(true, p.Value))
+            };
             return i;
         }
 
@@ -27,7 +32,7 @@ namespace Pathfinder.Mission
         {
             get
             {
-                key = Utility.ConvertToValidXmlAttributeName(key);
+                key = Util.Utility.ConvertToValidXmlAttributeName(key);
                 Tuple<bool, object> t;
                 if (keyToObject.TryGetValue(key, out t))
                     return t.Item2;
@@ -35,7 +40,7 @@ namespace Pathfinder.Mission
             }
             set
             {
-                key = Utility.ConvertToValidXmlAttributeName(key);
+                key = Util.Utility.ConvertToValidXmlAttributeName(key);
                 keyToObject[key] = new Tuple<bool, object>(false, value);
             }
         }
@@ -45,7 +50,7 @@ namespace Pathfinder.Mission
 
         public bool? IsInstanceSaveable(string key)
         {
-            key = Utility.ConvertToValidXmlAttributeName(key);
+            key = Util.Utility.ConvertToValidXmlAttributeName(key);
             Tuple<bool, object> t;
             if (keyToObject.TryGetValue(key, out t))
                 return t.Item1;
@@ -54,7 +59,7 @@ namespace Pathfinder.Mission
 
         public bool SetInstanceData(string key, object val, bool shouldSave = false)
         {
-            key = Utility.ConvertToValidXmlAttributeName(key);
+            key = Util.Utility.ConvertToValidXmlAttributeName(key);
             var t = new Tuple<bool, object>(shouldSave, val);
             keyToObject[key] = t;
             return keyToObject[key] == t;
@@ -62,7 +67,7 @@ namespace Pathfinder.Mission
 
         public void SetInstanceDataSaveable(string key, bool shouldSave)
         {
-            key = Utility.ConvertToValidXmlAttributeName(key);
+            key = Util.Utility.ConvertToValidXmlAttributeName(key);
             Tuple<bool, object> t;
             if (keyToObject.TryGetValue(key, out t))
             {
@@ -81,10 +86,10 @@ namespace Pathfinder.Mission
         {
             get
             {
-                var str = "<moddedMissionGoal interfaceId=\"" + InterfaceId + "\" storedObjects=\"";
+                var str = new StringBuilder("<goal id=\"" + InterfaceId + "\">");
                 foreach (var o in keyToObject) if (o.Value.Item1)
-                    str += " " + o.Key + "|" + o.Value.Item2;
-                return str + "/>";
+                    str.AppendLine("<"+o.Key+">" + o.Value.Item2 + "</" + o.Key + ">");
+                return str.Append("</goal>").ToString();
             }
         }
     }

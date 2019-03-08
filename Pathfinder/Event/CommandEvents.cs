@@ -4,7 +4,28 @@ using Pathfinder.Util;
 
 namespace Pathfinder.Event
 {
-    public class CommandSentEvent : OSEvent
+    public class CommandEvent : OSEvent
+    {
+        public List<string> Arguments { get; set; }
+        public CommandEvent(Hacknet.OS os, string[] args) : base(os)
+        {
+            Arguments = new List<string>(args ?? Utility.Array<string>.Empty);
+        }
+
+        public string this[int index]
+        {
+            get
+            {
+                if (Arguments?.Count <= index)
+                    return "";
+                return Arguments?[index];
+            }
+        }
+
+        public int ArgCount => Arguments?.Count ?? 0;
+    }
+
+    public class CommandSentEvent : CommandEvent
     {
         public bool Disconnects { get; set; }
         public CommandDisplayStateChange StateChange { get; set; } = CommandDisplayStateChange.None;
@@ -22,20 +43,6 @@ namespace Pathfinder.Event
                 }
             }
         }
-        public List<string> Arguments { get; private set; }
-        public CommandSentEvent(Hacknet.OS os, string[] args) : base(os)
-        {
-            Arguments = new List<string>(args ?? Utility.Array<string>.Empty);
-        }
-
-        public string this[int index]
-        {
-            get
-            {
-                if (Arguments.Count <= index)
-                    return "";
-                return Arguments[index];
-            }
-        }
+        public CommandSentEvent(Hacknet.OS os, string[] args) : base(os, args) { }
     }
 }

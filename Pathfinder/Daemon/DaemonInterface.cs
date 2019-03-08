@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Pathfinder.Daemon
 {
-    public interface IInterface
+    public interface Interface
     {
         string InitialServiceName { get; }
 
@@ -17,7 +17,7 @@ namespace Pathfinder.Daemon
         void OnUserAdded(Instance instance, string name, string pass, byte type);
     }
 
-    public class Interface : IInterface
+    public class Base : Interface
     {
         public virtual string InitialServiceName => GetType().FullName;
         public virtual void OnCreate(Instance instance) {}

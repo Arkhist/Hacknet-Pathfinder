@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Hacknet;
@@ -80,7 +80,7 @@ namespace Pathfinder.Game.Computer
         /// Retrieves the first mod Daemon.Instance whose interface Type is or is derived from T.
         /// </summary>
         /// <typeparam name="T">The Type or derivative of the type to search for in the Daemon List</typeparam>
-        public static Daemon.Instance GetModdedDaemon<T>(this Hacknet.Computer comp) where T : Daemon.IInterface =>
+        public static Daemon.Instance GetModdedDaemon<T>(this Hacknet.Computer comp) where T : Daemon.Interface =>
             comp.GetModdedDaemonList<T>().ElementAtOrDefault(0);
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Pathfinder.Game.Computer
         /// Retrieves a List of mod Daemon.Instance whose interface Type is or is derived from T
         /// </summary>
         /// <typeparam name="T">The Type or derivative of the type to search for in the Daemon List</typeparam>
-        public static List<Daemon.Instance> GetModdedDaemonList<T>(this Hacknet.Computer comp) where T : Daemon.IInterface
+        public static List<Daemon.Instance> GetModdedDaemonList<T>(this Hacknet.Computer comp) where T : Daemon.Interface
         {
             var result = new List<Daemon.Instance>();
             foreach (var d in comp.daemons)

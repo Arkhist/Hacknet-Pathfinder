@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -221,7 +221,7 @@ namespace Pathfinder.GameFilesystem
         /// <returns>The File that was created.</returns>
         /// <param name="name">The name to assign to the File.</param>
         /// <param name="exeInterface">The Executable.IInterface whose file data is to be generated.</param>
-        public File CreateFile(string name, Executable.IInterface exeInterface) =>
+        public File CreateFile(string name, Executable.Interface exeInterface) =>
             CreateFile(name, Executable.Handler.GetStandardFileDataBy(exeInterface));
 
         /// <summary>

@@ -9,19 +9,19 @@ namespace Pathfinder.Mission
         string GetTestCompletableString(GoalInstance instance);
     }
 
-    public class GoalImpl : IGoal
+    public class GoalBase : IGoal
     {
-        public string GetTestCompletableString(GoalInstance instance)
+        public virtual string GetTestCompletableString(GoalInstance instance)
         {
             return "";
         }
 
-        public bool IsComplete(GoalInstance instance, List<string> details)
+        public virtual bool IsComplete(GoalInstance instance, List<string> details)
         {
             return true;
         }
 
-        public void Reset(GoalInstance instance)
+        public virtual void Reset(GoalInstance instance)
         {}
     }
 }

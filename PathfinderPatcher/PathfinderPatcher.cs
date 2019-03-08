@@ -209,6 +209,8 @@ namespace PathfinderPatcher
 
                 foreach (var t in type.NestedTypes) t.IsNestedPublic = true;
 
+                type.GetMethod("findComp").IsPublic = true;
+
                 // Ensure IntroTextModule's fields are public
                 type = ad.MainModule.GetType("Hacknet.IntroTextModule");
                 foreach (var f in type.Fields)
@@ -389,7 +391,7 @@ namespace PathfinderPatcher
                     new int[] { 0, 153 }
                 );*/
 
-                method = type.GetMethod("load");
+                method = ad.MainModule.GetType("Hacknet.Computer").GetMethod("load");
 
                 method.InjectWith(
                     hooks.GetMethod("onLoadSavedComputerStart"),
@@ -510,10 +512,14 @@ namespace PathfinderPatcher
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 
+                ad.MainModule.GetType("Hacknet.RunnableConditionalActions").GetMethod("Deserialize").InjectWith(
+                    hooks.GetMethod("onDeserializeRunnableConditionalActions"),
+                    flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
+                );
 
                 // SENSITIVE CODE, CHANGE OFFSET IF NEEDED
                 // Hook onAddSerializableConditions to SerializableCondition.Deserialize
-                ad.MainModule.GetType("Hacknet.SerializableCondition").GetMethod("Deserialize").InjectWith(
+                /*ad.MainModule.GetType("Hacknet.SerializableCondition").GetMethod("Deserialize").InjectWith(
                     hooks.GetMethod("onAddSerializableConditions"),
                     3,
                     flags: InjectFlags.PassLocals,
@@ -527,7 +533,7 @@ namespace PathfinderPatcher
                     3,
                     flags: InjectFlags.PassLocals,
                     localsID: new int[] { 0 }
-                );
+                );*/
 
                 ad?.Write("HacknetPathfinder.exe");
             }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,11 +10,11 @@ namespace Pathfinder.Daemon
     {
         private Dictionary<string, Tuple<bool, object>> keyToObject = new Dictionary<string, Tuple<bool, object>>();
 
-        public IInterface Interface {  get; private set; }
+        public Interface Interface {  get; private set; }
 
         public string InterfaceId { get; private set; }
 
-        internal Instance(Hacknet.Computer computer, string serviceName, Hacknet.OS os, IInterface daeInterface)
+        internal Instance(Hacknet.Computer computer, string serviceName, Hacknet.OS os, Interface daeInterface)
             : base(computer, serviceName, os)
         {
             Interface = daeInterface;

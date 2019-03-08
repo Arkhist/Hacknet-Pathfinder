@@ -47,7 +47,7 @@ namespace Pathfinder.ModManager
         public static IMod GetLoadedMod(string id)
         {
             IMod mod;
-            LoadedMods.TryGetValue(id, out mod);
+            if (!LoadedMods.TryGetValue(id, out mod)) return null;
             return mod;
         }
 

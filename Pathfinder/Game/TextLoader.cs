@@ -106,5 +106,8 @@ namespace Pathfinder.Game
                                   "[FIRST_NAME]#[LAST_NAME]#[RECORD_NUM]#32#Rural#N/A#N/A#N/A#[LAST_WORDS]")
                          .Replace("[PRÉNOM]", "[FIRST_NAME]");
         }
+
+        public static string XmlFilter(this string input) => Hacknet.Folder.Filter(input);
+        public static string XmlDefilter(this string input) => Hacknet.Folder.deFilter(input);
     }
 }

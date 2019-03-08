@@ -7,8 +7,8 @@ namespace Pathfinder.Executable
 {
     public static class Handler
     {
-        internal static readonly Dictionary<string, Tuple<IInterface, string>> ModExecutables =
-            new Dictionary<string, Tuple<IInterface, string>>();
+        internal static readonly Dictionary<string, Tuple<Interface, string>> ModExecutables =
+            new Dictionary<string, Tuple<Interface, string>>();
 
         /// <summary>
         /// Adds an executable interface by id.
@@ -16,7 +16,7 @@ namespace Pathfinder.Executable
         /// <returns>The full mod id if added to the game, <c>null</c> otherwise.</returns>
         /// <param name="id">The Executable Identifier to try and add.</param>
         /// <param name="inter">The interface object.</param>
-        public static string RegisterExecutable(string id, IInterface inter)
+        public static string RegisterExecutable(string id, Interface inter)
         {
             if (Pathfinder.CurrentMod == null && !Extension.Handler.CanRegister)
                 throw new InvalidOperationException("RegisterExecutable can not be called outside of mod or extension loading.");
@@ -32,7 +32,7 @@ namespace Pathfinder.Executable
             var fileData = GenerateFileDataString(type.Assembly.GetName().Name, type.FullName, id);
             if (fileData.Length < 1 || ModExecutables.Any(pair => pair.Value.Item2 == fileData))
                 throw new ArgumentException("created data for '" + id + "' is not unique");
-            ModExecutables.Add(id, new Tuple<IInterface, string>(inter, fileData));
+            ModExecutables.Add(id, new Tuple<Interface, string>(inter, fileData));
             return id;
         }
 
@@ -99,7 +99,7 @@ namespace Pathfinder.Executable
             if (requiresModId && id.IndexOf('.') == -1)
                 throw new ArgumentException("must contain a mod id and delimter (.)", nameof(id));
             id = Utility.GetId(id, requiresModId, true);
-            Tuple<IInterface, string> result;
+            Tuple<Interface, string> result;
             return ModExecutables.TryGetValue(id, out result) ? result.Item2 : null;
         }
 
@@ -108,7 +108,7 @@ namespace Pathfinder.Executable
         /// </summary>
         /// <returns>The standard file data or <c>null</c> if it doesn't exist.</returns>
         /// <param name="inter">The Executable Interface</param>
-        public static string GetStandardFileDataBy(IInterface inter)
+        public static string GetStandardFileDataBy(Interface inter)
         {
             foreach (var pair in ModExecutables)
                 if (pair.Value.Item1 == inter)

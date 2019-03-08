@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Pathfinder.Game.ExeModule;
 using Pathfinder.Util;
@@ -50,7 +50,7 @@ namespace Pathfinder.Game.OS
         /// Retrieves the List of Executable.Instance List whose Type is or is derived from T 
         /// </summary>
         /// <typeparam name="T">The Type or derivative of the type to search for in the Executable List</typeparam>
-        public static List<Executable.Instance> GetModExeInterfaceFor<T>(this Hacknet.OS os) where T : Executable.IInterface
+        public static List<Executable.Instance> GetModExeInterfaceFor<T>(this Hacknet.OS os) where T : Executable.Interface
         {
             var result = new List<Executable.Instance>();
             foreach (var e in os.GetExesFor<Executable.Instance>())

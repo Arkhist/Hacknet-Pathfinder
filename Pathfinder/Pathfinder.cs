@@ -77,6 +77,9 @@ namespace Pathfinder
             EventManager.RegisterListener<OSLoadContentEvent>(Internal.GUI.ModExtensionsUI.LoadContentForModExtensionListener);
             EventManager.RegisterListener<OSUnloadContentEvent>(Internal.GUI.ModExtensionsUI.UnloadContentForModExtensionListener);
 
+            EventManager.RegisterListener<LoadSavedComputerStartEvent>(Internal.HandlerListener.LoadSavedComputerReplacementStart);
+            EventManager.RegisterListener<LoadContentComputerStartEvent>(Internal.HandlerListener.LoadContentComputerReplacementStart);
+
             EventManager.RegisterListener<OptionsMenuLoadContentEvent>(Internal.HandlerListener.OptionsMenuLoadContentListener);
             EventManager.RegisterListener<OptionsMenuDrawEvent>(Internal.HandlerListener.OptionsMenuDrawListener);
             EventManager.RegisterListener<OptionsMenuApplyEvent>(Internal.HandlerListener.OptionsMenuApplyListener);
@@ -113,30 +116,35 @@ namespace Pathfinder
             {
                 if (shouldThrowReason)
                     throw new InvalidIdException("Mod Idenfitier '" + id + "' is null or empty");
+                Logger.Warn("Mod Idenfitier '" + id + "' is null or empty");
                 return false;
             }
             if (IsModLoaded(id))
             {
                 if (shouldThrowReason)
                     throw new InvalidIdException("Mod Idenfitier '" + id + "' has already been loaded");
+                Logger.Warn("Mod Idenfitier '" + id + "' has already been loaded");
                 return false;
             }
             if (id.Contains('.'))
             {
                 if (shouldThrowReason)
                     throw new InvalidIdException("Mod Idenfitier '" + id + "' contains a period");
+                Logger.Warn("Mod Idenfitier '" + id + "' contains a period");
                 return false;
             }
             if (char.IsDigit(id[0]))
             {
                 if (shouldThrowReason)
                     throw new InvalidIdException("Mod Idenfitier '" + id + "' starts with a digit");
+                Logger.Warn("Mod Idenfitier '" + id + "' starts with a digit");
                 return false;
             }
             if (id.IndexOfAny(Path.GetInvalidFileNameChars()) != -1 || id.IndexOfAny(Path.GetInvalidPathChars()) != -1)
             {
                 if (shouldThrowReason)
                     throw new InvalidIdException("Mod Idenfitier '" + id + "' contains invalid path characters");
+                Logger.Warn("Mod Idenfitier '" + id + "' contains invalid path characters");
                 return false;
             }
             return true;

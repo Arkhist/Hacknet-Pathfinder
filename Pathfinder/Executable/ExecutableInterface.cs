@@ -1,6 +1,6 @@
 ﻿namespace Pathfinder.Executable
 {
-    public interface IInterface
+    public interface Interface
     {
         string Identifier { get; }
         bool NeedsProxyAccess { get; }
@@ -29,7 +29,7 @@
         void PostDraw(Instance instance);
     }
 
-    public class Interface : IInterface
+    public class Base : Interface
     {
         public virtual string Identifier => "UNKNOWN";
         public virtual bool NeedsProxyAccess => false;

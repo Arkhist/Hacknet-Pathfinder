@@ -99,37 +99,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pathfinder\Actions\SerializableAction\ActionHandler.cs" />
-    <Compile Include="Pathfinder\Actions\SerializableAction\Interface.cs" />
     <Compile Include="Pathfinder\Event\BasicEvents.cs" />
     <Compile Include="Pathfinder\Event\MainMenuEvents.cs" />
     <Compile Include="Pathfinder\Event\EventManager.cs" />
     <Compile Include="Pathfinder\Event\PathfinderEvent.cs" />
-    <Compile Include="Pathfinder\Actions\SerializableCondition\ConditionHandler.cs" />
-    <Compile Include="Pathfinder\Actions\SerializableCondition\Interface.cs" />
     <Compile Include="Pathfinder\Pathfinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pathfinder\PathfinderHooks.cs" />
-    <Compile Include="Pathfinder\Executable\Interface.cs" />
-    <Compile Include="Pathfinder\Executable\Handler.cs" />
-    <Compile Include="Pathfinder\Command\Handler.cs" />
-    <Compile Include="Pathfinder\Executable\Instance.cs" />
-    <Compile Include="Pathfinder\Daemon\Instance.cs" />
-    <Compile Include="Pathfinder\Daemon\Interface.cs" />
+    <Compile Include="Pathfinder\Executable\ExecutableInterface.cs" />
+    <Compile Include="Pathfinder\Executable\ExecutableHandler.cs" />
+    <Compile Include="Pathfinder\Command\CommandHandler.cs" />
+    <Compile Include="Pathfinder\Executable\ExecutableInstance.cs" />
+    <Compile Include="Pathfinder\Daemon\DaemonInstance.cs" />
+    <Compile Include="Pathfinder\Daemon\DaemonInterface.cs" />
     <Compile Include="Pathfinder\Executable\ExecutionResult.cs" />
     <Compile Include="Pathfinder\Executable\IMainDisplayOverride.cs" />
-    <Compile Include="Pathfinder\Daemon\Handler.cs" />
+    <Compile Include="Pathfinder\Daemon\DaemonHandler.cs" />
     <Compile Include="Pathfinder\Util\File\ModContent.cs" />
     <Compile Include="Pathfinder\Util\SoundSystem.cs" />
     <Compile Include="Pathfinder\GameFilesystem\Extensions.cs" />
     <Compile Include="Pathfinder\Util\ExeInfoManager.cs" />
-    <Compile Include="Pathfinder\Mission\MissionManager.cs" />
+    <Compile Include="Pathfinder\Mission\MissionExtensions.cs" />
     <Compile Include="Pathfinder\Mission\GoalInstance.cs" />
     <Compile Include="Pathfinder\Mission\GoalInterface.cs" />
-    <Compile Include="Pathfinder\Mission\Instance.cs" />
-    <Compile Include="Pathfinder\Mission\Handler.cs" />
+    <Compile Include="Pathfinder\Mission\MissionInstance.cs" />
+    <Compile Include="Pathfinder\Mission\MissionHandler.cs" />
     <Compile Include="Pathfinder\Util\Utility.cs" />
-    <Compile Include="Pathfinder\Mission\Interface.cs" />
+    <Compile Include="Pathfinder\Mission\MissionInterface.cs" />
     <Compile Include="Pathfinder\Util\Logger.cs" />
     <Compile Include="Pathfinder\GameFilesystem\FileObject.cs" />
     <Compile Include="Pathfinder\GameFilesystem\Filesystem.cs" />
@@ -142,24 +138,24 @@
     <Compile Include="Pathfinder\Event\ComputerEvents.cs" />
     <Compile Include="Pathfinder\Event\ExecutableEvents.cs" />
     <Compile Include="Pathfinder\Util\JsonObject.cs" />
-    <Compile Include="Pathfinder\Port\Type.cs" />
-    <Compile Include="Pathfinder\Port\Instance.cs" />
-    <Compile Include="Pathfinder\Port\Handler.cs" />
+    <Compile Include="Pathfinder\Port\PortType.cs" />
+    <Compile Include="Pathfinder\Port\PortInstance.cs" />
+    <Compile Include="Pathfinder\Port\PortHandler.cs" />
     <Compile Include="Pathfinder\GUI\CommandDisplayState.cs" />
     <Compile Include="Pathfinder\GUI\Button.cs" />
     <Compile Include="Pathfinder\GUI\Scrollbar.cs" />
     <Compile Include="Pathfinder\GUI\BaseInteractiveRectangle.cs" />
     <Compile Include="Pathfinder\GUI\DynamicRectangle.cs" />
     <Compile Include="Pathfinder\Event\ModuleEvents.cs" />
-    <Compile Include="Pathfinder\Extension\Info.cs" />
-    <Compile Include="Pathfinder\Extension\Handler.cs" />
+    <Compile Include="Pathfinder\Extension\ExtensionInfo.cs" />
+    <Compile Include="Pathfinder\Extension\ExtensionHandler.cs" />
     <Compile Include="Pathfinder\Event\ExtensionMenuEvents.cs" />
     <Compile Include="Pathfinder\GUI\SpriteBatchExtensions.cs" />
     <Compile Include="Pathfinder\Util\RetrieveType.cs" />
     <Compile Include="Pathfinder\Internal\GUI\ModList.cs" />
-    <Compile Include="Pathfinder\Mission\MissionUtils.cs" />
+    <Compile Include="Pathfinder\Mission\MissionUtility.cs" />
     <Compile Include="Pathfinder\Internal\HandlerListener.cs" />
-    <Compile Include="Pathfinder\Command\Help.cs" />
+    <Compile Include="Pathfinder\Command\CommandHelp.cs" />
     <Compile Include="Pathfinder\Internal\GUI\ModExtensionsUI.cs" />
     <Compile Include="Pathfinder\Internal\ExecutionOverride.cs" />
     <Compile Include="Pathfinder\Internal\PlaceholderExtensionInfo.cs" />
@@ -230,6 +226,10 @@
     <Compile Include="Pathfinder\Util\Sax\XmlParser.cs" />
     <Compile Include="Pathfinder\Util\Sax\CharConversionException.cs" />
     <Compile Include="Pathfinder\Game\TextLoader.cs" />
+    <Compile Include="Pathfinder\Util\Sax\AttributeEnumerator.cs" />
+    <Compile Include="Pathfinder\Serializable\SerializableAction.cs" />
+    <Compile Include="Pathfinder\Serializable\SerializableCondition.cs" />
+    <Compile Include="Pathfinder\Serializable\SerializableHandler.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
@@ -245,6 +245,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Game\MailServer\">
+    </Folder>
+    <Folder Include="Pathfinder\Serializable\">
     </Folder>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Pathfinder.Event;
@@ -9,9 +9,9 @@ namespace Pathfinder.Extension
     {
         internal Dictionary<string, Tuple<Command.Handler.CommandFunc, string, bool>> commands =
             new Dictionary<string, Tuple<Command.Handler.CommandFunc, string, bool>>();
-        internal Dictionary<string, Daemon.IInterface> daemons = new Dictionary<string, Daemon.IInterface>();
-        internal Dictionary<string, Executable.IInterface> executables = new Dictionary<string, Executable.IInterface>();
-        internal Dictionary<string, Mission.IInterface> missions = new Dictionary<string, Mission.IInterface>();
+        internal Dictionary<string, Daemon.Interface> daemons = new Dictionary<string, Daemon.Interface>();
+        internal Dictionary<string, Executable.Interface> executables = new Dictionary<string, Executable.Interface>();
+        internal Dictionary<string, Mission.Interface> missions = new Dictionary<string, Mission.Interface>();
         internal Dictionary<string, Mission.IGoal> goals = new Dictionary<string, Mission.IGoal>();
         internal Dictionary<string, Port.Type> ports = new Dictionary<string, Port.Type>();
         internal Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string, int>>> eventListeners =

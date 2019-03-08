@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Hacknet;
 using Microsoft.Xna.Framework;
@@ -11,10 +11,10 @@ namespace Pathfinder.Executable
         private Dictionary<string, object> keyToObject = new Dictionary<string, object>();
 
         public List<string> Arguments { get; private set; }
-        public IInterface Interface { get; private set; }
+        public Interface Interface { get; private set; }
         public FileEntry ExecutionFile { get; private set; }
 
-        public Instance(Rectangle loc, OS os, List<string> args, FileEntry executionFile, IInterface exeInterface)
+        public Instance(Rectangle loc, OS os, List<string> args, FileEntry executionFile, Interface exeInterface)
             : base(loc, os)
         {
             Arguments = args;
@@ -26,7 +26,7 @@ namespace Pathfinder.Executable
             Interface.OnConstruction(this);
         }
 
-        public static Instance CreateInstance(IInterface exeInterface,
+        public static Instance CreateInstance(Interface exeInterface,
                                               FileEntry executionFile,
                                               OS os,
                                               List<string> args,
@@ -37,7 +37,7 @@ namespace Pathfinder.Executable
             return new Instance(loc, os, args, executionFile, exeInterface);
         }
 
-        public static Instance CreateInstance(IInterface exeInterface,
+        public static Instance CreateInstance(Interface exeInterface,
                                               FileEntry executionFile,
                                               OS os,
                                               List<string> args) =>
@@ -143,7 +143,7 @@ namespace Pathfinder.Executable
                                            OS os,
                                            List<string> arguments,
                                            FileEntry executionFile,
-                                           IInterface exeInterface)
+                                           Interface exeInterface)
                 : base(loc, os, arguments, executionFile, exeInterface)
             {
                 if (!(exeInterface is IMainDisplayOverride))

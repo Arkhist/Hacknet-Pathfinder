@@ -12,6 +12,7 @@ using System.Threading;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.ModManager;
+using Sax.Net;
 
 namespace Pathfinder.Util
 {
@@ -412,10 +413,35 @@ namespace Pathfinder.Util
         public static StringBuilder AddXml<T1, T2>(this StringBuilder b, KeyValuePair<T1, T2> kv)
             => b.AddXml(kv.Key?.ToString(), kv.Value?.ToString());
 
-        public static string ToXml(this string key, string value)
+        public static string ToXml(this string key, string value, params string[] attributes)
         {
-            if (value == null) return "<" + key + " />";
-            return "<" + key + ">" + value + "</" + key + ">";
+            var attributeStr = new StringBuilder(attributes.Length * 25);
+            bool attribName = true;
+            for (int i = 0; i < attributes.Length; i++)
+            {
+                attributeStr.Append(attributes[i]);
+                if (attribName && i + 1 < attributes.Length) attributeStr.Append("=\"");
+                if (!attribName) attributeStr.Append("\" ");
+                attribName = !attribName;
+            }
+            if (value == null) return "<" + key + (attributeStr.Length > 0 ? " " + attributeStr : "") + " />";
+            return "<" + key + ">" + value + "</" + key + (attributeStr.Length > 0 ? " " + attributeStr : "") + ">";
+
+        }
+
+        public static string ToXml(this string key, string value, IAttributes attributes)
+        {
+            var attributeStr = new StringBuilder(attributes.Length * 25);
+            for (int i = 0; i < attributes.Length; i++)
+            {
+                attributeStr.Append(attributes.GetQName(i));
+                var val = attributes.GetValue(i);
+                if (val != null)
+                    attributeStr.Append("=\"" + val + "\" ");
+            }
+            if (value == null) return "<" + key + (attributeStr.Length > 0 ? " " + attributeStr : "") + " />";
+            return "<" + key + ">" + value + "</" + key + (attributeStr.Length > 0 ? " " + attributeStr : "") + ">";
+
         }
 
         public static string ToXml(this Dictionary<string, Internal.DatabaseDaemonHandler.DataInfo> input, string objName, bool excludeOuter = false)

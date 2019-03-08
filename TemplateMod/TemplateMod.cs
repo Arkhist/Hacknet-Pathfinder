@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO;
 using Hacknet;
 using Microsoft.Xna.Framework;
@@ -9,7 +8,6 @@ using Pathfinder.ModManager;
 using Pathfinder.Util;
 using Pathfinder.Util.Attribute;
 using Command = Pathfinder.Command;
-using CommandFunc = Pathfinder.Command.Handler.CommandFunc;
 using Daemon = Pathfinder.Daemon;
 using Executable = Pathfinder.Executable;
 using Extension = Pathfinder.Extension;
@@ -52,7 +50,7 @@ namespace TemplateMod
         public void LoadContent()
         {
             Logger.Info("command {0} added", Command.Handler.RegisterCommand("templateModVersion",
-                                                                             (CommandFunc)Commands.TemplateModVersion,
+                                                                             Commands.TemplateModVersion,
                                                                              "does some stuff",
                                                                              true));
             Executable.Handler.RegisterExecutable("TempExe", new TempExe());
@@ -67,7 +65,7 @@ namespace TemplateMod
             Logger.Verbose("Unloading Template Mod");
         }
 
-        class TempExe : Executable.Interface
+        class TempExe : Executable.Base
         {
             public override string Identifier => "TempExe";
 
@@ -85,40 +83,17 @@ namespace TemplateMod
             }
         }
 
-        class TempDaemon : Daemon.IInterface
+        class TempDaemon : Daemon.Base
         {
-            public string InitialServiceName => "TempDae";
+            public override string InitialServiceName => "TempDae";
 
-            public void Draw(Daemon.Instance instance, Rectangle bounds, SpriteBatch sb)
-            {
+            public override void Draw(Daemon.Instance instance, Rectangle bounds, SpriteBatch sb) =>
                 sb.Draw(Utils.white, bounds, Color.Green);
-            }
 
-            public void InitFiles(Daemon.Instance instance)
-            {
-            }
+            public override void OnNavigatedTo(Daemon.Instance instance) => Logger.Info("was navigated to");
 
-            public void LoadInit(Daemon.Instance instance)
-            {
-            }
-
-            public void LoadInstance(Daemon.Instance instance, Dictionary<string, string> objects)
-            {
-            }
-
-            public void OnCreate(Daemon.Instance instance)
-            {
-            }
-
-            public void OnNavigatedTo(Daemon.Instance instance)
-            {
-                Logger.Info("was navigated to");
-            }
-
-            public void OnUserAdded(Daemon.Instance instance, string name, string pass, byte type)
-            {
+            public override void OnUserAdded(Daemon.Instance instance, string name, string pass, byte type) =>
                 Logger.Info("user added {0} {1} {2}", name, pass, type);
-            }
         }
 
         class TempExtInfo : Extension.Info

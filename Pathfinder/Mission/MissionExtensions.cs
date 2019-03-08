@@ -7,7 +7,7 @@ using Pathfinder.Util;
 
 namespace Pathfinder.Mission
 {
-    public static class MissionManager
+    public static class Extensions
     {
         public static MissionListingServer CreateMissionListingDaemon(this Computer c,
                                                                       string serviceName,
@@ -16,7 +16,7 @@ namespace Pathfinder.Mission
                                                                       bool isAssigner = false,
                                                                       OS os = null)
         {
-            var s = new MissionListingServer(c, serviceName, serviceName, os ?? Utility.ClientOS, isPublic, isAssigner);
+            var s = new MissionListingServer(c, serviceName, serviceName, os ?? Util.Utility.ClientOS, isPublic, isAssigner);
             if(!string.IsNullOrEmpty(logoPath))
                 try
                 {
@@ -68,7 +68,7 @@ namespace Pathfinder.Mission
 
         public static MissionHubServer CreateMissionHubDaemon(this Computer c, string serviceName, OS os = null)
         {
-            var s = new MissionHubServer(c, serviceName, serviceName, os ?? Utility.ClientOS);
+            var s = new MissionHubServer(c, serviceName, serviceName, os ?? Util.Utility.ClientOS);
             c.daemons.Add(s);
             return s;
         }

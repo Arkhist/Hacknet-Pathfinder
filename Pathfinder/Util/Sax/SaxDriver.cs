@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using Sax.Net.Ext;
 using Sax.Net.Helpers;
@@ -973,7 +974,6 @@ namespace Sax.Net
                         case XmlParser.CONTENT_ELEMENTS:
                             model = _parser.getElementContentModel(ename);
                             break;
-                        case XmlParser.CONTENT_UNDECLARED:
                         default:
                             model = null;
                             break;
@@ -1116,9 +1116,10 @@ namespace Sax.Net
             }
         }
 
-        public IAttributes Clone()
-        {
-            return new Attributes(this);
-        }
+        public IAttributes Clone() => new Attributes(this);
+
+        public IEnumerator<Attribute> GetEnumerator() => new AttributeEnumerator(this);
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

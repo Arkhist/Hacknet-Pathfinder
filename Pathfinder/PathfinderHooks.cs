@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -12,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.Game;
 using Pathfinder.GameFilesystem;
 using Pathfinder.GUI;
+using Pathfinder.Internal;
 using Pathfinder.ModManager;
 using Pathfinder.Util;
 using MainTitleData = Pathfinder.Event.DrawMainMenuTitlesEvent.TitleData<int>;
@@ -604,25 +604,42 @@ namespace Pathfinder
             optionsMenuApplyEvent.CallEvent();
         }
 
+        public static bool onDeserializeRunnableConditionalActions(out RunnableConditionalActions result, ref XmlReader reader)
+        {
+            var runnable = new RunnableConditionalActions();
+            var processor = new SaxProcessor();
+            processor.AddActionForTag("ConditionalActions", info =>
+            {
+                foreach (var serialInfo in info.Elements)
+                {
+                    var actionSet = new SerializableConditionalActionSet
+                    {
+                        Condition = Serializable.Handler.LoadCondition(serialInfo)
+                    };
+                    foreach (var actionInfo in serialInfo.Elements)
+                        actionSet.Actions.Add(Serializable.Handler.LoadAction(actionInfo));
+                    runnable.Actions.Add(actionSet);
+                }
+            });
+            processor.Process(reader.ToStream(reader.BaseURI));
+            result = runnable;
+            return true;
+        }
 
-        public static void onAddSerializableConditions(ref Dictionary<string, Func<XmlReader, SerializableCondition>> dict)
+        /*public static void onAddSerializableConditions(ref Dictionary<string, Func<XmlReader, SerializableCondition>> dict)
         {
             // HACKNET BUG FIX : DoesNotHaveFlags not in dictionary
-            dict.Add("DoesNotHaveFlags", new Func<XmlReader, SerializableCondition>(SCDoesNotHaveFlags.DeserializeFromReader));
+            dict.Add("DoesNotHaveFlags", info => new SCDoesNotHaveFlags { Flags = info.Attributes.GetValue("Flags") });
 
-            var deserializers = Actions.SerializableCondition.ConditionHandler.GetDeserializers();
-
-            foreach (KeyValuePair<string, Actions.SerializableCondition.ConditionHandler.Deserializer> pair in deserializers)
-                dict.Add(pair.Key, new Func<XmlReader, SerializableCondition>(pair.Value));
+            foreach (var pair in SC.Handler.Deserializers)
+                dict.Add(pair.Key, pair.Value);
         }
 
         public static void onAddSerializableActions(ref Dictionary<string, Func<XmlReader, SerializableAction>> dict)
         {
-            var deserializers = Actions.SerializableAction.ActionHandler.GetDeserializers();
-
-            foreach (KeyValuePair<string, Actions.SerializableAction.ActionHandler.Deserializer> pair in deserializers)
-                dict.Add(pair.Key, new Func<XmlReader, SerializableAction>(pair.Value));
-        }
+            foreach (var pair in SA.Handler.Deserializers)
+                dict.Add(pair.Key, pair.Value);
+        }*/
 
         public static bool onFilterString(out string result, ref string input)
         {
