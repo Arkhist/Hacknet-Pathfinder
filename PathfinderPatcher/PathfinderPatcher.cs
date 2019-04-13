@@ -35,15 +35,20 @@ namespace PathfinderPatcher
                     index++;
                 }
 
-                if(File.Exists(exeDir + "Hacknet"))
+                if (File.Exists(exeDir + "Hacknet"))
                 {
                     var txt = File.ReadAllText(exeDir + "Hacknet");
                     txt = txt.Replace("Hacknet", "HacknetPathfinder");
                     File.WriteAllText(exeDir + "HacknetPathfinder", txt);
                 }
 
-                foreach (var n in new string[]{ exeDir + "Hacknet.bin.x86", exeDir + "Hacknet.bin.x86_64", exeDir + "Hacknet.bin.osx" })
-                    if(File.Exists(n)) File.Copy(n, n.Replace("Hacknet", "HacknetPathfinder"), true);
+                foreach (var n in new string[]{ exeDir + "Hacknet.bin.x86", exeDir + "Hacknet.bin.x86_64", exeDir + "Hacknet.bin.osx" }) {
+                    if (File.Exists(n)) {
+                        string file = Path.GetFileNameWithoutExtension(n);
+
+                        File.Copy(n, n.Replace(file, "HacknetPathfinder"), true);
+                    }
+                }
 
                 // Loads Hacknet.exe's assembly
                 ad = LoadAssembly(exeDir + "Hacknet.exe");
