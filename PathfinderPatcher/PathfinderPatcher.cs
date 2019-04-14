@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,16 +37,19 @@ namespace PathfinderPatcher
 
                 if (File.Exists(exeDir + "Hacknet"))
                 {
+                    File.Copy(exeDir + "Hacknet", exeDir + "HacknetPathfinder", true);
+
                     var txt = File.ReadAllText(exeDir + "Hacknet");
                     txt = txt.Replace("Hacknet", "HacknetPathfinder");
+
                     File.WriteAllText(exeDir + "HacknetPathfinder", txt);
                 }
 
                 foreach (var n in new string[]{ exeDir + "Hacknet.bin.x86", exeDir + "Hacknet.bin.x86_64", exeDir + "Hacknet.bin.osx" }) {
                     if (File.Exists(n)) {
-                        string file = Path.GetFileNameWithoutExtension(n);
+                        string ext = Path.GetExtension(n);
 
-                        File.Copy(n, n.Replace(file, "HacknetPathfinder"), true);
+                        File.Copy(n, exeDir + "HacknetPathfinder" + ext, true);
                     }
                 }
 
