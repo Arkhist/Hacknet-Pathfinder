@@ -63,11 +63,13 @@ namespace Pathfinder
             loadContentEvent.CallEvent();
         }
 
+        private static Event.CommandSentEvent commandSentEvent;
+
         // Hook location : ProgramRunner.ExecuteProgram()
         public static bool onCommandSent(out bool disconnects, ref bool returnFlag, object osObj, string[] arguments)
         {
             var os = osObj as OS;
-            var commandSentEvent = new Event.CommandSentEvent(os, arguments)
+            commandSentEvent = new Event.CommandSentEvent(os, arguments)
             {
                 Disconnects = true
             };
@@ -76,6 +78,10 @@ namespace Pathfinder
             returnFlag = disconnects;
             if (commandSentEvent.IsCancelled)
             {
+                var commandFinishedEvent = new Event.CommandFinishedEvent(commandSentEvent);
+                commandFinishedEvent.CallEvent();
+                disconnects = commandFinishedEvent.SentEvent.Disconnects;
+                returnFlag = disconnects;
                 if (os.commandInvalid)
                     os.commandInvalid = false;
                 else if (commandSentEvent.StateChange != CommandDisplayStateChange.None)
@@ -90,6 +96,15 @@ namespace Pathfinder
             }
             disconnects = false;
             return false;
+        }
+
+        public static void onCommandFinished(out bool disconnects, ref bool returnFlag)
+        {
+            var commandFinishedEvent = new Event.CommandFinishedEvent(commandSentEvent);
+            commandSentEvent.PreventCall = true;
+            commandFinishedEvent.CallEvent();
+            disconnects = commandSentEvent.Disconnects;
+            returnFlag = disconnects;
         }
 
         public static bool onOSDraw(OS self, ref GameTime time)
@@ -411,7 +426,7 @@ namespace Pathfinder
                                                                 reader,
                                                                 filename,
                                                                 preventAddingToNetmap,
-                                                                preventInitDaemons, 
+                                                                preventInitDaemons,
                                                                 false);
             loadComputerEvent.CallEvent();
         }

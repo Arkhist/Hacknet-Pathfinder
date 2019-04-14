@@ -9,7 +9,7 @@ namespace Pathfinder.GameFilesystem
 
         public static Folder MakeFolder(this Folder folder, string path)
         {
-            Folder fholder = folder;
+            var fholder = folder;
             var pathList = path.Split('/');
             var i = 0;
             for (string p = pathList[i]; i < pathList.Length; p = pathList[++i])
@@ -27,8 +27,7 @@ namespace Pathfinder.GameFilesystem
 
         public static Directory GetDirectoryAtDepth(this OS os, int depth)
         {
-            Filesystem fs = os.connectedComp ?? os.thisComputer;
-            var dir = fs.Directory;
+            var dir = ((Filesystem)os).Directory;
             if (os.navigationPath.Count > 0)
                 try
                 {
@@ -41,6 +40,6 @@ namespace Pathfinder.GameFilesystem
         }
 
         public static Directory GetCurrentDirectory(this OS os) =>
-            GetDirectoryAtDepth(os, os.navigationPath.Count);
+            os.GetDirectoryAtDepth(os.navigationPath.Count);
     }
 }

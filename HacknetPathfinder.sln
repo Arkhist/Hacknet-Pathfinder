@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateMod", "TemplateMod\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pathfinder", "Pathfinder.csproj", "{F321B880-D4FC-4DF6-8CE3-666B29EF41C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HacknetKernelUtilities", "HacknetKernelUtilities\HacknetKernelUtilities.csproj", "{D411A04D-127F-4485-8EF1-DEE4E310A9AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,12 @@ Global
 		{F321B880-D4FC-4DF6-8CE3-666B29EF41C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F321B880-D4FC-4DF6-8CE3-666B29EF41C7}.Spit|Any CPU.ActiveCfg = Release|Any CPU
 		{F321B880-D4FC-4DF6-8CE3-666B29EF41C7}.Spit|Any CPU.Build.0 = Release|Any CPU
+		{D411A04D-127F-4485-8EF1-DEE4E310A9AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D411A04D-127F-4485-8EF1-DEE4E310A9AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D411A04D-127F-4485-8EF1-DEE4E310A9AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D411A04D-127F-4485-8EF1-DEE4E310A9AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D411A04D-127F-4485-8EF1-DEE4E310A9AA}.Spit|Any CPU.ActiveCfg = Release|Any CPU
+		{D411A04D-127F-4485-8EF1-DEE4E310A9AA}.Spit|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -40,14 +48,11 @@ Global
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
 		$0.TextStylePolicy = $1
-		$1.FileWidth = 120
 		$1.NoTabsAfterNonTabs = True
-		$1.inheritsSet = VisualStudio
-		$1.inheritsScope = text/plain
 		$1.scope = text/plain
+		$1.TabsToSpaces = True
 		$0.DotNetNamingPolicy = $2
 		$2.DirectoryNamespaceAssociation = Hierarchical
-		$2.ResourceNamePolicy = FileFormatDefault
 		version = 2.1
 	EndGlobalSection
 EndGlobal

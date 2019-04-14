@@ -35,15 +35,15 @@ namespace PathfinderPatcher
                     index++;
                 }
 
-                if(File.Exists("Hacknet"))
+                if (File.Exists("Hacknet"))
                 {
                     var txt = File.ReadAllText("Hacknet");
                     txt = txt.Replace("Hacknet", "HacknetPathfinder");
                     File.WriteAllText("HacknetPathfinder", txt);
                 }
 
-                foreach (var n in new string[]{ "Hacknet.bin.x86", "Hacknet.bin.x86_64", "Hacknet.bin.osx" })
-                    if(File.Exists(n)) File.Copy(n, n.Replace("Hacknet", "HacknetPathfinder"), true);
+                foreach (var n in new string[] { "Hacknet.bin.x86", "Hacknet.bin.x86_64", "Hacknet.bin.osx" })
+                    if (File.Exists(n)) File.Copy(n, n.Replace("Hacknet", "HacknetPathfinder"), true);
 
                 // Loads Hacknet.exe's assembly
                 ad = LoadAssembly(exeDir + "Hacknet.exe");
@@ -237,6 +237,140 @@ namespace PathfinderPatcher
                     f.IsPublic = true;
                 }
 
+                // Create FileProperties Struct in FileType
+                type = ad.MainModule.GetType("Hacknet.FileType");
+                var nestedType = new TypeDefinition("Hacknet",
+                                                    "FileProperties",
+                                                    TypeAttributes.Public | TypeAttributes.SequentialLayout | TypeAttributes.Sealed | TypeAttributes.AnsiClass | TypeAttributes.BeforeFieldInit,
+                                                    ad.MainModule.ImportReference(typeof(ValueType)));
+                FieldDefinition ctime;
+                nestedType.Fields.Add(new FieldDefinition("AccessedTime", FieldAttributes.Public, ad.MainModule.TypeSystem.Int64));
+                nestedType.Fields.Add(new FieldDefinition("ModifiedTime", FieldAttributes.Public, ad.MainModule.TypeSystem.Int64));
+                nestedType.Fields.Add(ctime = new FieldDefinition("ChangedTime", FieldAttributes.Public, ad.MainModule.TypeSystem.Int64));
+                nestedType.Fields.Add(new FieldDefinition("PrivilegeMask", FieldAttributes.Public, ad.MainModule.TypeSystem.Byte));
+                ad.MainModule.Types.Add(nestedType);
+
+                // Create FileProperties Properties getter/setter Property in FileType
+                var property = new PropertyDefinition("Properties", PropertyAttributes.None, nestedType);
+                type.Properties.Add(property);
+
+                var method = new MethodDefinition("get_Properties", MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.NewSlot | MethodAttributes.Abstract | MethodAttributes.Virtual, nestedType);
+                type.Methods.Add(method);
+                property.GetMethod = method;
+
+                method = new MethodDefinition("set_Properties", MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.NewSlot | MethodAttributes.Abstract | MethodAttributes.Virtual, ad.MainModule.TypeSystem.Void);
+                method.Parameters.Add(new ParameterDefinition("value", ParameterAttributes.None, nestedType));
+                type.Methods.Add(method);
+                property.SetMethod = method;
+
+                // Add Properties Property to FileEntry
+                type = ad.MainModule.GetType("Hacknet.FileEntry");
+
+                var field = new FieldDefinition("properties", FieldAttributes.Private, nestedType);
+                type.Fields.Add(field);
+
+                method = new MethodDefinition("get_Properties",
+                                              MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.Virtual,
+                                              nestedType);
+
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldfld, field));
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
+                type.Methods.Add(method);
+                type.Properties.Add(new PropertyDefinition("Properties", PropertyAttributes.None, nestedType)
+                {
+                    GetMethod = method
+                });
+
+                method = new MethodDefinition("set_Properties",
+                                              MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.Virtual,
+                                              ad.MainModule.TypeSystem.Void);
+                method.Parameters.Add(new ParameterDefinition("value", ParameterAttributes.None, nestedType));
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_1));
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Stfld, field));
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
+                type.Methods.Add(method);
+                type.Properties.Last().SetMethod = method;
+
+                type.GetMethods(".ctor").ForEach(m =>
+                {
+                    var il = m.Body.GetILProcessor();
+                    var secondCreated = type.GetField("secondCreatedAt");
+                    il.Remove(m.Body.Instructions.Last());
+                    //m.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+                    //m.Body.Instructions.Add(Instruction.Create(OpCodes.Ldfld, secondCreated));
+                    //m.Body.Instructions.Add(Instruction.Create(OpCodes.Conv_Ovf_U4));
+                    foreach (var f in nestedType.Fields)
+                    {
+                        if (f.FieldType == ad.MainModule.TypeSystem.UInt32)
+                        {
+                            il.Emit(OpCodes.Ldarg_0);
+                            il.Emit(OpCodes.Ldfld, field);
+                            il.Emit(OpCodes.Ldarg_0);
+                            il.Emit(OpCodes.Ldfld, secondCreated);
+                            il.Emit(OpCodes.Stfld, f);
+                        }
+                    }
+                    m.Body.Instructions.Add(Instruction.Create(OpCodes.Nop));
+                    m.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
+                });
+
+                // Add Properties Property to Folder
+                type = ad.MainModule.GetType("Hacknet.Folder");
+                field = new FieldDefinition("properties", FieldAttributes.Private, nestedType);
+                type.Fields.Add(field);
+
+                method = new MethodDefinition("get_Properties",
+                                              MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.Virtual,
+                                              nestedType);
+
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldfld, field));
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
+                type.Methods.Add(method);
+                type.Properties.Add(new PropertyDefinition("Properties", PropertyAttributes.None, nestedType)
+                {
+                    GetMethod = method
+                });
+
+                method = new MethodDefinition("set_Properties",
+                                              MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.Virtual,
+                                              ad.MainModule.TypeSystem.Void);
+                method.Parameters.Add(new ParameterDefinition("value", ParameterAttributes.None, nestedType));
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_1));
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Stfld, field));
+                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
+                type.Methods.Add(method);
+                type.Properties.Last().SetMethod = method;
+
+                type.GetMethods(".ctor").ForEach(m =>
+                {
+                    m.Body.Variables.Add(new VariableDefinition(ad.MainModule.TypeSystem.UInt32));
+                    var il = m.Body.GetILProcessor();
+                    var secondCreated = type.GetField("secondCreatedAt");
+                    il.Remove(m.Body.Instructions.Last());
+                    //m.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+                    //m.Body.Instructions.Add(Instruction.Create(OpCodes.Ldfld, secondCreated));
+                    //m.Body.Instructions.Add(Instruction.Create(OpCodes.Conv_Ovf_U4));
+                    foreach (var f in nestedType.Fields)
+                    {
+                        if (f.FieldType == ad.MainModule.TypeSystem.UInt32)
+                        {
+                            il.Emit(OpCodes.Ldarg_0);
+                            il.Emit(OpCodes.Ldfld, field);
+                            il.Emit(OpCodes.Ldsfld, ad.MainModule.GetType("Hacknet.OS").GetField("currentElapsedTime"));
+                            il.Emit(OpCodes.Stfld, f);
+                        }
+                    }
+                    m.Body.Instructions.Add(Instruction.Create(OpCodes.Nop));
+                    m.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
+                });
+
+                //type.NestedTypes.Add();
+                // type.Properties.Add(new PropertyDefinition();
+
                 // Spit out changes and exit
                 if (spitOutHacknetOnly)
                 {
@@ -262,7 +396,9 @@ namespace PathfinderPatcher
                 );
 
                 // Hook onCommandSent to ProgramRunner.ExecuteProgram
-                ad.MainModule.GetType("Hacknet.ProgramRunner").GetMethod("ExecuteProgram").InjectWith(
+                type = ad.MainModule.GetType("Hacknet.ProgramRunner");
+                method = type.GetMethod("ExecuteProgram");
+                method.InjectWith(
                     hooks.GetMethod("onCommandSent"),
                     13,
                     flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
@@ -284,7 +420,7 @@ namespace PathfinderPatcher
 
                 // Hook onUnloadSession to OS.UnloadContent
                 ad.MainModule.GetType("Hacknet.OS").GetMethod("UnloadContent").InjectWith(
-					hooks.GetMethod("onUnloadSession"),
+                    hooks.GetMethod("onUnloadSession"),
                     -1,
                     flags: InjectFlags.PassInvokingInstance
                 );
@@ -366,7 +502,7 @@ namespace PathfinderPatcher
                 // adds the obsfuscated c value in <>c__DisplayClass4 as a parameter (seen as nearbyNodeOffset decompiled)
                 // 232 puts it right before the nearbyNodeOffset.type == 4 if statement that erases all home folder data
                 type = ad.MainModule.GetType("Hacknet.ComputerLoader");
-                var method = type.GetMethod("loadComputer");
+                method = type.GetMethod("loadComputer");
 
                 method.InjectWith(
                     hooks.GetMethod("onLoadContentComputerStart"),
@@ -492,14 +628,14 @@ namespace PathfinderPatcher
 
                 // Hook onOptionsMenuLoadContent to OptionsMenu.LoadContent
                 ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("LoadContent").InjectWith(
-					hooks.GetMethod("onOptionsMenuLoadContent"),
+                    hooks.GetMethod("onOptionsMenuLoadContent"),
                     -1,
                     flags: InjectFlags.PassInvokingInstance
                 );
 
                 // Hook onOptionsMenuUpdate to OptionsMenu.Update
                 ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("Update").InjectWith(
-					hooks.GetMethod("onOptionsMenuUpdate"),
+                    hooks.GetMethod("onOptionsMenuUpdate"),
                     flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
                 );
 

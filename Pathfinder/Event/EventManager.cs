@@ -99,7 +99,7 @@ namespace Pathfinder.Event
         /// <param name="pathfinderEvent">The PathfinderEvent to call.</param>
         public static void CallEvent(PathfinderEvent pathfinderEvent)
         {
-
+            if (pathfinderEvent.PreventCall) return;
             var eventType = pathfinderEvent.GetType();
             var log = !Logger.IgnoreEventTypes.Contains(eventType);
             if(log)

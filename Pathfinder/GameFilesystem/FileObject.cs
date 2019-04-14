@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hacknet;
 
 namespace Pathfinder.GameFilesystem
 {
@@ -63,6 +64,8 @@ namespace Pathfinder.GameFilesystem
         /// <value>The type.</value>
         public virtual FileType Type { get; }
         FileType IFileObject.Type => Type;
+
+        public virtual FileProperties Properties { get; set; }
 
         public List<string> ParsePath(string p)
         {
@@ -167,6 +170,8 @@ namespace Pathfinder.GameFilesystem
         /// Gets the FileType of the object.
         /// </summary>
         FileType Type { get; }
+
+        FileProperties Properties { get; set; }
     }
 
     public enum FileOpLogType

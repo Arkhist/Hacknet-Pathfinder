@@ -30,6 +30,8 @@ namespace Pathfinder.Command
             return GenerateString(cmd, help[cmd]);
         }
 
+        public static string ActiveHelp => GetStringFor(Handler.ActiveCommand);
+
         /// <summary>
         /// Gets the help string for a page.
         /// </summary>

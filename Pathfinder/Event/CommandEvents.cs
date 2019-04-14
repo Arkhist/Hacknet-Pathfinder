@@ -6,10 +6,13 @@ namespace Pathfinder.Event
 {
     public class CommandEvent : OSEvent
     {
-        public List<string> Arguments { get; set; }
+        public List<string> Arguments { get; set; } = new List<string>();
+        public List<string> RawArguments { get; set; }
         public CommandEvent(Hacknet.OS os, string[] args) : base(os)
         {
-            Arguments = new List<string>(args ?? Utility.Array<string>.Empty);
+            RawArguments = new List<string>(args ?? Utility.Array<string>.Empty);
+            Arguments.AddRange(RawArguments);
+            Arguments.RemoveAll(string.IsNullOrWhiteSpace);
         }
 
         public string this[int index]
@@ -44,5 +47,11 @@ namespace Pathfinder.Event
             }
         }
         public CommandSentEvent(Hacknet.OS os, string[] args) : base(os, args) { }
+    }
+
+    public class CommandFinishedEvent : CommandEvent
+    {
+        public CommandSentEvent SentEvent { get; }
+        public CommandFinishedEvent(CommandSentEvent e) : base(e.OS, e.Arguments.ToArray()) { SentEvent = e; }
     }
 }

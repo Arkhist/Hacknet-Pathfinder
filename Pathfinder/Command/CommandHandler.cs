@@ -12,6 +12,8 @@ namespace Pathfinder.Command
         internal static Dictionary<string, CommandFunc> ModCommands = new Dictionary<string, CommandFunc>();
         internal static Dictionary<string, List<string>> ModIdToCommandKeyList = new Dictionary<string, List<string>>();
 
+        public static string ActiveCommand { get; internal set; }
+
         /// <summary>
         /// Adds a command to the game.
         /// </summary>

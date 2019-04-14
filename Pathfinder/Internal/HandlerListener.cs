@@ -15,6 +15,7 @@ namespace Pathfinder.Internal
     {
         public static void CommandListener(CommandSentEvent e)
         {
+            Command.Handler.ActiveCommand = e[0];
             Command.Handler.CommandFunc f;
             if (Command.Handler.ModCommands.TryGetValue(e[0], out f))
             {
