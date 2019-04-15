@@ -115,3 +115,8 @@ StyleCopReport.xml
 
 # Visual Studio Trace Files
 *.e2e
+
+*.arch64
+*.osx
+*.ubuntu64
+*.ubuntu86
