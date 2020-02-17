@@ -2,11 +2,7 @@ AlienFXManagedWrapper3.5.dll
 FNA.dll
 System.Xml.dll
 Steamworks.NET.dll
-PathfinderPatcher.exe
-PathfinderPatcher.exe.mdb
-PathfinderPatcher.pdb
+PathfinderPatcher*
 HacknetPathfinder.exe
-PathfinderPatcher.vshost.exe
-PathfinderPatcher.vshost.exe.manifest
 Hacknet.exe
 Pathfinder.dll
