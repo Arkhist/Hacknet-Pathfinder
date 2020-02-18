@@ -298,8 +298,9 @@ namespace Pathfinder.Util
             var rgba = new int[4];
             if (colorArr.Length >= 3)
                 for (var i = 0; i < rgba.Length; i++)
-                    rgba[i] = colorArr.Length < i ? 255 : Convert.ToInt32(colorArr[i]);
-            else return defaultColor.HasValue || includeNull ? defaultColor : Color.White;
+                    rgba[i] = colorArr.Length <= i ? 255 : Convert.ToInt32(colorArr[i]);
+            else
+                return defaultColor.HasValue || includeNull ? defaultColor : Color.White;
             return new Color(rgba[0], rgba[1], rgba[2], rgba[3]);
         }
 

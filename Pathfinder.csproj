@@ -8,6 +8,7 @@
     <RootNamespace>Pathfinder</RootNamespace>
     <AssemblyName>Pathfinder</AssemblyName>
     <ReleaseVersion>2.1</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
