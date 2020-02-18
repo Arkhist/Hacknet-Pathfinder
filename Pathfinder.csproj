@@ -19,22 +19,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
-    <CustomCommands>
-      <CustomCommands>
-        <Command>
-          <type>BeforeBuild</type>
-          <command>PathfinderPatcher -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet" -spit</command>
-          <workingdir>lib\</workingdir>
-          <externalConsole>True</externalConsole>
-        </Command>
-        <Command>
-          <type>AfterBuild</type>
-          <command>PathfinderPatcher -pathfinderDir "..\lib" -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet"</command>
-          <workingdir>lib\</workingdir>
-          <externalConsole>True</externalConsole>
-        </Command>
-      </CustomCommands>
-    </CustomCommands>
     <NoStdLib>false</NoStdLib>
     <NoWarn>
     </NoWarn>
@@ -75,7 +59,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.XML" />
     <Reference Include="System.Xml" />
     <Reference Include="HacknetPathfinder">
       <HintPath>lib\HacknetPathfinder.exe</HintPath>
