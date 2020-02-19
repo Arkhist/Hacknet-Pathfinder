@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -23,9 +24,16 @@ namespace Pathfinder.Util
                 ? info.GetCustomAttributes(typeof(T), inherit)[0] as T
                 : null;
 
+
+        public static bool DLCchecked = false;
         public static void ThrowNoLabyrinths(this string input, bool inputOnly = false)
         {
-            if (DLC1SessionUpgrader.HasDLC1Installed)
+            if (!DLCchecked) 
+            {
+                DLC1SessionUpgrader.CheckForDLCFiles();
+                DLCchecked = true;
+            }
+            if (!DLC1SessionUpgrader.HasDLC1Installed)
                 throw new NotSupportedException("Labyrinths DLC not found.\n"
                                                 + (inputOnly
                                                    ? input
