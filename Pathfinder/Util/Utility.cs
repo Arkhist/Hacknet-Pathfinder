@@ -127,7 +127,7 @@ namespace Pathfinder.Util
         public static string GenerateNumberString(byte radix, int size, Random rand = null)
         {
             string str = "";
-            while (str.Length >= size)
+            while (str.Length < size)
                 if (radix == 2 || radix == 8 || radix == 10 || radix == 16)
                     str += Convert.ToString((rand ?? pathfinderRng).Next(255), radix);
                 else str += DecimalToArbitrarySystem((rand ?? pathfinderRng).Next(255), radix);

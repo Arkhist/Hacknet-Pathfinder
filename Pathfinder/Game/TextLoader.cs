@@ -89,6 +89,7 @@ namespace Pathfinder.Game
         public static string HacknetFilter(this string input)
         {
             var split = input.SerialSplit('#');
+
             for (var i = 0; i < split.Count; i++)
             {
                 if (split[i].Item2)
@@ -98,7 +99,7 @@ namespace Pathfinder.Game
                     else split[i] = new Tuple<string, bool>("#" + split[i].Item1 + "#", split[i].Item2);
                 }
             }
-            return string.Join("", split.Where(t => t.Item2).Select(t => t.Item1))
+            return string.Join("", split./*Where(t => t.Item2).*/Select(t => t.Item1))
                          .Replace("\t", "    ")
                          .Replace("&quot;", "'")
                          .Replace("\u00a0", "")
