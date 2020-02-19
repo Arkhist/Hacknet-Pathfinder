@@ -425,7 +425,7 @@ namespace Pathfinder.Internal
                                     elementInfo.Attributes.GetValueOrDefault("Permissions", "")
                                 ),
                                 elementInfo.Attributes.GetValue("DataType"),
-                                elementInfo.Attributes.GetValue("Foldername"),
+                                elementInfo.Attributes.GetValueOrDefault("Foldername", "Database"),
                                 elementInfo.Attributes.GetColor("Color", true));
                             if (!string.IsNullOrWhiteSpace(emailAccount))
                             {
