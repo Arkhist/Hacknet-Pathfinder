@@ -417,7 +417,12 @@ namespace Pathfinder.Internal
                             break;
                         case "databasedaemon":
                             elementInfo.Name.ThrowNoLabyrinths();
+
                             var emailAccount = elementInfo.Attributes.GetValue("AdminEmailAccount");
+                            var databaseColor = elementInfo.Attributes.GetColor("Color", true);
+                            if (!databaseColor.HasValue)
+                                databaseColor = os.highlightColor;
+
                             var databaseDaemon = nearbyNodeOffset.AddDaemon<DatabaseDaemon>(
                                 os,
                                 elementInfo.Attributes.GetValueOrDefault("Name", "Database"),
@@ -426,7 +431,8 @@ namespace Pathfinder.Internal
                                 ),
                                 elementInfo.Attributes.GetValue("DataType"),
                                 elementInfo.Attributes.GetValueOrDefault("Foldername", "Database"),
-                                elementInfo.Attributes.GetColor("Color", true));
+                                databaseColor);
+
                             if (!string.IsNullOrWhiteSpace(emailAccount))
                             {
                                 databaseDaemon.adminResetEmailHostID = elementInfo.Attributes.GetValue("AdminEmailHostID");
