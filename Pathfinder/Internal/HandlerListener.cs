@@ -7,6 +7,7 @@ using Pathfinder.Event;
 using Pathfinder.Game.Computer;
 using Pathfinder.Game.OS;
 using Pathfinder.Util;
+using Pathfinder.Util.XML;
 using ModOptions = Pathfinder.GUI.ModOptions;
 
 namespace Pathfinder.Internal
@@ -16,8 +17,7 @@ namespace Pathfinder.Internal
         public static void CommandListener(CommandSentEvent e)
         {
             Command.Handler.ActiveCommand = e[0];
-            Command.Handler.CommandFunc f;
-            if (Command.Handler.ModCommands.TryGetValue(e[0], out f))
+            if (Command.Handler.ModCommands.TryGetValue(e[0], out var f))
             {
                 e.IsCancelled = true;
                 try
@@ -42,6 +42,23 @@ namespace Pathfinder.Internal
         {
             e.Computer = ContentLoaderReplacement.LoadComputer(e.LocalizedFilename, ComputerLoader.os, e.PreventNetmapAdd, e.PreventDaemonInit);
             e.IsCancelled = true;
+        }
+
+        public static void DaemonLoadListener(Computer c, EventExecutor exec)
+        {
+            exec.AddExecutor("Computer.ModdedDaemon", (executor, info) =>
+            {
+                var id = info.Attributes.GetValue("interfaceId");
+                if(id != null && Daemon.Handler.ContainsDaemon(id))
+                {
+                    var objs = new Dictionary<string, string>();
+                    var storedObjects = info.Attributes.GetValue("storedObjects")?.Split(' ');
+                    if (storedObjects != null)
+                        foreach (var s in storedObjects)
+                            objs[s.Remove(s.IndexOf('|'))] = s.Substring(s.IndexOf('|') + 1);
+                    c.AddModdedDaemon(id, objs);
+                }
+            });
         }
 
         public static void DaemonLoadListener(Computer c, SaxProcessor.ElementInfo info)

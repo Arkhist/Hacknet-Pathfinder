@@ -7,7 +7,9 @@ using Hacknet.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.Event;
+using Pathfinder.Internal;
 using Pathfinder.Util;
+using static Pathfinder.Event.EventManager;
 
 namespace Pathfinder.Extension
 {
@@ -27,13 +29,7 @@ namespace Pathfinder.Extension
 
         public static string RegisterExtension(string id, Info extensionInfo)
         {
-            if (Pathfinder.CurrentMod == null)
-                throw new InvalidOperationException("RegisterExtension can not be called outside of mod loading.");
-            id = Utility.GetId(id, throwFindingPeriod: true);
-            Logger.Verbose("Mod {0} attempting to register extension {1} with id {2}",
-                           Utility.ActiveModId,
-                           extensionInfo.GetType().FullName,
-                           id);
+            id = InternalUtility.Validate(id, "Extension", extensionInfo.GetType().FullName, true, true);
             if (ModExtensions.ContainsKey(id))
                 return null;
 
@@ -155,13 +151,13 @@ namespace Pathfinder.Extension
                     Port.Handler.UnregisterPort(p.Key);
                 }
 
-            var events = new List<Tuple<Action<PathfinderEvent>, string, string, int>>();
+            var events = new List<ListenerTuple>();
             foreach (var v in EventManager.eventListeners.Values)
                 events.AddRange(v.FindAll(t => t.Item3 == id));
             foreach (var list in EventManager.eventListeners.ToArray())
             {
                 if(!tuple.Item1.eventListeners.ContainsKey(list.Key))
-                    tuple.Item1.eventListeners.Add(list.Key, new List<Tuple<Action<PathfinderEvent>, string, string, int>>());
+                    tuple.Item1.eventListeners.Add(list.Key, new List<ListenerTuple>());
                 foreach (var e in events)
                 {
                     if(!tuple.Item1.eventListeners[list.Key].Contains(e))

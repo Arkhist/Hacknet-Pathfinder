@@ -60,6 +60,7 @@
     <ProjectReference Include="..\Pathfinder.csproj">
       <Project>{F321B880-D4FC-4DF6-8CE3-666B29EF41C7}</Project>
       <Name>Pathfinder</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

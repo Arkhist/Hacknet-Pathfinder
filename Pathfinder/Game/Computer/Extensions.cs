@@ -28,6 +28,15 @@ namespace Pathfinder.Game.Computer
             return i;
         }
 
+        public static T AddDaemon<T>(this Hacknet.Computer comp, T daemon, Hacknet.OS os = null)
+            where T : Hacknet.Daemon
+        {
+            daemon.comp = comp ?? daemon.comp;
+            daemon.os = os ?? daemon.os ?? Utility.ClientOS;
+            comp.daemons.Add(daemon);
+            return daemon;
+        }
+
         /// <summary>
         /// Adds a Daemon via generics to the Computer.
         /// </summary>
@@ -36,7 +45,7 @@ namespace Pathfinder.Game.Computer
         /// <param name="input">The input for the constructor.</param>
         public static T AddDaemon<T>(this Hacknet.Computer comp,
                                      params object[] input)
-                                where T : Hacknet.Daemon
+            where T : Hacknet.Daemon
         {
             if (input[0] != comp)
             {
@@ -534,8 +543,10 @@ namespace Pathfinder.Game.Computer
                                                                                           Utils.random.Next(12),
                                                                                           12,
                                                                                           comp.GetNetworkMap(),
-                                                                                          0f), 0, 5, comp.os);
-            c.icon = icon;
+                                                                                          0f), 0, 5, comp.os)
+            {
+                icon = icon
+            };
             c.setAdminPassword(password);
             vanillaPorts = vanillaPorts ?? new List<int>(new int[] { 22, 3659 });
             foreach (var p in vanillaPorts)

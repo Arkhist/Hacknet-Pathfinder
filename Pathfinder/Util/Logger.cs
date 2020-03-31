@@ -71,6 +71,7 @@ namespace Pathfinder.Util
         /// <param name="input">Any stringable inputs. (if larger then one, must be in standard C# String.Format format)</param>
         public static void Log(LogLevel level, params object[] input)
         {
+            if (!HasFlag(level)) return;
             Tuple<LogLevel, string> t;
             var prefix = IncludeModId ? Utility.ActiveModId + " " : "";
             switch (input.Length)
@@ -88,8 +89,7 @@ namespace Pathfinder.Util
             if (logHistory.Count >= MAX_LOG_SIZE)
                 logHistory.RemoveRange(0, logHistory.Count - MAX_LOG_SIZE);
             logHistory.Add(t);
-            if (HasFlag(level))
-                Console.WriteLine(t.Item2);
+            Console.WriteLine(t.Item2);
         }
 
         /// <summary>

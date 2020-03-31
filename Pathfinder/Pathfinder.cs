@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 using Pathfinder.ModManager;
 using Pathfinder.Util;
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace Pathfinder
 {
@@ -62,7 +63,7 @@ namespace Pathfinder
                         ).ToString(),
                     out latestVersion)
                 && latestVersion > Version)*/
-            EventManager.RegisterListener<DrawMainMenuEvent>(DrawNewReleaseGraphic);
+            //EventManager.RegisterListener<DrawMainMenuEvent>(DrawNewReleaseGraphic);
 
             EventManager.RegisterListener<CommandSentEvent>(Internal.ExecutionOverride.OverrideCommands);
             EventManager.RegisterListener<ExecutablePortExecuteEvent>(Internal.ExecutionOverride.OverridePortHack);
@@ -72,10 +73,10 @@ namespace Pathfinder
             EventManager.RegisterListener<DrawMainMenuEvent>(Internal.GUI.ModList.DrawModList);
             EventManager.RegisterListener<DrawMainMenuButtonsEvent>(Internal.GUI.ModList.DrawModListButton);
 
-            EventManager.RegisterListener<DrawExtensionMenuEvent>(Internal.GUI.ModExtensionsUI.ExtensionMenuListener);
-            EventManager.RegisterListener<DrawExtensionMenuListEvent>(Internal.GUI.ModExtensionsUI.ExtensionListMenuListener);
-            EventManager.RegisterListener<OSLoadContentEvent>(Internal.GUI.ModExtensionsUI.LoadContentForModExtensionListener);
-            EventManager.RegisterListener<OSUnloadContentEvent>(Internal.GUI.ModExtensionsUI.UnloadContentForModExtensionListener);
+            //EventManager.RegisterListener<DrawExtensionMenuEvent>(Internal.GUI.ModExtensionsUI.ExtensionMenuListener);
+            //EventManager.RegisterListener<DrawExtensionMenuListEvent>(Internal.GUI.ModExtensionsUI.ExtensionListMenuListener);
+            //EventManager.RegisterListener<OSLoadContentEvent>(Internal.GUI.ModExtensionsUI.LoadContentForModExtensionListener);
+            //EventManager.RegisterListener<OSUnloadContentEvent>(Internal.GUI.ModExtensionsUI.UnloadContentForModExtensionListener);
 
             EventManager.RegisterListener<LoadSavedComputerStartEvent>(Internal.HandlerListener.LoadSavedComputerReplacementStart);
             EventManager.RegisterListener<LoadContentComputerStartEvent>(Internal.HandlerListener.LoadContentComputerReplacementStart);
@@ -150,7 +151,7 @@ namespace Pathfinder
             return true;
         }
 
-        internal static void ManageSaveXml(OSSaveWriteEvent e)
+        public static void ManageSaveXml(OSSaveWriteEvent e)
         {
             var i = e.SaveString.IndexOf("</HacknetSave>", StringComparison.Ordinal);
             string modListStr = "";
@@ -161,7 +162,7 @@ namespace Pathfinder
         }
 
         private static bool isOn = false;
-        internal static void DrawNewReleaseGraphic(DrawMainMenuEvent e)
+        public static void DrawNewReleaseGraphic(DrawMainMenuEvent e)
         {
             var val = e.GameTime.TotalGameTime.TotalMilliseconds;
             const double passed = 950;

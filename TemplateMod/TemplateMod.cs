@@ -3,10 +3,10 @@ using System.IO;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Pathfinder.Attribute;
 using Pathfinder.Event;
 using Pathfinder.ModManager;
 using Pathfinder.Util;
-using Pathfinder.Util.Attribute;
 using Command = Pathfinder.Command;
 using Daemon = Pathfinder.Daemon;
 using Executable = Pathfinder.Executable;
@@ -21,13 +21,15 @@ namespace TemplateMod
 
         public string Identifier => "Template Mod";
 
-        [EventPriority(2)]
+        [IgnoreRegister]
+        [Event(Priority = 2)]
         public static void PriorityTwo(OSLoadContentEvent e)
         {
             Logger.Info("I should run first");
         }
 
-        [EventPriority(1)]
+        [IgnoreRegister]
+        [Event(Priority = 1)]
         public static void PriorityOne(OSLoadContentEvent e)
         {
             Logger.Info("I should run second");
@@ -35,7 +37,7 @@ namespace TemplateMod
 
         public static void CommandListener(CommandSentEvent e)
         {
-            Logger.Info("command {0}", String.Join(" ", e.Arguments));
+            Logger.Info("command {0}", string.Join(" ", e.Arguments));
         }
 
         public void Load()

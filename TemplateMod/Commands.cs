@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using Pathfinder.Attribute;
 using Pathfinder.GameFilesystem;
 using Pathfinder.Util;
 
 namespace TemplateMod
 {
-    static class Commands
+    [CommandModule]
+    public static class Commands
     {
+        [Command("templateMV", "does same stuff", true)]
         public static bool TemplateModVersion(Hacknet.OS os, List<string> args)
         {
             os.write("Template Mod version 1 !");

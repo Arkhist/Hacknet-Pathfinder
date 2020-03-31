@@ -8,14 +8,16 @@ using Hacknet.Effects;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Pathfinder.Attribute;
 using Pathfinder.Game;
 using Pathfinder.GameFilesystem;
 using Pathfinder.GUI;
 using Pathfinder.Internal;
 using Pathfinder.ModManager;
 using Pathfinder.Util;
-using MainTitleData = Pathfinder.Event.DrawMainMenuTitlesEvent.TitleData<int>;
-using SubTitleData = Pathfinder.Event.DrawMainMenuTitlesEvent.TitleData<float>;
+using static Pathfinder.Attribute.PatchAttribute;
+using Pathfinder.Util.Types;
+using static Pathfinder.Event.DrawMainMenuTitlesEvent;
 
 namespace Pathfinder
 {
@@ -25,6 +27,7 @@ namespace Pathfinder
     /// Place all functions to be hooked into Hacknet here
     public static class PathfinderHooks
     {
+        [Patch("Hacknet.Program.Main", flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn)]
         public static bool onMain(string[] args)
         {
             for (int i = 0; i < args.Length; i++)
@@ -50,11 +53,11 @@ namespace Pathfinder
             return false;
         }
 
-        //  Hook location : Game1.LoadContent()
         //  if (this.CanLoadContent)
         //  {
         //	    <HOOK HERE>
         //      PortExploits.populate();
+        [Patch("Hacknet.Game1.LoadContent", -1, flags: InjectFlags.PassInvokingInstance)]
         public static void onLoadContent(Game1 self)
         {
             Logger.Verbose("Loading Pathfinder content");
@@ -65,7 +68,10 @@ namespace Pathfinder
 
         private static Event.CommandSentEvent commandSentEvent;
 
-        // Hook location : ProgramRunner.ExecuteProgram()
+        [Patch("Hacknet.ProgramRunner.ExecuteProgram", 13,
+            flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
+            localsID: new int[] { 1 }
+        )]
         public static bool onCommandSent(out bool disconnects, ref bool returnFlag, object osObj, string[] arguments)
         {
             var os = osObj as OS;
@@ -107,6 +113,7 @@ namespace Pathfinder
             returnFlag = disconnects;
         }
 
+        [Patch("Hacknet.OS.Draw", flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onOSDraw(OS self, ref GameTime time)
         {
             var osStartDrawEvent = new Event.OSStartDrawEvent(self, time);
@@ -134,7 +141,6 @@ namespace Pathfinder
                         }
                         catch (Exception ex)
                         {
-
                             self.drawErrorCount++;
                             if (self.drawErrorCount < 5)
                                 Utils.AppendToErrorFile(Utils.GenerateReportFromException(ex) + "\r\n\r\n");
@@ -227,7 +233,7 @@ namespace Pathfinder
             return true;
         }
 
-        // Hook location : OS.LoadContent()
+        [Patch("Hacknet.OS.LoadContent", flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn)]
         public static bool onLoadSession(OS self)
         {
             var loadSessionEvent = new Event.OSLoadContentEvent(self);
@@ -237,20 +243,21 @@ namespace Pathfinder
             return false;
         }
 
-        // Hook location : end of OS.LoadContent()
+        [Patch("Hacknet.OS.LoadContent", flags: InjectFlags.PassInvokingInstance)]
         public static void onPostLoadSession(OS self)
         {
             var postLoadSessionEvent = new Event.OSPostLoadContentEvent(self);
             postLoadSessionEvent.CallEvent();
         }
 
+        [Patch("Hacknet.OS.UnloadContent", flags: InjectFlags.PassInvokingInstance)]
         public static void onUnloadSession(OS self)
         {
             var unloadSessionEvent = new Event.OSUnloadContentEvent(self);
             unloadSessionEvent.CallEvent();
         }
 
-        // Hook location : MainMenu.Draw()
+        [Patch("Hacknet.MainMenu.Draw", 120, flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassParametersVal)]
         public static bool onMainMenuDraw(MainMenu self, GameTime gameTime)
         {
             var drawMainMenuEvent = new Event.DrawMainMenuEvent(self, gameTime);
@@ -265,7 +272,10 @@ namespace Pathfinder
             return false;
         }
 
-        // Hook location : MainMenu.drawMainMenuButtons()
+        [Patch("Hacknet.MainMenu.drawMainMenuButtons", 248,
+            flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals,
+            localsID: new int[] { 0, 4 }
+        )]
         public static void onMainMenuButtonsDraw(MainMenu self, ref int mainButtonY, ref int secondaryButtonY)
         {
             var drawMainMenuButtonsEvent = new Event.DrawMainMenuButtonsEvent(self, mainButtonY, secondaryButtonY);
@@ -274,7 +284,10 @@ namespace Pathfinder
             secondaryButtonY = drawMainMenuButtonsEvent.SecondaryButtonY;
         }
 
-        // Hook location : OS.loadSaveFile()
+        [Patch("Hacknet.OS.loadSaveFile", 33,
+            flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals | InjectFlags.ModifyReturn,
+            localsID: new int[] { 0, 1 }
+        )]
         public static bool onLoadSaveFile(OS self, ref Stream stream, ref XmlReader xmlReader)
         {
             var loadSaveFileEvent = new Event.OSLoadSaveFileEvent(self, xmlReader, stream);
@@ -284,7 +297,7 @@ namespace Pathfinder
             return false;
         }
 
-        // Hook location : OS.writeSaveGame()
+        [Patch("Hacknet.OS.writeSaveGame", flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersVal | InjectFlags.ModifyReturn)]
         public static bool onSaveFile(OS self, string filename)
         {
             var saveFileEvent = new Event.OSSaveFileEvent(self, filename);
@@ -294,6 +307,10 @@ namespace Pathfinder
             return false;
         }
 
+        [Patch("Hacknet.OS.writeSaveGame", -5,
+            flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals | InjectFlags.PassParametersVal,
+            localsID: new int[] { 0 }
+        )]
         public static void onSaveWrite(OS self, ref string saveString, string filename)
         {
             var saveWriteEvent = new Event.OSSaveWriteEvent(self, filename, saveString);
@@ -301,7 +318,7 @@ namespace Pathfinder
             saveString = saveWriteEvent.SaveString;
         }
 
-        // Hook location : NetworkMap.LoadContent()
+        [Patch("Hacknet.NetworkMap.LoadContent", flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn)]
         public static bool onLoadNetmapContent(NetworkMap self)
         {
             var loadNetmapContentEvent = new Event.NetworkMapLoadContentEvent(self);
@@ -312,6 +329,10 @@ namespace Pathfinder
         }
 
         // Hook location : ProgramRunner.AttemptExeProgramExecution
+        [Patch("Hacknet.ProgramRunner.AttemptExeProgramExecution", 54,
+            flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
+            localsID: new int[] { 0, 1, 2, 6 }
+        )]
         public static bool onExecutableExecute(out int result,
                                                ref Computer com,
                                                ref Folder fol,
@@ -334,6 +355,10 @@ namespace Pathfinder
         }
 
         // Hook location : OS.launchExecutable
+        [Patch("Hacknet.OS.launchExecutable", 44,
+            flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
+            localsID: new int[] { 2 }
+        )]
         public static bool onPortExecutableExecute(OS self,
                                                    ref Rectangle dest,
                                                    ref string name,
@@ -352,6 +377,7 @@ namespace Pathfinder
             return false;
         }
 
+        [Patch("Hacknet.Computer.load", flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onLoadSavedComputerStart(out Computer result,
                                                     ref XmlReader reader,
                                                     ref OS os)
@@ -366,6 +392,11 @@ namespace Pathfinder
             }
             return false;
         }
+
+        [Patch("Hacknet.Computer.load", -2,
+            flags: InjectFlags.PassParametersRef | InjectFlags.PassLocals,
+            localsID: new int[] { 97 }
+        )]
         public static void onLoadSavedComputerEnd(ref Computer loadedComputer,
                                                   ref XmlReader reader,
                                                   ref OS os)
@@ -376,6 +407,7 @@ namespace Pathfinder
             reader = loadSavedComputerEndEvent.Reader;
         }
 
+        [Patch("Hacknet.ComputerLoader.loadComputer", flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onLoadContentComputerStart(out object result,
                                                       ref string filename,
                                                       ref bool preventAddingToNetmap,
@@ -397,6 +429,10 @@ namespace Pathfinder
             return false;
         }
 
+        [Patch("Hacknet.ComputerLoader.loadComputer", -2,
+            flags: InjectFlags.PassParametersRef | InjectFlags.PassLocals,
+            localsID: new int[] { 0, 153 }
+        )]
         public static void onLoadContentComputerEnd(ref Stream stream,
                                                     ref object loadedComputer,
                                                     ref string filename,
@@ -447,6 +483,10 @@ namespace Pathfinder
         static Color defaultTitleColor = new Color(190, 190, 190, 0);
         static SpriteFont defaultTitleFont;
 
+        [Patch("Hacknet.MainMenu.DrawBackgroundAndTitle", 7,
+            flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
+            localsID: new int[] { 0 }
+        )]
         public static bool onDrawMainMenuTitles(MainMenu self, out bool result, ref Rectangle dest)
         {
             if (defaultTitleFont == null) defaultTitleFont = self.ScreenManager.Game.Content.Load<SpriteFont>("Kremlin");
@@ -472,15 +512,15 @@ namespace Pathfinder
                 }
                 TextItem.doFontLabel(new Vector2(180f, 105f), text3, GuiData.smallfont, Color.Red * 0.8f, 600f, 26f, false);
             }
-            var main = new MainTitleData(mainTitle,
+            var main = new TitleData(mainTitle,
                                          defaultTitleColor,
                                          defaultTitleFont,
-                                         dest
+                                         (Rect2)dest
                                         );
-            var sub = new SubTitleData(subtitle,
+            var sub = new TitleData(subtitle,
                                        main.Color * 0.5f,
                                        GuiData.smallfont,
-                                       new Vector4(520, 178, 0, 0)
+                                       new Rect2(520, 178, 0, 0)
                                       );
             var drawMainMenuTitles = new Event.DrawMainMenuTitlesEvent(self, main, sub);
             drawMainMenuTitles.CallEvent();
@@ -489,7 +529,7 @@ namespace Pathfinder
             main = drawMainMenuTitles.Main;
             sub = drawMainMenuTitles.Sub;
             FlickeringTextEffect.DrawLinedFlickeringText(
-                dest = main.Destination,
+                dest = (Rectangle)main.Destination,
                 main.Title,
                 7f,
                 0.55f,
@@ -497,23 +537,29 @@ namespace Pathfinder
                 null,
                 main.Color
             );
-            TextItem.doFontLabel(sub.Destination, sub.Title, sub.Font, sub.Color, 600f, 26f);
+            TextItem.doFontLabel(sub.Destination.Vector2f, sub.Title, sub.Font, sub.Color, 600f, 26f);
             Logger.Verbose("Finished Redrawing Main Menu Titles");
             return true;
         }
 
+        [Patch("Hacknet.Game1.UnloadContent", -1, flags: InjectFlags.PassInvokingInstance)]
         public static void onGameUnloadContent(Game1 self)
         {
             var gameUnloadEvent = new Event.GameUnloadEvent(self);
             gameUnloadEvent.CallEvent();
         }
 
+        [Patch("Hacknet.Game1.Update", -5, flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef)]
         public static void onGameUpdate(Game1 self, ref GameTime time)
         {
             var gameUpdateEvent = new Event.GameUpdateEvent(self, time);
             gameUpdateEvent.CallEvent();
         }
 
+        [Patch("Hacknet.DisplayModule.doProbeDisplay", -158,
+            flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals,
+            localsID: new int[] { 0, 1, 10 }
+        )]
         public static void onPortNameDraw(DisplayModule self,
                                             ref Rectangle rect,
                                             ref Computer computer,
@@ -539,6 +585,7 @@ namespace Pathfinder
                 }
         }
 
+        [Patch("Hacknet.DisplayModule.Update", flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onDisplayModuleUpdate(DisplayModule self, ref float time)
         {
             var displayModuleUpdateEvent = new Event.DisplayModuleUpdateEvent(self, time);
@@ -548,6 +595,7 @@ namespace Pathfinder
             return false;
         }
 
+        [Patch("Hacknet.DisplayModule.Draw", flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onDisplayModuleDraw(DisplayModule self, ref float time)
         {
             var displayModuleDrawEvent = new Event.DisplayModuleDrawEvent(self, time);
@@ -557,6 +605,10 @@ namespace Pathfinder
             return false;
         }
 
+        [Patch("Hacknet.Screens.ExtensionsMenuScreen.Draw", 71,
+            flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
+            localsID: new int[] { 3 }
+        )]
         public static bool onExtensionsMenuScreenDraw(Hacknet.Screens.ExtensionsMenuScreen self,
                                                       ref Vector2 buttonPos,
                                                       ref Rectangle dest,
@@ -570,6 +622,7 @@ namespace Pathfinder
             return false;
         }
 
+        [Patch("Hacknet.Screens.ExtensionsMenuScreen.DrawExtensionList", flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onExtensionsMenuListDraw(Hacknet.Screens.ExtensionsMenuScreen self,
                                                     out Vector2 result,
                                                     ref Vector2 drawPos,
@@ -585,6 +638,7 @@ namespace Pathfinder
             return false;
         }
 
+        [Patch("Hacknet.OptionsMenu.Draw", 40, flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onOptionsMenuDraw(OptionsMenu self, ref GameTime time)
         {
             var optionsMenuDrawEvent = new Event.OptionsMenuDrawEvent(self, time);
@@ -598,12 +652,14 @@ namespace Pathfinder
             return false;
         }
 
+        [Patch("Hacknet.OptionsMenu.LoadContent", -1, flags: InjectFlags.PassInvokingInstance)]
         public static void onOptionsMenuLoadContent(OptionsMenu self)
         {
             var optionsMenuLoadContentEvent = new Event.OptionsMenuLoadContentEvent(self);
             optionsMenuLoadContentEvent.CallEvent();
         }
 
+        [Patch("Hacknet.OptionsMenu.Update", flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onOptionsMenuUpdate(OptionsMenu self, ref GameTime time, ref bool notFocused, ref bool isCovered)
         {
             var optionsMenuUpdateEvent = new Event.OptionsMenuUpdateEvent(self, time, notFocused, isCovered);
@@ -613,12 +669,14 @@ namespace Pathfinder
             return false;
         }
 
+        [Patch("Hacknet.OptionsMenu.apply", flags: InjectFlags.PassInvokingInstance)]
         public static void onOptionsApply(OptionsMenu self)
         {
             var optionsMenuApplyEvent = new Event.OptionsMenuApplyEvent(self);
             optionsMenuApplyEvent.CallEvent();
         }
 
+        [Patch("Hacknet.RunnableConditionalActions.Deserialize", flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onDeserializeRunnableConditionalActions(out RunnableConditionalActions result, ref XmlReader reader)
         {
             var runnable = new RunnableConditionalActions();
@@ -656,6 +714,7 @@ namespace Pathfinder
                 dict.Add(pair.Key, pair.Value);
         }*/
 
+        [Patch("Hacknet.ComputerLoader.filter", flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onFilterString(out string result, ref string input)
         {
             result = input.HacknetFilter();

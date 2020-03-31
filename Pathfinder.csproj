@@ -38,6 +38,8 @@
     <NoStdLib>false</NoStdLib>
     <NoWarn>
     </NoWarn>
+    <LangVersion>Latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -72,15 +74,11 @@
     <NoWarn>0649</NoWarn>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <NoStdLib>false</NoStdLib>
+    <LangVersion>Latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml" />
-    <Reference Include="HacknetPathfinder">
-      <HintPath>lib\HacknetPathfinder.exe</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="AlienFXManagedWrapper3.5">
       <HintPath>lib\AlienFXManagedWrapper3.5.dll</HintPath>
       <Private>False</Private>
@@ -94,8 +92,18 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="RestSharp">
-      <HintPath>packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
+    <Reference Include="System.Xml" />
+    <Reference Include="Mono.Cecil">
+      <HintPath>lib\Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Inject">
+      <HintPath>lib\Mono.Cecil.Inject.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HacknetPathfinder">
+      <HintPath>lib\HacknetPathfinder.exe</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -144,7 +152,7 @@
     <Compile Include="Pathfinder\GUI\CommandDisplayState.cs" />
     <Compile Include="Pathfinder\GUI\Button.cs" />
     <Compile Include="Pathfinder\GUI\Scrollbar.cs" />
-    <Compile Include="Pathfinder\GUI\BaseInteractiveRectangle.cs" />
+    <Compile Include="Pathfinder\GUI\ControlRect.cs" />
     <Compile Include="Pathfinder\GUI\DynamicRectangle.cs" />
     <Compile Include="Pathfinder\Event\ModuleEvents.cs" />
     <Compile Include="Pathfinder\Extension\ExtensionInfo.cs" />
@@ -159,9 +167,6 @@
     <Compile Include="Pathfinder\Internal\GUI\ModExtensionsUI.cs" />
     <Compile Include="Pathfinder\Internal\ExecutionOverride.cs" />
     <Compile Include="Pathfinder\Internal\PlaceholderExtensionInfo.cs" />
-    <Compile Include="Pathfinder\Util\Attribute\EventPriorityAttribute.cs" />
-    <Compile Include="Pathfinder\Util\Attribute\LoadOrderAttribute.cs" />
-    <Compile Include="Pathfinder\Util\Vector.cs" />
     <Compile Include="Pathfinder\Util\ConvertAny.cs" />
     <Compile Include="Pathfinder\Util\Attribute\AllowOrderUnloadAttribute.cs" />
     <Compile Include="Pathfinder\Event\OptionsMenuEvents.cs" />
@@ -183,7 +188,6 @@
     <Compile Include="Pathfinder\Docs\Hacknet.cs" />
     <Compile Include="Pathfinder\Game\Folder\Extensions.cs" />
     <Compile Include="Pathfinder\Util\SaxProcessor.cs" />
-    <Compile Include="Pathfinder\Util\ReadOnlyDictionary.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Pathfinder\Internal\SaveLoaderReplacement.cs" />
     <Compile Include="Pathfinder\Util\Sax\IAttributes.cs" />
@@ -230,6 +234,28 @@
     <Compile Include="Pathfinder\Serializable\SerializableAction.cs" />
     <Compile Include="Pathfinder\Serializable\SerializableCondition.cs" />
     <Compile Include="Pathfinder\Serializable\SerializableHandler.cs" />
+    <Compile Include="Pathfinder\Attribute\CommandModuleAttribute.cs" />
+    <Compile Include="Pathfinder\Attribute\DefaultModAttribute.cs" />
+    <Compile Include="Pathfinder\Attribute\CommandAttribute.cs" />
+    <Compile Include="Pathfinder\ModManager\ModAttributeHandler.cs" />
+    <Compile Include="Pathfinder\Attribute\PatchAttribute.cs" />
+    <Compile Include="Pathfinder\Attribute\EventAttribute.cs" />
+    <Compile Include="Pathfinder\Attribute\EventModuleAttribute.cs" />
+    <Compile Include="Pathfinder\Attribute\AbstractPathfinderAttribute.cs" />
+    <Compile Include="Pathfinder\Attribute\IgnoreRegister.cs" />
+    <Compile Include="Pathfinder\Attribute\ModInfoAttribute.cs" />
+    <Compile Include="Pathfinder\Internal\InternalUtility.cs" />
+    <Compile Include="Pathfinder\Util\Calculate.cs" />
+    <Compile Include="Pathfinder\Input\InputAction.cs" />
+    <Compile Include="Pathfinder\Util\Types\Rect2.cs" />
+    <Compile Include="Pathfinder\Util\Types\Vector.cs" />
+    <Compile Include="Pathfinder\Util\Types\ReadOnlyDictionary.cs" />
+    <Compile Include="Pathfinder\Internal\Patcher\Executor.cs" />
+    <Compile Include="Pathfinder\Util\XML\EventExecutor.cs" />
+    <Compile Include="Pathfinder\Util\DictionaryExtensions.cs" />
+    <Compile Include="Pathfinder\Util\XML\EventReader.cs" />
+    <Compile Include="Pathfinder\Util\XML\ElementInfo.cs" />
+    <Compile Include="Pathfinder\Util\XML\ReadOnlyXmlReader.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
@@ -248,6 +274,11 @@
     </Folder>
     <Folder Include="Pathfinder\Serializable\">
     </Folder>
+    <Folder Include="Pathfinder\Attribute\" />
+    <Folder Include="Pathfinder\Input\" />
+    <Folder Include="Pathfinder\Util\XML\" />
+    <Folder Include="Pathfinder\Util\Types\" />
+    <Folder Include="Pathfinder\Internal\Patcher\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

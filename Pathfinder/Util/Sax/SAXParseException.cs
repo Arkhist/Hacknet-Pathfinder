@@ -31,8 +31,8 @@ namespace Sax.Net {
   /// <seealso cref="IErrorHandler" />
   [Serializable]
   public class SAXParseException : SAXException {
-    private int _columnNumber;
-    private int _lineNumber;
+    private long _columnNumber;
+    private long _lineNumber;
     private string _publicId;
     private string _systemId;
 
@@ -109,7 +109,7 @@ namespace Sax.Net {
     /// <param name="columnNumber">
     ///   The column number of the end of the text that cause the error or warning.
     /// </param>
-    public SAXParseException(string message, string publicId, string systemId, int lineNumber, int columnNumber)
+    public SAXParseException(string message, string publicId, string systemId, long lineNumber, long columnNumber)
       : base(message) {
       Init(publicId, systemId, lineNumber, columnNumber);
     }
@@ -134,7 +134,7 @@ namespace Sax.Net {
     /// <param name="lineNumber">The line number of the end of the text that caused the error or warning.</param>
     /// <param name="columnNumber">The column number of the end of the text that cause the error or warning.</param>
     /// <param name="ex">Another exception to embed in this one.</param>
-    public SAXParseException(string message, string publicId, string systemId, int lineNumber, int columnNumber,
+    public SAXParseException(string message, string publicId, string systemId, long lineNumber, long columnNumber,
                              Exception ex) : base(message, ex) {
       Init(publicId, systemId, lineNumber, columnNumber);
     }
@@ -191,7 +191,7 @@ namespace Sax.Net {
     /// </summary>
     /// <returns>An integer representing the line number, or -1 if none is available.</returns>
     /// <seealso cref="ILocator.LineNumber" />
-    public int LineNumber {
+    public long LineNumber {
       get { return _lineNumber; }
     }
 
@@ -201,7 +201,7 @@ namespace Sax.Net {
     /// </summary>
     /// <returns>An integer representing the column number, or -1 if none is available.</returns>
     /// <seealso cref="ILocator.ColumnNumber" />
-    public int ColumnNumber {
+    public long ColumnNumber {
       get { return _columnNumber; }
     }
 
@@ -220,7 +220,7 @@ namespace Sax.Net {
     /// <param name="systemId">The system identifier of the entity which generated the exception, or null.</param>
     /// <param name="lineNumber">The line number of the error, or -1.</param>
     /// <param name="columnNumber">The column number of the error, or -1.</param>
-    private void Init(string publicId, string systemId, int lineNumber, int columnNumber) {
+    private void Init(string publicId, string systemId, long lineNumber, long columnNumber) {
       _publicId = publicId;
       _systemId = systemId;
       _lineNumber = lineNumber;

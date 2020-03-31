@@ -29,7 +29,6 @@ namespace Pathfinder.Util
             public static readonly T[] Empty = new T[0];
         }
 
-        private static Random pathfinderRng = new Random();
         private static Regex xmlAttribRegex = new Regex("[^a-zA-Z0-9_.]");
 
         public static int? HaltOffset = 0;
@@ -56,7 +55,7 @@ namespace Pathfinder.Util
         public static string GetCleanId(this string id) => id.Trim();
         public static string GetCleanId(this IMod mod) => mod.Identifier.GetCleanId();
 
-        public static Random Random => pathfinderRng;
+        public static Random Random { get; } = new Random();
 
         /// <summary>
         /// Retrieves an identifier for the input.
@@ -113,7 +112,7 @@ namespace Pathfinder.Util
         /// <value>The current Computer.</value>
         public static Computer CurrentComputer => GetCurrentComputer(null);
 
-        public static int GenerateRandomIPSection(Random rand = null) => (rand ?? pathfinderRng).Next(254) + 1;
+        public static int GenerateRandomIPSection(Random rand = null) => (rand ?? Random).Next(254) + 1;
         public static string GenerateRandomIP(Random rand = null) =>
             GenerateRandomIPSection(rand) + "." + GenerateRandomIPSection(rand)
                 + "." + GenerateRandomIPSection(rand) + "." + GenerateRandomIPSection(rand);
@@ -129,8 +128,8 @@ namespace Pathfinder.Util
             string str = "";
             while (str.Length >= size)
                 if (radix == 2 || radix == 8 || radix == 10 || radix == 16)
-                    str += Convert.ToString((rand ?? pathfinderRng).Next(255), radix);
-                else str += DecimalToArbitrarySystem((rand ?? pathfinderRng).Next(255), radix);
+                    str += Convert.ToString((rand ?? Random).Next(255), radix);
+                else str += DecimalToArbitrarySystem((rand ?? Random).Next(255), radix);
             return str.Substring(0, size);
         }
 
@@ -252,20 +251,6 @@ namespace Pathfinder.Util
             return result;
         }
 
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        internal static string GetPreviousStackFrameIdentity(int frameSkip = 2)
-        {
-            var result = "";
-            var asm = new StackFrame(frameSkip).GetMethod().Module.Assembly;
-            if (asm == MethodBase.GetCurrentMethod().Module.Assembly)
-                result = "Pathfinder";
-            else if (asm == typeof(Program).Assembly)
-                result = "Hacknet";
-            else
-                result = asm.GetFirstMod()?.GetCleanId();
-            return result;
-        }
-
         public static string ConvertToHexBlocks(string toConvert, bool keepNewline = true)
         {
             string result = "";
@@ -293,7 +278,7 @@ namespace Pathfinder.Util
 
         public static Color? GetColorFromString(string input, bool includeNull, Color? defaultColor = null)
         {
-            if (input == null) return defaultColor.HasValue || includeNull ? defaultColor : Color.White;
+            if (input == null) return defaultColor.HasValue || includeNull ? defaultColor : default(Color);
             var colorArr = input.Split(new char[] { ',', ' ', '/' }, StringSplitOptions.RemoveEmptyEntries);
             var rgba = new int[4];
             if (colorArr.Length >= 3)
@@ -332,7 +317,7 @@ namespace Pathfinder.Util
             for (int i = 0; i < args.Length; i++)
                 typeArr[i] = args[i].GetType();
             var ctor = typeof(T).GetConstructor(typeArr);
-            if (ctor == null) return default(T);
+            if (ctor == null) return default;
             return GetActivator<T>(ctor)(args);
         }
 

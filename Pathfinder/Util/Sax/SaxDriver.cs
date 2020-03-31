@@ -875,7 +875,7 @@ namespace Sax.Net
         }
 
         // AElfred only has fatal errors
-        public virtual void Error(string message, string url, int line, int column)
+        public virtual void Error(string message, string url, long line, long column)
         {
             var fatal = new SAXParseException(message, null, url, line, column);
             _errorHandler.FatalError(fatal);

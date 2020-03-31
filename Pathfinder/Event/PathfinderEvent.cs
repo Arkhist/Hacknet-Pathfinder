@@ -4,6 +4,6 @@
     {
         public bool IsCancelled { get; set; }
         public bool PreventCall { get; set; }
-        public void CallEvent() { EventManager.CallEvent(this); }
+        public virtual void CallEvent() { EventManager.CallEvent(this); }
     }
 }

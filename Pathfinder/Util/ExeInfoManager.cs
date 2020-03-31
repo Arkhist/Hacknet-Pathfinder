@@ -74,8 +74,8 @@ namespace Pathfinder.Util
 
             public override bool Equals(object obj)
             {
-                if (obj is ExecutableInfo)
-                    Equals((ExecutableInfo)obj);
+                if (obj is ExecutableInfo ei)
+                    return Equals(ei);
                 return false;
             }
 
@@ -96,7 +96,7 @@ namespace Pathfinder.Util
 
         private static Dictionary<string, ExecutableInfo> nameToExeStruct = new Dictionary<string, ExecutableInfo>();
 
-        internal static void LoadExecutableStruct(Event.GameLoadContentEvent e)
+        public static void LoadExecutableStruct(Event.GameLoadContentEvent e)
         {
             int i = 0;
             string sn;
@@ -115,17 +115,15 @@ namespace Pathfinder.Util
 
         public static ExecutableInfo GetExecutableInfo(string name)
         {
-            ExecutableInfo i;
-            if (nameToExeStruct.TryGetValue(name, out i))
+            if (nameToExeStruct.TryGetValue(name, out var i))
                 return i;
             return i;
         }
 
         public static ExecutableInfo GetExecutableInfo(int index)
         {
-            ExecutableInfo i = default(ExecutableInfo);
-            string n;
-            if (PortExploits.cracks.TryGetValue(index, out n) && nameToExeStruct.TryGetValue(n, out i))
+            ExecutableInfo i = default;
+            if (PortExploits.cracks.TryGetValue(index, out var n) && nameToExeStruct.TryGetValue(n, out i))
                 return i;
             return i;
         }

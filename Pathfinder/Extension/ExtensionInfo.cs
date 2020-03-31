@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Pathfinder.Event;
+using static Pathfinder.Event.EventManager;
 
 namespace Pathfinder.Extension
 {
@@ -14,8 +15,8 @@ namespace Pathfinder.Extension
         internal Dictionary<string, Mission.Interface> missions = new Dictionary<string, Mission.Interface>();
         internal Dictionary<string, Mission.IGoal> goals = new Dictionary<string, Mission.IGoal>();
         internal Dictionary<string, Port.Type> ports = new Dictionary<string, Port.Type>();
-        internal Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string, int>>> eventListeners =
-            new Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string, int>>>();
+        internal Dictionary<Type, List<ListenerTuple>> eventListeners =
+            new Dictionary<Type, List<ListenerTuple>>();
 
         /// <summary>
         /// Gets the extension identifier.

@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 using Hacknet;
 using Pathfinder.Game.Folder;
 using Pathfinder.Util;
+using Pathfinder.Util.XML;
 
 namespace Pathfinder.Internal
 {
@@ -18,10 +20,11 @@ namespace Pathfinder.Internal
                 Name = name;
                 Value = value;
             }
-            public DataInfo(Util.SaxProcessor.ElementInfo info)
-            {
-                CopyData(info);
-            }
+            public DataInfo(SaxProcessor.ElementInfo info)
+                => CopyData(info);
+
+            public DataInfo(ElementInfo info)
+                => CopyData(info);
 
             public string Name { get; set; }
             public string Value { get; set; }
@@ -29,7 +32,7 @@ namespace Pathfinder.Internal
 
             public DataInfo this[int index] => elements[index];
 
-            DataInfo CopyData(Util.SaxProcessor.ElementInfo info)
+            DataInfo CopyData(SaxProcessor.ElementInfo info)
             {
                 Name = info.Name;
                 Value = info.Elements.Count < 1 ? info.Value : null;
@@ -39,6 +42,20 @@ namespace Pathfinder.Internal
                     if (info.Elements[i].Elements.Count < 1)
                         elements[i] = new DataInfo(info.Elements[i].Name, info.Elements[i].Value);
                     else elements[i] = new DataInfo(info.Elements[i]);
+                }
+                return this;
+            }
+
+            DataInfo CopyData(ElementInfo info)
+            {
+                Name = info.Name;
+                Value = info.Children.Count < 1 ? info.Value : null;
+                elements = new DataInfo[info.Children.Count];
+                for (var i = 0; i < elements.Length; i++)
+                {
+                    if (info.Children[i].Children.Count < 1)
+                        elements[i] = new DataInfo(info.Children[i].Name, info.Children[i].Value);
+                    else elements[i] = new DataInfo(info.Children[i]);
                 }
                 return this;
             }
@@ -72,7 +89,7 @@ namespace Pathfinder.Internal
                     var contentStr = contents.ToString();
                     daemon.DatasetFolder.AddFile(daemon.GetDatabaseFilename(contentStr), contentStr);
                 }
-            else if (People.all.Count < 1) { }
+            else if (People.all.Count < 1) ;
             else if (isVehicleInfo = daemon.DataTypeIdentifier.EndsWith("VehicleInfo") || daemon.DataTypeIdentifier.EndsWith("Person"))
             {
                 daemon.FilenameIsPersonName = true;

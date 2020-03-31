@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Pathfinder.Internal;
 using Pathfinder.Util;
 
 namespace Pathfinder.Mission
@@ -11,14 +12,7 @@ namespace Pathfinder.Mission
 
         public static string RegisterMissionGoal(string id, IGoal inter)
         {
-            if (Pathfinder.CurrentMod == null && !Extension.Handler.CanRegister)
-                throw new InvalidOperationException("RegisterMissionGoal can not be called outside of mod or extension loading.");
-            id = Pathfinder.CurrentMod != null ? Util.Utility.GetId(id, throwFindingPeriod: true) : Extension.Handler.ActiveInfo.Id+"."+ id;
-            Logger.Verbose("{0} {1} attempting to add mission goal interface {2} with id {3}",
-                           Pathfinder.CurrentMod != null ? "Mod" : "Extension",
-                           Pathfinder.CurrentMod?.GetCleanId() ?? Extension.Handler.ActiveInfo.Id,
-                           inter.GetType().FullName,
-                           id);
+            id = InternalUtility.Validate(id, "Mission Goal Interface", inter.GetType().FullName, true);
             if (ModGoals.ContainsKey(id))
                 return null;
 
@@ -36,14 +30,7 @@ namespace Pathfinder.Mission
 
         public static string RegisterMission(string id, Interface inter)
         {
-            if (Pathfinder.CurrentMod == null && !Extension.Handler.CanRegister)
-                throw new InvalidOperationException("RegisterMission can not be called outside of mod or extension loading.");
-            id = Pathfinder.CurrentMod != null ? Util.Utility.GetId(id, throwFindingPeriod: true) : Extension.Handler.ActiveInfo.Id+"."+ id;
-            Logger.Verbose("{0} {1} attempting to add mission interface {2} with id {3}",
-                           Pathfinder.CurrentMod != null ? "Mod" : "Extension",
-                           Pathfinder.CurrentMod?.GetCleanId() ?? Extension.Handler.ActiveInfo.Id,
-                           inter.GetType().FullName,
-                           id);
+            id = InternalUtility.Validate(id, "Mission Interface", inter.GetType().FullName, true);
             if (ModGoals.ContainsKey(id))
                 return null;
 

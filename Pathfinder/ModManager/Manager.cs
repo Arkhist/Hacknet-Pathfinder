@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Pathfinder.Attribute;
 using Pathfinder.Event;
 using Pathfinder.Util;
 using Pathfinder.Util.Attribute;
-using ALoadOrderAttribute = Pathfinder.Util.Attribute.LoadOrderAttribute;
+using static Pathfinder.Command.Handler;
+using static Pathfinder.Event.EventManager;
 
 namespace Pathfinder.ModManager
 {
@@ -46,8 +48,7 @@ namespace Pathfinder.ModManager
 
         public static IMod GetLoadedMod(string id)
         {
-            IMod mod;
-            if (!LoadedMods.TryGetValue(id, out mod)) return null;
+            if (!LoadedMods.TryGetValue(id, out IMod mod)) return null;
             return mod;
         }
 
@@ -75,6 +76,14 @@ namespace Pathfinder.ModManager
                 if (mod.Value is Placeholder) continue;
                 CurrentMod = mod.Value;
                 Logger.Verbose("Loading mod '{0}'s content", mod.Key);
+
+                if (ModAttributeHandler.ModToCommandMethods.TryGetValue(CurrentMod.GetType(), out List<MethodInfo> infos))
+                    foreach (var i in infos)
+                    {
+                        var attrib = i.GetFirstAttribute<CommandAttribute>();
+                        RegisterCommand(attrib.Key ?? i.Name.RemoveLast("Command"), i.CreateDelegate<CommandFunc>(), attrib.Description, attrib.Autocomplete);
+                    }
+
                 mod.Value.LoadContent();
             }
             CurrentMod = null;
@@ -120,9 +129,9 @@ namespace Pathfinder.ModManager
             CurrentMod = mod;
             var name = Utility.ActiveModId;
 
-            var attrib = mod.GetType().GetFirstAttribute<ALoadOrderAttribute>();
+            var attrib = mod.GetType().GetFirstAttribute<ModInfoAttribute>();
             if (attrib != null)
-                foreach (var ident in attrib.afterIds)
+                foreach (var ident in attrib.AfterIds)
                 {
                     var id = ident.GetCleanId();
                     if (LoadedMods.ContainsKey(id)
@@ -154,37 +163,36 @@ namespace Pathfinder.ModManager
                     )
                     Daemon.Handler.UnregisterDaemon(d);
 
-            List<string> clist;
-            Command.Handler.ModIdToCommandKeyList.TryGetValue(name, out clist);
-            if(clist != null)
+            Command.Handler.ModIdToCommandKeyList.TryGetValue(name, out List<string> clist);
+            if (clist != null)
                 foreach (var c in clist.ToArray())
                     Command.Handler.UnregisterCommand(c);
 
             foreach (var g in
                      (from p in Mission.Handler.ModGoals
-                        where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                        select p.Key)
+                      where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                      select p.Key)
                      .ToArray()
                     )
-                    Mission.Handler.UnregisterMissionGoal(g);
+                Mission.Handler.UnregisterMissionGoal(g);
 
             foreach (var m in
                      (from p in Mission.Handler.ModMissions
-                        where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                        select p.Key)
+                      where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                      select p.Key)
                      .ToArray()
                     )
-                    Mission.Handler.UnregisterMission(m);
+                Mission.Handler.UnregisterMission(m);
 
             foreach (var p in
                      (from p in Port.Handler.PortTypes
-                        where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                        select p.Key)
+                      where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                      select p.Key)
                      .ToArray()
                     )
-                    Port.Handler.UnregisterPort(p);
+                Port.Handler.UnregisterPort(p);
 
-            var events = new List<Tuple<Action<PathfinderEvent>, string, string, int>>();
+            var events = new List<ListenerTuple>();
             foreach (var v in EventManager.eventListeners.Values)
                 events.AddRange(v.FindAll(t => t.Item3 == name));
             foreach (var list in EventManager.eventListeners.ToArray())
@@ -205,7 +213,7 @@ namespace Pathfinder.ModManager
         {
             if (mod == null) return null;
             var modType = mod.GetType();
-            var attrib = modType.GetFirstAttribute<ALoadOrderAttribute>();
+            var attrib = modType.GetFirstAttribute<ModInfoAttribute>();
             var name = mod.GetCleanId();
             if (attrib != null)
             {
@@ -215,21 +223,21 @@ namespace Pathfinder.ModManager
                     if (i != -1)
                         ModIdReliance[pair.Key][i] = mod;
                 }
-                foreach (var id in attrib.beforeIds)
+                foreach (var id in attrib.BeforeIds)
                 {
                     if (!ModIdReliance.ContainsKey(id.GetCleanId()))
                         ModIdReliance.Add(id, new List<IMod>());
                     if (!ModIdReliance[id].Contains(mod))
                         ModIdReliance[id].Add(mod);
                 }
-                foreach (var id in attrib.afterIds)
+                foreach (var id in attrib.AfterIds)
                 {
                     if (!ModIdReliance.ContainsKey(name))
                         ModIdReliance.Add(name, new List<IMod>());
                     if (ModIdReliance[name].FindIndex(m => m.GetCleanId() == id.GetCleanId()) != -1)
                         ModIdReliance[name].Add(new Placeholder(id.GetCleanId()));
                 }
-                if (attrib.beforeIds.Count > 0)
+                if (attrib.BeforeIds.Count > 0)
                     return mod;
             }
             try
@@ -238,6 +246,13 @@ namespace Pathfinder.ModManager
                     return null; // never reached due to throw
                 Logger.Info("Loading mod '{0}'", name);
                 CurrentMod = mod;
+                if (ModAttributeHandler.ModToEventMethods.TryGetValue(CurrentMod.GetType(), out List<MethodInfo> infos))
+                    foreach (var i in infos)
+                    {
+                        var eventAttrib = i.GetFirstAttribute<EventAttribute>();
+                        var paramType = i.GetParameters()[0].ParameterType;
+                        RegisterListener(paramType, i.CreateDelegate<Action<PathfinderEvent>>(typeof(Action<>).MakeGenericType(paramType)), eventAttrib.DebugName, eventAttrib.Priority);
+                    }
                 mod.Load();
                 UnloadedModIds.Remove(name);
                 LoadedMods.Add(name, mod);
@@ -264,14 +279,19 @@ namespace Pathfinder.ModManager
         public static List<IMod> LoadMods(string path, string modId = null)
         {
             var result = new List<IMod>();
-            foreach (Type t in Assembly.LoadFile(path).GetModTypes())
+            var asm = Assembly.LoadFile(path);
+            var modTypes = asm.GetModTypes();
+            var needsDefaultAttrib = modTypes.Count() > 1;
+            foreach (Type t in modTypes)
             {
+                ModAttributeHandler.HandleType(t, needsDefaultAttrib);
                 var mod = CreateMod(t);
                 if (modId != null && mod?.GetCleanId() != modId) continue;
                 LoadMod(mod);
                 UnloadedModIds.Remove(mod?.GetCleanId());
                 result.Add(mod);
             }
+            ModAttributeHandler.Reset();
             return result;
         }
 
