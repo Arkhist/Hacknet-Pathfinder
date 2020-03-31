@@ -19,22 +19,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
-    <CustomCommands>
-      <CustomCommands>
-        <Command>
-          <type>BeforeBuild</type>
-          <command>PathfinderPatcher -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet" -spit</command>
-          <workingdir>lib\</workingdir>
-          <externalConsole>True</externalConsole>
-        </Command>
-        <Command>
-          <type>AfterBuild</type>
-          <command>PathfinderPatcher -pathfinderDir "..\lib" -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet"</command>
-          <workingdir>lib\</workingdir>
-          <externalConsole>True</externalConsole>
-        </Command>
-      </CustomCommands>
-    </CustomCommands>
     <NoStdLib>false</NoStdLib>
     <NoWarn>
     </NoWarn>
@@ -78,7 +62,13 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="HacknetPathfinder">
+      <HintPath>lib\HacknetPathfinder.exe</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="AlienFXManagedWrapper3.5">
       <HintPath>lib\AlienFXManagedWrapper3.5.dll</HintPath>
       <Private>False</Private>
@@ -92,19 +82,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Mono.Cecil">
-      <HintPath>lib\Mono.Cecil.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Mono.Cecil.Inject">
-      <HintPath>lib\Mono.Cecil.Inject.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="HacknetPathfinder">
-      <HintPath>lib\HacknetPathfinder.exe</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pathfinder\Event\BasicEvents.cs" />
