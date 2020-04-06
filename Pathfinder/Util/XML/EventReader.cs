@@ -108,7 +108,7 @@ namespace Pathfinder.Util.XML
             using (var r = XmlReader.Create(new StringReader(Text))) while (r.Read());
 
             // Properly load XML
-            using (reader = XmlReader.Create(new StringReader(Text)))
+            using (Reader = XmlReader.Create(new StringReader(Text)))
             {
                 if (OpenFile())
                 {

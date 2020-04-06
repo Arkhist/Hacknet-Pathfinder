@@ -379,7 +379,7 @@ namespace Pathfinder.Internal
                 mailServer.shouldGenerateJunkEmails = info.Attributes.GetBool("generateJunk", true);
                 var color = info.Attributes.GetColor("color", true);
                 if (color.HasValue) mailServer.setThemeColor(color.Value);
-                foreach (var emailInfo in info.Children.Where((i) => i.Name == "Email"))
+                foreach (var emailInfo in info.Children.Where((i) => i.Name.ToLower() == "email"))
                     mailServer.AddEmailToServer(
                         emailInfo.Attributes.GetValue("sender"),
                         emailInfo.Attributes.GetValue("recipient"),
