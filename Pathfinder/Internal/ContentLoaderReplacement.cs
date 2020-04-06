@@ -64,7 +64,7 @@ namespace Pathfinder.Internal
             var executor = new EventExecutor(filename);
             var skipContent = false;
 
-            if (filename.Contains("ExampleCompuer.xml"))
+            if (filename.Contains("ExampleComputer.xml"))
             {
                 executor.OnRead += exec =>
                 {
@@ -628,7 +628,7 @@ namespace Pathfinder.Internal
                 if (!preventInitDaemons) result.initDaemons();
                 if (!preventAddingToNetmap) os.netMap.nodes.Add(result);
             };
-
+            
             executor.Parse();
             return result;
         }

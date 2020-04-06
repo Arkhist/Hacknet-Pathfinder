@@ -27,6 +27,7 @@ namespace Pathfinder
     /// Place all functions to be hooked into Hacknet here
     public static class PathfinderHooks
     {
+        
         [Patch("Hacknet.Program.Main", flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn)]
         public static bool onMain(string[] args)
         {
@@ -676,6 +677,7 @@ namespace Pathfinder
             optionsMenuApplyEvent.CallEvent();
         }
 
+        /* TODO : Fix this to use the new XML system
         [Patch("Hacknet.RunnableConditionalActions.Deserialize", flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onDeserializeRunnableConditionalActions(out RunnableConditionalActions result, ref XmlReader reader)
         {
@@ -697,7 +699,7 @@ namespace Pathfinder
             processor.Process(reader.ToStream(reader.BaseURI));
             result = runnable;
             return true;
-        }
+        }*/
 
         /*public static void onAddSerializableConditions(ref Dictionary<string, Func<XmlReader, SerializableCondition>> dict)
         {

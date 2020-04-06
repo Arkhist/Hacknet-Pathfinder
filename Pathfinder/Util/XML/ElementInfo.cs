@@ -18,11 +18,12 @@ namespace Pathfinder.Util.XML
             => obj is ElementInfo ei && Equals(ei);
 
         public bool Equals(ElementInfo other)
-            => Name == other?.Name
-                && Value == other?.Value
-                && Depth == other?.Depth
-                && Parent.LocalNodeId == other?.Parent?.LocalNodeId
-                && LocalNodeId == other?.LocalNodeId;
+            => other != null
+                && Name == other.Name
+                && Value == other.Value
+                && Depth == other.Depth
+                && Parent.LocalNodeId == other.Parent.LocalNodeId
+                && LocalNodeId == other.LocalNodeId;
 
         public bool RepresentsNode(XmlReader reader)
             => (reader.NodeType == XmlNodeType.Element || reader.NodeType == XmlNodeType.EndElement)
@@ -47,7 +48,7 @@ namespace Pathfinder.Util.XML
         internal void ConcatValue(string value) => Value += value;
 
         public static bool operator ==(ElementInfo lhs, ElementInfo rhs)
-            => (lhs != null ? lhs.Equals(rhs) : (rhs == null));
+            => ReferenceEquals(lhs, rhs) || lhs.Equals(rhs);
 
         public static bool operator !=(ElementInfo lhs, ElementInfo rhs)
             => !(lhs == rhs);
