@@ -126,7 +126,7 @@ namespace Pathfinder.Util
         public static string GenerateNumberString(byte radix, int size, Random rand = null)
         {
             string str = "";
-            while (str.Length >= size)
+            while (str.Length < size)
                 if (radix == 2 || radix == 8 || radix == 10 || radix == 16)
                     str += Convert.ToString((rand ?? Random).Next(255), radix);
                 else str += DecimalToArbitrarySystem((rand ?? Random).Next(255), radix);
@@ -311,15 +311,37 @@ namespace Pathfinder.Util
             return basicAdmin;
         }
 
+        public static T Create<T>(Type[] types, params object[] args)
+        {
+            if (types.Length != args.Length)
+                throw new TypeLoadException();
+            var ctor = typeof(T).GetConstructor(types);
+            if (ctor == null) return default;
+            return GetActivator<T>(ctor)(args);
+        }
+
         public static T Create<T>(params object[] args)
         {
             var typeArr = new Type[args.Length];
             for (int i = 0; i < args.Length; i++)
                 typeArr[i] = args[i].GetType();
-            var ctor = typeof(T).GetConstructor(typeArr);
-            if (ctor == null) return default;
-            return GetActivator<T>(ctor)(args);
+            return Create<T>(typeArr, args);
         }
+
+        public static T Create<T, ArgT>(ArgT arg)
+            => Create<T>(new Type[] { typeof(ArgT) }, arg);
+
+        public static T Create<T, ArgT, ArgT2>(ArgT arg, ArgT2 arg2)
+            => Create<T>(new Type[] { typeof(ArgT), typeof(ArgT2) }, arg, arg2);
+
+        public static T Create<T, ArgT, ArgT2, ArgT3>(ArgT arg, ArgT2 arg2, ArgT3 arg3)
+            => Create<T>(new Type[] { typeof(ArgT), typeof(ArgT2), typeof(ArgT3) }, arg, arg2, arg3);
+
+        public static T Create<T, ArgT, ArgT2, ArgT3, ArgT4>(ArgT arg, ArgT2 arg2, ArgT3 arg3, ArgT4 arg4)
+            => Create<T>(new Type[] { typeof(ArgT), typeof(ArgT2), typeof(ArgT3), typeof(ArgT4) }, arg, arg2, arg3, arg4);
+
+        public static T Create<T, ArgT, ArgT2, ArgT3, ArgT4, ArgT5>(ArgT arg, ArgT2 arg2, ArgT3 arg3, ArgT4 arg4, ArgT5 arg5)
+            => Create<T>(new Type[] { typeof(ArgT), typeof(ArgT2), typeof(ArgT3), typeof(ArgT4), typeof(ArgT5) }, arg, arg2, arg3, arg4, arg5);
 
         private static Dictionary<ConstructorInfo, Delegate> ctorToActivator = new Dictionary<ConstructorInfo, Delegate>();
         public delegate T ObjectActivator<T>(params object[] args);

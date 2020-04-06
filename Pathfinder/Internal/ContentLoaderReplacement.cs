@@ -475,6 +475,11 @@ namespace Pathfinder.Internal
             {
                 info.Name.ThrowNoLabyrinths();
                 var emailAccount = info.Attributes.GetValue("AdminEmailAccount");
+
+                var databaseColor = info.Attributes.GetColor("Color", true);
+                if (!databaseColor.HasValue)
+                    databaseColor = os.highlightColor;
+
                 var databaseDaemon = result.AddDaemon<DatabaseDaemon>(
                     os,
                     info.Attributes.GetValueOrDefault("Name", "Database"),
@@ -482,8 +487,8 @@ namespace Pathfinder.Internal
                         info.Attributes.GetValueOrDefault("Permissions", "")
                     ),
                     info.Attributes.GetValue("DataType"),
-                    info.Attributes.GetValue("Foldername"),
-                    info.Attributes.GetColor("Color", true));
+                    info.Attributes.GetValueOrDefault("Foldername", "Database"),
+                    databaseColor);
                 if (!string.IsNullOrWhiteSpace(emailAccount))
                 {
                     databaseDaemon.adminResetEmailHostID = info.Attributes.GetValue("AdminEmailHostID");

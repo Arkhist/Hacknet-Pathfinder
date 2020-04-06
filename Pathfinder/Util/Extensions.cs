@@ -51,9 +51,15 @@ namespace Pathfinder.Util
             where T : System.Attribute
             => info.GetFirstAttribute<Type, T>(inherit);
 
+        public static bool DLCchecked = false;
         public static void ThrowNoLabyrinths(this string input, bool inputOnly = false)
         {
-            if (DLC1SessionUpgrader.HasDLC1Installed)
+            if (!DLCchecked)
+            {
+                DLC1SessionUpgrader.CheckForDLCFiles();
+                DLCchecked = true;
+            }
+            if (!DLC1SessionUpgrader.HasDLC1Installed)
                 throw new NotSupportedException("Labyrinths DLC not found.\n"
                                                 + (inputOnly
                                                    ? input
