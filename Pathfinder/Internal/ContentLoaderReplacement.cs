@@ -58,22 +58,21 @@ namespace Pathfinder.Internal
 
             filename = LocalizedFileLoader.GetLocalizedFilepath(filename);
             Computer result = null;
-            Stream stream = null;
             string themeData;
 
             var executor = new EventExecutor(filename);
-            var skipContent = false;
+            var readContent = true;
 
-            if (filename.Contains("ExampleComputer.xml"))
+            if (filename.Contains("ExampleComputer.xml") && !Util.Extensions.CheckLabyrinths())
             {
                 executor.OnRead += exec =>
                 {
                     var val = Regex.Replace(exec.Reader.Value.Trim().ToLower().Replace('_', ' '), @"s/\s{2,}/ /g", "");
-                    if (skipContent && val == "end labyrinths only content")
-                        skipContent = false;
-                    else if (!skipContent && val == "start labyrinths only content")
-                        skipContent = true;
-                    return skipContent;
+                    if (readContent && val == "end labyrinths only content")
+                        readContent = true;
+                    else if (!readContent && val == "start labyrinths only content")
+                        readContent = false;
+                    return readContent;
                 };
             }
 

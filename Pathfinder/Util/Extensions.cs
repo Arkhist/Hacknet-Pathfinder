@@ -54,16 +54,20 @@ namespace Pathfinder.Util
         public static bool DLCchecked = false;
         public static void ThrowNoLabyrinths(this string input, bool inputOnly = false)
         {
+            if (!CheckLabyrinths())
+                throw new NotSupportedException("Labyrinths DLC not found.\n"
+                                                + (inputOnly
+                                                   ? input
+                                                   : input + " requires Hacknet Labyrinths to be installed."));
+        }
+        public static bool CheckLabyrinths()
+        {
             if (!DLCchecked)
             {
                 DLC1SessionUpgrader.CheckForDLCFiles();
                 DLCchecked = true;
             }
-            if (!DLC1SessionUpgrader.HasDLC1Installed)
-                throw new NotSupportedException("Labyrinths DLC not found.\n"
-                                                + (inputOnly
-                                                   ? input
-                                                   : input + " requires Hacknet Labyrinths to be installed."));
+            return DLC1SessionUpgrader.HasDLC1Installed;
         }
 
         public static bool ToBool(this string input, bool defaultVal = false)

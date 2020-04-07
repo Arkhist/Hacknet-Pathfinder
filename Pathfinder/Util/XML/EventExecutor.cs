@@ -33,7 +33,7 @@ namespace Pathfinder.Util.XML
         }
 
         public bool CanParseChildrenOf(string element)
-            => delegateData[GetElementName(element)].Item2;
+            => HasElement(element) && delegateData[GetElementName(element)].Item2;
 
         public bool TryGetExecutionData(string element, out Tuple<ReadExecution, bool> tuple)
             => delegateData.TryGetValue(GetElementName(element), out tuple);
@@ -136,7 +136,7 @@ namespace Pathfinder.Util.XML
             };
             topLevelInfo.Attributes = attributes;
             topLevelInfo.Children = CanParseChildrenOf(checkName) ? new List<ElementInfo>() : null;
-            topLevelInfo = currentElement;
+            currentElement = topLevelInfo;
         }
 
         protected override void ReadEndElement()

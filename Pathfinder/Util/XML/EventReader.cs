@@ -116,14 +116,12 @@ namespace Pathfinder.Util.XML
                     while (reader.Read())
                     {
                         // Check end of element validity, remove parent if valid
-                        if (reader.NodeType == XmlNodeType.EndElement)
+                        if (reader.NodeType == XmlNodeType.EndElement
+                                && ParentList.Count > 0
+                                && reader.Name != ParentList.Last())
                         {
-                            if (ParentList.Count > 0 && reader.Name != ParentList.Last())
-                            {
-                                exception = new XmlException("Malformed XML Document");
-                                break;
-                            }
-                            ParentList.RemoveAt(ParentList.Count - 1);
+                            exception = new XmlException("Malformed XML Document");
+                            break;
                         }
                         // Processor Nodes if Read returns true
                         if (Read())
@@ -149,6 +147,7 @@ namespace Pathfinder.Util.XML
                                     break;
                                 case XmlNodeType.EndElement:
                                     ReadEndElement();
+                                    if (ParentList.Count > 0) ParentList.RemoveAt(ParentList.Count - 1);
                                     break;
                                 case XmlNodeType.Text:
                                     ReadText();
