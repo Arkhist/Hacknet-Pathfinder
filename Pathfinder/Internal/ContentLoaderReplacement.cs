@@ -60,7 +60,7 @@ namespace Pathfinder.Internal
             Computer result = null;
             string themeData;
 
-            var executor = new EventExecutor(filename);
+            var executor = new EventExecutor(filename, ignoreCase: true);
             var readContent = true;
 
             if (filename.Contains("ExampleComputer.xml") && !Util.Extensions.CheckLabyrinths())

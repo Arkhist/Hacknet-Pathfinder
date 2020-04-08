@@ -106,8 +106,7 @@ namespace Pathfinder.Util.XML
                 return; // Skip Descendents if executing
             }
 
-            var checkName = reader.Name;
-            if (IgnoreCase) checkName = checkName.ToLowerInvariant();
+            var checkName = GetElementName(reader.Name);
 
             // If element name isn't contained, check entire parent list
             if (!HasElement(checkName))
@@ -116,7 +115,7 @@ namespace Pathfinder.Util.XML
                 var parentTestFail = true;
                 for (int i = ParentList.Count - 1; i >= 0; i--)
                 {
-                    parentStrTest.Insert(0, $"{ParentList[i]}.");
+                    parentStrTest.Insert(0, $"{GetElementName(ParentList[i])}.");
                     if (HasElement(parentStrTest.ToString()))
                     {
                         parentTestFail = false;
