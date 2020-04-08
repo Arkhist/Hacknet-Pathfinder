@@ -74,8 +74,9 @@ namespace Pathfinder.Util.XML
 
         private void Execute(string element)
         {
-            if (currentElement == topLevelInfo && TryGetExecutor(reader.Name, out var exec))
+            if (TryGetExecutor(reader.Name, out var exec))
                 exec(this, topLevelInfo);
+            currentElement = null;
         }
 
         private ElementInfo topLevelInfo = new ElementInfo();
@@ -154,8 +155,8 @@ namespace Pathfinder.Util.XML
             // Execute if top executionlevel
             if (currentElement?.RepresentsNode(reader) == true)
             {
-                if (topLevelInfo.Children != null) Execute(reader.Name);
-                currentElement = currentElement.Parent;
+                if (currentElement == topLevelInfo && topLevelInfo.Children != null) Execute(reader.Name);
+                currentElement = currentElement?.Parent;
             }
         }
 
