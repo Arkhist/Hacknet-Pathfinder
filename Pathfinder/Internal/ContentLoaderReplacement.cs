@@ -601,7 +601,7 @@ namespace Pathfinder.Internal
             executor.AddExecutor("Computer.CreditsDaemon", creditFunc);
 
             executor.AddExecutor("Computer.FastActionHost", (exec, info)
-                => result.AddDaemon<FastActionHost>(os));
+                => result.AddDaemon<FastActionHost>(os, result.name));
 
             executor.AddExecutor("Computer.eosDevice", (exec, info)
                 => AddEosComputer(info, result, os), true);
