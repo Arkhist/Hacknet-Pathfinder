@@ -88,15 +88,16 @@ namespace Pathfinder.Util
                     case 0:
                         if (c == selector)
                         {
+                            var nextEnder = checkForWhitespace ? 
+                                text.IndexOfAny(new char[] { ' ', '\t', '\n' }, i)
+                                : text.IndexOfAny(enders.ToCharArray(), i);
+                            var nextSelector = text.IndexOf(selector, i + 1);
                             if (text.IndexOf(selector, i + 1) == -1
                                 // if second capture selector exists
-                                || (checkForWhitespace
-                                    && text.IndexOfAny(new char[] { ' ', '\t', '\n' }, i) < text.IndexOf(selector, i + 1))
-                                // if whitespace
-                                || (!checkForWhitespace
-                                    && text.IndexOfAny(enders.ToCharArray(), i) < text.IndexOf(selector, i + 1))
+                                || (nextEnder > -1
+                                    && nextEnder < nextSelector)
                                 // if voider of capture
-                                || text.IndexOf(esc, i) == text.IndexOf(selector, i + 1) - 1)
+                                || text.IndexOf(esc, i) == nextSelector - 1)
                                 // if capture is escaped
                                 frag.Append(c); // continue seeking
                             else
