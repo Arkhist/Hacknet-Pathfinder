@@ -24,7 +24,7 @@ namespace PathfinderPatcher
     {
         const string PATCH_ATTRIBUTE_CLASSPATH = "Pathfinder.Attribute.PatchAttribute";
 
-        internal static void Main(string[] args)
+        internal static int Main(string[] args)
         {
             var separator = Path.DirectorySeparatorChar;
 
@@ -70,7 +70,7 @@ namespace PathfinderPatcher
             catch (Exception ex)
             {
                 HandleExeception("Failure at Assembly Loading:", ex);
-                return;
+                return 2;
             }
 
             if (gameAssembly == null) throw new InvalidDataException("Hacknet Assembly could not be found");
@@ -203,7 +203,7 @@ namespace PathfinderPatcher
             {
                 HandleExeception("Failure during Hacknet Pathfinder Assembly Tweaks:", ex);
                 gameAssembly?.Write("HacknetPathfinder.exe");
-                return;
+                return 3;
             }
             if(!spitOutHacknetOnly) try
                 {
@@ -217,9 +217,10 @@ namespace PathfinderPatcher
                 {
                     HandleExeception("Failure during Pathfinder.dll's Patch Execution:", ex);
                     gameAssembly?.Write("HacknetPathfinder.exe");
-                    return;
+                    return 1;
                 }
             gameAssembly?.Write("HacknetPathfinder.exe");
+            return 0;
         }
 
         private static void HandleExeception(string message, Exception e)
