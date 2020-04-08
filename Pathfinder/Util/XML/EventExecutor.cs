@@ -72,6 +72,12 @@ namespace Pathfinder.Util.XML
         public bool HasElement(string element)
             => delegateData.ContainsKey(GetElementName(element));
 
+        private void Execute(string element)
+        {
+            if (currentElement == topLevelInfo && TryGetExecutor(reader.Name, out var exec))
+                exec(this, topLevelInfo);
+        }
+
         private ElementInfo topLevelInfo = new ElementInfo();
         private ElementInfo currentElement;
         private int counter = 0;
@@ -137,6 +143,7 @@ namespace Pathfinder.Util.XML
             topLevelInfo.Attributes = attributes;
             topLevelInfo.Children = CanParseChildrenOf(checkName) ? new List<ElementInfo>() : null;
             currentElement = topLevelInfo;
+            if (topLevelInfo.Children == null) Execute(reader.Name);
         }
 
         protected override void ReadEndElement()
@@ -147,8 +154,7 @@ namespace Pathfinder.Util.XML
             // Execute if top executionlevel
             if (currentElement?.RepresentsNode(reader) == true)
             {
-                if (currentElement == topLevelInfo && TryGetExecutor(reader.Name, out var exec))
-                    exec(this, topLevelInfo);
+                if (topLevelInfo.Children != null) Execute(reader.Name);
                 currentElement = currentElement.Parent;
             }
         }
