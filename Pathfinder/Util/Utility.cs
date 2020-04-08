@@ -316,7 +316,7 @@ namespace Pathfinder.Util
             if (types.Length != args.Length)
                 throw new TypeLoadException();
             var ctor = typeof(T).GetConstructor(types);
-            if (ctor == null) return default;
+            if (ctor == null) throw new MissingMethodException(nameof(T), ".ctor");
             return GetActivator<T>(ctor)(args);
         }
 
