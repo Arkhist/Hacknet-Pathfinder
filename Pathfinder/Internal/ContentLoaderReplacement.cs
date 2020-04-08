@@ -405,16 +405,15 @@ namespace Pathfinder.Internal
                 messageBoardDaemon.name = info.Attributes.GetValueOrDefault("name", "Anonymous");
                 messageBoardDaemon.BoardName = messageBoardDaemon.name;
                 var threadInfo =
-                    info.Children.FirstOrDefault((cinfo) => cinfo.Name == "Thread");
-                var threadLoc = threadInfo.Value ?? "UNKNOWN";
+                    info.Children.FirstOrDefault((cinfo) => cinfo.Name.ToLower() == "thread");
+                var threadLoc = threadInfo?.Value ?? "UNKNOWN";
                 const string content = "Content/Missions/";
                 if (threadLoc.StartsWith(content, StringComparison.InvariantCulture))
                     threadLoc = threadLoc.Substring(content.Length);
-                if (threadLoc != null)
-                    messageBoardDaemon.AddThread(Utils.readEntireFile(
-                        content + (Settings.IsInExtensionMode
-                                   ? ExtensionLoader.ActiveExtensionInfo.FolderPath + "/"
-                                   : "") + threadLoc));
+                messageBoardDaemon.AddThread(Utils.readEntireFile(
+                    content + (Settings.IsInExtensionMode
+                               ? ExtensionLoader.ActiveExtensionInfo.FolderPath + "/"
+                               : "") + threadLoc));
             }, true);
 
             executor.AddExecutor("Computer.AddAvconDemoEndDaemon", (exec, info) 
