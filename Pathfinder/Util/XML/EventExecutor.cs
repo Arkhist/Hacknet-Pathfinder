@@ -72,11 +72,14 @@ namespace Pathfinder.Util.XML
         public bool HasElement(string element)
             => delegateData.ContainsKey(GetElementName(element));
 
-        private void Execute(string element)
+        private bool Execute(string element)
         {
-            if (TryGetExecutor(reader.Name, out var exec))
+            if (TryGetExecutor(GetElementName(element), out var exec))
                 exec(this, topLevelInfo);
+            else return false;
+
             currentElement = null;
+            return true;
         }
 
         private ElementInfo topLevelInfo = new ElementInfo();
@@ -113,10 +116,10 @@ namespace Pathfinder.Util.XML
             {
                 var parentStrTest = new StringBuilder(checkName);
                 var parentTestFail = true;
-                for (int i = ParentList.Count - 1; i >= 0; i--)
+                for (var i = ParentList.Count - 1; i >= 0; i--)
                 {
-                    parentStrTest.Insert(0, $"{GetElementName(ParentList[i])}.");
-                    if (HasElement(parentStrTest.ToString()))
+                    parentStrTest.Insert(0, $"{ParentList[i]}.");
+                    if (HasElement(checkName = parentStrTest.ToString()))
                     {
                         parentTestFail = false;
                         break;
@@ -143,7 +146,7 @@ namespace Pathfinder.Util.XML
             topLevelInfo.Attributes = attributes;
             topLevelInfo.Children = CanParseChildrenOf(checkName) ? new List<ElementInfo>() : null;
             currentElement = topLevelInfo;
-            if (topLevelInfo.Children == null) Execute(reader.Name);
+            if (topLevelInfo.Children == null) Execute(checkName);
         }
 
         protected override void ReadEndElement()
@@ -154,7 +157,15 @@ namespace Pathfinder.Util.XML
             // Execute if top executionlevel
             if (currentElement?.RepresentsNode(reader) == true)
             {
-                if (currentElement == topLevelInfo && topLevelInfo.Children != null) Execute(reader.Name);
+                if (currentElement == topLevelInfo && topLevelInfo.Children != null)
+                {
+                    var parentStrTest = new StringBuilder(reader.Name);
+                    for (int i = ParentList.Count - 1; i >= 0; i--)
+                    {
+                        if (Execute(parentStrTest.ToString())) break;
+                        parentStrTest.Insert(0, $"{ParentList[i]}.");
+                    }
+                }
                 currentElement = currentElement?.Parent;
             }
         }
