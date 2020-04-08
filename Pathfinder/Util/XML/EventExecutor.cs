@@ -160,10 +160,13 @@ namespace Pathfinder.Util.XML
                 if (currentElement == topLevelInfo && topLevelInfo.Children != null)
                 {
                     var parentStrTest = new StringBuilder(reader.Name);
-                    for (int i = ParentList.Count - 1; i >= 0; i--)
+                    if(!Execute(parentStrTest.ToString()))
                     {
-                        if (Execute(parentStrTest.ToString())) break;
-                        parentStrTest.Insert(0, $"{ParentList[i]}.");
+                        for (int i = ParentList.Count - 2; i >= 0; i--)
+                        {
+                            parentStrTest.Insert(0, $"{ParentList[i]}.");
+                            if (Execute(parentStrTest.ToString())) break;
+                        }
                     }
                 }
                 currentElement = currentElement?.Parent;

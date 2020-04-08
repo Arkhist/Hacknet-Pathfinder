@@ -101,7 +101,7 @@ namespace Pathfinder.Internal
 
             executor.AddExecutor("Computer.File", (exec, info) =>
             {
-                var encodedFileStr = info.Attributes.GetValueOrDefault("name", "Data", true);
+                var encodedFileStr = info.Attributes.GetValueOrDefault("name", "Data", true).HacknetFilter();
                 themeData = info.Value;
                 if (string.IsNullOrEmpty(themeData)) themeData = Utility.GenerateBinString();
                 themeData = themeData.HacknetFilter();
@@ -292,10 +292,10 @@ namespace Pathfinder.Internal
 
             executor.AddExecutor("Computer.Account", (exec, info) =>
             {
-                byte type = 3;
-                string typeStr = info.Attributes.GetValue("type").ToLower(),
+                byte type = 0;
+                string typeStr = info.Attributes.GetValueOrDefault("type", "admin").ToLower(),
                 password = info.Attributes.GetValueOrDefault("password", "ERROR", true),
-                username = info.Attributes.GetValueOrDefault("username", "ERROR", true);
+                username = info.Attributes.GetValueOrDefault("username", "ERROR", true).HacknetFilter();
                 switch (typeStr)
                 {
                     case "admin": type = 0; break;
