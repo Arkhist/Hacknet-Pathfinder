@@ -404,7 +404,7 @@ namespace Pathfinder.Internal
                 var messageBoardDaemon = result.AddDaemon<MessageBoardDaemon>(os);
                 messageBoardDaemon.name = info.Attributes.GetValueOrDefault("name", "Anonymous");
                 messageBoardDaemon.BoardName = messageBoardDaemon.name;
-                const string content = "Content/Missions";
+                const string content = "Content/Missions/";
                 foreach (var threadInfo in info.Children.Where((cinfo) => cinfo.Name.ToLower() == "thread")) {
                     var threadLoc = threadInfo.Value ?? "UNKNOWN";
                     if (threadLoc.StartsWith(content, StringComparison.InvariantCulture))
@@ -595,7 +595,7 @@ namespace Pathfinder.Internal
                 bool allowContractAbbandon = info.Attributes.GetBool("allowContractAbbandon", false);
                 Color themeColor = info.Attributes.GetColor("themeColor", new Color(38, 201, 155));
 
-                DLCHubServer dlcHubServer = result.AddDaemon<DLCHubServer>("DHS", os, groupName);
+                DLCHubServer dlcHubServer = result.AddDaemon<DLCHubServer>("DHS", groupName, os);
                 dlcHubServer.AddsFactionPointForMissionCompleteion = addsFactionPoint;
                 dlcHubServer.AutoClearMissionsOnSingleComplete = autoClearMissions;
                 dlcHubServer.AllowContractAbbandon = allowContractAbbandon;
@@ -614,7 +614,7 @@ namespace Pathfinder.Internal
                         }
                     }
                 }
-            });
+            }, true);
 
             void creditFunc(EventExecutor exec, ElementInfo info)
             {
