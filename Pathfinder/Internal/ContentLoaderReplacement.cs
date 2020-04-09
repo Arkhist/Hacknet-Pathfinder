@@ -286,7 +286,7 @@ namespace Pathfinder.Internal
                     result.PortRemapping = PortRemappingSerializer.Deserialize(info.Value);
             });
 
-            executor.AddExecutor("Computer.ExeternalCounterpart", (exec, info)
+            executor.AddExecutor("Computer.ExternalCounterpart", (exec, info)
                 => result.externalCounterpart = new ExternalCounterpart(info.Attributes.GetValue("name"),
                     ExternalCounterpart.getIPForServerName(info.Attributes.GetValue("id"))));
 
@@ -404,16 +404,18 @@ namespace Pathfinder.Internal
                 var messageBoardDaemon = result.AddDaemon<MessageBoardDaemon>(os);
                 messageBoardDaemon.name = info.Attributes.GetValueOrDefault("name", "Anonymous");
                 messageBoardDaemon.BoardName = messageBoardDaemon.name;
-                var threadInfo =
-                    info.Children.FirstOrDefault((cinfo) => cinfo.Name.ToLower() == "thread");
-                var threadLoc = threadInfo?.Value ?? "UNKNOWN";
-                const string content = "Content/Missions/";
-                if (threadLoc.StartsWith(content, StringComparison.InvariantCulture))
-                    threadLoc = threadLoc.Substring(content.Length);
-                messageBoardDaemon.AddThread(Utils.readEntireFile(
-                    content + (Settings.IsInExtensionMode
-                               ? ExtensionLoader.ActiveExtensionInfo.FolderPath + "/"
-                               : "") + threadLoc));
+                const string content = "Content/Missions";
+                foreach (var threadInfo in info.Children.Where((cinfo) => cinfo.Name.ToLower() == "thread")) {
+                    var threadLoc = threadInfo.Value ?? "UNKNOWN";
+                    if (threadLoc.StartsWith(content, StringComparison.InvariantCulture))
+                        threadLoc = threadLoc.Substring(content.Length);
+                    messageBoardDaemon.AddThread(Utils.readEntireFile(
+                        (Settings.IsInExtensionMode ?
+                            ExtensionLoader.ActiveExtensionInfo.FolderPath + "/" :
+                            content
+                        ) + threadLoc
+                    ));
+                }
             }, true);
 
             executor.AddExecutor("Computer.AddAvconDemoEndDaemon", (exec, info) 
@@ -582,6 +584,37 @@ namespace Pathfinder.Internal
                         BodyText = info.Value
                     }
             ));
+
+            executor.AddExecutor("Computer.DHSDaemon", (exec, info) =>
+            {
+                info.Name.ThrowNoLabyrinths();
+
+                string groupName = info.Attributes.GetValueOrDefault("groupName", "UNKNOWN");
+                bool addsFactionPoint = info.Attributes.GetBool("addsFactionPointOnMissionComplete", true);
+                bool autoClearMissions = info.Attributes.GetBool("autoClearMissionsOnPlayerComplete", true);
+                bool allowContractAbbandon = info.Attributes.GetBool("allowContractAbbandon", false);
+                Color themeColor = info.Attributes.GetColor("themeColor", new Color(38, 201, 155));
+
+                DLCHubServer dlcHubServer = result.AddDaemon<DLCHubServer>("DHS", os, groupName);
+                dlcHubServer.AddsFactionPointForMissionCompleteion = addsFactionPoint;
+                dlcHubServer.AutoClearMissionsOnSingleComplete = autoClearMissions;
+                dlcHubServer.AllowContractAbbandon = allowContractAbbandon;
+                dlcHubServer.themeColor = themeColor;
+
+                foreach (var cinfo in info.Children)
+                {
+                    if (cinfo.Name.ToLower() == "user" || cinfo.Name.ToLower() == "agent")
+                    {
+                        string name = cinfo.Attributes.GetValue("name");
+                        string password = cinfo.Attributes.GetValueOrDefault("pass", "password");
+                        Color color = cinfo.Attributes.GetColor("color", Color.LightGreen);
+                        if (!string.IsNullOrWhiteSpace(name))
+                        {
+                            dlcHubServer.AddAgent(name.HacknetFilter(), password, color);
+                        }
+                    }
+                }
+            });
 
             void creditFunc(EventExecutor exec, ElementInfo info)
             {
