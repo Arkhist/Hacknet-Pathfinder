@@ -141,6 +141,12 @@ namespace Pathfinder.Util.XML
                                         reader.MoveToElement();
                                     }
                                     ReadElement(attribs);
+                                    ParentList.Add(reader.Name);
+                                    if(reader.IsEmptyElement)
+                                    {
+                                        ReadEndElement();
+                                        ParentList.RemoveAt(ParentList.Count - 1);
+                                    }
                                     break;
                                 case XmlNodeType.Comment:
                                     ReadComment();
@@ -157,10 +163,6 @@ namespace Pathfinder.Util.XML
                                     break;
                             }
                         }
-                        // Add element to end of parent list if not a self-contained element
-                        if (reader.NodeType == XmlNodeType.Element && !reader.IsEmptyElement)
-                            ParentList.Add(reader.Name);
-
                         // Kill processing if Exception is set
                         if(Exception != null)
                         {
