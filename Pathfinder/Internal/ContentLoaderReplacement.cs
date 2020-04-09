@@ -117,7 +117,7 @@ namespace Pathfinder.Internal
                     else
                         file.data = encodedFileStr;
                 }
-            });
+            }, true);
 
             executor.AddExecutor("Computer.EncryptedFile", (exec, info) =>
             {
@@ -141,7 +141,7 @@ namespace Pathfinder.Internal
                     folderFromPath.files.Add(new FileEntry(themeData, encodedFileStr));
                 else
                     file.data = themeData;
-            });
+            }, true);
 
             MemoryContents memoryContent = new MemoryContents();
             ElementInfo memInfo = new ElementInfo();
@@ -193,7 +193,7 @@ namespace Pathfinder.Internal
             });
 
             executor.AddExecutor("Computer.Ports", (exec, info) =>
-                ComputerLoader.loadPortsIntoComputer(info.Value, result));
+                ComputerLoader.loadPortsIntoComputer(info.Value, result), true);
 
             executor.AddExecutor("Computer.PositionNear", (exec, info) =>
             {
@@ -284,7 +284,7 @@ namespace Pathfinder.Internal
             {
                 if (!string.IsNullOrWhiteSpace(info.Value))
                     result.PortRemapping = PortRemappingSerializer.Deserialize(info.Value);
-            });
+            }, true);
 
             executor.AddExecutor("Computer.ExternalCounterpart", (exec, info)
                 => result.externalCounterpart = new ExternalCounterpart(info.Attributes.GetValue("name"),
@@ -583,7 +583,7 @@ namespace Pathfinder.Internal
                         TextColor = info.Attributes.GetColor("TextColor", Color.White),
                         BodyText = info.Value
                     }
-            ));
+            ), true);
 
             executor.AddExecutor("Computer.DHSDaemon", (exec, info) =>
             {
