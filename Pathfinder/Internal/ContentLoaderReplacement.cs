@@ -361,9 +361,9 @@ namespace Pathfinder.Internal
                     os
                 );
                 hubServer.MissionSourceFolderPath =
-                    "Content/Missions/" + (Settings.IsInExtensionMode
-                                           ? ExtensionLoader.ActiveExtensionInfo.FolderPath + "/"
-                                           : "") + missionPath;
+                    (Settings.IsInExtensionMode
+                        ? ExtensionLoader.ActiveExtensionInfo.FolderPath + "/"
+                        : "Content/Missions/") + missionPath;
                 hubServer.themeColor = info.Attributes.GetColor("themeColor", Color.PaleTurquoise);
                 hubServer.themeColorBackground = info.Attributes.GetColor("backgroundColor", Color.PaleTurquoise);
                 hubServer.themeColorLine = info.Attributes.GetColor("line Color", Color.PaleTurquoise);
@@ -531,16 +531,16 @@ namespace Pathfinder.Internal
                 rCDaemon.RequiresLogin = info.Attributes.GetBool("needsLogin");
                 foreach (var cinfo in info.Children)
                 {
-                    switch (cinfo.Name)
+                    switch (cinfo.Name.ToLower())
                     {
-                        case "User":
-                        case "Agent":
+                        case "user":
+                        case "agent":
                             var name = cinfo.Attributes.GetValue("name", true);
                             if (!string.IsNullOrWhiteSpace(name))
                                 rCDaemon.UserColors.Add(name,
                                     cinfo.Attributes.GetColor("color", Color.LightGreen));
                             break;
-                        case "Post":
+                        case "post":
                             var user = cinfo.Attributes.GetValue("user", true);
                             if (!string.IsNullOrWhiteSpace(user))
                                 rCDaemon.StartingMessages.Add(
