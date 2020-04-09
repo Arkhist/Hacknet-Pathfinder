@@ -12,7 +12,7 @@ namespace Pathfinder.Game.MailServer
                                             bool dontFilter = false)
         {
             sender = dontFilter ? sender ?? "UNKNOWN" : ComputerLoader.filter(sender ?? "UNKNOWN");
-            recip = dontFilter || recip == null ? recip : ComputerLoader.filter(sender);
+            recip = dontFilter || recip == null ? recip : ComputerLoader.filter(recip);
             subject = dontFilter ? subject ?? "UNKNOWN" : ComputerLoader.filter(subject ?? "UNKNOWN");
             body = dontFilter ? body ?? "UNKNOWN" : ComputerLoader.filter(body ?? "UNKNOWN");
             if (recip != null)
