@@ -40,7 +40,7 @@ namespace Pathfinder.Event
     {
         public OS OS { get; set; }
         public XmlReader Reader { get; set; }
-        public LoadSavedComputerEvent(Computer c, XmlReader r, OS os) : base(c, r.ToStream()) { Reader = r; OS = os; }
+        public LoadSavedComputerEvent(Computer c, XmlReader r, OS os) : base(c, /* r.ToStream() TODO: compiler error */ null) { Reader = r; OS = os; }
     }
 
     public class LoadSavedComputerStartEvent : LoadSavedComputerEvent
