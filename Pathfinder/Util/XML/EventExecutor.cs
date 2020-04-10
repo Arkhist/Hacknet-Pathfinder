@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Pathfinder.Util.XML
 {
-    public delegate void ReadExecution(EventExecutor executor, ElementInfo info);
 
-    public class EventExecutor : EventReader
+    public class EventExecutor : EventReader, IExecutor
     {
-        private Dictionary<string, Tuple<ReadExecution, bool>> delegateData = new Dictionary<string, Tuple<ReadExecution, bool>>();
+
+        internal Dictionary<string, Tuple<ReadExecution, bool>> delegateData = new Dictionary<string, Tuple<ReadExecution, bool>>();
 
         public bool IgnoreCase { get; private set; }
 

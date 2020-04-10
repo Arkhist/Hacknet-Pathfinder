@@ -285,13 +285,14 @@ namespace Pathfinder
             secondaryButtonY = drawMainMenuButtonsEvent.SecondaryButtonY;
         }
 
-        [Patch("Hacknet.OS.loadSaveFile", 33,
+        [Patch("Hacknet.OS.loadSaveFile", 30,
             flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals | InjectFlags.ModifyReturn,
-            localsID: new int[] { 0, 1 }
+            localsID: new int[] { 0 }
         )]
-        public static bool onLoadSaveFile(OS self, ref Stream stream, ref XmlReader xmlReader)
+        public static bool onLoadSaveFile(OS self, ref Stream stream)
         {
-            var loadSaveFileEvent = new Event.OSLoadSaveFileEvent(self, xmlReader, stream);
+            /* TODO: Refactor that null out */
+            var loadSaveFileEvent = new Event.OSLoadSaveFileEvent(self, null, stream);
             loadSaveFileEvent.CallEvent();
             if (loadSaveFileEvent.IsCancelled)
                 return true;

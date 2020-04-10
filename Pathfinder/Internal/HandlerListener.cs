@@ -32,9 +32,8 @@ namespace Pathfinder.Internal
             }
         }
 
-        public static void LoadSavedComputerReplacementStart(LoadSavedComputerStartEvent e)
-        {
-            e.Computer = SaveLoaderReplacement.LoadComputer(e.Reader, e.OS);
+        public static void LoadSaveFileReplacementStart(OSLoadSaveFileEvent e) {
+            SaveLoaderReplacement.LoadSaveFile(e.Stream, e.OS);
             e.IsCancelled = true;
         }
 

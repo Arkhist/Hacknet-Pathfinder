@@ -80,8 +80,8 @@ namespace Pathfinder.Internal
             {
                 var compType = info.Attributes.GetValue("type");
                 result = new Computer(
-                    info.Attributes.GetValue("name")?.HacknetFilter() ?? "UNKNOWN",
-                    info.Attributes.GetValue("ip")?.HacknetFilter() ?? Utility.GenerateRandomIP(),
+                    info.Attributes.GetValue("name", true) ?? "UNKNOWN",
+                    info.Attributes.GetValue("ip", true) ?? Utility.GenerateRandomIP(),
                     os.netMap.getRandomPosition(),
                     Convert.ToInt32(info.Attributes.GetValue("security")),
                     compType?.ToLower() == "empty" ? (byte)4 : Convert.ToByte(compType),
@@ -143,38 +143,27 @@ namespace Pathfinder.Internal
                     file.data = themeData;
             }, true);
 
-            MemoryContents memoryContent = new MemoryContents();
-            ElementInfo memInfo = new ElementInfo();
 
-            executor.AddExecutor("Computer.MemoryDumpFile", (exec, info) => memInfo = info);
-
-            executor.OnReadEndElement += reader =>
+            executor.AddExecutor("Computer.MemoryDumpFile", (exec, info) =>
             {
-                if (reader.ActiveParents.Last() != "Computer") return;
-                if (reader.Reader.Name == "Memory") result.Memory = memoryContent;
-                if (reader.Reader.Name == "MemoryDumpFile")
-                {
-                    var encodedFileStr = memInfo.Attributes.GetValueOrDefault("name", "Data");
-                    var folderFromPath = result.getFolderFromPath(
-                        memInfo.Attributes.GetValueOrDefault("path", "home"), true);
-                    var file = folderFromPath.searchForFile(encodedFileStr);
-                    if (file == null)
-                        folderFromPath.files.Add(
-                            new FileEntry(memoryContent.GetEncodedFileString(), encodedFileStr)
-                        );
-                    else
-                        file.data = memoryContent.GetEncodedFileString();
+                var memoryInfo = info.Children.FirstOrDefault(e => e.Name == "Memory");
+                if(memoryInfo == null) {
+                    /* TODO: error reporting */
                 }
-            };
-            var clh = GenerateCommandListHandler(memoryContent);
-            var dlh = GenerateDataListHandler(memoryContent);
-            var fflh = GenerateFileFragListHandler(memoryContent);
-            var ilh = GenerateImageListHandler(memoryContent);
+                var memoryContents = ReplacementsCommon.LoadMemoryContents(memoryInfo);
+                var fileName = info.Attributes.GetValueOrDefault("name", "Data");
+                var folderFromPath = result.getFolderFromPath(info.Attributes.GetValueOrDefault("path", "home"), true);
+                var file = folderFromPath.searchForFile(fileName);
+                if(file != null)
+                    file.data = memoryContents.GetEncodedFileString();
+                else
+                    folderFromPath.files.Add(new FileEntry(memoryContents.GetEncodedFileString(), fileName));
+            }, true);
 
-            executor.AddExecutor("Commands", clh, true);
-            executor.AddExecutor("Data", dlh, true);
-            executor.AddExecutor("FileFragments", fflh, true);
-            executor.AddExecutor("Images", ilh, true);
+            executor.AddExecutor("Computer.Memory", (exec, info) =>
+            {
+               result.Memory = ReplacementsCommon.LoadMemoryContents(info);
+            }, true);
 
             executor.AddExecutor("Computer.CustomThemeFile", (exec, info) =>
             {
@@ -295,14 +284,14 @@ namespace Pathfinder.Internal
                 byte type = 0;
                 string typeStr = info.Attributes.GetValueOrDefault("type", "admin").ToLower(),
                 password = info.Attributes.GetValueOrDefault("password", "ERROR", true),
-                username = info.Attributes.GetValueOrDefault("username", "ERROR", true).HacknetFilter();
+                username = info.Attributes.GetValueOrDefault("username", "ERROR", true);
                 switch (typeStr)
                 {
                     case "admin": type = 0; break;
                     case "all": type = 1; break;
                     case "mail": type = 2; break;
                     case "missionlist": type = 3; break;
-                    default: 
+                    default:
                         if(char.IsDigit(typeStr[0]))
                             byte.TryParse(typeStr, out type);
                         break;
@@ -605,18 +594,18 @@ namespace Pathfinder.Internal
                 {
                     if (cinfo.Name.ToLower() == "user" || cinfo.Name.ToLower() == "agent")
                     {
-                        string name = cinfo.Attributes.GetValue("name");
+                        string name = cinfo.Attributes.GetValue("name", true);
                         string password = cinfo.Attributes.GetValueOrDefault("pass", "password");
                         Color color = cinfo.Attributes.GetColor("color", Color.LightGreen);
                         if (!string.IsNullOrWhiteSpace(name))
                         {
-                            dlcHubServer.AddAgent(name.HacknetFilter(), password, color);
+                            dlcHubServer.AddAgent(name, password, color);
                         }
                     }
                 }
             }, true);
 
-            void creditFunc(EventExecutor exec, ElementInfo info)
+            void creditFunc(IExecutor exec, ElementInfo info)
             {
                 var inputArr = new List<object>
                 {
