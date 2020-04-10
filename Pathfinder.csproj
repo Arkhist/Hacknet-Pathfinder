@@ -241,6 +241,7 @@
     <Compile Include="Pathfinder\Util\XML\ReadOnlyXmlReader.cs" />
     <Compile Include="Pathfinder\Util\XML\IExecutor.cs" />
     <Compile Include="Pathfinder\Util\XML\ParsedTreeExecutor.cs" />
+    <Compile Include="Pathfinder\Internal\ReplacementsCommon.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />

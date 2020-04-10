@@ -143,38 +143,27 @@ namespace Pathfinder.Internal
                     file.data = themeData;
             }, true);
 
-            MemoryContents memoryContent = new MemoryContents();
-            ElementInfo memInfo = new ElementInfo();
 
-            executor.AddExecutor("Computer.MemoryDumpFile", (exec, info) => memInfo = info);
-
-            executor.OnReadEndElement += reader =>
+            executor.AddExecutor("Computer.MemoryDumpFile", (exec, info) =>
             {
-                if (reader.ActiveParents.Last() != "Computer") return;
-                if (reader.Reader.Name == "Memory") result.Memory = memoryContent;
-                if (reader.Reader.Name == "MemoryDumpFile")
-                {
-                    var encodedFileStr = memInfo.Attributes.GetValueOrDefault("name", "Data");
-                    var folderFromPath = result.getFolderFromPath(
-                        memInfo.Attributes.GetValueOrDefault("path", "home"), true);
-                    var file = folderFromPath.searchForFile(encodedFileStr);
-                    if (file == null)
-                        folderFromPath.files.Add(
-                            new FileEntry(memoryContent.GetEncodedFileString(), encodedFileStr)
-                        );
-                    else
-                        file.data = memoryContent.GetEncodedFileString();
+                var memoryInfo = info.Children.FirstOrDefault(e => e.Name == "Memory");
+                if(memoryInfo == null) {
+                    /* TODO: error reporting */
                 }
-            };
-            var clh = GenerateCommandListHandler(memoryContent);
-            var dlh = GenerateDataListHandler(memoryContent);
-            var fflh = GenerateFileFragListHandler(memoryContent);
-            var ilh = GenerateImageListHandler(memoryContent);
+                var memoryContents = ReplacementsCommon.LoadMemoryContents(memoryInfo);
+                var fileName = info.Attributes.GetValueOrDefault("name", "Data");
+                var folderFromPath = result.getFolderFromPath(info.Attributes.GetValueOrDefault("path", "home"), true);
+                var file = folderFromPath.searchForFile(fileName);
+                if(file != null)
+                    file.data = memoryContents.GetEncodedFileString();
+                else
+                    folderFromPath.files.Add(new FileEntry(memoryContents.GetEncodedFileString(), fileName));
+            }, true);
 
-            executor.AddExecutor("Commands", clh, true);
-            executor.AddExecutor("Data", dlh, true);
-            executor.AddExecutor("FileFragments", fflh, true);
-            executor.AddExecutor("Images", ilh, true);
+            executor.AddExecutor("Computer.Memory", (exec, info) =>
+            {
+               result.Memory = ReplacementsCommon.LoadMemoryContents(info);
+            }, true);
 
             executor.AddExecutor("Computer.CustomThemeFile", (exec, info) =>
             {
