@@ -239,6 +239,8 @@
     <Compile Include="Pathfinder\Util\XML\EventReader.cs" />
     <Compile Include="Pathfinder\Util\XML\ElementInfo.cs" />
     <Compile Include="Pathfinder\Util\XML\ReadOnlyXmlReader.cs" />
+    <Compile Include="Pathfinder\Util\XML\IExecutor.cs" />
+    <Compile Include="Pathfinder\Util\XML\ParsedTreeExecutor.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />

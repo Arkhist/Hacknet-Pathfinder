@@ -616,7 +616,7 @@ namespace Pathfinder.Internal
                 }
             }, true);
 
-            void creditFunc(EventExecutor exec, ElementInfo info)
+            void creditFunc(IExecutor exec, ElementInfo info)
             {
                 var inputArr = new List<object>
                 {
