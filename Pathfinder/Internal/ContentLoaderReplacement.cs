@@ -80,8 +80,8 @@ namespace Pathfinder.Internal
             {
                 var compType = info.Attributes.GetValue("type");
                 result = new Computer(
-                    info.Attributes.GetValue("name")?.HacknetFilter() ?? "UNKNOWN",
-                    info.Attributes.GetValue("ip")?.HacknetFilter() ?? Utility.GenerateRandomIP(),
+                    info.Attributes.GetValue("name", true) ?? "UNKNOWN",
+                    info.Attributes.GetValue("ip", true) ?? Utility.GenerateRandomIP(),
                     os.netMap.getRandomPosition(),
                     Convert.ToInt32(info.Attributes.GetValue("security")),
                     compType?.ToLower() == "empty" ? (byte)4 : Convert.ToByte(compType),
@@ -295,14 +295,14 @@ namespace Pathfinder.Internal
                 byte type = 0;
                 string typeStr = info.Attributes.GetValueOrDefault("type", "admin").ToLower(),
                 password = info.Attributes.GetValueOrDefault("password", "ERROR", true),
-                username = info.Attributes.GetValueOrDefault("username", "ERROR", true).HacknetFilter();
+                username = info.Attributes.GetValueOrDefault("username", "ERROR", true);
                 switch (typeStr)
                 {
                     case "admin": type = 0; break;
                     case "all": type = 1; break;
                     case "mail": type = 2; break;
                     case "missionlist": type = 3; break;
-                    default: 
+                    default:
                         if(char.IsDigit(typeStr[0]))
                             byte.TryParse(typeStr, out type);
                         break;
@@ -605,12 +605,12 @@ namespace Pathfinder.Internal
                 {
                     if (cinfo.Name.ToLower() == "user" || cinfo.Name.ToLower() == "agent")
                     {
-                        string name = cinfo.Attributes.GetValue("name");
+                        string name = cinfo.Attributes.GetValue("name", true);
                         string password = cinfo.Attributes.GetValueOrDefault("pass", "password");
                         Color color = cinfo.Attributes.GetColor("color", Color.LightGreen);
                         if (!string.IsNullOrWhiteSpace(name))
                         {
-                            dlcHubServer.AddAgent(name.HacknetFilter(), password, color);
+                            dlcHubServer.AddAgent(name, password, color);
                         }
                     }
                 }
