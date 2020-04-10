@@ -78,8 +78,10 @@ namespace Pathfinder
             //EventManager.RegisterListener<OSLoadContentEvent>(Internal.GUI.ModExtensionsUI.LoadContentForModExtensionListener);
             //EventManager.RegisterListener<OSUnloadContentEvent>(Internal.GUI.ModExtensionsUI.UnloadContentForModExtensionListener);
 
-            EventManager.RegisterListener<LoadSavedComputerStartEvent>(Internal.HandlerListener.LoadSavedComputerReplacementStart);
+            // old, do not use
+            //EventManager.RegisterListener<LoadSavedComputerStartEvent>(Internal.HandlerListener.LoadSavedComputerReplacementStart);
             EventManager.RegisterListener<LoadContentComputerStartEvent>(Internal.HandlerListener.LoadContentComputerReplacementStart);
+            EventManager.RegisterListener<OSLoadSaveFileEvent>(Internal.HandlerListener.LoadSaveFileReplacementStart);
 
             EventManager.RegisterListener<OptionsMenuLoadContentEvent>(Internal.HandlerListener.OptionsMenuLoadContentListener);
             EventManager.RegisterListener<OptionsMenuDrawEvent>(Internal.HandlerListener.OptionsMenuDrawListener);
