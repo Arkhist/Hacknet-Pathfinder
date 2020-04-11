@@ -198,6 +198,9 @@ namespace PathfinderPatcher
                     + GetCommonConstructorModifier(nestedType,
                     type.AddFullProperty("Properties", nestedType),
                     gameAssembly.MainModule.GetType("Hacknet.OS").GetField("currentElapsedTime")));
+
+                gameAssembly.MainModule.MakeFieldAccess("Hacknet.ProgressionFlags", "Flags", AccessMods.Public);
+                gameAssembly.MainModule.MakeMethodAccess("Hacknet.NetworkMap", "loadAssignGameNodes", AccessMods.Public);
             }
             catch (Exception ex)
             {
