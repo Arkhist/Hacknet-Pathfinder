@@ -119,7 +119,6 @@ namespace Pathfinder.Internal
                 /* ProgressionFlags.Load */
                 ProgressionFlags flags = os.Flags;
 
-                /* flags.Flags.Clear(); */
                 flags.Flags.Clear();
                 if(info.Value != null) {
                     foreach(string flag in info.Value.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
