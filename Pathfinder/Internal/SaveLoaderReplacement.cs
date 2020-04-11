@@ -120,11 +120,7 @@ namespace Pathfinder.Internal
                 ProgressionFlags flags = os.Flags;
 
                 /* flags.Flags.Clear(); */
-                ((List<string>) typeof (ProgressionFlags).GetField("Flags",
-                    BindingFlags.NonPublic |
-                    BindingFlags.GetField |
-                    BindingFlags.Instance
-                ).GetValue(flags)).Clear();
+                flags.Flags.Clear();
                 if(info.Value != null) {
                     foreach(string flag in info.Value.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
                     {
@@ -152,15 +148,7 @@ namespace Pathfinder.Internal
                     foreach(Hacknet.Daemon d in node.daemons)
                         d.loadInit();
                 }
-                /* os.netMap.loadAssignGameNodes(); */
-                typeof (NetworkMap).InvokeMember("loadAssignGameNodes",
-                    BindingFlags.NonPublic |
-                    BindingFlags.InvokeMethod |
-                    BindingFlags.Instance,
-                    null,
-                    os.netMap,
-                    new object[] {}
-                );
+                os.netMap.loadAssignGameNodes();
             }, true);
 
             executor.AddExecutor("HacknetSave.NetworkMap.visible", (exec, info) =>
