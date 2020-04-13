@@ -6,7 +6,7 @@ namespace Pathfinder.Util.XML
 
     public interface IExecutor
     {
-        public void AddExecutor(string element, ReadExecution execution, bool parseChildren = false);
-        public void RemoveExecutor(string element);
+        void AddExecutor(string element, ReadExecution execution, bool parseChildren = false);
+        void RemoveExecutor(string element);
     }
 }

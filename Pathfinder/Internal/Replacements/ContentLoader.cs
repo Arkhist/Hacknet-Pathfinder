@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -91,12 +91,10 @@ namespace Pathfinder.Internal.Replacements
                     AllowsDefaultBootModule = info.Attributes.GetValue("allowsDefaultBootModule")?.ToLower() != "false",
                     icon = info.Attributes.GetValue("icon")
                 };
-                if (result.type == 4)
-                {
-                    var folder = result.files.root.searchForFolder("home");
-                    folder?.files.Clear();
-                    folder?.folders.Clear();
-                }
+                if (result.type != 4) return;
+                var folder = result.files.root.searchForFolder("home");
+                folder?.files.Clear();
+                folder?.folders.Clear();
             });
 
             executor.AddExecutor("Computer.File", (exec, info) =>
@@ -107,16 +105,14 @@ namespace Pathfinder.Internal.Replacements
                 themeData = themeData.HacknetFilter();
                 var folderFromPath = result.getFolderFromPath(
                     info.Attributes.GetValueOrDefault("path", "home"), true);
-                if (info.Attributes.GetBool("EduSafe", true)
-                    || !Settings.EducationSafeBuild
-                    && Settings.EducationSafeBuild || !info.Attributes.GetBool("EduSafeOnly"))
-                {
-                    var file = folderFromPath.searchForFile(encodedFileStr);
-                    if (file == null)
-                        folderFromPath.files.Add(new FileEntry(themeData, encodedFileStr));
-                    else
-                        file.data = encodedFileStr;
-                }
+                if (!info.Attributes.GetBool("EduSafe", true) &&
+                    (Settings.EducationSafeBuild || !Settings.EducationSafeBuild) &&
+                    info.Attributes.GetBool("EduSafeOnly")) return;
+                var file = folderFromPath.searchForFile(encodedFileStr);
+                if (file == null)
+                    folderFromPath.files.Add(new FileEntry(themeData, encodedFileStr));
+                else
+                    file.data = encodedFileStr;
             }, true);
 
             executor.AddExecutor("Computer.EncryptedFile", (exec, info) =>
@@ -230,8 +226,11 @@ namespace Pathfinder.Internal.Replacements
                 {
                     var solution = info.Attributes.GetValue("solution");
                     if (solution == null) result.addFirewall(level);
-                    else result.addFirewall(
+                    else
+                    {
+                        result.addFirewall(
                             level, solution, info.Attributes.GetFloat("additionalTime"));
+                    }
                 }
             });
 
@@ -368,12 +367,14 @@ namespace Pathfinder.Internal.Replacements
                 var color = info.Attributes.GetColor("color", true);
                 if (color.HasValue) mailServer.setThemeColor(color.Value);
                 foreach (var emailInfo in info.Children.Where((i) => i.Name.ToLower() == "email"))
+                {
                     mailServer.AddEmailToServer(
                         emailInfo.Attributes.GetValue("sender"),
                         emailInfo.Attributes.GetValue("recipient"),
                         emailInfo.Attributes.GetValue("subject"),
                         emailInfo.Value
                     );
+                }
             }, true);
 
             executor.AddExecutor("Computer.AddEmailDaemon", (exec, info) 
@@ -526,14 +527,20 @@ namespace Pathfinder.Internal.Replacements
                         case "agent":
                             var name = cinfo.Attributes.GetValue("name", true);
                             if (!string.IsNullOrWhiteSpace(name))
+                            {
                                 rCDaemon.UserColors.Add(name,
                                     cinfo.Attributes.GetColor("color", Color.LightGreen));
+                            }
+
                             break;
                         case "post":
                             var user = cinfo.Attributes.GetValue("user", true);
                             if (!string.IsNullOrWhiteSpace(user))
+                            {
                                 rCDaemon.StartingMessages.Add(
                                     new KeyValuePair<string, string>(user, cinfo.Value?.HacknetFilter()));
+                            }
+
                             break;
                     }
                 }
@@ -578,29 +585,28 @@ namespace Pathfinder.Internal.Replacements
             {
                 info.Name.ThrowNoLabyrinths();
 
-                string groupName = info.Attributes.GetValueOrDefault("groupName", "UNKNOWN");
-                bool addsFactionPoint = info.Attributes.GetBool("addsFactionPointOnMissionComplete", true);
-                bool autoClearMissions = info.Attributes.GetBool("autoClearMissionsOnPlayerComplete", true);
-                bool allowContractAbbandon = info.Attributes.GetBool("allowContractAbbandon", false);
-                Color themeColor = info.Attributes.GetColor("themeColor", new Color(38, 201, 155));
+                var groupName = info.Attributes.GetValueOrDefault("groupName", "UNKNOWN");
+                var addsFactionPoint = info.Attributes.GetBool("addsFactionPointOnMissionComplete", true);
+                var autoClearMissions = info.Attributes.GetBool("autoClearMissionsOnPlayerComplete", true);
+                var allowContractAbbandon = info.Attributes.GetBool("allowContractAbbandon", false);
+                var themeColor = info.Attributes.GetColor("themeColor", new Color(38, 201, 155));
 
-                DLCHubServer dlcHubServer = result.AddDaemon<DLCHubServer>("DHS", groupName, os);
+                var dlcHubServer = result.AddDaemon<DLCHubServer>("DHS", groupName, os);
                 dlcHubServer.AddsFactionPointForMissionCompleteion = addsFactionPoint;
                 dlcHubServer.AutoClearMissionsOnSingleComplete = autoClearMissions;
                 dlcHubServer.AllowContractAbbandon = allowContractAbbandon;
                 dlcHubServer.themeColor = themeColor;
 
-                foreach (var cinfo in info.Children)
+                foreach (var cinfo in info.Children.Where(v =>
+                    v.Name.ToLower() == "user" || v.Name.ToLower() == "agent")
+                )
                 {
-                    if (cinfo.Name.ToLower() == "user" || cinfo.Name.ToLower() == "agent")
+                    var name = cinfo.Attributes.GetValue("name", true);
+                    var password = cinfo.Attributes.GetValueOrDefault("pass", "password");
+                    var color = cinfo.Attributes.GetColor("color", Color.LightGreen);
+                    if (!string.IsNullOrWhiteSpace(name))
                     {
-                        string name = cinfo.Attributes.GetValue("name", true);
-                        string password = cinfo.Attributes.GetValueOrDefault("pass", "password");
-                        Color color = cinfo.Attributes.GetColor("color", Color.LightGreen);
-                        if (!string.IsNullOrWhiteSpace(name))
-                        {
-                            dlcHubServer.AddAgent(name, password, color);
-                        }
+                        dlcHubServer.AddAgent(name, password, color);
                     }
                 }
             }, true);
@@ -629,9 +635,8 @@ namespace Pathfinder.Internal.Replacements
 
             HandlerListener.DaemonLoadListener(result, executor);
 
-            foreach (var dict in ActionInject)
-                foreach (var exec in dict.Value)
-                    executor.AddExecutor(exec.Key, exec.Value);
+            foreach (var exec in ComputerLoaders)
+                executor.AddExecutor(exec.Key, exec.Value);
 
             executor.OnOpenFile += OnOpenFile;
             executor.OnRead += OnRead;
