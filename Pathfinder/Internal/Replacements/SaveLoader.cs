@@ -2,21 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
 using Hacknet;
 using Hacknet.Mission;
 using Hacknet.Factions;
-using Hacknet.Extensions;
 using Hacknet.Security;
 using Microsoft.Xna.Framework;
-using Pathfinder.Game;
 using Pathfinder.Game.Computer;
-using Pathfinder.Game.MailServer;
 using Pathfinder.ModManager;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
-using Sax.Net;
 using Pathfinder.Util.Types;
 
 namespace Pathfinder.Internal.Replacements
@@ -27,8 +21,8 @@ namespace Pathfinder.Internal.Replacements
 
         private class LabyrinthsNotInstalledException : Exception {}
 
-        private static Dictionary<string, Dictionary<string, ReadExecution>> ActionInject = new Dictionary<string, Dictionary<string, ReadExecution>>();
-        private static Dictionary<string, Dictionary<string, ReadExecution>> ComputerActionInject = new Dictionary<string, Dictionary<string, ReadExecution>>();
+        private static readonly ModTaggedDict<string, ReadExecution> ComputerLoaders = new ModTaggedDict<string, ReadExecution>();
+        private static readonly ModTaggedDict<string, ReadExecution> SaveDataLoaders = new ModTaggedDict<string, ReadExecution>();
 
         public static event OpenFile OnOpenFile;
         public static event Read OnRead;
@@ -40,37 +34,19 @@ namespace Pathfinder.Internal.Replacements
         public static event ReadProcessingInstructions OnReadProcessingInstructions;
         public static event CloseFile OnCloseFile;
 
-        public static void AddEventExecutor(string elementName, ReadExecution exec)
-        {
-            if (!ActionInject.ContainsKey(Manager.CurrentMod.GetCleanId()))
-                ActionInject.Add(Manager.CurrentMod.GetCleanId(), new Dictionary<string, ReadExecution> { [elementName] = exec });
-            else if (!ActionInject[Manager.CurrentMod.GetCleanId()].ContainsKey(elementName))
-                ActionInject[Manager.CurrentMod.GetCleanId()].Add(elementName, exec);
-        }
 
-        public static void AddComputerExecutor(string elementName, ReadExecution exec)
-        {
-            if (!ComputerActionInject.ContainsKey(Manager.CurrentMod.GetCleanId()))
-                ComputerActionInject.Add(Manager.CurrentMod.GetCleanId(), new Dictionary<string, ReadExecution> { [elementName] = exec });
-            else if (!ComputerActionInject[Manager.CurrentMod.GetCleanId()].ContainsKey(elementName))
-                ComputerActionInject[Manager.CurrentMod.GetCleanId()].Add(elementName, exec);
-        }
+        public static void AddSaveDataLoader(string name, ReadExecution exec, bool overrideable = false)
+        { if (overrideable) SaveDataLoaders.AddOverrideable(name, exec); else SaveDataLoaders.Add(name, exec); }
 
-        public static bool RemoveEventExecutor(string elementName)
-        {
-            var inject = ActionInject.FirstOrDefault(i => elementName.Split('.')[0] == i.Key);
-            if (inject.Value != null)
-                return inject.Value.Remove(elementName.Substring(elementName.IndexOf('.') + 1));
-            return ActionInject[Manager.CurrentMod.GetCleanId()].Remove(elementName);
-        }
+        public static bool RemoveSaveDataLoader(string name)
+            => SaveDataLoaders.Remove(name);
 
-        public static bool RemoveComputerExecutor(string elementName)
-        {
-            var inject = ComputerActionInject.FirstOrDefault(i => elementName.Split('.')[0] == i.Key);
-            if (inject.Value != null)
-                return inject.Value.Remove(elementName.Substring(elementName.IndexOf('.') + 1));
-            return ComputerActionInject[Manager.CurrentMod.GetCleanId()].Remove(elementName);
-        }
+        public static void AddComputerLoader(string name, ReadExecution exec, bool overrideable = false)
+        { if (overrideable) ComputerLoaders.AddOverrideable(name, exec); else ComputerLoaders.Add(name, exec); }
+
+        public static bool RemoveComputerLoader(string name)
+            => ComputerLoaders.Remove(name);
+
 
         public static void LoadSaveFile(Stream stream, OS os)
         {
@@ -108,7 +84,7 @@ namespace Pathfinder.Internal.Replacements
 
             executor.AddExecutor("HacknetSave.DLC.ConditionalActions", (exec, info) =>
             {
-                /* TODO: Hook up ConditionalActions parser */
+                os.ConditionalActions = ActionsLoader.LoadConditionalActions(info);
             }, true);
 
             executor.AddExecutor("HacknetSave.Flags", (exec,info) =>
@@ -389,10 +365,11 @@ namespace Pathfinder.Internal.Replacements
 
             executor.AddExecutor("firewall", (exec, info) =>
                 result.firewall = new Firewall(
-                    info.Attributes.GetInt("complexity", 0),
+                    info.Attributes.GetInt("complexity"),
                     info.Attributes.GetValueOrDefault("solution", null),
-                    info.Attributes.GetFloat("additionalDelay", 0f)
-                ));
+                    info.Attributes.GetFloat("additionalDelay")
+                );
+            });
 
             executor.AddExecutor("portsOpen", (exec, info) =>
             {
@@ -661,7 +638,7 @@ namespace Pathfinder.Internal.Replacements
                 };
             }, true);
 
-            foreach (var exec in ComputerDataLoaders)
+            foreach (var exec in ComputerLoaders)
                 executor.AddExecutor(exec.Key, exec.Value);
 
             executor.Execute(root);
@@ -688,12 +665,17 @@ namespace Pathfinder.Internal.Replacements
                     result = new EntropyFaction(factionName, neededValue);
                     break;
                 case "CustomFaction":
-                    result = new CustomFaction(factionName, 100);
+                    CustomFaction faction;
+                    result = faction = new CustomFaction(factionName, 100);
                     foreach(var child in root.Children.Where(e => e.Name == "Action")) {
-                        var action = new CustomFactionAction();
-                        action.ValueRequiredForTrigger = child.Attributes.GetInt("ValueRequired", 10);
-                        action.FlagsRequiredForTrigger = child.Attributes.GetValueOrDefault("Flags", null);
-                        /* TODO: Hook up Conditional Action parser, specifically the "actions" part. */
+                        var action = new CustomFactionAction
+                        {
+                            ValueRequiredForTrigger = child.Attributes.GetInt("ValueRequired", 10),
+                            FlagsRequiredForTrigger = child.Attributes.GetValueOrDefault("Flags", null)
+                        };
+                        foreach (var info in child.Children)
+                            action.TriggerActions.Add(ActionsLoader.LoadAction(info));
+                        faction.CustomActions.Add(action);
                     }
                     break;
                 default:

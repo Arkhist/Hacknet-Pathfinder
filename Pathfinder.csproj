@@ -93,6 +93,9 @@
     <Compile Include="Pathfinder\Event\MainMenuEvents.cs" />
     <Compile Include="Pathfinder\Event\EventManager.cs" />
     <Compile Include="Pathfinder\Event\PathfinderEvent.cs" />
+    <Compile Include="Pathfinder\Exceptions\AttributeException.cs" />
+    <Compile Include="Pathfinder\Exceptions\LoadException.cs" />
+    <Compile Include="Pathfinder\Internal\Replacements\ActionsLoader.cs" />
     <Compile Include="Pathfinder\Pathfinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pathfinder\PathfinderHooks.cs" />
