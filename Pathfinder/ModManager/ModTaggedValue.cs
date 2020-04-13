@@ -3,7 +3,7 @@ using Pathfinder.Util;
 
 namespace Pathfinder.ModManager
 {
-    public struct ModTaggedValue<T>
+    public class ModTaggedValue<T>
     {
 
         public ModTaggedValue(T value, bool overrideable = false)
@@ -12,6 +12,8 @@ namespace Pathfinder.ModManager
             Value = value;
             IsOverrideable = overrideable;
         }
+
+        public bool AddedByCurrent => ModId == Utility.ActiveModId;
 
         public string ModId { get; private set; }
         public T Value { get; private set; }

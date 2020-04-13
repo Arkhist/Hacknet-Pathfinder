@@ -9,110 +9,109 @@ namespace Pathfinder.ModManager
 {
     public class ModTaggedDict<TKey, TValue> : IDictionary<TKey, TValue>
     {
-
-        public class Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>, IEnumerator
+        private static void RemoveUnloaded(List<ModTaggedValue<TValue>> list)
         {
-            private IEnumerator<KeyValuePair<TKey, ModTaggedValue<TValue>>> Backend;
-            private ModTaggedDict<TKey, TValue> Dict;
+            list.RemoveAll(e => Manager.LoadedMods.ContainsKey(e.ModId));
+        }
+
+        private class Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>
+        {
+
+            private readonly IEnumerator<KeyValuePair<TKey, List<ModTaggedValue<TValue>>>> Backend;
             internal Enumerator(ModTaggedDict<TKey, TValue> dict)
             {
-                Dict = dict;
                 Backend = dict.Backend.GetEnumerator();
             }
 
             public bool MoveNext()
             {
-                ModTaggedValue<TValue> newValue;
-                do {
-                    if(!Backend.MoveNext())
+                List<ModTaggedValue<TValue>> list;
+                do
+                {
+                    if (!Backend.MoveNext())
                         return false;
-                    newValue = Backend.Current.Value;
-                } while(!Manager.LoadedMods.ContainsKey(newValue.ModId));
+                    list = Backend.Current.Value;
+                    RemoveUnloaded(list);
+                } while (list.IsEmpty());
                 return true;
             }
 
             public void Reset()
-            {
-                Backend.Reset();
-            }
+             => Backend.Reset();
 
             public void Dispose()
-            {
-                Backend.Dispose();
-            }
+             => Backend.Dispose();
 
-            public KeyValuePair<TKey, TValue> Current
-            {
-                get => new KeyValuePair<TKey, TValue>(Backend.Current.Key, Backend.Current.Value.Value);
-            }
+            public KeyValuePair<TKey, TValue> Current => new KeyValuePair<TKey, TValue>(Backend.Current.Key, Backend.Current.Value.Last().Value);
 
-            object IEnumerator.Current
-            {
-                get => Current;
-            }
+            object IEnumerator.Current => Current;
         }
 
-        private Dictionary<TKey, ModTaggedValue<TValue>> Backend = new Dictionary<TKey, ModTaggedValue<TValue>>();
-        private List<Enumerator> Enumerators = new List<Enumerator>();
+        private Dictionary<TKey, List<ModTaggedValue<TValue>>> Backend = new Dictionary<TKey, List<ModTaggedValue<TValue>>>();
 
-        private void VerifyNotUnloaded(TKey key)
+        private List<ModTaggedValue<TValue>> GetNormalized(TKey key)
         {
-            if(!Backend.TryGetValue(key, out var existing)) return;
-            if(!Manager.LoadedMods.ContainsKey(existing.ModId))
+            if (Backend.TryGetValue(key, out var list))
+                RemoveUnloaded(list);
+            else
             {
-                Backend.Remove(key);
+                list = new List<ModTaggedValue<TValue>>();
+                Backend.Add(key, list);
             }
+            return list;
         }
 
-        private void VerifyPermissible(TKey key, string op)
+        private Exception MakeConflictEx(TKey key, string op)
         {
-            VerifyNotUnloaded(key);
-            if(!Backend.TryGetValue(key, out var existing)) return;
+            return new ModConflictException(GetNormalized(key).Last().ModId, $"Cannot {op}: Key '{key}' is already in use.");
+        }
 
-            if(existing.ModId != Utility.ActiveModId && !existing.IsOverrideable)
-                throw new ModConflictException(existing.ModId, $"Cannot {op}: Key '{key}' is already in use.");
+        private bool TryAdd(TKey key, TValue value, bool forOverride = false)
+        {
+            var list = GetNormalized(key);
+            if (list.Any(v => v.AddedByCurrent))
+                return false;
+            var existing = list.LastOrNull();
+            if (existing != null)
+            {
+                if (!(existing.AddedByCurrent || existing.IsOverrideable))
+                    return false;
+            }
+            list.Add(new ModTaggedValue<TValue>(value, forOverride));
+            return true;
         }
 
         public void Add(TKey key, TValue value)
         {
-            VerifyPermissible(key, "add");
-            Backend.Add(key, new ModTaggedValue<TValue>(value));
+            if(!TryAdd(key, value))
+                throw MakeConflictEx(key, "add");
         }
 
         public void Add(KeyValuePair<TKey, TValue> pair)
         {
-            VerifyPermissible(pair.Key, "add");
-            Backend.Add(pair.Key, new ModTaggedValue<TValue>(pair.Value));
+            if(!TryAdd(pair.Key, pair.Value))
+                throw MakeConflictEx(pair.Key, "add");
         }
 
         public void AddOverrideable(TKey key, TValue value)
         {
-            VerifyNotUnloaded(key);
-            if(!Backend.ContainsKey(key))
-            {
-                Backend.Add(key, new ModTaggedValue<TValue>(value, true));
-            }
+            TryAdd(key, value, true);
         }
 
         public void AddOverrideable(KeyValuePair<TKey, TValue> pair)
         {
-            VerifyNotUnloaded(pair.Key);
-            if(!Backend.ContainsKey(pair.Key))
-            {
-                Backend.Add(pair.Key, new ModTaggedValue<TValue>(pair.Value, true));
-            }
+            TryAdd(pair.Key, pair.Value, true);
         }
 
         public bool Contains(KeyValuePair<TKey, TValue> pair)
         {
-            if(!Backend.TryGetValue(pair.Key, out var existing)) return false;
-            return EqualityComparer<TValue>.Default.Equals(existing.Value, pair.Value);
+            var existing = GetNormalized(pair.Key);
+            return existing.Any(v => EqualityComparer<TValue>.Default.Equals(v.Value, pair.Value));
         }
 
         public bool ContainsKey(TKey key)
         {
-            VerifyNotUnloaded(key);
-            return Backend.ContainsKey(key);
+            return GetNormalized(key).LastOrNull() != null;
         }
 
         public void Clear()
@@ -120,7 +119,7 @@ namespace Pathfinder.ModManager
             throw new NotSupportedException("This collection cannot fulfill both contracts on this method.");
         }
 
-        public int Count { get => Backend.Count; }
+        public int Count => Backend.Count(e => e.Value.Count > 0);
 
         public void CopyTo(KeyValuePair<TKey, TValue>[] target, int startIdx)
         {
@@ -131,43 +130,35 @@ namespace Pathfinder.ModManager
 
         public bool TryGetValue(TKey key, out TValue value)
         {
-            VerifyNotUnloaded(key);
-            if(Backend.TryGetValue(key, out var existing))
-            {
-                value = existing.Value;
-                return true;
-            }
-            value = default;
-            return false;
+            var existing = GetNormalized(key).LastOrNull();
+            value = existing != null ? existing.Value : default;
+            return existing != null;
         }
 
-        public ICollection<TKey> Keys { get => Backend.Keys; }
-        public ICollection<TValue> Values { get => Backend.Values.Select(v => v.Value).ToList(); }
+        public ICollection<TKey> Keys => Backend.Keys.Where(v => !Backend[v].IsEmpty()).ToArray();
+
+        public ICollection<TValue> Values =>
+            Backend.Values.Where(v => !v.IsEmpty())
+                .Select(v => v.Last().Value).ToList();
 
         public bool Remove(TKey key)
         {
-            if(!Backend.TryGetValue(key, out var existing))
-                return false;
-            if(existing.ModId != Utility.ActiveModId)
-                return false;
-            return Backend.Remove(key);
+            var list = GetNormalized(key);
+            var existing = list.Find(v => v.AddedByCurrent);
+            return existing != null && list.Remove(existing);
         }
 
         public bool Remove(KeyValuePair<TKey, TValue> pair)
         {
-            if(!Backend.TryGetValue(pair.Key, out var existing))
-                return false;
-            if(existing.ModId != Utility.ActiveModId)
-                return false;
-            if(!EqualityComparer<TValue>.Default.Equals(existing.Value, pair.Value))
-                return false;
-            return Backend.Remove(pair.Key);
+            var list = GetNormalized(pair.Key);
+            var existing = list.Find(v =>
+                v.AddedByCurrent && EqualityComparer<TValue>.Default.Equals(v.Value, pair.Value));
+            return existing != null && list.Remove(existing);
         }
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             var enumerator = new Enumerator(this);
-            Enumerators.Add(enumerator);
             return enumerator;
         }
 
@@ -178,11 +169,22 @@ namespace Pathfinder.ModManager
 
         public TValue this[TKey key]
         {
-            get => Backend[key].Value;
+            get
+            {
+                var rawValue = Backend[key].LastOrNull();
+                if (rawValue == null) throw new KeyNotFoundException();
+                return rawValue.Value;
+            }
             set
             {
-                VerifyPermissible(key, "set value");
-                Backend[key] = new ModTaggedValue<TValue>(value);
+                var list = GetNormalized(key);
+                var index = list.FindIndex(v => v.AddedByCurrent);
+                if (index != -1)
+                {
+                    list[index] = new ModTaggedValue<TValue>(value);
+                }
+                else if (TryAdd(key, value))
+                    throw MakeConflictEx(key, "set value");
             }
         }
     }

@@ -174,5 +174,11 @@ namespace Pathfinder.Util
 
         public static string ToAppendix(this string str, string prefix = ": ", string replacement = ".")
             => string.IsNullOrEmpty(str) ? replacement : prefix + str;
+
+        public static bool IsEmpty<T>(this ICollection<T> col)
+            => col.Count == 0;
+
+        public static T LastOrNull<T>(this ICollection<T> col)
+            => col.IsEmpty() ? default : col.Last();
     }
 }
