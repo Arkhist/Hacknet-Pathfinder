@@ -19,10 +19,10 @@ using Pathfinder.Util.XML;
 using Sax.Net;
 using Pathfinder.Util.Types;
 
-namespace Pathfinder.Internal
+namespace Pathfinder.Internal.Replacements
 {
     /* Found in OS.loadSaveFile */
-    public static class SaveLoaderReplacement
+    public static class SaveLoader
     {
 
         private class LabyrinthsNotInstalledException : Exception {}

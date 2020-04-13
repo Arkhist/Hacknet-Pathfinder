@@ -6,7 +6,7 @@ using Pathfinder.Game;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
-namespace Pathfinder.Internal
+namespace Pathfinder.Internal.Replacements
 {
     public static class ReplacementsCommon
     {

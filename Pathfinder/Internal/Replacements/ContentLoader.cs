@@ -15,10 +15,10 @@ using Pathfinder.Util;
 using Pathfinder.Util.XML;
 using Sax.Net;
 
-namespace Pathfinder.Internal
+namespace Pathfinder.Internal.Replacements
 {
     /* Found in ComputerLoader.loadComputer */
-    public static class ContentLoaderReplacement
+    public static class ContentLoader
     {
         private static Dictionary<string, Dictionary<string, ReadExecution>> ActionInject = new Dictionary<string, Dictionary<string, ReadExecution>>();
 
