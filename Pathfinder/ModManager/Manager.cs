@@ -74,29 +74,31 @@ namespace Pathfinder.ModManager
             foreach (var mod in OperationalMods)
             {
                 if (mod.Value is Placeholder) continue;
-                CurrentMod = mod.Value;
-                Logger.Verbose("Loading mod '{0}'s content", mod.Key);
+                using(var _ = new CurrentModOverride(mod.Value))
+                {
+                    Logger.Verbose("Loading mod '{0}'s content", mod.Key);
 
-                if (ModAttributeHandler.ModToCommandMethods.TryGetValue(CurrentMod.GetType(), out List<MethodInfo> infos))
-                    foreach (var i in infos)
-                    {
-                        var attrib = i.GetFirstAttribute<CommandAttribute>();
-                        RegisterCommand(attrib.Key ?? i.Name.RemoveLast("Command"), i.CreateDelegate<CommandFunc>(), attrib.Description, attrib.Autocomplete);
-                    }
+                    if (ModAttributeHandler.ModToCommandMethods.TryGetValue(CurrentMod.GetType(), out List<MethodInfo> infos))
+                        foreach (var i in infos)
+                        {
+                            var attrib = i.GetFirstAttribute<CommandAttribute>();
+                            RegisterCommand(attrib.Key ?? i.Name.RemoveLast("Command"), i.CreateDelegate<CommandFunc>(), attrib.Description, attrib.Autocomplete);
+                        }
 
-                mod.Value.LoadContent();
+                    mod.Value.LoadContent();
+                }
             }
-            CurrentMod = null;
         }
 
         public static void UnloadMods(GameUnloadEvent e)
         {
             foreach (var mod in OperationalMods)
             {
-                CurrentMod = mod.Value;
-                Logger.Verbose("Unloading mod '{0}'", mod.Key);
-                mod.Value.Unload();
-                CurrentMod = null;
+                using(var _ = new CurrentModOverride(mod.Value))
+                {
+                    Logger.Verbose("Unloading mod '{0}'", mod.Key);
+                    mod.Value.Unload();
+                }
             }
         }
 
@@ -115,9 +117,8 @@ namespace Pathfinder.ModManager
             foreach (var mod in MarkedModsForLoad)
             {
                 newMod = LoadMod(mod.GetType());
-                CurrentMod = newMod;
-                newMod.LoadContent();
-                CurrentMod = null;
+                using(var _ = new CurrentModOverride(newMod));
+                    newMod.LoadContent();
             }
             MarkedModsForLoad.Clear();
         }
@@ -126,85 +127,86 @@ namespace Pathfinder.ModManager
         {
             if (mod == null || mod is Placeholder) return;
 
-            CurrentMod = mod;
-            var name = Utility.ActiveModId;
+            using(var _ = new CurrentModOverride(mod))
+            {
+                var name = Utility.ActiveModId;
 
-            var attrib = mod.GetType().GetFirstAttribute<ModInfoAttribute>();
-            if (attrib != null)
-                foreach (var ident in attrib.AfterIds)
-                {
-                    var id = ident.GetCleanId();
-                    if (LoadedMods.ContainsKey(id)
-                        && LoadedMods[id].GetType().GetFirstAttribute<AllowOrderUnloadAttribute>()?.Allowed == true)
-                        UnloadMod(LoadedMods[id]);
-                }
+                var attrib = mod.GetType().GetFirstAttribute<ModInfoAttribute>();
+                if (attrib != null)
+                    foreach (var ident in attrib.AfterIds)
+                    {
+                        var id = ident.GetCleanId();
+                        if (LoadedMods.ContainsKey(id)
+                            && LoadedMods[id].GetType().GetFirstAttribute<AllowOrderUnloadAttribute>()?.Allowed == true)
+                            UnloadMod(LoadedMods[id]);
+                    }
 
-            foreach (var e in
-                     (from p in Extension.Handler.ModExtensions
-                        where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                        select p.Key)
-                     .ToArray()
-                    )
-                    Extension.Handler.UnregisterExtension(e);
+                foreach (var e in
+                         (from p in Extension.Handler.ModExtensions
+                            where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                            select p.Key)
+                         .ToArray()
+                        )
+                        Extension.Handler.UnregisterExtension(e);
 
-            foreach (var e in
-                     (from p in Executable.Handler.ModExecutables
-                        where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                        select p.Key)
-                     .ToArray()
-                    )
-                    Executable.Handler.UnregisterExecutable(e);
+                foreach (var e in
+                         (from p in Executable.Handler.ModExecutables
+                            where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                            select p.Key)
+                         .ToArray()
+                        )
+                        Executable.Handler.UnregisterExecutable(e);
 
-            foreach (var d in
-                     (from p in Daemon.Handler.ModDaemons
-                        where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                        select p.Key)
-                     .ToArray()
-                    )
-                    Daemon.Handler.UnregisterDaemon(d);
+                foreach (var d in
+                         (from p in Daemon.Handler.ModDaemons
+                            where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                            select p.Key)
+                         .ToArray()
+                        )
+                        Daemon.Handler.UnregisterDaemon(d);
 
-            Command.Handler.ModIdToCommandKeyList.TryGetValue(name, out List<string> clist);
-            if (clist != null)
-                foreach (var c in clist.ToArray())
-                    Command.Handler.UnregisterCommand(c);
+                Command.Handler.ModIdToCommandKeyList.TryGetValue(name, out List<string> clist);
+                if (clist != null)
+                    foreach (var c in clist.ToArray())
+                        Command.Handler.UnregisterCommand(c);
 
-            foreach (var g in
-                     (from p in Mission.Handler.ModGoals
-                      where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                      select p.Key)
-                     .ToArray()
-                    )
-                Mission.Handler.UnregisterMissionGoal(g);
+                foreach (var g in
+                         (from p in Mission.Handler.ModGoals
+                          where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                          select p.Key)
+                         .ToArray()
+                        )
+                    Mission.Handler.UnregisterMissionGoal(g);
 
-            foreach (var m in
-                     (from p in Mission.Handler.ModMissions
-                      where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                      select p.Key)
-                     .ToArray()
-                    )
-                Mission.Handler.UnregisterMission(m);
+                foreach (var m in
+                         (from p in Mission.Handler.ModMissions
+                          where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                          select p.Key)
+                         .ToArray()
+                        )
+                    Mission.Handler.UnregisterMission(m);
 
-            foreach (var p in
-                     (from p in Port.Handler.PortTypes
-                      where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                      select p.Key)
-                     .ToArray()
-                    )
-                Port.Handler.UnregisterPort(p);
+                foreach (var p in
+                         (from p in Port.Handler.PortTypes
+                          where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                          select p.Key)
+                         .ToArray()
+                        )
+                    Port.Handler.UnregisterPort(p);
 
-            var events = new List<ListenerTuple>();
-            foreach (var v in EventManager.eventListeners.Values)
-                events.AddRange(v.FindAll(t => t.Item3 == name));
-            foreach (var list in EventManager.eventListeners.ToArray())
-                foreach (var e in events)
-                    list.Value.Remove(e);
+                var events = new List<ListenerTuple>();
+                foreach (var v in EventManager.eventListeners.Values)
+                    events.AddRange(v.FindAll(t => t.Item3 == name));
+                foreach (var list in EventManager.eventListeners.ToArray())
+                    foreach (var e in events)
+                        list.Value.Remove(e);
 
-            GUI.ModOptions.Handler.ModOptions.Remove(name);
+                GUI.ModOptions.Handler.ModOptions.Remove(name);
 
-            mod.Unload();
-            UnloadedModIds.Add(name);
-            LoadedMods.Remove(name);
-            CurrentMod = null;
+                mod.Unload();
+                UnloadedModIds.Add(name);
+                LoadedMods.Remove(name);
+            }
         }
 
         public static IMod CreateMod(Type modType) => (IMod)Activator.CreateInstance(modType);
@@ -245,31 +247,31 @@ namespace Pathfinder.ModManager
                 if (!Pathfinder.IsModIdentifierValid(name, true))
                     return null; // never reached due to throw
                 Logger.Info("Loading mod '{0}'", name);
-                CurrentMod = mod;
-                if (ModAttributeHandler.ModToEventMethods.TryGetValue(CurrentMod.GetType(), out List<MethodInfo> infos))
-                    foreach (var i in infos)
-                    {
-                        var eventAttrib = i.GetFirstAttribute<EventAttribute>();
-                        var paramType = i.GetParameters()[0].ParameterType;
-                        RegisterListener(paramType, i.CreateDelegate<Action<PathfinderEvent>>(typeof(Action<>).MakeGenericType(paramType)), eventAttrib.DebugName, eventAttrib.Priority);
-                    }
-                mod.Load();
-                UnloadedModIds.Remove(name);
-                LoadedMods.Add(name, mod);
-                GUI.ModOptions.Handler.LoadFor(mod);
-                if (ModIdReliance.ContainsKey(name))
-                    foreach (var internalMod in ModIdReliance[name])
-                        LoadMod(internalMod);
+                using(var _ = new CurrentModOverride(mod))
+                {
+                    if (ModAttributeHandler.ModToEventMethods.TryGetValue(CurrentMod.GetType(), out List<MethodInfo> infos))
+                        foreach (var i in infos)
+                        {
+                            var eventAttrib = i.GetFirstAttribute<EventAttribute>();
+                            var paramType = i.GetParameters()[0].ParameterType;
+                            RegisterListener(paramType, i.CreateDelegate<Action<PathfinderEvent>>(typeof(Action<>).MakeGenericType(paramType)), eventAttrib.DebugName, eventAttrib.Priority);
+                        }
+                    mod.Load();
+                    UnloadedModIds.Remove(name);
+                    LoadedMods.Add(name, mod);
+                    GUI.ModOptions.Handler.LoadFor(mod);
+                    if (ModIdReliance.ContainsKey(name))
+                        foreach (var internalMod in ModIdReliance[name])
+                            LoadMod(internalMod);
+                }
             }
             catch (Exception ex)
             {
                 Logger.Error("Mod '{0}' of file '{1}' failed to load:\n\t{2}", modType.FullName, Path.GetFileName(modType.Assembly.Location), ex);
                 UnloadMod(mod);
                 UnloadedModIds.Remove(name);
-                CurrentMod = null;
                 return null;
             }
-            CurrentMod = null;
             return mod;
         }
 
