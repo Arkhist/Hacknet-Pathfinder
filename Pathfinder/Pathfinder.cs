@@ -118,36 +118,36 @@ namespace Pathfinder
             if (string.IsNullOrEmpty(id))
             {
                 if (shouldThrowReason)
-                    throw new InvalidIdException("Mod Idenfitier '" + id + "' is null or empty");
-                Logger.Warn("Mod Idenfitier '" + id + "' is null or empty");
+                    throw new InvalidIdException("Mod Identifier '" + id + "' is null or empty");
+                Logger.Warn("Mod Identifier '" + id + "' is null or empty");
                 return false;
             }
             if (IsModLoaded(id))
             {
                 if (shouldThrowReason)
-                    throw new InvalidIdException("Mod Idenfitier '" + id + "' has already been loaded");
+                    throw new InvalidIdException("Mod Identifier '" + id + "' has already been loaded");
                 Logger.Warn("Mod Idenfitier '" + id + "' has already been loaded");
                 return false;
             }
             if (id.Contains('.'))
             {
                 if (shouldThrowReason)
-                    throw new InvalidIdException("Mod Idenfitier '" + id + "' contains a period");
-                Logger.Warn("Mod Idenfitier '" + id + "' contains a period");
+                    throw new InvalidIdException("Mod Identifier '" + id + "' contains a period");
+                Logger.Warn("Mod Identifier '" + id + "' contains a period");
                 return false;
             }
             if (char.IsDigit(id[0]))
             {
                 if (shouldThrowReason)
-                    throw new InvalidIdException("Mod Idenfitier '" + id + "' starts with a digit");
-                Logger.Warn("Mod Idenfitier '" + id + "' starts with a digit");
+                    throw new InvalidIdException("Mod Identifier '" + id + "' starts with a digit");
+                Logger.Warn("Mod Identifier '" + id + "' starts with a digit");
                 return false;
             }
             if (id.IndexOfAny(Path.GetInvalidFileNameChars()) != -1 || id.IndexOfAny(Path.GetInvalidPathChars()) != -1)
             {
                 if (shouldThrowReason)
-                    throw new InvalidIdException("Mod Idenfitier '" + id + "' contains invalid path characters");
-                Logger.Warn("Mod Idenfitier '" + id + "' contains invalid path characters");
+                    throw new InvalidIdException("Mod Identifier '" + id + "' contains invalid path characters");
+                Logger.Warn("Mod Identifier '" + id + "' contains invalid path characters");
                 return false;
             }
             return true;

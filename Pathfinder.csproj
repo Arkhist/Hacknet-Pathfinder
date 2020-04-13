@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,7 +7,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Pathfinder</RootNamespace>
     <AssemblyName>Pathfinder</AssemblyName>
-    <ReleaseVersion>2.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -242,6 +241,7 @@
     <Compile Include="Pathfinder\Util\XML\IExecutor.cs" />
     <Compile Include="Pathfinder\Util\XML\ParsedTreeExecutor.cs" />
     <Compile Include="Pathfinder\Internal\ReplacementsCommon.cs" />
+    <Compile Include="Pathfinder\ModManager\CurrentModOverride.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />

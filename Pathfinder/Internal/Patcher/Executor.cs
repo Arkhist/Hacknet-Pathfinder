@@ -33,13 +33,20 @@ namespace Pathfinder.Internal.Patcher
                     continue;
                 }
 
-                method.InjectWith(
-                    gameAssembly.MainModule.ImportReference(hooks.GetMethod(meth.Name)).Resolve(),
-                    attrib.Offset,
-                    attrib.Tag,
-                    (InjectFlags)attrib.Flags,
-                    attrib.After ? InjectDirection.After : InjectDirection.Before,
-                    attrib.LocalIds);
+                try
+                {
+                    method.InjectWith(
+                        gameAssembly.MainModule.ImportReference(hooks.GetMethod(meth.Name)).Resolve(),
+                        attrib.Offset,
+                        attrib.Tag,
+                        (InjectFlags) attrib.Flags,
+                        attrib.After ? InjectDirection.After : InjectDirection.Before,
+                        attrib.LocalIds);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Error applying patch for {sig}", ex);
+                }
             }
         }
     }
