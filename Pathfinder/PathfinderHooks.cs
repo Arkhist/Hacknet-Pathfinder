@@ -678,6 +678,56 @@ namespace Pathfinder
             optionsMenuApplyEvent.CallEvent();
         }
 
+
+        /* pure bug-fix patch */
+        [Patch("Hacknet.SCInstantly.Check", flags:
+            InjectFlags.PassParametersVal |  InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn)]
+        public static bool onSCInstantlyCheck(SCInstantly self, out bool retVal, object objOS)
+        {
+            var os = (OS) objOS;
+            if (self.needsMissionComplete)
+            {
+                /* bug-fix here: adds a null check for `os.currentMission` (when player has no mission) */
+                if (os.currentMission != null && !os.currentMission.isComplete())
+                    retVal = false;
+                else
+                    retVal = true;
+            }
+            else retVal = true;
+            return true;
+
+        }
+
+        /* philosophical bug-fix patch */
+        [Patch("Hacknet.SCOnConnect.Check", 20, flags:
+            InjectFlags.PassParametersVal | InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
+            localsID: new [] {1})]
+        public static bool onSCOnConnectCheck(SCOnConnect self, out bool retVal, ref Computer computer, object objOS)
+        {
+            var os = (OS) objOS;
+
+            Console.WriteLine(computer);
+
+            if (self.needsMissionComplete)
+            {
+                /* if the player doesn't have a mission, is their current mission complete?
+                 * current community consensus: "yes". This patch makes the code match that.
+                 */
+                if (os.currentMission != null && !os.currentMission.isComplete())
+                {
+                    retVal = false;
+                    return true;
+                }
+            }
+
+            retVal = true;
+            if (os.connectedComp != null && os.connectedComp.ip == computer.ip)
+                retVal = true;
+            else
+                retVal = false;
+
+            return true;
+        }
         /* TODO : Fix this to use the new XML system
         [Patch("Hacknet.RunnableConditionalActions.Deserialize", flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onDeserializeRunnableConditionalActions(out RunnableConditionalActions result, ref XmlReader reader)
