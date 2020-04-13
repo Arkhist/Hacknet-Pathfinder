@@ -210,11 +210,16 @@ namespace PathfinderPatcher
             }
             if(!spitOutHacknetOnly) try
                 {
-                    var t = System.Reflection.Assembly.LoadFrom(
-                        new FileInfo(string.IsNullOrEmpty(pathfinderDir) ? "Pathfinder.dll" : pathfinderDir).FullName)
-                        .GetType("Pathfinder.Internal.Patcher.Executor");
-                    t.GetMethod("Main", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
-                        .Invoke(null, new object[] { gameAssembly });
+                    using (var stream = new MemoryStream())
+                    {
+                        gameAssembly.Write(stream);
+                        System.Reflection.Assembly.Load(stream.GetBuffer());
+                        var assm = System.Reflection.Assembly.LoadFrom(
+                            new FileInfo(string.IsNullOrEmpty(pathfinderDir) ? "Pathfinder.dll" : pathfinderDir + "Pathfinder.dll").FullName);
+                        var t = assm.GetType("Pathfinder.Internal.Patcher.Executor");
+                        t.GetMethod("Main", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
+                            .Invoke(null, new object[] { gameAssembly });
+                    }
                 }
                 catch(Exception ex)
                 {
