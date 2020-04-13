@@ -242,6 +242,9 @@
     <Compile Include="Pathfinder\Util\XML\ParsedTreeExecutor.cs" />
     <Compile Include="Pathfinder\Internal\ReplacementsCommon.cs" />
     <Compile Include="Pathfinder\ModManager\CurrentModOverride.cs" />
+    <Compile Include="Pathfinder\ModManager\ModTaggedValue.cs" />
+    <Compile Include="Pathfinder\ModManager\ModTaggedDict.cs" />
+    <Compile Include="Pathfinder\Exceptions\ModConflictException.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
@@ -264,6 +267,7 @@
     <Folder Include="Pathfinder\Util\XML\" />
     <Folder Include="Pathfinder\Util\Types\" />
     <Folder Include="Pathfinder\Internal\Patcher\" />
+    <Folder Include="Pathfinder\Exceptions\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
