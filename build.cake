@@ -20,7 +20,7 @@ if(HacknetDirectoryStr == null)
 
 var HacknetDirectory = new DirectoryPath(HacknetDirectoryStr);
 
-if(!DirectoryExists(HacknetDirectory) && !FileExists(HacknetDirectory.GetFilePath("Hacknet.exe")))
+if(!DirectoryExists(HacknetDirectory) || !FileExists(HacknetDirectory.GetFilePath("Hacknet.exe")))
 {
 	Error("Could not find valid Hacknet executable in '"+HacknetDirectory+"'");
 	throw new Exception("Valid Hacknet.exe not found");
