@@ -64,10 +64,6 @@
     
     <Reference Include="System" />
     <Reference Include="System.Xml" />
-    <Reference Include="HacknetPathfinder">
-      <HintPath>lib\HacknetPathfinder.exe</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="AlienFXManagedWrapper3.5">
       <HintPath>lib\AlienFXManagedWrapper3.5.dll</HintPath>
       <Private>False</Private>
@@ -86,6 +82,10 @@
     </Reference>
     <Reference Include="Mono.Cecil.Inject">
       <HintPath>lib\Mono.Cecil.Inject.dll</HintPath>
+    </Reference>
+    <Reference Include="HacknetPathfinder">
+      <HintPath>lib\HacknetPathfinder.exe</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -253,7 +253,6 @@
     <None Include="Pathfinder\Util\Sax\README.md" />
     <None Include="Pathfinder\Util\Sax\Ext\package.html" />
     <None Include="Pathfinder\Util\Sax\Helpers\package.html" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pathfinder\Game\MailServer\">

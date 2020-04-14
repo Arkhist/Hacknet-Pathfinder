@@ -120,3 +120,6 @@ StyleCopReport.xml
 *.osx
 *.ubuntu64
 *.ubuntu86
+
+# Cake Automation
+tools/

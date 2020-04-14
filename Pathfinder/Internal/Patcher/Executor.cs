@@ -6,7 +6,6 @@ using Pathfinder.Util;
 
 namespace Pathfinder.Internal.Patcher
 {
-
     internal static class Executor
     {
         internal static void Main(AssemblyDefinition gameAssembly)
@@ -16,7 +15,6 @@ namespace Pathfinder.Internal.Patcher
             MethodDefinition method;
             PatchAttribute attrib;
             string sig;
-
             foreach (var meth in hooks.GetMethods())
             {
                 attrib = meth.GetFirstAttribute<PatchAttribute>();

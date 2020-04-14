@@ -83,10 +83,11 @@ namespace Pathfinder.Util.Types
         public new static Vec2 Zero => new Vec2();
         public new static Vec2 One => new Vec2(1, 1);
         public static Vec2 Infinite => new Vec2(float.PositiveInfinity, float.PositiveInfinity);
+        public static Vec2 NegInfinite => new Vec2(float.NegativeInfinity, float.NegativeInfinity);
         public static Vec2 Left => new Vec2(-1, 0);
         public static Vec2 Right => new Vec2(1, 0);
-        public static Vec2 Up => new Vec2(0, -1);
-        public static Vec2 Down => new Vec2(0, 1);
+        public static Vec2 Up => new Vec2(0, 1);
+        public static Vec2 Down => new Vec2(0, -1);
 
     }
 
