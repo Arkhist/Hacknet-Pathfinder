@@ -80,10 +80,10 @@ namespace Pathfinder.Extension
             foreach (var p in tuple.Item1.ports)
                 Port.Handler.RegisterPort(p.Key, p.Value);
             foreach (var e in tuple.Item1.eventListeners)
-                if (EventManager.eventListeners.ContainsKey(e.Key))
-                    EventManager.eventListeners[e.Key].AddRange(e.Value);
+                if (eventListeners.ContainsKey(e.Key))
+                    eventListeners[e.Key].AddRange(e.Value);
                 else
-                    EventManager.eventListeners.Add(e.Key, e.Value);
+                    eventListeners.Add(e.Key, e.Value);
             CanRegister = false;
             ActiveInfo = info;
         }
@@ -152,9 +152,9 @@ namespace Pathfinder.Extension
                 }
 
             var events = new List<ListenerObject>();
-            foreach (var v in EventManager.eventListeners.Values)
-                events.AddRange(v.FindAll(t => t.Item3 == id));
-            foreach (var list in EventManager.eventListeners.ToArray())
+            foreach (var v in eventListeners.Values)
+                events.AddRange(v.FindAll(t => t.ModId == id));
+            foreach (var list in eventListeners.ToArray())
             {
                 if(!tuple.Item1.eventListeners.ContainsKey(list.Key))
                     tuple.Item1.eventListeners.Add(list.Key, new List<ListenerObject>());

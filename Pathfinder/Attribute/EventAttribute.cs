@@ -7,14 +7,15 @@ namespace Pathfinder.Attribute
     public class EventAttribute : AbstractPathfinderAttribute
     {
         public string DebugName;
-        public int? Priority;
+        public int Priority { set => PriorityStore = value; get => PriorityStore.Value; }
+        public int? PriorityStore { get; set; } = null;
         public bool ContinueOnCancel;
         public bool ContinueOnThrow;
 
         internal ListenerOptions Options =>
             new ListenerOptions {
                 DebugName = DebugName,
-                PriorityStore = Priority,
+                PriorityStore = PriorityStore,
                 ContinueOnCancel = ContinueOnCancel,
                 ContinueOnThrow = ContinueOnCancel
             };
