@@ -18,9 +18,6 @@ namespace Pathfinder.Internal.Replacements
     /* Found in OS.loadSaveFile */
     public static class SaveLoader
     {
-        private class LabyrinthsNotInstalledException : Exception
-        {
-        }
 
         private static readonly ModTaggedDict<string, ReadExecution> ComputerLoaders =
             new ModTaggedDict<string, ReadExecution>();
@@ -82,8 +79,8 @@ namespace Pathfinder.Internal.Replacements
                 os.IsInDLCMode = info.Attributes.GetBool("Active");
                 var hasLoadedDLC = os.HasLoadedDLCContent = info.Attributes.GetBool("LoadedContent");
 
-                if (hasLoadedDLC && !Util.Extensions.CheckLabyrinths())
-                    throw new LabyrinthsNotInstalledException();
+                if (hasLoadedDLC)
+                    "This save".ThrowNoLabyrinths();
             });
 
             executor.AddExecutor("HacknetSave.DLC.Flags", (exec, info) =>
