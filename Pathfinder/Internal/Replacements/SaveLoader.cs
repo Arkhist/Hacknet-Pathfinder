@@ -19,10 +19,11 @@ namespace Pathfinder.Internal.Replacements
     public static class SaveLoader
     {
 
-        private class LabyrinthsNotInstalledException : Exception {}
+        private static readonly ModTaggedDict<string, ReadExecution> ComputerLoaders =
+            new ModTaggedDict<string, ReadExecution>();
 
-        private static readonly ModTaggedDict<string, ReadExecution> ComputerLoaders = new ModTaggedDict<string, ReadExecution>();
-        private static readonly ModTaggedDict<string, ReadExecution> SaveDataLoaders = new ModTaggedDict<string, ReadExecution>();
+        private static readonly ModTaggedDict<string, ReadExecution> SaveDataLoaders =
+            new ModTaggedDict<string, ReadExecution>();
 
         public static event OpenFile OnOpenFile;
         public static event Read OnRead;
@@ -36,13 +37,19 @@ namespace Pathfinder.Internal.Replacements
 
 
         public static void AddSaveDataLoader(string name, ReadExecution exec, bool overrideable = false)
-        { if (overrideable) SaveDataLoaders.AddOverrideable(name, exec); else SaveDataLoaders.Add(name, exec); }
+        {
+            if (overrideable) SaveDataLoaders.AddOverrideable(name, exec);
+            else SaveDataLoaders.Add(name, exec);
+        }
 
         public static bool RemoveSaveDataLoader(string name)
             => SaveDataLoaders.Remove(name);
 
         public static void AddComputerLoader(string name, ReadExecution exec, bool overrideable = false)
-        { if (overrideable) ComputerLoaders.AddOverrideable(name, exec); else ComputerLoaders.Add(name, exec); }
+        {
+            if (overrideable) ComputerLoaders.AddOverrideable(name, exec);
+            else ComputerLoaders.Add(name, exec);
+        }
 
         public static bool RemoveComputerLoader(string name)
             => ComputerLoaders.Remove(name);
@@ -56,7 +63,7 @@ namespace Pathfinder.Internal.Replacements
             var executor = new EventExecutor(saveFileText, isPath: false);
             var subExecutor = new ParsedTreeExecutor();
 
-            executor.AddExecutor("HacknetSave", (exec,info) =>
+            executor.AddExecutor("HacknetSave", (exec, info) =>
             {
                 /* OS.loadTitleSaveData */
                 MissionGenerator.generationCount = info.Attributes.GetInt("generatedMissionCount", 100);
@@ -72,8 +79,8 @@ namespace Pathfinder.Internal.Replacements
                 os.IsInDLCMode = info.Attributes.GetBool("Active");
                 var hasLoadedDLC = os.HasLoadedDLCContent = info.Attributes.GetBool("LoadedContent");
 
-                if(hasLoadedDLC && !Util.Extensions.CheckLabyrinths())
-                    throw new LabyrinthsNotInstalledException();
+                if (hasLoadedDLC)
+                    "This save".ThrowNoLabyrinths();
             });
 
             executor.AddExecutor("HacknetSave.DLC.Flags", (exec, info) =>
@@ -82,23 +89,21 @@ namespace Pathfinder.Internal.Replacements
             executor.AddExecutor("HacknetSave.DLC.OriginalVisibleNodes", (exec, info) =>
                 os.PreDLCVisibleNodesCache = info.Value, true);
 
-            executor.AddExecutor("HacknetSave.DLC.ConditionalActions", (exec, info) =>
-            {
-                os.ConditionalActions = ActionsLoader.LoadConditionalActions(info);
-            }, true);
+            executor.AddExecutor("HacknetSave.DLC.ConditionalActions",
+                (exec, info) => { os.ConditionalActions = ActionsLoader.LoadConditionalActions(info); }, true);
 
-            executor.AddExecutor("HacknetSave.Flags", (exec,info) =>
+            executor.AddExecutor("HacknetSave.Flags", (exec, info) =>
             {
                 /* ProgressionFlags.Load */
                 var flags = os.Flags;
 
                 flags.Flags.Clear();
                 if (info.Value == null) return;
-                foreach(var flag in info.Value.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var flag in info.Value.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries))
                 {
                     var trueFlag = flag.Replace("[%%COMMAREPLACED%%]", ",");
                     // ReSharper disable StringLiteralTypo
-                    if(trueFlag == "décrypté")
+                    if (trueFlag == "décrypté")
                         trueFlag = "decypher";
                     // ReSharper restore StringLiteralTypo
                     flags.AddFlag(trueFlag);
@@ -107,10 +112,10 @@ namespace Pathfinder.Internal.Replacements
 
             /* NetworkMap.load */
 
-            executor.AddExecutor("HacknetSave.NetworkMap", (exec,info) =>
+            executor.AddExecutor("HacknetSave.NetworkMap", (exec, info) =>
             {
                 var sortAlgo = info.Attributes.GetValue("sort");
-                if(!Enum.TryParse(sortAlgo, out os.netMap.SortingAlgorithm))
+                if (!Enum.TryParse(sortAlgo, out os.netMap.SortingAlgorithm))
                 {
                     /* TODO: Error reporting here */
                 }
@@ -121,13 +126,14 @@ namespace Pathfinder.Internal.Replacements
                 {
                     d.loadInit();
                 }
+
                 os.netMap.loadAssignGameNodes();
             }, true);
 
             executor.AddExecutor("HacknetSave.NetworkMap.visible", (exec, info) =>
             {
                 var visibleNodes = info.Value;
-                foreach(var node in visibleNodes.Split())
+                foreach (var node in visibleNodes.Split())
                 {
                     os.netMap.visibleNodes.Add(Convert.ToInt32(node));
                 }
@@ -141,23 +147,22 @@ namespace Pathfinder.Internal.Replacements
             }, true);
 
 
-            executor.AddExecutor("HacknetSave.mission", (exec, info) =>
-            {
-                os.currentMission = SaveLoader.LoadMission(info);
-            }, true);
+            executor.AddExecutor("HacknetSave.mission",
+                (exec, info) => { os.currentMission = SaveLoader.LoadMission(info); }, true);
 
             executor.AddExecutor("HacknetSave.AllFactions", (exec, info) =>
             {
                 /* AllFactions.loadFromSave */
                 var loadedFactions = new AllFactions();
                 string curFac = loadedFactions.currentFaction = info.Attributes.GetValue("current");
-                foreach(var child in info.Children) {
+                foreach (var child in info.Children)
+                {
                     Faction loaded = LoadFaction(child);
                     loadedFactions.factions.Add(loaded.idName, loaded);
                 }
 
                 os.allFactions = loadedFactions;
-                if(curFac != "")
+                if (curFac != "")
                     os.currentFaction = loadedFactions.factions[curFac];
             }, true);
 
@@ -195,15 +200,19 @@ namespace Pathfinder.Internal.Replacements
         }
 
         /* ActiveMission.load */
-        private static ActiveMission LoadMission(ElementInfo info) {
+        private static ActiveMission LoadMission(ElementInfo info)
+        {
             string nextMission = info.Attributes.GetValue("next");
-            if(nextMission == "NULL_MISSION") {
+            if (nextMission == "NULL_MISSION")
+            {
                 return null;
             }
+
             string goalsFile = info.Attributes.GetValue("goals");
 
             string genTarget = info.Attributes.GetValue("genTarget");
-            if(!string.IsNullOrWhiteSpace(genTarget)) {
+            if (!string.IsNullOrWhiteSpace(genTarget))
+            {
                 MissionGenerationParser.Comp = genTarget;
                 MissionGenerationParser.File = info.Attributes.GetValue("genFile");
                 MissionGenerationParser.Path = info.Attributes.GetValue("genPath");
@@ -211,7 +220,7 @@ namespace Pathfinder.Internal.Replacements
                 MissionGenerationParser.Other = info.Attributes.GetValue("genOther");
             }
 
-            if(!Settings.IsInExtensionMode && !goalsFile.StartsWith("Content", StringComparison.Ordinal))
+            if (!Settings.IsInExtensionMode && !goalsFile.StartsWith("Content", StringComparison.Ordinal))
                 goalsFile = "Content/" + goalsFile;
 
             ActiveMission initMission;
@@ -219,7 +228,7 @@ namespace Pathfinder.Internal.Replacements
             {
                 initMission = (ActiveMission) ComputerLoader.readMission(goalsFile);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 /* TODO: Error reporting */
                 initMission = new ActiveMission(
@@ -235,7 +244,8 @@ namespace Pathfinder.Internal.Replacements
 
             var mailData = info.Children.FirstOrDefault(e => e.Name == "email");
 
-            if(mailData != null) {
+            if (mailData != null)
+            {
                 sender = Folder.deFilter(mailData.Attributes.GetValue("sender"));
                 subject = Folder.deFilter(mailData.Attributes.GetValue("subject"));
                 body = Folder.deFilter(mailData.Value);
@@ -255,7 +265,7 @@ namespace Pathfinder.Internal.Replacements
 
             var endFuncData = info.Children.FirstOrDefault(e => e.Name == "endFunc");
 
-            if(endFuncData == null)
+            if (endFuncData == null)
             {
                 /* TODO: Error reporting */
             }
@@ -266,7 +276,7 @@ namespace Pathfinder.Internal.Replacements
 
             var postingData = info.Children.FirstOrDefault(e => e.Name == "posting");
 
-            if(postingData == null)
+            if (postingData == null)
             {
                 /* TODO: Error reporting */
             }
@@ -326,9 +336,10 @@ namespace Pathfinder.Internal.Replacements
                 };
 
                 var proxyTime = info.Attributes.GetFloat("proxyTime");
-                if(proxyTime > 0.0)
+                if (proxyTime > 0.0)
                     result.addProxy(proxyTime);
-                else {
+                else
+                {
                     result.hasProxy = false;
                     result.proxyActive = false;
                 }
@@ -337,7 +348,8 @@ namespace Pathfinder.Internal.Replacements
             executor.AddExecutor("admin", (exec, info) =>
             {
                 Administrator admin = null;
-                switch(info.Attributes.GetValue("type")) {
+                switch (info.Attributes.GetValue("type"))
+                {
                     case "fast":
                         admin = new FastBasicAdministrator();
                         break;
@@ -348,7 +360,9 @@ namespace Pathfinder.Internal.Replacements
                         admin = new FastProgressOnlyAdministrator();
                         break;
                 }
-                if(admin != null) {
+
+                if (admin != null)
+                {
                     admin.ResetsPassword = info.Attributes.GetBool("resetPass");
                     admin.IsSuper = info.Attributes.GetBool("isSuper");
                 }
@@ -358,7 +372,8 @@ namespace Pathfinder.Internal.Replacements
 
             executor.AddExecutor("links", (exec, info) =>
             {
-                foreach(string idxStr in info.Value.Split((char[]) null, StringSplitOptions.RemoveEmptyEntries)) {
+                foreach (string idxStr in info.Value.Split((char[]) null, StringSplitOptions.RemoveEmptyEntries))
+                {
                     result.links.Add(Convert.ToInt32(idxStr));
                 }
             }, true);
@@ -368,12 +383,12 @@ namespace Pathfinder.Internal.Replacements
                     info.Attributes.GetInt("complexity"),
                     info.Attributes.GetValueOrDefault("solution", null),
                     info.Attributes.GetFloat("additionalDelay")
-                );
-            });
+                )
+            );
 
             executor.AddExecutor("portsOpen", (exec, info) =>
             {
-                if(info.Value.Length > 0)
+                if (info.Value.Length > 0)
                     ComputerLoader.loadPortsIntoComputer(info.Value, result);
             }, true);
 
@@ -382,7 +397,7 @@ namespace Pathfinder.Internal.Replacements
 
             executor.AddExecutor("users", (exec, info) =>
             {
-                foreach(var userData in info.Children.Where(e => e.Name == "user"))
+                foreach (var userData in info.Children.Where(e => e.Name == "user"))
                 {
                     string userName = userData.Attributes.GetValue("name");
                     string userPass = userData.Attributes.GetValue("pass");
@@ -410,129 +425,127 @@ namespace Pathfinder.Internal.Replacements
             executor.AddExecutor("daemons.MailServer", (exec, info) =>
             {
                 var server = result.AddDaemon<MailServer>(info.Attributes.GetValue("name"), os);
-                if(info.Attributes.TryGetValue("color", out var colorStr))
+                if (info.Attributes.TryGetValue("color", out var colorStr))
                 {
-                    var server = result.AddDaemon<MailServer>(info.Attributes.GetValue("name"), os);
-                    if (info.Attributes.TryGetValue("color", out var colorStr))
-                    {
-                        var color = Utility.GetColorFromString(colorStr, true, null);
-                        if (color.HasValue)
-                            server.setThemeColor(color.Value);
-                    }
-                });
+                    var color = Utility.GetColorFromString(colorStr, true, null);
+                    if (color.HasValue)
+                        server.setThemeColor(color.Value);
+                }
+            });
 
-                executor.AddExecutor("daemons.MissionListingServer", (exec, info) =>
-                {
-                    var serviceName = info.Attributes.GetValue("name");
-                    var group = info.Attributes.GetValue("group");
-                    var isPublic = info.Attributes.GetBool("public");
-                    var isAssign = info.Attributes.GetBool("assign");
-                    var title = info.Attributes.GetValueOrDefault("title", null);
-                    var iconPath = info.Attributes.GetValueOrDefault("icon", null);
-                    var input = info.Attributes.GetValueOrDefault("color", null);
-                    var articleFolderPath = info.Attributes.GetValueOrDefault("articles", null);
+            executor.AddExecutor("daemons.MissionListingServer", (exec, info) =>
+            {
+                var serviceName = info.Attributes.GetValue("name");
+                var group = info.Attributes.GetValue("group");
+                var isPublic = info.Attributes.GetBool("public");
+                var isAssign = info.Attributes.GetBool("assign");
+                var title = info.Attributes.GetValueOrDefault("title", null);
+                var iconPath = info.Attributes.GetValueOrDefault("icon", null);
+                var input = info.Attributes.GetValueOrDefault("color", null);
+                var articleFolderPath = info.Attributes.GetValueOrDefault("articles", null);
 
-                    MissionListingServer server;
-                    if (iconPath == null || input == null)
-                        server = result.AddDaemon<MissionListingServer>(serviceName, group, os, isPublic, isAssign);
-                    else
-                        server = result.AddDaemon<MissionListingServer>(
-                            serviceName,
-                            iconPath,
-                            articleFolderPath,
-                            Utils.convertStringToColor(input),
-                            os,
-                            isPublic,
-                            isAssign
-                        );
-                    if (title != null)
-                        server.listingTitle = title;
-                });
-
-                executor.AddExecutor("daemons.AddEmailServer", (exec, info) =>
-                    result.AddDaemon<AddEmailDaemon>(info.Attributes.GetValue("name"), os));
-
-                executor.AddExecutor("daemons.MessageBoard", (exec, info) =>
-                {
-                    var daemon = result.AddDaemon<MessageBoardDaemon>(os);
-                    daemon.name = info.Attributes.GetValue("name");
-                    if (info.Attributes.TryGetValue("boardName", out var boardName))
-                    {
-                        daemon.BoardName = boardName;
-                    }
-                });
-
-                executor.AddExecutor("daemons.WebServer", (exec, info) =>
-                    result.AddDaemon<WebServerDaemon>(info.Attributes.GetValue("name"), os, info.Attributes.GetValue("url")));
-
-                executor.AddExecutor("daemons.OnlineWebServer", (exec, info) =>
-                {
-                    var daemon = result.AddDaemon<OnlineWebServerDaemon>(info.Attributes.GetValue("name"), os);
-                    daemon.setURL(info.Attributes.GetValue("url"));
-                });
-
-                /* not my typo */
-                executor.AddExecutor("daemons.AcademicDatabse", (exec, info) =>
-                    result.AddDaemon<AcademicDatabaseDaemon>(info.Attributes.GetValue("name"), os));
-
-                executor.AddExecutor("daemons.MissionHubServer", (exec, info) =>
-                    result.AddDaemon<MissionHubServer>("unknown", "unknown", os));
-
-                executor.AddExecutor("daemons.DeathRowDatabase", (exec, info) =>
-                    result.AddDaemon<DeathRowDatabaseDaemon>("Death Row Database", os));
-
-                executor.AddExecutor("daemons.MedicalDatabase", (exec, info) =>
-                    result.AddDaemon<MedicalDatabaseDaemon>(os));
-
-                executor.AddExecutor("daemons.HeartMonitor", (exec, info) =>
-                {
-                    var daemon = result.AddDaemon<HeartMonitorDaemon>(os);
-                    daemon.PatientID = info.Attributes.GetValueOrDefault("patient", "UNKNOWN");
-                });
-
-                executor.AddExecutor("daemons.PointClicker", (exec, info) =>
-                    result.AddDaemon<PointClickerDaemon>("Point Clicker!", os));
-
-                executor.AddExecutor("daemons.ispSystem", (exec, info) =>
-                    result.AddDaemon<ISPDaemon>(os));
-
-                executor.AddExecutor("daemons.porthackheart", (exec, info) =>
-                    result.AddDaemon<PorthackHeartDaemon>(os));
-
-                executor.AddExecutor("daemons.SongChangerDaemon", (exec, info) =>
-                    result.AddDaemon<SongChangerDaemon>(os));
-
-                executor.AddExecutor("daemons.UploadServerDaemon", (exec, info) =>
-                {
-                    var daemon = result.AddDaemon<UploadServerDaemon>(
-                        info.Attributes.GetValueOrDefault("name", ""),
-                        Utility.GetColorFromString(info.Attributes.GetValue("color"), Color.White),
+                MissionListingServer server;
+                if (iconPath == null || input == null)
+                    server = result.AddDaemon<MissionListingServer>(serviceName, group, os, isPublic, isAssign);
+                else
+                    server = result.AddDaemon<MissionListingServer>(
+                        serviceName,
+                        iconPath,
+                        articleFolderPath,
+                        Utils.convertStringToColor(input),
                         os,
-                        info.Attributes.GetValueOrDefault("foldername", ""),
-                        info.Attributes.GetBool("needsAuh")
+                        isPublic,
+                        isAssign
                     );
+                if (title != null)
+                    server.listingTitle = title;
+            });
 
-                    daemon.hasReturnViewButton = info.Attributes.GetBool("hasReturnViewButton");
-                });
+            executor.AddExecutor("daemons.AddEmailServer", (exec, info) =>
+                result.AddDaemon<AddEmailDaemon>(info.Attributes.GetValue("name"), os));
 
-                executor.AddExecutor("daemons.DHSDaemon", (exec, info) =>
-                    result.AddDaemon<DLCHubServer>("unknown", "unknown", os));
-
-                executor.AddExecutor("daemons.CustomConnectDisplayDaemon", (exec, info) =>
-                    result.AddDaemon<CustomConnectDisplayDaemon>(os));
-
-                executor.AddExecutor("daemons.DatabaseDaemon", (exec, info) =>
+            executor.AddExecutor("daemons.MessageBoard", (exec, info) =>
+            {
+                var daemon = result.AddDaemon<MessageBoardDaemon>(os);
+                daemon.name = info.Attributes.GetValue("name");
+                if (info.Attributes.TryGetValue("boardName", out var boardName))
                 {
-                    var daemon = result.AddDaemon<DatabaseDaemon>(
-                        os,
-                        info.Attributes.GetValueOrDefault("Name", null),
-                        info.Attributes.GetValueOrDefault("Permissions", null),
-                        info.Attributes.GetValueOrDefault("DataType", null),
-                        info.Attributes.GetValueOrDefault("Foldername", null),
-                        Utility.GetColorFromString(info.Attributes.GetValueOrDefault("Color", null), true, null)
-                    );
+                    daemon.BoardName = boardName;
+                }
+            });
 
-                    var AdminEmailAccount = info.Attributes.GetValue("AdminEmailAccount");
+            executor.AddExecutor("daemons.WebServer", (exec, info) =>
+                result.AddDaemon<WebServerDaemon>(info.Attributes.GetValue("name"), os,
+                    info.Attributes.GetValue("url")));
+
+            executor.AddExecutor("daemons.OnlineWebServer", (exec, info) =>
+            {
+                var daemon = result.AddDaemon<OnlineWebServerDaemon>(info.Attributes.GetValue("name"), os);
+                daemon.setURL(info.Attributes.GetValue("url"));
+            });
+
+            /* not my typo */
+            executor.AddExecutor("daemons.AcademicDatabse", (exec, info) =>
+                result.AddDaemon<AcademicDatabaseDaemon>(info.Attributes.GetValue("name"), os));
+
+            executor.AddExecutor("daemons.MissionHubServer", (exec, info) =>
+                result.AddDaemon<MissionHubServer>("unknown", "unknown", os));
+
+            executor.AddExecutor("daemons.DeathRowDatabase", (exec, info) =>
+                result.AddDaemon<DeathRowDatabaseDaemon>("Death Row Database", os));
+
+            executor.AddExecutor("daemons.MedicalDatabase", (exec, info) =>
+                result.AddDaemon<MedicalDatabaseDaemon>(os));
+
+            executor.AddExecutor("daemons.HeartMonitor", (exec, info) =>
+            {
+                var daemon = result.AddDaemon<HeartMonitorDaemon>(os);
+                daemon.PatientID = info.Attributes.GetValueOrDefault("patient", "UNKNOWN");
+            });
+
+            executor.AddExecutor("daemons.PointClicker", (exec, info) =>
+                result.AddDaemon<PointClickerDaemon>("Point Clicker!", os));
+
+            executor.AddExecutor("daemons.ispSystem", (exec, info) =>
+                result.AddDaemon<ISPDaemon>(os));
+
+            executor.AddExecutor("daemons.porthackheart", (exec, info) =>
+                result.AddDaemon<PorthackHeartDaemon>(os));
+
+            executor.AddExecutor("daemons.SongChangerDaemon", (exec, info) =>
+                result.AddDaemon<SongChangerDaemon>(os));
+
+            executor.AddExecutor("daemons.UploadServerDaemon", (exec, info) =>
+            {
+                var daemon = result.AddDaemon<UploadServerDaemon>(
+                    info.Attributes.GetValueOrDefault("name", ""),
+                    Utility.GetColorFromString(info.Attributes.GetValue("color"), Color.White),
+                    os,
+                    info.Attributes.GetValueOrDefault("foldername", ""),
+                    info.Attributes.GetBool("needsAuh")
+                );
+
+                daemon.hasReturnViewButton = info.Attributes.GetBool("hasReturnViewButton");
+            });
+
+            executor.AddExecutor("daemons.DHSDaemon", (exec, info) =>
+                result.AddDaemon<DLCHubServer>("unknown", "unknown", os));
+
+            executor.AddExecutor("daemons.CustomConnectDisplayDaemon", (exec, info) =>
+                result.AddDaemon<CustomConnectDisplayDaemon>(os));
+
+            executor.AddExecutor("daemons.DatabaseDaemon", (exec, info) =>
+            {
+                var daemon = result.AddDaemon<DatabaseDaemon>(
+                    os,
+                    info.Attributes.GetValueOrDefault("Name", null),
+                    info.Attributes.GetValueOrDefault("Permissions", null),
+                    info.Attributes.GetValueOrDefault("DataType", null),
+                    info.Attributes.GetValueOrDefault("Foldername", null),
+                    Utility.GetColorFromString(info.Attributes.GetValueOrDefault("Color", null), true, null)
+                );
+
+                var AdminEmailAccount = info.Attributes.GetValue("AdminEmailAccount");
 
                 var adminEmailAccount = info.Attributes.GetValue("AdminEmailAccount");
 
@@ -550,84 +563,85 @@ namespace Pathfinder.Internal.Replacements
             executor.AddExecutor("daemons.IRCDaemon", (exec, info) =>
                 result.AddDaemon<IRCDaemon>(os, "LOAD ERROR"));
 
-                executor.AddExecutor("daemons.IRCDaemon", (exec, info) =>
-                    result.AddDaemon<IRCDaemon>(os, "LOAD ERROR"));
+            executor.AddExecutor("daemons.IRCDaemon", (exec, info) =>
+                result.AddDaemon<IRCDaemon>(os, "LOAD ERROR"));
 
 
-                executor.AddExecutor("daemons.MarkovTextDaemon", (exec, info) =>
-                    result.AddDaemon<MarkovTextDaemon>(
-                        os,
-                        info.Attributes.GetValue("Name"),
-                        info.Attributes.GetValue("SourceFilesContentFolder")
-                    )
+            executor.AddExecutor("daemons.MarkovTextDaemon", (exec, info) =>
+                result.AddDaemon<MarkovTextDaemon>(
+                    os,
+                    info.Attributes.GetValue("Name"),
+                    info.Attributes.GetValue("SourceFilesContentFolder")
+                )
+            );
+
+            executor.AddExecutor("daemons.AircraftDaemon", (exec, info) =>
+            {
+                var srcVec = Vec2.Zero;
+                var dstVec = Vec2.One * 0.5f;
+                if (info.Attributes.ContainsKey("OriginX"))
+                    srcVec.X = info.Attributes.GetFloat("OriginX");
+                if (info.Attributes.ContainsKey("OriginY"))
+                    srcVec.Y = info.Attributes.GetFloat("OriginY");
+
+                if (info.Attributes.ContainsKey("DestX"))
+                    dstVec.X = info.Attributes.GetFloat("DestX");
+                if (info.Attributes.ContainsKey("DestY"))
+                    dstVec.Y = info.Attributes.GetFloat("DestY");
+
+                result.AddDaemon<AircraftDaemon>(
+                    os,
+                    info.Attributes.GetValueOrDefault("Name", "Pacific Charter Flight"),
+                    srcVec,
+                    dstVec,
+                    info.Attributes.GetFloat("Progress", .5f)
+                );
+            });
+
+            executor.AddExecutor("daemons.LogoCustomConnectDisplayDaemon", (exec, info) =>
+                result.AddDaemon<LogoCustomConnectDisplayDaemon>(
+                    os,
+                    info.Attributes.GetValueOrDefault("logo", null),
+                    info.Attributes.GetValueOrDefault("title", null),
+                    info.Attributes.GetBool("overdrawLogo"),
+                    info.Attributes.GetValueOrDefault("buttonAlignment", null)
+                )
+            );
+
+            executor.AddExecutor("daemons.LogoDaemon", (exec, info) =>
+            {
+                var daemon = result.AddDaemon<LogoDaemon>(
+                    os,
+                    result.name,
+                    info.Attributes.GetBool("ShowsTitle", true),
+                    info.Attributes.GetValueOrDefault("LogoImagePath", null)
                 );
 
-                executor.AddExecutor("daemons.AircraftDaemon", (exec, info) =>
-                {
-                    var srcVec = Vec2.Zero;
-                    var dstVec = Vec2.One * 0.5f;
-                    if (info.Attributes.ContainsKey("OriginX"))
-                        srcVec.X = info.Attributes.GetFloat("OriginX");
-                    if (info.Attributes.ContainsKey("OriginY"))
-                        srcVec.Y = info.Attributes.GetFloat("OriginY");
+                daemon.TextColor = Utility.GetColorFromString(info.Attributes.GetValue("TextColor"), Color.White);
+            });
 
-                    if (info.Attributes.ContainsKey("DestX"))
-                        dstVec.X = info.Attributes.GetFloat("DestX");
-                    if (info.Attributes.ContainsKey("DestY"))
-                        dstVec.Y = info.Attributes.GetFloat("DestY");
+            executor.AddExecutor("daemons.DLCCredits", (exec, info) =>
+            {
+                var overrideButtonText = info.Attributes.GetValueOrDefault("Button", null);
+                var overrideTitle = info.Attributes.GetValueOrDefault("Title", null);
+                DLCCreditsDaemon daemon;
+                if (overrideButtonText == null && overrideTitle == null)
+                    daemon = result.AddDaemon<DLCCreditsDaemon>(os);
+                else
+                    daemon = result.AddDaemon<DLCCreditsDaemon>(os, overrideTitle, overrideButtonText);
+                if (info.Attributes.TryGetValue("Action", out var buttonAction))
+                    daemon.ConditionalActionsToLoadOnButtonPress = buttonAction;
+            });
 
-                    result.AddDaemon<AircraftDaemon>(
-                        os,
-                        info.Attributes.GetValueOrDefault("Name", "Pacific Charter Flight"),
-                        srcVec,
-                        dstVec,
-                        info.Attributes.GetFloat("Progress", .5f)
-                    );
-                });
-
-                executor.AddExecutor("daemons.LogoCustomConnectDisplayDaemon", (exec, info) =>
-                    result.AddDaemon<LogoCustomConnectDisplayDaemon>(
-                        os,
-                        info.Attributes.GetValueOrDefault("logo", null),
-                        info.Attributes.GetValueOrDefault("title", null),
-                        info.Attributes.GetBool("overdrawLogo"),
-                        info.Attributes.GetValueOrDefault("buttonAlignment", null)
-                    )
-                );
-
-                executor.AddExecutor("daemons.LogoDaemon", (exec, info) =>
-                {
-                    var daemon = result.AddDaemon<LogoDaemon>(
-                        os,
-                        result.name,
-                        info.Attributes.GetBool("ShowsTitle", true),
-                        info.Attributes.GetValueOrDefault("LogoImagePath", null)
-                    );
-
-                    daemon.TextColor = Utility.GetColorFromString(info.Attributes.GetValue("TextColor"), Color.White);
-                });
-
-                executor.AddExecutor("daemons.DLCCredits", (exec, info) =>
-                {
-                    var overrideButtonText = info.Attributes.GetValueOrDefault("Button", null);
-                    var overrideTitle = info.Attributes.GetValueOrDefault("Title", null);
-                    DLCCreditsDaemon daemon;
-                    if (overrideButtonText == null && overrideTitle == null)
-                        daemon = result.AddDaemon<DLCCreditsDaemon>(os);
-                    else
-                        daemon = result.AddDaemon<DLCCreditsDaemon>(os, overrideTitle, overrideButtonText);
-                    if (info.Attributes.TryGetValue("Action", out var buttonAction))
-                        daemon.ConditionalActionsToLoadOnButtonPress = buttonAction;
-                });
-
-                executor.AddExecutor("daemon.FastActionHost", (exec, info) =>
-                    result.AddDaemon<FastActionHost>(os, result.name));
+            executor.AddExecutor("daemon.FastActionHost", (exec, info) =>
+                result.AddDaemon<FastActionHost>(os, result.name));
 
             #endregion
 
-            executor.AddExecutor("filesystem", (exec, info) => {
+            executor.AddExecutor("filesystem", (exec, info) =>
+            {
                 var rootInfo = info.Children.FirstOrDefault(e => e.Name == "folder");
-                if(rootInfo == null)
+                if (rootInfo == null)
                 {
                     /* TODO: Error reporting */
                 }
@@ -643,9 +657,9 @@ namespace Pathfinder.Internal.Replacements
 
             executor.Execute(root);
 
-            if(compSpec == "mail")
+            if (compSpec == "mail")
                 os.netMap.mailServer = result;
-            if(compSpec == "player")
+            if (compSpec == "player")
                 os.thisComputer = result;
             return result;
         }
@@ -657,7 +671,8 @@ namespace Pathfinder.Internal.Replacements
             string factionName = root.Attributes.GetValueOrDefault("name", "UNKNOWN");
             int neededValue = root.Attributes.GetInt("neededVal", 100);
 
-            switch(root.Name) {
+            switch (root.Name)
+            {
                 case "HubFaction":
                     result = new HubFaction(factionName, neededValue);
                     break;
@@ -667,7 +682,8 @@ namespace Pathfinder.Internal.Replacements
                 case "CustomFaction":
                     CustomFaction faction;
                     result = faction = new CustomFaction(factionName, 100);
-                    foreach(var child in root.Children.Where(e => e.Name == "Action")) {
+                    foreach (var child in root.Children.Where(e => e.Name == "Action"))
+                    {
                         var action = new CustomFactionAction
                         {
                             ValueRequiredForTrigger = child.Attributes.GetInt("ValueRequired", 10),
@@ -677,6 +693,7 @@ namespace Pathfinder.Internal.Replacements
                             action.TriggerActions.Add(ActionsLoader.LoadAction(info));
                         faction.CustomActions.Add(action);
                     }
+
                     break;
                 default:
                     result = new Faction(factionName, neededValue);
@@ -695,22 +712,27 @@ namespace Pathfinder.Internal.Replacements
         {
             var folderName = Folder.deFilter(data.Attributes.GetValue("name"));
             var result = new Folder(folderName);
-            foreach(var child in data.Children) {
-                switch(child.Name) {
+            foreach (var child in data.Children)
+            {
+                switch (child.Name)
+                {
                     case "folder":
                         result.folders.Add(LoadFolder(child));
                         break;
                     case "file":
                         bool isEduSafe = child.Attributes.GetBool("EduSafe", true);
-                        if(isEduSafe || !Settings.EducationSafeBuild) {
+                        if (isEduSafe || !Settings.EducationSafeBuild)
+                        {
                             result.files.Add(new FileEntry(
                                 Folder.deFilter(child.Value),
                                 Folder.deFilter(child.Attributes.GetValue("name"))
-                             ));
+                            ));
                         }
+
                         break;
                 }
             }
+
             return result;
         }
     }
