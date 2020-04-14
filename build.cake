@@ -1,22 +1,24 @@
 var target = Argument("target", "BuildHacknet");
 var configuration = Argument("configuration", "Release");
-var HacknetDirectory = Argument<DirectoryPath>("hacknet-dir", null);
+var HacknetDirectoryStr = Argument<String>("hacknet-dir", null);
 
-if(HacknetDirectory == null)
+if(HacknetDirectoryStr == null)
 {
 	if(IsRunningOnWindows()) {
 		if(HasEnvironmentVariable("ProgramFiles(x86)"))
-			HacknetDirectory = EnvironmentVariable("ProgramFiles(x86)");
+			HacknetDirectoryStr = EnvironmentVariable("ProgramFiles(x86)");
 		else
-			HacknetDirectory = EnvironmentVariable("ProgramFiles");
-		HacknetDirectory += "\\Steam\\steamapps\\common\\Hacknet";
+			HacknetDirectoryStr = EnvironmentVariable("ProgramFiles");
+		HacknetDirectoryStr += "\\Steam\\steamapps\\common\\Hacknet";
 	
 	} else {
-		HacknetDirectory = "/home";
-		HacknetDirectory += "/"+EnvironmentVariable("USER");
-		HacknetDirectory += "/.local/share/Steam/steamapps/common/Hacknet/";
+		HacknetDirectoryStr = "/home";
+		HacknetDirectoryStr += "/"+EnvironmentVariable("USER");
+		HacknetDirectoryStr += "/.local/share/Steam/steamapps/common/Hacknet/";
 	}
 }
+
+var HacknetDirectory = new DirectoryPath(HacknetDirectoryStr);
 
 if(!DirectoryExists(HacknetDirectory) && !FileExists(HacknetDirectory.GetFilePath("Hacknet.exe")))
 {
