@@ -7,6 +7,7 @@ using Hacknet;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
+using Pathfinder.Internal.Replacements;
 using Pathfinder.ModManager;
 using Pathfinder.Util;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
@@ -95,6 +96,9 @@ namespace Pathfinder
             EventManager.RegisterListener<GameLoadContentEvent>(ExeInfoManager.LoadExecutableStruct);
 
             EventManager.RegisterListener<GameUnloadEvent>(Manager.UnloadMods);
+
+            ActionsLoader.InitActionLoaders();
+            ActionsLoader.InitConditionLoaders();
 
             Logger.Verbose("Loading mods");
             Manager.LoadMods();

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using Hacknet;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Pathfinder.Util
 {
@@ -165,5 +168,17 @@ namespace Pathfinder.Util
 
         public static string RemoveLast(this string str, string toRemove)
             => str.RemoveExtended(str.LastIndexOf(toRemove, StringComparison.Ordinal), toRemove.Length);
+
+        public static string BlankToNull(this string str)
+            => string.IsNullOrWhiteSpace(str) ? null : str;
+
+        public static string ToAppendix(this string str, string prefix = ": ", string replacement = ".")
+            => string.IsNullOrEmpty(str) ? replacement : prefix + str;
+
+        public static bool IsEmpty<T>(this ICollection<T> col)
+            => col.Count == 0;
+
+        public static T LastOrNull<T>(this ICollection<T> col)
+            => col.IsEmpty() ? default : col.Last();
     }
 }

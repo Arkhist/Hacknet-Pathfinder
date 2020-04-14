@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Hacknet;
@@ -13,14 +12,13 @@ using Pathfinder.Game.MailServer;
 using Pathfinder.ModManager;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
-using Sax.Net;
 
-namespace Pathfinder.Internal
+namespace Pathfinder.Internal.Replacements
 {
     /* Found in ComputerLoader.loadComputer */
-    public static class ContentLoaderReplacement
+    public static class ContentLoader
     {
-        private static Dictionary<string, Dictionary<string, ReadExecution>> ActionInject = new Dictionary<string, Dictionary<string, ReadExecution>>();
+        private static readonly ModTaggedDict<string, ReadExecution> ComputerLoaders = new ModTaggedDict<string, ReadExecution>();
 
         public static event OpenFile OnOpenFile;
         public static event Read OnRead;
@@ -35,21 +33,13 @@ namespace Pathfinder.Internal
         public static bool PreventDaemonInit { get; internal set; }
         public static bool PreventNetmapAdd { get; internal set; }
 
-        public static void AddEventExecutor(string elementName, ReadExecution exec)
-        {
-            if (!ActionInject.ContainsKey(Manager.CurrentMod.GetCleanId()))
-                ActionInject.Add(Manager.CurrentMod.GetCleanId(), new Dictionary<string, ReadExecution> { [elementName] = exec });
-            else if (!ActionInject[Manager.CurrentMod.GetCleanId()].ContainsKey(elementName))
-                ActionInject[Manager.CurrentMod.GetCleanId()].Add(elementName, exec);
-        }
 
-        public static bool RemoveEventExecutor(string elementName)
-        {
-            var inject = ActionInject.FirstOrDefault(i => elementName.Split('.')[0] == i.Key);
-            if (inject.Value != null)
-                return inject.Value.Remove(elementName.Substring(elementName.IndexOf('.') + 1));
-            return ActionInject[Manager.CurrentMod.GetCleanId()].Remove(elementName);
-        }
+        public static void AddComputerLoader(string name, ReadExecution exec, bool overrideable = false)
+        { if (overrideable) ComputerLoaders.AddOverrideable(name, exec); else ComputerLoaders.Add(name, exec); }
+
+        public static bool RemoveComputerLoader(string name)
+            => ComputerLoaders.Remove(name);
+
 
         public static Computer LoadComputer(string filename, OS os, bool preventAddingToNetmap = false, bool preventInitDaemons = false)
         {
@@ -91,12 +81,10 @@ namespace Pathfinder.Internal
                     AllowsDefaultBootModule = info.Attributes.GetValue("allowsDefaultBootModule")?.ToLower() != "false",
                     icon = info.Attributes.GetValue("icon")
                 };
-                if (result.type == 4)
-                {
-                    var folder = result.files.root.searchForFolder("home");
-                    folder?.files.Clear();
-                    folder?.folders.Clear();
-                }
+                if (result.type != 4) return;
+                var folder = result.files.root.searchForFolder("home");
+                folder?.files.Clear();
+                folder?.folders.Clear();
             });
 
             executor.AddExecutor("Computer.File", (exec, info) =>
@@ -107,16 +95,14 @@ namespace Pathfinder.Internal
                 themeData = themeData.HacknetFilter();
                 var folderFromPath = result.getFolderFromPath(
                     info.Attributes.GetValueOrDefault("path", "home"), true);
-                if (info.Attributes.GetBool("EduSafe", true)
-                    || !Settings.EducationSafeBuild
-                    && Settings.EducationSafeBuild || !info.Attributes.GetBool("EduSafeOnly"))
-                {
-                    var file = folderFromPath.searchForFile(encodedFileStr);
-                    if (file == null)
-                        folderFromPath.files.Add(new FileEntry(themeData, encodedFileStr));
-                    else
-                        file.data = encodedFileStr;
-                }
+                if (!info.Attributes.GetBool("EduSafe", true) &&
+                    (Settings.EducationSafeBuild || !Settings.EducationSafeBuild) &&
+                    info.Attributes.GetBool("EduSafeOnly")) return;
+                var file = folderFromPath.searchForFile(encodedFileStr);
+                if (file == null)
+                    folderFromPath.files.Add(new FileEntry(themeData, encodedFileStr));
+                else
+                    file.data = encodedFileStr;
             }, true);
 
             executor.AddExecutor("Computer.EncryptedFile", (exec, info) =>
@@ -195,14 +181,16 @@ namespace Pathfinder.Internal
                 {
                     var c = Programs.getComputer(os, target);
                     if (c != null)
+                    {
                         result.location = c.location
-                            + Corporation.getNearbyNodeOffset(
-                                c.location,
-                                position,
-                                total,
-                                os.netMap,
-                                extraDistance,
-                                force);
+                                          + Corporation.getNearbyNodeOffset(
+                                              c.location,
+                                              position,
+                                              total,
+                                              os.netMap,
+                                              extraDistance,
+                                              force);
+                    }
                 };
             });
 
@@ -230,8 +218,11 @@ namespace Pathfinder.Internal
                 {
                     var solution = info.Attributes.GetValue("solution");
                     if (solution == null) result.addFirewall(level);
-                    else result.addFirewall(
+                    else
+                    {
+                        result.addFirewall(
                             level, solution, info.Attributes.GetFloat("additionalTime"));
+                    }
                 }
             });
 
@@ -368,12 +359,14 @@ namespace Pathfinder.Internal
                 var color = info.Attributes.GetColor("color", true);
                 if (color.HasValue) mailServer.setThemeColor(color.Value);
                 foreach (var emailInfo in info.Children.Where((i) => i.Name.ToLower() == "email"))
+                {
                     mailServer.AddEmailToServer(
                         emailInfo.Attributes.GetValue("sender"),
                         emailInfo.Attributes.GetValue("recipient"),
                         emailInfo.Attributes.GetValue("subject"),
                         emailInfo.Value
                     );
+                }
             }, true);
 
             executor.AddExecutor("Computer.AddEmailDaemon", (exec, info) 
@@ -526,14 +519,20 @@ namespace Pathfinder.Internal
                         case "agent":
                             var name = cinfo.Attributes.GetValue("name", true);
                             if (!string.IsNullOrWhiteSpace(name))
+                            {
                                 rCDaemon.UserColors.Add(name,
                                     cinfo.Attributes.GetColor("color", Color.LightGreen));
+                            }
+
                             break;
                         case "post":
                             var user = cinfo.Attributes.GetValue("user", true);
                             if (!string.IsNullOrWhiteSpace(user))
+                            {
                                 rCDaemon.StartingMessages.Add(
                                     new KeyValuePair<string, string>(user, cinfo.Value?.HacknetFilter()));
+                            }
+
                             break;
                     }
                 }
@@ -578,29 +577,28 @@ namespace Pathfinder.Internal
             {
                 info.Name.ThrowNoLabyrinths();
 
-                string groupName = info.Attributes.GetValueOrDefault("groupName", "UNKNOWN");
-                bool addsFactionPoint = info.Attributes.GetBool("addsFactionPointOnMissionComplete", true);
-                bool autoClearMissions = info.Attributes.GetBool("autoClearMissionsOnPlayerComplete", true);
-                bool allowContractAbbandon = info.Attributes.GetBool("allowContractAbbandon", false);
-                Color themeColor = info.Attributes.GetColor("themeColor", new Color(38, 201, 155));
+                var groupName = info.Attributes.GetValueOrDefault("groupName", "UNKNOWN");
+                var addsFactionPoint = info.Attributes.GetBool("addsFactionPointOnMissionComplete", true);
+                var autoClearMissions = info.Attributes.GetBool("autoClearMissionsOnPlayerComplete", true);
+                var allowContractAbbandon = info.Attributes.GetBool("allowContractAbbandon");
+                var themeColor = info.Attributes.GetColor("themeColor", new Color(38, 201, 155));
 
-                DLCHubServer dlcHubServer = result.AddDaemon<DLCHubServer>("DHS", groupName, os);
+                var dlcHubServer = result.AddDaemon<DLCHubServer>("DHS", groupName, os);
                 dlcHubServer.AddsFactionPointForMissionCompleteion = addsFactionPoint;
                 dlcHubServer.AutoClearMissionsOnSingleComplete = autoClearMissions;
                 dlcHubServer.AllowContractAbbandon = allowContractAbbandon;
                 dlcHubServer.themeColor = themeColor;
 
-                foreach (var cinfo in info.Children)
+                foreach (var cinfo in info.Children.Where(v =>
+                    v.Name.ToLower() == "user" || v.Name.ToLower() == "agent")
+                )
                 {
-                    if (cinfo.Name.ToLower() == "user" || cinfo.Name.ToLower() == "agent")
+                    var name = cinfo.Attributes.GetValue("name", true);
+                    var password = cinfo.Attributes.GetValueOrDefault("pass", "password");
+                    var color = cinfo.Attributes.GetColor("color", Color.LightGreen);
+                    if (!string.IsNullOrWhiteSpace(name))
                     {
-                        string name = cinfo.Attributes.GetValue("name", true);
-                        string password = cinfo.Attributes.GetValueOrDefault("pass", "password");
-                        Color color = cinfo.Attributes.GetColor("color", Color.LightGreen);
-                        if (!string.IsNullOrWhiteSpace(name))
-                        {
-                            dlcHubServer.AddAgent(name, password, color);
-                        }
+                        dlcHubServer.AddAgent(name, password, color);
                     }
                 }
             }, true);
@@ -629,9 +627,8 @@ namespace Pathfinder.Internal
 
             HandlerListener.DaemonLoadListener(result, executor);
 
-            foreach (var dict in ActionInject)
-                foreach (var exec in dict.Value)
-                    executor.AddExecutor(exec.Key, exec.Value);
+            foreach (var exec in ComputerLoaders)
+                executor.AddExecutor(exec.Key, exec.Value);
 
             executor.OnOpenFile += OnOpenFile;
             executor.OnRead += OnRead;
@@ -651,84 +648,6 @@ namespace Pathfinder.Internal
             
             executor.Parse();
             return result;
-        }
-
-        public static void AddEosComputer(SaxProcessor.ElementInfo info, Computer attached, OS os)
-        {
-            var empty = info.Attributes.GetBool("empty");
-            var computer = new Computer(
-                info.Attributes.GetValueOrDefault("name", "Unregistered eOS Device", true),
-                Utility.GenerateRandomIP(),
-                os.netMap.getRandomPosition(),
-                0,
-                5,
-                os
-            )
-            {
-                idName = info.Attributes.GetValueOrDefault("id", attached.idName + "_eos"),
-                icon = info.Attributes.GetValueOrDefault("icon", "ePhone"),
-                location = attached.location + Corporation.getNearbyNodeOffset(attached.location, Utility.Random.Next(12), 12, os.netMap),
-                portsNeededForCrack = 2
-            };
-            computer.setAdminPassword(info.Attributes.GetValueOrDefault("passOverride", "alpine"));
-            ComputerLoader.loadPortsIntoComputer("22,3659", computer);
-            EOSComp.GenerateEOSFilesystem(computer);
-            var eos = computer.files.root.searchForFolder("eos");
-            var notes = eos.searchForFolder("notes");
-            var mail = eos.searchForFolder("mail");
-
-            foreach (var ininfo in info.Elements)
-            {
-                switch (ininfo.Name.ToLower())
-                {
-                    case "note":
-                        var val = ininfo.Value.TrimStart().HacknetFilter();
-                        var filename = ininfo.Attributes.GetValue("filename", true);
-                        if (filename == null)
-                        {
-                            var length = val.IndexOf('\n');
-                            if (length == -1) length = val.Length;
-                            filename = val.Substring(0, length);
-                            if (filename.Length > 50) filename = filename.Substring(0, 47) + "...";
-                            filename = filename.Replace(" ", "_").Replace(":", "").ToLower().Trim() + ".txt";
-                        }
-                        notes.files.Add(new FileEntry(val, filename));
-                        break;
-                    case "mail":
-                        var username = ininfo.Attributes.GetValue("username", true);
-                        mail.files.Add(new FileEntry(
-                            "MAIL ACCOUNT : " + username + "\nAccount   :" + username + "\nPassword :"
-                            + ininfo.Attributes.GetValue("pass", true) + "\nLast Sync :" + DateTime.Now + "\n\n"
-                            + Utility.GenerateBinString(512),
-                            username + ".act"
-                        ));
-                        break;
-                    case "file":
-                        computer.getFolderFromPath(
-                            ininfo.Attributes.GetValueOrDefault("path", "home"),
-                            true
-                        ).files.Add(
-                            new FileEntry(
-                                ininfo.Value?.HacknetFilter().TrimStart(),
-                                ininfo.Attributes.GetValue("name"))
-                        );
-                        break;
-                }
-            }
-            if (empty)
-            {
-                var folder3 = eos.searchForFolder("apps");
-                if (folder3 != null)
-                {
-                    folder3.files.Clear();
-                    folder3.folders.Clear();
-                }
-            }
-            os.netMap.nodes.Add(computer);
-            ComputerLoader.postAllLoadedActions += () => computer.links.Add(os.netMap.nodes.IndexOf(attached));
-            if (attached.attatchedDeviceIDs != null)
-                attached.attatchedDeviceIDs += ",";
-            attached.attatchedDeviceIDs += computer.idName;
         }
 
         public static void AddEosComputer(ElementInfo info, Computer attached, OS os)
@@ -820,96 +739,14 @@ namespace Pathfinder.Internal
                     {
                         var cmdArr = commandString.Split(Utils.robustNewlineDelim, StringSplitOptions.None);
                         foreach (var cmdStr in cmdArr)
+                        {
                             memory.CommandsRun.Add(Folder
                                 .deFilter(string.IsNullOrEmpty(cmdStr) ? " " : cmdStr)
                                 .HacknetFilter());
+                        }
                     }
                     else memory.CommandsRun.Add(Folder.deFilter(commandString).HacknetFilter());
                 }
             };
-
-        public static ReadExecution GenerateDataListHandler(MemoryContents memory)
-            => (exec, info) =>
-            {
-                foreach (var blockInfo in info.Children)
-                {
-                    if (blockInfo.Name != "Block") continue;
-                    memory.DataBlocks.Add(Folder.deFilter(blockInfo.Value).HacknetFilter());
-                }
-            };
-
-        public static ReadExecution GenerateFileFragListHandler(MemoryContents memory)
-            => (exec, info) =>
-            {
-                foreach (var fileInfo in info.Children)
-                {
-                    if (fileInfo.Name != "File") continue;
-                    memory.FileFragments.Add(
-                    new KeyValuePair<string, string>(
-                        Folder.deFilter(fileInfo.Attributes.GetValue("name") ?? "UNKNOWN"),
-                        Folder.deFilter(fileInfo.Value)));
-                }
-            };
-
-        public static ReadExecution GenerateImageListHandler(MemoryContents memory)
-            => (exec, info) =>
-            {
-                foreach (var imageInfo in info.Children)
-                {
-                    if (imageInfo.Name != "Block") continue;
-                    memory.Images.Add(Folder.deFilter(imageInfo.Value));
-                }
-            };
-
-        public static MemoryContents DeserializeMemoryContent(SaxProcessor.ElementInfo memoryInfo)
-        {
-             var memoryContent = new MemoryContents();
-
-            var commandListInfo = memoryInfo.Elements.FirstOrDefault((ininfo) => ininfo.Name == "Commands");
-            if (commandListInfo != null)
-                foreach (var commandInfo in commandListInfo.Elements)
-                {
-                    if (commandInfo.Name != "Command") continue;
-                    var commandString = commandInfo.Value;
-                    if (commandString.Contains("\n"))
-                    {
-                        var cmdArr = commandString.Split(Utils.robustNewlineDelim, StringSplitOptions.None);
-                        foreach (var cmdStr in cmdArr)
-                            memoryContent.CommandsRun.Add(Folder
-                                                          .deFilter(string.IsNullOrEmpty(cmdStr) ? " " : cmdStr)
-                                                          .HacknetFilter());
-                    }
-                    else memoryContent.CommandsRun.Add(Folder.deFilter(commandString).HacknetFilter());
-                }
-
-            var dataListInfo = memoryInfo.Elements.FirstOrDefault((ininfo) => ininfo.Name == "Data");
-            if (dataListInfo != null)
-                foreach (var blockInfo in dataListInfo.Elements)
-                {
-                    if (blockInfo.Name != "Block") continue;
-                    memoryContent.DataBlocks.Add(Folder.deFilter(blockInfo.Value).HacknetFilter());
-                }
-
-            var fileFragListInfo = memoryInfo.Elements.FirstOrDefault((ininfo) => ininfo.Name == "FileFragments");
-            if (fileFragListInfo != null)
-                foreach (var fileInfo in fileFragListInfo.Elements)
-                {
-                    if (fileInfo.Name != "File") continue;
-                    memoryContent.FileFragments.Add(
-                    new KeyValuePair<string, string>(
-                        Folder.deFilter(fileInfo.Attributes.GetValue("name") ?? "UNKNOWN"),
-                        Folder.deFilter(fileInfo.Value)));
-                }
-
-            var imageListInfo = memoryInfo.Elements.FirstOrDefault((ininfo) => ininfo.Name == "Images");
-            if (imageListInfo != null)
-                foreach (var imageInfo in imageListInfo.Elements)
-                {
-                    if (imageInfo.Name != "Block") continue;
-                    memoryContent.Images.Add(Folder.deFilter(imageInfo.Value));
-                }
-
-            return memoryContent;
-        }
     }
 }

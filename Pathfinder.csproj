@@ -93,6 +93,9 @@
     <Compile Include="Pathfinder\Event\MainMenuEvents.cs" />
     <Compile Include="Pathfinder\Event\EventManager.cs" />
     <Compile Include="Pathfinder\Event\PathfinderEvent.cs" />
+    <Compile Include="Pathfinder\Exceptions\AttributeException.cs" />
+    <Compile Include="Pathfinder\Exceptions\LoadException.cs" />
+    <Compile Include="Pathfinder\Internal\Replacements\ActionsLoader.cs" />
     <Compile Include="Pathfinder\Pathfinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pathfinder\PathfinderHooks.cs" />
@@ -171,7 +174,7 @@
     <Compile Include="Pathfinder\Game\Folder\Extensions.cs" />
     <Compile Include="Pathfinder\Util\SaxProcessor.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Pathfinder\Internal\SaveLoaderReplacement.cs" />
+    <Compile Include="Pathfinder\Internal\Replacements\SaveLoader.cs" />
     <Compile Include="Pathfinder\Util\Sax\IAttributes.cs" />
     <Compile Include="Pathfinder\Util\Sax\IContentHandler.cs" />
     <Compile Include="Pathfinder\Util\Sax\IDTDHandler.cs" />
@@ -203,7 +206,7 @@
     <Compile Include="Pathfinder\Util\Sax\Helpers\XmlFilter.cs" />
     <Compile Include="Pathfinder\Util\Sax\Helpers\XmlReaderFactory.cs" />
     <Compile Include="Pathfinder\Util\Sax\Properties\AssemblyInfo.cs" />
-    <Compile Include="Pathfinder\Internal\ContentLoaderReplacement.cs" />
+    <Compile Include="Pathfinder\Internal\Replacements\ContentLoader.cs" />
     <Compile Include="Pathfinder\Game\MailServer\Extensions.cs" />
     <Compile Include="Pathfinder\Util\Sax\Extensions.cs" />
     <Compile Include="Pathfinder\Util\Extensions.cs" />
@@ -240,8 +243,11 @@
     <Compile Include="Pathfinder\Util\XML\ReadOnlyXmlReader.cs" />
     <Compile Include="Pathfinder\Util\XML\IExecutor.cs" />
     <Compile Include="Pathfinder\Util\XML\ParsedTreeExecutor.cs" />
-    <Compile Include="Pathfinder\Internal\ReplacementsCommon.cs" />
     <Compile Include="Pathfinder\ModManager\CurrentModOverride.cs" />
+    <Compile Include="Pathfinder\Internal\Replacements\ReplacementsCommon.cs" />
+    <Compile Include="Pathfinder\ModManager\ModTaggedValue.cs" />
+    <Compile Include="Pathfinder\ModManager\ModTaggedDict.cs" />
+    <Compile Include="Pathfinder\Exceptions\ModConflictException.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
@@ -264,6 +270,7 @@
     <Folder Include="Pathfinder\Util\XML\" />
     <Folder Include="Pathfinder\Util\Types\" />
     <Folder Include="Pathfinder\Internal\Patcher\" />
+    <Folder Include="Pathfinder\Exceptions\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

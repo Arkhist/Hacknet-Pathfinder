@@ -1,18 +1,18 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using Hacknet;
 using Pathfinder.Game;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
-namespace Pathfinder.Internal
+namespace Pathfinder.Internal.Replacements
 {
     public static class ReplacementsCommon
     {
         public static MemoryContents LoadMemoryContents(ElementInfo root)
         {
-            MemoryContents result = new MemoryContents();
+            var result = new MemoryContents();
 
             /*
              * I've chosen not to spin up an entire ParsedTreeExecutor here,
@@ -24,15 +24,14 @@ namespace Pathfinder.Internal
 
             if(commandsInfo != null)
             {
-                foreach(var commandInfo in commandsInfo.Children)
+                foreach (var commandStr in commandsInfo.Children.Select(commandInfo => commandInfo.Value))
                 {
-                    string commandStr = commandInfo.Value;
                     if(commandStr.Contains("\n"))
                     {
-                        string[] commands = commandStr.Split(Hacknet.Utils.robustNewlineDelim, StringSplitOptions.None);
-                        foreach(string _command in commands)
+                        var commands = commandStr.Split(Hacknet.Utils.robustNewlineDelim, StringSplitOptions.None);
+                        foreach(var rawCommand in commands)
                         {
-                            string command = _command;
+                            var command = rawCommand;
                             if(string.IsNullOrEmpty(command))
                                 command = " ";
                             result.CommandsRun.Add(Folder.deFilter(command).HacknetFilter());

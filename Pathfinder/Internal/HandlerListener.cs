@@ -8,6 +8,7 @@ using Pathfinder.Game.Computer;
 using Pathfinder.Game.OS;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
+using Pathfinder.Internal.Replacements;
 using ModOptions = Pathfinder.GUI.ModOptions;
 
 namespace Pathfinder.Internal
@@ -33,13 +34,13 @@ namespace Pathfinder.Internal
         }
 
         public static void LoadSaveFileReplacementStart(OSLoadSaveFileEvent e) {
-            SaveLoaderReplacement.LoadSaveFile(e.Stream, e.OS);
+            SaveLoader.LoadSaveFile(e.Stream, e.OS);
             e.IsCancelled = true;
         }
 
         public static void LoadContentComputerReplacementStart(LoadContentComputerStartEvent e)
         {
-            e.Computer = ContentLoaderReplacement.LoadComputer(e.LocalizedFilename, ComputerLoader.os, e.PreventNetmapAdd, e.PreventDaemonInit);
+            e.Computer = ContentLoader.LoadComputer(e.LocalizedFilename, ComputerLoader.os, e.PreventNetmapAdd, e.PreventDaemonInit);
             e.IsCancelled = true;
         }
 

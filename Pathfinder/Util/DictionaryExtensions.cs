@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Microsoft.Xna.Framework;
+using Pathfinder.Exceptions;
 using Pathfinder.Game;
 
 namespace Pathfinder.Util
@@ -18,6 +20,10 @@ namespace Pathfinder.Util
 
         public static string GetValue<T1>(this IDictionary<T1, string> d, T1 key, bool convert = false)
             => convert ? d.GetValue(key)?.HacknetFilter() : d.GetValue(key);
+
+        public static T2 GetValueOrNull<T1, T2>(this IDictionary<T1, T2> d, T1 key) where T2 : class
+            => d.GetValueOrDefault(key);
+
 
         public static T2 GetValueOrDefault<T1, T2>(this IDictionary<T1, T2> a, T1 key, T2 defaultVal = default)
         {
@@ -182,5 +188,62 @@ namespace Pathfinder.Util
 
         public static Color? GetColor<T1>(this IDictionary<T1, string> a, T1 key, bool includeNull, Color? defaultColor = null)
             => a != null ? Utility.GetColorFromString(a.GetValue(key), includeNull, defaultColor) : defaultColor;
+
+        public static string GetNonEmptyString<T1>(
+            this IDictionary<T1, string> d,
+            T1 key,
+            string description
+        )
+            => d.GetChecked(key, description, v => !string.IsNullOrWhiteSpace(v), "Must not be empty");
+
+        public static T2 GetChecked<T1, T2>(
+            this IDictionary<T1, T2> d,
+            T1 key,
+            string description,
+            Func<T2, bool> checker,
+            string errorMessage
+        )
+            =>  d.GetChecked(key, description, v =>
+                checker(v) ? null : errorMessage);
+        public static T2 GetChecked<T1, T2>(
+            this IDictionary<T1, T2> d,
+            T1 key,
+            string description,
+            Func<T2, string> checker,
+            bool permitMissing = false
+        )
+        {
+            if (!d.ContainsKey(key))
+            {
+                if (permitMissing) return default;
+                throw new MissingAttributeException(key.ToString(), description);
+            }
+            var value = d[key];
+            var error = checker(value);
+            if(error != null) {
+                throw new InvalidAttributeException(key.ToString(), description, error);
+            }
+            return value;
+        }
+        public static string GetWithOptions<T>(
+            this IDictionary<T, string> d,
+            T key,
+            string description,
+            string[] options,
+            bool toLower = false,
+            bool acceptEmpty = false
+        )
+        {
+            var result = d.GetChecked(key, description, value =>
+            {
+                if (toLower) value = value.ToLower();
+                if (!acceptEmpty && string.IsNullOrWhiteSpace(value))
+                    return "Must not be empty";
+                if(!options.Contains(value))
+                    return "Must be one of " + string.Join(", ", options.Select(x => $"\"{x}\""));
+                return null;
+            }, acceptEmpty);
+            return toLower ? result.ToLower() : result;
+        }
     }
 }

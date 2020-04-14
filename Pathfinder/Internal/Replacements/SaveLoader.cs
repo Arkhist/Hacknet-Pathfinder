@@ -2,33 +2,27 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
 using Hacknet;
 using Hacknet.Mission;
 using Hacknet.Factions;
-using Hacknet.Extensions;
 using Hacknet.Security;
 using Microsoft.Xna.Framework;
-using Pathfinder.Game;
 using Pathfinder.Game.Computer;
-using Pathfinder.Game.MailServer;
 using Pathfinder.ModManager;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
-using Sax.Net;
 using Pathfinder.Util.Types;
 
-namespace Pathfinder.Internal
+namespace Pathfinder.Internal.Replacements
 {
     /* Found in OS.loadSaveFile */
-    public static class SaveLoaderReplacement
+    public static class SaveLoader
     {
 
         private class LabyrinthsNotInstalledException : Exception {}
 
-        private static Dictionary<string, Dictionary<string, ReadExecution>> ActionInject = new Dictionary<string, Dictionary<string, ReadExecution>>();
-        private static Dictionary<string, Dictionary<string, ReadExecution>> ComputerActionInject = new Dictionary<string, Dictionary<string, ReadExecution>>();
+        private static readonly ModTaggedDict<string, ReadExecution> ComputerLoaders = new ModTaggedDict<string, ReadExecution>();
+        private static readonly ModTaggedDict<string, ReadExecution> SaveDataLoaders = new ModTaggedDict<string, ReadExecution>();
 
         public static event OpenFile OnOpenFile;
         public static event Read OnRead;
@@ -40,45 +34,27 @@ namespace Pathfinder.Internal
         public static event ReadProcessingInstructions OnReadProcessingInstructions;
         public static event CloseFile OnCloseFile;
 
-        public static void AddEventExecutor(string elementName, ReadExecution exec)
-        {
-            if (!ActionInject.ContainsKey(Manager.CurrentMod.GetCleanId()))
-                ActionInject.Add(Manager.CurrentMod.GetCleanId(), new Dictionary<string, ReadExecution> { [elementName] = exec });
-            else if (!ActionInject[Manager.CurrentMod.GetCleanId()].ContainsKey(elementName))
-                ActionInject[Manager.CurrentMod.GetCleanId()].Add(elementName, exec);
-        }
 
-        public static void AddComputerExecutor(string elementName, ReadExecution exec)
-        {
-            if (!ComputerActionInject.ContainsKey(Manager.CurrentMod.GetCleanId()))
-                ComputerActionInject.Add(Manager.CurrentMod.GetCleanId(), new Dictionary<string, ReadExecution> { [elementName] = exec });
-            else if (!ComputerActionInject[Manager.CurrentMod.GetCleanId()].ContainsKey(elementName))
-                ComputerActionInject[Manager.CurrentMod.GetCleanId()].Add(elementName, exec);
-        }
+        public static void AddSaveDataLoader(string name, ReadExecution exec, bool overrideable = false)
+        { if (overrideable) SaveDataLoaders.AddOverrideable(name, exec); else SaveDataLoaders.Add(name, exec); }
 
-        public static bool RemoveEventExecutor(string elementName)
-        {
-            var inject = ActionInject.FirstOrDefault(i => elementName.Split('.')[0] == i.Key);
-            if (inject.Value != null)
-                return inject.Value.Remove(elementName.Substring(elementName.IndexOf('.') + 1));
-            return ActionInject[Manager.CurrentMod.GetCleanId()].Remove(elementName);
-        }
+        public static bool RemoveSaveDataLoader(string name)
+            => SaveDataLoaders.Remove(name);
 
-        public static bool RemoveComputerExecutor(string elementName)
-        {
-            var inject = ComputerActionInject.FirstOrDefault(i => elementName.Split('.')[0] == i.Key);
-            if (inject.Value != null)
-                return inject.Value.Remove(elementName.Substring(elementName.IndexOf('.') + 1));
-            return ComputerActionInject[Manager.CurrentMod.GetCleanId()].Remove(elementName);
-        }
+        public static void AddComputerLoader(string name, ReadExecution exec, bool overrideable = false)
+        { if (overrideable) ComputerLoaders.AddOverrideable(name, exec); else ComputerLoaders.Add(name, exec); }
+
+        public static bool RemoveComputerLoader(string name)
+            => ComputerLoaders.Remove(name);
+
 
         public static void LoadSaveFile(Stream stream, OS os)
         {
-            StreamReader reader = new StreamReader(stream);
-            string saveFileText = reader.ReadToEnd();
+            var reader = new StreamReader(stream);
+            var saveFileText = reader.ReadToEnd();
 
-            EventExecutor executor = new EventExecutor(saveFileText, isPath: false);
-            ParsedTreeExecutor subExecutor = new ParsedTreeExecutor();
+            var executor = new EventExecutor(saveFileText, isPath: false);
+            var subExecutor = new ParsedTreeExecutor();
 
             executor.AddExecutor("HacknetSave", (exec,info) =>
             {
@@ -94,7 +70,7 @@ namespace Pathfinder.Internal
             executor.AddExecutor("HacknetSave.DLC", (exec, info) =>
             {
                 os.IsInDLCMode = info.Attributes.GetBool("Active");
-                bool hasLoadedDLC = os.HasLoadedDLCContent = info.Attributes.GetBool("LoadedContent");
+                var hasLoadedDLC = os.HasLoadedDLCContent = info.Attributes.GetBool("LoadedContent");
 
                 if(hasLoadedDLC && !Util.Extensions.CheckLabyrinths())
                     throw new LabyrinthsNotInstalledException();
@@ -108,23 +84,24 @@ namespace Pathfinder.Internal
 
             executor.AddExecutor("HacknetSave.DLC.ConditionalActions", (exec, info) =>
             {
-                /* TODO: Hook up ConditionalActions parser */
+                os.ConditionalActions = ActionsLoader.LoadConditionalActions(info);
             }, true);
 
             executor.AddExecutor("HacknetSave.Flags", (exec,info) =>
             {
                 /* ProgressionFlags.Load */
-                ProgressionFlags flags = os.Flags;
+                var flags = os.Flags;
 
                 flags.Flags.Clear();
-                if(info.Value != null) {
-                    foreach(string flag in info.Value.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
-                    {
-                        string trueFlag = flag.Replace("[%%COMMAREPLACED%%]", ",");
-                        if(trueFlag == "décrypté")
-                            trueFlag = "decypher";
-                        flags.AddFlag(trueFlag);
-                    }
+                if (info.Value == null) return;
+                foreach(var flag in info.Value.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    var trueFlag = flag.Replace("[%%COMMAREPLACED%%]", ",");
+                    // ReSharper disable StringLiteralTypo
+                    if(trueFlag == "décrypté")
+                        trueFlag = "decypher";
+                    // ReSharper restore StringLiteralTypo
+                    flags.AddFlag(trueFlag);
                 }
             }, true);
 
@@ -132,7 +109,7 @@ namespace Pathfinder.Internal
 
             executor.AddExecutor("HacknetSave.NetworkMap", (exec,info) =>
             {
-                string sortAlgo = info.Attributes.GetValue("sort");
+                var sortAlgo = info.Attributes.GetValue("sort");
                 if(!Enum.TryParse(sortAlgo, out os.netMap.SortingAlgorithm))
                 {
                     /* TODO: Error reporting here */
@@ -140,17 +117,17 @@ namespace Pathfinder.Internal
 
                 subExecutor.Execute(info);
 
-                foreach(Computer node in os.netMap.nodes) {
-                    foreach(Hacknet.Daemon d in node.daemons)
-                        d.loadInit();
+                foreach (var d in os.netMap.nodes.SelectMany(node => node.daemons))
+                {
+                    d.loadInit();
                 }
                 os.netMap.loadAssignGameNodes();
             }, true);
 
             executor.AddExecutor("HacknetSave.NetworkMap.visible", (exec, info) =>
             {
-                string visibleNodes = info.Value;
-                foreach(string node in visibleNodes.Split())
+                var visibleNodes = info.Value;
+                foreach(var node in visibleNodes.Split())
                 {
                     os.netMap.visibleNodes.Add(Convert.ToInt32(node));
                 }
@@ -158,11 +135,16 @@ namespace Pathfinder.Internal
 
 
             executor.AddExecutor("HacknetSave.NetworkMap.network.computer", (exec, info) =>
-                os.netMap.nodes.Add(LoadComputer(info, os)), true);
+            {
+                var computer = SaveLoader.LoadComputer(info, os);
+                os.netMap.nodes.Add(computer);
+            }, true);
 
 
             executor.AddExecutor("HacknetSave.mission", (exec, info) =>
-                os.currentMission = LoadMission(info), true);
+            {
+                os.currentMission = SaveLoader.LoadMission(info);
+            }, true);
 
             executor.AddExecutor("HacknetSave.AllFactions", (exec, info) =>
             {
@@ -187,9 +169,8 @@ namespace Pathfinder.Internal
                 os.homeAssetServerID = info.Attributes.GetValueOrDefault("homeAssetsNode", "entropy01");
             }, true);
 
-            foreach (var dict in ActionInject)
-                foreach (var exec in dict.Value)
-                    executor.AddExecutor(exec.Key, exec.Value);
+            foreach (var exec in SaveDataLoaders)
+                executor.AddExecutor(exec.Key, exec.Value);
 
             executor.OnOpenFile += OnOpenFile;
             executor.OnRead += OnRead;
@@ -384,10 +365,11 @@ namespace Pathfinder.Internal
 
             executor.AddExecutor("firewall", (exec, info) =>
                 result.firewall = new Firewall(
-                    info.Attributes.GetInt("complexity", 0),
+                    info.Attributes.GetInt("complexity"),
                     info.Attributes.GetValueOrDefault("solution", null),
-                    info.Attributes.GetFloat("additionalDelay", 0f)
-                ));
+                    info.Attributes.GetFloat("additionalDelay")
+                );
+            });
 
             executor.AddExecutor("portsOpen", (exec, info) =>
             {
@@ -423,9 +405,12 @@ namespace Pathfinder.Internal
             executor.AddExecutor("Memory", (exec, info) =>
                 result.Memory = ReplacementsCommon.LoadMemoryContents(info), true);
 
-            /* daemons */
+            #region Daemons
+
+            executor.AddExecutor("daemons.MailServer", (exec, info) =>
             {
-                executor.AddExecutor("daemons.MailServer", (exec, info) =>
+                var server = result.AddDaemon<MailServer>(info.Attributes.GetValue("name"), os);
+                if(info.Attributes.TryGetValue("color", out var colorStr))
                 {
                     var server = result.AddDaemon<MailServer>(info.Attributes.GetValue("name"), os);
                     if (info.Attributes.TryGetValue("color", out var colorStr))
@@ -549,18 +534,21 @@ namespace Pathfinder.Internal
 
                     var AdminEmailAccount = info.Attributes.GetValue("AdminEmailAccount");
 
-                    if (!string.IsNullOrWhiteSpace(AdminEmailAccount))
-                    {
-                        daemon.adminResetPassEmailAccount = AdminEmailAccount;
-                        daemon.adminResetEmailHostID = info.Attributes.GetValue("AdminEmailHostID");
-                    }
-                });
+                var adminEmailAccount = info.Attributes.GetValue("AdminEmailAccount");
 
-                executor.AddExecutor("daemons.WhiteListAuthenticatorDaemon", (exec, info) =>
-                {
-                    var daemon = result.AddDaemon<WhitelistConnectionDaemon>(os);
-                    daemon.AuthenticatesItself = info.Attributes.GetBool("SelfAuthenticating");
-                });
+                if (string.IsNullOrWhiteSpace(adminEmailAccount)) return;
+                daemon.adminResetPassEmailAccount = adminEmailAccount;
+                daemon.adminResetEmailHostID = info.Attributes.GetValue("AdminEmailHostID");
+            });
+
+            executor.AddExecutor("daemons.WhiteListAuthenticatorDaemon", (exec, info) =>
+            {
+                var daemon = result.AddDaemon<WhitelistConnectionDaemon>(os);
+                daemon.AuthenticatesItself = info.Attributes.GetBool("SelfAuthenticating");
+            });
+
+            executor.AddExecutor("daemons.IRCDaemon", (exec, info) =>
+                result.AddDaemon<IRCDaemon>(os, "LOAD ERROR"));
 
                 executor.AddExecutor("daemons.IRCDaemon", (exec, info) =>
                     result.AddDaemon<IRCDaemon>(os, "LOAD ERROR"));
@@ -635,7 +623,7 @@ namespace Pathfinder.Internal
                 executor.AddExecutor("daemon.FastActionHost", (exec, info) =>
                     result.AddDaemon<FastActionHost>(os, result.name));
 
-            }
+            #endregion
 
             executor.AddExecutor("filesystem", (exec, info) => {
                 var rootInfo = info.Children.FirstOrDefault(e => e.Name == "folder");
@@ -650,9 +638,8 @@ namespace Pathfinder.Internal
                 };
             }, true);
 
-            foreach (var dict in ActionInject)
-                foreach (var exec in dict.Value)
-                    executor.AddExecutor(exec.Key, exec.Value);
+            foreach (var exec in ComputerLoaders)
+                executor.AddExecutor(exec.Key, exec.Value);
 
             executor.Execute(root);
 
@@ -678,12 +665,17 @@ namespace Pathfinder.Internal
                     result = new EntropyFaction(factionName, neededValue);
                     break;
                 case "CustomFaction":
-                    result = new CustomFaction(factionName, 100);
+                    CustomFaction faction;
+                    result = faction = new CustomFaction(factionName, 100);
                     foreach(var child in root.Children.Where(e => e.Name == "Action")) {
-                        var action = new CustomFactionAction();
-                        action.ValueRequiredForTrigger = child.Attributes.GetInt("ValueRequired", 10);
-                        action.FlagsRequiredForTrigger = child.Attributes.GetValueOrDefault("Flags", null);
-                        /* TODO: Hook up Conditional Action parser, specifically the "actions" part. */
+                        var action = new CustomFactionAction
+                        {
+                            ValueRequiredForTrigger = child.Attributes.GetInt("ValueRequired", 10),
+                            FlagsRequiredForTrigger = child.Attributes.GetValueOrDefault("Flags", null)
+                        };
+                        foreach (var info in child.Children)
+                            action.TriggerActions.Add(ActionsLoader.LoadAction(info));
+                        faction.CustomActions.Add(action);
                     }
                     break;
                 default:
@@ -701,9 +693,9 @@ namespace Pathfinder.Internal
         /* Folder.load */
         private static Folder LoadFolder(ElementInfo data)
         {
-            string folderName = Folder.deFilter(data.Attributes.GetValue("name"));
-            Folder result = new Folder(folderName);
-            foreach(ElementInfo child in data.Children) {
+            var folderName = Folder.deFilter(data.Attributes.GetValue("name"));
+            var result = new Folder(folderName);
+            foreach(var child in data.Children) {
                 switch(child.Name) {
                     case "folder":
                         result.folders.Add(LoadFolder(child));
@@ -715,8 +707,8 @@ namespace Pathfinder.Internal
                                 Folder.deFilter(child.Value),
                                 Folder.deFilter(child.Attributes.GetValue("name"))
                              ));
-                         }
-                         break;
+                        }
+                        break;
                 }
             }
             return result;
