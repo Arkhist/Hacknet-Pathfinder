@@ -15,8 +15,8 @@ namespace Pathfinder.Extension
         internal Dictionary<string, Mission.Interface> missions = new Dictionary<string, Mission.Interface>();
         internal Dictionary<string, Mission.IGoal> goals = new Dictionary<string, Mission.IGoal>();
         internal Dictionary<string, Port.Type> ports = new Dictionary<string, Port.Type>();
-        internal Dictionary<Type, List<ListenerTuple>> eventListeners =
-            new Dictionary<Type, List<ListenerTuple>>();
+        internal Dictionary<Type, List<ListenerObject>> eventListeners =
+            new Dictionary<Type, List<ListenerObject>>();
 
         /// <summary>
         /// Gets the extension identifier.
