@@ -16,7 +16,7 @@ namespace Pathfinder.Event
         {
             public string DebugName { get; internal set; }
             public int? PriorityStore { get; internal set; }
-            public int Priority => PriorityStore.Value;
+            public int Priority => PriorityStore.GetValueOrDefault(0);
             public bool ContinueOnCancel { get; set; }
             public bool ContinueOnThrow { get; set; }
         }

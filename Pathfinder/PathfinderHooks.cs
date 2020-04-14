@@ -786,5 +786,11 @@ namespace Pathfinder
             result = input.HacknetFilter();
             return true;
         }
+
+        [Patch("Hacknet.Utils.AppendToErrorFile", flags: InjectFlags.PassParametersRef)]
+        public static void onAppendToErrorFile(ref string text)
+        {
+            Console.WriteLine("[HACKNET ERROR] " + text);
+        }
     }
 }
