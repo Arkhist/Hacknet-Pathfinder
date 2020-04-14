@@ -62,12 +62,11 @@ namespace Pathfinder.Internal
 
         public static void DaemonLoadListener(Computer c, SaxProcessor.ElementInfo info)
         {
-            Daemon.Interface i;
             var customDaemonInfos = info.Elements.Where(cdi => cdi.Name.ToLower() == "moddeddamon");
             foreach (var daemonInfo in customDaemonInfos)
             {
                 var id = daemonInfo.Attributes.GetValue("interfaceId");
-                if (id != null && Daemon.Handler.ModDaemons.TryGetValue(id, out i))
+                if (id != null && Daemon.Handler.ModDaemons.TryGetValue(id, out Daemon.Interface i))
                 {
                     var objs = new Dictionary<string, string>();
                     var storedObjects = daemonInfo.Attributes.GetValue("storedObjects")?.Split(' ');
@@ -81,10 +80,11 @@ namespace Pathfinder.Internal
 
         public static void ExecutableListener(ExecutableExecuteEvent e)
         {
-            Tuple<Executable.Interface, string> tuple;
             Console.WriteLine(Utility.ConvertFromHexBlocks(e.ExecutableFile.data.Split('\n')[0]));
             if (Executable.Handler.IsFileDataForModExe(e.ExecutableFile.data)
-                && Executable.Handler.ModExecutables.TryGetValue(Utility.ConvertFromHexBlocks(e.ExecutableFile.data.Split('\n')[0]), out tuple))
+                && Executable.Handler.ModExecutables.TryGetValue(
+                    Utility.ConvertFromHexBlocks(e.ExecutableFile.data.Split('\n')[0]),
+                    out Tuple<Executable.Interface, string> tuple))
             {
                 int num = e.OS.ram.bounds.Y + RamModule.contentStartOffset;
                 foreach (var exe in e.OS.exes)

@@ -30,7 +30,7 @@ namespace Pathfinder.ModManager
             (
                 from pair in LoadedMods
                 where !(pair.Value is Placeholder)
-                select pair 
+                select pair
             ).ToDictionary(pair => pair.Key, pair => pair.Value);
 
         public static IEnumerable<Type> GetModTypes(this Assembly asm) =>
@@ -74,7 +74,7 @@ namespace Pathfinder.ModManager
             foreach (var mod in OperationalMods)
             {
                 if (mod.Value is Placeholder) continue;
-                using(var _ = new CurrentModOverride(mod.Value))
+                using (var _ = new CurrentModOverride(mod.Value))
                 {
                     Logger.Verbose("Loading mod '{0}'s content", mod.Key);
 
@@ -94,7 +94,7 @@ namespace Pathfinder.ModManager
         {
             foreach (var mod in OperationalMods)
             {
-                using(var _ = new CurrentModOverride(mod.Value))
+                using (var _ = new CurrentModOverride(mod.Value))
                 {
                     Logger.Verbose("Unloading mod '{0}'", mod.Key);
                     mod.Value.Unload();
@@ -117,8 +117,8 @@ namespace Pathfinder.ModManager
             foreach (var mod in MarkedModsForLoad)
             {
                 newMod = LoadMod(mod.GetType());
-                using(var _ = new CurrentModOverride(newMod));
-                    newMod.LoadContent();
+                using (var _ = new CurrentModOverride(newMod)) ;
+                newMod.LoadContent();
             }
             MarkedModsForLoad.Clear();
         }
@@ -127,7 +127,7 @@ namespace Pathfinder.ModManager
         {
             if (mod == null || mod is Placeholder) return;
 
-            using(var _ = new CurrentModOverride(mod))
+            using (var _ = new CurrentModOverride(mod))
             {
                 var name = Utility.ActiveModId;
 
@@ -143,27 +143,27 @@ namespace Pathfinder.ModManager
 
                 foreach (var e in
                          (from p in Extension.Handler.ModExtensions
-                            where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                            select p.Key)
+                          where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                          select p.Key)
                          .ToArray()
                         )
-                        Extension.Handler.UnregisterExtension(e);
+                    Extension.Handler.UnregisterExtension(e);
 
                 foreach (var e in
                          (from p in Executable.Handler.ModExecutables
-                            where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                            select p.Key)
+                          where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                          select p.Key)
                          .ToArray()
                         )
-                        Executable.Handler.UnregisterExecutable(e);
+                    Executable.Handler.UnregisterExecutable(e);
 
                 foreach (var d in
                          (from p in Daemon.Handler.ModDaemons
-                            where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                            select p.Key)
+                          where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
+                          select p.Key)
                          .ToArray()
                         )
-                        Daemon.Handler.UnregisterDaemon(d);
+                    Daemon.Handler.UnregisterDaemon(d);
 
                 Command.Handler.ModIdToCommandKeyList.TryGetValue(name, out List<string> clist);
                 if (clist != null)
@@ -194,10 +194,10 @@ namespace Pathfinder.ModManager
                         )
                     Port.Handler.UnregisterPort(p);
 
-                var events = new List<ListenerTuple>();
-                foreach (var v in EventManager.eventListeners.Values)
-                    events.AddRange(v.FindAll(t => t.Item3 == name));
-                foreach (var list in EventManager.eventListeners.ToArray())
+                var events = new List<ListenerObject>();
+                foreach (var v in eventListeners.Values)
+                    events.AddRange(v.FindAll(t => t.ModId == name));
+                foreach (var list in eventListeners.ToArray())
                     foreach (var e in events)
                         list.Value.Remove(e);
 
@@ -247,14 +247,14 @@ namespace Pathfinder.ModManager
                 if (!Pathfinder.IsModIdentifierValid(name, true))
                     return null; // never reached due to throw
                 Logger.Info("Loading mod '{0}'", name);
-                using(var _ = new CurrentModOverride(mod))
+                using (var _ = new CurrentModOverride(mod))
                 {
                     if (ModAttributeHandler.ModToEventMethods.TryGetValue(CurrentMod.GetType(), out List<MethodInfo> infos))
                         foreach (var i in infos)
                         {
                             var eventAttrib = i.GetFirstAttribute<EventAttribute>();
                             var paramType = i.GetParameters()[0].ParameterType;
-                            RegisterListener(paramType, i.CreateDelegate<Action<PathfinderEvent>>(typeof(Action<>).MakeGenericType(paramType)), eventAttrib.DebugName, eventAttrib.Priority);
+                            RegisterListener(paramType, i.CreateDelegate<Action<PathfinderEvent>>(typeof(Action<>).MakeGenericType(paramType)), eventAttrib.Options);
                         }
                     mod.Load();
                     UnloadedModIds.Remove(name);
