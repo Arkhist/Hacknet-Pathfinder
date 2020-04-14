@@ -18,6 +18,7 @@ using Pathfinder.Util;
 using static Pathfinder.Attribute.PatchAttribute;
 using Pathfinder.Util.Types;
 using static Pathfinder.Event.DrawMainMenuTitlesEvent;
+using Pathfinder.Game.OS;
 
 namespace Pathfinder
 {
@@ -80,7 +81,10 @@ namespace Pathfinder
             {
                 Disconnects = true
             };
-            commandSentEvent.CallEvent();
+            var exceptions = commandSentEvent.CallEvent();
+            if(exceptions.Count > 0)
+                foreach (var pair in exceptions)
+                    os.Write("Command Listener Method '{0}' failed with: {1}", pair.Key, pair.Value);
             disconnects = commandSentEvent.Disconnects;
             returnFlag = disconnects;
             if (commandSentEvent.IsCancelled)
@@ -109,7 +113,10 @@ namespace Pathfinder
         {
             var commandFinishedEvent = new Event.CommandFinishedEvent(commandSentEvent);
             commandSentEvent.PreventCall = true;
-            commandFinishedEvent.CallEvent();
+            var exceptions = commandFinishedEvent.CallEvent();
+            if (exceptions.Count > 0)
+                foreach (var pair in exceptions)
+                    commandSentEvent.OS.Write("Command End Listener Method '{0}' failed with: {1}", pair.Key, pair.Value);
             disconnects = commandSentEvent.Disconnects;
             returnFlag = disconnects;
         }
@@ -349,7 +356,10 @@ namespace Pathfinder
 
             var executableExecuteEvent =
                 new Event.ExecutableExecuteEvent(com, fol, finde, f, os, args);
-            executableExecuteEvent.CallEvent();
+            var exceptions = executableExecuteEvent.CallEvent();
+            if (exceptions.Count > 0)
+                foreach (var pair in exceptions)
+                    os.Write("Executable Listener Method '{0}' failed with: {1}", pair.Key, pair.Value);
             result = (int)executableExecuteEvent.Result;
             if (executableExecuteEvent.IsCancelled || result != -1)
                 return true;
@@ -371,7 +381,10 @@ namespace Pathfinder
         {
             var portExecutableExecuteEvent =
                 new Event.ExecutablePortExecuteEvent(self, dest, name, data, port, args);
-            portExecutableExecuteEvent.CallEvent();
+            var exceptions = portExecutableExecuteEvent.CallEvent();
+            if (exceptions.Count > 0)
+                foreach (var pair in exceptions)
+                    self.Write("PortHack Listener Method '{0}' failed with: {1}", pair.Key, pair.Value);
             name = portExecutableExecuteEvent.ExecutableName;
             data = portExecutableExecuteEvent.ExecutableData;
             if (portExecutableExecuteEvent.IsCancelled)

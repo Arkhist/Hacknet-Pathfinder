@@ -151,13 +151,13 @@ namespace Pathfinder.Extension
                     Port.Handler.UnregisterPort(p.Key);
                 }
 
-            var events = new List<ListenerTuple>();
+            var events = new List<ListenerObject>();
             foreach (var v in EventManager.eventListeners.Values)
                 events.AddRange(v.FindAll(t => t.Item3 == id));
             foreach (var list in EventManager.eventListeners.ToArray())
             {
                 if(!tuple.Item1.eventListeners.ContainsKey(list.Key))
-                    tuple.Item1.eventListeners.Add(list.Key, new List<ListenerTuple>());
+                    tuple.Item1.eventListeners.Add(list.Key, new List<ListenerObject>());
                 foreach (var e in events)
                 {
                     if(!tuple.Item1.eventListeners[list.Key].Contains(e))
