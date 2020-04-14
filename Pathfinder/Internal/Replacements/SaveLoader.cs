@@ -368,8 +368,8 @@ namespace Pathfinder.Internal.Replacements
                     info.Attributes.GetInt("complexity"),
                     info.Attributes.GetValueOrDefault("solution", null),
                     info.Attributes.GetFloat("additionalDelay")
-                );
-            });
+                )
+            );
 
             executor.AddExecutor("portsOpen", (exec, info) =>
             {
@@ -412,14 +412,11 @@ namespace Pathfinder.Internal.Replacements
                 var server = result.AddDaemon<MailServer>(info.Attributes.GetValue("name"), os);
                 if(info.Attributes.TryGetValue("color", out var colorStr))
                 {
-                    var server = result.AddDaemon<MailServer>(info.Attributes.GetValue("name"), os);
-                    if (info.Attributes.TryGetValue("color", out var colorStr))
-                    {
-                        var color = Utility.GetColorFromString(colorStr, true, null);
-                        if (color.HasValue)
-                            server.setThemeColor(color.Value);
-                    }
-                });
+                     var color = Utility.GetColorFromString(colorStr, true, null);
+                     if (color.HasValue)
+                        server.setThemeColor(color.Value);
+                }
+            });
 
                 executor.AddExecutor("daemons.MissionListingServer", (exec, info) =>
                 {
