@@ -9,6 +9,7 @@ using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.Attribute;
+using Pathfinder.Exceptions;
 using Pathfinder.Game;
 using Pathfinder.GameFilesystem;
 using Pathfinder.GUI;
@@ -689,6 +690,17 @@ namespace Pathfinder
         {
             var optionsMenuApplyEvent = new Event.OptionsMenuApplyEvent(self);
             optionsMenuApplyEvent.CallEvent();
+        }
+
+        [Patch("Hacknet.RunnableConditionalActions.LoadIntoOS",
+            flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn)]
+        public static bool onLoadRunnableActionsIntoOS(string filepath, object OSobj)
+        {
+            var evt = new Event.ActionsLoadIntoOSEvent(filepath, (OS) OSobj);
+            var except = evt.CallEvent();
+            if(except.Count > 0)
+                throw new EventException("Failed to load conditional actions", except);
+            return evt.IsCancelled;
         }
 
 

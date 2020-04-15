@@ -97,6 +97,8 @@ namespace Pathfinder
 
             EventManager.RegisterListener<GameUnloadEvent>(Manager.UnloadMods);
 
+            EventManager.RegisterListener<ActionsLoadIntoOSEvent>(Internal.HandlerListener.LoadActionsIntoOSListener);
+
             ActionsLoader.InitActionLoaders();
             ActionsLoader.InitConditionLoaders();
 

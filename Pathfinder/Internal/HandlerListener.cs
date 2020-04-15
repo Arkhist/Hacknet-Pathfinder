@@ -44,6 +44,13 @@ namespace Pathfinder.Internal
             e.IsCancelled = true;
         }
 
+        public static void LoadActionsIntoOSListener(ActionsLoadIntoOSEvent e)
+        {
+            var actions = ActionsLoader.LoadConditionalActionsFromFile(e.FilePath);
+            e.OS.ConditionalActions.Actions.AddRange(actions.Actions);
+            e.IsCancelled = true;
+        }
+
         public static void DaemonLoadListener(Computer c, EventExecutor exec)
         {
             exec.AddExecutor("Computer.ModdedDaemon", (executor, info) =>
