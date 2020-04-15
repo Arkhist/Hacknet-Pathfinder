@@ -12,7 +12,6 @@ using System.Threading;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.ModManager;
-using Sax.Net;
 
 namespace Pathfinder.Util
 {
@@ -430,21 +429,6 @@ namespace Pathfinder.Util
                 if (attribName && i + 1 < attributes.Length) attributeStr.Append("=\"");
                 if (!attribName) attributeStr.Append("\" ");
                 attribName = !attribName;
-            }
-            if (value == null) return "<" + key + (attributeStr.Length > 0 ? " " + attributeStr : "") + " />";
-            return "<" + key + ">" + value + "</" + key + (attributeStr.Length > 0 ? " " + attributeStr : "") + ">";
-
-        }
-
-        public static string ToXml(this string key, string value, IAttributes attributes)
-        {
-            var attributeStr = new StringBuilder(attributes.Length * 25);
-            for (int i = 0; i < attributes.Length; i++)
-            {
-                attributeStr.Append(attributes.GetQName(i));
-                var val = attributes.GetValue(i);
-                if (val != null)
-                    attributeStr.Append("=\"" + val + "\" ");
             }
             if (value == null) return "<" + key + (attributeStr.Length > 0 ? " " + attributeStr : "") + " />";
             return "<" + key + ">" + value + "</" + key + (attributeStr.Length > 0 ? " " + attributeStr : "") + ">";

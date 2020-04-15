@@ -73,10 +73,6 @@ namespace Pathfinder.Extension
                 Daemon.Handler.RegisterDaemon(d.Key, d.Value);
             foreach (var c in tuple.Item1.commands)
                 Command.Handler.RegisterCommand(c.Key, c.Value.Item1, c.Value.Item2, c.Value.Item3);
-            foreach (var g in tuple.Item1.goals)
-                Mission.Handler.RegisterMissionGoal(g.Key, g.Value);
-            foreach (var m in tuple.Item1.missions)
-                Mission.Handler.RegisterMission(m.Key, m.Value);
             foreach (var p in tuple.Item1.ports)
                 Port.Handler.RegisterPort(p.Key, p.Value);
             foreach (var e in tuple.Item1.eventListeners)
@@ -123,24 +119,6 @@ namespace Pathfinder.Extension
                                                      ProgramList.programs.Contains(c)));
                 Command.Handler.UnregisterCommand(c);
             }
-
-            foreach (var g in Mission.Handler.ModGoals.ToArray())
-                if (g.Key.IndexOf('.') != -1 && g.Key.Remove(g.Key.LastIndexOf('.')) == id)
-                {
-                    modIds = g.Key.RemoveExtensionId();
-                    if (!tuple.Item1.goals.ContainsKey(modIds))
-                        tuple.Item1.goals.Add(modIds, g.Value);
-                    Mission.Handler.UnregisterMissionGoal(g.Key);
-                }
-
-            foreach (var m in Mission.Handler.ModMissions.ToArray())
-                if (m.Key.IndexOf('.') != -1 && m.Key.Remove(m.Key.LastIndexOf('.')) == id)
-                {
-                    modIds = m.Key.RemoveExtensionId();
-                    if (!tuple.Item1.missions.ContainsKey(modIds))
-                        tuple.Item1.missions.Add(modIds, m.Value);
-                    Mission.Handler.UnregisterMission(m.Key);
-                }
 
             foreach (var p in Port.Handler.PortTypes.ToArray())
                 if (p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.LastIndexOf('.')) == id)
