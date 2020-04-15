@@ -9,6 +9,7 @@ using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.Attribute;
+using Pathfinder.Exceptions;
 using Pathfinder.Game;
 using Pathfinder.GameFilesystem;
 using Pathfinder.GUI;
@@ -691,6 +692,17 @@ namespace Pathfinder
             optionsMenuApplyEvent.CallEvent();
         }
 
+        [Patch("Hacknet.RunnableConditionalActions.LoadIntoOS",
+            flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn)]
+        public static bool onLoadRunnableActionsIntoOS(string filepath, object OSobj)
+        {
+            var evt = new Event.ActionsLoadIntoOSEvent(filepath, (OS) OSobj);
+            var except = evt.CallEvent();
+            if(except.Count > 0)
+                throw new EventException("Failed to load conditional actions", except);
+            return evt.IsCancelled;
+        }
+
 
         /* pure bug-fix patch */
         [Patch("Hacknet.SCInstantly.Check", flags:
@@ -748,44 +760,6 @@ namespace Pathfinder
 
             return true;
         }
-        /* TODO : Fix this to use the new XML system
-        [Patch("Hacknet.RunnableConditionalActions.Deserialize", flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
-        public static bool onDeserializeRunnableConditionalActions(out RunnableConditionalActions result, ref XmlReader reader)
-        {
-            var runnable = new RunnableConditionalActions();
-            var processor = new SaxProcessor();
-            processor.AddActionForTag("ConditionalActions", info =>
-            {
-                foreach (var serialInfo in info.Elements)
-                {
-                    var actionSet = new SerializableConditionalActionSet
-                    {
-                        Condition = Serializable.Handler.LoadCondition(serialInfo)
-                    };
-                    foreach (var actionInfo in serialInfo.Elements)
-                        actionSet.Actions.Add(Serializable.Handler.LoadAction(actionInfo));
-                    runnable.Actions.Add(actionSet);
-                }
-            });
-            processor.Process(reader.ToStream(reader.BaseURI));
-            result = runnable;
-            return true;
-        }*/
-
-        /*public static void onAddSerializableConditions(ref Dictionary<string, Func<XmlReader, SerializableCondition>> dict)
-        {
-            // HACKNET BUG FIX : DoesNotHaveFlags not in dictionary
-            dict.Add("DoesNotHaveFlags", info => new SCDoesNotHaveFlags { Flags = info.Attributes.GetValue("Flags") });
-
-            foreach (var pair in SC.Handler.Deserializers)
-                dict.Add(pair.Key, pair.Value);
-        }
-
-        public static void onAddSerializableActions(ref Dictionary<string, Func<XmlReader, SerializableAction>> dict)
-        {
-            foreach (var pair in SA.Handler.Deserializers)
-                dict.Add(pair.Key, pair.Value);
-        }*/
 
         [Patch("Hacknet.ComputerLoader.filter", flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn)]
         public static bool onFilterString(out string result, ref string input)
