@@ -26,6 +26,13 @@ if(!DirectoryExists(HacknetDirectory) || !FileExists(HacknetDirectory.GetFilePat
 	throw new Exception("Valid Hacknet.exe not found");
 }
 
+public void CheckContainedOrCopy(DirectoryPath working, FilePath copyFrom)
+{
+	Information("Checking for file '"+copyFrom+"' in '"+working+"'");
+	if(!FileExists(working.GetFilePath(copyFrom.GetFilename())))
+		CopyFile(copyFrom, working.GetFilePath(copyFrom.GetFilename()));
+}
+
 public void CheckAndDeleteFile(FilePath path)
 {
 	Information("Deleting file '"+path+"'");
@@ -93,6 +100,9 @@ Task("PatcherSpit")
 Task("BuildPathfinder")
 	.IsDependentOn("PatcherSpit")
 	.Does(() => {
+		CheckContainedOrCopy("./lib", HacknetDirectory.GetFilePath("FNA.dll"));
+		CheckContainedOrCopy("./lib", HacknetDirectory.GetFilePath("AlienFXManagedWrapper3.5.dll"));
+		CheckContainedOrCopy("./lib", HacknetDirectory.GetFilePath("Steamworks.NET.dll"));
 		MSBuild("./Pathfinder.csproj",
 			new MSBuildSettings {
 				Configuration = configuration,
