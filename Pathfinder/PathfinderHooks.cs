@@ -719,7 +719,14 @@ namespace Pathfinder
         {
             var os = (OS) objOS;
 
-            Console.WriteLine(computer);
+            if (!string.IsNullOrWhiteSpace(self.requiredFlags))
+            {
+                if (self.requiredFlags.Split(Utils.commaDelim, StringSplitOptions.RemoveEmptyEntries).Any(flag => !os.Flags.HasFlag(flag)))
+                {
+                    retVal = false;
+                    return true;
+                }
+            }
 
             if (self.needsMissionComplete)
             {
