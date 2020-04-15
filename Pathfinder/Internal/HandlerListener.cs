@@ -61,9 +61,9 @@ namespace Pathfinder.Internal
             });
         }
 
-        public static void DaemonLoadListener(Computer c, SaxProcessor.ElementInfo info)
+        public static void DaemonLoadListener(Computer c, ElementInfo info)
         {
-            var customDaemonInfos = info.Elements.Where(cdi => cdi.Name.ToLower() == "moddeddamon");
+            var customDaemonInfos = info.Children.Where(cdi => cdi.Name.ToLower() == "moddeddamon");
             foreach (var daemonInfo in customDaemonInfos)
             {
                 var id = daemonInfo.Attributes.GetValue("interfaceId");

@@ -170,22 +170,6 @@ namespace Pathfinder.ModManager
                     foreach (var c in clist.ToArray())
                         Command.Handler.UnregisterCommand(c);
 
-                foreach (var g in
-                         (from p in Mission.Handler.ModGoals
-                          where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                          select p.Key)
-                         .ToArray()
-                        )
-                    Mission.Handler.UnregisterMissionGoal(g);
-
-                foreach (var m in
-                         (from p in Mission.Handler.ModMissions
-                          where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name
-                          select p.Key)
-                         .ToArray()
-                        )
-                    Mission.Handler.UnregisterMission(m);
-
                 foreach (var p in
                          (from p in Port.Handler.PortTypes
                           where p.Key.IndexOf('.') != -1 && p.Key.Remove(p.Key.IndexOf('.')) == name

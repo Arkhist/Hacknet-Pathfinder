@@ -20,9 +20,6 @@ namespace Pathfinder.Internal
                 Name = name;
                 Value = value;
             }
-            public DataInfo(SaxProcessor.ElementInfo info)
-                => CopyData(info);
-
             public DataInfo(ElementInfo info)
                 => CopyData(info);
 
@@ -31,20 +28,6 @@ namespace Pathfinder.Internal
             internal DataInfo[] elements;
 
             public DataInfo this[int index] => elements[index];
-
-            DataInfo CopyData(SaxProcessor.ElementInfo info)
-            {
-                Name = info.Name;
-                Value = info.Elements.Count < 1 ? info.Value : null;
-                elements = new DataInfo[info.Elements.Count];
-                for (var i = 0; i < info.Elements.Count; i++)
-                {
-                    if (info.Elements[i].Elements.Count < 1)
-                        elements[i] = new DataInfo(info.Elements[i].Name, info.Elements[i].Value);
-                    else elements[i] = new DataInfo(info.Elements[i]);
-                }
-                return this;
-            }
 
             DataInfo CopyData(ElementInfo info)
             {
