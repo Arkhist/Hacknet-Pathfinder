@@ -33,6 +33,7 @@ namespace PathfinderPatcher
             string pathfinderDir = null, exeDir = "";
             var index = 0;
             var spitOutHacknetOnly = false;
+            var skipLaunchers = false;
             foreach (var arg in args)
             {
                 if (arg.Equals("-pathfinderDir")) // the Pathfinder.dll's directory
@@ -40,30 +41,32 @@ namespace PathfinderPatcher
                 if (arg.Equals("-exeDir")) // the Hacknet.exe's directory
                     exeDir = args[index + 1] + separator;
                 spitOutHacknetOnly |= arg.Equals("-spit"); // spit modifications without injected code
+                skipLaunchers |= arg.Equals("-nolaunch");
                 index++;
             }
 
             AssemblyDefinition gameAssembly = null;
             try
             {
-                if (File.Exists(exeDir + "Hacknet"))
-                {
-                    File.Copy(exeDir + "Hacknet", exeDir + "HacknetPathfinder", true);
+                if(!skipLaunchers) {
+                   if (File.Exists(exeDir + "Hacknet"))
+                   {
+                        File.Copy(exeDir + "Hacknet", exeDir + "HacknetPathfinder", true);
 
-                    var txt = File.ReadAllText(exeDir + "Hacknet");
-                    txt = txt.Replace("Hacknet", "HacknetPathfinder");
+                        var txt = File.ReadAllText(exeDir + "Hacknet");
+                        txt = txt.Replace("Hacknet", "HacknetPathfinder");
 
-                    File.WriteAllText(exeDir + "HacknetPathfinder", txt);
-                }
+                       File.WriteAllText(exeDir + "HacknetPathfinder", txt);
+                   }
 
-                foreach (var n in new string[]{
-                        exeDir + "Hacknet.bin.x86",
-                        exeDir + "Hacknet.bin.x86_64",
-                        exeDir + "Hacknet.bin.osx"
+                   foreach (var n in new string[]{
+                       exeDir + "Hacknet.bin.x86",
+                       exeDir + "Hacknet.bin.x86_64",
+                       exeDir + "Hacknet.bin.osx"
                     })
                     if (File.Exists(n))
                         File.Copy(n, exeDir + "HacknetPathfinder.bin" + Path.GetExtension(n), true);
-
+                }
                 // Loads Hacknet.exe's assembly
                 gameAssembly = LoadAssembly(exeDir + "Hacknet.exe");
             }
