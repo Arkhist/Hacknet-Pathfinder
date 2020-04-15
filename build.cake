@@ -10,7 +10,7 @@ if(HacknetDirectoryStr == null)
 		else
 			HacknetDirectoryStr = EnvironmentVariable("ProgramFiles");
 		HacknetDirectoryStr += "\\Steam\\steamapps\\common\\Hacknet";
-	
+
 	} else {
 		HacknetDirectoryStr = "/home";
 		HacknetDirectoryStr += "/"+EnvironmentVariable("USER");
@@ -38,6 +38,17 @@ public void CheckAndDeleteDirectory(DirectoryPath path, DeleteDirectorySettings 
 	Information("Deleting directory '"+path+"'");
 	if(DirectoryExists(path))
 		DeleteDirectory(path, settings);
+}
+
+public FilePath GetPathForFileExt(FilePath path, string[] exts)
+{
+	foreach(var e in exts)
+	{
+		FilePath newPath = path.AppendExtension(e);
+		if(FileExists(newPath))
+			return newPath;
+	}
+	throw new Exception("Could not find valid file extension for "+path);
 }
 
 Task("Clean")
@@ -93,7 +104,6 @@ Task("BuildPathfinder")
 				Arguments = "+x Pathfinder.dll PathfinderPatcher.exe",
 				WorkingDirectory = "./lib"
 			});
-			
 		}
 	});
 
@@ -129,6 +139,33 @@ Task("BuildHacknet")
 				Arguments = "PathfinderPatcher.exe -exeDir \"" + HacknetDirectory + "\"",
 				WorkingDirectory = "./lib"
 			});
+	});
+
+Task("RunHacknet")
+	.IsDependentOn("BuildPathfinder")
+	.Does(() => {
+		Information("Executing PathfinderPatcher for Hacknet execution.");
+		StartProcess(IsRunningOnWindows() ? "call" : "mono",
+			new ProcessSettings{
+				Arguments = "PathfinderPatcher.exe",
+				WorkingDirectory = HacknetDirectory
+			});
+		FilePath path = null;
+		if(IsRunningOnUnix()) {
+			path = GetPathForFileExt(HacknetDirectory.GetFilePath("HacknetPathfinder.bin"), new[] { "x86", "x86_64", "osx" });
+			//if(path.GetExtension().Contains("x86"))
+			//	StartProcess("declare", new ProcessSettings{ Arguments = "TERM=xterm", WorkingDirectory=HacknetDirectory });
+		}
+		Information("Starting HacknetPathfinder.");
+		StartProcess(path == null
+			? HacknetDirectory.GetFilePath("HacknetPathfinder.exe")
+			: path);
+	});
+
+Task("BuildDocs")
+	.Does(() => {
+		Information("Building documentation.");
+		StartProcess("doxygen");
 	});
 
 RunTarget(target);
