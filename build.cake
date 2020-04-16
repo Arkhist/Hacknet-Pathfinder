@@ -157,10 +157,13 @@ Task("BuildHacknet")
 Task("RunHacknet")
 	.IsDependentOn("BuildPathfinder")
 	.Does(() => {
+		Information("Copying Pathfinder to Hacknet directory, backing up Pathfinder.dll to OldPathfinder.dll.");
+		MoveFile(HacknetDirectory.GetFilePath("Pathfinder.dll"), HacknetDirectory.GetFilePath("OldPathfinder.dll"));
+		CopyFile("./lib/Pathfinder.dll", HacknetDirectory.GetFilePath("Pathfinder.dll"));
 		Information("Executing PathfinderPatcher for Hacknet execution.");
 		StartProcess(IsRunningOnWindows() ? "call" : "mono",
 			new ProcessSettings{
-				Arguments = "PathfinderPatcher.exe",
+				Arguments = MakeAbsolute(File("./lib/PathfinderPatcher.exe")).ToString(),
 				WorkingDirectory = HacknetDirectory
 			});
 		FilePath path = null;
@@ -173,6 +176,14 @@ Task("RunHacknet")
 		StartProcess(path == null
 			? HacknetDirectory.GetFilePath("HacknetPathfinder.exe")
 			: path);
+		Information("Replacing built Pathfinder.dll with OldPathfinder.dll");
+		DeleteFile(HacknetDirectory.GetFilePath("Pathfinder.dll"));
+		MoveFile(HacknetDirectory.GetFilePath("OldPathfinder.dll"), HacknetDirectory.GetFilePath("Pathfinder.dll"));
+		StartProcess(IsRunningOnWindows() ? "call" : "mono",
+			new ProcessSettings{
+				Arguments = HacknetDirectory.GetFilePath("PathfinderPatcher.exe").ToString(),
+				WorkingDirectory = HacknetDirectory
+			});
 	});
 
 Task("BuildDocs")
