@@ -120,8 +120,9 @@ Task("BuildPathfinder")
 Task("Package")
 	.IsDependentOn("BuildPathfinder")
 	.Does(() => {
-		Information("Copying README.md to lib");
+		Information("Copying README.md and LICENSE to lib");
 		CopyFile("./README.md", "./lib/README.md");
+		CopyFile("./LICENSE", "./lib/LICENSE");
 		Information("Zipping releases/Pathfinder.Release.V_.zip");
 		Zip("./lib", "./releases/Pathfinder.Release.V_.zip", new []{
 			"./lib/PathfinderPatcher.exe",
@@ -134,10 +135,12 @@ Task("Package")
 			"./lib/Mono.Cecil.Inject.dll",
 			"./lib/Cecil_LICENSE.txt",
 			"./lib/Cecil_Inject_LICENSE.txt",
-			"./lib/README.md"
+			"./lib/README.md",
+			"./lib/LICENSE"
 		});
-		Information("Deleting lib/README.md");
+		Information("Deleting lib/README.md and lib/LICENSE");
 		DeleteFile("./lib/README.md");
+		DeleteFile("./lib/LICENSE");
 	});
 
 Task("BuildHacknet")

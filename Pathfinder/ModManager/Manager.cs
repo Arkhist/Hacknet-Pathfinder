@@ -14,9 +14,11 @@ namespace Pathfinder.ModManager
 {
     static class Manager
     {
-        public static readonly string ModFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-                                                          + Path.DirectorySeparatorChar + "Mods";
-        public static readonly string DepFolderPath = ModFolderPath + Path.DirectorySeparatorChar + "deps";
+        public static string ModFolderPath { get; internal set; }
+            = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+                + Path.DirectorySeparatorChar + "Mods";
+        public static string DepFolderPath { get; internal set; }
+            = ModFolderPath + Path.DirectorySeparatorChar + "deps";
 
         public static Dictionary<string, List<IMod>> ModIdReliance = new Dictionary<string, List<IMod>>();
         public static Dictionary<string, IMod> LoadedMods = new Dictionary<string, IMod>();

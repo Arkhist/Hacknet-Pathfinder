@@ -29,23 +29,42 @@ namespace Pathfinder
     /// Place all functions to be hooked into Hacknet here
     public static class PathfinderHooks
     {
-        
+
         [Patch("Hacknet.Program.Main", flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn)]
         public static bool onMain(string[] args)
         {
-            for (int i = 0; i < args.Length; i++)
-            {
+            CmdArguments arguments = args;
+            var log = arguments.GetAllArgumentsWithName("logIgnore");
+            foreach (var logArg in log)
                 try
                 {
-                    if (args[i] == "-logIgnore" && args.Length > i + 1)
-                        Logger.RemoveFlag((Logger.LogLevel)Enum.Parse(typeof(Logger.LogLevel), args[i + 1].ToUpper()));
-                    if (args[i] == "-log" && args.Length > i + 1)
-                        Logger.AddFlag((Logger.LogLevel)Enum.Parse(typeof(Logger.LogLevel), args[i + 1].ToUpper()));
+                    Logger.RemoveFlag((Logger.LogLevel)Enum.Parse(typeof(Logger.LogLevel), logArg.ToUpper()));
                 }
                 catch (Exception e)
                 {
-                    Logger.Error("Could not do {0}, value {1}: ", args[i], args.Length > i + 1 ? args[i + 1] : "null", e);
+                    Logger.Error("Could not do {0}, value {1}: ", "logIgnore", logArg, e);
                 }
+            log = arguments.GetAllArgumentsWithName("log");
+            foreach (var logArg in log)
+                try
+                {
+                    Logger.AddFlag((Logger.LogLevel)Enum.Parse(typeof(Logger.LogLevel), logArg.ToUpper()));
+                }
+                catch (Exception e)
+                {
+                    Logger.Error("Could not do {0}, value {1}: ", "log", logArg, e);
+                }
+            var modDirectory = arguments["modDirectory"];
+            if (modDirectory != null)
+            {
+                Logger.Info("Mod Directory redirected to {0}", modDirectory);
+                Manager.ModFolderPath = modDirectory;
+            }
+            var depDirectory = arguments["depDirectory"];
+            if (depDirectory != null)
+            {
+                Logger.Info("Mod Dependency Directory redirected to {0}", depDirectory);
+                Manager.DepFolderPath = depDirectory;
             }
             Logger.Verbose("Initializing Pathfinder");
             Pathfinder.Initialize();
