@@ -52,7 +52,7 @@ namespace Pathfinder.Util
                     key = null;
                 }
                 if (!arg.StartsWith("-", StringComparison.Ordinal)) continue;
-                var a = arg.Remove(0);
+                var a = arg.Remove(0, 1);
                 var argsSplit = a.Split(new[] { '=' }, StringSplitOptions.RemoveEmptyEntries);
                 switch(argsSplit.Length)
                 {
