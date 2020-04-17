@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Pathfinder.GUI;
-using Pathfinder.Util;
 
 namespace Pathfinder.Event
 {
-    public class CommandEvent : OSEvent
+    public class CommandEvent : OSEvent, IEnumerable<string>
     {
+        public string Input { get; }
         public List<string> Arguments { get; set; } = new List<string>();
-        public List<string> RawArguments { get; set; }
         public CommandEvent(Hacknet.OS os, string[] args) : base(os)
         {
-            RawArguments = new List<string>(args ?? Utility.Array<string>.Empty);
-            Arguments.AddRange(RawArguments);
+            Input = string.Join(" ", args);
+            Arguments.AddRange(args);
             Arguments.RemoveAll(string.IsNullOrWhiteSpace);
         }
 
@@ -19,13 +19,17 @@ namespace Pathfinder.Event
         {
             get
             {
-                if (Arguments?.Count <= index)
+                if (Arguments.Count <= index || index < 0)
                     return "";
-                return Arguments?[index];
+                return Arguments[index];
             }
         }
 
-        public int ArgCount => Arguments?.Count ?? 0;
+        public IEnumerator<string> GetEnumerator()
+            => Arguments.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
+            => GetEnumerator();
     }
 
     public class CommandSentEvent : CommandEvent

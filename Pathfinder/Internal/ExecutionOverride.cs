@@ -88,7 +88,7 @@ namespace Pathfinder.Internal
             {
                 e.IsCancelled = true;
                 int page = 0;
-                if (e.ArgCount > 1)
+                if (e.Arguments.Count > 1)
                 {
                     try
                     {
