@@ -122,4 +122,5 @@ StyleCopReport.xml
 *.ubuntu86
 
 # Cake Automation
-tools/
+tools/*
+!tools/packages.config

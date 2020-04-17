@@ -7,6 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Pathfinder</RootNamespace>
     <AssemblyName>Pathfinder</AssemblyName>
+    <ReleaseVersion>2.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -202,6 +203,7 @@
     <Compile Include="Pathfinder\ModManager\ModTaggedValue.cs" />
     <Compile Include="Pathfinder\ModManager\ModTaggedDict.cs" />
     <Compile Include="Pathfinder\Exceptions\ModConflictException.cs" />
+    <Compile Include="Pathfinder\Util\CmdArguments.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />

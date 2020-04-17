@@ -58,19 +58,8 @@ public FilePath GetPathForFileExt(FilePath path, string[] exts)
 	throw new Exception("Could not find valid file extension for "+path);
 }
 
-Task("Clean")
-	.Does(() => {
-		CheckAndDeleteFile("./lib/HacknetPathfinder.exe");
-		CheckAndDeleteFile("./lib/PathfinderPatcher.exe");
-		CheckAndDeleteFile("./lib/Pathfinder.dll");
-		CheckAndDeleteFile("./lib/PathfinderPatcher.ubuntu86");
-		CheckAndDeleteFile("./lib/PathfinderPatcher.ubuntu64");
-		CheckAndDeleteFile("./lib/PathfinderPatcher.arch64");
-		CheckAndDeleteDirectory("./bin", new DeleteDirectorySettings { Recursive = true });
-		CheckAndDeleteDirectory("./obj", new DeleteDirectorySettings { Recursive = true });
-	});
-
 Task("BuildPatcher")
+	.Description("Builds PathfinderPatcher.exe\n")
 	.Does(() => {
 		MSBuild("./PathfinderPatcher/PathfinderPatcher.csproj",
 			new MSBuildSettings {
@@ -87,6 +76,7 @@ Task("BuildPatcher")
 	});
 
 Task("PatcherSpit")
+	.Description("Executing PathfinderPatcher.exe to produce a\n\t\t\t      hookless HacknetPathfinder.exe.\n")
 	.IsDependentOn("BuildPatcher")
 	.Does(() => {
 		Information("Executing PathfinderPatcher for spit.");
@@ -98,6 +88,7 @@ Task("PatcherSpit")
 	});
 
 Task("BuildPathfinder")
+	.Description("Builds an unhooked Pathfinder.dll.\n")
 	.IsDependentOn("PatcherSpit")
 	.Does(() => {
 		CheckContainedOrCopy("./lib", HacknetDirectory.GetFilePath("FNA.dll"));
@@ -118,10 +109,12 @@ Task("BuildPathfinder")
 	});
 
 Task("Package")
+	.Description("Packages Pathfinder files in to a releases zip.\n")
 	.IsDependentOn("BuildPathfinder")
 	.Does(() => {
-		Information("Copying README.md to lib");
+		Information("Copying README.md and LICENSE to lib");
 		CopyFile("./README.md", "./lib/README.md");
+		CopyFile("./LICENSE", "./lib/LICENSE");
 		Information("Zipping releases/Pathfinder.Release.V_.zip");
 		Zip("./lib", "./releases/Pathfinder.Release.V_.zip", new []{
 			"./lib/PathfinderPatcher.exe",
@@ -134,13 +127,16 @@ Task("Package")
 			"./lib/Mono.Cecil.Inject.dll",
 			"./lib/Cecil_LICENSE.txt",
 			"./lib/Cecil_Inject_LICENSE.txt",
-			"./lib/README.md"
+			"./lib/README.md",
+			"./lib/LICENSE"
 		});
-		Information("Deleting lib/README.md");
+		Information("Deleting lib/README.md and lib/LICENSE");
 		DeleteFile("./lib/README.md");
+		DeleteFile("./lib/LICENSE");
 	});
 
 Task("BuildHacknet")
+	.Description("Finalizes Pathfinder's Patching.\n")
 	.IsDependentOn("BuildPathfinder")
 	.Does(() => {
 		Information("Executing PathfinderPatcher for final Hacknet build.");
@@ -152,12 +148,16 @@ Task("BuildHacknet")
 	});
 
 Task("RunHacknet")
+	.Description("Prepares and runs HacknetPathfinder.exe in the\n\t\t\t      Hacknet Directory.\n\t\t\t      Reverts the Hacknet Directory when complete.\n")
 	.IsDependentOn("BuildPathfinder")
 	.Does(() => {
+		Information("Copying Pathfinder to Hacknet directory, backing up Pathfinder.dll to OldPathfinder.dll.");
+		MoveFile(HacknetDirectory.GetFilePath("Pathfinder.dll"), HacknetDirectory.GetFilePath("OldPathfinder.dll"));
+		CopyFile("./lib/Pathfinder.dll", HacknetDirectory.GetFilePath("Pathfinder.dll"));
 		Information("Executing PathfinderPatcher for Hacknet execution.");
 		StartProcess(IsRunningOnWindows() ? "call" : "mono",
 			new ProcessSettings{
-				Arguments = "PathfinderPatcher.exe",
+				Arguments = MakeAbsolute(File("./lib/PathfinderPatcher.exe")).ToString(),
 				WorkingDirectory = HacknetDirectory
 			});
 		FilePath path = null;
@@ -170,12 +170,34 @@ Task("RunHacknet")
 		StartProcess(path == null
 			? HacknetDirectory.GetFilePath("HacknetPathfinder.exe")
 			: path);
+		Information("Replacing built Pathfinder.dll with OldPathfinder.dll");
+		DeleteFile(HacknetDirectory.GetFilePath("Pathfinder.dll"));
+		MoveFile(HacknetDirectory.GetFilePath("OldPathfinder.dll"), HacknetDirectory.GetFilePath("Pathfinder.dll"));
+		StartProcess(IsRunningOnWindows() ? "call" : "mono",
+			new ProcessSettings{
+				Arguments = HacknetDirectory.GetFilePath("PathfinderPatcher.exe").ToString(),
+				WorkingDirectory = HacknetDirectory
+			});
 	});
 
 Task("BuildDocs")
+	.Description("Builds Pathfinder's Documentation into docs.\n")
 	.Does(() => {
 		Information("Building documentation.");
 		StartProcess("doxygen");
+	});
+
+Task("Clean")
+	.Description("Cleans the built Pathfinder files.")
+	.Does(() => {
+		CheckAndDeleteFile("./lib/HacknetPathfinder.exe");
+		CheckAndDeleteFile("./lib/PathfinderPatcher.exe");
+		CheckAndDeleteFile("./lib/Pathfinder.dll");
+		CheckAndDeleteFile("./lib/PathfinderPatcher.ubuntu86");
+		CheckAndDeleteFile("./lib/PathfinderPatcher.ubuntu64");
+		CheckAndDeleteFile("./lib/PathfinderPatcher.arch64");
+		CheckAndDeleteDirectory("./bin", new DeleteDirectorySettings { Recursive = true });
+		CheckAndDeleteDirectory("./obj", new DeleteDirectorySettings { Recursive = true });
 	});
 
 RunTarget(target);
