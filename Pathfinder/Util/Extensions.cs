@@ -163,11 +163,17 @@ namespace Pathfinder.Util
 
         public static string RemoveAll(this string str, string toRemove) => str.Replace(toRemove, string.Empty);
 
-        public static string RemoveFirst(this string str, string toRemove) 
-            => str.RemoveExtended(str.IndexOf(toRemove, StringComparison.Ordinal), toRemove.Length);
+        public static string RemoveFirst(this string str, string toRemove)
+        {
+            var index = str.IndexOf(toRemove, StringComparison.Ordinal);
+            return str.RemoveExtended(index < 0 ? (int?)null : index, toRemove.Length);
+        }
 
         public static string RemoveLast(this string str, string toRemove)
-            => str.RemoveExtended(str.LastIndexOf(toRemove, StringComparison.Ordinal), toRemove.Length);
+        {
+            var index = str.LastIndexOf(toRemove, StringComparison.Ordinal);
+            return str.RemoveExtended(index < 0 ? (int?)null : index, toRemove.Length);
+        }
 
         public static string BlankToNull(this string str)
             => string.IsNullOrWhiteSpace(str) ? null : str;
