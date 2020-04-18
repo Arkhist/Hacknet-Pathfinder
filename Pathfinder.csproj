@@ -204,6 +204,7 @@
     <Compile Include="Pathfinder\ModManager\ModTaggedDict.cs" />
     <Compile Include="Pathfinder\Exceptions\ModConflictException.cs" />
     <Compile Include="Pathfinder\Util\CmdArguments.cs" />
+    <Compile Include="Pathfinder\Event\TerminalEvents.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />

@@ -792,5 +792,52 @@ namespace Pathfinder
         {
             Console.WriteLine("[HACKNET ERROR] " + text);
         }
+
+        [Patch("Hacknet.Terminal.write", flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassParametersRef)]
+        public static bool onTerminalWriteSingle(Terminal self, ref string input)
+        {
+            calledFromSingle = true;
+            var terminalWriteEvent = new Event.TerminalWriteEvent(self, input);
+            terminalWriteEvent.CallEvent();
+            if (terminalWriteEvent.IsCancelled)
+            {
+                calledFromSingle = false;
+                return true;
+            }
+            input = terminalWriteEvent.Text;
+            var terminalWriteSingleEvent = new Event.TerminalWriteSingleEvent(self, input);
+            terminalWriteSingleEvent.CallEvent();
+            if (terminalWriteSingleEvent.IsCancelled)
+                return true;
+            input = terminalWriteSingleEvent.Text;
+            return false;
+        }
+
+        private static bool calledFromSingle = false;
+        [Patch("Hacknet.Terminal.writeLine", flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassParametersRef)]
+        public static bool onTerminalWriteLine(Terminal self, ref string input)
+        {
+            if(!calledFromSingle)
+            {
+                var terminalWriteEvent = new Event.TerminalWriteEvent(self, input);
+                terminalWriteEvent.CallEvent();
+                if (terminalWriteEvent.IsCancelled)
+                    return true;
+                input = terminalWriteEvent.Text;
+            }
+            var terminalWriteLineEvent = new Event.TerminalWriteLineEvent(self, input);
+            terminalWriteLineEvent.CallEvent();
+            if (terminalWriteLineEvent.IsCancelled)
+                return true;
+            input = terminalWriteLineEvent.Text;
+            return false;
+        }
+
+        // Prevents double calling of TerminalWriteEvent
+        [Patch("Hacknet.Terminal.write", -1)]
+        public static void onTerminalWriteSingleEnd()
+        {
+            calledFromSingle = false;
+        }
     }
 }
