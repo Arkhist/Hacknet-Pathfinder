@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Hacknet;
 using Microsoft.Xna.Framework;
@@ -6,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Pathfinder.Executable
 {
-    public class Instance : ExeModule
+    public class Instance : ExeModule, MainDisplayOverrideEXE
     {
         private Dictionary<string, object> keyToObject = new Dictionary<string, object>();
 
@@ -23,6 +22,7 @@ namespace Pathfinder.Executable
             IdentifierName = Interface.Identifier;
             needsProxyAccess = Interface.NeedsProxyAccess;
             ramCost = Interface.RamCost;
+            isInterfaceDisplayOverride = Interface is IMainDisplayOverride;
             Interface.OnConstruction(this);
         }
 
@@ -32,8 +32,6 @@ namespace Pathfinder.Executable
                                               List<string> args,
                                               Rectangle loc)
         {
-            if (exeInterface is IMainDisplayOverride)
-                return new InstanceOverrideDisplay(loc, os, args, executionFile, exeInterface);
             return new Instance(loc, os, args, executionFile, exeInterface);
         }
 
@@ -43,23 +41,26 @@ namespace Pathfinder.Executable
                                               List<string> args) =>
             CreateInstance(exeInterface, executionFile, os, args, Rectangle.Empty);
 
+        private readonly bool isInterfaceDisplayOverride;
+        private bool isOverrideable = true;
+        public bool DisplayOverrideIsActive
+        {
+            get => isInterfaceDisplayOverride && isOverrideable && ((IMainDisplayOverride)Interface).IsOverrideActive(this);
+            set => isOverrideable = value;
+        }
+
         public object this[string key]
         {
             get
             {
-                object o;
-                if (keyToObject.TryGetValue(key, out o))
+                if (keyToObject.TryGetValue(key, out object o))
                     return o;
                 return null;
             }
-            set
-            {
-                keyToObject[key] = value;
-            }
+            set => keyToObject[key] = value;
         }
 
-        public object GetInstanceData(string key) => this[key];
-        public T GetInstanceData<T>(string key) => (T)GetInstanceData(key);
+        public T GetInstanceData<T>(string key) => (T)this[key];
 
         public bool SetInstanceData(string key, object val)
         {
@@ -123,35 +124,7 @@ namespace Pathfinder.Executable
             Interface.PostDraw(this);
         }
 
-        public class InstanceOverrideDisplay : Instance, MainDisplayOverrideEXE
-        {
-            private bool isOverrideable = true;
-
-            public bool DisplayOverrideIsActive
-            {
-                get
-                {
-                    return isOverrideable && (Interface as IMainDisplayOverride).IsOverrideActive(this);
-                }
-                set
-                {
-                    isOverrideable = value;
-                }
-            }
-
-            public InstanceOverrideDisplay(Rectangle loc,
-                                           OS os,
-                                           List<string> arguments,
-                                           FileEntry executionFile,
-                                           Interface exeInterface)
-                : base(loc, os, arguments, executionFile, exeInterface)
-            {
-                if (!(exeInterface is IMainDisplayOverride))
-                    throw new ArgumentException("exeInterface must be derived from IMainDisplayOverride");
-            }
-
-            public void RenderMainDisplay(Rectangle dest, SpriteBatch sb) =>
-                (Interface as IMainDisplayOverride).DrawMain(this, dest, sb);
-        }
+        public void RenderMainDisplay(Rectangle dest, SpriteBatch sb) =>
+            ((IMainDisplayOverride)Interface).DrawMain(this, dest, sb);
     }
 }

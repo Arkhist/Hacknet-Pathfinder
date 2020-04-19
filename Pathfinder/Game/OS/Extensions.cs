@@ -119,22 +119,22 @@ namespace Pathfinder.Game.OS
         public static Hacknet.Computer GetCurrentComputer(this Hacknet.OS os) => Utility.GetCurrentComputer(os);
 
         /// <summary>
-        /// Writes the formatted string to OS terminal.
+        /// Writes the formatted string as a line to OS terminal.
         /// </summary>
         /// <param name="os">The OS.</param>
         /// <param name="write">The formatted string to write.</param>
-        public static Hacknet.OS Write(this Hacknet.OS os, string write, params object[] args)
+        public static Hacknet.OS WriteLine(this Hacknet.OS os, string write, params object[] args)
         {
             os.write(args == null || args.Length < 1 ? write : string.Format(write, args));
             return os;
         }
 
         /// <summary>
-        /// Writes the formatted string directly to OS terminal. Less safe then <see cref="Write"/>
+        /// Appends the formatted string to OS terminal. Less safe then <see cref="WriteLine"/>
         /// </summary>
         /// <param name="os">The OS.</param>
         /// <param name="write">The formatted string to write.</param>
-        public static Hacknet.OS WriteSingle(this Hacknet.OS os, string write, params object[] args)
+        public static Hacknet.OS WriteAppend(this Hacknet.OS os, string write, params object[] args)
         {
             os.writeSingle(args == null || args.Length < 1 ? write : string.Format(write, args));
             return os;
