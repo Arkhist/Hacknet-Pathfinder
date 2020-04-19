@@ -794,7 +794,7 @@ namespace Pathfinder
         }
 
         [Patch("Hacknet.Terminal.write", flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassParametersRef)]
-        public static bool onTerminalWriteSingle(Terminal self, ref string input)
+        public static bool onTerminalWriteAppend(Terminal self, ref string input)
         {
             calledFromSingle = true;
             var terminalWriteEvent = new Event.TerminalWriteEvent(self, input);
@@ -805,11 +805,11 @@ namespace Pathfinder
                 return true;
             }
             input = terminalWriteEvent.Text;
-            var terminalWriteSingleEvent = new Event.TerminalWriteSingleEvent(self, input);
-            terminalWriteSingleEvent.CallEvent();
-            if (terminalWriteSingleEvent.IsCancelled)
+            var terminalWriteAppendEvent = new Event.TerminalWriteAppendEvent(self, input);
+            terminalWriteAppendEvent.CallEvent();
+            if (terminalWriteAppendEvent.IsCancelled)
                 return true;
-            input = terminalWriteSingleEvent.Text;
+            input = terminalWriteAppendEvent.Text;
             return false;
         }
 
@@ -835,7 +835,7 @@ namespace Pathfinder
 
         // Prevents double calling of TerminalWriteEvent
         [Patch("Hacknet.Terminal.write", -1)]
-        public static void onTerminalWriteSingleEnd()
+        public static void onTerminalWriteAppendEnd()
         {
             calledFromSingle = false;
         }

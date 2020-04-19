@@ -21,21 +21,17 @@ namespace Pathfinder.Event
         }
     }
 
-    public class TerminalWriteSingleEvent : TerminalEvent
+    public class TerminalWriteAppendEvent : TerminalWriteEvent
     {
-        public string Text { get; set; }
-        public TerminalWriteSingleEvent(Terminal terminal, string text) : base(terminal)
+        public TerminalWriteAppendEvent(Terminal terminal, string text) : base(terminal, text)
         {
-            Text = text;
         }
     }
 
-    public class TerminalWriteLineEvent : TerminalEvent
+    public class TerminalWriteLineEvent : TerminalWriteEvent
     {
-        public string Text { get; set; }
-        public TerminalWriteLineEvent(Terminal terminal, string text) : base(terminal)
+        public TerminalWriteLineEvent(Terminal terminal, string text) : base(terminal, text)
         {
-            Text = text;
         }
     }
 }
