@@ -715,7 +715,8 @@ namespace Pathfinder
             flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn)]
         public static bool onLoadRunnableActionsIntoOS(string filepath, object OSobj)
         {
-            var evt = new Event.ActionsLoadIntoOSEvent(filepath, (OS) OSobj);
+            var truePath = LocalizedFileLoader.GetLocalizedFilepath(Utils.GetFileLoadPrefix() + filepath);
+            var evt = new Event.ActionsLoadIntoOSEvent(truePath, (OS) OSobj);
             var except = evt.CallEvent();
             if(except.Count > 0)
                 throw new EventException("Failed to load conditional actions", except);
