@@ -10,45 +10,53 @@ using Pathfinder.Util;
 
 namespace Pathfinder.Event
 {
+    public struct ListenerOptions
+    {
+        public string DebugName { get; internal set; }
+        public int? PriorityStore { get; internal set; }
+        public int Priority => PriorityStore.GetValueOrDefault(0);
+        public bool ContinueOnCancel { get; set; }
+        public bool ContinueOnThrow { get; set; }
+    }
+
+    public class ListenerObject : IEquatable<ListenerObject>
+    {
+        public InternalUtility.MethodInvoker Func { get; private set; }
+        public MethodInfo Info { get; private set; }
+        public string ModId { get; }
+        public ListenerOptions Options;
+
+        public ListenerObject(MethodInfo info, ListenerOptions options, string modId = null)
+        {
+            Info = info;
+            Func = Info.GetMethodInvoker();
+
+            var attrib = info.GetFirstAttribute<EventAttribute>();
+            if (string.IsNullOrEmpty(modId))
+                ModId = Utility.ActiveModId;
+            else ModId = modId;
+
+            if (string.IsNullOrWhiteSpace(options.DebugName))
+                options.DebugName = "[" + Path.GetFileName(info.Module.Assembly.Location + "] "
+                                      + info.DeclaringType.FullName + "." + info.Name);
+
+            options.PriorityStore = options.PriorityStore ?? attrib?.Priority ?? 0;
+            options.ContinueOnCancel = options.ContinueOnCancel || (attrib?.ContinueOnCancel ?? false);
+            options.ContinueOnThrow = options.ContinueOnThrow || (attrib?.ContinueOnThrow ?? false);
+
+            Options = options;
+        }
+
+        public bool Equals(ListenerObject other)
+            => other != null
+                && other.ModId == ModId
+                && other.Info == Info
+                && other.Options.DebugName == Options.DebugName
+                && other.Options.PriorityStore == Options.PriorityStore;
+    }
+
     public static class EventManager
     {
-        public struct ListenerOptions
-        {
-            public string DebugName { get; internal set; }
-            public int? PriorityStore { get; internal set; }
-            public int Priority => PriorityStore.GetValueOrDefault(0);
-            public bool ContinueOnCancel { get; set; }
-            public bool ContinueOnThrow { get; set; }
-        }
-
-        public class ListenerObject
-        {
-            public InternalUtility.MethodInvoker Func { get; private set; }
-            public MethodInfo Info { get; private set; }
-            public string ModId { get; }
-            public ListenerOptions Options;
-
-            public ListenerObject(MethodInfo info, ListenerOptions options, int? priority = null, string modId = null)
-            {
-                Info = info;
-                Func = Info.GetMethodInvoker();
-
-                var attrib = info.GetFirstAttribute<EventAttribute>();
-
-                if (string.IsNullOrEmpty(modId))
-                    ModId = Utility.ActiveModId;
-                else ModId = modId;
-
-                if (string.IsNullOrEmpty(options.DebugName))
-                    options.DebugName = "[" + Path.GetFileName(info.Module.Assembly.Location + "] "
-                                          + info.DeclaringType.FullName + "." + info.Name);
-
-                options.PriorityStore = options.PriorityStore ?? attrib?.Priority ?? 0;
-                options.ContinueOnCancel = options.ContinueOnCancel || (attrib?.ContinueOnCancel ?? false);
-                options.ContinueOnThrow = options.ContinueOnThrow || (attrib?.ContinueOnThrow ?? false);
-            }
-        }
-
         internal static Dictionary<Type, List<ListenerObject>> eventListeners = new Dictionary<Type, List<ListenerObject>>();
 
         private static void RegisterExpressionListener(Type pathfinderEventType, ListenerObject listenerObj)

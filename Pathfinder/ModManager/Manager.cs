@@ -4,11 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Pathfinder.Attribute;
+using Pathfinder.Command;
 using Pathfinder.Event;
 using Pathfinder.Util;
 using Pathfinder.Util.Attribute;
-using static Pathfinder.Command.Handler;
-using static Pathfinder.Event.EventManager;
 
 namespace Pathfinder.ModManager
 {
@@ -84,7 +83,7 @@ namespace Pathfinder.ModManager
                         foreach (var i in infos)
                         {
                             var attrib = i.GetFirstAttribute<CommandAttribute>();
-                            RegisterCommand(attrib.Key ?? i.Name.RemoveLast("Command"), i.CreateDelegate<CommandFunc>(), attrib.Description, attrib.Autocomplete);
+                            Command.Handler.RegisterCommand(attrib.Key ?? i.Name.RemoveLast("Command"), i.CreateDelegate<CommandFunc>(), attrib.Description, attrib.Autocomplete);
                         }
 
                     mod.Value.LoadContent();
@@ -181,9 +180,9 @@ namespace Pathfinder.ModManager
                     Port.Handler.UnregisterPort(p);
 
                 var events = new List<ListenerObject>();
-                foreach (var v in eventListeners.Values)
+                foreach (var v in EventManager.eventListeners.Values)
                     events.AddRange(v.FindAll(t => t.ModId == name));
-                foreach (var list in eventListeners.ToArray())
+                foreach (var list in EventManager.eventListeners.ToArray())
                     foreach (var e in events)
                         list.Value.Remove(e);
 
@@ -235,12 +234,12 @@ namespace Pathfinder.ModManager
                 Logger.Info("Loading mod '{0}'", name);
                 using (var _ = new CurrentModOverride(mod))
                 {
-                    if (ModAttributeHandler.ModToEventMethods.TryGetValue(CurrentMod.GetType(), out List<MethodInfo> infos))
+                    if (ModAttributeHandler.ModToEventMethods.TryGetValue(CurrentMod.GetType(), out var infos))
                         foreach (var i in infos)
                         {
                             var eventAttrib = i.GetFirstAttribute<EventAttribute>();
                             var paramType = i.GetParameters()[0].ParameterType;
-                            RegisterListener(paramType, i.CreateDelegate<Action<PathfinderEvent>>(typeof(Action<>).MakeGenericType(paramType)), eventAttrib.Options);
+                            EventManager.RegisterListener(paramType, i.CreateDelegate<Action<PathfinderEvent>>(typeof(Action<>).MakeGenericType(paramType)), eventAttrib.Options);
                         }
                     mod.Load();
                     UnloadedModIds.Remove(name);

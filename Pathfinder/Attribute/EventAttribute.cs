@@ -1,5 +1,5 @@
 ﻿using System;
-using static Pathfinder.Event.EventManager;
+using Pathfinder.Event;
 
 namespace Pathfinder.Attribute
 {

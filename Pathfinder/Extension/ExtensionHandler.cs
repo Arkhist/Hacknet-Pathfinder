@@ -113,7 +113,7 @@ namespace Pathfinder.Extension
             {
                 if(!tuple.Item1.commands.ContainsKey(c))
                         tuple.Item1.commands.Add(c,
-                                                 new Tuple<Command.Handler.CommandFunc, string, bool>(
+                                                 new Tuple<Command.CommandFunc, string, bool>(
                                                      Command.Handler.ModCommands[c],
                                                      Command.Help.help.ContainsKey(c) ? Command.Help.help[c] : null,
                                                      ProgramList.programs.Contains(c)));

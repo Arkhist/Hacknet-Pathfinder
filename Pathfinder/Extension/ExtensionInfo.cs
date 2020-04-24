@@ -8,8 +8,8 @@ namespace Pathfinder.Extension
 {
     public abstract class Info
     {
-        internal Dictionary<string, Tuple<Command.Handler.CommandFunc, string, bool>> commands =
-            new Dictionary<string, Tuple<Command.Handler.CommandFunc, string, bool>>();
+        internal Dictionary<string, Tuple<Command.CommandFunc, string, bool>> commands =
+            new Dictionary<string, Tuple<Command.CommandFunc, string, bool>>();
         internal Dictionary<string, Daemon.Interface> daemons = new Dictionary<string, Daemon.Interface>();
         internal Dictionary<string, Executable.Interface> executables = new Dictionary<string, Executable.Interface>();
         internal Dictionary<string, Port.Type> ports = new Dictionary<string, Port.Type>();

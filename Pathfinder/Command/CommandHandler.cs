@@ -5,10 +5,10 @@ using Pathfinder.Util;
 
 namespace Pathfinder.Command
 {
+    public delegate bool CommandFunc(OS os, List<string> args);
+
     public static class Handler
     {
-        public delegate bool CommandFunc(OS os, List<string> args);
-
         internal static Dictionary<string, CommandFunc> ModCommands = new Dictionary<string, CommandFunc>();
         internal static Dictionary<string, List<string>> ModIdToCommandKeyList = new Dictionary<string, List<string>>();
 
