@@ -104,7 +104,7 @@ namespace Pathfinder
             var exceptions = commandSentEvent.CallEvent();
             if(exceptions.Count > 0)
                 foreach (var pair in exceptions)
-                    os.Write("Command Listener Method '{0}' failed with: {1}", pair.Key, pair.Value);
+                    os.WriteLine("Command Listener Method '{0}' failed with: {1}", pair.Key, pair.Value);
             disconnects = commandSentEvent.Disconnects;
             returnFlag = disconnects;
             if (commandSentEvent.IsCancelled)
@@ -136,7 +136,7 @@ namespace Pathfinder
             var exceptions = commandFinishedEvent.CallEvent();
             if (exceptions.Count > 0)
                 foreach (var pair in exceptions)
-                    commandSentEvent.OS.Write("Command End Listener Method '{0}' failed with: {1}", pair.Key, pair.Value);
+                    commandSentEvent.OS.WriteLine("Command End Listener Method '{0}' failed with: {1}", pair.Key, pair.Value);
             disconnects = commandSentEvent.Disconnects;
             returnFlag = disconnects;
         }
@@ -271,13 +271,6 @@ namespace Pathfinder
             return false;
         }
 
-        [Patch("Hacknet.OS.LoadContent", flags: InjectFlags.PassInvokingInstance)]
-        public static void onPostLoadSession(OS self)
-        {
-            var postLoadSessionEvent = new Event.OSPostLoadContentEvent(self);
-            postLoadSessionEvent.CallEvent();
-        }
-
         [Patch("Hacknet.OS.UnloadContent", flags: InjectFlags.PassInvokingInstance)]
         public static void onUnloadSession(OS self)
         {
@@ -379,7 +372,7 @@ namespace Pathfinder
             var exceptions = executableExecuteEvent.CallEvent();
             if (exceptions.Count > 0)
                 foreach (var pair in exceptions)
-                    os.Write("Executable Listener Method '{0}' failed with: {1}", pair.Key, pair.Value);
+                    os.WriteLine("Executable Listener Method '{0}' failed with: {1}", pair.Key, pair.Value);
             result = (int)executableExecuteEvent.Result;
             if (executableExecuteEvent.IsCancelled || result != -1)
                 return true;
@@ -404,7 +397,7 @@ namespace Pathfinder
             var exceptions = portExecutableExecuteEvent.CallEvent();
             if (exceptions.Count > 0)
                 foreach (var pair in exceptions)
-                    self.Write("PortHack Listener Method '{0}' failed with: {1}", pair.Key, pair.Value);
+                    self.WriteLine("PortHack Listener Method '{0}' failed with: {1}", pair.Key, pair.Value);
             name = portExecutableExecuteEvent.ExecutableName;
             data = portExecutableExecuteEvent.ExecutableData;
             if (portExecutableExecuteEvent.IsCancelled)

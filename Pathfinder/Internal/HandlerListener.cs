@@ -27,7 +27,7 @@ namespace Pathfinder.Internal
                 }
                 catch (Exception ex)
                 {
-                    e.OS.Write("Command {0} threw Exception:\n    {1}('{2}')", e.Arguments[0], ex.GetType().FullName, ex.Message);
+                    e.OS.WriteLine("Command {0} threw Exception:\n    {1}('{2}')", e.Arguments[0], ex.GetType().FullName, ex.Message);
                     throw;
                 }
             }

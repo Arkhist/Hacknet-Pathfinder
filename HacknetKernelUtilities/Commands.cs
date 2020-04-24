@@ -154,28 +154,28 @@ namespace KernelUtilities
                     if (i == 0) i++;
                     if (args[i] == "0")
                     {
-                        os.Write("T");
+                        os.WriteLine("T");
                         continue;
                     }
                     var val = Utility.GetSignal(args[i], isNullable: true);
-                    if (val == null) os.Write("{0}: invalid signal specification", args[i]);
-                    else os.Write(char.IsDigit(args[i][0]) ? ((int)val).ToString() : val.ToString());
+                    if (val == null) os.WriteLine("{0}: invalid signal specification", args[i]);
+                    else os.WriteLine(char.IsDigit(args[i][0]) ? ((int)val).ToString() : val.ToString());
                 }
                 else if (i == 0 && args[0].In("-s", "-n") || (args[0][0] == '-' && args[0][1] != '-'))
                 {
                     Utility.Signal? signal = null;
                     if (args[0].StartsWith("-")) signal = Utility.GetSignal(args[0].Substring(1), true, true);
                     else if (args.Count > 2) signal = Utility.GetSignal(args[1], true, true);
-                    else if (args.Count <= 2) os.Write(Help.ActiveHelp); // usage print
+                    else if (args.Count <= 2) os.WriteLine(Help.ActiveHelp); // usage print
                     else
                     {
-                        os.Write("{0}: option requires an argument", args[0]);
+                        os.WriteLine("{0}: option requires an argument", args[0]);
                         return false;
                     }
 
                     if (signal == null)
                     {
-                        os.Write("{0}: invalid signal specification", args[1]);
+                        os.WriteLine("{0}: invalid signal specification", args[1]);
                         return false;
                     }
                     Utility.CurrentSignal = signal.Value;
@@ -197,7 +197,7 @@ namespace KernelUtilities
                         var number = Convert.ToInt32(args[i]);
                         var exe = os.exes.First(e => e.PID == number);
                         if (exe == null)
-                            os.Write("({0}) - No such process", number);
+                            os.WriteLine("({0}) - No such process", number);
                         else if (Utility.CurrentSignal != 0)
                             exe.Kill(true);
                     }
@@ -233,7 +233,7 @@ namespace KernelUtilities
 
         public static bool MakeDirectory(OS os, List<string> args)
         {
-            if (args.Count < 2) os.Write(Help.ActiveHelp); // print usage
+            if (args.Count < 2) os.WriteLine(Help.ActiveHelp); // print usage
             else
             {
                 var createParents = false;
@@ -252,15 +252,15 @@ namespace KernelUtilities
                             verbose = true;
                             continue;
                         case "--help":
-                            os.Write(Help.ActiveHelp);
+                            os.WriteLine(Help.ActiveHelp);
                             return false;
                         case "--version":
-                            os.Write("mkdir (HacknetKernelUtilities) 0.1 (GNU emulated command)");
+                            os.WriteLine("mkdir (HacknetKernelUtilities) 0.1 (GNU emulated command)");
                             return false;
                         default:
                             if (arg.StartsWith("-"))
                             {
-                                os.Write("invalid option -- '{0}'\nTry 'mkdir --help' for more information.", arg.Substring(1));
+                                os.WriteLine("invalid option -- '{0}'\nTry 'mkdir --help' for more information.", arg.Substring(1));
                                 return false;
                             }
                             goto breakLoop;
@@ -294,7 +294,7 @@ namespace KernelUtilities
                     if (store.Length <= directory.Path.Length)
                     {
                         if (!createParents)
-                            os.Write("cannot create directory ‘{0}’: File exists", store);
+                            os.WriteLine("cannot create directory ‘{0}’: File exists", store);
                         continue;
                     }
                     var dirPath = store.Substring(directory.Path.Length + 1);
@@ -307,19 +307,19 @@ namespace KernelUtilities
                             foreach (var p in paths)
                             {
                                 dir = dir.CreateDirectory(p);
-                                if (verbose) os.Write("created directory '{0}'", dir.Path);
+                                if (verbose) os.WriteLine("created directory '{0}'", dir.Path);
                             }
                         }
                         else
                         {
-                            os.Write("cannot create directory ‘{0}’: No such file or directory", store);
+                            os.WriteLine("cannot create directory ‘{0}’: No such file or directory", store);
                             continue;
                         }
                     }
                     else
                     {
                         directory = directory.CreateDirectory(paths[0]);
-                        if (verbose) os.Write("created directory '{0}'", directory.Path);
+                        if (verbose) os.WriteLine("created directory '{0}'", directory.Path);
                     }
                     store = "";
                 }
@@ -329,7 +329,7 @@ namespace KernelUtilities
 
         public static bool RemoveDirectory(OS os, List<string> args)
         {
-            if (args.Count < 2) os.Write(Help.ActiveHelp); // print usage
+            if (args.Count < 2) os.WriteLine(Help.ActiveHelp); // print usage
             else
             {
                 var deleteParents = false;
@@ -349,15 +349,15 @@ namespace KernelUtilities
                             verbose = true;
                             continue;
                         case "--help":
-                            os.Write(Help.ActiveHelp);
+                            os.WriteLine(Help.ActiveHelp);
                             return false;
                         case "--version":
-                            os.Write("rmdir (HacknetKernelUtilities) 0.1 (GNU emulated command)");
+                            os.WriteLine("rmdir (HacknetKernelUtilities) 0.1 (GNU emulated command)");
                             return false;
                         default:
                             if (arg.StartsWith("-"))
                             {
-                                os.Write("invalid option -- '{0}'\nTry 'rmdir --help' for more information.", arg.Substring(1));
+                                os.WriteLine("invalid option -- '{0}'\nTry 'rmdir --help' for more information.", arg.Substring(1));
                                 return false;
                             }
                             goto breakLoop;
@@ -390,7 +390,7 @@ namespace KernelUtilities
                     var directory = os.GetCurrentDirectory().SearchForDirectory(store = store == string.Empty ? args[index] : store);
                     if (store.Length != directory.Path.Length)
                     {
-                        os.Write("failed to remove '{0}': No such file or directory", store);
+                        os.WriteLine("failed to remove '{0}': No such file or directory", store);
                         continue;
                     }
                     var parent = directory.ParentDirectory;
@@ -400,15 +400,15 @@ namespace KernelUtilities
                         for (int i = storeSplit.Length - 1; i >= 0; i--)
                         {
                             store = store.Remove(store.LastIndexOf(FilePath.SEPERATOR));
-                            if (verbose) os.Write("removing directory, '{0}'", store);
+                            if (verbose) os.WriteLine("removing directory, '{0}'", store);
                             if (directory.HasContents)
                             {
                                 if (ignoreFilled) break;
-                                os.Write("failed to remove '{0}': Directory not empty", store);
+                                os.WriteLine("failed to remove '{0}': Directory not empty", store);
                             }
                             if (directory.Name == FilePath.SEPERATOR)
                             {
-                                os.Write("failed to remove directory '{0}': Device or resource busy", FilePath.SEPERATOR);
+                                os.WriteLine("failed to remove directory '{0}': Device or resource busy", FilePath.SEPERATOR);
                                 break;
                             }
                             parent.RemoveDirectory(directory);
@@ -417,15 +417,15 @@ namespace KernelUtilities
                         }
                         continue;
                     }
-                    if (verbose) os.Write("remove directory, '{0}'", store);
+                    if (verbose) os.WriteLine("remove directory, '{0}'", store);
                     if (directory.HasContents)
                     {
                         if (ignoreFilled) continue;
-                        os.Write("failed to remove '{0}': Directory not empty", store);
+                        os.WriteLine("failed to remove '{0}': Directory not empty", store);
                     }
                     if (directory.Name == FilePath.SEPERATOR)
                     {
-                        os.Write("failed to remove directory '{0}': Device or resource busy", FilePath.SEPERATOR);
+                        os.WriteLine("failed to remove directory '{0}': Device or resource busy", FilePath.SEPERATOR);
                         continue;
                     }
                     parent.RemoveDirectory(directory);
@@ -460,7 +460,7 @@ namespace KernelUtilities
 
         public static bool TouchFile(OS os, List<string> args)
         {
-            if (args.Count < 2) os.Write(Help.ActiveHelp); // print usage
+            if (args.Count < 2) os.WriteLine(Help.ActiveHelp); // print usage
             else
             {
                 var date = default(DateTime?);
@@ -524,15 +524,15 @@ namespace KernelUtilities
                             }
                             continue;
                         case "--help":
-                            os.Write(Help.ActiveHelp);
+                            os.WriteLine(Help.ActiveHelp);
                             return false;
                         case "--version":
-                            os.Write("rmdir (HacknetKernelUtilities) 0.1 (GNU emulated command)");
+                            os.WriteLine("rmdir (HacknetKernelUtilities) 0.1 (GNU emulated command)");
                             return false;
                         default:
                             if (arg.StartsWith("-"))
                             {
-                                os.Write("invalid option -- '{0}'\nTry 'rmdir --help' for more information.", arg.Substring(1));
+                                os.WriteLine("invalid option -- '{0}'\nTry 'rmdir --help' for more information.", arg.Substring(1));
                                 return false;
                             }
                             goto breakLoop;

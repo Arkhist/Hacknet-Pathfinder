@@ -1775,16 +1775,16 @@
             Retrieves the active network Computer according to the OS
             </summary>
         </member>
-        <member name="M:Pathfinder.Game.OS.Extensions.Write(Hacknet.OS,System.String,System.Object[])">
+        <member name="M:Pathfinder.Game.OS.Extensions.WriteLine(Hacknet.OS,System.String,System.Object[])">
             <summary>
-            Writes the formatted string to OS terminal.
+            Writes the formatted string as a line to OS terminal.
             </summary>
             <param name="os">The OS.</param>
             <param name="write">The formatted string to write.</param>
         </member>
-        <member name="M:Pathfinder.Game.OS.Extensions.WriteSingle(Hacknet.OS,System.String,System.Object[])">
+        <member name="M:Pathfinder.Game.OS.Extensions.WriteAppend(Hacknet.OS,System.String,System.Object[])">
             <summary>
-            Writes the formatted string directly to OS terminal. Less safe then <see cref="M:Pathfinder.Game.OS.Extensions.Write(Hacknet.OS,System.String,System.Object[])"/>
+            Appends the formatted string to OS terminal. Less safe then <see cref="M:Pathfinder.Game.OS.Extensions.WriteLine(Hacknet.OS,System.String,System.Object[])"/>
             </summary>
             <param name="os">The OS.</param>
             <param name="write">The formatted string to write.</param>

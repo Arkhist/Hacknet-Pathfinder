@@ -90,15 +90,15 @@ namespace Pathfinder.Game.OS
             {
                 mod = os.exes.Find((obj) => obj.PID == i);
                 if (mod == null && shouldWrite)
-                    os.Write(Locale.Get("Invalid PID"));
+                    os.WriteLine(Locale.Get("Invalid PID"));
             }
             else if (searchName && !string.IsNullOrWhiteSpace(input))
             {
                 mod = os.exes.Find((obj) => obj.IdentifierName == input);
                 if (mod == null && shouldWrite)
-                    os.Write(Locale.Get("Invalid Identifier Name"));
+                    os.WriteLine(Locale.Get("Invalid Identifier Name"));
             }
-            else if(shouldWrite) os.Write(Locale.Get("Error: Invalid PID or Input Format"));
+            else if(shouldWrite) os.WriteLine(Locale.Get("Error: Invalid PID or Input Format"));
             return mod?.Kill(shouldWrite) ?? false;
         }
 

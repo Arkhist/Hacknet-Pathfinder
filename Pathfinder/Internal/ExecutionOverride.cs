@@ -39,11 +39,11 @@ namespace Pathfinder.Internal
                 if (canRun)
                     os.addExe(new PortHackExe(e.Destination, os));
                 else if (firewallActive)
-                    os.Write("{0} -\n{1}",
+                    os.WriteLine("{0} -\n{1}",
                               LocaleTerms.Loc("Target Machine Rejecting Syndicated UDP Traffic"),
                               LocaleTerms.Loc("Bypass Firewall to allow unrestricted traffic"));
                 else
-                    os.Write("{0} - \n{1}\n",
+                    os.WriteLine("{0} - \n{1}\n",
                               LocaleTerms.Loc("Too Few Open Ports to Run"),
                               LocaleTerms.Loc("Open Additional Ports on Target Machine"));
             }
@@ -58,31 +58,31 @@ namespace Pathfinder.Internal
                 var os = e.OS;
                 int i;
                 var c = os.GetCurrentComputer();
-                os.Write("Probing {0}...\n", c.ip);
+                os.WriteLine("Probing {0}...\n", c.ip);
                 for (i = 0; i < 10; i++)
                 {
                     Thread.Sleep(80);
-                    os.WriteSingle(".");
+                    os.WriteAppend(".");
                 }
-                os.Write("\nProbe Complete - Open ports:\n").Write("---------------------------------");
+                os.WriteLine("\nProbe Complete - Open ports:\n").WriteLine("---------------------------------");
                 if (Port.Instance.compToInst.ContainsKey(c)) foreach (var ins in Port.Instance.compToInst[c])
                     {
-                        os.Write("Port#: {0} - {1}{2}", ins.Port.PortDisplay, ins.Port.PortName, (ins.Unlocked ? "OPEN" : ""));
+                        os.WriteLine("Port#: {0} - {1}{2}", ins.Port.PortDisplay, ins.Port.PortName, (ins.Unlocked ? "OPEN" : ""));
                         Thread.Sleep(120);
                     }
                 for (i = 0; i < c.ports.Count; i++)
                 {
-                    os.Write("Port#: {0} - {1}{2}", c.GetDisplayPortNumberFromCodePort(c.ports[i]),
+                    os.WriteLine("Port#: {0} - {1}{2}", c.GetDisplayPortNumberFromCodePort(c.ports[i]),
                               PortExploits.services[c.ports[i]],
                               (c.portsOpen[i] > 0 ? " : OPEN" : ""));
                     Thread.Sleep(120);
                 }
-                os.Write("---------------------------------")
-                  .Write("Open Ports Required for Crack : {0}", Math.Max(c.portsNeededForCrack + 1, 0));
+                os.WriteLine("---------------------------------")
+                  .WriteLine("Open Ports Required for Crack : {0}", Math.Max(c.portsNeededForCrack + 1, 0));
                 if (c.hasProxy)
-                    os.Write("Proxy Detected : {0}", (c.proxyActive ? "ACTIVE" : "INACTIVE"));
+                    os.WriteLine("Proxy Detected : {0}", (c.proxyActive ? "ACTIVE" : "INACTIVE"));
                 if (c.firewall != null)
-                    os.Write("Firewall Detected : {0}", (c.firewall.solved ? "SOLVED" : "ACTIVE"));
+                    os.WriteLine("Firewall Detected : {0}", (c.firewall.solved ? "SOLVED" : "ACTIVE"));
             }
             if (e[0].ToLower() == "help" || e[0].ToLower() == "man" || e[0] == "?")
             {
@@ -95,20 +95,20 @@ namespace Pathfinder.Internal
                         page = Convert.ToInt32(e[1]);
                         if (page > Command.Help.PageCount)
                         {
-                            e.OS.Write("Invalid Page Number - Displaying First Page");
+                            e.OS.WriteLine("Invalid Page Number - Displaying First Page");
                             page = 0;
                         }
                     }
                     catch (FormatException)
                     {
-                        e.OS.Write("Invalid Page Number");
+                        e.OS.WriteLine("Invalid Page Number");
                     }
                     catch (OverflowException)
                     {
-                        e.OS.Write("Invalid Page Number");
+                        e.OS.WriteLine("Invalid Page Number");
                     }
                 }
-                e.OS.Write(Command.Help.GetPageString(page));
+                e.OS.WriteLine(Command.Help.GetPageString(page));
                 e.Disconnects = false;
             }
             if (e[0] == "exe")
