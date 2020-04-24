@@ -64,7 +64,7 @@ namespace TemplateMod
 
         public void Unload()
         {
-            Logger.Verbose("Unloading Template Mod");
+            Logger.Info("Unloading Template Mod");
         }
 
         class TempExe : Executable.Base

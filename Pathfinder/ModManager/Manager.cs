@@ -84,6 +84,7 @@ namespace Pathfinder.ModManager
                         {
                             var attrib = i.GetFirstAttribute<CommandAttribute>();
                             Command.Handler.RegisterCommand(attrib.Key ?? i.Name.RemoveLast("Command"), i.CreateDelegate<CommandFunc>(), attrib.Description, attrib.Autocomplete);
+
                         }
 
                     mod.Value.LoadContent();
@@ -148,7 +149,10 @@ namespace Pathfinder.ModManager
                           select p.Key)
                          .ToArray()
                         )
+                {
+                    Logger.Verbose($"Unloading Extension '{e}'");
                     Extension.Handler.UnregisterExtension(e);
+                }
 
                 foreach (var e in
                          (from p in Executable.Handler.ModExecutables
@@ -156,7 +160,10 @@ namespace Pathfinder.ModManager
                           select p.Key)
                          .ToArray()
                         )
+                {
+                    Logger.Verbose($"Unloading Executable '{e}'");
                     Executable.Handler.UnregisterExecutable(e);
+                }
 
                 foreach (var d in
                          (from p in Daemon.Handler.ModDaemons
@@ -164,12 +171,18 @@ namespace Pathfinder.ModManager
                           select p.Key)
                          .ToArray()
                         )
+                {
+                    Logger.Verbose($"Unloading Daemon '{d}'");
                     Daemon.Handler.UnregisterDaemon(d);
+                }
 
                 Command.Handler.ModIdToCommandKeyList.TryGetValue(name, out List<string> clist);
                 if (clist != null)
                     foreach (var c in clist.ToArray())
+                    {
+                        Logger.Verbose($"Unloading Command '{c}'");
                         Command.Handler.UnregisterCommand(c);
+                    }
 
                 foreach (var p in
                          (from p in Port.Handler.PortTypes
@@ -177,17 +190,22 @@ namespace Pathfinder.ModManager
                           select p.Key)
                          .ToArray()
                         )
+                {
+                    Logger.Verbose($"Unloading PortType '{p}'");
                     Port.Handler.UnregisterPort(p);
+                }
 
-                var events = new List<ListenerObject>();
-                foreach (var v in EventManager.eventListeners.Values)
-                    events.AddRange(v.FindAll(t => t.ModId == name));
-                foreach (var list in EventManager.eventListeners.ToArray())
-                    foreach (var e in events)
-                        list.Value.Remove(e);
+                foreach(var pair in EventManager.eventListeners.Reverse())
+                {
+                    var listenerObjs = pair.Value.FindAll(l => l.ModId == name);
+                    foreach (var obj in listenerObjs)
+                    {
+                        Logger.Verbose($"Unloading Event Listener '{obj.Options.DebugName}'");
+                        EventManager.UnregisterListener(pair.Key, obj);
+                    }
+                }
 
                 GUI.ModOptions.Handler.ModOptions.Remove(name);
-
                 mod.Unload();
                 UnloadedModIds.Add(name);
                 LoadedMods.Remove(name);

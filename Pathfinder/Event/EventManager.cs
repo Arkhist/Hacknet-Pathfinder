@@ -91,7 +91,7 @@ namespace Pathfinder.Event
         {
             InternalUtility.ValidateNoId(log: false);
             RegisterExpressionListener(listener.Method.GetParameters()[0].ParameterType,
-                new ListenerObject(listener.Method, new ListenerOptions { PriorityStore = priority }));
+                new ListenerObject(listener.Method, new ListenerOptions { DebugName = debugName, PriorityStore = priority }));
         }
 
         /// <summary>
@@ -135,6 +135,12 @@ namespace Pathfinder.Event
         {
             if (!eventListeners.ContainsKey(pathfinderEventType)) return;
             eventListeners[pathfinderEventType].RemoveAll(l => l.Info.Equals(listener.Method));
+        }
+
+        public static void UnregisterListener(Type eventType, ListenerObject obj)
+        {
+            if (!eventListeners.ContainsKey(eventType)) return;
+            eventListeners[eventType].RemoveAll(l => l.Equals(obj));
         }
 
         /// <summary>
