@@ -27,8 +27,9 @@ namespace Pathfinder.Attribute
         public int Flags;
         public bool After;
         public int[] LocalIds;
+        public string DependentSig;
 
-        public PatchAttribute(string sig, int offset = 0, object tag = null, InjectFlags flags = 0, bool before = false, int[] localsID = null)
+        public PatchAttribute(string sig, int offset = 0, object tag = null, InjectFlags flags = 0, bool before = false, int[] localsID = null, string depSig = null)
         {
             MethodSig = sig;
             Offset = offset;
@@ -36,6 +37,7 @@ namespace Pathfinder.Attribute
             Flags = (int)flags;
             After = before;
             LocalIds = localsID;
+            DependentSig = depSig;
         }
     }
 }
