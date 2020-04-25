@@ -37,8 +37,8 @@ namespace Pathfinder.Event
             else ModId = modId;
 
             if (string.IsNullOrWhiteSpace(options.DebugName))
-                options.DebugName = "[" + Path.GetFileName(info.Module.Assembly.Location + "] "
-                                      + info.DeclaringType.FullName + "." + info.Name);
+                options.DebugName = "[" + Path.GetFileName(info.Module.Assembly.Location) + "] "
+                                      + info.DeclaringType.FullName + "." + info.Name;
 
             options.PriorityStore = options.PriorityStore ?? attrib?.Priority ?? 0;
             options.ContinueOnCancel = options.ContinueOnCancel || (attrib?.ContinueOnCancel ?? false);
