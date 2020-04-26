@@ -363,7 +363,7 @@ namespace Pathfinder.Internal.Replacements
             executor.AddExecutor("ConditionalActions", (exec, info) =>
             {
                 result = LoadConditionalActions(info);
-            });
+            }, true);
 
             executor.Parse();
 

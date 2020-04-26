@@ -11,7 +11,7 @@ namespace Pathfinder.ModManager
     {
         private static void RemoveUnloaded(List<ModTaggedValue<TValue>> list)
         {
-            list.RemoveAll(e => Manager.LoadedMods.ContainsKey(e.ModId));
+            list.RemoveAll(e => !Manager.LoadedMods.ContainsKey(e.ModId));
         }
 
         private class Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>
