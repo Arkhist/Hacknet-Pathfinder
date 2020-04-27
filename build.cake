@@ -58,6 +58,17 @@ public FilePath GetPathForFileExt(FilePath path, string[] exts)
 	throw new Exception("Could not find valid file extension for "+path);
 }
 
+public int StartMonoProcess(FilePath path, ProcessSettings settings)
+{
+	if(IsRunningOnWindows())
+		return StartProcess(path, settings);
+	else
+	{
+		settings.Arguments = path + " " + settings.Arguments?.Render();
+		return StartProcess("mono", settings);
+	}
+}
+
 Task("BuildPatcher")
 	.Description("Builds PathfinderPatcher.exe\n")
 	.Does(() => {
@@ -80,9 +91,9 @@ Task("PatcherSpit")
 	.IsDependentOn("BuildPatcher")
 	.Does(() => {
 		Information("Executing PathfinderPatcher for spit.");
-		StartProcess(IsRunningOnWindows() ? "call" : "mono",
+		StartMonoProcess("PathfinderPatcher.exe",
 			new ProcessSettings{
-				Arguments = "./PathfinderPatcher.exe -exeDir \"" + HacknetDirectory + "\" -spit",
+				Arguments = "-exeDir \"" + HacknetDirectory + "\" -spit",
 				WorkingDirectory = "./lib"
 			});
 	});
@@ -140,9 +151,9 @@ Task("BuildHacknet")
 	.IsDependentOn("BuildPathfinder")
 	.Does(() => {
 		Information("Executing PathfinderPatcher for final Hacknet build.");
-		StartProcess(IsRunningOnWindows() ? "call" : "mono",
+		StartMonoProcess("PathfinderPatcher.exe",
 			new ProcessSettings{
-				Arguments = "PathfinderPatcher.exe -exeDir \"" + HacknetDirectory + "\"",
+				Arguments = "-exeDir \"" + HacknetDirectory + "\"",
 				WorkingDirectory = "./lib"
 			});
 	});
@@ -152,14 +163,16 @@ Task("RunHacknet")
 	.IsDependentOn("BuildPathfinder")
 	.Does(() => {
 		Information("Copying Pathfinder to Hacknet directory, backing up Pathfinder.dll to OldPathfinder.dll.");
-		MoveFile(HacknetDirectory.GetFilePath("Pathfinder.dll"), HacknetDirectory.GetFilePath("OldPathfinder.dll"));
-		CopyFile("./lib/Pathfinder.dll", HacknetDirectory.GetFilePath("Pathfinder.dll"));
+		if(FileExists(HacknetDirectory.GetFilePath("Pathfinder.dll"))) {
+			if(FileExists(HacknetDirectory.GetFilePath("OldPathfinder.dll")))
+				DeleteFile(HacknetDirectory.GetFilePath("Pathfinder.dll"));
+			else
+				MoveFile(HacknetDirectory.GetFilePath("Pathfinder.dll"), HacknetDirectory.GetFilePath("OldPathfinder.dll"));
+		}
+		CopyFile("lib/Pathfinder.dll", HacknetDirectory.GetFilePath("Pathfinder.dll"));
 		Information("Executing PathfinderPatcher for Hacknet execution.");
-		StartProcess(IsRunningOnWindows() ? "call" : "mono",
-			new ProcessSettings{
-				Arguments = MakeAbsolute(File("./lib/PathfinderPatcher.exe")).ToString(),
-				WorkingDirectory = HacknetDirectory
-			});
+		StartMonoProcess(MakeAbsolute(File("lib/PathfinderPatcher.exe")),
+			new ProcessSettings{ WorkingDirectory = HacknetDirectory });
 		FilePath path = null;
 		if(IsRunningOnUnix()) {
 			path = GetPathForFileExt(HacknetDirectory.GetFilePath("HacknetPathfinder.bin"), new[] { "x86", "x86_64", "osx" });
@@ -172,12 +185,10 @@ Task("RunHacknet")
 			: path);
 		Information("Replacing built Pathfinder.dll with OldPathfinder.dll");
 		DeleteFile(HacknetDirectory.GetFilePath("Pathfinder.dll"));
-		MoveFile(HacknetDirectory.GetFilePath("OldPathfinder.dll"), HacknetDirectory.GetFilePath("Pathfinder.dll"));
-		StartProcess(IsRunningOnWindows() ? "call" : "mono",
-			new ProcessSettings{
-				Arguments = HacknetDirectory.GetFilePath("PathfinderPatcher.exe").ToString(),
-				WorkingDirectory = HacknetDirectory
-			});
+		if(FileExists(HacknetDirectory.GetFilePath("OldPathfinder.dll")))
+			MoveFile(HacknetDirectory.GetFilePath("OldPathfinder.dll"), HacknetDirectory.GetFilePath("Pathfinder.dll"));
+		StartMonoProcess(HacknetDirectory.GetFilePath("PathfinderPatcher.exe"),
+			new ProcessSettings{ WorkingDirectory = HacknetDirectory });
 	});
 
 Task("BuildDocs")
