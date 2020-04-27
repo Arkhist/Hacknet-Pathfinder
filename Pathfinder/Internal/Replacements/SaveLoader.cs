@@ -563,9 +563,6 @@ namespace Pathfinder.Internal.Replacements
             executor.AddExecutor("daemons.IRCDaemon", (exec, info) =>
                 result.AddDaemon<IRCDaemon>(os, "LOAD ERROR"));
 
-            executor.AddExecutor("daemons.IRCDaemon", (exec, info) =>
-                result.AddDaemon<IRCDaemon>(os, "LOAD ERROR"));
-
 
             executor.AddExecutor("daemons.MarkovTextDaemon", (exec, info) =>
                 result.AddDaemon<MarkovTextDaemon>(
