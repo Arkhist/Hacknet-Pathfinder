@@ -576,8 +576,8 @@ namespace Pathfinder.Internal.Replacements
 
             executor.AddExecutor("daemons.AircraftDaemon", (exec, info) =>
             {
-                var srcVec = Vec2.Zero;
-                var dstVec = Vec2.One * 0.5f;
+                var srcVec = Vector2.Zero;
+                var dstVec = Vector2.One * 0.5f;
                 if (info.Attributes.ContainsKey("OriginX"))
                     srcVec.X = info.Attributes.GetFloat("OriginX");
                 if (info.Attributes.ContainsKey("OriginY"))
