@@ -536,7 +536,7 @@ namespace Pathfinder.Internal.Replacements
 
             executor.AddExecutor("daemons.DatabaseDaemon", (exec, info) =>
             {
-                var daemon = result.AddDaemon<DatabaseDaemon>(
+                var daemon = new DatabaseDaemon(result,
                     os,
                     info.Attributes.GetValueOrDefault("Name", null),
                     info.Attributes.GetValueOrDefault("Permissions", null),
@@ -544,6 +544,8 @@ namespace Pathfinder.Internal.Replacements
                     info.Attributes.GetValueOrDefault("Foldername", null),
                     Utility.GetColorFromString(info.Attributes.GetValueOrDefault("Color", null), true, null)
                 );
+
+                result.daemons.Add(daemon);
 
                 var AdminEmailAccount = info.Attributes.GetValue("AdminEmailAccount");
 
