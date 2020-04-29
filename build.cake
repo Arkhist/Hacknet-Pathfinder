@@ -61,16 +61,24 @@ public FilePath GetPathForFileExt(FilePath path, string[] exts)
 public int StartMonoProcess(FilePath path, ProcessSettings settings)
 {
 	if(IsRunningOnWindows())
+	{
 		return StartProcess(path, settings);
+	}
 	else
 	{
 		settings.Arguments = path + " " + settings.Arguments?.Render();
-		return StartProcess("mono", settings);
+		return StartProcess(Context.Tools.Resolve("mono"), settings);
 	}
 }
 
+Task("SetupPathfinder")
+	.Does(() => {
+		Context.Tools.RegisterFile(File("./lib/PathfinderPatcher.exe"));
+	});
+
 Task("BuildPatcher")
 	.Description("Builds PathfinderPatcher.exe\n")
+	.IsDependentOn("SetupPathfinder")
 	.Does(() => {
 		MSBuild("./PathfinderPatcher/PathfinderPatcher.csproj",
 			new MSBuildSettings {
@@ -91,7 +99,7 @@ Task("PatcherSpit")
 	.IsDependentOn("BuildPatcher")
 	.Does(() => {
 		Information("Executing PathfinderPatcher for spit.");
-		StartMonoProcess("PathfinderPatcher.exe",
+		StartMonoProcess(Context.Tools.Resolve("PathfinderPatcher.exe"),
 			new ProcessSettings{
 				Arguments = "-exeDir \"" + HacknetDirectory + "\" -spit",
 				WorkingDirectory = "./lib"
@@ -151,7 +159,7 @@ Task("BuildHacknet")
 	.IsDependentOn("BuildPathfinder")
 	.Does(() => {
 		Information("Executing PathfinderPatcher for final Hacknet build.");
-		StartMonoProcess("PathfinderPatcher.exe",
+		StartMonoProcess(Context.Tools.Resolve("PathfinderPatcher.exe"),
 			new ProcessSettings{
 				Arguments = "-exeDir \"" + HacknetDirectory + "\"",
 				WorkingDirectory = "./lib"
@@ -171,7 +179,7 @@ Task("RunHacknet")
 		}
 		CopyFile("lib/Pathfinder.dll", HacknetDirectory.GetFilePath("Pathfinder.dll"));
 		Information("Executing PathfinderPatcher for Hacknet execution.");
-		StartMonoProcess(MakeAbsolute(File("lib/PathfinderPatcher.exe")),
+		StartMonoProcess(MakeAbsolute(Context.Tools.Resolve("PathfinderPatcher.exe")),
 			new ProcessSettings{ WorkingDirectory = HacknetDirectory });
 		FilePath path = null;
 		if(IsRunningOnUnix()) {
