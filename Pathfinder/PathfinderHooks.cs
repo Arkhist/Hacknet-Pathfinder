@@ -316,13 +316,13 @@ namespace Pathfinder
             var exceptions = loadSaveFileEvent.CallEvent();
             if(exceptions.Count > 0)
             {
-                MainMenu.AccumErrors = $"Cannot load Save Game {self.SaveGameUserName}: ";
+                MainMenu.AccumErrors = $"Cannot load account {self.SaveGameUserName}: \n";
                 foreach(var except in exceptions)
                 {
-                    MainMenu.AccumErrors += except.ToString();
+                    MainMenu.AccumErrors += $"{except.Key} threw: ${except.Value}\n";
                 }
                 /* let Hacknet have an exception */
-                throw new FormatException("Pathfinder modifications caused save file to fail loading.");
+                throw new FormatException("Pathfinder modifications caused account to fail loading.");
             }
             if (loadSaveFileEvent.IsCancelled)
                 return true;
