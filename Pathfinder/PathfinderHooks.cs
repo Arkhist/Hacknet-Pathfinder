@@ -313,7 +313,17 @@ namespace Pathfinder
         {
             /* TODO: Refactor that null out */
             var loadSaveFileEvent = new Event.OSLoadSaveFileEvent(self, null, stream);
-            loadSaveFileEvent.CallEvent();
+            var exceptions = loadSaveFileEvent.CallEvent();
+            if(exceptions.Count > 0)
+            {
+                MainMenu.AccumErrors = $"Cannot load account {self.SaveGameUserName}: \n";
+                foreach(var except in exceptions)
+                {
+                    MainMenu.AccumErrors += $"{except.Key} threw: ${except.Value}\n";
+                }
+                /* let Hacknet have an exception */
+                throw new FormatException("Pathfinder modifications caused account to fail loading.");
+            }
             if (loadSaveFileEvent.IsCancelled)
                 return true;
             return false;

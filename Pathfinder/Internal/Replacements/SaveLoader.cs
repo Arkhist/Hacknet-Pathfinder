@@ -60,6 +60,10 @@ namespace Pathfinder.Internal.Replacements
             var reader = new StreamReader(stream);
             var saveFileText = reader.ReadToEnd();
 
+
+            if(string.IsNullOrEmpty(saveFileText))
+                throw new FormatException("Blank account data detected! (This is a vanilla saving issue)");
+
             var executor = new EventExecutor(saveFileText, isPath: false);
             var subExecutor = new ParsedTreeExecutor();
 
