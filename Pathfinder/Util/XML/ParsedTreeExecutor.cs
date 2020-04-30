@@ -33,7 +33,7 @@ namespace Pathfinder.Util.XML {
             var checkName = currentElement.Name;
             while(true) {
                 /* try to find an executor given the current name */
-                if(delegateData.TryGetValue(checkName, out result)) {
+                if(delegateData.TryGetValue(GetElementName(checkName), out result)) {
                     /* found it! */
                     return true;
                 }

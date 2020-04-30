@@ -536,7 +536,7 @@ namespace Pathfinder.Internal.Replacements
 
             executor.AddExecutor("daemons.DatabaseDaemon", (exec, info) =>
             {
-                var daemon = result.AddDaemon<DatabaseDaemon>(
+                var daemon = new DatabaseDaemon(result,
                     os,
                     info.Attributes.GetValueOrDefault("Name", null),
                     info.Attributes.GetValueOrDefault("Permissions", null),
@@ -544,6 +544,8 @@ namespace Pathfinder.Internal.Replacements
                     info.Attributes.GetValueOrDefault("Foldername", null),
                     Utility.GetColorFromString(info.Attributes.GetValueOrDefault("Color", null), true, null)
                 );
+
+                result.daemons.Add(daemon);
 
                 var AdminEmailAccount = info.Attributes.GetValue("AdminEmailAccount");
 
@@ -563,9 +565,6 @@ namespace Pathfinder.Internal.Replacements
             executor.AddExecutor("daemons.IRCDaemon", (exec, info) =>
                 result.AddDaemon<IRCDaemon>(os, "LOAD ERROR"));
 
-            executor.AddExecutor("daemons.IRCDaemon", (exec, info) =>
-                result.AddDaemon<IRCDaemon>(os, "LOAD ERROR"));
-
 
             executor.AddExecutor("daemons.MarkovTextDaemon", (exec, info) =>
                 result.AddDaemon<MarkovTextDaemon>(
@@ -577,8 +576,8 @@ namespace Pathfinder.Internal.Replacements
 
             executor.AddExecutor("daemons.AircraftDaemon", (exec, info) =>
             {
-                var srcVec = Vec2.Zero;
-                var dstVec = Vec2.One * 0.5f;
+                var srcVec = Vector2.Zero;
+                var dstVec = Vector2.One * 0.5f;
                 if (info.Attributes.ContainsKey("OriginX"))
                     srcVec.X = info.Attributes.GetFloat("OriginX");
                 if (info.Attributes.ContainsKey("OriginY"))
