@@ -678,9 +678,9 @@ namespace Pathfinder.Internal.Replacements
 
             foreach (var cinfo in info.Children)
             {
-                switch (cinfo.Name)
+                switch (cinfo.Name.ToLower())
                 {
-                    case "Note":
+                    case "note":
                         var val = cinfo.Value.TrimStart().HacknetFilter();
                         var filename = cinfo.Attributes.GetValue("filename", true);
                         if (filename == null)
@@ -693,7 +693,7 @@ namespace Pathfinder.Internal.Replacements
                         }
                         notes.files.Add(new FileEntry(val, filename));
                         break;
-                    case "Mail":
+                    case "mail":
                         var username = cinfo.Attributes.GetValue("username", true);
                         mail.files.Add(new FileEntry(
                             "MAIL ACCOUNT : " + username + "\nAccount   :" + username + "\nPassword :"
@@ -702,7 +702,7 @@ namespace Pathfinder.Internal.Replacements
                             username + ".act"
                         ));
                         break;
-                    case "File":
+                    case "file":
                         computer.getFolderFromPath(
                             cinfo.Attributes.GetValueOrDefault("path", "home"),
                             true
