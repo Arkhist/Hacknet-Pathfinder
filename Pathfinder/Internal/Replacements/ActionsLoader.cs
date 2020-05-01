@@ -106,13 +106,21 @@ namespace Pathfinder.Internal.Replacements
             {
                 var result = new SACopyAsset
                 {
-                    DestFileName = info.Attributes.GetValue("DestFileName"),
                     DestFilePath = info.Attributes.GetValue("DestFilePath"),
                     DestComp = info.Attributes.GetValue("DestComp"),
                     SourceComp = info.Attributes.GetValue("SourceComp"),
                     SourceFilePath = info.Attributes.GetValue("SourceFilePath")
                 };
-                result.SourceFileName = info.Attributes.GetValueOrNull("SourceFileName").BlankToNull() ?? result.DestFileName;
+		string srcFile = info.Attributes.GetValueOrNull("SourceFileName").BlankToNull();
+		string dstFile = info.Attributes.GetValueOrNull("DestFileName").BlankToNull();
+		if(srcFile == null && dstFile == null)
+			throw new FormatException("Source (\"SourceFileName\") or Destination (\"DestFileName\") file name must be specified.");
+		else if(srcFile == null)
+			srcFile = dstFile;
+		else if(dstFile == null)
+			dstFile = srcFile;
+		result.SourceFileName = srcFile;
+		result.DestFileName = dstFile;
                 return result;
             });
             ActionLoaders.AddOverrideable("CrashComputer", info =>
