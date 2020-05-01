@@ -236,11 +236,13 @@ namespace Pathfinder.Internal.Replacements
 
             executor.AddExecutor("Computer.Dlink", (exec, info) =>
             {
+                /* captures for lambda */
                 var offsetComp = result;
+                var linkTo = info.Attributes.GetValueOrDefault("target", "");
                 ComputerLoader.postAllLoadedActions += () =>
                 {
                     var linkedComp =
-                        Programs.getComputer(os, info.Attributes.GetValueOrDefault("target", ""));
+                        Programs.getComputer(os, linkTo);
                     if (linkedComp != null)
                         offsetComp.links.Add(os.netMap.nodes.IndexOf(linkedComp));
                 };
