@@ -47,6 +47,7 @@ namespace Pathfinder.Internal.Patcher
                 if (sig == null)
                 {
                     Console.WriteLine($"Null method signature found, skipping {nameof(PatchAttribute)} on method.");
+                    continue;
                 }
                 method = gameAssembly.MainModule.GetType(sig.Remove(sig.LastIndexOf('.')))?.GetMethod(sig.Substring(sig.LastIndexOf('.') + 1));
                 if(method == null)
