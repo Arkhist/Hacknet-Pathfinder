@@ -10,26 +10,26 @@ namespace PathfinderPatcher
 {
     internal static class Extensions
     {
-        internal static void MakeFieldAccess(this FieldDefinition f, AccessMods access = AccessMods.Internal)
+        internal static void MakeFieldAccess(this FieldDefinition f, AccessLevel access = AccessLevel.Internal)
         {
             switch (access)
             {
-                case AccessMods.Private:
+                case AccessLevel.Private:
                     f.IsPrivate = true; break;
-                case AccessMods.Protected:
+                case AccessLevel.Protected:
                     f.IsFamily = true; break;
-                case AccessMods.Public:
+                case AccessLevel.Public:
                     f.IsPublic = true; break;
-                case AccessMods.Internal:
+                case AccessLevel.Internal:
                     f.IsAssembly = true; break;
-                case AccessMods.ProtectedInternal:
+                case AccessLevel.ProtectedInternal:
                     f.IsFamilyOrAssembly = true; break;
-                case AccessMods.PrivateProtected:
+                case AccessLevel.PrivateProtected:
                     f.IsFamilyAndAssembly = true; break;
             }
         }
 
-        internal static void MakeAllFieldAccess(this TypeDefinition t, AccessMods access = AccessMods.Internal, Predicate<FieldDefinition> skip = null)
+        internal static void MakeAllFieldAccess(this TypeDefinition t, AccessLevel access = AccessLevel.Internal, Predicate<FieldDefinition> skip = null)
         {
             if (skip == null) skip = x => !x.IsPrivate;
             foreach (var f in t.Fields)
@@ -39,38 +39,38 @@ namespace PathfinderPatcher
             }
         }
 
-        internal static void MakeAllFieldAccess(this ModuleDefinition m, string typename, AccessMods access = AccessMods.Internal, Predicate<FieldDefinition> skip = null)
+        internal static void MakeAllFieldAccess(this ModuleDefinition m, string typename, AccessLevel access = AccessLevel.Internal, Predicate<FieldDefinition> skip = null)
             => m.GetType(typename).MakeAllFieldAccess(access, skip);
 
-        internal static void MakeFieldAccess(this ModuleDefinition module, string typename, string fieldname, AccessMods access = AccessMods.Internal)
+        internal static void MakeFieldAccess(this ModuleDefinition module, string typename, string fieldname, AccessLevel access = AccessLevel.Internal)
             => module.GetType(typename).GetField(fieldname).MakeFieldAccess(access);
 
-        internal static void MakeFieldAccess(this ModuleDefinition module, string typename, AccessMods access = AccessMods.Internal, params string[] names)
+        internal static void MakeFieldAccess(this ModuleDefinition module, string typename, AccessLevel access = AccessLevel.Internal, params string[] names)
             => module.GetType(typename).MakeAllFieldAccess(access, f => names.Length > 0 && !names.Contains(f.Name));
 
-        internal static void MakeMethodAccess(this MethodDefinition m, AccessMods access = AccessMods.Internal)
+        internal static void MakeMethodAccess(this MethodDefinition m, AccessLevel access = AccessLevel.Internal)
         {
             switch (access)
             {
-                case AccessMods.Private:
+                case AccessLevel.Private:
                     m.IsPrivate = true; break;
-                case AccessMods.Protected:
+                case AccessLevel.Protected:
                     m.IsFamily = true; break;
-                case AccessMods.Public:
+                case AccessLevel.Public:
                     m.IsPublic = true; break;
-                case AccessMods.Internal:
+                case AccessLevel.Internal:
                     m.IsAssembly = true; break;
-                case AccessMods.ProtectedInternal:
+                case AccessLevel.ProtectedInternal:
                     m.IsFamilyOrAssembly = true; break;
-                case AccessMods.PrivateProtected:
+                case AccessLevel.PrivateProtected:
                     m.IsFamilyAndAssembly = true; break;
             }
         }
 
-        internal static void MakeMethodAccess(this ModuleDefinition module, string typename, string methodname, AccessMods access = AccessMods.Internal)
+        internal static void MakeMethodAccess(this ModuleDefinition module, string typename, string methodname, AccessLevel access = AccessLevel.Internal)
             => module.GetType(typename).GetMethod(methodname).MakeMethodAccess(access);
 
-        internal static void MakeAllMethodAccess(this TypeDefinition t, AccessMods access = AccessMods.Internal, Predicate<MethodDefinition> skip = null)
+        internal static void MakeAllMethodAccess(this TypeDefinition t, AccessLevel access = AccessLevel.Internal, Predicate<MethodDefinition> skip = null)
         {
             if (skip == null) skip = x => !x.IsPrivate;
             foreach (var m in t.Methods)
@@ -80,32 +80,32 @@ namespace PathfinderPatcher
             }
         }
 
-        internal static void MakeAllMethodAccess(this ModuleDefinition m, string typename, AccessMods access = AccessMods.Internal, Predicate<MethodDefinition> skip = null)
+        internal static void MakeAllMethodAccess(this ModuleDefinition m, string typename, AccessLevel access = AccessLevel.Internal, Predicate<MethodDefinition> skip = null)
             => m.GetType(typename).MakeAllMethodAccess(access, skip);
 
-        internal static void MakeNestedAccess(this TypeDefinition t, AccessMods access = AccessMods.Internal)
+        internal static void MakeNestedAccess(this TypeDefinition t, AccessLevel access = AccessLevel.Internal)
         {
             switch (access)
             {
-                case AccessMods.Private:
+                case AccessLevel.Private:
                     t.IsNestedPrivate = true; break;
-                case AccessMods.Protected:
+                case AccessLevel.Protected:
                     t.IsNestedFamily = true; break;
-                case AccessMods.Public:
+                case AccessLevel.Public:
                     t.IsNestedPublic = true; break;
-                case AccessMods.Internal:
+                case AccessLevel.Internal:
                     t.IsNestedAssembly = true; break;
-                case AccessMods.ProtectedInternal:
+                case AccessLevel.ProtectedInternal:
                     t.IsNestedFamilyOrAssembly = true; break;
-                case AccessMods.PrivateProtected:
+                case AccessLevel.PrivateProtected:
                     t.IsNestedFamilyAndAssembly = true; break;
             }
         }
 
-        internal static void ModifyNestedVisible(this ModuleDefinition module, string typename, string methodname, AccessMods access = AccessMods.Internal)
+        internal static void ModifyNestedVisible(this ModuleDefinition module, string typename, string methodname, AccessLevel access = AccessLevel.Internal)
             => module.GetType(typename).NestedTypes.First(t => t.FullName == methodname).MakeNestedAccess(access);
 
-        internal static void MakeAllNestedAccess(this TypeDefinition t, AccessMods access = AccessMods.Internal, Predicate<TypeDefinition> skip = null)
+        internal static void MakeAllNestedAccess(this TypeDefinition t, AccessLevel access = AccessLevel.Internal, Predicate<TypeDefinition> skip = null)
         {
             if (skip == null) skip = x => !x.IsNestedPrivate;
             foreach (var m in t.NestedTypes)
@@ -115,7 +115,7 @@ namespace PathfinderPatcher
             }
         }
 
-        internal static void ModifyAllNestedsVisible(this ModuleDefinition m, string typename, AccessMods access = AccessMods.Internal, Predicate<TypeDefinition> skip = null)
+        internal static void ModifyAllNestedsVisible(this ModuleDefinition m, string typename, AccessLevel access = AccessLevel.Internal, Predicate<TypeDefinition> skip = null)
             => m.GetType(typename).MakeAllNestedAccess(access, skip);
 
         internal static void AddAssemblyAttribute<T>(this AssemblyDefinition ad, params object[] attribArgs)

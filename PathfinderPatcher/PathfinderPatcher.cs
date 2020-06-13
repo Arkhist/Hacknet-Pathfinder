@@ -9,7 +9,7 @@ using Mono.Cecil.Inject;
 
 namespace PathfinderPatcher
 {
-    public enum AccessMods
+    public enum AccessLevel
     {
         Private,
         Protected,
@@ -104,17 +104,17 @@ namespace PathfinderPatcher
                 }
 
                 // Ensure Hacknet.Computer.sendNetworkMessage is public
-                gameAssembly.MainModule.MakeMethodAccess("Hacknet.Computer", "sendNetworkMessage", AccessMods.Public);
+                gameAssembly.MainModule.MakeMethodAccess("Hacknet.Computer", "sendNetworkMessage", AccessLevel.Public);
                 // Ensure important DisplayModule fields are public
-                gameAssembly.MainModule.MakeFieldAccess("Hacknet.DisplayModule", AccessMods.Public, "x", "y", "openLockSprite", "lockSprite");
+                gameAssembly.MainModule.MakeFieldAccess("Hacknet.DisplayModule", AccessLevel.Public, "x", "y", "openLockSprite", "lockSprite");
                 // Ensure Button's methods are public
-                gameAssembly.MainModule.MakeAllMethodAccess("Hacknet.Gui.Button", AccessMods.Public, (MethodDefinition m) => false);
+                gameAssembly.MainModule.MakeAllMethodAccess("Hacknet.Gui.Button", AccessLevel.Public, (MethodDefinition m) => false);
 
                 // Ensure ExtensionsMenuScreen's methods, fields, and nested type are public
                 var type = gameAssembly.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen");
-                type.MakeAllFieldAccess(AccessMods.Public);
-                type.MakeAllMethodAccess(AccessMods.Public);
-                type.MakeAllNestedAccess(AccessMods.Public);
+                type.MakeAllFieldAccess(AccessLevel.Public);
+                type.MakeAllMethodAccess(AccessLevel.Public);
+                type.MakeAllNestedAccess(AccessLevel.Public);
 
                 // Ensure Helpfile's fields are internal
                 gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.Helpfile");
@@ -160,15 +160,15 @@ namespace PathfinderPatcher
                 // Ensure ComputerLoader's fields are internal and nest types nested public
                 type = gameAssembly.MainModule.GetType("Hacknet.ComputerLoader");
                 type.MakeAllFieldAccess();
-                type.MakeAllNestedAccess(AccessMods.Public);
+                type.MakeAllNestedAccess(AccessLevel.Public);
                 type.GetMethod("findComp").IsPublic = true;
 
                 // Ensure IntroTextModule's fields are public
-                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.IntroTextModule", AccessMods.Public);
+                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.IntroTextModule", AccessLevel.Public);
                 // Ensure OptionsMenu's fields are public
-                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.OptionsMenu", AccessMods.Public);
+                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.OptionsMenu", AccessLevel.Public);
                 // Ensure DatabaseDaemon's fields are public
-                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.DatabaseDaemon", AccessMods.Public);
+                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.DatabaseDaemon", AccessLevel.Public);
 
                 // Create FileProperties Struct for FileType
                 var nestedType = new TypeBuilder
@@ -204,8 +204,8 @@ namespace PathfinderPatcher
                     type.AddFullProperty("Properties", nestedType),
                     gameAssembly.MainModule.GetType("Hacknet.OS").GetField("currentElapsedTime")));
 
-                gameAssembly.MainModule.MakeFieldAccess("Hacknet.ProgressionFlags", "Flags", AccessMods.Public);
-                gameAssembly.MainModule.MakeMethodAccess("Hacknet.NetworkMap", "loadAssignGameNodes", AccessMods.Public);
+                gameAssembly.MainModule.MakeFieldAccess("Hacknet.ProgressionFlags", "Flags", AccessLevel.Public);
+                gameAssembly.MainModule.MakeMethodAccess("Hacknet.NetworkMap", "loadAssignGameNodes", AccessLevel.Public);
             }
             catch (Exception ex)
             {
