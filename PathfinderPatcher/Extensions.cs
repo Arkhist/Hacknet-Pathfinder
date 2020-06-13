@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using Mono.Cecil.Inject;
@@ -293,5 +294,21 @@ namespace PathfinderPatcher
             return self;
         }
 
+
+        public static string LineInfoForExcept(this IXmlLineInfo info)
+        {
+            return !info.HasLineInfo() ? "" : $" (Line {info.LineNumber}:{info.LinePosition})";
+        }
+
+        /* deconstruct adapters for this wierd combination of C# >= 7.0 and .NET = 4.0  */
+        public static void Deconstruct<K, V>(this KeyValuePair<K, V> pair, out K key, out V value) {
+            key = pair.Key;
+            value = pair.Value;
+        }
+
+        public static void Deconstruct<T1, T2>(this Tuple<T1, T2> tuple, out T1 Item1, out T2 Item2) {
+            Item1 = tuple.Item1;
+            Item2 = tuple.Item2;
+        }
     }
 }
