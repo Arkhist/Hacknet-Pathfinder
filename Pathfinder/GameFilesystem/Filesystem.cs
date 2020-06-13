@@ -43,6 +43,11 @@ namespace Pathfinder.GameFilesystem
         public override Filesystem Root => this;
         public override FileType Type => FileType.Filesystem;
         public Directory Directory => rootDirectory ?? (rootDirectory = new Directory(Object.root, this));
+        public override FileProperties Properties
+        {
+            get { return rootDirectory.Properties; }
+            set { rootDirectory.Properties = value; }
+        }
 
         /// <summary>
         /// Searchs for a Directory's path as far as possible.
@@ -92,5 +97,6 @@ namespace Pathfinder.GameFilesystem
         }
 
         public static implicit operator Filesystem(Computer c) => new Filesystem(c);
+        public static explicit operator Filesystem(OS o) => new Filesystem(o.connectedComp ?? o.thisComputer);
     }
 }

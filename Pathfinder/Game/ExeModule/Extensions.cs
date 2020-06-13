@@ -14,7 +14,7 @@ namespace Pathfinder.Game.ExeModule
         {
             if (!module.os.exes.Contains(module))
                 return false;
-            if(shouldWrite) module.os.Write("Process {0} [{1}] Ended", module.PID, module.IdentifierName);
+            if(shouldWrite) module.os.WriteLine("Process {0} [{1}] Ended", module.PID, module.IdentifierName);
             // not localized normally in game, TODO: override game localization of kill (and other commands)
             module.Killed();
             return module.os.exes.Remove(module);

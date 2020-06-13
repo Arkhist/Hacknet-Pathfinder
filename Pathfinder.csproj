@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -19,22 +19,11 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
-    <CustomCommands>
-      <CustomCommands>
-        <Command>
-          <type>BeforeBuild</type>
-          <command>PathfinderPatcher -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet" -spit</command>
-          <externalConsole>True</externalConsole>
-        </Command>
-        <Command>
-          <type>AfterBuild</type>
-          <command>lib\PathfinderPatcher.exe -pathfinderDir "..\lib" -exeDir "C:\Program Files (x86)\Steam\steamapps\common\Hacknet"</command>
-          <workingdir>lib\</workingdir>
-          <externalConsole>True</externalConsole>
-        </Command>
-      </CustomCommands>
-    </CustomCommands>
     <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <LangVersion>Latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -69,9 +58,13 @@
     <NoWarn>0649</NoWarn>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <NoStdLib>false</NoStdLib>
+    <LangVersion>Latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
     <Reference Include="AlienFXManagedWrapper3.5">
       <HintPath>lib\AlienFXManagedWrapper3.5.dll</HintPath>
       <Private>False</Private>
@@ -84,8 +77,13 @@
       <HintPath>lib\Steamworks.NET.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="Mono.Cecil">
+      <HintPath>lib\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Inject">
+      <HintPath>lib\Mono.Cecil.Inject.dll</HintPath>
+    </Reference>
     <Reference Include="HacknetPathfinder">
       <HintPath>lib\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
@@ -96,29 +94,27 @@
     <Compile Include="Pathfinder\Event\MainMenuEvents.cs" />
     <Compile Include="Pathfinder\Event\EventManager.cs" />
     <Compile Include="Pathfinder\Event\PathfinderEvent.cs" />
+    <Compile Include="Pathfinder\Exceptions\AttributeException.cs" />
+    <Compile Include="Pathfinder\Exceptions\EventException.cs" />
+    <Compile Include="Pathfinder\Exceptions\LoadException.cs" />
+    <Compile Include="Pathfinder\Internal\Replacements\ActionsLoader.cs" />
     <Compile Include="Pathfinder\Pathfinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pathfinder\PathfinderHooks.cs" />
-    <Compile Include="Pathfinder\Executable\Interface.cs" />
-    <Compile Include="Pathfinder\Executable\Handler.cs" />
-    <Compile Include="Pathfinder\Command\Handler.cs" />
-    <Compile Include="Pathfinder\Executable\Instance.cs" />
-    <Compile Include="Pathfinder\Daemon\Instance.cs" />
-    <Compile Include="Pathfinder\Daemon\Interface.cs" />
+    <Compile Include="Pathfinder\Executable\ExecutableInterface.cs" />
+    <Compile Include="Pathfinder\Executable\ExecutableHandler.cs" />
+    <Compile Include="Pathfinder\Command\CommandHandler.cs" />
+    <Compile Include="Pathfinder\Executable\ExecutableInstance.cs" />
+    <Compile Include="Pathfinder\Daemon\DaemonInstance.cs" />
+    <Compile Include="Pathfinder\Daemon\DaemonInterface.cs" />
     <Compile Include="Pathfinder\Executable\ExecutionResult.cs" />
     <Compile Include="Pathfinder\Executable\IMainDisplayOverride.cs" />
-    <Compile Include="Pathfinder\Daemon\Handler.cs" />
+    <Compile Include="Pathfinder\Daemon\DaemonHandler.cs" />
     <Compile Include="Pathfinder\Util\File\ModContent.cs" />
     <Compile Include="Pathfinder\Util\SoundSystem.cs" />
     <Compile Include="Pathfinder\GameFilesystem\Extensions.cs" />
     <Compile Include="Pathfinder\Util\ExeInfoManager.cs" />
-    <Compile Include="Pathfinder\Mission\MissionManager.cs" />
-    <Compile Include="Pathfinder\Mission\GoalInstance.cs" />
-    <Compile Include="Pathfinder\Mission\GoalInterface.cs" />
-    <Compile Include="Pathfinder\Mission\Instance.cs" />
-    <Compile Include="Pathfinder\Mission\Handler.cs" />
     <Compile Include="Pathfinder\Util\Utility.cs" />
-    <Compile Include="Pathfinder\Mission\Interface.cs" />
     <Compile Include="Pathfinder\Util\Logger.cs" />
     <Compile Include="Pathfinder\GameFilesystem\FileObject.cs" />
     <Compile Include="Pathfinder\GameFilesystem\Filesystem.cs" />
@@ -131,30 +127,26 @@
     <Compile Include="Pathfinder\Event\ComputerEvents.cs" />
     <Compile Include="Pathfinder\Event\ExecutableEvents.cs" />
     <Compile Include="Pathfinder\Util\JsonObject.cs" />
-    <Compile Include="Pathfinder\Port\Type.cs" />
-    <Compile Include="Pathfinder\Port\Instance.cs" />
-    <Compile Include="Pathfinder\Port\Handler.cs" />
+    <Compile Include="Pathfinder\Port\PortType.cs" />
+    <Compile Include="Pathfinder\Port\PortInstance.cs" />
+    <Compile Include="Pathfinder\Port\PortHandler.cs" />
     <Compile Include="Pathfinder\GUI\CommandDisplayState.cs" />
     <Compile Include="Pathfinder\GUI\Button.cs" />
     <Compile Include="Pathfinder\GUI\Scrollbar.cs" />
-    <Compile Include="Pathfinder\GUI\BaseInteractiveRectangle.cs" />
+    <Compile Include="Pathfinder\GUI\ControlRect.cs" />
     <Compile Include="Pathfinder\GUI\DynamicRectangle.cs" />
     <Compile Include="Pathfinder\Event\ModuleEvents.cs" />
-    <Compile Include="Pathfinder\Extension\Info.cs" />
-    <Compile Include="Pathfinder\Extension\Handler.cs" />
+    <Compile Include="Pathfinder\Extension\ExtensionInfo.cs" />
+    <Compile Include="Pathfinder\Extension\ExtensionHandler.cs" />
     <Compile Include="Pathfinder\Event\ExtensionMenuEvents.cs" />
     <Compile Include="Pathfinder\GUI\SpriteBatchExtensions.cs" />
     <Compile Include="Pathfinder\Util\RetrieveType.cs" />
     <Compile Include="Pathfinder\Internal\GUI\ModList.cs" />
-    <Compile Include="Pathfinder\Mission\MissionUtils.cs" />
     <Compile Include="Pathfinder\Internal\HandlerListener.cs" />
-    <Compile Include="Pathfinder\Command\Help.cs" />
+    <Compile Include="Pathfinder\Command\CommandHelp.cs" />
     <Compile Include="Pathfinder\Internal\GUI\ModExtensionsUI.cs" />
     <Compile Include="Pathfinder\Internal\ExecutionOverride.cs" />
     <Compile Include="Pathfinder\Internal\PlaceholderExtensionInfo.cs" />
-    <Compile Include="Pathfinder\Util\Attribute\EventPriorityAttribute.cs" />
-    <Compile Include="Pathfinder\Util\Attribute\LoadOrderAttribute.cs" />
-    <Compile Include="Pathfinder\Util\Vector.cs" />
     <Compile Include="Pathfinder\Util\ConvertAny.cs" />
     <Compile Include="Pathfinder\Util\Attribute\AllowOrderUnloadAttribute.cs" />
     <Compile Include="Pathfinder\Event\OptionsMenuEvents.cs" />
@@ -175,43 +167,59 @@
     <Compile Include="Pathfinder\Util\Locale.cs" />
     <Compile Include="Pathfinder\Docs\Hacknet.cs" />
     <Compile Include="Pathfinder\Game\Folder\Extensions.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Pathfinder\Internal\Replacements\SaveLoader.cs" />
+    <Compile Include="Pathfinder\Internal\Replacements\ContentLoader.cs" />
+    <Compile Include="Pathfinder\Game\MailServer\Extensions.cs" />
+    <Compile Include="Pathfinder\Util\Extensions.cs" />
+    <Compile Include="Pathfinder\Internal\DatabaseDaemonHandler.cs" />
+    <Compile Include="Pathfinder\Game\TextLoader.cs" />
+    <Compile Include="Pathfinder\Attribute\CommandModuleAttribute.cs" />
+    <Compile Include="Pathfinder\Attribute\DefaultModAttribute.cs" />
+    <Compile Include="Pathfinder\Attribute\CommandAttribute.cs" />
+    <Compile Include="Pathfinder\ModManager\ModAttributeHandler.cs" />
+    <Compile Include="Pathfinder\Attribute\PatchAttribute.cs" />
+    <Compile Include="Pathfinder\Attribute\EventAttribute.cs" />
+    <Compile Include="Pathfinder\Attribute\EventModuleAttribute.cs" />
+    <Compile Include="Pathfinder\Attribute\AbstractPathfinderAttribute.cs" />
+    <Compile Include="Pathfinder\Attribute\IgnoreRegister.cs" />
+    <Compile Include="Pathfinder\Attribute\ModInfoAttribute.cs" />
+    <Compile Include="Pathfinder\Internal\InternalUtility.cs" />
+    <Compile Include="Pathfinder\Util\Calculate.cs" />
+    <Compile Include="Pathfinder\Input\InputAction.cs" />
+    <Compile Include="Pathfinder\Util\Types\Rect2.cs" />
+    <Compile Include="Pathfinder\Util\Types\Vector.cs" />
+    <Compile Include="Pathfinder\Util\Types\ReadOnlyDictionary.cs" />
+    <Compile Include="Pathfinder\Internal\Patcher\Executor.cs" />
+    <Compile Include="Pathfinder\Util\XML\EventExecutor.cs" />
+    <Compile Include="Pathfinder\Util\DictionaryExtensions.cs" />
+    <Compile Include="Pathfinder\Util\XML\EventReader.cs" />
+    <Compile Include="Pathfinder\Util\XML\ElementInfo.cs" />
+    <Compile Include="Pathfinder\Util\XML\ReadOnlyXmlReader.cs" />
+    <Compile Include="Pathfinder\Util\XML\IExecutor.cs" />
+    <Compile Include="Pathfinder\Util\XML\ParsedTreeExecutor.cs" />
+    <Compile Include="Pathfinder\ModManager\CurrentModOverride.cs" />
+    <Compile Include="Pathfinder\Internal\Replacements\ReplacementsCommon.cs" />
+    <Compile Include="Pathfinder\ModManager\ModTaggedValue.cs" />
+    <Compile Include="Pathfinder\ModManager\ModTaggedDict.cs" />
+    <Compile Include="Pathfinder\Exceptions\ModConflictException.cs" />
+    <Compile Include="Pathfinder\Util\CmdArguments.cs" />
+    <Compile Include="Pathfinder\Event\TerminalEvents.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pathfinder\Util\" />
-    <Folder Include="Pathfinder\Util\File\" />
-    <Folder Include="Pathfinder\GameFilesystem\" />
-    <Folder Include="Pathfinder\Mission\" />
-    <Folder Include="Pathfinder\Port\" />
-    <Folder Include="Pathfinder\Extension\" />
-    <Folder Include="Pathfinder\Internal\" />
-    <Folder Include="Pathfinder\Internal\GUI\" />
-    <Folder Include="Pathfinder\Util\Attribute\" />
-    <Folder Include="Pathfinder\GUI\ModOptions\" />
-    <Folder Include="Pathfinder\ModManager\" />
-    <Folder Include="Pathfinder\ModManager\Attribute\" />
-    <Folder Include="Pathfinder\Game\" />
-    <Folder Include="Pathfinder\Game\Computer\" />
-    <Folder Include="Pathfinder\Game\NetworkMap\" />
-    <Folder Include="Pathfinder\Game\OS\" />
-    <Folder Include="Pathfinder\Game\ExeModule\">
-    </Folder>
-    <Folder Include="Pathfinder\Util\Network\">
-    </Folder>
-    <Folder Include="Pathfinder\Docs\">
-    </Folder>
-    <Folder Include="Pathfinder\Game\Folder\">
-      <DependentUpon>Folder</DependentUpon>
-    </Folder>
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <ItemGroup>
     <None Include="Pathfinder\Docs\Pathfinder.doc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="PathfinderPatcher\PathfinderPatcher.csproj">
-      <Project>{FCD7FD47-6B38-47F4-9761-FC4290110125}</Project>
-      <Name>PathfinderPatcher</Name>
-    </ProjectReference>
+    <Folder Include="Pathfinder\Game\MailServer\">
+    </Folder>
+    <Folder Include="Pathfinder\Attribute\" />
+    <Folder Include="Pathfinder\Input\" />
+    <Folder Include="Pathfinder\Util\XML\" />
+    <Folder Include="Pathfinder\Util\Types\" />
+    <Folder Include="Pathfinder\Internal\Patcher\" />
+    <Folder Include="Pathfinder\Exceptions\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

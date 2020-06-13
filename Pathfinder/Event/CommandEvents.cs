@@ -1,10 +1,38 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Pathfinder.GUI;
-using Pathfinder.Util;
 
 namespace Pathfinder.Event
 {
-    public class CommandSentEvent : OSEvent
+    public class CommandEvent : OSEvent, IEnumerable<string>
+    {
+        public string Input { get; }
+        public List<string> Arguments { get; set; } = new List<string>();
+        public CommandEvent(Hacknet.OS os, string[] args) : base(os)
+        {
+            Input = string.Join(" ", args);
+            Arguments.AddRange(args);
+            Arguments.RemoveAll(string.IsNullOrWhiteSpace);
+        }
+
+        public string this[int index]
+        {
+            get
+            {
+                if (Arguments.Count <= index || index < 0)
+                    return "";
+                return Arguments[index];
+            }
+        }
+
+        public IEnumerator<string> GetEnumerator()
+            => Arguments.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
+            => GetEnumerator();
+    }
+
+    public class CommandSentEvent : CommandEvent
     {
         public bool Disconnects { get; set; }
         public CommandDisplayStateChange StateChange { get; set; } = CommandDisplayStateChange.None;
@@ -22,20 +50,12 @@ namespace Pathfinder.Event
                 }
             }
         }
-        public List<string> Arguments { get; private set; }
-        public CommandSentEvent(Hacknet.OS os, string[] args) : base(os)
-        {
-            Arguments = new List<string>(args ?? Utility.Array<string>.Empty);
-        }
+        public CommandSentEvent(Hacknet.OS os, string[] args) : base(os, args) { }
+    }
 
-        public string this[int index]
-        {
-            get
-            {
-                if (Arguments.Count <= index)
-                    return "";
-                return Arguments[index];
-            }
-        }
+    public class CommandFinishedEvent : CommandEvent
+    {
+        public CommandSentEvent SentEvent { get; }
+        public CommandFinishedEvent(CommandSentEvent e) : base(e.OS, e.Arguments.ToArray()) { SentEvent = e; }
     }
 }

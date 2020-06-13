@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Pathfinder.Util.Types;
 
 namespace Pathfinder.Event
 {
@@ -32,9 +33,9 @@ namespace Pathfinder.Event
 
     public class DrawMainMenuTitlesEvent : MainMenuEvent
     {
-        public class TitleData<T>
+        public class TitleData
         {
-            public TitleData(string title, Color color, SpriteFont font, Util.Vector4<T> dest)
+            public TitleData(string title, Color color, SpriteFont font, Rect2 dest)
             {
                 Title = title;
                 Color = color;
@@ -44,10 +45,10 @@ namespace Pathfinder.Event
             public string Title { get; set; }
             public Color Color { get; set; }
             public SpriteFont Font { get; set; }
-            public Util.Vector4<T> Destination { get; set; }
+            public Rect2 Destination { get; set; }
         }
-        public TitleData<int> Main { get; set; }
-        public TitleData<float> Sub { get; set; }
+        public TitleData Main { get; set; }
+        public TitleData Sub { get; set; }
         [Obsolete("Use Main.Title instead")]
         public string MainTitle { get { return Main.Title; } set { Main.Title = value; } }
         [Obsolete("Use Sub.Title instead")]
@@ -58,7 +59,7 @@ namespace Pathfinder.Event
             MainTitle = mainTitle;
             Subtitle = subtitle;
         }
-        public DrawMainMenuTitlesEvent(Hacknet.MainMenu mainMenu, TitleData<int> main, TitleData<float> sub) : base(mainMenu)
+        public DrawMainMenuTitlesEvent(Hacknet.MainMenu mainMenu, TitleData main, TitleData sub) : base(mainMenu)
         {
             Main = main;
             Sub = sub;

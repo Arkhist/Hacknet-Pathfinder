@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Pathfinder.Util;
 
@@ -16,18 +16,19 @@ namespace Pathfinder.Game.Folder
 
         public static Hacknet.Folder AddFile(this Hacknet.Folder self, string name, string data = null)
         {
-            self.Add(new Hacknet.FileEntry(name, data));
+            self.Add(new Hacknet.FileEntry(data, name));
             return self;
         }
 
-        public static Hacknet.Folder AddFile(this Hacknet.Folder self, string name, Executable.IInterface data) =>
+        public static Hacknet.Folder AddFile(this Hacknet.Folder self, string name, Executable.Interface data) =>
                              self.AddFile(name, Executable.Handler.GetStandardFileDataBy(data));
 
         public static Hacknet.Folder AddFile(this Hacknet.Folder self, string name, uint? dataIndex = null) =>
                              self.AddFile(name,
-                                          Hacknet.FileEntry.fileData[(int)Math.Min(dataIndex.Value,
-                                                                                   Hacknet.FileEntry.filenames.Count - 1
-                                                                                  )]);
+                                          Hacknet.FileEntry.fileData[(int)Math.Min(
+                                              dataIndex.Value,
+                                              Hacknet.FileEntry.filenames.Count - 1
+                                             )]);
 
         public static Hacknet.Folder AddExecutableFile(this Hacknet.Folder self, string name, string id) =>
                              self.AddFile(name,

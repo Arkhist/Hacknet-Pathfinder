@@ -1,33 +1,78 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq.Expressions;
+using System.Reflection;
+using Pathfinder.Attribute;
+using Pathfinder.Internal;
 using Pathfinder.ModManager;
 using Pathfinder.Util;
-using Pathfinder.Util.Attribute;
 
 namespace Pathfinder.Event
 {
+    public struct ListenerOptions
+    {
+        public string DebugName { get; internal set; }
+        public int? PriorityStore { get; internal set; }
+        public int Priority => PriorityStore.GetValueOrDefault(0);
+        public bool ContinueOnCancel { get; set; }
+        public bool ContinueOnThrow { get; set; }
+    }
+
+    public class ListenerObject : IEquatable<ListenerObject>
+    {
+        public InternalUtility.MethodInvoker Func { get; private set; }
+        public MethodInfo Info { get; private set; }
+        public string ModId { get; }
+        public ListenerOptions Options;
+
+        public ListenerObject(MethodInfo info, ListenerOptions options, string modId = null)
+        {
+            Info = info;
+            Func = Info.GetMethodInvoker();
+
+            var attrib = info.GetFirstAttribute<EventAttribute>();
+            if (string.IsNullOrEmpty(modId))
+                ModId = Utility.ActiveModId;
+            else ModId = modId;
+
+            if (string.IsNullOrWhiteSpace(options.DebugName))
+                options.DebugName = "[" + Path.GetFileName(info.Module.Assembly.Location) + "] "
+                                      + info.DeclaringType.FullName + "." + info.Name;
+
+            options.PriorityStore = options.PriorityStore ?? attrib?.Priority ?? 0;
+            options.ContinueOnCancel = options.ContinueOnCancel || (attrib?.ContinueOnCancel ?? false);
+            options.ContinueOnThrow = options.ContinueOnThrow || (attrib?.ContinueOnThrow ?? false);
+
+            Options = options;
+        }
+
+        public bool Equals(ListenerObject other)
+            => other != null
+                && other.ModId == ModId
+                && other.Info == Info
+                && other.Options.DebugName == Options.DebugName
+                && other.Options.PriorityStore == Options.PriorityStore;
+    }
+
     public static class EventManager
     {
-        internal static Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string, int>>> eventListeners =
-            new Dictionary<Type, List<Tuple<Action<PathfinderEvent>, string, string, int>>>();
+        internal static Dictionary<Type, List<ListenerObject>> eventListeners = new Dictionary<Type, List<ListenerObject>>();
 
-        public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string debugName = null, int priority = 0)
+        private static void RegisterExpressionListener(Type pathfinderEventType, ListenerObject listenerObj)
         {
-            if (Utility.GetPreviousStackFrameIdentity() != "Pathfinder" && (Pathfinder.CurrentMod == null && !Extension.Handler.CanRegister))
-                throw new InvalidOperationException("RegisterListener can not be called outside of mod or extension loading.\nMod Blame: "
-                                                    + Utility.GetPreviousStackFrameIdentity());
+            InternalUtility.ValidateNoId("Event Listener", listenerObj.Options.DebugName, $" with priority {listenerObj.Options.Priority}");
             if (!eventListeners.ContainsKey(pathfinderEventType))
-                eventListeners.Add(pathfinderEventType, new List<Tuple<Action<PathfinderEvent>, string, string, int>>());
-            var name = Pathfinder.CurrentMod?.GetCleanId() ?? Extension.Handler.ActiveInfo?.Id ?? "Pathfinder";
-            if (string.IsNullOrEmpty(debugName))
-                debugName = "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
-                                       + listener.Method.DeclaringType.FullName + "." + listener.Method.Name;
-            Logger.Verbose("{0} {1} is attempting to add event listener {2} with priority {3}",
-                           Pathfinder.CurrentMod != null ? "Mod" : "Extension", name, debugName, priority);
+                eventListeners.Add(pathfinderEventType, new List<ListenerObject>());
             var list = eventListeners[pathfinderEventType];
-            list.Add(new Tuple<Action<PathfinderEvent>, string, string, int>(listener, debugName, Utility.ActiveModId, priority));
-            list.Sort((x, y) => y.Item4 - x.Item4);
+            list.Add(listenerObj);
+            list.Sort((x, y) => y.Options.Priority - x.Options.Priority);
+        }
+
+        public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, ListenerOptions options)
+        {
+            InternalUtility.ValidateNoId(log: false);
+            RegisterExpressionListener(pathfinderEventType, new ListenerObject(listener.Method, options));
         }
 
         /// <summary>
@@ -38,8 +83,15 @@ namespace Pathfinder.Event
         /// <param name="debugName">Name to assign for debug purposes</param>
         public static void RegisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener, string debugName = null)
         {
-            RegisterListener(pathfinderEventType, listener, debugName,
-                             listener.Method.GetFirstAttribute<EventPriorityAttribute>()?.Priority ?? 0);
+            InternalUtility.ValidateNoId(log: false);
+            RegisterListener(pathfinderEventType, listener, debugName);
+        }
+
+        public static void RegisterListener(Action<PathfinderEvent> listener, string debugName = null, int? priority = null)
+        {
+            InternalUtility.ValidateNoId(log: false);
+            RegisterExpressionListener(listener.Method.GetParameters()[0].ParameterType,
+                new ListenerObject(listener.Method, new ListenerOptions { DebugName = debugName, PriorityStore = priority }));
         }
 
         /// <summary>
@@ -48,14 +100,31 @@ namespace Pathfinder.Event
         /// <param name="listener">The listener function that will be executed on an event call</param>
         /// <param name="debugName">Name to assign for debug purposes</param>
         /// <typeparam name="T">The PathfinderEvent Compile time Type to listen for</typeparam>
-        public static void RegisterListener<T>(Action<T> listener, string debugName = null) where T : PathfinderEvent
+        public static void RegisterListener<T>(Action<T> listener, string debugName, int? priority)
+            where T : PathfinderEvent
         {
-            RegisterListener(typeof(T), (e) => listener.Invoke((T)e),
-                             string.IsNullOrEmpty(debugName) ?
-                             "[" + Path.GetFileName(listener.Method.Module.Assembly.Location) + "] "
-                             + listener.Method.DeclaringType.FullName + "." + listener.Method.Name : debugName,
-                             listener.Method.GetFirstAttribute<EventPriorityAttribute>()?.Priority ?? 0);
+            InternalUtility.ValidateNoId(log: false);
+            RegisterExpressionListener(typeof(T), new ListenerObject(listener.Method,
+                new ListenerOptions { DebugName = debugName, PriorityStore = priority }));
         }
+
+        public static void RegisterListener<T>(Action<T> listener, string debugName = null)
+            where T : PathfinderEvent
+        {
+            InternalUtility.ValidateNoId(log: false);
+            RegisterListener(listener, debugName, null);
+        }
+
+        public static void RegisterListener<T>(Action<T> listener, ListenerOptions options)
+            where T : PathfinderEvent
+        {
+            InternalUtility.ValidateNoId(log: false);
+            RegisterExpressionListener(typeof(T), new ListenerObject(listener.Method, options));
+        }
+
+        public static void UnregisterListener(Action<PathfinderEvent> listener)
+            => UnregisterListener(listener.Method.GetParameters()[0].ParameterType, listener);
+
 
         /// <summary>
         /// Removes an event listener by runtime type.
@@ -64,11 +133,14 @@ namespace Pathfinder.Event
         /// <param name="listener">The listener function to remove</param>
         public static void UnregisterListener(Type pathfinderEventType, Action<PathfinderEvent> listener)
         {
-            if (!eventListeners.ContainsKey(pathfinderEventType))
-                return;
-            var i = eventListeners[pathfinderEventType].FindIndex(l => l.Item1 == listener);
-            if (i == -1) return;
-            eventListeners[pathfinderEventType].RemoveAt(i);
+            if (!eventListeners.ContainsKey(pathfinderEventType)) return;
+            eventListeners[pathfinderEventType].RemoveAll(l => l.Info.Equals(listener.Method));
+        }
+
+        public static void UnregisterListener(Type eventType, ListenerObject obj)
+        {
+            if (!eventListeners.ContainsKey(eventType)) return;
+            eventListeners[eventType].RemoveAll(l => l.Equals(obj));
         }
 
         /// <summary>
@@ -77,29 +149,16 @@ namespace Pathfinder.Event
         /// <param name="listener">The listener function to remove</param>
         /// <typeparam name="T">The PathfinderEvent Compile time Type to remove for</typeparam>
         public static void UnregisterListener<T>(Action<T> listener) where T : PathfinderEvent
-        {
-            Type pathfinderEventType = typeof(T);
-            if (!eventListeners.ContainsKey(pathfinderEventType))
-                return;
-            for (var i = eventListeners[pathfinderEventType].Count-1; i >= 0; i--)
-            {
-                var l = eventListeners[pathfinderEventType][i];
-                try
-                {
-                    if (l.Item1.Method.Module.ResolveMethod(listener.Method.MetadataToken).Equals(listener.Method))
-                        eventListeners[pathfinderEventType].Remove(l);
-                }
-                catch (Exception) {}
-            }
-        }
+            => UnregisterListener(typeof(T), (Action<PathfinderEvent>)listener);
 
         /// <summary>
         /// Calls a PathfinderEvent.
         /// </summary>
         /// <param name="pathfinderEvent">The PathfinderEvent to call.</param>
-        public static void CallEvent(PathfinderEvent pathfinderEvent)
+        public static Dictionary<string, Exception> CallEvent(PathfinderEvent pathfinderEvent)
         {
-
+            var exceptionDict = new Dictionary<string, Exception>();
+            if (pathfinderEvent.PreventCall) return exceptionDict;
             var eventType = pathfinderEvent.GetType();
             var log = !Logger.IgnoreEventTypes.Contains(eventType);
             if(log)
@@ -108,25 +167,30 @@ namespace Pathfinder.Event
             {
                 if(log)
                     Logger.Verbose("Attempting Event call '[{0}] {1}'", Path.GetFileName(eventType.Assembly.Location), eventType.FullName);
+                var cancelled = false;
+                var thrown = false;
                 foreach (var listener in eventListeners[eventType])
                 {
+                    if (cancelled && listener.Options.ContinueOnCancel) continue;
+                    if (thrown && listener.Options.ContinueOnThrow) continue;
                     try
                     {
-                        if(log)
-                            Logger.Verbose("Attempting Event Listener call '{0}'", listener.Item2);
-                        Manager.CurrentMod = Manager.GetLoadedMod(listener.Item3);
-                        listener.Item1(pathfinderEvent);
+                        if(log) Logger.Verbose("Attempting Event Listener call '{0}'", listener.Options.DebugName);
+                        Manager.CurrentMod = Manager.GetLoadedMod(listener.ModId);
+                        listener.Func(null, pathfinderEvent);
                         Manager.CurrentMod = null;
                     }
                     catch(Exception ex)
                     {
                         Logger.Error("Event Listener Call Failed");
                         Logger.Error("Exception: {0}", ex);
+                        exceptionDict[listener.Options.DebugName] = ex;
+                        thrown = true;
                     }
-                    if (pathfinderEvent.IsCancelled)
-                        break;
+                    cancelled |= pathfinderEvent.IsCancelled;
                 }
             }
+            return exceptionDict;
         }
     }
 }
