@@ -86,13 +86,11 @@ namespace PathfinderPatcher
                 // Adds Pathfinder internal attribute hack
                 gameAssembly.AddAssemblyAttribute<InternalsVisibleToAttribute>("Pathfinder");
                 // Removes internal visibility from types
+                // TODO: Is this still required?
                 gameAssembly.RemoveInternals();
-                // Ensure the os field is internal
-                gameAssembly.MainModule.MakeFieldAccess("Hacknet.Computer", "os");
-                // Ensure MissionListingServer's fields are internal
-                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.MissionListingServer");
-                // Ensure MissionHubServer's fields are internal
-                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.MissionHubServer");
+
+                #region Hardcoded Type Modification
+                // Some hardcoded stuff
 
                 // Ensure ActiveMission's methods are virtual
                 var activeMission = gameAssembly.MainModule.GetType("Hacknet.ActiveMission");
@@ -102,27 +100,11 @@ namespace PathfinderPatcher
                     m.IsVirtual = true;
                     m.IsNewSlot = true;
                 }
-
-                // Ensure Hacknet.Computer.sendNetworkMessage is public
-                gameAssembly.MainModule.MakeMethodAccess("Hacknet.Computer", "sendNetworkMessage", AccessLevel.Public);
-                // Ensure important DisplayModule fields are public
-                gameAssembly.MainModule.MakeFieldAccess("Hacknet.DisplayModule", AccessLevel.Public, "x", "y", "openLockSprite", "lockSprite");
-                // Ensure Button's methods are public
-                gameAssembly.MainModule.MakeAllMethodAccess("Hacknet.Gui.Button", AccessLevel.Public, (MethodDefinition m) => false);
-
-                // Ensure ExtensionsMenuScreen's methods, fields, and nested type are public
-                var type = gameAssembly.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen");
-                type.MakeAllFieldAccess(AccessLevel.Public);
-                type.MakeAllMethodAccess(AccessLevel.Public);
-                type.MakeAllNestedAccess(AccessLevel.Public);
-
-                // Ensure Helpfile's fields are internal
-                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.Helpfile");
                 // Retrieve FNA's Vector2 as a type reference
                 var v2 = gameAssembly.MainModule.ImportReference(fna.MainModule.GetType("Microsoft.Xna.Framework.Vector2"));
 
                 // Add simplified constructor implictedly referencing Hacknet.OS.currentInstance
-                type = gameAssembly.MainModule.GetType("Hacknet.Computer");
+                var type = gameAssembly.MainModule.GetType("Hacknet.Computer");
                 type.AddRefConstructor(type.GetMethod(".ctor"),
                 new TypeReference[] {
                     gameAssembly.MainModule.TypeSystem.String,
@@ -150,26 +132,6 @@ namespace PathfinderPatcher
                 new Instruction[] {
                     Instruction.Create(OpCodes.Ldc_I4_0)
                 });
-
-                // Ensure OS's fields and methods are internal, also ensure introTextModule is public
-                type = gameAssembly.MainModule.GetType("Hacknet.OS");
-                type.MakeAllMethodAccess();
-                type.MakeAllFieldAccess();
-                type.GetField("introTextModule").IsPublic = true;
-
-                // Ensure ComputerLoader's fields are internal and nest types nested public
-                type = gameAssembly.MainModule.GetType("Hacknet.ComputerLoader");
-                type.MakeAllFieldAccess();
-                type.MakeAllNestedAccess(AccessLevel.Public);
-                type.GetMethod("findComp").IsPublic = true;
-
-                // Ensure IntroTextModule's fields are public
-                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.IntroTextModule", AccessLevel.Public);
-                // Ensure OptionsMenu's fields are public
-                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.OptionsMenu", AccessLevel.Public);
-                // Ensure DatabaseDaemon's fields are public
-                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.DatabaseDaemon", AccessLevel.Public);
-
                 // Create FileProperties Struct for FileType
                 var nestedType = new TypeBuilder
                 {
@@ -201,9 +163,15 @@ namespace PathfinderPatcher
                     + GetCommonConstructorModifier(nestedType,
                     type.AddFullProperty("Properties", nestedType),
                     gameAssembly.MainModule.GetType("Hacknet.OS").GetField("currentElapsedTime")));
+                #endregion
 
-                gameAssembly.MainModule.MakeFieldAccess("Hacknet.ProgressionFlags", "Flags", AccessLevel.Public);
-                gameAssembly.MainModule.MakeMethodAccess("Hacknet.NetworkMap", "loadAssignGameNodes", AccessLevel.Public);
+
+                // Run Patcher Tasks
+                foreach(TypeTaskItem task in TaskReader.readTaskListFile(new FileInfo(pathfinderDir + "PatcherCommands.xml").FullName))
+                {
+                    task.execute(gameAssembly.MainModule);
+                }
+
             }
             catch (Exception ex)
             {

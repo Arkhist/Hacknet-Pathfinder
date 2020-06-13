@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<PatcherCommands xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="TaskList.xsd">
+	<namespace name="Hacknet">
+		<namespace name="Screens">
+			<type name="ExtensionsMenuScreen">
+				<allFields access="public" />
+				<allMethods access="public" />
+				<allTypes access="public" />
+			</type>
+		</namespace>
+		<namespace name="Gui">
+			<type name="Button">
+				<allMethods access="public" />
+			</type>
+		</namespace>
+		<type name="Computer">
+			<!-- these are not required since we do all fields anyway.
+			no idea why they used to be extra.
+			<field name="os" access="internal" />
+			<method name="sendNetworkMessage" access="public" />
+			-->
+			<allFields access="internal" />
+			<allMethods access="internal" />
+			<method name="sendNetworkMessage" access="public" />
+			<field name="introTextModule" access="public" />
+		</type>
+		<type name="Helpfile">
+			<allFields access="internal"/>
+		</type>
+		<type name="MissionListingServer">
+			<allFields access="internal" />
+		</type>
+		<type name="MissionHubServer">
+			<allFields access="internal" />
+		</type>
+		<type name="DisplayModule">
+			<field name="x" access="public" />
+			<field name="y" access="public" />
+			<field name="openLockSprite" access="public" />
+			<field name="lockSprite" access="public" />
+		</type>
+		<type name="ComputerLoader">
+			<allFields access="internal" />
+			<allTypes access="public" />
+			<method name="findComp" access="public" />
+		</type>
+		<type name="OS">
+			<allFields access="internal"/>
+			<allMethods access="internal"/>
+			<field name="introTextModule" access="public" />
+		</type>
+		<type name="IntroTextModule">
+			<allFields access="public" />
+		</type>
+		<type name="OptionsMenu">
+			<allFields access="public" />
+		</type>
+		<type name="DatabaseDaemon">
+			<allFields access="public" />
+		</type>
+		<type name="ProgressionFlags">
+			<field name="Flags" access="public" />
+		</type>
+		<type name="NetworkMap">
+			<method name="loadAssignGameNodes" access="public" />
+		</type>
+		<type name="MailServer">
+			<field name="emailData" access="internal" />
+		</type>
+	</namespace>
+</PatcherCommands>
