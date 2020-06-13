@@ -197,7 +197,7 @@ namespace PathfinderPatcher
 
                 // Add Properties Property to Folder
                 type = gameAssembly.MainModule.GetType("Hacknet.Folder");
-                type.ModifyConstructor(m => { m.Body.Variables.Add(new VariableDefinition(gameAssembly.MainModule.TypeSystem.UInt64)); }
+                type.ModifyConstructor((m => { m.Body.Variables.Add(new VariableDefinition(gameAssembly.MainModule.TypeSystem.UInt64)); })
                     + GetCommonConstructorModifier(nestedType,
                     type.AddFullProperty("Properties", nestedType),
                     gameAssembly.MainModule.GetType("Hacknet.OS").GetField("currentElapsedTime")));
