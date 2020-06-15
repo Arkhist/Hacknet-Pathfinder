@@ -5,7 +5,7 @@ namespace Pathfinder.Util
 {
     public static class SoundSystem
     {
-        private static float? lastSound = null;
+        private static float? lastSound;
         public static bool SoundMuted
         {
             get { return lastSound.HasValue; }

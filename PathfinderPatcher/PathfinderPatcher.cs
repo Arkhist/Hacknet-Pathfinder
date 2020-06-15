@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,80 +9,93 @@ using Mono.Cecil.Inject;
 
 namespace PathfinderPatcher
 {
+    public enum AccessMods
+    {
+        Private,
+        Protected,
+        Public,
+        Internal,
+        ProtectedInternal,
+        PrivateProtected
+    }
+
     // This will be the modloader.
     public static class PatcherProgram
     {
-        internal static void Main(string[] args)
+        const string PATCH_ATTRIBUTE_CLASSPATH = "Pathfinder.Attribute.PatchAttribute";
+
+        internal static int Main(string[] args)
         {
-            AssemblyDefinition ad = null;
+            var separator = Path.DirectorySeparatorChar;
+
+            Console.WriteLine($"Executing Patcher { (args.Length > 0 ? $"with arguments:\n{{\n\t{string.Join(",\n\t", args)}\n}}" : "without arguments.") }");
+
+            string pathfinderDir = null, exeDir = "";
+            var index = 0;
+            var spitOutHacknetOnly = false;
+            var skipLaunchers = false;
+            foreach (var arg in args)
+            {
+                if (arg.Equals("-pathfinderDir")) // the Pathfinder.dll's directory
+                    pathfinderDir = args[index + 1] + Path.DirectorySeparatorChar;
+                if (arg.Equals("-exeDir")) // the Hacknet.exe's directory
+                    exeDir = args[index + 1] + separator;
+                spitOutHacknetOnly |= arg.Equals("-spit"); // spit modifications without injected code
+                skipLaunchers |= arg.Equals("-nolaunch");
+                index++;
+            }
+
+            AssemblyDefinition gameAssembly = null;
             try
             {
-                Console.WriteLine(String.Join("|", args));
-                string pathfinderDir = "", exeDir = "";
-                bool spitOutHacknetOnly = false;
-                int index = 0;
+                if(!skipLaunchers) {
+                   if (File.Exists(exeDir + "Hacknet"))
+                   {
+                        File.Copy(exeDir + "Hacknet", exeDir + "HacknetPathfinder", true);
 
-                char separator = Path.DirectorySeparatorChar;
-                // pathfinder arguments
-                foreach (var arg in args)
-                {
-                    if (arg.Equals("-pathfinderDir")) // the Pathfinder.dll's directory
-                        pathfinderDir = args[index + 1] + separator;
-                    if (arg.Equals("-exeDir")) // the Hacknet.exe's directory
-                        exeDir = args[index + 1] + separator;
-                    if (arg.Equals("-spit")) // spit modifications without injected code
-                        spitOutHacknetOnly = true;
-                    index++;
+                        var txt = File.ReadAllText(exeDir + "Hacknet");
+                        txt = txt.Replace("Hacknet", "HacknetPathfinder");
+
+                       File.WriteAllText(exeDir + "HacknetPathfinder", txt);
+                   }
+
+                   foreach (var n in new string[]{
+                       exeDir + "Hacknet.bin.x86",
+                       exeDir + "Hacknet.bin.x86_64",
+                       exeDir + "Hacknet.bin.osx"
+                    })
+                    if (File.Exists(n))
+                        File.Copy(n, exeDir + "HacknetPathfinder.bin" + Path.GetExtension(n), true);
                 }
-
-                if(File.Exists("Hacknet"))
-                {
-                    var txt = File.ReadAllText("Hacknet");
-                    txt = txt.Replace("Hacknet", "HacknetPathfinder");
-                    File.WriteAllText("HacknetPathfinder", txt);
-                }
-
-                foreach (var n in new string[]{ "Hacknet.bin.x86", "Hacknet.bin.x86_64", "Hacknet.bin.osx" })
-                    if(File.Exists(n)) File.Copy(n, n.Replace("Hacknet", "HacknetPathfinder"), true);
-
                 // Loads Hacknet.exe's assembly
-                ad = LoadAssembly(exeDir + "Hacknet.exe");
+                gameAssembly = LoadAssembly(exeDir + "Hacknet.exe");
+            }
+            catch (Exception ex)
+            {
+                HandleExeception("Failure at Assembly Loading:", ex);
+                return 2;
+            }
 
+            if (gameAssembly == null) throw new InvalidDataException("Hacknet Assembly could not be found");
+
+            try
+            {
                 // Loads FNA.dll for some extra injections
                 var fna = LoadAssembly(exeDir + "FNA.dll");
 
                 // Adds Pathfinder internal attribute hack
-                ad.AddAssemblyAttribute<InternalsVisibleToAttribute>("Pathfinder");
+                gameAssembly.AddAssemblyAttribute<InternalsVisibleToAttribute>("Pathfinder");
                 // Removes internal visibility from types
-                ad.RemoveInternals();
-
-                var mod = ad.MainModule;
-
+                gameAssembly.RemoveInternals();
                 // Ensure the os field is internal
-                var osField = ad.MainModule.GetType("Hacknet.Computer").GetField("os");
-                osField.IsPrivate = false;
-                osField.IsAssembly = true;
-
+                gameAssembly.MainModule.MakeFieldAccess("Hacknet.Computer", "os");
                 // Ensure MissionListingServer's fields are internal
-                var missionServer = ad.MainModule.GetType("Hacknet.MissionListingServer");
-                foreach (var f in missionServer.Fields)
-                {
-                    if (!f.IsPrivate) continue;
-                    f.IsPrivate = false;
-                    f.IsAssembly = true;
-                }
-
+                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.MissionListingServer");
                 // Ensure MissionHubServer's fields are internal
-                missionServer = ad.MainModule.GetType("Hacknet.MissionHubServer");
-                foreach (var f in missionServer.Fields)
-                {
-                    if (!f.IsPrivate) continue;
-                    f.IsPrivate = false;
-                    f.IsAssembly = true;
-                }
+                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.MissionHubServer");
 
                 // Ensure ActiveMission's methods are virtual
-                var activeMission = ad.MainModule.GetType("Hacknet.ActiveMission");
+                var activeMission = gameAssembly.MainModule.GetType("Hacknet.ActiveMission");
                 foreach (var m in activeMission.Methods)
                 {
                     if (m.IsStatic || m.IsConstructor) continue;
@@ -91,433 +104,228 @@ namespace PathfinderPatcher
                 }
 
                 // Ensure Hacknet.Computer.sendNetworkMessage is public
-                var compSendMsg = ad.MainModule.GetType("Hacknet.Computer").GetMethod("sendNetworkMessage");
-                compSendMsg.IsPrivate = false;
-                compSendMsg.IsPublic = true;
-
+                gameAssembly.MainModule.MakeMethodAccess("Hacknet.Computer", "sendNetworkMessage", AccessMods.Public);
                 // Ensure important DisplayModule fields are public
-                var type = ad.MainModule.GetType("Hacknet.DisplayModule");
-                var typeVars = type.GetField("x");
-                typeVars.IsPrivate = false;
-                typeVars.IsPublic = true;
-                typeVars = type.GetField("y");
-                typeVars.IsPrivate = false;
-                typeVars.IsPublic = true;
-                typeVars = type.GetField("openLockSprite");
-                typeVars.IsPrivate = false;
-                typeVars.IsPublic = true;
-                typeVars = type.GetField("lockSprite");
-                typeVars.IsPrivate = false;
-                typeVars.IsPublic = true;
-
+                gameAssembly.MainModule.MakeFieldAccess("Hacknet.DisplayModule", AccessMods.Public, "x", "y", "openLockSprite", "lockSprite");
                 // Ensure Button's methods are public
-                type = ad.MainModule.GetType("Hacknet.Gui.Button");
-                foreach (var m in type.Methods)
-                {
-                    m.IsPrivate = false;
-                    m.IsPublic = true;
-                }
+                gameAssembly.MainModule.MakeAllMethodAccess("Hacknet.Gui.Button", AccessMods.Public, (MethodDefinition m) => false);
 
                 // Ensure ExtensionsMenuScreen's methods, fields, and nested type are public
-                type = ad.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen");
-                foreach (var m in type.Methods)
-                {
-                    if (!m.IsPrivate) continue;
-                    m.IsPrivate = false;
-                    m.IsPublic = true;
-                }
-
-                foreach (var f in type.Fields)
-                {
-                    if (!f.IsPrivate) continue;
-                    f.IsPrivate = false;
-                    f.IsPublic = true;
-                }
-
-                foreach (var t in type.NestedTypes)
-                {
-                    t.IsPublic = true;
-                    t.IsNestedPublic = true;
-                }
+                var type = gameAssembly.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen");
+                type.MakeAllFieldAccess(AccessMods.Public);
+                type.MakeAllMethodAccess(AccessMods.Public);
+                type.MakeAllNestedAccess(AccessMods.Public);
 
                 // Ensure Helpfile's fields are internal
-                type = ad.MainModule.GetType("Hacknet.Helpfile");
-                foreach (var f in type.Fields)
-                {
-                    if (!f.IsPrivate) continue;
-                    f.IsPrivate = false;
-                    f.IsAssembly = true;
-                }
-
+                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.Helpfile");
                 // Retrieve FNA's Vector2 as a type reference
-                var v2 = ad.MainModule.ImportReference(fna.MainModule.GetType("Microsoft.Xna.Framework.Vector2"));
+                var v2 = gameAssembly.MainModule.ImportReference(fna.MainModule.GetType("Microsoft.Xna.Framework.Vector2"));
 
                 // Add simplified constructor implictedly referencing Hacknet.OS.currentInstance
-                type = ad.MainModule.GetType("Hacknet.Computer");
+                type = gameAssembly.MainModule.GetType("Hacknet.Computer");
                 type.AddRefConstructor(type.GetMethod(".ctor"),
                 new TypeReference[] {
-                    ad.MainModule.TypeSystem.String,
-                    ad.MainModule.TypeSystem.String,
+                    gameAssembly.MainModule.TypeSystem.String,
+                    gameAssembly.MainModule.TypeSystem.String,
                     v2,
-                    ad.MainModule.TypeSystem.Int32,
-                    ad.MainModule.TypeSystem.Byte
+                    gameAssembly.MainModule.TypeSystem.Int32,
+                    gameAssembly.MainModule.TypeSystem.Byte
                 },
                 new Instruction[] {
-                    Instruction.Create(OpCodes.Ldsfld, ad.MainModule.GetType("Hacknet.OS").GetField("currentInstance"))
+                    Instruction.Create(OpCodes.Ldsfld, gameAssembly.MainModule.GetType("Hacknet.OS").GetField("currentInstance"))
                 });
 
                 // Add simplified constructor assigning the compType value to 0
-                type.AddRefConstructor(type.GetMethod(".ctor", ad.MainModule.TypeSystem.String,
-                                                      ad.MainModule.TypeSystem.String,
+                type.AddRefConstructor(type.GetMethod(".ctor", gameAssembly.MainModule.TypeSystem.String,
+                                                      gameAssembly.MainModule.TypeSystem.String,
                                                       v2,
-                                                      ad.MainModule.TypeSystem.Int32,
-                                                      ad.MainModule.TypeSystem.Byte),
+                                                      gameAssembly.MainModule.TypeSystem.Int32,
+                                                      gameAssembly.MainModule.TypeSystem.Byte),
                 new TypeReference[] {
-                    ad.MainModule.TypeSystem.String,
-                    ad.MainModule.TypeSystem.String,
+                    gameAssembly.MainModule.TypeSystem.String,
+                    gameAssembly.MainModule.TypeSystem.String,
                     v2,
-                    ad.MainModule.TypeSystem.Int32
+                    gameAssembly.MainModule.TypeSystem.Int32
                 },
                 new Instruction[] {
                     Instruction.Create(OpCodes.Ldc_I4_0)
                 });
 
                 // Ensure OS's fields and methods are internal, also ensure introTextModule is public
-                type = ad.MainModule.GetType("Hacknet.OS");
-                foreach (var f in type.Fields)
-                {
-                    if (f.Name == "introTextModule") f.IsPublic = true;
-                    if (!f.IsPrivate) continue;
-                    f.IsPrivate = false;
-                    f.IsAssembly = true;
-                }
-                foreach (var m in type.Methods)
-                {
-                    if (!m.IsPrivate) continue;
-                    m.IsPrivate = false;
-                    m.IsAssembly = true;
-                }
+                type = gameAssembly.MainModule.GetType("Hacknet.OS");
+                type.MakeAllMethodAccess();
+                type.MakeAllFieldAccess();
+                type.GetField("introTextModule").IsPublic = true;
 
                 // Ensure ComputerLoader's fields are internal and nest types nested public
-                type = ad.MainModule.GetType("Hacknet.ComputerLoader");
-                foreach (var f in type.Fields)
-                {
-                    if (!f.IsPrivate) continue;
-                    f.IsPrivate = false;
-                    f.IsAssembly = true;
-                }
-
-                foreach (var t in type.NestedTypes) t.IsNestedPublic = true;
+                type = gameAssembly.MainModule.GetType("Hacknet.ComputerLoader");
+                type.MakeAllFieldAccess();
+                type.MakeAllNestedAccess(AccessMods.Public);
+                type.GetMethod("findComp").IsPublic = true;
 
                 // Ensure IntroTextModule's fields are public
-                type = ad.MainModule.GetType("Hacknet.IntroTextModule");
-                foreach (var f in type.Fields)
-                {
-                    if (!f.IsPrivate) continue;
-                    f.IsPrivate = false;
-                    f.IsPublic = true;
-                }
-
+                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.IntroTextModule", AccessMods.Public);
                 // Ensure OptionsMenu's fields are public
-                type = ad.MainModule.GetType("Hacknet.OptionsMenu");
-                foreach (var f in type.Fields)
+                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.OptionsMenu", AccessMods.Public);
+                // Ensure DatabaseDaemon's fields are public
+                gameAssembly.MainModule.MakeAllFieldAccess("Hacknet.DatabaseDaemon", AccessMods.Public);
+
+                // Create FileProperties Struct for FileType
+                var nestedType = new TypeBuilder
                 {
-                    if (!f.IsPrivate) continue;
-                    f.IsPrivate = false;
-                    f.IsPublic = true;
-                }
+                    Namespace = "Hacknet",
+                    Name = "FileProperties",
+                    BaseType = typeof(ValueType),
+                    Fields = {
+                        new FieldBuilder { Name = "AccessedTime", Type = typeof(ulong) },
+                        new FieldBuilder { Name = "ModifiedTime", Type = typeof(ulong) },
+                        new FieldBuilder { Name = "ChangedTime", Type = typeof(ulong) },
+                        new FieldBuilder { Name = "PrivilegeMask", Type = typeof(short) },
+                    }
+                }.Build(gameAssembly.MainModule);
+                gameAssembly.MainModule.Types.Add(nestedType);
 
-                // Spit out changes and exit
-                if (spitOutHacknetOnly)
-                {
-                    ad?.Write("HacknetPathfinder.exe");
-                    return;
-                }
 
-                // Load Pathfinder.dll's assembly
-                var pathfinder = LoadAssembly(pathfinderDir + "Pathfinder.dll");
+                // Create FileProperties Properties getter/setter Property in FileType
+                type.AddUndefinedProperty("Properties", nestedType);
 
-                // Retrieve the hook methods
-                var hooks = pathfinder.MainModule.GetType("Pathfinder.PathfinderHooks");
+                // Add Properties Property to FileEntry
+                type = gameAssembly.MainModule.GetType("Hacknet.FileEntry");
+                type.ModifyConstructor(GetCommonConstructorModifier(nestedType,
+                    type.AddFullProperty("Properties", nestedType),
+                    type.GetField("secondCreatedAt")));
 
-                // Hook onMain to Program.Main
-                ad.EntryPoint.InjectWith(hooks.GetMethod("onMain"),
-                    flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn);
+                // Add Properties Property to Folder
+                type = gameAssembly.MainModule.GetType("Hacknet.Folder");
+                type.ModifyConstructor(m => { m.Body.Variables.Add(new VariableDefinition(gameAssembly.MainModule.TypeSystem.UInt64)); }
+                    + GetCommonConstructorModifier(nestedType,
+                    type.AddFullProperty("Properties", nestedType),
+                    gameAssembly.MainModule.GetType("Hacknet.OS").GetField("currentElapsedTime")));
 
-                // Hook onLoadContent to Game1.LoadContent
-                ad.MainModule.GetType("Hacknet.Game1").GetMethod("LoadContent").InjectWith(
-                    hooks.GetMethod("onLoadContent"),
-                    -1,
-                    flags: InjectFlags.PassInvokingInstance
-                );
-
-                // Hook onCommandSent to ProgramRunner.ExecuteProgram
-                ad.MainModule.GetType("Hacknet.ProgramRunner").GetMethod("ExecuteProgram").InjectWith(
-                    hooks.GetMethod("onCommandSent"),
-                    13,
-                    flags: InjectFlags.PassParametersVal | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
-                    localsID: new int[] { 1 }
-                );
-
-                // Hook onLoadSession to OS.LoadContent
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("LoadContent").InjectWith(
-                    hooks.GetMethod("onLoadSession"),
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn
-                );
-
-                // Hook onPostLoadSession to OS.LoadContent
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("LoadContent").InjectWith(
-                    hooks.GetMethod("onPostLoadSession"),
-                    -1,
-                    flags: InjectFlags.PassInvokingInstance
-                );
-
-                // Hook onUnloadSession to OS.UnloadContent
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("UnloadContent").InjectWith(
-					hooks.GetMethod("onUnloadSession"),
-                    -1,
-                    flags: InjectFlags.PassInvokingInstance
-                );
-
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
-                // Hook onMainMenuDraw to MainMenu.Draw
-                ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("Draw").InjectWith(
-                    hooks.GetMethod("onMainMenuDraw"),
-                    120,
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassParametersVal
-                );
-
-                // Hook onMainMenuButtonsDraw to MainMenu.drawMainMenuButtons
-                ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("drawMainMenuButtons").InjectWith(
-                    hooks.GetMethod("onMainMenuButtonsDraw"),
-                    248,
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals,
-                    localsID: new int[] { 0, 4 }
-                );
-
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
-                // Hook onLoadSaveFile to OS.loadSaveFile
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("loadSaveFile").InjectWith(
-                    hooks.GetMethod("onLoadSaveFile"),
-                    33,
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals | InjectFlags.ModifyReturn,
-                    localsID: new int[] { 0, 1 }
-                );
-
-                // Hook onSaveFile to OS.writeSaveGame
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("writeSaveGame").InjectWith(
-                    hooks.GetMethod("onSaveFile"),
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersVal | InjectFlags.ModifyReturn
-                );
-
-                // Hook onSaveWrite to OS.writeSaveGame
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("writeSaveGame").InjectWith(
-                    hooks.GetMethod("onSaveWrite"),
-                    -5,
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals | InjectFlags.PassParametersVal,
-                    localsID: new int[] { 0 }
-                );
-
-                // Hook onLoadNetmapContent to NetworkMap.LoadContent
-                ad.MainModule.GetType("Hacknet.NetworkMap").GetMethod("LoadContent").InjectWith(
-                    hooks.GetMethod("onLoadNetmapContent"),
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn
-                );
-
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
-                // Hook onExecutableExecute to ProgramRunner.AttemptExeProgramExecution
-                ad.MainModule.GetType("Hacknet.ProgramRunner").GetMethod("AttemptExeProgramExecution").InjectWith(
-                    hooks.GetMethod("onExecutableExecute"),
-                    54,
-                    flags: InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
-                    localsID: new int[] { 0, 1, 2, 6 }
-                );
-
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
-                // Hook onDrawMainMenuTitles to MainMenu.DrawBackgroundAndTitle
-                ad.MainModule.GetType("Hacknet.MainMenu").GetMethod("DrawBackgroundAndTitle").InjectWith(
-                    hooks.GetMethod("onDrawMainMenuTitles"),
-                    7,
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
-                    localsID: new int[] { 0 }
-                );
-
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
-                // Hook onPortExecutableExecute to OS.launchExecutable
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("launchExecutable").InjectWith(
-                    hooks.GetMethod("onPortExecutableExecute"),
-                    44,
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
-                    localsID: new int[] { 2 }
-                );
-
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
-                // Hook onLoadComputer to ComputerLoader.loadComputer
-                // adds the obsfuscated c value in <>c__DisplayClass4 as a parameter (seen as nearbyNodeOffset decompiled)
-                // 232 puts it right before the nearbyNodeOffset.type == 4 if statement that erases all home folder data
-                type = ad.MainModule.GetType("Hacknet.ComputerLoader");
-                var method = type.GetMethod("loadComputer");
-                method.InjectWithLocalFieldParameter(
-                    hooks.GetMethod("onLoadComputer"),
-                    266,
-                    152,
-                    type.NestedTypes.First((arg) => arg.Name == "<>c__DisplayClass4").GetField("c"),
-                    false,
-                    InjectDirection.Before,
-                    InjectFlags.PassParametersVal | InjectFlags.PassLocals,
-                    new int[] { 1 }
-                );
-                method.AdjustInstruction(240, operand: method.Inst(265));
-                /*method.InjectWith(
-                    hooks.GetMethod("onLoadComputer"),
-                    266,
-                    flags: InjectFlags.PassParametersVal | InjectFlags.PassLocals,
-                    localsID: new int[] { 1 }
-                );*/
-
-                // Hook onGameUnloadContent to Game1.UnloadContent
-                ad.MainModule.GetType("Hacknet.Game1").GetMethod("UnloadContent").InjectWith(
-                    hooks.GetMethod("onGameUnloadContent"),
-                    -1,
-                    flags: InjectFlags.PassInvokingInstance
-                );
-
-                // Hook onGameUpdate to Game1.Update
-                ad.MainModule.GetType("Hacknet.Game1").GetMethod("Update").InjectWith(
-                    hooks.GetMethod("onGameUpdate"),
-                    -5,
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef
-                );
-
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
-                // Hook onPortNameDraw to DisplayModule.doProbeDisplay
-                ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("doProbeDisplay").InjectWith(
-                    hooks.GetMethod("onPortNameDraw"),
-                    -158,
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassLocals,
-                    localsID: new int[] { 0, 1, 10 }
-                );
-
-                // Hook onDisplayModuleUpdate to DisplayModule.Update
-                ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("Update").InjectWith(
-                    hooks.GetMethod("onDisplayModuleUpdate"),
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
-                );
-
-                // Hook onDisplayModuleDraw to DisplayModule.Draw
-                ad.MainModule.GetType("Hacknet.DisplayModule").GetMethod("Draw").InjectWith(
-                    hooks.GetMethod("onDisplayModuleDraw"),
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
-                );
-
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
-                // Hook onExtensionsMenuScreenDraw to ExtensionsMenuScreen.Draw
-                ad.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen").GetMethod("Draw").InjectWith(
-                    hooks.GetMethod("onExtensionsMenuScreenDraw"),
-                    71,
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn | InjectFlags.PassLocals,
-                    localsID: new int[] { 3 }
-                );
-
-                // Hook onExtensionsMenuListDraw to ExtensionsMenuScreen.DrawExtensionList
-                ad.MainModule.GetType("Hacknet.Screens.ExtensionsMenuScreen").GetMethod("DrawExtensionList").InjectWith(
-                    hooks.GetMethod("onExtensionsMenuListDraw"),
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
-                );
-
-                // SENSIBLE CODE, CHANGE OFFSET IF NEEDED
-                // Hook onOptionsMenuDraw to OptionsMenu.Draw
-                ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("Draw").InjectWith(
-                    hooks.GetMethod("onOptionsMenuDraw"),
-                    40,
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
-                );
-
-                // Hook onOptionsMenuLoadContent to OptionsMenu.LoadContent
-                ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("LoadContent").InjectWith(
-					hooks.GetMethod("onOptionsMenuLoadContent"),
-                    -1,
-                    flags: InjectFlags.PassInvokingInstance
-                );
-
-                // Hook onOptionsMenuUpdate to OptionsMenu.Update
-                ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("Update").InjectWith(
-					hooks.GetMethod("onOptionsMenuUpdate"),
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
-                );
-
-                // Hook onOptionsApply to OptionsMenu.apply
-                ad.MainModule.GetType("Hacknet.OptionsMenu").GetMethod("apply").InjectWith(
-                    hooks.GetMethod("onOptionsApply"),
-                    flags: InjectFlags.PassInvokingInstance
-                );
-
-                ad.MainModule.GetType("Hacknet.OS").GetMethod("Draw").InjectWith(
-                    hooks.GetMethod("onOSDraw"),
-                    flags: InjectFlags.PassInvokingInstance | InjectFlags.PassParametersRef | InjectFlags.ModifyReturn
-                );
-
-                ad?.Write("HacknetPathfinder.exe");
+                gameAssembly.MainModule.MakeFieldAccess("Hacknet.ProgressionFlags", "Flags", AccessMods.Public);
+                gameAssembly.MainModule.MakeMethodAccess("Hacknet.NetworkMap", "loadAssignGameNodes", AccessMods.Public);
             }
             catch (Exception ex)
             {
-                try
+                HandleExeception("Failure during Hacknet Pathfinder Assembly Tweaks:", ex);
+                gameAssembly?.Write("HacknetPathfinder.exe");
+                return 3;
+            }
+            if(!spitOutHacknetOnly) try
                 {
-                    ad?.Write("HacknetPathfinder.exe");
+                    using (var stream = new MemoryStream())
+                    {
+                        gameAssembly.Write(stream);
+                        System.Reflection.Assembly.Load(stream.GetBuffer());
+                        var assm = System.Reflection.Assembly.LoadFrom(
+                            new FileInfo(string.IsNullOrEmpty(pathfinderDir) ? "Pathfinder.dll" : pathfinderDir + "Pathfinder.dll").FullName);
+                        var t = assm.GetType("Pathfinder.Internal.Patcher.Executor");
+                        t.GetMethod("Main", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
+                            .Invoke(null, new object[] { gameAssembly });
+                    }
                 }
-                catch (Exception e)
+                catch(Exception ex)
                 {
-                    Console.WriteLine("Writing problem: " + e);
+                    HandleExeception("Failure during Pathfinder.dll's Patch Execution:", ex);
+                    gameAssembly?.Write("HacknetPathfinder.exe");
+                    return 1;
                 }
-                Console.Write(ex);
-                Console.WriteLine("Press enter to end...");
-                Console.ReadLine();
-            }
+            gameAssembly?.Write("HacknetPathfinder.exe");
+            return 0;
         }
 
-        internal static void AddAssemblyAttribute<T>(this AssemblyDefinition ad, params object[] attribArgs)
+        private static void HandleExeception(string message, Exception e)
         {
-            var paramTypes = attribArgs.Length > 0 ? new Type[attribArgs.Length] : Type.EmptyTypes;
-            int index = 0;
-            foreach (var param in attribArgs)
-            {
-                paramTypes[index] = param.GetType();
-                index++;
-            }
-            var attribCtor = ad.MainModule.ImportReference(typeof(T).GetConstructor(paramTypes));
-            var attrib = new CustomAttribute(attribCtor);
-            foreach (var param in attribArgs)
-            {
-                attrib.ConstructorArguments.Add(
-                    new CustomAttributeArgument(ad.MainModule.ImportReference(param.GetType()), param)
-                );
-            }
-            ad.CustomAttributes.Add(attrib);
+            Console.WriteLine(message);
+            Console.WriteLine(e);
+            Console.WriteLine("Press any enter to terminate...");
+            Console.ReadLine();
         }
 
-        internal static void RemoveInternals(this AssemblyDefinition ad)
+        private static void AddUndefinedProperty(this TypeDefinition t, string propName, TypeDefinition propType)
         {
-            foreach (var type in ad.MainModule.Types)
-            {
-                if (type.IsNotPublic)
-                    type.IsNotPublic = false;
-                if (!type.IsPublic)
-                    type.IsPublic = true;
+            var property = new PropertyDefinition(propName, PropertyAttributes.None, propType);
+            t.Properties.Add(property);
 
-                /*if (type.HasFields)
-                    foreach (FieldDefinition field in type.Fields)
-                        if (field.IsPublic)
-                            field.IsAssembly = false;*/
-            }
+            var method = new MethodDefinition($"get_{propName}", MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.NewSlot | MethodAttributes.Abstract | MethodAttributes.Virtual, propType);
+            t.Methods.Add(method);
+            property.GetMethod = method;
+
+            method = new MethodDefinition($"set_{propName}", MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.NewSlot | MethodAttributes.Abstract | MethodAttributes.Virtual, t.Module.TypeSystem.Void);
+            method.Parameters.Add(new ParameterDefinition("value", ParameterAttributes.None, propType));
+            t.Methods.Add(method);
+            property.SetMethod = method;
         }
 
-        internal static AssemblyDefinition LoadAssembly(string fileName, ReaderParameters parameters = null)
+        private static FieldDefinition AddFullProperty(this TypeDefinition t, string propName, TypeDefinition propType)
+        {
+            var field = new FieldDefinition($"<{propName}>k__BackingField", FieldAttributes.Private, propType);
+            field.CustomAttributes.Add(new CustomAttribute(t.Module.ImportReference(typeof(CompilerGeneratedAttribute).GetConstructors()[0])));
+            t.Fields.Add(field);
+
+            var method = new MethodDefinition($"get_{propName}",
+                MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.Virtual,
+                propType);
+
+            method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+            method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldfld, field));
+            method.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
+            t.Methods.Add(method);
+            t.Properties.Add(new PropertyDefinition(propName, PropertyAttributes.None, propType)
+            {
+                GetMethod = method
+            });
+
+            method = new MethodDefinition($"set_{propName}",
+                MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.Virtual,
+                t.Module.TypeSystem.Void);
+            method.Parameters.Add(new ParameterDefinition("value", ParameterAttributes.None, propType));
+            method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+            method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_1));
+            method.Body.Instructions.Add(Instruction.Create(OpCodes.Stfld, field));
+            method.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
+            t.Methods.Add(method);
+            t.Properties.Last().SetMethod = method;
+
+            return field;
+        }
+
+        private static Action<MethodDefinition> GetCommonConstructorModifier(
+            TypeDefinition nestedType,
+            FieldDefinition propField,
+            FieldDefinition secondCreatedField)
+        {
+            return m =>
+            {
+                var il = m.Body.GetILProcessor();
+                il.Remove(m.Body.Instructions.Last());
+                //m.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+                //m.Body.Instructions.Add(Instruction.Create(OpCodes.Ldfld, secondCreated));
+                //m.Body.Instructions.Add(Instruction.Create(OpCodes.Conv_Ovf_U4));
+                foreach (var f in nestedType.Fields)
+                {
+                    if (f.FieldType == nestedType.Module.TypeSystem.UInt64)
+                    {
+                        il.Emit(OpCodes.Ldarg_0);
+                        il.Emit(OpCodes.Ldfld, propField);
+                        il.Emit(OpCodes.Ldarg_0);
+                        il.Emit(OpCodes.Ldfld, secondCreatedField);
+                        il.Emit(OpCodes.Stfld, f);
+                    }
+                }
+                m.Body.Instructions.Add(Instruction.Create(OpCodes.Nop));
+                m.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
+            };
+        }
+
+        private static void ModifyConstructor(this TypeDefinition t, Action<MethodDefinition> modifier)
+            => t.GetMethods(".ctor").ForEach(modifier);
+
+        private static AssemblyDefinition LoadAssembly(string fileName, ReaderParameters parameters = null)
         {
             parameters = parameters ?? new ReaderParameters(ReadingMode.Deferred);
             if (string.IsNullOrEmpty(fileName))
-            {
-                throw new ArgumentException("fileName is null/empty");
-            }
+                throw new ArgumentException($"{nameof(fileName)} is null/empty");
             Stream stream = new FileStream(fileName, FileMode.Open, parameters.ReadWrite ? FileAccess.ReadWrite : FileAccess.Read, FileShare.Read);
             if (parameters.InMemory)
             {
@@ -540,36 +348,6 @@ namespace PathfinderPatcher
                 throw;
             }
             return result.Assembly;
-        }
-
-        public static MethodDefinition AddRefConstructor(this TypeDefinition type,
-                                                         MethodReference mref,
-                                                         IEnumerable<TypeReference> args,
-                                                         IEnumerable<Instruction> extraInstructions = null)
-        {
-            var methodAttributes = MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName;
-            var method = new MethodDefinition(".ctor", methodAttributes, type.Module.TypeSystem.Void);
-            int i = 0;
-            foreach (var a in args)
-                method.Parameters.Add(new ParameterDefinition(mref.Parameters.Count > i ? mref.Parameters[i++].Name : null,
-                                                              ParameterAttributes.None,
-                                                              a
-                                                             ));
-            method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
-            i = 0;
-            foreach (var a in args)
-                method.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg, method.Parameters[i++]));
-            if (extraInstructions != null)
-                foreach (var inst in extraInstructions) method.Body.Instructions.Add(inst);
-            method.Body.Instructions.Add(Instruction.Create(OpCodes.Call, mref));
-            method.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
-            type.Methods.Add(method);
-            return method;
-        }
-
-        public static Instruction Inst(this MethodDefinition self, int loc)
-        {
-            return self.Body.Instructions[loc];
         }
 
         public static MethodDefinition AdjustInstruction(this MethodDefinition self, int loc, OpCode op = default(OpCode), object operand = null)
@@ -608,11 +386,11 @@ namespace PathfinderPatcher
         )
         {
             var flags = f.ToValues();
-            if (callLoc == -1) throw new ArgumentOutOfRangeException(nameof(callLoc));
             if (flags.PassLocals && localsID == null) throw new ArgumentNullException(nameof(localsID));
             if (flags.PassFields && typeFields == null) throw new ArgumentNullException(nameof(typeFields));
 
             var body = self.Body;
+            if (callLoc < 0) callLoc = body.Instructions.Count + callLoc;
             var il = body.GetILProcessor();
             var isVoid = self.ReturnType.FullName == "System.Void";
             var inst = body.Instructions[callLoc];
@@ -682,6 +460,21 @@ namespace PathfinderPatcher
             else if (injectionMethod.ReturnType.FullName != "System.Void") il.InsertBefore(inst, il.Create(OpCodes.Pop));
             if (direction == InjectDirection.After) il.Remove(inst2);
             return self;
+        }
+
+        public static int GetLineNumber(this Exception ex)
+        {
+            var lineNumber = 0;
+            const string lineSearch = ":line ";
+            var index = ex.StackTrace.LastIndexOf(lineSearch);
+            if (index != -1)
+            {
+                var lineNumberText = ex.StackTrace.Substring(index + lineSearch.Length);
+                if (int.TryParse(lineNumberText, out lineNumber))
+                {
+                }
+            }
+            return lineNumber;
         }
     }
 }

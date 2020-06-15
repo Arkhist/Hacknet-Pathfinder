@@ -46,12 +46,12 @@
       <HintPath>..\lib\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Pathfinder">
-      <HintPath>..\bin\Release\Pathfinder.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="FNA">
       <HintPath>..\lib\FNA.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Pathfinder">
+      <HintPath>..\lib\Pathfinder.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

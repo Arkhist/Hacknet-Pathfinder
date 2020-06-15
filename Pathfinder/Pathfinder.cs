@@ -2,22 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Hacknet;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
+using Pathfinder.Internal.Replacements;
 using Pathfinder.ModManager;
 using Pathfinder.Util;
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace Pathfinder
 {
     public static class Pathfinder
     {
-        /*private static readonly Version AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
+        private static readonly Version AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
         public static readonly Version Version = new Version(AssemblyVersion.Major, AssemblyVersion.Minor);
-        private static Version latestVersion;*/
+        private static Version latestVersion;
 
-        class InvalidIdException : ArgumentException { public InvalidIdException(string msg) : base(msg) {} }
+        class InvalidIdException : ArgumentException { public InvalidIdException(string msg) : base(msg) { } }
 
         public static string ModFolderPath => Manager.ModFolderPath;
         public static string DepFolderPath => Manager.DepFolderPath;
@@ -41,15 +44,27 @@ namespace Pathfinder
             Manager.LoadedMods.Add("Pathfinder", new Placeholder("Pathfinder"));
         }
 
+        private class Release
+        {
+            public string Tag_Name { get; set; }
+        }
+
         internal static void Initialize()
         {
             Logger.Verbose("Registering Pathfinder listeners");
 
+            //var request = new RestRequest("repos/Arkhist/Hacknet-Pathfinder/releases/latest");
+            //request.AddHeader("Content-Type", "application/json");
             /*var verStr = Updater.GetString("https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases/latest",
-                                           "tag_name"); // Does not work, IDK
-            if (Version.TryParse(verStr.Select(c => Char.IsDigit(c) || c == '.' ? c : (char)0).ToString(), out latestVersion)
-               && latestVersion > Version)
-                EventManager.RegisterListener<DrawMainMenuEvent>(DrawNewReleaseGraphic);*/
+                                           "tag_name"); // Does not work, IDK*/
+            /*if (Version.TryParse(
+                    new RestClient("https://api.github.com")
+                        .Execute<Release>(request).Data.Tag_Name.Select(
+                            c => Char.IsDigit(c) || c == '.' ? c : (char)0
+                        ).ToString(),
+                    out latestVersion)
+                && latestVersion > Version)*/
+            //EventManager.RegisterListener<DrawMainMenuEvent>(DrawNewReleaseGraphic);
 
             EventManager.RegisterListener<CommandSentEvent>(Internal.ExecutionOverride.OverrideCommands);
             EventManager.RegisterListener<ExecutablePortExecuteEvent>(Internal.ExecutionOverride.OverridePortHack);
@@ -59,10 +74,15 @@ namespace Pathfinder
             EventManager.RegisterListener<DrawMainMenuEvent>(Internal.GUI.ModList.DrawModList);
             EventManager.RegisterListener<DrawMainMenuButtonsEvent>(Internal.GUI.ModList.DrawModListButton);
 
-            EventManager.RegisterListener<DrawExtensionMenuEvent>(Internal.GUI.ModExtensionsUI.ExtensionMenuListener);
-            EventManager.RegisterListener<DrawExtensionMenuListEvent>(Internal.GUI.ModExtensionsUI.ExtensionListMenuListener);
-            EventManager.RegisterListener<OSLoadContentEvent>(Internal.GUI.ModExtensionsUI.LoadContentForModExtensionListener);
-            EventManager.RegisterListener<OSUnloadContentEvent>(Internal.GUI.ModExtensionsUI.UnloadContentForModExtensionListener);
+            //EventManager.RegisterListener<DrawExtensionMenuEvent>(Internal.GUI.ModExtensionsUI.ExtensionMenuListener);
+            //EventManager.RegisterListener<DrawExtensionMenuListEvent>(Internal.GUI.ModExtensionsUI.ExtensionListMenuListener);
+            //EventManager.RegisterListener<OSLoadContentEvent>(Internal.GUI.ModExtensionsUI.LoadContentForModExtensionListener);
+            //EventManager.RegisterListener<OSUnloadContentEvent>(Internal.GUI.ModExtensionsUI.UnloadContentForModExtensionListener);
+
+            // old, do not use
+            //EventManager.RegisterListener<LoadSavedComputerStartEvent>(Internal.HandlerListener.LoadSavedComputerReplacementStart);
+            EventManager.RegisterListener<LoadContentComputerStartEvent>(Internal.HandlerListener.LoadContentComputerReplacementStart);
+            EventManager.RegisterListener<OSLoadSaveFileEvent>(Internal.HandlerListener.LoadSaveFileReplacementStart);
 
             EventManager.RegisterListener<OptionsMenuLoadContentEvent>(Internal.HandlerListener.OptionsMenuLoadContentListener);
             EventManager.RegisterListener<OptionsMenuDrawEvent>(Internal.HandlerListener.OptionsMenuDrawListener);
@@ -76,6 +96,11 @@ namespace Pathfinder
             EventManager.RegisterListener<GameLoadContentEvent>(ExeInfoManager.LoadExecutableStruct);
 
             EventManager.RegisterListener<GameUnloadEvent>(Manager.UnloadMods);
+
+            EventManager.RegisterListener<ActionsLoadIntoOSEvent>(Internal.HandlerListener.LoadActionsIntoOSListener);
+
+            ActionsLoader.InitActionLoaders();
+            ActionsLoader.InitConditionLoaders();
 
             Logger.Verbose("Loading mods");
             Manager.LoadMods();
@@ -99,37 +124,42 @@ namespace Pathfinder
             if (string.IsNullOrEmpty(id))
             {
                 if (shouldThrowReason)
-                    throw new InvalidIdException("Mod Idenfitier '" + id + "' is null or empty");
+                    throw new InvalidIdException("Mod Identifier '" + id + "' is null or empty");
+                Logger.Warn("Mod Identifier '" + id + "' is null or empty");
                 return false;
             }
             if (IsModLoaded(id))
             {
                 if (shouldThrowReason)
-                    throw new InvalidIdException("Mod Idenfitier '" + id + "' has already been loaded");
+                    throw new InvalidIdException("Mod Identifier '" + id + "' has already been loaded");
+                Logger.Warn("Mod Idenfitier '" + id + "' has already been loaded");
                 return false;
             }
             if (id.Contains('.'))
             {
                 if (shouldThrowReason)
-                    throw new InvalidIdException("Mod Idenfitier '" + id + "' contains a period");
+                    throw new InvalidIdException("Mod Identifier '" + id + "' contains a period");
+                Logger.Warn("Mod Identifier '" + id + "' contains a period");
                 return false;
             }
             if (char.IsDigit(id[0]))
             {
                 if (shouldThrowReason)
-                    throw new InvalidIdException("Mod Idenfitier '" + id + "' starts with a digit");
+                    throw new InvalidIdException("Mod Identifier '" + id + "' starts with a digit");
+                Logger.Warn("Mod Identifier '" + id + "' starts with a digit");
                 return false;
             }
             if (id.IndexOfAny(Path.GetInvalidFileNameChars()) != -1 || id.IndexOfAny(Path.GetInvalidPathChars()) != -1)
             {
                 if (shouldThrowReason)
-                    throw new InvalidIdException("Mod Idenfitier '" + id + "' contains invalid path characters");
+                    throw new InvalidIdException("Mod Identifier '" + id + "' contains invalid path characters");
+                Logger.Warn("Mod Identifier '" + id + "' contains invalid path characters");
                 return false;
             }
             return true;
         }
 
-        internal static void ManageSaveXml(OSSaveWriteEvent e)
+        public static void ManageSaveXml(OSSaveWriteEvent e)
         {
             var i = e.SaveString.IndexOf("</HacknetSave>", StringComparison.Ordinal);
             string modListStr = "";
@@ -139,10 +169,21 @@ namespace Pathfinder
             e.SaveString = e.SaveString.Insert(i, "\n<PathfinderMods>\n" + modListStr + "</PathfinderMods>\n");
         }
 
-        internal static void DrawNewReleaseGraphic(DrawMainMenuEvent e)
+        private static bool isOn = false;
+        public static void DrawNewReleaseGraphic(DrawMainMenuEvent e)
         {
-            if(e.GameTime.ElapsedGameTime.Seconds % 3 != 0)
-                TextItem.doFontLabel(new Vector2(300, 100), "New Release Up", GuiData.font, Color.White);
+            var val = e.GameTime.TotalGameTime.TotalMilliseconds;
+            const double passed = 950;
+            const double epsilon = 20;
+            RawtimePass(val, passed, e: epsilon);
+            RawtimePass(val, passed, passed / 2, epsilon);
+            if (isOn && RawtimePass(val, passed, e: epsilon) || !isOn && RawtimePass(val, passed/2, e: epsilon))
+                isOn = !isOn;
+            if (isOn) TextItem.doFontLabel(new Vector2(180, 100), "New Pathfinder Release", GuiData.font, Color.White);
         }
+
+        public static bool RawtimePass(double value, double secondsPassed, double minCheck = 0, double e = 10)
+        => Math.Abs(value % secondsPassed) - minCheck >= 0.0000000000000001 
+               && Math.Abs(value % secondsPassed) - minCheck + e <= 0.0000000000000001;
     }
 }

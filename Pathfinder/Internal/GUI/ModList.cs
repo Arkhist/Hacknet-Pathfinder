@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using Hacknet;
 using Microsoft.Xna.Framework;
+using Pathfinder.Attribute;
 using Pathfinder.Event;
 using Pathfinder.GUI;
 using Pathfinder.ModManager;
-using Pathfinder.ModManager.Attribute;
 using Pathfinder.Util;
+using Pathfinder.Util.Types;
 using Gui = Hacknet.Gui;
+using V2 = Microsoft.Xna.Framework.Vector2;
 
 namespace Pathfinder.Internal.GUI
 {
@@ -16,10 +18,15 @@ namespace Pathfinder.Internal.GUI
         private static bool ButtonsWerePrepared { get; set; }
 
         private static Button modListButton = new Button(180, 600, 450, 50, "Pathfinder Mod List", MainMenu.buttonColor)
-        { DrawFinish = (r) => GameHandled &= !r.JustReleased };
-
+        {
+            SelectedColor = new Color(124, 137, 149),
+            UpInputCallback = (sender) => GameHandled = false
+        };
         private static Button returnButton = new Button(180, 650, 250, 28, "Return", MainMenu.exitButtonColor)
-        { DrawFinish = (r) => GameHandled |= r.JustReleased };
+        {
+            SelectedColor = Color.Gray,
+            UpInputCallback = (sender) => GameHandled = true
+        };
 
         private static Dictionary<string, Button> LoadButtons { get; } = new Dictionary<string, Button>();
         private static Dictionary<string, Button> UnloadButtons { get; } = new Dictionary<string, Button>();
@@ -38,11 +45,11 @@ namespace Pathfinder.Internal.GUI
                 var loc = mod.GetType().Assembly.Location;
                 UnloadButtons[id] = new Button(-1, -1, 100, 30, "Unload")
                 {
-                    DrawFinish = r => { if (r.JustReleased) Manager.MarkForUnload(mod); }
+                    UpInputCallback = (sender) => Manager.MarkForUnload(mod)
                 };
                 LoadButtons[id] = new Button(-1, -1, 100, 30, "Load")
                 {
-                    DrawFinish = r => { if (r.JustReleased) Manager.MarkForLoad(mod); }
+                    UpInputCallback = (sender) => Manager.MarkForLoad(mod)
                 };
             }
             ButtonsWerePrepared = true;
@@ -56,32 +63,32 @@ namespace Pathfinder.Internal.GUI
 
             PrepareButtons();
             returnButton.Draw();
-            Gui.TextItem.doFontLabel(new Vector2(125f, 50), "Pathfinder Mod Load Order", GuiData.font, Color.White);
+            Gui.TextItem.doFontLabel(new V2(125f, 50), "Pathfinder Mod Load Order", GuiData.font, Color.White);
 
             var yPos = 120f;
             var index = 0;
             string title = null;
             foreach (var id in Manager.LoadedModIds)
             {
-                title = Manager.GetLoadedMod(id).GetType().GetFirstAttribute<TitleAttribute>()?.Title;
-                Gui.TextItem.doFontLabel(new Vector2(200f, yPos),
+                title = Manager.GetLoadedMod(id).GetType().GetFirstAttribute<ModInfoAttribute>()?.PublicTitle;
+                Gui.TextItem.doFontLabel(new V2(200f, yPos),
                                          (++index) + ". " + (title != null ? title + " | " : "") + id,
                                          GuiData.smallfont,
                                          Color.White);
-                UnloadButtons[id].Position = new Vector2(500, yPos);
+                UnloadButtons[id].Position = new Vec2(500, yPos);
                 UnloadButtons[id].Draw();
                 yPos += 30;
             }
             Manager.UnloadMarkedMods();
             if (Manager.UnloadedModIds.Count < 1)
                 return;
-            Gui.TextItem.doFontLabel(new Vector2(200, yPos), "Disabled Mods", GuiData.font, Color.White);
+            Gui.TextItem.doFontLabel(new V2(200, yPos), "Disabled Mods", GuiData.font, Color.White);
             yPos += 50;
             index = 0;
             foreach (var id in Manager.UnloadedModIds)
             {
-                Gui.TextItem.doFontLabel(new Vector2(200f, yPos), (++index) + ". " + id, GuiData.smallfont, Color.White);
-                LoadButtons[id].Position = new Vector2(500, yPos);
+                Gui.TextItem.doFontLabel(new V2(200f, yPos), (++index) + ". " + id, GuiData.smallfont, Color.White);
+                LoadButtons[id].Position = new Vec2(500, yPos);
                 LoadButtons[id].Draw();
                 yPos += 30;
             }
@@ -90,7 +97,7 @@ namespace Pathfinder.Internal.GUI
 
         public static void DrawModListButton(DrawMainMenuButtonsEvent e)
         {
-            modListButton.Y = e.MainButtonY;
+            modListButton.Rect.Y = e.MainButtonY;
             e.SecondaryButtonY = e.MainButtonY += 65;
             modListButton.Draw();
         }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,6 +92,14 @@ namespace Pathfinder.GameFilesystem
         /// <value>The Parent as Directory</value>
         public Directory ParentDirectory => (Directory)Parent;
 
+        public sealed override FileProperties Properties
+        {
+            get { return Object.Properties; }
+            set { Object.Properties = value; }
+        }
+
+        public bool HasContents => FileCount > 0 || DirectoryCount > 0;
+
         /// <summary>
         /// Finds a File within the Directory based on its name.
         /// </summary>
@@ -125,7 +133,7 @@ namespace Pathfinder.GameFilesystem
         /// <param name="path">The path to search by.</param>
         /// <param name="ignoreRootSymbol">If set to <c>true</c> ignores the root (/) symbol at the start.</param>
         /// <param name="nullOut">If set to <c>true</c> then nulls out on failure, otherwise returns furthest depth</param>
-        public Directory SearchForDirectory(string path, bool ignoreRootSymbol, bool nullOut = false)
+        public Directory SearchForDirectory(string path, bool ignoreRootSymbol = false, bool nullOut = false)
         {
             if (!ignoreRootSymbol && path.StartsWith(FilePath.SEPERATOR))
                 return Root.SearchForDirectory(path);
@@ -144,12 +152,6 @@ namespace Pathfinder.GameFilesystem
             }
             return res;
         }
-        /// <summary>
-        /// Searchs for a Directory's path as far as possible.
-        /// </summary>
-        /// <returns>The Directory to search for, or the deepest Directory found in the path.</returns>
-        /// <param name="path">The path to search by.</param>
-        public Directory SearchForDirectory(string path) => SearchForDirectory(path, false);
 
         /// <summary>
         /// Searchs for a File's path as far as possible.
@@ -157,7 +159,7 @@ namespace Pathfinder.GameFilesystem
         /// <returns>The File to search for, or <c>null</c> if not found.</returns>
         /// <param name="path">The path to search by.</param>
         /// <param name="ignoreRootSymbol">If set to <c>true</c> ignores the root (/) symbol at the start.</param>
-        public File SearchForFile(string path, bool ignoreRootSymbol)
+        public File SearchForFile(string path, bool ignoreRootSymbol = false)
         {
             if (!ignoreRootSymbol && path.StartsWith(FilePath.SEPERATOR))
                 return Root.SearchForFile(path);
@@ -174,12 +176,6 @@ namespace Pathfinder.GameFilesystem
             }
             return res;
         }
-        /// <summary>
-        /// Searchs for a File's path as far as possible.
-        /// </summary>
-        /// <returns>The File to search for, or <c>null</c> if not found.</returns>
-        /// <param name="path">The path to search by.</param>
-        public File SearchForFile(string path) => SearchForFile(path, false);
 
         /// <summary>
         /// Gets a File based on its Index.
@@ -221,7 +217,7 @@ namespace Pathfinder.GameFilesystem
         /// <returns>The File that was created.</returns>
         /// <param name="name">The name to assign to the File.</param>
         /// <param name="exeInterface">The Executable.IInterface whose file data is to be generated.</param>
-        public File CreateFile(string name, Executable.IInterface exeInterface) =>
+        public File CreateFile(string name, Executable.Interface exeInterface) =>
             CreateFile(name, Executable.Handler.GetStandardFileDataBy(exeInterface));
 
         /// <summary>

@@ -49,6 +49,12 @@ namespace Pathfinder.GameFilesystem
         /// </summary>
         public sealed override FileType Type => FileType.File;
 
+        public sealed override FileProperties Properties
+        {
+            get { return Object.Properties; }
+            set { Object.Properties = value; }
+        }
+
         /// <summary>
         /// Gets or sets the File's full path, setting changes the File's parent.
         /// </summary>

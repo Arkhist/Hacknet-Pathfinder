@@ -1,50 +1,42 @@
 ﻿using System;
 using Hacknet;
 using Microsoft.Xna.Framework;
+using Pathfinder.Input;
+using Pathfinder.Util.Types;
 
 namespace Pathfinder.GUI
 {
-    public struct MoveLine
-    {
-        public float Max { get; set; }
-        public float Min { get; set; }
-        public MoveLine(float max = 0, float min = 0)
-        {
-            Max = max;
-            Min = min;
-        }
 
-        public static explicit operator Vector2(MoveLine line) => new Vector2(line.Min, line.Max);
-        public static explicit operator MoveLine(Vector2 vec) => new MoveLine(vec.Y, vec.X);
-    }
-
-    public abstract class BaseDynamicRectangle : BaseInteractiveRectangle<float>
+    public abstract class RectangleDynamicBase : RectangleControlBase
     {
         public Color SelectedColor { get; set; } = GuiData.Default_Selected_Color;
         public Color DeselectedColor { get; set; } = GuiData.Default_Unselected_Color;
         public float SelectableBorder { get; set; } = -1;
-        public MoveLine? XBound { get; set; } = new MoveLine(3.40282347E+38f, -3.40282347E+38f);
-        public MoveLine? YBound { get; set; } = new MoveLine(3.40282347E+38f, -3.40282347E+38f);
+        public Vec2 XBound { get; set; } = new Vec2(3.40282347E+38f, -3.40282347E+38f);
+        public Vec2 YBound { get; set; } = new Vec2(3.40282347E+38f, -3.40282347E+38f);
 
-        public Vector2 MovedPosition { get; protected set; }
+        public Vec2 MovedPosition { get; protected set; }
 
-        protected BaseDynamicRectangle(float x, float y, float width, float height) : base(x, y, width, height) {}
+        protected RectangleDynamicBase(float x, float y, float width, float height) : base(x, y, width, height) {}
 
-        public bool InBorder => Contains(X + SelectableBorder, Y + SelectableBorder,
-                                         SelectableBorder < 0 ? 0 : Width - 2f * SelectableBorder,
-                                         SelectableBorder < 0 ? 0 : Height - 2f * SelectableBorder,
-                                         GuiData.getMousePoint());
+        public bool IsInBorder(Vec2 v) =>
+            Rect.New.GrowMargins(SelectableBorder,
+                SelectableBorder,
+                SelectableBorder < 0 ? 0 : Rect.Width - 2f * SelectableBorder,
+                SelectableBorder < 0 ? 0 : Rect.Height - 2f * SelectableBorder)
+                .HasPoint(v);
     }
 
-    public class DynamicRectangle : BaseDynamicRectangle
+    public class RectangleDynamic : RectangleDynamicBase
     {
-        protected Vector2 OriginalClickPosition;
-        protected Vector2 ClickPositionOffset;
+        protected Vec2 OriginalClickPosition;
+        protected Vec2 ClickPositionOffset;
 
         public bool IsDragging { get; set; }
+        public bool InBorder { get; protected set; }
 
-        public DynamicRectangle(float x, float y, float width, float height) : base(x, y, width, height) { }
-        public DynamicRectangle(float x,
+        public RectangleDynamic(float x, float y, float width, float height) : base(x, y, width, height) { }
+        public RectangleDynamic(float x,
                                 float y,
                                 float width,
                                 float height,
@@ -64,63 +56,58 @@ namespace Pathfinder.GUI
             if (!yMove)
                 YBound = null;
         }
-        public DynamicRectangle(float x,
+        public RectangleDynamic(float x,
                                 float y,
                                 float width,
                                 float height,
                                 Color? selected,
                                 Color? deselected,
                                 float selectableBorder,
-                                MoveLine? xbound,
-                                MoveLine? ybound = null)
-            : this(x, y, width, height, selected, deselected, selectableBorder, xbound.HasValue, ybound.HasValue)
+                                Vec2 xbound,
+                                Vec2 ybound = null)
+            : this(x, y, width, height, selected, deselected, selectableBorder, xbound != null, ybound != null)
         {
             XBound = xbound;
             YBound = ybound;
         }
 
-        public override bool IsActive => Contains(GuiData.getMousePoint());
-
-        public override bool Draw()
+        public override void Input()
         {
+            base.Input();
             IsDragging = false;
-            if (IsActive && !InBorder)
+            InBorder = false;
+            if (IsFocused)
             {
-                if (!IsHeldDown)
+                var mousePos = (Vec2)GuiData.getMousePos();
+                InBorder = IsInBorder(mousePos);
+                if(!InBorder && !IsPressed && GuiData.isMouseLeftDown())
                 {
-                    if (GuiData.mouseWasPressed())
+                    OriginalClickPosition = mousePos - Rect.Position;
+                    ClickPositionOffset = OriginalClickPosition - Rect.Position;
+                }
+                if(IsPressed)
+                {
+                    var movePos = new Vec2(MovedPosition);
+                    if(XBound != null)
                     {
-                        OriginalClickPosition = GuiData.getMousePos();
-                        OriginalClickPosition.X -= X;
-                        OriginalClickPosition.Y -= Y;
-                        ClickPositionOffset = new Vector2(OriginalClickPosition.X - X, OriginalClickPosition.Y - Y);
+                        movePos.X = mousePos.X - Rect.X - OriginalClickPosition.X;
+                        movePos.X = Math.Min(Math.Max(Rect.Y + movePos.X, XBound.Y), XBound.X) - Rect.X;
                     }
+                    if(YBound != null)
+                    {
+                        movePos.Y = mousePos.Y - Rect.Y - OriginalClickPosition.Y;
+                        movePos.Y = Math.Min(Math.Max(Rect.Y + movePos.Y, YBound.Y), YBound.X) - Rect.Y;
+                    }
+                    MovedPosition = movePos;
+                    IsDragging = true;
                 }
+                GuiData.blockingInput |= IsFocused || IsPressed;
             }
-            if(IsHeldDown)
-            {
-                float mvx = MovedPosition.X, mvy = MovedPosition.Y;
-                if (XBound.HasValue)
-                {
-                    mvx = GuiData.mouse.X - X - OriginalClickPosition.X;
-                    mvx = Math.Min(Math.Max(Y + mvx, XBound.Value.Min), XBound.Value.Max) - X;
-                }
-                if (YBound.HasValue)
-                {
-                    mvy = GuiData.mouse.Y - Y - OriginalClickPosition.Y;
-                    mvy = Math.Min(Math.Max(Y + mvy, YBound.Value.Min), YBound.Value.Max) - Y;
-                }
-                MovedPosition = new Vector2(mvx, mvy);
-                IsDragging = true;
-            }
-            GuiData.blockingInput |= IsActive || IsHeldDown;
-            base.Draw();
-            return IsDragging;
         }
 
-        public override void DoDraw()
+        public override void CallDraw()
         {
-            GuiData.spriteBatch.Draw(Utils.white, MovedPosition, new Vector2(Width, Height), (IsHeldDown) ? SelectedColor : DeselectedColor);
+            Batch.Draw(Utils.white, MovedPosition, new Vec2(Rect.Width, Rect.Height), IsPressed ? SelectedColor : DeselectedColor);
         }
     }
 }

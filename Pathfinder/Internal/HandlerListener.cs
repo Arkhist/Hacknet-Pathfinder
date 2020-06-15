@@ -1,9 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
+using Pathfinder.Game.Computer;
 using Pathfinder.Game.OS;
+using Pathfinder.Util;
+using Pathfinder.Util.XML;
+using Pathfinder.Internal.Replacements;
 using ModOptions = Pathfinder.GUI.ModOptions;
 
 namespace Pathfinder.Internal
@@ -12,8 +17,8 @@ namespace Pathfinder.Internal
     {
         public static void CommandListener(CommandSentEvent e)
         {
-            Command.Handler.CommandFunc f;
-            if (Command.Handler.ModCommands.TryGetValue(e[0], out f))
+            Command.Handler.ActiveCommand = e[0];
+            if (Command.Handler.ModCommands.TryGetValue(e[0], out var f))
             {
                 e.IsCancelled = true;
                 try
@@ -22,32 +27,72 @@ namespace Pathfinder.Internal
                 }
                 catch (Exception ex)
                 {
-                    e.OS.Write("Command {0} threw Exception:\n    {1}('{2}')", e.Arguments[0], ex.GetType().FullName, ex.Message);
+                    e.OS.WriteLine("Command {0} threw Exception:\n    {1}('{2}')", e.Arguments[0], ex.GetType().FullName, ex.Message);
                     throw;
                 }
             }
         }
 
-        public static void DaemonLoadListener(LoadComputerXmlReadEvent e)
+        public static void LoadSaveFileReplacementStart(OSLoadSaveFileEvent e) {
+            SaveLoader.LoadSaveFile(e.Stream, e.OS);
+            e.IsCancelled = true;
+        }
+
+        public static void LoadContentComputerReplacementStart(LoadContentComputerStartEvent e)
         {
-            Daemon.IInterface i;
-            var id = e.Reader.GetAttribute("interfaceId");
-            if (id != null && Daemon.Handler.ModDaemons.TryGetValue(id, out i))
+            e.Computer = ContentLoader.LoadComputer(e.LocalizedFilename, ComputerLoader.os, e.PreventNetmapAdd, e.PreventDaemonInit);
+            e.IsCancelled = true;
+        }
+
+        public static void LoadActionsIntoOSListener(ActionsLoadIntoOSEvent e)
+        {
+            var actions = ActionsLoader.LoadConditionalActionsFromFile(e.FilePath);
+            e.OS.ConditionalActions.Actions.AddRange(actions.Actions);
+            e.IsCancelled = true;
+        }
+
+        public static void DaemonLoadListener(Computer c, EventExecutor exec)
+        {
+            exec.AddExecutor("Computer.ModdedDaemon", (executor, info) =>
             {
-                var objs = new Dictionary<string, string>();
-                var storedObjects = e.Reader.GetAttribute("storedObjects")?.Split(' ');
-                if (storedObjects != null)
-                    foreach (var s in storedObjects)
-                        objs[s.Remove(s.IndexOf('|'))] = s.Substring(s.IndexOf('|') + 1);
-                e.Computer.daemons.Add(Daemon.Instance.CreateInstance(id, e.Computer, objs));
+                var id = info.Attributes.GetValue("interfaceId");
+                if(id != null && Daemon.Handler.ContainsDaemon(id))
+                {
+                    var objs = new Dictionary<string, string>();
+                    var storedObjects = info.Attributes.GetValue("storedObjects")?.Split(' ');
+                    if (storedObjects != null)
+                        foreach (var s in storedObjects)
+                            objs[s.Remove(s.IndexOf('|'))] = s.Substring(s.IndexOf('|') + 1);
+                    c.AddModdedDaemon(id, objs);
+                }
+            });
+        }
+
+        public static void DaemonLoadListener(Computer c, ElementInfo info)
+        {
+            var customDaemonInfos = info.Children.Where(cdi => cdi.Name.ToLower() == "moddeddamon");
+            foreach (var daemonInfo in customDaemonInfos)
+            {
+                var id = daemonInfo.Attributes.GetValue("interfaceId");
+                if (id != null && Daemon.Handler.ModDaemons.TryGetValue(id, out Daemon.Interface i))
+                {
+                    var objs = new Dictionary<string, string>();
+                    var storedObjects = daemonInfo.Attributes.GetValue("storedObjects")?.Split(' ');
+                    if (storedObjects != null)
+                        foreach (var s in storedObjects)
+                            objs[s.Remove(s.IndexOf('|'))] = s.Substring(s.IndexOf('|') + 1);
+                    c.AddModdedDaemon(id, objs);
+                }
             }
         }
 
         public static void ExecutableListener(ExecutableExecuteEvent e)
         {
-            Tuple<Executable.IInterface, string> tuple;
+            Console.WriteLine(Utility.ConvertFromHexBlocks(e.ExecutableFile.data.Split('\n')[0]));
             if (Executable.Handler.IsFileDataForModExe(e.ExecutableFile.data)
-                && Executable.Handler.ModExecutables.TryGetValue(e.ExecutableFile.data.Split('\n')[0], out tuple))
+                && Executable.Handler.ModExecutables.TryGetValue(
+                    Utility.ConvertFromHexBlocks(e.ExecutableFile.data.Split('\n')[0]),
+                    out Tuple<Executable.Interface, string> tuple))
             {
                 int num = e.OS.ram.bounds.Y + RamModule.contentStartOffset;
                 foreach (var exe in e.OS.exes)

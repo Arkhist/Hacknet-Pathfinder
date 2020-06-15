@@ -29,8 +29,7 @@ namespace Pathfinder.Util
             {
                 var cur = start;
 
-                var fieldObj = new JsonObject();
-                fieldObj.src = src;
+                var fieldObj = new JsonObject { src = src };
 
                 SkipWhite(ref cur);
                 if (src[cur] == '{')
@@ -68,8 +67,7 @@ namespace Pathfinder.Util
             {
                 int cur = start;
 
-                var fieldObj = new JsonObject();
-                fieldObj.src = src;
+                var fieldObj = new JsonObject { src = src };
 
                 SkipWhite(ref cur);
                 if (src[cur] == '[')
@@ -107,8 +105,7 @@ namespace Pathfinder.Util
         {
             int cur = end;
 
-            var fieldObj = new JsonObject();
-            fieldObj.src = src;
+            var fieldObj = new JsonObject { src = src };
 
             SkipWhite(ref cur);
             if (src[cur] != ',')
@@ -127,8 +124,7 @@ namespace Pathfinder.Util
         {
             get
             {
-                int res;
-                return int.TryParse(src.Substring(start, end - start), out res) ? (int?)res : null;
+                return int.TryParse(src.Substring(start, end - start), out int res) ? (int?)res : null;
             }
         }
 
@@ -147,8 +143,7 @@ namespace Pathfinder.Util
         {
             get
             {
-                bool res;
-                return bool.TryParse(src.Substring(start, end - start), out res) ? (bool?)res : null;
+                return bool.TryParse(src.Substring(start, end - start), out bool res) ? (bool?)res : null;
             }
         }
 

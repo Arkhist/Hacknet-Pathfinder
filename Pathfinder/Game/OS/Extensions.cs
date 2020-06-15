@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Pathfinder.Game.ExeModule;
 using Pathfinder.Util;
@@ -50,7 +50,7 @@ namespace Pathfinder.Game.OS
         /// Retrieves the List of Executable.Instance List whose Type is or is derived from T 
         /// </summary>
         /// <typeparam name="T">The Type or derivative of the type to search for in the Executable List</typeparam>
-        public static List<Executable.Instance> GetModExeInterfaceFor<T>(this Hacknet.OS os) where T : Executable.IInterface
+        public static List<Executable.Instance> GetModExeInterfaceFor<T>(this Hacknet.OS os) where T : Executable.Interface
         {
             var result = new List<Executable.Instance>();
             foreach (var e in os.GetExesFor<Executable.Instance>())
@@ -90,15 +90,15 @@ namespace Pathfinder.Game.OS
             {
                 mod = os.exes.Find((obj) => obj.PID == i);
                 if (mod == null && shouldWrite)
-                    os.Write(Locale.Get("Invalid PID"));
+                    os.WriteLine(Locale.Get("Invalid PID"));
             }
             else if (searchName && !string.IsNullOrWhiteSpace(input))
             {
                 mod = os.exes.Find((obj) => obj.IdentifierName == input);
                 if (mod == null && shouldWrite)
-                    os.Write(Locale.Get("Invalid Identifier Name"));
+                    os.WriteLine(Locale.Get("Invalid Identifier Name"));
             }
-            else if(shouldWrite) os.Write(Locale.Get("Error: Invalid PID or Input Format"));
+            else if(shouldWrite) os.WriteLine(Locale.Get("Error: Invalid PID or Input Format"));
             return mod?.Kill(shouldWrite) ?? false;
         }
 
@@ -119,22 +119,22 @@ namespace Pathfinder.Game.OS
         public static Hacknet.Computer GetCurrentComputer(this Hacknet.OS os) => Utility.GetCurrentComputer(os);
 
         /// <summary>
-        /// Writes the formatted string to OS terminal.
+        /// Writes the formatted string as a line to OS terminal.
         /// </summary>
         /// <param name="os">The OS.</param>
         /// <param name="write">The formatted string to write.</param>
-        public static Hacknet.OS Write(this Hacknet.OS os, string write, params object[] args)
+        public static Hacknet.OS WriteLine(this Hacknet.OS os, string write, params object[] args)
         {
             os.write(args == null || args.Length < 1 ? write : string.Format(write, args));
             return os;
         }
 
         /// <summary>
-        /// Writes the formatted string directly to OS terminal. Less safe then <see cref="Write"/>
+        /// Appends the formatted string to OS terminal. Less safe then <see cref="WriteLine"/>
         /// </summary>
         /// <param name="os">The OS.</param>
         /// <param name="write">The formatted string to write.</param>
-        public static Hacknet.OS WriteSingle(this Hacknet.OS os, string write, params object[] args)
+        public static Hacknet.OS WriteAppend(this Hacknet.OS os, string write, params object[] args)
         {
             os.writeSingle(args == null || args.Length < 1 ? write : string.Format(write, args));
             return os;

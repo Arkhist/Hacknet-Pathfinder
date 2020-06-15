@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Hacknet;
@@ -26,6 +26,36 @@ namespace Pathfinder.Game.Computer
                 return null;
             comp.daemons.Add(i);
             return i;
+        }
+
+        public static T AddDaemon<T>(this Hacknet.Computer comp, T daemon, Hacknet.OS os = null)
+            where T : Hacknet.Daemon
+        {
+            daemon.comp = comp ?? daemon.comp;
+            daemon.os = os ?? daemon.os ?? Utility.ClientOS;
+            comp.daemons.Add(daemon);
+            return daemon;
+        }
+
+        /// <summary>
+        /// Adds a Daemon via generics to the Computer.
+        /// </summary>
+        /// <returns>The created Daemon.</returns>
+        /// <param name="comp">The Computer</param>
+        /// <param name="input">The input for the constructor.</param>
+        public static T AddDaemon<T>(this Hacknet.Computer comp,
+                                     params object[] input)
+            where T : Hacknet.Daemon
+        {
+            if (input[0] != comp)
+            {
+                var list = input.ToList();
+                list.Insert(0, comp);
+                input = list.ToArray();
+            }
+            var result = Utility.Create<T>(input);
+            comp.daemons.Add(result);
+            return result;
         }
 
         /// <summary>
@@ -59,7 +89,7 @@ namespace Pathfinder.Game.Computer
         /// Retrieves the first mod Daemon.Instance whose interface Type is or is derived from T.
         /// </summary>
         /// <typeparam name="T">The Type or derivative of the type to search for in the Daemon List</typeparam>
-        public static Daemon.Instance GetModdedDaemon<T>(this Hacknet.Computer comp) where T : Daemon.IInterface =>
+        public static Daemon.Instance GetModdedDaemon<T>(this Hacknet.Computer comp) where T : Daemon.Interface =>
             comp.GetModdedDaemonList<T>().ElementAtOrDefault(0);
 
         /// <summary>
@@ -79,7 +109,7 @@ namespace Pathfinder.Game.Computer
         /// Retrieves a List of mod Daemon.Instance whose interface Type is or is derived from T
         /// </summary>
         /// <typeparam name="T">The Type or derivative of the type to search for in the Daemon List</typeparam>
-        public static List<Daemon.Instance> GetModdedDaemonList<T>(this Hacknet.Computer comp) where T : Daemon.IInterface
+        public static List<Daemon.Instance> GetModdedDaemonList<T>(this Hacknet.Computer comp) where T : Daemon.Interface
         {
             var result = new List<Daemon.Instance>();
             foreach (var d in comp.daemons)
@@ -154,8 +184,9 @@ namespace Pathfinder.Game.Computer
         /// <param name="comp">The Computer</param>
         /// <param name="port">The Port.Type to add to Computer</param>
         /// <param name="unlocked">If set to <c>true</c> then sets the port to be unlocked.</param>
-        public static bool AddModPort(this Hacknet.Computer comp, Port.Type port, bool unlocked = false) =>
-            port?.AssignTo(comp, unlocked) == true;
+        /// <param name="replace">If set to true then may replace any port whose display port is equal to the new type</param>
+        public static bool AddModPort(this Hacknet.Computer comp, Port.Type port, bool unlocked = false, bool replace = false) =>
+            port?.AssignTo(comp, unlocked, replace) == true;
 
         /// <summary>
         /// Adds the mod port by the modded port's registry id.
@@ -163,9 +194,10 @@ namespace Pathfinder.Game.Computer
         /// <returns><c>true</c>, if mod port was added, <c>false</c> otherwise.</returns>
         /// <param name="comp">The Computer</param>
         /// <param name="id">The modded port's registry id to add to Computer</param>
-        /// <param name="unlocked">If set to <c>true</c> then sets the port to be unlocked.</param>
-        public static bool AddModPort(this Hacknet.Computer comp, string id, bool unlocked = false) =>
-            comp.AddModPort(Port.Handler.GetPort(id), unlocked);
+        /// <param nacked">If set to <c>true</c> then sets the port to be unlocked.</param>
+        /// <param name="replace">If set to true then may replace any port whose display port is equal to the new type</param>
+        public static bool AddModPort(this Hacknet.Computer comp, string id, bool unlocked = false, bool replace = false) =>
+            comp.AddModPort(Port.Handler.GetPort(id), unlocked, replace);
 
         /// <summary>
         /// Removes a vanilla port by ExecutableInfo.
@@ -224,7 +256,7 @@ namespace Pathfinder.Game.Computer
         }
 
         /// <summary>
-        /// Determines whether Computer has a certain vanilla port.
+        /// Determines whether Computer has a certain vanilla port. (ignoring remap)
         /// </summary>
         /// <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
         /// <param name="info">The ExecutableInfo to search by.</param>
@@ -232,7 +264,7 @@ namespace Pathfinder.Game.Computer
             comp.ports.Contains(info.PortNumber);
 
         /// <summary>
-        /// Determines whether Computer has a certain vanilla port.
+        /// Determines whether Computer has a certain vanilla port. (ignoring remap)
         /// </summary>
         /// <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
         /// <param name="portName">The port name to search by.</param>
@@ -240,7 +272,7 @@ namespace Pathfinder.Game.Computer
             comp.HasVanilaPort(ExeInfoManager.GetExecutableInfo(portName));
 
         /// <summary>
-        /// Determines whether Computer has a certain vanilla port.
+        /// Determines whether Computer has a certain vanilla port. (ignoring remap)
         /// </summary>
         /// <returns><c>true</c>, if Computer has the port, <c>false</c> otherwise.</returns>
         /// <param name="portNum">The port number to search by.</param>
@@ -263,7 +295,7 @@ namespace Pathfinder.Game.Computer
         public static bool HasModPort(this Hacknet.Computer comp, string id) => comp.HasModPort(Port.Handler.GetPort(id));
 
         /// <summary>
-        /// Determines whether the vanilla port is open.
+        /// Determines whether the vanilla port is open. (ignoring remap)
         /// </summary>
         /// <returns><c>true</c>, if the port exists and is open, <c>false</c> otherwise.</returns>
         /// <param name="comp">The Computer</param>
@@ -277,7 +309,7 @@ namespace Pathfinder.Game.Computer
         }
 
         /// <summary>
-        /// Determines whether the vanilla port is open.
+        /// Determines whether the vanilla port is open. (ignoring remap)
         /// </summary>
         /// <returns><c>true</c>, if the port exists and is open, <c>false</c> otherwise.</returns>
         /// <param name="comp">The Computer</param>
@@ -286,7 +318,7 @@ namespace Pathfinder.Game.Computer
             comp.IsVanillaPortOpen(ExeInfoManager.GetExecutableInfo(portName));
 
         /// <summary>
-        /// Determines whether the vanilla port is open.
+        /// Determines whether the vanilla port is open. (ignoring remap)
         /// </summary>
         /// <returns><c>true</c>, if the port exists and is open, <c>false</c> otherwise.</returns>
         /// <param name="comp">The Computer</param>
@@ -295,7 +327,7 @@ namespace Pathfinder.Game.Computer
             comp.IsVanillaPortOpen(ExeInfoManager.GetExecutableInfo(portNum));
 
         /// <summary>
-        /// Determines whether the modded port is open.
+        /// Determines whether the modded port is open. (ignoring remap)
         /// </summary>
         /// <returns><c>true</c>, if the port exists and is open, <c>false</c> otherwise.</returns>
         /// <param name="comp">The Computer</param>
@@ -304,7 +336,7 @@ namespace Pathfinder.Game.Computer
             port.GetWithin(comp)?.Unlocked == true;
 
         /// <summary>
-        /// Determines whether the mod port is open.
+        /// Determines whether the mod port is open. (ignoring remap)
         /// </summary>
         /// <returns><c>true</c>, if the port exists and is open, <c>false</c> otherwise.</returns>
         /// <param name="comp">The Computer</param>
@@ -438,6 +470,24 @@ namespace Pathfinder.Game.Computer
         public static void CloseModPort(this Hacknet.Computer comp, string id, string ipFrom = null) =>
             comp.CloseModPort(Port.Handler.GetPort(id), ipFrom);
 
+        public static void RemapVanillaPort(this Hacknet.Computer comp, int selectedPort, int remap)
+        {
+            if (remap == 0) comp.PortRemapping.Remove(selectedPort);
+            else if (comp.PortRemapping.ContainsKey(selectedPort))
+                comp.PortRemapping[selectedPort] = remap;
+            else if (comp.GetDisplayPortNumberFromCodePort(selectedPort) != remap)
+                comp.PortRemapping.Add(selectedPort, remap);
+        }
+
+        public static void RemapModPort(this Hacknet.Computer comp, Port.Type selectedPort, int remap) =>
+            selectedPort.GetWithin(comp).MappedPort = remap;
+
+        public static void RemapModPort(this Hacknet.Computer comp, Port.Instance selectedPort, int remap) =>
+            selectedPort.MappedPort = remap;
+
+        public static void RemapModPort(this Hacknet.Computer comp, string id, int remap) =>
+            comp.RemapModPort(Port.Handler.GetPort(id), remap);
+
         /// <summary>
         /// Adds a EOS Device connection represented by device
         /// </summary>
@@ -445,7 +495,7 @@ namespace Pathfinder.Game.Computer
         /// <param name="device">The Computer device to link to.</param>
         public static void AddEOSDevice(this Hacknet.Computer comp, Hacknet.Computer device)
         {
-            if (comp.attatchedDeviceIDs == null)
+            if (string.IsNullOrWhiteSpace(comp.attatchedDeviceIDs))
                 comp.attatchedDeviceIDs = device.idName;
             else
                 comp.attatchedDeviceIDs += ',' + device.idName;
@@ -493,8 +543,10 @@ namespace Pathfinder.Game.Computer
                                                                                           Utils.random.Next(12),
                                                                                           12,
                                                                                           comp.GetNetworkMap(),
-                                                                                          0f), 0, 5, comp.os);
-            c.icon = icon;
+                                                                                          0f), 0, 5, comp.os)
+            {
+                icon = icon
+            };
             c.setAdminPassword(password);
             vanillaPorts = vanillaPorts ?? new List<int>(new int[] { 22, 3659 });
             foreach (var p in vanillaPorts)
@@ -571,5 +623,13 @@ namespace Pathfinder.Game.Computer
         /// <see cref="GetEOSDevicesBy"/>
         public static Dictionary<string, Hacknet.Computer> GetEOSDevicesByIndex(this Hacknet.Computer comp) =>
             comp.GetEOSDevicesBy(RetrieveType.INDEX);
+
+        public static UserDetail AddUserDetail(this Hacknet.Computer comp, string user = null, string password = null, byte type = 1)
+        {
+            if (string.IsNullOrEmpty(password)) password = PortExploits.getRandomPassword();
+            var detail = new UserDetail(user, password, type);
+            comp.users.Add(detail);
+            return detail;
+        }
     }
 }
