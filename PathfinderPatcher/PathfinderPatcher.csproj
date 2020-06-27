@@ -72,6 +72,8 @@
     <Compile Include="PathfinderPatcher.cs" />
     <Compile Include="Builders.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="TaskItem.cs" />
+    <Compile Include="TaskReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

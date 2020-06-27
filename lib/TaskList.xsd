@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="PatcherCommands">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="namespace" type="namespace" />
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="namespace">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a .NET namespace. Note that namespaces do not have access modifiers,
+				and as such, you cannot modify the access level of this object.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="namespace" type="namespace" />
+			<xs:element name="type" type="genericType" />
+			<!-- no "allTypes" task here since we can't efficiently get all types within a namespace... -->
+		</xs:choice>
+		<xs:attribute type="xs:string" name="name" use="required" />
+	</xs:complexType>
+	<xs:complexType name="topLevelType">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a regular, top-level .NET type.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="genericType">
+				<xs:attribute name="access" type="toplevelTypeAccessLevel" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nestedType">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a nested .NET type. Like a class in a class.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="genericType">
+				<xs:attribute name="access" type="accessLevel" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="genericType">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a .NET type.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="field" type="namedTask" />
+			<xs:element name="method" type="namedTask" />
+			<xs:element name="type" type="nestedType" />
+			<xs:element name="allFields" type="task" />
+			<xs:element name="allMethods" type="task" />
+			<xs:element name="allTypes" type="task" />
+		</xs:choice>
+		<xs:attribute type="xs:string" name="name" use="required" />
+		<xs:attribute name="access" type="accessLevel" />
+	</xs:complexType>
+	<xs:complexType name="task">
+		<xs:attribute name="access" type="accessLevel" use="required" />
+	</xs:complexType>
+	<xs:complexType name="namedTask">
+		<xs:complexContent>
+			<xs:extension base="task">
+				<xs:attribute type="xs:string" name="name" use="required" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="toplevelTypeAccessLevel" final="restriction">
+		<xs:annotation>
+			<xs:documentation>
+			Represents a certain access level, which is the result of access modifiers.
+			This type is specifically for the restricted subset of access levels permitted for top-level types.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction>
+			<xs:enumeration value="public">
+				<xs:annotation>
+					<xs:documentation>
+						Accessible from everywhere.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="internal">
+				<xs:annotation>
+					<xs:documentation>
+						Accessible from this assembly, and any assemblies explicitly permitted to access internals.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="accessLevel" final="restriction">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a certain access level, which is the result of (a combination of) access
+				modifiers.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction>
+			<xs:enumeration value="public">
+				<xs:annotation>
+					<xs:documentation>
+						Accessible from everywhere.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="protected">
+				<xs:annotation>
+					<xs:documentation>
+						Accessible from this class and any subclasses.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="private">
+				<xs:annotation>
+					<xs:documentation>
+						Accessible from this class.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="internal">
+				<xs:annotation>
+					<xs:documentation>
+						Accessible from this assembly, and any assemblies explicitly permitted to access internals.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="protected_internal">
+				<xs:annotation>
+					<xs:documentation>
+						Accessible from this class and any subclasses AND this entire assembly and any assemblies explicitly permitted to access internals.
+
+						In other words, to be able to access this thing, you must have <code>protected</code> OR <code>internal</code> access.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="private_protected">
+				<xs:annotation>
+					<xs:documentation>
+						Accessible from this class and any subclasses that are in this assembly and any assemblies explicitly permitted to access internals.
+
+						In otherwords, to be able to access this thing, you must have <code>protected</code> AND <code>internal</code> access.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
+
