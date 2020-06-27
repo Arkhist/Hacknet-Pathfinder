@@ -141,6 +141,7 @@ Task("Package")
 			//"./lib/PathfinderPatcher.osx",
 			//"./lib/PathfinderPatcher.ubuntu86",
 			//"./lib/PathfinderPatcher.ubuntu64",
+			"./lib/PatcherCommands.xml",
 			"./lib/Pathfinder.dll",
 			"./lib/Mono.Cecil.dll",
 			"./lib/Mono.Cecil.Inject.dll",
@@ -178,6 +179,14 @@ Task("RunHacknet")
 				MoveFile(HacknetDirectory.GetFilePath("Pathfinder.dll"), HacknetDirectory.GetFilePath("OldPathfinder.dll"));
 		}
 		CopyFile("lib/Pathfinder.dll", HacknetDirectory.GetFilePath("Pathfinder.dll"));
+		Information("Copying PatcherCommands to Hacknet directory, backing up existing ones");
+		if(FileExists(HacknetDirectory.GetFilePath("PatcherCommands.xml"))) {
+			if(FileExists(HacknetDirectory.GetFilePath("OldPatcherCommands.xml")))
+				DeleteFile(HacknetDirectory.GetFilePath("PatcherCommands.xml"));
+			else
+				MoveFile(HacknetDirectory.GetFilePath("PatcherCommands.xml"), HacknetDirectory.GetFilePath("OldPatcherCommands.xml"));
+		}
+		CopyFile("lib/PatcherCommands.xml", HacknetDirectory.GetFilePath("lib/PatcherCommands.xml"));
 		Information("Executing PathfinderPatcher for Hacknet execution.");
 		StartMonoProcess(MakeAbsolute(Context.Tools.Resolve("PathfinderPatcher.exe")),
 			new ProcessSettings{ WorkingDirectory = HacknetDirectory });
@@ -191,6 +200,10 @@ Task("RunHacknet")
 		StartProcess(path == null
 			? HacknetDirectory.GetFilePath("HacknetPathfinder.exe")
 			: path);
+		Information("Replacing PatcherCommands with old ones");
+		DeleteFile(HacknetDirectory.GetFilePath("PatcherCommands.xml"));
+		if(FileExists(HacknetDirectory.GetFilePath("OldPatcherCommands.xml")))
+			MoveFile(HacknetDirectory.GetFilePath("OldPatcherCommands.xml"), HacknetDirectory.GetFilePath("PatcherCommands.xml"));
 		Information("Replacing built Pathfinder.dll with OldPathfinder.dll");
 		DeleteFile(HacknetDirectory.GetFilePath("Pathfinder.dll"));
 		if(FileExists(HacknetDirectory.GetFilePath("OldPathfinder.dll")))
