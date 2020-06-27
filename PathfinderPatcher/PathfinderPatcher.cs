@@ -185,6 +185,8 @@ namespace PathfinderPatcher
                 }.Build(gameAssembly.MainModule);
                 gameAssembly.MainModule.Types.Add(nestedType);
 
+                type = gameAssembly.MainModule.GetType("Hacknet.FileType");
+
 
                 // Create FileProperties Properties getter/setter Property in FileType
                 type.AddUndefinedProperty("Properties", nestedType);
