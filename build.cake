@@ -83,7 +83,8 @@ Task("BuildPatcher")
 		MSBuild("./PathfinderPatcher/PathfinderPatcher.csproj",
 			new MSBuildSettings {
 				Configuration = configuration,
-				WorkingDirectory = "./lib"
+				WorkingDirectory = "./lib",
+				Verbosity = Verbosity.Minimal
 			});
 		if(IsRunningOnUnix()) {
 			Information("Correcting permissions on Unix");
@@ -116,8 +117,19 @@ Task("BuildPathfinder")
 		MSBuild("./Pathfinder.csproj",
 			new MSBuildSettings {
 				Configuration = configuration,
-				WorkingDirectory = "./lib"
-			});
+				WorkingDirectory = "./lib",
+				Verbosity = Verbosity.Minimal
+			}.WithWarningsAsMessage(
+				"CS0168",
+				"CS0169",
+				"CS0642",
+				"CS1570",
+				"CS1572",
+				"CS1573",
+				"CS1587",
+				"CS1591",
+				"CS1734"
+			)); // disables common warnings bloating the Pathfinder build, keeps full error logs
 		if(IsRunningOnUnix()) {
 			Information("Correcting permissions on Unix");
 			StartProcess("chmod", new ProcessSettings {
