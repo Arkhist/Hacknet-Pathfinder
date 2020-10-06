@@ -1,6 +1,8 @@
 var target = Argument("target", "BuildHacknet");
 var configuration = Argument("configuration", "Release");
 var HacknetDirectoryStr = Argument<String>("hacknet-dir", null);
+var silenceWarnings = Argument("silenceWarnings", true);
+var buildLevel = Argument<int>("buildLevel", (int)Verbosity.Minimal);
 
 if(HacknetDirectoryStr == null)
 {
@@ -84,7 +86,7 @@ Task("BuildPatcher")
 			new MSBuildSettings {
 				Configuration = configuration,
 				WorkingDirectory = "./lib",
-				Verbosity = Verbosity.Minimal
+				Verbosity = (Verbosity)buildLevel
 			});
 		if(IsRunningOnUnix()) {
 			Information("Correcting permissions on Unix");
@@ -114,12 +116,9 @@ Task("BuildPathfinder")
 		CheckContainedOrCopy("./lib", HacknetDirectory.GetFilePath("FNA.dll"));
 		CheckContainedOrCopy("./lib", HacknetDirectory.GetFilePath("AlienFXManagedWrapper3.5.dll"));
 		CheckContainedOrCopy("./lib", HacknetDirectory.GetFilePath("Steamworks.NET.dll"));
-		MSBuild("./Pathfinder.csproj",
-			new MSBuildSettings {
-				Configuration = configuration,
-				WorkingDirectory = "./lib",
-				Verbosity = Verbosity.Minimal
-			}.WithWarningsAsMessage(
+		var warningsToSilence = new string[0];
+		if(silenceWarnings)
+			warningsToSilence = new string[] {
 				"CS0168",
 				"CS0169",
 				"CS0642",
@@ -129,7 +128,15 @@ Task("BuildPathfinder")
 				"CS1587",
 				"CS1591",
 				"CS1734"
-			)); // disables common warnings bloating the Pathfinder build, keeps full error logs
+			}; // disables common warnings bloating the Pathfinder build, keeps full error logs
+		MSBuild("./Pathfinder.csproj",
+			new MSBuildSettings {
+				Configuration = configuration,
+				WorkingDirectory = "./lib",
+				Verbosity = (Verbosity)buildLevel
+			}.WithWarningsAsMessage(
+				warningsToSilence
+			));
 		if(IsRunningOnUnix()) {
 			Information("Correcting permissions on Unix");
 			StartProcess("chmod", new ProcessSettings {
