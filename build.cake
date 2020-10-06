@@ -2,7 +2,7 @@ var target = Argument("target", "BuildHacknet");
 var configuration = Argument("configuration", "Release");
 var HacknetDirectoryStr = Argument<String>("hacknet-dir", null);
 var silenceWarnings = Argument("silenceWarnings", true);
-var buildLevel = Argument<int>("buildLevel", (int)Verbosity.Minimal);
+var buildLevel = ArgumentEnum("buildLevel", Verbosity.Minimal);
 
 if(HacknetDirectoryStr == null)
 {
@@ -26,6 +26,16 @@ if(!DirectoryExists(HacknetDirectory) || !FileExists(HacknetDirectory.GetFilePat
 {
 	Error("Could not find valid Hacknet executable in '"+HacknetDirectory+"'");
 	throw new Exception("Valid Hacknet.exe not found");
+}
+
+public TEnum ArgumentEnum<TEnum>(string name, TEnum defaultVal = default) where TEnum : struct
+{
+	var val = Argument("buildLevel", "");
+	if(Enum.TryParse(val, true, out TEnum result))
+		return result;
+	if(!string.IsNullOrEmpty(val))
+		Warning("'"+val+"' is not a valid value of enum '"+typeof(TEnum).FullName+"', executing as '"+typeof(TEnum).Name+"."+defaultVal+"'");
+	return defaultVal;
 }
 
 public void CheckContainedOrCopy(DirectoryPath working, FilePath copyFrom)
