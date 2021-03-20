@@ -124,3 +124,6 @@ StyleCopReport.xml
 # Cake Automation
 tools/*
 !tools/packages.config
+
+#Hacknet assembly
+libs/Hacknet_publicized.exe
