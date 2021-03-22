@@ -14,7 +14,7 @@ namespace BepInEx.Hacknet
 
             Log = Logger.CreateLogSource(metadata.Name);
 
-            Config = new ConfigFile(Utility.CombinePaths(Paths.ConfigPath, metadata.GUID + ".cfg"), false, metadata);
+            Config = new ConfigFile(System.IO.Path.Combine(Paths.ConfigPath, metadata.GUID + ".cfg"), false, metadata);
         }
 
         public ManualLogSource Log { get; }

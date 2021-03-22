@@ -12,6 +12,21 @@ namespace PathfinderPatcher
         {
             using (AssemblyDefinition hn = AssemblyDefinition.ReadAssembly("Hacknet.exe"))
             {
+                // Make everything public
+                foreach (var type in hn.MainModule.Types)
+                {
+                    type.IsPublic = true;
+                    foreach (var method in type.Methods)
+                        method.IsPublic = true;
+                    foreach (var field in type.Fields)
+                        field.IsPublic = true;
+                    foreach (var property in type.Properties)
+                    {
+                        property.GetMethod.IsPublic = true;
+                        property.SetMethod.IsPublic = true;
+                    }
+                }
+                
                 // We want to run before everything else, including the Main program function, so we insert ourselves in the static constructor of Program
                 var hnEntryType = hn.MainModule.EntryPoint.DeclaringType;
 

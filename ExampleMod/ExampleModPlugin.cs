@@ -1,37 +1,32 @@
 ﻿using System;
 using MonoMod.Cil;
+using BepInEx;
 using HarmonyLib;
 
-namespace ExampleMod
+namespace ExampleMod2
 {
-    [BepInEx.BepInPlugin("com.Windows10CE.Example", "Example", "1.0.0")]
-    public class ExampleModPlugin : BepInEx.Hacknet.HacknetPlugin
+    [BepInPlugin("com.Windows10CE.Example", "Example", "1.0.0")]
+    public class ExampleModPlugin2 : BepInEx.Hacknet.HacknetPlugin
     {
         public override bool Load()
         {
-            base.HarmonyInstance.PatchAll(typeof(ExampleModPlugin).Assembly);
+            base.HarmonyInstance.PatchAll(typeof(PatchClass2));
 
             return true;
         }
     }
 
     [HarmonyPatch]
-    public static class PatchClass
+    public static class PatchClass2
     {
-        [HarmonyILManipulator]
-        [HarmonyPatch(typeof(Hacknet.MainMenu), "DrawBackgroundAndTitle")]
-        public static void MainMenuTextPatch(ILContext il)
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Hacknet.Helpfile), nameof(Hacknet.Helpfile.writeHelp))]
+        public static bool MainMenuTextPatch()
         {
-            ILCursor c = new ILCursor(il);
+            // yes this works its just hard to see
+            Hacknet.Gui.Button.doButton(3473249, 5, 5, 30, 600, "bruh", Microsoft.Xna.Framework.Color.BlueViolet);
 
-            c.GotoNext(MoveType.Before,
-                x => x.MatchCall(AccessTools.Method(typeof(string), "Concat", new Type[] { typeof(string[]) })),
-                x => x.MatchStloc(out _)
-            );
-
-            c.Index += 1;
-
-            c.EmitDelegate<Func<string, string>>((subtitle) => subtitle += " AHAHAHAHAHA IT WORKSSSSS but for a second time");
+            return false;
         }
     }
 }
