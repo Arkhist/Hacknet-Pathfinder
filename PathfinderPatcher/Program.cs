@@ -22,8 +22,10 @@ namespace PathfinderPatcher
                         field.IsPublic = true;
                     foreach (var property in type.Properties)
                     {
-                        property.GetMethod.IsPublic = true;
-                        property.SetMethod.IsPublic = true;
+                        if (property.GetMethod != null)
+                            property.GetMethod.IsPublic = true;
+                        if (property.SetMethod != null)
+                            property.SetMethod.IsPublic = true;
                     }
                 }
                 
