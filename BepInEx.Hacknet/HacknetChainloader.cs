@@ -7,7 +7,6 @@ using BepInEx.Logging;
 using BepInEx.Bootstrap;
 using HarmonyLib;
 using Mono.Cecil;
-using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using HN = global::Hacknet;
 
@@ -74,7 +73,7 @@ namespace BepInEx.Hacknet
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(HN.Screens.ExtensionsMenuScreen), nameof(HN.Screens.ExtensionsMenuScreen.ActivateExtensionPage))]
-        static bool Prefix(HN.Extensions.ExtensionInfo info)
+        static bool LoadTempPluginsPrefix(HN.Extensions.ExtensionInfo info)
         {
             try
             {
@@ -95,6 +94,16 @@ namespace BepInEx.Hacknet
                 HacknetChainloader.Instance.Log.LogError($"A fatal exception occured while loading extension plugins, aborting:\n{ex}");
 
                 return false;
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(HN.OS), nameof(HN.OS.quitGame))]
+        public static void UnloadTempPluginsPostfix()
+        {
+            foreach (var temp in HacknetChainloader.Instance.Plugins.Where(x => HacknetChainloader.Instance.TemporaryPluginGUIDs.Contains(x.Key)))
+            {
+                ((HacknetPlugin)temp.Value.Instance).Unload();
             }
         }
 

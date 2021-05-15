@@ -8,9 +8,12 @@ namespace BepInEx.Hacknet
 {
     public static class Entrypoint
     {
+        
         public static void Bootstrap()
         {
             AppDomain.CurrentDomain.AssemblyResolve += ResolveBepAssembly;
+
+            Environment.SetEnvironmentVariable("MONOMOD_DMD_TYPE", "methodbuilder");
 
             LoadBepInEx.Load();
         }

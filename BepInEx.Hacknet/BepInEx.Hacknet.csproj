@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="BepInEx.Core, Version=6.0.0.350, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\libs\BepInEx.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>

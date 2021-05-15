@@ -1,5 +1,6 @@
 ﻿using System;
 using MonoMod.Cil;
+using Mono.Cecil.Cil;
 using BepInEx;
 using HarmonyLib;
 
@@ -19,14 +20,13 @@ namespace ExampleMod2
     [HarmonyPatch]
     public static class PatchClass2
     {
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Hacknet.Helpfile), nameof(Hacknet.Helpfile.writeHelp))]
-        public static bool MainMenuTextPatch()
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(Hacknet.OS), nameof(Hacknet.OS.Draw))]
+        public static void MainMenuTextPatch()
         {
-            // yes this works its just hard to see
+            Hacknet.GuiData.startDraw();
             Hacknet.Gui.Button.doButton(3473249, 5, 5, 30, 600, "bruh", Microsoft.Xna.Framework.Color.BlueViolet);
-
-            return false;
+            Hacknet.GuiData.endDraw();
         }
     }
 }

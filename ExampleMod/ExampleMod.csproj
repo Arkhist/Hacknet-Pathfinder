@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="HacknetPathfinder">
       <HintPath>..\libs\HacknetPathfinder.exe</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil, Version=0.11.3.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
