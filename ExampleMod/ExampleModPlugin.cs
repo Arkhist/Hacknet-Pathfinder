@@ -21,7 +21,7 @@ namespace ExampleMod2
     public static class PatchClass2
     {
         [HarmonyPostfix]
-        [HarmonyPatch(typeof(Hacknet.OS), nameof(Hacknet.OS.Draw))]
+        [HarmonyPatch(typeof(Hacknet.MainMenu), nameof(Hacknet.MainMenu.Draw))]
         public static void MainMenuTextPatch()
         {
             Hacknet.GuiData.startDraw();

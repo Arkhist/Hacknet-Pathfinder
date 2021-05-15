@@ -28,16 +28,24 @@ namespace PathfinderPatcher
                             property.SetMethod.IsPublic = true;
                     }
                 }
-                
-                // We want to run before everything else, including the Main program function, so we insert ourselves in the static constructor of Program
-                var hnEntryType = hn.MainModule.EntryPoint.DeclaringType;
 
-                var ctor = hnEntryType.Methods.First(x => x.IsConstructor);
+                // We want to run before everything else, including the Main program function, so we insert ourselves in the static constructor of Program
+                var hnEntryType = hn.MainModule.Types.First(x => x.Name == "<Module>");
+
+                var voidType = hn.MainModule.ImportReference(typeof(void));
+
+                var ctor = new MethodDefinition(".cctor",
+                    Mono.Cecil.MethodAttributes.Public
+                    | Mono.Cecil.MethodAttributes.Static
+                    | Mono.Cecil.MethodAttributes.HideBySig
+                    | Mono.Cecil.MethodAttributes.SpecialName
+                    | Mono.Cecil.MethodAttributes.RTSpecialName,
+                    voidType
+                );
 
                 // Inject the call
                 var processor = ctor.Body.GetILProcessor();
 
-                processor.RemoveAt(2);
                 // Get absolute path of BepInEx.Hacknet.dll
                 processor.Emit(OpCodes.Ldstr, "./BepInEx/core/BepInEx.Hacknet.dll");
                 processor.Emit(OpCodes.Call, hn.MainModule.ImportReference(typeof(System.IO.Path).GetMethod("GetFullPath", new Type[] { typeof(string) })));
@@ -56,6 +64,8 @@ namespace PathfinderPatcher
                 processor.Emit(OpCodes.Pop);
                 // Return
                 processor.Emit(OpCodes.Ret);
+
+                hnEntryType.Methods.Add(ctor);
 
                 // Write modified assembly to disk
                 hn.Write("HacknetPathfinder.exe");
