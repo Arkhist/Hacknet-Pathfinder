@@ -104,6 +104,7 @@ namespace BepInEx.Hacknet
             foreach (var temp in HacknetChainloader.Instance.Plugins.Where(x => HacknetChainloader.Instance.TemporaryPluginGUIDs.Contains(x.Key)))
             {
                 ((HacknetPlugin)temp.Value.Instance).Unload();
+                HacknetChainloader.Instance.Plugins.Remove(temp.Key);
             }
         }
 
