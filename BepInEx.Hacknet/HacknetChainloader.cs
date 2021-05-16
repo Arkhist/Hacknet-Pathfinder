@@ -19,7 +19,7 @@ namespace BepInEx.Hacknet
         internal ManualLogSource Log = Logger.CreateLogSource("HacknetChainloader");
         internal List<string> TemporaryPluginGUIDs = new List<string>();
 
-        private Harmony HarmonyInstance;
+        internal Harmony HarmonyInstance;
         private bool _firstLoadDone = false;
         
         public override void Initialize(string gameExePath = null)
@@ -39,6 +39,7 @@ namespace BepInEx.Hacknet
                 _firstLoadDone = true;
                 return base.DiscoverPlugins();
             }
+
             var plugins = base.DiscoverPlugins();
             TemporaryPluginGUIDs = plugins.Select(plugin => plugin.Metadata.GUID).ToList();
             return plugins;
@@ -71,10 +72,18 @@ namespace BepInEx.Hacknet
         private static readonly Action<string> PluginPathSetter = AccessTools.MethodDelegate<Action<string>>(AccessTools.PropertySetter(typeof(Paths), nameof(Paths.PluginPath)));
         private static readonly Action<string> ConfigPathSetter = AccessTools.MethodDelegate<Action<string>>(AccessTools.PropertySetter(typeof(Paths), nameof(Paths.ConfigPath)));
 
+        private static bool FirstExtensionLoaded = false;
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(HN.Screens.ExtensionsMenuScreen), nameof(HN.Screens.ExtensionsMenuScreen.ActivateExtensionPage))]
         static bool LoadTempPluginsPrefix(HN.Extensions.ExtensionInfo info)
         {
+            if (!FirstExtensionLoaded)
+            {
+                HacknetChainloader.Instance.HarmonyInstance.PatchAll(typeof(ChainloaderFix));
+                FirstExtensionLoaded = true;
+            }
+            
             try
             {
                 var newPluginPath = Path.Combine(info.GetFullFolderPath(), "Plugins");
@@ -108,34 +117,37 @@ namespace BepInEx.Hacknet
             }
         }
 
-        [HarmonyILManipulator]
-        [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "Execute")]
-        public static void FixChainloaderForReload(ILContext il)
+        internal static class ChainloaderFix
         {
-            ILCursor c = new ILCursor(il);
-
-            c.GotoNext(MoveType.Before,
-                x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(Assembly), "LoadFile", new Type[] { typeof(string) }))
-            );
-
-            c.Remove();
-            c.EmitDelegate<Func<string, Assembly>>(path =>
+            [HarmonyILManipulator]
+            [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "Execute")]
+            public static void FixChainloaderForReload(ILContext il)
             {
-                byte[] asmBytes;
-                
-                using (var asm = AssemblyDefinition.ReadAssembly(path))
+                ILCursor c = new ILCursor(il);
+
+                c.GotoNext(MoveType.Before,
+                    x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(Assembly), "LoadFile", new Type[] { typeof(string) }))
+                );
+
+                c.Remove();
+                c.EmitDelegate<Func<string, Assembly>>(path =>
                 {
-                    asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
+                    byte[] asmBytes;
 
-                    using (var ms = new MemoryStream())
+                    using (var asm = AssemblyDefinition.ReadAssembly(path))
                     {
-                        asm.Write(ms);
-                        asmBytes = ms.ToArray();
-                    }
-                }
+                        asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
 
-                return Assembly.Load(asmBytes);
-            });
+                        using (var ms = new MemoryStream())
+                        {
+                            asm.Write(ms);
+                            asmBytes = ms.ToArray();
+                        }
+                    }
+
+                    return Assembly.Load(asmBytes);
+                });
+            }
         }
     }
 }
