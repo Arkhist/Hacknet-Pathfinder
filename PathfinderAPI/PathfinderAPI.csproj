@@ -60,7 +60,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseGameFixes\AutoClearMissionsOnSingleComplete.cs" />
     <Compile Include="BaseGameFixes\DoesNotHaveFlags.cs" />
+    <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
+    <Compile Include="BaseGameFixes\SendEmailMission.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security.cs" />

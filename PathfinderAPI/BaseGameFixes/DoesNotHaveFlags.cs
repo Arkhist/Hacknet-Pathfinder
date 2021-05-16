@@ -16,7 +16,11 @@ namespace Pathfinder.BaseGameFixes
         {
             ILCursor c = new ILCursor(il);
 
-            var add = AccessTools.Method(typeof(Dictionary<string, Func<System.Xml.XmlReader, SerializableCondition>>), "Add", new Type[] { typeof(string), typeof(Func<System.Xml.XmlReader, SerializableCondition>) });
+            var add = AccessTools.Method(
+                typeof(Dictionary<string, Func<System.Xml.XmlReader, SerializableCondition>>),
+                "Add",
+                new Type[] { typeof(string), typeof(Func<System.Xml.XmlReader, SerializableCondition>) }
+            );
 
             c.GotoNext(MoveType.After,
                 x => x.MatchCallvirt(add)
