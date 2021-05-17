@@ -27,7 +27,7 @@ namespace BepInEx.Hacknet
             base.Initialize(gameExePath);
             Instance = this;
 
-            HarmonyInstance = new Harmony("BepInEx.Hackner.Chainloader");
+            HarmonyInstance = new Harmony("BepInEx.Hacknet.Chainloader");
 
             HarmonyInstance.PatchAll(typeof(ExtensionPluginPatches));
         }
