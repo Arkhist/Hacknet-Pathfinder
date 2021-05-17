@@ -1,2 +1,3 @@
 # normalize bash files to use lf
 *.sh eol=lf
+* text=auto
