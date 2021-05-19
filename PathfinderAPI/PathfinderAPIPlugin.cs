@@ -12,7 +12,10 @@ namespace Pathfinder
 
         public override bool Load()
         {
+            Logger.LogSource = base.Log;
+
             HarmonyInstance.PatchAll(typeof(PathfinderAPIPlugin).Assembly);
+
             return true;
         }
     }

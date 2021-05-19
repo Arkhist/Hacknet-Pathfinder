@@ -111,9 +111,8 @@ namespace Pathfinder.Event
             handlers.Sort();
         }
 
-        internal static Dictionary<string, Exception> InvokeAll(T eventArgs)
+        internal static T InvokeAll(T eventArgs)
         {
-            var exDict = new Dictionary<string, Exception>();
             foreach (var handler in Instance.handlers)
             {
                 try
@@ -123,11 +122,13 @@ namespace Pathfinder.Event
                 }
                 catch (Exception e)
                 {
-                    exDict.Add($"{handler.HandlerInfo.DeclaringType.FullName}::{handler.HandlerInfo.FullDescription()}", e);
+                    Logger.Log(BepInEx.Logging.LogLevel.Error, $"{handler.HandlerInfo.DeclaringType.FullName}::{handler.HandlerInfo.FullDescription()}");
+                    Logger.Log(BepInEx.Logging.LogLevel.Error, e);
                     eventArgs.Thrown = true;
                 }
             }
-            return exDict;
+
+            return eventArgs;
         }
 
         internal static void InvokeAllTesting() => InvokeAll((T)Activator.CreateInstance(typeof(T)));
