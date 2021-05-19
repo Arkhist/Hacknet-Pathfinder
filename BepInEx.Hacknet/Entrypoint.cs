@@ -13,7 +13,7 @@ namespace BepInEx.Hacknet
         {
             AppDomain.CurrentDomain.AssemblyResolve += ResolveBepAssembly;
 
-            Environment.SetEnvironmentVariable("MONOMOD_DMD_TYPE", "methodbuilder");
+            Environment.SetEnvironmentVariable("MONOMOD_DMD_TYPE", "dynamicmethod");
 
             LoadBepInEx.Load();
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security;
 using System.Reflection;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
@@ -66,6 +67,11 @@ namespace PathfinderPatcher
                 processor.Emit(OpCodes.Ret);
 
                 hnEntryType.Methods.Add(ctor);
+
+                // Hacknet needs to be able to access *everything*, this ensures that
+                var unverifiableType = hn.MainModule.ImportReference(typeof(UnverifiableCodeAttribute)).Resolve();
+                var unverifiableCtor = hn.MainModule.ImportReference(unverifiableType.Methods.First(x => x.IsConstructor && x.Parameters.Count == 0));
+                hn.MainModule.CustomAttributes.Add(new CustomAttribute(unverifiableCtor));
 
                 // Write modified assembly to disk
                 hn.Write("HacknetPathfinder.exe");
