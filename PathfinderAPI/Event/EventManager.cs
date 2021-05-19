@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 using HarmonyLib;
+using System.Runtime.CompilerServices;
 
 namespace Pathfinder.Event
 {
@@ -41,6 +43,9 @@ namespace Pathfinder.Event
         {
             Instances.Add(managerObj);
         }
+        internal delegate void RemoveOnUnload(Assembly unloadedAssembly);
+        internal static event RemoveOnUnload onPluginUnload;
+        internal static void InvokeOnPluginUnload(Assembly pluginAsm) => onPluginUnload?.Invoke(pluginAsm);
 
         public static void AddHandler(Type pathfinderEvent, MethodInfo handler)
         {
@@ -68,7 +73,7 @@ namespace Pathfinder.Event
 
     public class EventManager<T> where T : PathfinderEvent
     {
-        private List<EventHandler<T>> handlers = new List<EventHandler<T>>();
+        private Dictionary<Assembly, List<EventHandler<T>>> handlers = new Dictionary<Assembly, List<EventHandler<T>>>();
 
         private static EventManager<T> _instance = null;
 
@@ -85,35 +90,54 @@ namespace Pathfinder.Event
         EventManager()
         {
             EventManager.AddEventManagerInstance(this);
+            EventManager.onPluginUnload += OnPluginUnload;
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static void AddHandler(Action<T> handler)
         {
-            Instance.AddHandlerInternal(new EventHandler<T>(handler, new EventHandlerOptions()));
+            Instance.AddHandlerInternal(new EventHandler<T>(handler, new EventHandlerOptions()), Assembly.GetCallingAssembly());
         }
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static void AddHandler(Action<T> handler, EventHandlerOptions options)
         {
-            Instance.AddHandlerInternal(new EventHandler<T>(handler, options));
+            Instance.AddHandlerInternal(new EventHandler<T>(handler, options), Assembly.GetCallingAssembly());
         }
-        private void AddHandlerInternal(EventHandler<T> handler)
+        private void AddHandlerInternal(EventHandler<T> handler, Assembly eventAssembly)
         {
-            handlers.Add(handler);
-            handlers.Sort();
+            if (!handlers.ContainsKey(eventAssembly))
+                handlers.Add(eventAssembly, new List<EventHandler<T>>());
+            var eventList = handlers[eventAssembly];
+            eventList.Add(handler);
+            eventList.Sort();
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static void RemoveHandler(Action<T> handler)
         {
-            Instance.RemoveHandlerInternal(handler.Method);
+            Instance.RemoveHandlerInternal(handler.Method, Assembly.GetCallingAssembly());
         }
-        private void RemoveHandlerInternal(MethodInfo handler)
+        public static void RemoveHandler(Action<T> handler, Assembly eventAssembly)
         {
-            handlers.RemoveAll(x => x.Equals(handler));
-            handlers.Sort();
+            Instance.RemoveHandlerInternal(handler.Method, eventAssembly);
+        }
+        private void RemoveHandlerInternal(MethodInfo handler, Assembly eventAssembly)
+        {
+            if (handlers.TryGetValue(eventAssembly, out List<EventHandler<T>> handlersList))
+            {
+                handlersList.RemoveAll(x => x.HandlerInfo.Equals(handler));
+                handlersList.Sort();
+            }
+        }
+
+        private void OnPluginUnload(Assembly pluginAsm)
+        {
+            handlers.Remove(pluginAsm);
         }
 
         internal static T InvokeAll(T eventArgs)
         {
-            foreach (var handler in Instance.handlers)
+            foreach (var handler in Instance.handlers.Values.SelectMany(x => x))
             {
                 try
                 {

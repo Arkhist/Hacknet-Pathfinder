@@ -73,6 +73,7 @@
     <Compile Include="Event\PathfinderEvent.cs" />
     <Compile Include="Event\TestEvent.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="MiscPatches.cs" />
     <Compile Include="Util\Calculate.cs" />
     <Compile Include="Util\Types\Rect2.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
