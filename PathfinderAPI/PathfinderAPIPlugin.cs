@@ -8,7 +8,7 @@ namespace Pathfinder
     {
         public const string ModGUID = "com.Pathfinder.API";
         public const string ModName = "PathfinderAPI";
-        public const string ModVer = "1.0.0";
+        public const string ModVer = "5.0.0";
 
         public override bool Load()
         {

@@ -47,8 +47,8 @@ namespace Pathfinder.Event
             c.EmitDelegate<EmitDelegate>((MainMenu self, ref Rectangle dest) =>
             {
                 if (defaultTitleFont == null) defaultTitleFont = self.ScreenManager.Game.Content.Load<SpriteFont>("Kremlin");
-                
-                var version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+                var version = PathfinderAPIPlugin.ModVer;
                 var mainTitle = "HACKNET";
                 var subtitle = "OS"
                     + (DLC1SessionUpgrader.HasDLC1Installed ? "+Labyrinths " : " ")
