@@ -64,6 +64,9 @@
     <Compile Include="BaseGameFixes\DoesNotHaveFlags.cs" />
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
+    <Compile Include="Event\EventManager.cs" />
+    <Compile Include="Event\PathfinderEvent.cs" />
+    <Compile Include="Event\TestEvent.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security.cs" />
