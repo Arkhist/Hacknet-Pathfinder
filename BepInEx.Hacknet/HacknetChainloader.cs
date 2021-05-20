@@ -110,11 +110,15 @@ namespace BepInEx.Hacknet
         [HarmonyPatch(typeof(HN.OS), nameof(HN.OS.quitGame))]
         public static void UnloadTempPluginsPostfix()
         {
-            foreach (var temp in HacknetChainloader.Instance.Plugins.Where(x => HacknetChainloader.Instance.TemporaryPluginGUIDs.Contains(x.Key)))
+            HacknetChainloader.Instance.Log.LogMessage("Unloading extension plugins...");
+            foreach (var temp in HacknetChainloader.Instance.Plugins.Where(x => HacknetChainloader.Instance.TemporaryPluginGUIDs.Contains(x.Key)).ToList())
             {
                 ((HacknetPlugin)temp.Value.Instance).Unload();
                 HacknetChainloader.Instance.Plugins.Remove(temp.Key);
+
+                HacknetChainloader.Instance.Log.LogInfo($"Unloaded {temp.Key}");
             }
+            HacknetChainloader.Instance.Log.LogMessage("Finished unloading extension plugins");
         }
 
         internal static class ChainloaderFix

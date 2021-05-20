@@ -1,5 +1,4 @@
 ﻿using System;
-using BepInEx.Logging;
 using HarmonyLib;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
@@ -9,16 +8,9 @@ using Hacknet.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.Util.Types;
-using System.Reflection;
 
-namespace Pathfinder.Event
+namespace Pathfinder.Event.Menu
 {
-    public abstract class MainMenuEvent : PathfinderEvent
-    {
-        public MainMenu MainMenu { get; private set; }
-        public MainMenuEvent(MainMenu mainMenu) { MainMenu = mainMenu; }
-    }
-
     [HarmonyPatch]
     public class DrawMainMenuTitlesEvent : MainMenuEvent
     {
@@ -26,7 +18,7 @@ namespace Pathfinder.Event
 
         public TitleData Main { get; private set; }
         public TitleData Sub { get; private set; }
-        
+
         static Color defaultTitleColor = new Color(190, 190, 190, 0);
         static SpriteFont defaultTitleFont;
 
@@ -53,7 +45,7 @@ namespace Pathfinder.Event
                 var subtitle = "OS"
                     + (DLC1SessionUpgrader.HasDLC1Installed ? "+Labyrinths " : " ")
                     + MainMenu.OSVersion + " Pathfinder " + version;
-                
+
                 var main = new TitleData(mainTitle,
                                              defaultTitleColor,
                                              defaultTitleFont,
@@ -64,7 +56,7 @@ namespace Pathfinder.Event
                                            GuiData.smallfont,
                                            new Rect2(520, 178, 0, 0)
                                           );
-                
+
                 var drawMainMenuTitles = new DrawMainMenuTitlesEvent(self, main, sub);
                 EventManager<DrawMainMenuTitlesEvent>.InvokeAll(drawMainMenuTitles);
 

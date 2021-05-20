@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleLogger.cs" />
     <Compile Include="HacknetChainloader.cs" />
     <Compile Include="HacknetPlugin.cs" />
     <Compile Include="Entrypoint.cs" />

@@ -69,7 +69,8 @@
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
     <Compile Include="Event\EventManager.cs" />
-    <Compile Include="Event\MainMenuEvents.cs" />
+    <Compile Include="Event\Menu\DrawMainMenuTitlesEvent.cs" />
+    <Compile Include="Event\Menu\MainMenuEvent.cs" />
     <Compile Include="Event\PathfinderEvent.cs" />
     <Compile Include="Event\TestEvent.cs" />
     <Compile Include="Logger.cs" />

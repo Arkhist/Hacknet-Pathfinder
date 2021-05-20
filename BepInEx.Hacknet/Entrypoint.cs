@@ -48,8 +48,7 @@ namespace BepInEx.Hacknet
                 // Do stuff for BepInEx to recognize where it is
                 Paths.SetExecutablePath(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
 
-                Logger.Listeners.Add(new ConsoleLogListener());
-
+                Logger.Listeners.Add(new ConsoleLogger());
                 ConsoleManager.Initialize(true);
 
                 // Start chainloader for plugins
