@@ -15,6 +15,7 @@ namespace Pathfinder
             Logger.LogSource = base.Log;
 
             HarmonyInstance.PatchAll(typeof(PathfinderAPIPlugin).Assembly);
+            Executable.ExecutableHandler.Initialize();
 
             return true;
         }
