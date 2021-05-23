@@ -120,38 +120,39 @@ namespace BepInEx.Hacknet
             }
             HacknetChainloader.Instance.Log.LogMessage("Finished unloading extension plugins");
         }
+    }
 
-        internal static class ChainloaderFix
+    [HarmonyPatch]
+    internal static class ChainloaderFix
+    {
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "Execute")]
+        public static void FixChainloaderForReload(ILContext il)
         {
-            [HarmonyILManipulator]
-            [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "Execute")]
-            public static void FixChainloaderForReload(ILContext il)
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.Before,
+                x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(Assembly), "LoadFile", new Type[] { typeof(string) }))
+            );
+
+            c.Remove();
+            c.EmitDelegate<Func<string, Assembly>>(path =>
             {
-                ILCursor c = new ILCursor(il);
+                byte[] asmBytes;
 
-                c.GotoNext(MoveType.Before,
-                    x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(Assembly), "LoadFile", new Type[] { typeof(string) }))
-                );
-
-                c.Remove();
-                c.EmitDelegate<Func<string, Assembly>>(path =>
+                using (var asm = AssemblyDefinition.ReadAssembly(path))
                 {
-                    byte[] asmBytes;
+                    asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
 
-                    using (var asm = AssemblyDefinition.ReadAssembly(path))
+                    using (var ms = new MemoryStream())
                     {
-                        asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
-
-                        using (var ms = new MemoryStream())
-                        {
-                            asm.Write(ms);
-                            asmBytes = ms.ToArray();
-                        }
+                        asm.Write(ms);
+                        asmBytes = ms.ToArray();
                     }
+                }
 
-                    return Assembly.Load(asmBytes);
-                });
-            }
+                return Assembly.Load(asmBytes);
+            });
         }
     }
 }

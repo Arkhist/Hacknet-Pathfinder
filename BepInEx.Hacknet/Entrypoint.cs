@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using BepInEx.Logging;
@@ -22,19 +23,16 @@ namespace BepInEx.Hacknet
         {
             var asmName = new AssemblyName(args.Name);
 
-            var possiblePath = Path.GetFullPath($"./BepInEx/core/{asmName.Name}.dll");
-
-            if (!File.Exists(possiblePath))
-                return null;
-
-            try
+            foreach (var path in Directory.GetFiles("./BepInEx", $"{asmName.Name}.dll", SearchOption.AllDirectories).Select(x => Path.GetFullPath(x)))
             {
-                return Assembly.LoadFile(possiblePath);
+                try
+                {
+                    return Assembly.LoadFile(path);
+                }
+                catch {}
             }
-            catch
-            {
-                return null;
-            }
+
+            return null;
         }
     }
 
