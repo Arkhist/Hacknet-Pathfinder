@@ -84,6 +84,11 @@
       <Name>BepInEx.Hacknet</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\PathfinderAPI\PathfinderAPI.csproj">
+      <Project>{4de0a4cf-ec60-46e1-ad96-be3a0f5be406}</Project>
+      <Name>PathfinderAPI</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
