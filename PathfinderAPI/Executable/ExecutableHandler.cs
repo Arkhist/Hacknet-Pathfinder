@@ -21,7 +21,7 @@ namespace Pathfinder.Executable
 
         private static List<CustomExeInfo> CustomExes = new List<CustomExeInfo>();
         
-        internal static void Initialize()
+        static ExecutableHandler()
         {
             EventManager<TextReplaceEvent>.AddHandler(GetTextReplacementExe);
             EventManager<ExecutableExecuteEvent>.AddHandler(OnExeExecute);

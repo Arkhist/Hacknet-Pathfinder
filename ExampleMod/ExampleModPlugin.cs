@@ -16,6 +16,7 @@ namespace ExampleMod2
             base.HarmonyInstance.PatchAll(typeof(PatchClass2));
 
             Pathfinder.Executable.ExecutableHandler.RegisterExecutable(typeof(TestExe), "#A#");
+            Pathfinder.Port.PortHandler.AddPort("sex2", 50);
 
             return true;
         }
@@ -25,22 +26,35 @@ namespace ExampleMod2
     {
         public override string GetIdentifier() => "Some";
 
-        public TestExe(Rectangle location, OS operatingSystem, string[] args) : base(location, operatingSystem, args) { }
+        public TestExe(Rectangle location, OS operatingSystem, string[] args) : base(location, operatingSystem, args) { this.ramCost = 761; }
+
+        public override void LoadContent()
+        {
+            base.LoadContent();
+            Programs.getComputer(os, targetIP).hostileActionTaken();
+            os.write(string.Join(" ", Args));
+        }
 
         public override void Draw(float t)
         {
             base.Draw(t);
+            //drawFrame();
+            drawTarget();
             drawOutline();
-            Hacknet.Gui.TextItem.doLabel(new Vector2(bounds.Top, bounds.Left), "sex!", new Color(255, 0, 0));
+            Hacknet.Gui.TextItem.doLabel(new Vector2(Bounds.Center.X, Bounds.Center.Y), "sex!", new Color(255, 0, 0));
         }
 
         float total = 0f;
         public override void Update(float t)
         {
             base.Update(t);
+            
             total += t;
-            if (total > 7f)
+            if (total > 2.5f)
+            {
                 isExiting = true;
+                Programs.getComputer(os, targetIP).openPort(50, os.thisComputer.ip);
+            }
         }
     }
 
@@ -52,9 +66,10 @@ namespace ExampleMod2
         public static void MainMenuTextPatch()
         {
             GuiData.startDraw();
-            Hacknet.Gui.Button.doButton(3473249, 5, 5, 30, 600, "bruh", Microsoft.Xna.Framework.Color.BlueViolet);
+            Hacknet.Gui.Button.doButton(3473249, 5, 5, 30, 600, "bruh", Color.BlueViolet);
             GuiData.endDraw();
         }
+
         /*
         [HarmonyPostfix]
         [HarmonyPatch(typeof(Game1), MethodType.Constructor)]

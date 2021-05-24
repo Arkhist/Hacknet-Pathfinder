@@ -70,6 +70,8 @@
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
     <Compile Include="Event\EventManager.cs" />
     <Compile Include="Event\Gameplay\ExecutableExecuteEvent.cs" />
+    <Compile Include="Event\Loading\ComputerLoadedEvent.cs" />
+    <Compile Include="Event\Loading\PortsAddedEvent.cs" />
     <Compile Include="Event\Loading\TextReplaceEvent.cs" />
     <Compile Include="Event\Menu\DrawMainMenuTitlesEvent.cs" />
     <Compile Include="Event\Menu\MainMenuEvent.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Executable\ExecutableHandler.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MiscPatches.cs" />
+    <Compile Include="Port\PortHandler.cs" />
     <Compile Include="Util\Calculate.cs" />
     <Compile Include="Util\Types\Rect2.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
