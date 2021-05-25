@@ -1,5 +1,8 @@
-﻿using BepInEx;
+﻿using System;
+using System.Diagnostics;
+using BepInEx;
 using BepInEx.Hacknet;
+using HarmonyLib;
 
 namespace Pathfinder
 {
@@ -14,6 +17,7 @@ namespace Pathfinder
         {
             Logger.LogSource = base.Log;
 
+            MiscPatches.Initialize(HarmonyInstance);
             HarmonyInstance.PatchAll(typeof(PathfinderAPIPlugin).Assembly);
 
             return true;
