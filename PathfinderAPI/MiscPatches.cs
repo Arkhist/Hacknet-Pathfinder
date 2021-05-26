@@ -11,12 +11,13 @@ namespace Pathfinder
     [HarmonyPatch]
     internal static class MiscPatches
     {
-        internal static void Initialize(Harmony harmony)
+        [Util.Initialize]
+        internal static void Initialize()
         {
             var original = AccessTools.Method(typeof(StackTrace), nameof(StackTrace.ToString), new Type[] { typeof(StackTrace).GetNestedType("TraceFormat", System.Reflection.BindingFlags.NonPublic) });
             var manipulator = AccessTools.Method(typeof(MiscPatches), nameof(MiscPatches.IncludeILOffsetInTrace));
 
-            harmony.Patch(original, ilmanipulator: new HarmonyMethod(manipulator));
+            PathfinderAPIPlugin.HarmonyInstance.Patch(original, ilmanipulator: new HarmonyMethod(manipulator));
         }
 
         [HarmonyPostfix]

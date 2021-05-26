@@ -55,7 +55,7 @@ namespace Pathfinder.Port
                     if (portExploitsInit)
                         PortExploits.services.Remove(port.Value.PortNumber);
                     else
-                        portsTooAdd.RemoveAll(x => x.PortNumber == port.Value.PortNumber);
+                        portsToAdd.RemoveAll(x => x.PortNumber == port.Value.PortNumber);
                 }
 
                 CustomPorts.Remove(pluginAsm);
@@ -77,10 +77,10 @@ namespace Pathfinder.Port
             if (portExploitsInit)
                 PortExploits.services.Add(info.PortNumber, info.PortName);
             else
-                portsTooAdd.Add(info);
+                portsToAdd.Add(info);
         }
 
-        private static List<PortInfo> portsTooAdd = new List<PortInfo>();
+        private static List<PortInfo> portsToAdd = new List<PortInfo>();
         private static bool portExploitsInit = false;
 
         [HarmonyPostfix]
@@ -88,7 +88,7 @@ namespace Pathfinder.Port
         private static void PortExploitsPopulatePostfix()
         {
             portExploitsInit = true;
-            foreach (var port in portsTooAdd)
+            foreach (var port in portsToAdd)
             {
                 PortExploits.services.Add(port.PortNumber, port.PortName);
             }

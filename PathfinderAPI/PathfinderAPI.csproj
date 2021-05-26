@@ -76,13 +76,13 @@
     <Compile Include="Event\Menu\DrawMainMenuTitlesEvent.cs" />
     <Compile Include="Event\Menu\MainMenuEvent.cs" />
     <Compile Include="Event\PathfinderEvent.cs" />
-    <Compile Include="Event\TestEvent.cs" />
     <Compile Include="Executable\BaseExecutable.cs" />
     <Compile Include="Executable\ExecutableHandler.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MiscPatches.cs" />
     <Compile Include="Port\PortHandler.cs" />
     <Compile Include="Util\Calculate.cs" />
+    <Compile Include="Util\InitializeAttribute.cs" />
     <Compile Include="Util\Types\Rect2.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

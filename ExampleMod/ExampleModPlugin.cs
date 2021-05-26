@@ -16,7 +16,7 @@ namespace ExampleMod2
             base.HarmonyInstance.PatchAll(typeof(PatchClass2));
 
             Pathfinder.Executable.ExecutableHandler.RegisterExecutable(typeof(TestExe), "#A#");
-            Pathfinder.Port.PortHandler.AddPort("sex2", 50);
+            Pathfinder.Port.PortHandler.AddPort("Example port", 50);
 
             return true;
         }
@@ -40,10 +40,10 @@ namespace ExampleMod2
             base.Draw(t);
             drawTarget();
             drawOutline();
-            Hacknet.Gui.TextItem.doLabel(new Vector2(Bounds.Center.X, Bounds.Center.Y), "sex!", new Color(255, 0, 0));
+            Hacknet.Gui.TextItem.doLabel(new Vector2(Bounds.Center.X, Bounds.Center.Y), "blue text", new Color(255, 0, 0));
         }
 
-        float total = 0f;
+        private float total = 0f;
         public override void Update(float t)
         {
             base.Update(t);
