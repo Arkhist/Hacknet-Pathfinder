@@ -133,3 +133,6 @@ libs/Hacknet.exe
 libs/HacknetPathfinder.exe
 libs/Hacknet_publicized.exe
 libs/FNA.dll
+
+#Rider files
+.idea/

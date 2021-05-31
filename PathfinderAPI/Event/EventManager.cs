@@ -10,16 +10,16 @@ namespace Pathfinder.Event
     public struct EventHandlerOptions
     {
         public int? Priority;
-        public int PrioritySafe { get => Priority.GetValueOrDefault(0); }
+        public int PrioritySafe => Priority.GetValueOrDefault(0);
         public bool ContinueOnCancel;
         public bool ContinueOnThrow;
     }
     
     internal class EventHandler<T> : IComparable<EventHandler<T>>, IEquatable<EventHandler<T>>, IEquatable<MethodInfo> where T : PathfinderEvent
     {
-        internal Action<T> HandlerAction;
-        internal MethodInfo HandlerInfo;
-        internal EventHandlerOptions Options;
+        internal readonly Action<T> HandlerAction;
+        internal readonly MethodInfo HandlerInfo;
+        internal readonly EventHandlerOptions Options;
 
         internal EventHandler(Action<T> handlerAction, EventHandlerOptions options)
         {
@@ -38,7 +38,7 @@ namespace Pathfinder.Event
     
     public static class EventManager
     {
-        internal static List<object> Instances = new List<object>();
+        internal static readonly List<object> Instances = new List<object>();
         internal static void AddEventManagerInstance(object managerObj)
         {
             Instances.Add(managerObj);
@@ -73,21 +73,13 @@ namespace Pathfinder.Event
 
     public class EventManager<T> where T : PathfinderEvent
     {
-        private Dictionary<Assembly, List<EventHandler<T>>> handlers = new Dictionary<Assembly, List<EventHandler<T>>>();
+        private readonly Dictionary<Assembly, List<EventHandler<T>>> handlers = new Dictionary<Assembly, List<EventHandler<T>>>();
 
         private static EventManager<T> _instance = null;
 
-        public static EventManager<T> Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new EventManager<T>();
-                return _instance;
-            }
-        }
+        public static EventManager<T> Instance => _instance ?? (_instance = new EventManager<T>());
 
-        EventManager()
+        private EventManager()
         {
             EventManager.AddEventManagerInstance(this);
             EventManager.onPluginUnload += OnPluginUnload;
