@@ -4,6 +4,9 @@ using BepInEx;
 using HarmonyLib;
 using Hacknet;
 using Microsoft.Xna.Framework;
+using System.Xml;
+using Microsoft.Xna.Framework.Graphics;
+using Pathfinder.Daemon;
 
 namespace ExampleMod2
 {
@@ -17,6 +20,7 @@ namespace ExampleMod2
 
             Pathfinder.Executable.ExecutableHandler.RegisterExecutable(typeof(TestExe), "#A#");
             Pathfinder.Port.PortHandler.AddPort("Example port", 50);
+            Pathfinder.Daemon.DaemonHandler.RegisterDaemon(typeof(TestDaemon));
 
             return true;
         }
@@ -54,6 +58,22 @@ namespace ExampleMod2
                 isExiting = true;
                 Programs.getComputer(os, targetIP).openPort(50, os.thisComputer.ip);
             }
+        }
+    }
+
+    public class TestDaemon : BaseDaemon
+    {
+        public TestDaemon(Computer computer, string serviceName, OS opSystem) : base(computer, serviceName, opSystem) { }
+
+        [XMLStorage]
+        public string DisplayString;
+
+        public override void draw(Rectangle bounds, SpriteBatch sb)
+        {
+            base.draw(bounds, sb);
+
+            var center = os.display.bounds.Center;
+            Hacknet.Gui.TextItem.doLabel(new Vector2(center.X, center.Y), DisplayString, Color.Aquamarine);
         }
     }
 

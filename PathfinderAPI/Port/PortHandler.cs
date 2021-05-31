@@ -19,7 +19,7 @@ namespace Pathfinder.Port
             public int PortNumber;
         }
 
-        private static Dictionary<Assembly, List<PortInfo?>> CustomPorts = new Dictionary<Assembly, List<PortInfo?>>();
+        private static readonly Dictionary<Assembly, List<PortInfo?>> CustomPorts = new Dictionary<Assembly, List<PortInfo?>>();
 
         static PortHandler()
         {

@@ -19,7 +19,7 @@ namespace Pathfinder.Executable
             public Type ExeType;
         }
 
-        private static List<CustomExeInfo?> CustomExes = new List<CustomExeInfo?>();
+        private static readonly List<CustomExeInfo?> CustomExes = new List<CustomExeInfo?>();
         
         static ExecutableHandler()
         {
@@ -54,7 +54,7 @@ namespace Pathfinder.Executable
         public static void RegisterExecutable<T>(string xmlName) where T : BaseExecutable => RegisterExecutable(typeof(T), xmlName);
         public static void RegisterExecutable(Type executableType, string xmlName)
         {
-            if (executableType.BaseType != typeof(BaseExecutable))
+            if (!typeof(BaseExecutable).IsAssignableFrom(executableType))
                 throw new ArgumentException("Type of exe registered must inherit from Pathfinder.Executable.BaseExecutable!", nameof(executableType));
 
             string hex = BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes("PathfinderExe:" + executableType.FullName));
