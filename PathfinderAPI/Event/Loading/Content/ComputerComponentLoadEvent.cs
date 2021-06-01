@@ -6,8 +6,8 @@ using Hacknet;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 
-namespace Pathfinder.Event.Loading
-{
+namespace Pathfinder.Event.Loading.Content
+{    
     [HarmonyPatch]
     public class ComputerComponentLoadEvent : PathfinderEvent
     {

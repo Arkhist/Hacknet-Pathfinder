@@ -6,7 +6,7 @@ namespace Pathfinder.Event.Loading
     [HarmonyPatch]
     public class TextReplaceEvent : PathfinderEvent
     {
-        public string Original { get; private set; }
+        public string Original { get; }
         public string Replacement { get; set; }
 
         public TextReplaceEvent(string original, string replacement)

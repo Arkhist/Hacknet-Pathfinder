@@ -1,15 +1,15 @@
 ﻿using HarmonyLib;
 using Hacknet;
 
-namespace Pathfinder.Event.Loading
+namespace Pathfinder.Event.Loading.Content
 {
     [HarmonyPatch]
     public class ComputerLoadedEvent : PathfinderEvent
     {
-        public Computer Comp { get; private set; }
-        public string Filename { get; private set; }
-        public bool PreventAddToNetmap { get; private set; }
-        public bool DontInitDaemons { get; private set; }
+        public Computer Comp { get; }
+        public string Filename { get; }
+        public bool PreventAddToNetmap { get; }
+        public bool DontInitDaemons { get; }
 
         public ComputerLoadedEvent(Computer comp, string filename, bool preventNetmap, bool dontInit)
         {

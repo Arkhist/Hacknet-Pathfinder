@@ -4,7 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Pathfinder.Event;
-using Pathfinder.Event.Loading;
+using Pathfinder.Event.Loading.Content;
+using Pathfinder.Event.Loading.Save;
 
 namespace Pathfinder.Daemon
 {
@@ -15,6 +16,7 @@ namespace Pathfinder.Daemon
         static DaemonHandler()
         {
             EventManager<ComputerComponentLoadEvent>.AddHandler(OnComponentLoad);
+            EventManager<SaveComponentLoadEvent>.AddHandler(OnSavedComponentLoad);
             EventManager.onPluginUnload += onPluginUnload;
         }
 
@@ -26,6 +28,19 @@ namespace Pathfinder.Daemon
                 BaseDaemon daemon = (BaseDaemon)Activator.CreateInstance(daemonType, new object[] { args.Comp, args.Reader.Name, args.Os });
                 daemon.LoadFromXml(args.Reader);
                 args.Comp.daemons.Add(daemon);
+            }
+        }
+        private static void OnSavedComponentLoad(SaveComponentLoadEvent args)
+        {
+            if ((args.Type & ComponentType.Daemon) != 0)
+            {
+                var daemonType = CustomDaemons.FirstOrDefault(x => x.Name == args.Reader.Name);
+                if (daemonType != null)
+                {
+                    BaseDaemon daemon = (BaseDaemon)Activator.CreateInstance(daemonType, new object[] { args.Comp, args.Reader.Name, args.Os });
+                    daemon.LoadFromXml(args.Reader);
+                    args.Comp.daemons.Add(daemon);
+                }
             }
         }
 

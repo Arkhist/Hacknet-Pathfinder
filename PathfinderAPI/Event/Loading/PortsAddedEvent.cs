@@ -6,8 +6,8 @@ namespace Pathfinder.Event.Loading
     [HarmonyPatch]
     public class PortsAddedEvent : PathfinderEvent
     {
-        public Computer Comp { get; private set; }
-        public string[] PortsList { get; private set; }
+        public Computer Comp { get; }
+        public string[] PortsList { get; }
 
         public PortsAddedEvent(Computer comp, string[] portsList)
         {
