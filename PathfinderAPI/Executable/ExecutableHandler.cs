@@ -65,5 +65,15 @@ namespace Pathfinder.Executable
                 ExeType = executableType
             });
         }
+
+        public static void UnregisterExecutable(string xmlName)
+        {
+            CustomExes.RemoveAll(x => x.Value.XmlId == xmlName);
+        }
+        public static void UnregisterExecutable<T>() => UnregisterExecutable(typeof(T));
+        public static void UnregisterExecutable(Type exeType)
+        {
+            CustomExes.RemoveAll(x => x.Value.ExeType == exeType);
+        }
     }
 }

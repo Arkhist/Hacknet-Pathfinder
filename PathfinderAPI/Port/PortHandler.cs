@@ -63,11 +63,11 @@ namespace Pathfinder.Port
         } 
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void AddPort(string name, int number) => AddPortInternal(new PortInfo { PortName = name, PortNumber = number }, Assembly.GetCallingAssembly());
+        public static void RegisterPort(string name, int number) => RegisterPortInternal(new PortInfo { PortName = name, PortNumber = number }, Assembly.GetCallingAssembly());
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void AddPort(PortInfo info) => AddPortInternal(info, Assembly.GetCallingAssembly());
+        public static void RegisterPort(PortInfo info) => RegisterPortInternal(info, Assembly.GetCallingAssembly());
 
-        private static void AddPortInternal(PortInfo info, Assembly portAsm) 
+        private static void RegisterPortInternal(PortInfo info, Assembly portAsm) 
         {
             if (!CustomPorts.ContainsKey(portAsm))
                 CustomPorts.Add(portAsm, new List<PortInfo?>());
@@ -80,7 +80,20 @@ namespace Pathfinder.Port
                 portsToAdd.Add(info);
         }
 
-        private static List<PortInfo> portsToAdd = new List<PortInfo>();
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void UnregisterPort(int portNumber, Assembly pluginAsm = null)
+        {
+            pluginAsm = pluginAsm ?? Assembly.GetCallingAssembly();
+
+            if (portExploitsInit)
+                PortExploits.services.Remove(portNumber);
+            else
+                portsToAdd.RemoveAll(x => x.PortNumber == portNumber);
+
+            CustomPorts[pluginAsm].RemoveAll(x => x.Value.PortNumber == portNumber);
+        }
+
+        private static readonly List<PortInfo> portsToAdd = new List<PortInfo>();
         private static bool portExploitsInit = false;
 
         [HarmonyPostfix]
