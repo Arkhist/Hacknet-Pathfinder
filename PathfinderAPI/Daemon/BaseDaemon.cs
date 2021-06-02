@@ -12,7 +12,12 @@ namespace Pathfinder.Daemon
 {
     public abstract class BaseDaemon : Hacknet.Daemon
     {
-        public BaseDaemon(Computer computer, string serviceName, OS opSystem) : base(computer, serviceName, opSystem) { }
+        public BaseDaemon(Computer computer, string serviceName, OS opSystem) : base(computer, serviceName, opSystem)
+        {
+            this.name = Identifier;
+        }
+
+        public virtual string Identifier => this.GetType().Name;
 
         public override string getSaveString()
         {
