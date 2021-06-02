@@ -68,10 +68,12 @@
     <Compile Include="BaseGameFixes\DoesNotHaveFlags.cs" />
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
+    <Compile Include="Command\CommandHandler.cs" />
     <Compile Include="Daemon\BaseDaemon.cs" />
     <Compile Include="Daemon\DaemonHandler.cs" />
     <Compile Include="Daemon\XMLStorageAttribute.cs" />
     <Compile Include="Event\EventManager.cs" />
+    <Compile Include="Event\Gameplay\CommandExecuteEvent.cs" />
     <Compile Include="Event\Gameplay\ExecutableExecuteEvent.cs" />
     <Compile Include="Event\Loading\Content\ComputerComponentLoadEvent.cs" />
     <Compile Include="Event\Loading\Content\ComputerLoadedEvent.cs" />

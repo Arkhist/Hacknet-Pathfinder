@@ -19,10 +19,17 @@ namespace ExampleMod2
             base.HarmonyInstance.PatchAll(typeof(PatchClass2));
 
             Pathfinder.Executable.ExecutableHandler.RegisterExecutable(typeof(TestExe), "#A#");
-            Pathfinder.Port.PortHandler.AddPort("Example port", 50);
+            Pathfinder.Port.PortHandler.RegisterPort("Example port", 50);
             Pathfinder.Daemon.DaemonHandler.RegisterDaemon(typeof(TestDaemon));
+            Pathfinder.Command.CommandHandler.RegisterCommand("pathfinder", TestCommand);
 
             return true;
+        }
+
+        public static void TestCommand(OS os, string[] args)
+        {
+            os.write("pathfinder is here!");
+            os.write("Arguments passed in: " + string.Join(" ", args));
         }
     }
 
@@ -64,6 +71,8 @@ namespace ExampleMod2
     public class TestDaemon : BaseDaemon
     {
         public TestDaemon(Computer computer, string serviceName, OS opSystem) : base(computer, serviceName, opSystem) { }
+
+        public override string Identifier => "Test Daemon! :)";
 
         [XMLStorage]
         public string DisplayString;
