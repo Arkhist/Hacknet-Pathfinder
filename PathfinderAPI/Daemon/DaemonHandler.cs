@@ -59,7 +59,7 @@ namespace Pathfinder.Daemon
             CustomDaemons.Add(daemonType);
         }
 
-        public static void UnregisterDaemon<T>() => UnregisterDaemon(typeof(T));
+        public static void UnregisterDaemon<T>() where T : BaseDaemon => UnregisterDaemon(typeof(T));
         public static void UnregisterDaemon(Type daemonType)
         {
             CustomDaemons.Remove(daemonType);

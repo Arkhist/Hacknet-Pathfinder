@@ -31,7 +31,7 @@ namespace Pathfinder.Event
 
         public int CompareTo(EventHandler<T> other) => Options.PrioritySafe.CompareTo(other.Options.PrioritySafe);
 
-        public bool Equals(EventHandler<T> other) => HandlerInfo.Equals(other.HandlerInfo);
+        public bool Equals(EventHandler<T> other) => HandlerInfo.Equals(other?.HandlerInfo);
 
         public bool Equals(MethodInfo other) => HandlerInfo.Equals(other);
     }
@@ -47,6 +47,13 @@ namespace Pathfinder.Event
         internal static event RemoveOnUnload onPluginUnload;
         internal static void InvokeOnPluginUnload(Assembly pluginAsm) => onPluginUnload?.Invoke(pluginAsm);
 
+        /// <summary>
+        /// USE IS HEAVILY DISCOURAGED!
+        /// Use the generic EventManager class instead unless you absolutely need to evaluate the type at runtime.
+        /// </summary>
+        /// <param name="pathfinderEvent">The type of event to subscribe to, must inherit from <see cref="PathfinderEvent"/>></param>
+        /// <param name="handler">MethodInfo of the handler method</param>
+        /// <exception cref="ArgumentException"></exception>
         public static void AddHandler(Type pathfinderEvent, MethodInfo handler)
         {
             if (pathfinderEvent.BaseType != typeof(PathfinderEvent))
@@ -71,6 +78,10 @@ namespace Pathfinder.Event
         }
     }
 
+    /// <summary>
+    /// Manager for <see cref="PathfinderEvent"/> handlers
+    /// </summary>
+    /// <typeparam name="T">The type of <see cref="PathfinderEvent"/></typeparam>
     public class EventManager<T> where T : PathfinderEvent
     {
         private readonly Dictionary<Assembly, List<EventHandler<T>>> handlers = new Dictionary<Assembly, List<EventHandler<T>>>();
@@ -84,14 +95,14 @@ namespace Pathfinder.Event
             EventManager.AddEventManagerInstance(this);
             EventManager.onPluginUnload += OnPluginUnload;
         }
-
+        
+        /// <summary>
+        /// Adds an event handler, optionally with custom settings
+        /// </summary>
+        /// <param name="handler">The event handler to add</param>
+        /// <param name="options">Options to use with the handler</param>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void AddHandler(Action<T> handler)
-        {
-            Instance.AddHandlerInternal(new EventHandler<T>(handler, new EventHandlerOptions()), Assembly.GetCallingAssembly());
-        }
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void AddHandler(Action<T> handler, EventHandlerOptions options)
+        public static void AddHandler(Action<T> handler, EventHandlerOptions options = default)
         {
             Instance.AddHandlerInternal(new EventHandler<T>(handler, options), Assembly.GetCallingAssembly());
         }
@@ -104,14 +115,15 @@ namespace Pathfinder.Event
             eventList.Sort();
         }
 
+        /// <summary>
+        /// Removes a handler based on the handler method and its containing assembly
+        /// </summary>
+        /// <param name="handler">Handler method for the event</param>
+        /// <param name="eventAssembly">Assembly associated with the event, by default the calling assembly</param>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void RemoveHandler(Action<T> handler)
+        public static void RemoveHandler(Action<T> handler, Assembly eventAssembly = null)
         {
-            Instance.RemoveHandlerInternal(handler.Method, Assembly.GetCallingAssembly());
-        }
-        public static void RemoveHandler(Action<T> handler, Assembly eventAssembly)
-        {
-            Instance.RemoveHandlerInternal(handler.Method, eventAssembly);
+            Instance.RemoveHandlerInternal(handler.Method, eventAssembly ?? Assembly.GetCallingAssembly());
         }
         private void RemoveHandlerInternal(MethodInfo handler, Assembly eventAssembly)
         {
@@ -146,7 +158,5 @@ namespace Pathfinder.Event
 
             return eventArgs;
         }
-
-        internal static void InvokeAllTesting() => InvokeAll((T)Activator.CreateInstance(typeof(T)));
     }
 }
