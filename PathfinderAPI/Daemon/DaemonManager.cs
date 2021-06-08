@@ -9,11 +9,11 @@ using Pathfinder.Event.Loading.Save;
 
 namespace Pathfinder.Daemon
 {
-    public static class DaemonHandler
+    public static class DaemonManager
     {
         private static readonly List<Type> CustomDaemons = new List<Type>();
 
-        static DaemonHandler()
+        static DaemonManager()
         {
             EventManager<ComputerComponentLoadEvent>.AddHandler(OnComponentLoad);
             EventManager<SaveComponentLoadEvent>.AddHandler(OnSavedComponentLoad);

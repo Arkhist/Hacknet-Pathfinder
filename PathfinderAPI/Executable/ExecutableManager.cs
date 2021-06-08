@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 
 namespace Pathfinder.Executable
 {
-    public static class ExecutableHandler
+    public static class ExecutableManager
     {
         private struct CustomExeInfo
         {
@@ -21,7 +21,7 @@ namespace Pathfinder.Executable
 
         private static readonly List<CustomExeInfo?> CustomExes = new List<CustomExeInfo?>();
         
-        static ExecutableHandler()
+        static ExecutableManager()
         {
             EventManager<TextReplaceEvent>.AddHandler(GetTextReplacementExe);
             EventManager<ExecutableExecuteEvent>.AddHandler(OnExeExecute);

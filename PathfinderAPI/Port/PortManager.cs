@@ -11,7 +11,7 @@ using Hacknet;
 namespace Pathfinder.Port
 {
     [HarmonyPatch]
-    public static class PortHandler
+    public static class PortManager
     {
         public struct PortInfo
         {
@@ -21,7 +21,7 @@ namespace Pathfinder.Port
 
         private static readonly Dictionary<Assembly, List<PortInfo?>> CustomPorts = new Dictionary<Assembly, List<PortInfo?>>();
 
-        static PortHandler()
+        static PortManager()
         {
             EventManager<PortsAddedEvent>.AddHandler(OnPortsAdded);
             EventManager.onPluginUnload += OnPluginUnload;

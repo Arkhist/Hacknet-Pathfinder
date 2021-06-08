@@ -18,10 +18,10 @@ namespace ExampleMod2
         {
             base.HarmonyInstance.PatchAll(typeof(PatchClass2));
 
-            Pathfinder.Executable.ExecutableHandler.RegisterExecutable(typeof(TestExe), "#A#");
-            Pathfinder.Port.PortHandler.RegisterPort("Example port", 50);
-            Pathfinder.Daemon.DaemonHandler.RegisterDaemon(typeof(TestDaemon));
-            Pathfinder.Command.CommandHandler.RegisterCommand("pathfinder", TestCommand);
+            Pathfinder.Executable.ExecutableManager.RegisterExecutable(typeof(TestExe), "#A#");
+            Pathfinder.Port.PortManager.RegisterPort("Example port", 50);
+            Pathfinder.Daemon.DaemonManager.RegisterDaemon(typeof(TestDaemon));
+            Pathfinder.Command.CommandManager.RegisterCommand("pathfinder", TestCommand);
 
             return true;
         }

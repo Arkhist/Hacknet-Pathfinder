@@ -68,9 +68,9 @@
     <Compile Include="BaseGameFixes\DoesNotHaveFlags.cs" />
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
-    <Compile Include="Command\CommandHandler.cs" />
+    <Compile Include="Command\CommandManager.cs" />
     <Compile Include="Daemon\BaseDaemon.cs" />
-    <Compile Include="Daemon\DaemonHandler.cs" />
+    <Compile Include="Daemon\DaemonManager.cs" />
     <Compile Include="Daemon\XMLStorageAttribute.cs" />
     <Compile Include="Event\EventManager.cs" />
     <Compile Include="Event\Gameplay\CommandExecuteEvent.cs" />
@@ -84,10 +84,10 @@
     <Compile Include="Event\Menu\MainMenuEvent.cs" />
     <Compile Include="Event\PathfinderEvent.cs" />
     <Compile Include="Executable\BaseExecutable.cs" />
-    <Compile Include="Executable\ExecutableHandler.cs" />
+    <Compile Include="Executable\ExecutableManager.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MiscPatches.cs" />
-    <Compile Include="Port\PortHandler.cs" />
+    <Compile Include="Port\PortManager.cs" />
     <Compile Include="Util\Calculate.cs" />
     <Compile Include="Util\InitializeAttribute.cs" />
     <Compile Include="Util\Types\Rect2.cs" />

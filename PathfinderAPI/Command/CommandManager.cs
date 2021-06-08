@@ -8,12 +8,12 @@ using Pathfinder.Event.Gameplay;
 
 namespace Pathfinder.Command
 {
-    public static class CommandHandler
+    public static class CommandManager
     {
         private static readonly Dictionary<string, Action<OS, string[]>> handlers = new Dictionary<string, Action<OS, string[]>>();
         private static readonly Dictionary<Assembly, List<string>> asmToCommands = new Dictionary<Assembly, List<string>>();
 
-        static CommandHandler()
+        static CommandManager()
         {
             EventManager<CommandExecuteEvent>.AddHandler(OnCommandExecute);
             EventManager.onPluginUnload += OnPluginUnload;
