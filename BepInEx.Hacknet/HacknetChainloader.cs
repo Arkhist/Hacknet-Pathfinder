@@ -50,18 +50,30 @@ namespace BepInEx.Hacknet
             var type = pluginAssembly.GetType(pluginInfo.TypeName);
 
             var pluginInstance = (HacknetPlugin)Activator.CreateInstance(type);
-            pluginInstance.Load();
+            if (!pluginInstance.Load())
+            {
+                throw new Exception($"{pluginInfo.Metadata.GUID} returned false on it's load method");
+            }
 
             return pluginInstance;
         }
 
         internal void UnloadTemps()
         {
+            Log.LogMessage("Unloading extension plugins...");
+            
             foreach (var temp in TemporaryPluginGUIDs)
             {
-                (this.Plugins[temp].Instance as HacknetPlugin)?.Unload();
+                if (!(this.Plugins[temp].Instance as HacknetPlugin)?.Unload() ?? true)
+                {
+                    Log.LogError($"{temp} failed to unload, this could cause problems without a game restart!");
+                }
                 this.Plugins.Remove(temp);
+                
+                Log.LogMessage($"Unloaded {temp}");
             }
+            
+            Log.LogMessage("Finished unloading extension plugins");
         }
     }
 
@@ -108,18 +120,7 @@ namespace BepInEx.Hacknet
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(HN.OS), nameof(HN.OS.quitGame))]
-        public static void UnloadTempPluginsPostfix()
-        {
-            HacknetChainloader.Instance.Log.LogMessage("Unloading extension plugins...");
-            foreach (var temp in HacknetChainloader.Instance.Plugins.Where(x => HacknetChainloader.Instance.TemporaryPluginGUIDs.Contains(x.Key)).ToList())
-            {
-                ((HacknetPlugin)temp.Value.Instance).Unload();
-                HacknetChainloader.Instance.Plugins.Remove(temp.Key);
-
-                HacknetChainloader.Instance.Log.LogInfo($"Unloaded {temp.Key}");
-            }
-            HacknetChainloader.Instance.Log.LogMessage("Finished unloading extension plugins");
-        }
+        public static void UnloadTempPluginsPostfix() => HacknetChainloader.Instance.UnloadTemps();
     }
 
     [HarmonyPatch]
