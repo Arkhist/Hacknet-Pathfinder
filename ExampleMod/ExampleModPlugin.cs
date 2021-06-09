@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BepInEx;
 using HarmonyLib;
 using Hacknet;
 using Microsoft.Xna.Framework;
 using System.Xml;
+using Hacknet.Mission;
 using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.Util;
 using Pathfinder.Daemon;
+using Pathfinder.Mission;
 
 namespace ExampleMod2
 {
@@ -23,6 +26,7 @@ namespace ExampleMod2
             Pathfinder.Port.PortManager.RegisterPort("Example port", 50);
             Pathfinder.Daemon.DaemonManager.RegisterDaemon(typeof(TestDaemon));
             Pathfinder.Command.CommandManager.RegisterCommand("pathfinder", TestCommand);
+            Pathfinder.Mission.GoalManager.RegisterGoal(typeof(TestGoal), "resetIP");
 
             return true;
         }
@@ -84,6 +88,24 @@ namespace ExampleMod2
 
             var center = os.display.bounds.Center;
             Hacknet.Gui.TextItem.doLabel(new Vector2(center.X, center.Y), DisplayString, Color.Aquamarine);
+        }
+    }
+
+    public class TestGoal : InitializableGoal
+    {
+        [XMLStorage]
+        public string NodeID;
+
+        public string OriginalIP;
+
+        public override void Initialize()
+        {
+            OriginalIP = Programs.getComputer(OS.currentInstance, NodeID).ip;
+        }
+
+        public override bool isComplete(List<string> additionalDetails = null)
+        {
+            return Programs.getComputer(OS.currentInstance, NodeID).ip != OriginalIP;
         }
     }
 

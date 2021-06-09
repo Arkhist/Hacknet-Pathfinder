@@ -77,6 +77,7 @@
     <Compile Include="Event\Gameplay\ExecutableExecuteEvent.cs" />
     <Compile Include="Event\Loading\Content\ComputerComponentLoadEvent.cs" />
     <Compile Include="Event\Loading\Content\ComputerLoadedEvent.cs" />
+    <Compile Include="Event\Loading\Content\LoadGoalEvent.cs" />
     <Compile Include="Event\Loading\PortsAddedEvent.cs" />
     <Compile Include="Event\Loading\Save\SaveComponentLoadEvent.cs" />
     <Compile Include="Event\Loading\TextReplaceEvent.cs" />
@@ -87,6 +88,8 @@
     <Compile Include="Executable\ExecutableManager.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MiscPatches.cs" />
+    <Compile Include="Mission\GoalManager.cs" />
+    <Compile Include="Mission\InitializableGoal.cs" />
     <Compile Include="Port\PortManager.cs" />
     <Compile Include="Util\Calculate.cs" />
     <Compile Include="Util\InitializeAttribute.cs" />
