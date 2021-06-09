@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="BaseGameFixes\AutoClearMissionsOnSingleComplete.cs" />
     <Compile Include="BaseGameFixes\DoesNotHaveFlags.cs" />
+    <Compile Include="BaseGameFixes\HHBS.cs" />
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
     <Compile Include="Command\CommandManager.cs" />
