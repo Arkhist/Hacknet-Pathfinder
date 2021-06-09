@@ -6,6 +6,7 @@ using Hacknet;
 using Microsoft.Xna.Framework;
 using System.Xml;
 using Microsoft.Xna.Framework.Graphics;
+using Pathfinder.Util;
 using Pathfinder.Daemon;
 
 namespace ExampleMod2

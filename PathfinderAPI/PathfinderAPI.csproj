@@ -72,7 +72,6 @@
     <Compile Include="Command\CommandManager.cs" />
     <Compile Include="Daemon\BaseDaemon.cs" />
     <Compile Include="Daemon\DaemonManager.cs" />
-    <Compile Include="Daemon\XMLStorageAttribute.cs" />
     <Compile Include="Event\EventManager.cs" />
     <Compile Include="Event\Gameplay\CommandExecuteEvent.cs" />
     <Compile Include="Event\Gameplay\ExecutableExecuteEvent.cs" />
@@ -96,6 +95,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="Util\Types\Vectors.cs" />
+    <Compile Include="Util\XMLStorageAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BepInEx.Hacknet\BepInEx.Hacknet.csproj">
