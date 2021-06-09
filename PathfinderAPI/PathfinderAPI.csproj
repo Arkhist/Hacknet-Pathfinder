@@ -64,6 +64,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action\ActionManager.cs" />
+    <Compile Include="Action\ConditionManager.cs" />
+    <Compile Include="Action\PathfinderAction.cs" />
+    <Compile Include="Action\PathfinderCondition.cs" />
     <Compile Include="BaseGameFixes\AutoClearMissionsOnSingleComplete.cs" />
     <Compile Include="BaseGameFixes\DoesNotHaveFlags.cs" />
     <Compile Include="BaseGameFixes\HHBS.cs" />
@@ -77,6 +81,8 @@
     <Compile Include="Event\Gameplay\ExecutableExecuteEvent.cs" />
     <Compile Include="Event\Loading\Content\ComputerComponentLoadEvent.cs" />
     <Compile Include="Event\Loading\Content\ComputerLoadedEvent.cs" />
+    <Compile Include="Event\Loading\Content\GetAdditionalActionsEvent.cs" />
+    <Compile Include="Event\Loading\Content\GetAdditionalConditionsEvent.cs" />
     <Compile Include="Event\Loading\Content\LoadGoalEvent.cs" />
     <Compile Include="Event\Loading\PortsAddedEvent.cs" />
     <Compile Include="Event\Loading\Save\SaveComponentLoadEvent.cs" />

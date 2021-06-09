@@ -22,11 +22,11 @@ namespace ExampleMod2
         {
             base.HarmonyInstance.PatchAll(typeof(PatchClass2));
 
-            Pathfinder.Executable.ExecutableManager.RegisterExecutable(typeof(TestExe), "#A#");
+            Pathfinder.Executable.ExecutableManager.RegisterExecutable<TestExe>("#PF_TEST_EXE#");
             Pathfinder.Port.PortManager.RegisterPort("Example port", 50);
-            Pathfinder.Daemon.DaemonManager.RegisterDaemon(typeof(TestDaemon));
+            Pathfinder.Daemon.DaemonManager.RegisterDaemon<TestDaemon>();
             Pathfinder.Command.CommandManager.RegisterCommand("pathfinder", TestCommand);
-            Pathfinder.Mission.GoalManager.RegisterGoal(typeof(TestGoal), "resetIP");
+            Pathfinder.Mission.GoalManager.RegisterGoal<TestGoal>("resetIP");
 
             return true;
         }
