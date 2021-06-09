@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using Hacknet;
 using Hacknet.Mission;
@@ -42,14 +43,15 @@ namespace Pathfinder.Event.Loading.Content
             );
             c.GotoNext(MoveType.Before,
                 x => x.MatchNop(),
-                x => x.MatchNop(),
                 x => x.MatchLdloc(1),
                 x => x.MatchCallvirt(AccessTools.Method(typeof(XmlReader), nameof(XmlReader.Read)))
             );
 
+            var labels = il.Labels.Where(x => x.Target == c.Prev).ToList();
+            
             c.Emit(OpCodes.Ldloc_1);
 
-            foreach (var label in c.IncomingLabels)
+            foreach (var label in labels)
                 label.Target = c.Prev;
             
             c.Emit(OpCodes.Ldloc_3);
