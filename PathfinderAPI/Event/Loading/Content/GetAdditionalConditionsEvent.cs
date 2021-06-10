@@ -8,6 +8,7 @@ using MonoMod.Cil;
 
 namespace Pathfinder.Event.Loading.Content
 {
+    [HarmonyPatch]
     public class GetAdditionalConditionsEvent : PathfinderEvent
     {
         public struct ConditionInfo
@@ -25,10 +26,10 @@ namespace Pathfinder.Event.Loading.Content
             ILCursor c = new ILCursor(il);
 
             c.GotoNext(MoveType.Before,
-                x => x.MatchLdloc(1)
+                x => x.MatchLdloc(0)
             );
 
-            c.Emit(OpCodes.Ldloc_1);
+            c.Emit(OpCodes.Ldloc, 0);
             c.EmitDelegate<Action<Dictionary<string, Func<XmlReader, SerializableCondition>>>>(dict =>
             {
                 foreach (var actionInfo in EventManager<GetAdditionalConditionsEvent>.InvokeAll(new GetAdditionalConditionsEvent()).AdditonalConditions)

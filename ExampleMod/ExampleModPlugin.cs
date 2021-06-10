@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using System.Xml;
 using Hacknet.Mission;
 using Microsoft.Xna.Framework.Graphics;
+using Pathfinder.Action;
 using Pathfinder.Util;
 using Pathfinder.Daemon;
 using Pathfinder.Mission;
@@ -27,6 +28,8 @@ namespace ExampleMod2
             Pathfinder.Daemon.DaemonManager.RegisterDaemon<TestDaemon>();
             Pathfinder.Command.CommandManager.RegisterCommand("pathfinder", TestCommand);
             Pathfinder.Mission.GoalManager.RegisterGoal<TestGoal>("resetIP");
+            Pathfinder.Action.ConditionManager.RegisterCondition<TestCondition>("OnDelete");
+            Pathfinder.Action.ActionManager.RegisterAction<TestAction>("RandomFlag");
 
             return true;
         }
@@ -106,6 +109,67 @@ namespace ExampleMod2
         public override bool isComplete(List<string> additionalDetails = null)
         {
             return Programs.getComputer(OS.currentInstance, NodeID).ip != OriginalIP;
+        }
+    }
+
+    public class TestCondition : PathfinderCondition
+    {
+        [XMLStorage]
+        public string Computer;
+        [XMLStorage] 
+        public string Directory;
+        [XMLStorage]
+        public string File;
+
+        private Computer Comp;
+        
+        public override bool Check(object os_obj)
+        {
+            var os = (OS)os_obj;
+
+            if (Computer == null || Directory == null)
+                throw new FormatException("TestCondition: Need a node ID and directory!");
+            
+            if (Comp == null)
+                Comp = Programs.getComputer(os, Computer);
+
+            var folder = Comp.getFolderFromPath(Directory);
+
+            if (File == null)
+                return folder.files.Count == 0;
+
+            return folder.files.All(x => x.name != File);
+        }
+    }
+
+    public class TestAction : PathfinderAction
+    {
+        [XMLStorage]
+        public string Min;
+        [XMLStorage]
+        public string Max;
+
+        private int min = 0;
+        private int max = 9;
+        
+        private static readonly Random Rand = new Random();
+        
+        public override void Trigger(object os_obj)
+        {
+            var os = (OS)os_obj;
+
+            os.Flags.Flags.RemoveAll(x => x.StartsWith("randomInt"));
+            os.Flags.Flags.Add("randomInt" + Rand.Next(min, max));
+        }
+
+        public override void LoadFromXml(XmlReader reader)
+        {
+            base.LoadFromXml(reader);
+
+            if (Min != null)
+                min = int.Parse(Min);
+            if (Max != null)
+                max = int.Parse(Max);
         }
     }
 

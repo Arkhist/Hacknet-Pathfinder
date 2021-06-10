@@ -26,10 +26,10 @@ namespace Pathfinder.Event.Loading.Content
             ILCursor c = new ILCursor(il);
 
             c.GotoNext(MoveType.Before,
-                x => x.MatchLdloc(1)
+                x => x.MatchLdloc(0)
             );
 
-            c.Emit(OpCodes.Ldloc_1);
+            c.Emit(OpCodes.Ldloc_0);
             c.EmitDelegate<Action<Dictionary<string, Func<XmlReader, SerializableAction>>>>(dict =>
             {
                 foreach (var actionInfo in EventManager<GetAdditionalActionsEvent>.InvokeAll(new GetAdditionalActionsEvent()).AdditonalActions)
