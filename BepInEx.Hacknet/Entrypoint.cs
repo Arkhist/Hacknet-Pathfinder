@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using BepInEx.Logging;
+using HN = global::Hacknet;
 
 namespace BepInEx.Hacknet
 {
@@ -44,9 +45,10 @@ namespace BepInEx.Hacknet
             try
             {
                 // Do stuff for BepInEx to recognize where it is
-                Paths.SetExecutablePath(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+                Paths.SetExecutablePath(typeof(HN.Program).Assembly.GetName().Name);
 
                 Logger.Listeners.Add(new ConsoleLogger());
+                HarmonyLib.AccessTools.PropertySetter(typeof(TraceLogSource), nameof(TraceLogSource.IsListening)).Invoke(null, new object[] { true });
                 ConsoleManager.Initialize(true);
 
                 // Start chainloader for plugins

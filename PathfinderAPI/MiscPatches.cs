@@ -1,15 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Diagnostics;
-using System.Linq;
-using System.Xml;
 using HarmonyLib;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
 using BepInEx.Hacknet;
-using BepInEx.Logging;
 using Hacknet;
-using Microsoft.Xna.Framework;
 
 namespace Pathfinder
 {
@@ -19,7 +16,11 @@ namespace Pathfinder
         [Util.Initialize]
         internal static void Initialize()
         {
-            var original = AccessTools.Method(typeof(StackTrace), nameof(StackTrace.ToString), new Type[] { typeof(StackTrace).GetNestedType("TraceFormat", System.Reflection.BindingFlags.NonPublic) });
+            var formatType = typeof(StackTrace).GetNestedType("TraceFormat", System.Reflection.BindingFlags.NonPublic);
+            if (formatType == null)
+                return;
+
+            var original = AccessTools.Method(typeof(StackTrace), nameof(StackTrace.ToString), new Type[] { formatType });
             var manipulator = AccessTools.Method(typeof(MiscPatches), nameof(MiscPatches.IncludeILOffsetInTrace));
 
             PathfinderAPIPlugin.HarmonyInstance.Patch(original, ilmanipulator: new HarmonyMethod(manipulator));
@@ -36,12 +37,15 @@ namespace Pathfinder
             int frameLoc = 6;
             ILLabel targetLabel = null;
 
-            c.GotoNext(MoveType.Before,
+            var found = c.TryGotoNext(MoveType.Before,
                 x => x.MatchLdloc(out frameLoc),
                 x => x.MatchCallvirt(AccessTools.Method(typeof(StackFrame), nameof(StackFrame.GetILOffset))),
                 x => x.MatchLdcI4(-1),
                 x => x.MatchBeq(out targetLabel)
             );
+
+            if (!found)
+                return;
 
             c.GotoLabel(targetLabel);
 

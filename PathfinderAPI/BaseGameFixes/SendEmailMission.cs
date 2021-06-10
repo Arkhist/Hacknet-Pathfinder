@@ -20,9 +20,7 @@ namespace Pathfinder.BaseGameFixes
                 x => x.MatchStloc(1)
             );
 
-            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(Folder), nameof(Folder.folders)));
-            c.Emit(OpCodes.Ldc_I4_0);
-            c.Emit(OpCodes.Callvirt, AccessTools.FirstProperty(typeof(List<Folder>), x => x.GetIndexParameters().Length > 0).GetGetMethod());
+            c.EmitDelegate<Func<Folder, Folder>>(folder => folder.folders[0]);
         }
     }
 }

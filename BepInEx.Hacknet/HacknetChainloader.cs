@@ -81,8 +81,8 @@ namespace BepInEx.Hacknet
     internal static class ExtensionPluginPatches
     {
         // BepInEx.Paths's setters are private, this creates setters we can use
-        private static readonly Action<string> PluginPathSetter = AccessTools.MethodDelegate<Action<string>>(AccessTools.PropertySetter(typeof(Paths), nameof(Paths.PluginPath)));
-        private static readonly Action<string> ConfigPathSetter = AccessTools.MethodDelegate<Action<string>>(AccessTools.PropertySetter(typeof(Paths), nameof(Paths.ConfigPath)));
+        private static readonly MethodInfo PluginPathSetter = AccessTools.PropertySetter(typeof(Paths), nameof(Paths.PluginPath));
+        private static readonly MethodInfo ConfigPathSetter = AccessTools.PropertySetter(typeof(Paths), nameof(Paths.ConfigPath));
 
         private static bool FirstExtensionLoaded = false;
 
@@ -103,8 +103,8 @@ namespace BepInEx.Hacknet
 
                 if (Directory.Exists(newPluginPath) && Directory.GetFiles(newPluginPath).Length > 0)
                 {
-                    PluginPathSetter(newPluginPath);
-                    ConfigPathSetter(newConfigPath);
+                    PluginPathSetter.Invoke(null, new object[] { newPluginPath });
+                    ConfigPathSetter.Invoke(null, new object[] { newConfigPath });
                     HacknetChainloader.Instance.Execute();
                 }
 
