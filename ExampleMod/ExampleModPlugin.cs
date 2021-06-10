@@ -142,7 +142,7 @@ namespace ExampleMod2
         }
     }
 
-    public class TestAction : PathfinderAction
+    public class TestAction : DelayablePathfinderAction
     {
         [XMLStorage]
         public string Min;
@@ -154,10 +154,8 @@ namespace ExampleMod2
         
         private static readonly Random Rand = new Random();
         
-        public override void Trigger(object os_obj)
+        public override void Trigger(OS os)
         {
-            var os = (OS)os_obj;
-
             os.Flags.Flags.RemoveAll(x => x.StartsWith("randomInt"));
             os.Flags.Flags.Add("randomInt" + Rand.Next(min, max));
         }

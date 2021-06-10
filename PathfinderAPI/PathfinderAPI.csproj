@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Action\ActionManager.cs" />
     <Compile Include="Action\ConditionManager.cs" />
+    <Compile Include="Action\DelayablePathfinderAction.cs" />
     <Compile Include="Action\PathfinderAction.cs" />
     <Compile Include="Action\PathfinderCondition.cs" />
     <Compile Include="BaseGameFixes\AutoClearMissionsOnSingleComplete.cs" />
