@@ -30,10 +30,8 @@ namespace PathfinderPatcher
                     }
                 }
 
-                // We want to run before everything else, including the Main program function, so we insert ourselves in the static constructor of Program
+                // We want to run before everything else, including the Main program function, so we make a static module constructor
                 var hnEntryType = hn.MainModule.Types.First(x => x.Name == "<Module>");
-
-                var voidType = hn.MainModule.ImportReference(typeof(void));
 
                 var ctor = new MethodDefinition(".cctor",
                     Mono.Cecil.MethodAttributes.Public
@@ -41,7 +39,7 @@ namespace PathfinderPatcher
                     | Mono.Cecil.MethodAttributes.HideBySig
                     | Mono.Cecil.MethodAttributes.SpecialName
                     | Mono.Cecil.MethodAttributes.RTSpecialName,
-                    voidType
+                    hn.MainModule.TypeSystem.Void
                 );
 
                 // Inject the call
