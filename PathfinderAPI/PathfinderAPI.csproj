@@ -80,11 +80,13 @@
     <Compile Include="Event\EventManager.cs" />
     <Compile Include="Event\Gameplay\CommandExecuteEvent.cs" />
     <Compile Include="Event\Gameplay\ExecutableExecuteEvent.cs" />
+    <Compile Include="Event\Gameplay\OSUpdateEvent.cs" />
     <Compile Include="Event\Loading\Content\ComputerComponentLoadEvent.cs" />
     <Compile Include="Event\Loading\Content\ComputerLoadedEvent.cs" />
     <Compile Include="Event\Loading\Content\GetAdditionalActionsEvent.cs" />
     <Compile Include="Event\Loading\Content\GetAdditionalConditionsEvent.cs" />
     <Compile Include="Event\Loading\Content\LoadGoalEvent.cs" />
+    <Compile Include="Event\Loading\ExtensionLoadEvent.cs" />
     <Compile Include="Event\Loading\PortsAddedEvent.cs" />
     <Compile Include="Event\Loading\Save\SaveComponentLoadEvent.cs" />
     <Compile Include="Event\Loading\TextReplaceEvent.cs" />
