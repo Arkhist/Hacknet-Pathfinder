@@ -5,7 +5,11 @@ using System.Reflection;
 using System.Collections.Generic;
 using BepInEx.Logging;
 using BepInEx.Bootstrap;
+using Hacknet.Extensions;
+using Hacknet.Gui;
+using Hacknet.Screens;
 using HarmonyLib;
+using Microsoft.Xna.Framework;
 using Mono.Cecil;
 using MonoMod.Cil;
 using HN = global::Hacknet;
@@ -72,6 +76,7 @@ namespace BepInEx.Hacknet
                 
                 Log.LogMessage($"Unloaded {temp}");
             }
+            TemporaryPluginGUIDs.Clear();
             
             Log.LogMessage("Finished unloading extension plugins");
         }
@@ -87,8 +92,8 @@ namespace BepInEx.Hacknet
         private static bool FirstExtensionLoaded = false;
 
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(HN.Screens.ExtensionsMenuScreen), nameof(HN.Screens.ExtensionsMenuScreen.ActivateExtensionPage))]
-        static bool LoadTempPluginsPrefix(HN.Extensions.ExtensionInfo info)
+        [HarmonyPatch(typeof(ExtensionsMenuScreen), nameof(ExtensionsMenuScreen.ActivateExtensionPage))]
+        internal static bool LoadTempPluginsPrefix(ExtensionInfo info)
         {
             if (!FirstExtensionLoaded)
             {
@@ -120,7 +125,16 @@ namespace BepInEx.Hacknet
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(HN.OS), nameof(HN.OS.quitGame))]
-        public static void UnloadTempPluginsPostfix() => HacknetChainloader.Instance.UnloadTemps();
+        internal static void UnloadOnOSQuitPostfix() => HacknetChainloader.Instance.UnloadTemps();
+        
+        // I would hook Hacknet.Screens.DrawExtensionInfoDetail instead, but for some reason that method is cursed, so I look here instead
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(Button), nameof(Button.doButton), new Type[] { typeof(int), typeof(int), typeof(int), typeof(int), typeof(int), typeof(string), typeof(Color?) })]
+        internal static void OnBackButtonPressPostfix(int myID, bool __result)
+        {
+            if (myID == 7900040 && __result)
+                HacknetChainloader.Instance.UnloadTemps();
+        }
     }
 
     [HarmonyPatch]
@@ -128,7 +142,7 @@ namespace BepInEx.Hacknet
     {
         [HarmonyILManipulator]
         [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "Execute")]
-        public static void FixChainloaderForReload(ILContext il)
+        internal static void FixChainloaderForReload(ILContext il)
         {
             ILCursor c = new ILCursor(il);
 
