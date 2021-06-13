@@ -56,7 +56,7 @@ namespace Pathfinder.Event
         /// <exception cref="ArgumentException"></exception>
         public static void AddHandler(Type pathfinderEvent, MethodInfo handler)
         {
-            if (pathfinderEvent.BaseType != typeof(PathfinderEvent))
+            if (!typeof(PathfinderEvent).IsAssignableFrom(pathfinderEvent))
             {
                 throw new ArgumentException("Type must derive from PathfinderAPI.Event.PathfinderEvent!", nameof(pathfinderEvent));
             }

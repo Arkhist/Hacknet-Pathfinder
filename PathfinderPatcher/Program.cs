@@ -73,6 +73,8 @@ namespace PathfinderPatcher
 
                 // Write modified assembly to disk
                 hn.Write("HacknetPathfinder.exe");
+                
+                Console.WriteLine("Successfully wrote HacknetPathfinder.exe to disk!");
             }
         }
     }
