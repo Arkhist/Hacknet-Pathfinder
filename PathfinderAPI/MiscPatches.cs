@@ -7,6 +7,7 @@ using MonoMod.Cil;
 using Mono.Cecil.Cil;
 using BepInEx.Hacknet;
 using Hacknet;
+using Hacknet.PlatformAPI.Storage;
 
 namespace Pathfinder
 {
@@ -24,6 +25,32 @@ namespace Pathfinder
             var manipulator = AccessTools.Method(typeof(MiscPatches), nameof(MiscPatches.IncludeILOffsetInTrace));
 
             PathfinderAPIPlugin.HarmonyInstance.Patch(original, ilmanipulator: new HarmonyMethod(manipulator));
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(PlatformAPISettings), nameof(PlatformAPISettings.InitPlatformAPI))]
+        private static void NoSteamCloudSavesIL(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+            
+            c.GotoNext(MoveType.Before, x => x.MatchStsfld(AccessTools.Field(typeof(PlatformAPISettings), nameof(PlatformAPISettings.RemoteStorageRunning))));
+
+            c.Emit(OpCodes.Pop);
+            c.Emit(OpCodes.Ldc_I4_0);
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(LocalDocumentsStorageMethod), nameof(LocalDocumentsStorageMethod.Load))]
+        internal static void ChangeSaveDirIL(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+            
+            string str = "./";
+
+            while (c.TryGotoNext(MoveType.Before, x => x.MatchLdstr(out str)))
+            {
+                c.Next.Operand = str.Replace("Hacknet", "HacknetPathfinder");
+            }
         }
 
         [HarmonyPostfix]
