@@ -8,11 +8,15 @@ No pre-compiled packages are available (yet), so if you need to install either c
 
 ### Creating Mods
 
+Use [this template](https://github.com/Windows10CE/HacknetPluginTemplate) or follow the steps below.
+
 1. Start a new .NET library project with .NET Framework 4.0
 2. Link it against the HacknetPathfinder.exe, PathfinderAPI.dll, FNA.dll, BepInEx.Core.dll, and BepInEx.Hacknet.dll. You may need more than this, but that's the reccomended set to begin on a simple mod.
     * You may need to go into the project options and set the project to target the x86 platform
 3. Create a class that inherits from BepInEx.Hacknet.HacknetPlugin, and add the BepInEx.BepInPlugin attribute to it with a name, guid, and version.
-4. And now you have a basic functioning mod, the rest is up to you. Install the mod by placing it in Hacknet/BepInEx/plugins
+4. And now you have a basic functioning mod, the rest is up to you.
+
+Install the mod by placing it in Hacknet/BepInEx/plugins or a folder called Plugins in your extension's folder if you want to make it extension-specific.
 
 ### Contributing to Pathfinder
 
