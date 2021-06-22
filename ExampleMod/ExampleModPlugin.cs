@@ -16,7 +16,6 @@ using Pathfinder.Mission;
 namespace ExampleMod2
 {
     [BepInPlugin("com.Windows10CE.Example", "Example", "1.0.0")]
-    [BepInDependency(Pathfinder.PathfinderAPIPlugin.ModGUID, BepInDependency.DependencyFlags.HardDependency)]
     public class ExampleModPlugin2 : BepInEx.Hacknet.HacknetPlugin
     {
         public override bool Load()

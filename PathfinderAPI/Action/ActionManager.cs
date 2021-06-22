@@ -37,7 +37,7 @@ namespace Pathfinder.Action
         private static void OnPluginUnload(Assembly pluginAsm)
         {
             var allTypes = pluginAsm.GetTypes();
-            foreach (var name in CustomActions.Where(x => allTypes.Contains(x.Value)).Select(x => x.Key))
+            foreach (var name in CustomActions.Where(x => allTypes.Contains(x.Value)).Select(x => x.Key).ToList())
                 CustomActions.Remove(name);
         }
         
