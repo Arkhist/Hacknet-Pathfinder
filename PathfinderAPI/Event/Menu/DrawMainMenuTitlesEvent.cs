@@ -7,7 +7,6 @@ using Hacknet.Gui;
 using Hacknet.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Pathfinder.Util.Types;
 
 namespace Pathfinder.Event.Menu
 {
@@ -49,12 +48,12 @@ namespace Pathfinder.Event.Menu
                 var main = new TitleData(mainTitle,
                                              defaultTitleColor,
                                              defaultTitleFont,
-                                             (Rect2)dest
+                                             dest
                                             );
                 var sub = new TitleData(subtitle,
                                            main.Color * 0.5f,
                                            GuiData.smallfont,
-                                           new Rect2(520, 178, 0, 0)
+                                           new Rectangle(520, 178, 0, 0)
                                           );
 
                 var drawMainMenuTitles = new DrawMainMenuTitlesEvent(self, main, sub);
@@ -63,7 +62,7 @@ namespace Pathfinder.Event.Menu
                 main = drawMainMenuTitles.Main;
                 sub = drawMainMenuTitles.Sub;
                 FlickeringTextEffect.DrawLinedFlickeringText(
-                    dest = (Rectangle)main.Destination,
+                    dest = main.Destination,
                     main.Title,
                     7f,
                     0.55f,
@@ -71,7 +70,7 @@ namespace Pathfinder.Event.Menu
                     null,
                     main.Color
                 );
-                TextItem.doFontLabel(sub.Destination.Vector2f, sub.Title, sub.Font, sub.Color, 600f, 26f);
+                TextItem.doFontLabel(new Vector2(sub.Destination.Location.X, sub.Destination.Location.Y), sub.Title, sub.Font, sub.Color, 600f, 26f);
             });
 
             var firstLabel = c.MarkLabel();
@@ -79,7 +78,7 @@ namespace Pathfinder.Event.Menu
                 x => x.MatchCall(AccessTools.Method(
                         typeof(TextItem),
                         nameof(TextItem.doFontLabel),
-                        new Type[] { typeof(Vector2), typeof(string), typeof(SpriteFont), typeof(Nullable<Color>), typeof(float), typeof(float), typeof(bool) }
+                        new Type[] { typeof(Vector2), typeof(string), typeof(SpriteFont), typeof(Color?), typeof(float), typeof(float), typeof(bool) }
                     )
                 )
             );
@@ -91,7 +90,7 @@ namespace Pathfinder.Event.Menu
 
         public class TitleData
         {
-            public TitleData(string title, Color color, SpriteFont font, Rect2 dest)
+            public TitleData(string title, Color color, SpriteFont font, Rectangle dest)
             {
                 Title = title;
                 Color = color;
@@ -101,7 +100,7 @@ namespace Pathfinder.Event.Menu
             public string Title { get; set; }
             public Color Color { get; set; }
             public SpriteFont Font { get; set; }
-            public Rect2 Destination { get; set; }
+            public Rectangle Destination { get; set; }
         }
     }
 }

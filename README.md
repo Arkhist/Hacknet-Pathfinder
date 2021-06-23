@@ -4,7 +4,13 @@ An extensive modding API and loader for Hacknet that enables practically limitle
 
 ### Installation
 
-No pre-compiled packages are available (yet), so if you need to install either compile it yourself or ask a contributor
+Get the latest ZIP from the releases page [here](https://github.com/Arkhist/Hacknet-Pathfinder/releases) and extract it to your Hacknet folder.
+
+Run PathfinderPatcher.exe and that should be it!
+
+If the game crashes before loading, or you see an error in the console that says `An attempt was made to load an assembly from a network location which would have caused the assembly to be sandboxed in previous versions of the .NET Framework.`, head into the BepInEx/core and BepInEx/plugins folders, open the properties for each DLL, and hit the unlock checkbox at the bottom.
+
+As an alternative, run this command in PowerShell in the Hacknet directory `Get-ChildItem -Recurse "./BepInEx" | Unlock-File`
 
 ### Creating Mods
 
