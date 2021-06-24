@@ -15,7 +15,6 @@ namespace Pathfinder.Event.Loading.Content
     {
         public XmlReader Reader { get; }
         public List<MisisonGoal> GoalList { get; }
-        internal static string wtfGoalName = "";
         public string GoalName { get; }
 
         private bool goalFound = false;
@@ -47,19 +46,14 @@ namespace Pathfinder.Event.Loading.Content
                 x => x.MatchCallvirt(AccessTools.Method(typeof(XmlReader), nameof(XmlReader.Read)))
             );
 
-            var labels = il.Labels.Where(x => x.Target == c.Prev).ToList();
+            c.MoveBeforeLabels();
             
             c.Emit(OpCodes.Ldloc_1);
-
-            foreach (var label in labels)
-                label.Target = c.Prev;
-            
             c.Emit(OpCodes.Ldloc_3);
             c.Emit(OpCodes.Ldloc, 14);
-            c.Emit(OpCodes.Stsfld, AccessTools.Field(typeof(LoadGoalEvent), nameof(wtfGoalName)));
-            c.EmitDelegate<Action<XmlReader, List<MisisonGoal>>>((reader, goalList) =>
+            c.EmitDelegate<Action<XmlReader, List<MisisonGoal>, string>>((reader, goalList, goalName) =>
             {
-                var loadGoalEvent = new LoadGoalEvent(reader, goalList, wtfGoalName);
+                var loadGoalEvent = new LoadGoalEvent(reader, goalList, goalName);
                 EventManager<LoadGoalEvent>.InvokeAll(loadGoalEvent);
             });
         }
