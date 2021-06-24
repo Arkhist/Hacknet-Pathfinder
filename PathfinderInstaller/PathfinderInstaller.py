@@ -1,7 +1,45 @@
 import os
+import platform
+import subprocess
 from tkinter import *
 from tkinter import filedialog
+from tkinter.ttk import *
 import shutil
+from threading import Thread
+import requests
+from zipfile import ZipFile
+from io import BytesIO
+from winreg import *
+
+
+def install_pathfinder(gen_event_callback, hacknet_directory):
+    url = requests.get('https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases').json()[0]['assets'][0]['browser_download_url']
+
+    with ZipFile(BytesIO(requests.get(url).content)) as pathfinder_zip:
+        pathfinder_zip.extractall(path=hacknet_directory)
+
+    patcher_exe = os.path.join(hacknet_directory, 'PathfinderPatcher.exe')
+
+    if platform.system() == 'Windows':
+        completed = subprocess.run([patcher_exe], cwd=hacknet_directory)
+    else:
+        completed = subprocess.run(['mono', patcher_exe], shell=True)
+
+    if completed.returncode != 0:
+        gen_event_callback('<<InstallFailure>>')
+        return
+
+    try:
+        os.remove(patcher_exe)
+        os.remove(os.path.join(hacknet_directory, 'Mono.Cecil.dll'))
+        hacknet_exe = os.path.join(hacknet_directory, 'Hacknet.exe')
+        os.rename(hacknet_exe, os.path.join(hacknet_directory, 'HacknetOld.exe'))
+        os.rename(os.path.join(hacknet_directory, 'HacknetPathfinder.exe'), hacknet_exe)
+    except OSError:
+        gen_event_callback('<<InstallFailure>>')
+        return
+
+    gen_event_callback('<<InstallComplete>>')
 
 
 class App(Frame):
@@ -9,6 +47,8 @@ class App(Frame):
         super().__init__(master)
 
         self.master = master
+        self.master.bind('<<InstallComplete>>', self.install_complete)
+        self.master.bind('<<InstallFailure>>', self.install_failure)
 
         self.content = Frame(self.master)
 
@@ -23,6 +63,8 @@ class App(Frame):
         self.uninstall_button = Button(self.button_frame, text='Uninstall', command=self.uninstall)
 
         self.setup_grid()
+
+        self.progress = None
 
     def setup_grid(self):
         self.master.title('Pathfinder Installer')
@@ -56,7 +98,21 @@ class App(Frame):
         if not self.valid_directory(hacknet_dir):
             return
 
-        self.make_message_box('Needs to be finished', title='aaaaaaaaaa')
+        self.progress = Progressbar(self.button_frame, orient=HORIZONTAL, length=500, mode='indeterminate')
+        self.progress.grid(column=0, row=0, columnspan=2)
+        self.progress.start()
+        Thread(target=install_pathfinder, args=(self.master.event_generate, hacknet_dir)).start()
+
+    def install_complete(self, event):
+        self.make_message_box('Installation Complete!', title='Success')
+        self.progress.destroy()
+        self.progress = None
+
+    def install_failure(self, event):
+        self.make_message_box('Installation failed, this may have left an unfinished installation in your Hacknet folder!', title='Failure')
+        self.progress.destroy()
+        self.progress = None
+        return
 
     def uninstall(self):
         hacknet_dir = self.hacknet_directory.get()
