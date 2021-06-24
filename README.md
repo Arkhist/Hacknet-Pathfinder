@@ -26,7 +26,7 @@ Install the mod by placing it in Hacknet/BepInEx/plugins or a folder called Plug
 
 ### Contributing to Pathfinder
 
-1. Clone the project with `git clone https://github.com/Arkhist/Hacknet-Pathfinder` and switch to this branch with `git switch bepinex-harmony-rewrite`
+1. Clone the project with `git clone https://github.com/Arkhist/Hacknet-Pathfinder` and switch to this branch with `git switch rewrite`
 2. Compile PathfinderPatcher and run it in the Hacknet directory
 3. Copy HacknetPathfinder.dll and FNA.dll to the libs/ directory
 4. Everything else should now compile fine
