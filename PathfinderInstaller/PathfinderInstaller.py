@@ -10,10 +10,14 @@ import requests
 from zipfile import ZipFile
 from io import BytesIO
 from winreg import *
+import re
 
 
 def install_pathfinder(gen_event_callback, hacknet_directory):
-    url = requests.get('https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases').json()[0]['assets'][0]['browser_download_url']
+    for asset in requests.get('https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases').json()[0]['assets']:
+        if 'Pathfinder.Release' in asset['name']:
+            url = asset['browser_download_url']
+            break
 
     with ZipFile(BytesIO(requests.get(url).content)) as pathfinder_zip:
         pathfinder_zip.extractall(path=hacknet_directory)
@@ -42,6 +46,36 @@ def install_pathfinder(gen_event_callback, hacknet_directory):
     gen_event_callback('<<InstallComplete>>')
 
 
+def try_find_hacknet_dir():
+    hacknet_dir = ''
+
+    folders = []
+
+    if platform.system() == 'Windows':
+        try:
+            registry = ConnectRegistry(None, HKEY_LOCAL_MACHINE)
+            key = OpenKey(registry, r'SOFTWARE\Wow6432Node\Valve\Steam')
+            install_path = QueryValueEx(key, 'InstallPath')[0]
+
+            folders.append(install_path)
+            with open(os.path.join(install_path, 'steamapps', 'libraryfolders.vdf')) as vdf:
+                folders.extend(re.search(r'^\s*"[0-9]+"\s*"(.+)"', vdf.read(), flags=re.MULTILINE).groups())
+        except OSError:
+            return hacknet_dir
+
+    for folder in folders:
+        hacknet_acf = os.path.join(folder, 'steamapps', 'appmanifest_365450.acf')
+        if not os.path.exists(hacknet_acf):
+            continue
+        hacknet_dir_candidate = os.path.join(folder, 'steamapps', 'common', 'Hacknet')
+        hacknet_exe = os.path.join(hacknet_dir_candidate, 'Hacknet.exe')
+        if not os.path.exists(hacknet_dir_candidate) or not os.path.exists(hacknet_exe):
+            continue
+        hacknet_dir = hacknet_dir_candidate
+
+    return hacknet_dir
+
+
 class App(Frame):
     def __init__(self, master: Tk):
         super().__init__(master)
@@ -55,6 +89,7 @@ class App(Frame):
         self.file_frame = Frame(self.content)
         self.dir_label = Label(self.file_frame, text='Hacknet Folder')
         self.hacknet_directory = StringVar()
+        self.hacknet_directory.set(try_find_hacknet_dir())
         self.dir = Entry(self.file_frame, textvariable=self.hacknet_directory)
         self.reopen_button = Button(self.file_frame, text='Open Directory Select', command=self.open_dir)
 
