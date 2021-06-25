@@ -1,5 +1,6 @@
 import os
 import platform
+import stat
 import subprocess
 from tkinter import *
 from tkinter import filedialog
@@ -9,8 +10,11 @@ from threading import Thread
 import requests
 from zipfile import ZipFile
 from io import BytesIO
-from winreg import *
 import re
+import pathlib
+
+if platform.system() == 'Windows':
+    from winreg import *
 
 
 def install_pathfinder(gen_event_callback, hacknet_directory):
@@ -24,10 +28,10 @@ def install_pathfinder(gen_event_callback, hacknet_directory):
 
     patcher_exe = os.path.join(hacknet_directory, 'PathfinderPatcher.exe')
 
-    if platform.system() == 'Windows':
-        completed = subprocess.run([patcher_exe], cwd=hacknet_directory)
-    else:
-        completed = subprocess.run(['mono', patcher_exe], shell=True)
+    if platform.system() == "Linux":
+        os.chmod(patcher_exe, stat.S_IRWXU)
+
+    completed = subprocess.run([patcher_exe], cwd=hacknet_directory)
 
     if completed.returncode != 0:
         gen_event_callback('<<InstallFailure>>')
@@ -47,6 +51,12 @@ def install_pathfinder(gen_event_callback, hacknet_directory):
 
 
 def try_find_hacknet_dir():
+    def get_library_folders(vdf_path):
+        with open(vdf_path) as vdf:
+            match = re.search(r'^\s*"[0-9]+"\s*"(.+)"', vdf.read(), flags=re.MULTILINE)
+            if match is None:
+                return []
+            return match.groups()
     hacknet_dir = ''
 
     folders = []
@@ -55,19 +65,57 @@ def try_find_hacknet_dir():
         try:
             registry = ConnectRegistry(None, HKEY_LOCAL_MACHINE)
             key = OpenKey(registry, r'SOFTWARE\Wow6432Node\Valve\Steam')
-            install_path = QueryValueEx(key, 'InstallPath')[0]
+            root_steamapps = os.path.join(QueryValueEx(key, 'InstallPath')[0], 'steamapps')
 
-            folders.append(install_path)
-            with open(os.path.join(install_path, 'steamapps', 'libraryfolders.vdf')) as vdf:
-                folders.extend(re.search(r'^\s*"[0-9]+"\s*"(.+)"', vdf.read(), flags=re.MULTILINE).groups())
+            folders.append(root_steamapps)
+            libraries = get_library_folders(os.path.join(root_steamapps, 'libraryfolders.vdf'))
+            folders.extend([os.path.join(library, 'steamapps') for library in libraries])
         except OSError:
             return hacknet_dir
+    else:
+        home = pathlib.Path.home()
+        steam_root = None
+        possible_roots = [
+            os.path.join(home, '.local', 'share', 'steam'),
+            os.path.join(home, '.steam', 'steam'),
+            os.path.join(home, '.steam', 'root'),
+            os.path.join(home, '.steam'),
+            os.path.join(home, '.var', 'app', 'com.valvesoftware.Steam', '.local', 'share', 'steam'),
+            os.path.join(home, '.var', 'app', 'com.valvesoftware.Steam', '.steam', 'steam'),
+            os.path.join(home, '.var', 'app', 'com.valvesoftware.Steam', '.steam', 'root'),
+            os.path.join(home, '.var', 'com.valvesoftware.Steam', '.steam')
+        ]
+        for dir in possible_roots:
+            if not os.path.exists(dir) or not os.path.exists(os.path.join(dir, 'steam.sh')):
+                continue
+            steam_root = dir
+            break
+        if steam_root is None:
+            return hacknet_dir
+        possible_steamapps = [
+            os.path.join(steam_root, 'steamapps'),
+            os.path.join(steam_root, 'steam', 'steamapps'),
+            os.path.join(steam_root, 'root', 'steamapps')
+        ]
+        root_steamapps = None
+        for possible_steamapp in possible_steamapps:
+            if os.path.exists(possible_steamapp):
+                root_steamapps = possible_steamapp
+                break
+        if root_steamapps is None:
+            return hacknet_dir
+        folders.append(root_steamapps)
+        libraries = get_library_folders(os.path.join(root_steamapps, 'libraryfolders.vdf'))
+        for library in libraries:
+            for possible_steamapp in possible_steamapps:
+                if os.path.exists(os.path.join(library, possible_steamapp)):
+                    folders.append(possible_steamapp)
 
     for folder in folders:
-        hacknet_acf = os.path.join(folder, 'steamapps', 'appmanifest_365450.acf')
+        hacknet_acf = os.path.join(folder, 'appmanifest_365450.acf')
         if not os.path.exists(hacknet_acf):
             continue
-        hacknet_dir_candidate = os.path.join(folder, 'steamapps', 'common', 'Hacknet')
+        hacknet_dir_candidate = os.path.join(folder, 'common', 'Hacknet')
         hacknet_exe = os.path.join(hacknet_dir_candidate, 'Hacknet.exe')
         if not os.path.exists(hacknet_dir_candidate) or not os.path.exists(hacknet_exe):
             continue
