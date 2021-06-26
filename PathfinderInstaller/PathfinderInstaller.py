@@ -76,7 +76,7 @@ def try_find_hacknet_dir():
         home = pathlib.Path.home()
         steam_root = None
         possible_roots = [
-            os.path.join(home, '.local', 'share', 'steam'),
+            os.path.join(home, '.local', 'share', 'Steam'),
             os.path.join(home, '.steam', 'steam'),
             os.path.join(home, '.steam', 'root'),
             os.path.join(home, '.steam'),
