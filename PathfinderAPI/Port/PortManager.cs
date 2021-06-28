@@ -7,6 +7,7 @@ using Pathfinder.Event;
 using Pathfinder.Event.Loading;
 using HarmonyLib;
 using Hacknet;
+using Pathfinder.Util;
 
 namespace Pathfinder.Port
 {
@@ -19,7 +20,7 @@ namespace Pathfinder.Port
             public int PortNumber;
         }
 
-        private static readonly Dictionary<Assembly, List<PortInfo?>> CustomPorts = new Dictionary<Assembly, List<PortInfo?>>();
+        private static readonly AssemblyAssociatedList<PortInfo?> CustomPorts = new AssemblyAssociatedList<PortInfo?>();
 
         static PortManager()
         {
@@ -29,16 +30,16 @@ namespace Pathfinder.Port
 
         private static void OnPortsAdded(PortsAddedEvent e)
         {
-            List<PortInfo?> allPorts = CustomPorts.SelectMany(x => x.Value).ToList();
+            var allPorts = CustomPorts.AllItems;
             foreach (var portToAdd in e.PortsList)
             {
                 PortInfo? info = null;
                 if (int.TryParse(portToAdd, out int portNum))
-                    info = allPorts.FirstOrDefault(x => (x.HasValue ? x.Value.PortNumber : -1) == portNum);
+                    info = allPorts.FirstOrDefault(x => x.Value.PortNumber == portNum);
                 else
-                    info = allPorts.FirstOrDefault(x => (x.HasValue ? x.Value.PortName : "") == portToAdd);
+                    info = allPorts.FirstOrDefault(x => x.Value.PortName == portToAdd);
 
-                if (info.HasValue)
+                if (info != null)
                 {
                     e.Comp.ports.Add(info.Value.PortNumber);
                     e.Comp.portsOpen.Add(0);
@@ -48,19 +49,17 @@ namespace Pathfinder.Port
 
         private static void OnPluginUnload(Assembly pluginAsm)
         {
-            if (CustomPorts.ContainsKey(pluginAsm))
+            if (CustomPorts.RemoveAssembly(pluginAsm, out var removed))
             {
-                foreach (var port in CustomPorts[pluginAsm])
+                foreach (var port in removed)
                 {
                     if (portExploitsInit)
                         PortExploits.services.Remove(port.Value.PortNumber);
                     else
                         portsToAdd.RemoveAll(x => x.PortNumber == port.Value.PortNumber);
                 }
-
-                CustomPorts.Remove(pluginAsm);
             }
-        } 
+        }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static void RegisterPort(string name, int number) => RegisterPortInternal(new PortInfo { PortName = name, PortNumber = number }, Assembly.GetCallingAssembly());
@@ -69,10 +68,7 @@ namespace Pathfinder.Port
 
         private static void RegisterPortInternal(PortInfo info, Assembly portAsm) 
         {
-            if (!CustomPorts.ContainsKey(portAsm))
-                CustomPorts.Add(portAsm, new List<PortInfo?>());
-
-            CustomPorts[portAsm].Add(info);
+            CustomPorts.Add(info, portAsm);
 
             if (portExploitsInit)
                 PortExploits.services.Add(info.PortNumber, info.PortName);
@@ -90,7 +86,7 @@ namespace Pathfinder.Port
             else
                 portsToAdd.RemoveAll(x => x.PortNumber == portNumber);
 
-            CustomPorts[pluginAsm].RemoveAll(x => x.Value.PortNumber == portNumber);
+            CustomPorts.RemoveAll(x => x.Value.PortNumber == portNumber, pluginAsm);
         }
 
         private static readonly List<PortInfo> portsToAdd = new List<PortInfo>();

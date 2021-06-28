@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Hacknet;
 using Pathfinder.Event;
 using Pathfinder.Event.Gameplay;
+using Pathfinder.Util;
 
 namespace Pathfinder.Command
 {
     public static class CommandManager
     {
-        private static readonly Dictionary<string, Action<OS, string[]>> handlers = new Dictionary<string, Action<OS, string[]>>();
-        private static readonly Dictionary<Assembly, List<string>> asmToCommands = new Dictionary<Assembly, List<string>>();
+        private static readonly AssemblyAssociatedList<KeyValuePair<string, Action<OS, string[]>>> CustomCommands = new AssemblyAssociatedList<KeyValuePair<string, Action<OS, string[]>>>();
 
         static CommandManager()
         {
@@ -21,23 +22,28 @@ namespace Pathfinder.Command
 
         private static void OnCommandExecute(CommandExecuteEvent args)
         {
-            if (handlers.TryGetValue(args.Args[0], out Action<OS, string[]> command))
+            Action<OS, string[]> custom = null;
+            foreach (var command in CustomCommands.AllItems)
+            {
+                if (command.Key == args.Args[0])
+                {
+                    custom = command.Value;
+                    break;
+                }
+            }
+
+            if (custom != null)
             {
                 args.Found = true;
                 args.Cancelled = true;
-
-                command(args.Os, args.Args);
+                
+                custom(args.Os, args.Args);
             }
         }
 
         private static void OnPluginUnload(Assembly pluginAsm)
         {
-            if (asmToCommands.TryGetValue(pluginAsm, out List<string> commands))
-            {
-                foreach (var command in commands)
-                    handlers.Remove(command);
-                asmToCommands.Remove(pluginAsm);
-            }
+            CustomCommands.RemoveAssembly(pluginAsm, out _);
         }
         
         [MethodImpl(MethodImplOptions.NoInlining)]
@@ -45,23 +51,16 @@ namespace Pathfinder.Command
         {
             var pluginAsm = Assembly.GetCallingAssembly();
 
-            if (handlers.ContainsKey(commandName))
+            if (CustomCommands.AllItems.Any(x => x.Key == commandName))
                 throw new ArgumentException($"Command {commandName} has already been registered!", nameof(commandName));
                 
-            if (!asmToCommands.ContainsKey(pluginAsm))
-                asmToCommands.Add(pluginAsm, new List<string>());
-            asmToCommands[pluginAsm].Add(commandName);
-            
-            handlers.Add(commandName, handler);
+            CustomCommands.Add(new KeyValuePair<string, Action<OS, string[]>>(commandName, handler), pluginAsm);
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void UnregisterCommand(string commandName)
+        public static void UnregisterCommand(string commandName, Assembly pluginAsm = null)
         {
-            if (!handlers.ContainsKey(commandName))
-                return;
-            handlers.Remove(commandName);
-            asmToCommands[Assembly.GetCallingAssembly()].Remove(commandName);
+            CustomCommands.RemoveAll(x => x.Key == commandName, pluginAsm ?? Assembly.GetCallingAssembly());
         }
     }
 }
