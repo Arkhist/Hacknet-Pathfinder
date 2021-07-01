@@ -100,11 +100,16 @@
     <Compile Include="Mission\GoalManager.cs" />
     <Compile Include="Mission\InitializableGoal.cs" />
     <Compile Include="Port\PortManager.cs" />
+    <Compile Include="Replacements\SaveLoader.cs" />
     <Compile Include="Util\AssemblyAssociatedList.cs" />
     <Compile Include="Util\InitializeAttribute.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\XMLStorageAttribute.cs" />
+    <Compile Include="Util\XML\ElementInfo.cs" />
+    <Compile Include="Util\XML\EventExecutor.cs" />
+    <Compile Include="Util\XML\EventReader.cs" />
+    <Compile Include="Util\XML\IExecutor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BepInEx.Hacknet\BepInEx.Hacknet.csproj">
@@ -112,9 +117,6 @@
       <Name>BepInEx.Hacknet</Name>
       <Private>False</Private>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Util\XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
