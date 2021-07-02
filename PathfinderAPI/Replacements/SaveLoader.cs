@@ -1,6 +1,5 @@
-﻿using System.IO;
-using System.Linq;
-using System.Xml;
+﻿using System.Diagnostics;
+using System.IO;
 using Hacknet;
 using Hacknet.PlatformAPI.Storage;
 using HarmonyLib;
@@ -22,8 +21,14 @@ namespace Pathfinder.Replacements
             {
                 return false;
             }
+
+            var executor = new EventExecutor(new StreamReader(saveStream).ReadToEnd(), false);
+            executor.RegisterExecutor("HacknetSave", (exec, info) =>
+            {
+                Debugger.Break();
+            }, ParseOption.ParseInterior);
             
-            
+            executor.Parse();
             
             return false;
         }

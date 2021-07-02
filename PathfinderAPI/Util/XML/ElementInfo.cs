@@ -10,8 +10,8 @@ namespace Pathfinder.Util.XML
         public string Name;
         public string Content;
         public ElementInfo Parent;
-        public readonly Dictionary<string, string> Attributes = new Dictionary<string, string>();
-        public readonly List<ElementInfo> Children = new List<ElementInfo>();
+        public Dictionary<string, string> Attributes = new Dictionary<string, string>();
+        public List<ElementInfo> Children = new List<ElementInfo>();
         public readonly ulong NodeID = freeId++;
     }
 }
