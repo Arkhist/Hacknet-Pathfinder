@@ -15,6 +15,7 @@ namespace Pathfinder.Util.XML
         
         public XmlReader Reader { get; protected set; }
         public readonly List<string> ParentNames = new List<string>();
+        public string CurrentNamespace => string.Join(".", ParentNames);
         
         protected readonly string Text;
         

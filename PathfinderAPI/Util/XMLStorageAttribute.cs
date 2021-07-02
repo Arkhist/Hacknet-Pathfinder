@@ -4,6 +4,7 @@ using System.Text;
 using System.Xml;
 using BepInEx.Logging;
 using HarmonyLib;
+using Pathfinder.Util.XML;
 
 namespace Pathfinder.Util
 {
@@ -89,6 +90,40 @@ namespace Pathfinder.Util
 
                 string val = reader.GetAttribute(propertyInfo.Name);
                 setMethod.Invoke(obj, new object[] { val });
+            }
+        }
+
+        public static void ReadFromElement(ElementInfo info, object obj)
+        {
+            var thisType = obj.GetType();
+            var attribType = typeof(XMLStorageAttribute);
+
+            foreach (var fieldInfo in thisType.GetFields(Flags))
+            {
+                if (fieldInfo.GetCustomAttributes(attribType, false).Length < 1)
+                    continue;
+                if (fieldInfo.FieldType != typeof(string))
+                {
+                    Logger.Log(LogLevel.Error, $"Invalid field for XML storage: {fieldInfo.Name}");
+                    continue;
+                }
+
+                fieldInfo.SetValue(obj, info.Attributes.GetString(fieldInfo.Name, null));
+            }
+            foreach (var propertyInfo in thisType.GetProperties(Flags))
+            {
+                if (propertyInfo.GetCustomAttributes(attribType, false).Length < 1)
+                    continue;
+                
+                var getMethod = propertyInfo.GetGetMethod();
+                var setMethod = propertyInfo.GetSetMethod();
+                if (propertyInfo.PropertyType != typeof(string))
+                {
+                    Logger.Log(LogLevel.Error, $"Invalid property for XML storage: {propertyInfo.Name}");
+                    continue;
+                }
+
+                setMethod.Invoke(obj, new object[] { info.Attributes.GetString(propertyInfo.Name, null) });
             }
         }
     }

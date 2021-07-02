@@ -102,6 +102,7 @@
     <Compile Include="Port\PortManager.cs" />
     <Compile Include="Replacements\SaveLoader.cs" />
     <Compile Include="Util\AssemblyAssociatedList.cs" />
+    <Compile Include="Util\DictionaryExtensions.cs" />
     <Compile Include="Util\InitializeAttribute.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

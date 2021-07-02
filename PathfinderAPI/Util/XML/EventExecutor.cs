@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Pathfinder.Util.XML
 {
@@ -10,19 +11,21 @@ namespace Pathfinder.Util.XML
             public ParseOption Options;
         }
 
-        private Dictionary<string, ExecutorHolder> Executors = new Dictionary<string, ExecutorHolder>();
+        private Dictionary<string, List<ExecutorHolder>> Executors = new Dictionary<string, List<ExecutorHolder>>();
 
         private Stack<ElementInfo> currentElementStack = new Stack<ElementInfo>();
-        private ReadExecution currentExecutor;
+        private List<ReadExecution> currentExecutors;
 
         public EventExecutor(string text, bool isPath) : base(text, isPath) {}
         
-        public void RegisterExecutor(string element, ReadExecution executor, ParseOption options)
+        public void RegisterExecutor(string element, ReadExecution executor, ParseOption options = ParseOption.None)
         {
-            Executors.Add(element, new ExecutorHolder { Executor = executor, Options = options});
+            if (!Executors.TryGetValue(element, out _))
+                Executors.Add(element, new List<ExecutorHolder>());
+            Executors[element].Add(new ExecutorHolder { Executor = executor, Options = options });
         }
 
-        public void UnregisterExecutor(string element)
+        public void UnregisterExecutors(string element)
         {
             Executors.Remove(element);
         }
@@ -31,11 +34,9 @@ namespace Pathfinder.Util.XML
         {
             base.ReadElement(attributes);
 
-            var namespaceString = string.Join(".", ParentNames);
-
             if (currentElementStack.Count == 0)
             {
-                if (FindExecutor(namespaceString, out var executor))
+                if (FindExecutors(CurrentNamespace, out var executors))
                 {
                     var element = new ElementInfo()
                     {
@@ -43,14 +44,18 @@ namespace Pathfinder.Util.XML
                         Attributes = attributes
                     };
 
-                    if ((executor.Options & ParseOption.ParseInterior) != 0)
+                    var interiors = executors.Where(x => (x.Options & ParseOption.ParseInterior) != 0).Select(x => x.Executor).ToList();
+
+                    if (interiors.Count > 0)
                     {
                         currentElementStack.Push(element);
-                        currentExecutor = executor.Executor;
+                        currentExecutors = interiors;
                     }
-                    else
+
+                    foreach (var executor in executors)
                     {
-                        executor.Executor(this, element);
+                        if ((executor.Options & ParseOption.ParseInterior) == 0 && (executor.Options & ParseOption.FireOnEnd) == 0)
+                            executor.Executor(this, element);
                     }
                 }
             }
@@ -76,7 +81,19 @@ namespace Pathfinder.Util.XML
             {
                 var top = currentElementStack.Pop();
                 if (currentElementStack.Count == 0)
-                    currentExecutor(this, top);
+                    foreach (var executor in currentExecutors)
+                        executor(this, top);
+            }
+
+            if (FindExecutors(CurrentNamespace, out var executors))
+            {
+                foreach (var executor in executors)
+                {
+                    if ((executor.Options & ParseOption.FireOnEnd) != 0)
+                    {
+                        executor.Executor(this, null);
+                    }
+                }
             }
         }
 
@@ -94,18 +111,18 @@ namespace Pathfinder.Util.XML
             }
         }
 
-        private bool FindExecutor(string name, out ExecutorHolder executor)
+        private bool FindExecutors(string name, out List<ExecutorHolder> executors)
         {
             while (true)
             {
-                if (Executors.TryGetValue(name, out executor))
+                if (Executors.TryGetValue(name, out executors))
                 {
                     return true;
                 }
 
                 if (!name.Contains("."))
                 {
-                    executor = default;
+                    executors = new List<ExecutorHolder>();
                     return false;
                 }
 

@@ -9,11 +9,12 @@ namespace Pathfinder.Util.XML
     {
         None = 0,
         ParseInterior = 0b1,
+        FireOnEnd = 0b10
     }
     
     public interface IExecutor
     {
         void RegisterExecutor(string element, ReadExecution executor, ParseOption options);
-        void UnregisterExecutor(string element);
+        void UnregisterExecutors(string element);
     }
 }
