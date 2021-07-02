@@ -100,6 +100,7 @@
     <Compile Include="Mission\GoalManager.cs" />
     <Compile Include="Mission\InitializableGoal.cs" />
     <Compile Include="Port\PortManager.cs" />
+    <Compile Include="Replacements\ReplacementsCommon.cs" />
     <Compile Include="Replacements\SaveLoader.cs" />
     <Compile Include="Util\AssemblyAssociatedList.cs" />
     <Compile Include="Util\DictionaryExtensions.cs" />
