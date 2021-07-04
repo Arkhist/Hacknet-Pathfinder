@@ -4,6 +4,7 @@ using BepInEx.Logging;
 using HarmonyLib;
 using Hacknet;
 using Pathfinder.Util;
+using Pathfinder.Util.XML;
 
 namespace Pathfinder.Daemon
 {
@@ -21,9 +22,9 @@ namespace Pathfinder.Daemon
             return XMLStorageAttribute.WriteToXml(this);
         }
 
-        public virtual void LoadFromXml(XmlReader reader)
+        public virtual void LoadFromXml(ElementInfo info)
         {
-            XMLStorageAttribute.ReadFromXml(reader, this);
+            XMLStorageAttribute.ReadFromElement(info, this);
         }
     }
 }

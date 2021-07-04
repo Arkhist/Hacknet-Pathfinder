@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Hacknet;
+using Microsoft.Xna.Framework;
 
 namespace Pathfinder.Util
 {
@@ -34,6 +36,21 @@ namespace Pathfinder.Util
         {
             if (dict.TryGetValue(key, out var val) && byte.TryParse(val, out var ret))
                 return ret;
+            return defaultVal;
+        }
+
+        public static Vector2? GetVector<Key>(this Dictionary<Key, string> dict, Key x, Key y, Vector2? defaultVal = null)
+        {
+            if (dict.TryGetValue(x, out var x_string) && dict.TryGetValue(y, out var y_string) &&
+                float.TryParse(x_string, out var x_float) && float.TryParse(y_string, out var y_float))
+                return new Vector2(x_float, y_float);
+            return defaultVal;
+        }
+
+        public static Color? GetColor<Key>(this Dictionary<Key, string> dict, Key key, Color? defaultVal = null)
+        {
+            if (dict.TryGetValue(key, out var color))
+                return Utils.convertStringToColor(color);
             return defaultVal;
         }
     }

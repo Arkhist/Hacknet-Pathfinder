@@ -9,6 +9,8 @@ using Hacknet.PlatformAPI.Storage;
 using Hacknet.Security;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
+using Pathfinder.Event;
+using Pathfinder.Event.Loading.Save;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
@@ -22,15 +24,16 @@ namespace Pathfinder.Replacements
         internal static bool SaveLoadReplacementPrefix(ref OS __instance)
         {
             __instance.FirstTimeStartup = false;
-            
-            Stream saveStream = __instance.ForceLoadOverrideStream ?? SaveFileManager.GetSaveReadStream(__instance.SaveGameUserName);
+
+            Stream saveStream = __instance.ForceLoadOverrideStream ??
+                                SaveFileManager.GetSaveReadStream(__instance.SaveGameUserName);
             if (saveStream == null)
             {
                 return false;
             }
 
             var os = __instance;
-            
+
             var executor = new EventExecutor(new StreamReader(saveStream).ReadToEnd(), false);
             executor.RegisterExecutor("HacknetSave", (exec, info) =>
             {
@@ -55,14 +58,15 @@ namespace Pathfinder.Replacements
 
                 if (os.HasLoadedDLCContent && !DLC1SessionUpgrader.HasDLC1Installed)
                 {
-                    MainMenu.AccumErrors = "LOAD ERROR: Save " + os.SaveGameUserName + " is configured for Labyrinths DLC, but it is not installed on this computer.\n\n\n";
+                    MainMenu.AccumErrors = "LOAD ERROR: Save " + os.SaveGameUserName +
+                                           " is configured for Labyrinths DLC, but it is not installed on this computer.\n\n\n";
                     os.ExitScreen();
                     os.IsExiting = true;
                 }
             });
-            executor.RegisterExecutor("HackentSave.DLC.Flags", 
+            executor.RegisterExecutor("HackentSave.DLC.Flags",
                 (exec, info) => os.PreDLCFaction = info.Attributes.GetString("OriginalFaction"));
-            executor.RegisterExecutor("Hacknet.DLC.OriginalVisibleNodes", 
+            executor.RegisterExecutor("Hacknet.DLC.OriginalVisibleNodes",
                 (exec, info) => os.PreDLCVisibleNodesCache = info.Content,
                 ParseOption.ParseInterior);
             // todo: conditional actions loader
@@ -70,31 +74,29 @@ namespace Pathfinder.Replacements
             {
                 os.Flags.Flags.Clear();
 
-                foreach (var flag in info.Content.Split(new []{','}, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var flag in info.Content.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries))
                 {
                     os.Flags.Flags.Add(flag
                         .Replace("[%%COMMAREPLACED%%]", ",")
                         .Replace("décrypté", "decypher"));
                 }
             }, ParseOption.ParseInterior);
-            executor.RegisterExecutor("HacknetSave.NetworkMap", (exec, info) =>
-            {
-                Enum.TryParse(info.Attributes.GetString("sort"), out os.netMap.SortingAlgorithm);
-            });
+            executor.RegisterExecutor("HacknetSave.NetworkMap",
+                (exec, info) => { Enum.TryParse(info.Attributes.GetString("sort"), out os.netMap.SortingAlgorithm); });
             executor.RegisterExecutor("HacknetSave.NetworkMap", (exec, info) =>
             {
                 foreach (var daemon in os.netMap.nodes.SelectMany(x => x.daemons))
                     daemon.loadInit();
-                
+
                 os.netMap.loadAssignGameNodes();
             }, ParseOption.FireOnEnd);
-            executor.RegisterExecutor("HacknetSave.NetworkMap.network.computer", (exec, info) =>
-            {
-                os.netMap.nodes.Add(LoadComputer(info, os));
-            });
-            
+            executor.RegisterExecutor("HacknetSave.NetworkMap.network.computer",
+                (exec, info) => { os.netMap.nodes.Add(LoadComputer(info, os)); },
+                ParseOption.ParseInterior
+            );
+
             executor.Parse();
-            
+
             return false;
         }
 
@@ -106,8 +108,6 @@ namespace Pathfinder.Replacements
             var spec = info.Attributes.GetString("spec");
 
             var location = info.Children.GetElement("location");
-            var xCord = location?.Attributes.GetFloat("x") ?? 0f;
-            var yCord = location?.Attributes.GetFloat("y") ?? 0f;
 
             var security = info.Children.GetElement("security");
             var level = security.Attributes.GetInt("level");
@@ -117,12 +117,12 @@ namespace Pathfinder.Replacements
             {
                 firewall = new Firewall(
                     firewallInfo.Attributes.GetInt("complexity"),
-                    info.Attributes.GetString("solution", null),
-                    info.Attributes.GetFloat("additionalDelay")
+                    firewallInfo.Attributes.GetString("solution", null),
+                    firewallInfo.Attributes.GetFloat("additionalDelay")
                 );
             }
 
-            var comp = new Computer(name, ip, new Vector2(xCord, yCord), level, type, os)
+            var comp = new Computer(name, ip, info.Attributes.GetVector("x", "y", Vector2.Zero).Value, level, type, os)
             {
                 idName = info.Attributes.GetString("id"),
                 attatchedDeviceIDs = info.Attributes.GetString("devices", null),
@@ -170,7 +170,8 @@ namespace Pathfinder.Replacements
 
             comp.admin = admin;
 
-            foreach (var link in info.Children.GetElement("links").Content.Split((char[]) null, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var link in info.Children.GetElement("links").Content?
+                .Split((char[]) null, StringSplitOptions.RemoveEmptyEntries) ?? new string[0])
             {
                 comp.links.Add(int.Parse(link));
             }
@@ -210,26 +211,202 @@ namespace Pathfinder.Replacements
             if (info.Children.TryGetElement("Memory", out var memory))
                 comp.Memory = ReplacementsCommon.LoadMemoryContents(memory);
 
+            #region Daemons
+            
             if (info.Children.TryGetElement("daemons", out var daemons))
             {
                 foreach (var daemon in daemons.Children)
                 {
-                    // don't continue making this, switch it to a dictionary
+                    if (EventManager<SaveComponentLoadEvent>.InvokeAll(new SaveComponentLoadEvent(comp, daemon, os, ComponentType.Daemon)).Cancelled)
+                        continue;
                     switch (daemon.Name)
                     {
                         case "MailServer":
-                            var server = new MailServer(comp, info.Attributes.GetString("name"), os);
-                            if (daemon.Attributes.TryGetValue("color", out var color))
+                            var mailserver = new MailServer(comp, info.Attributes.GetString("name"), os);
+                            if (daemon.Attributes.TryGetValue("color", out var mail_color))
                             {
-                                var colorSplit = color.Split(',').Select(int.Parse).ToArray();
-                                server.setThemeColor(new Color(colorSplit[0], colorSplit[1], colorSplit[2]));
+                                mailserver.setThemeColor(Utils.convertStringToColor(mail_color));
                             }
+
+                            comp.daemons.Add(mailserver);
                             break;
                         case "MissionListingServer":
+                            var listing_name = daemon.Attributes.GetString("name");
+                            var listing_group = daemon.Attributes.GetString("group");
+                            var listing_isPublic = daemon.Attributes.GetBool("public");
+                            var listing_isAssigner = daemon.Attributes.GetBool("assign");
+                            var listing_articles = daemon.Attributes.GetString("articles");
+
+                            MissionListingServer listingserver;
+                            if (daemon.Attributes.TryGetValue("icon", out var listing_icon) &&
+                                daemon.Attributes.TryGetValue("color", out var listing_color))
+                            {
+                                listingserver = new MissionListingServer(comp, listing_name, listing_icon,
+                                    listing_articles,
+                                    Utils.convertStringToColor(listing_color), os, listing_isPublic,
+                                    listing_isAssigner);
+                            }
+                            else
+                            {
+                                listingserver = new MissionListingServer(comp, name, listing_group, os,
+                                    listing_isPublic, listing_isAssigner);
+                            }
+
+                            comp.daemons.Add(listingserver);
+                            break;
+                        case "AddEmailServer":
+                            comp.daemons.Add(new AddEmailDaemon(comp, daemon.Attributes.GetString("name"), os));
+                            break;
+                        case "MessageBoard":
+                            var messageboard = new MessageBoardDaemon(comp, os);
+                            messageboard.name = daemon.Attributes.GetString("name");
+                            messageboard.BoardName =
+                                daemon.Attributes.GetString("boardName", messageboard.BoardName);
+                            comp.daemons.Add(messageboard);
+                            break;
+                        case "WebServer":
+                            comp.daemons.Add(new WebServerDaemon(
+                                comp,
+                                daemon.Attributes.GetString("name"),
+                                os,
+                                daemon.Attributes.GetString("url")
+                            ));
+                            break;
+                        case "OnlineWebServer":
+                            var onlinewebserver =
+                                new OnlineWebServerDaemon(comp, daemon.Attributes.GetString("name"), os);
+                            onlinewebserver.setURL(daemon.Attributes.GetString("url"));
+                            comp.daemons.Add(onlinewebserver);
+                            break;
+                        case "AcademicDatabse":
+                            comp.daemons.Add(new AcademicDatabaseDaemon(
+                                comp,
+                                daemon.Attributes.GetString("name"),
+                                os
+                            ));
+                            break;
+                        case "MissionHubServer":
+                            comp.daemons.Add(new MissionHubServer(comp, "unknown", "unknown", os));
+                            break;
+                        case "DeathRowDatabase":
+                            comp.daemons.Add(new DeathRowDatabaseDaemon(comp, "Death Row Database", os));
+                            break;
+                        case "MedicalDatabase":
+                            comp.daemons.Add(new MedicalDatabaseDaemon(comp, os));
+                            break;
+                        case "HeartMonitor":
+                            var heartmon = new HeartMonitorDaemon(comp, os);
+                            heartmon.PatientID = daemon.Attributes.GetString("patient", "UNKNOWN");
+                            comp.daemons.Add(heartmon);
+                            break;
+                        case "PointClicker":
+                            comp.daemons.Add(new PointClickerDaemon(comp, "Point Clicker!", os));
+                            break;
+                        case "ispSystem":
+                            comp.daemons.Add(new ISPDaemon(comp, os));
+                            break;
+                        case "porthackheart":
+                            comp.daemons.Add(new PorthackHeartDaemon(comp, os));
+                            break;
+                        case "SongChangerDaemon":
+                            comp.daemons.Add(new SongChangerDaemon(comp, os));
+                            break;
+                        case "UploadServerDaemon":
+                            var uploadserver = new UploadServerDaemon(
+                                comp,
+                                daemon.Attributes.GetString("name"),
+                                daemon.Attributes.GetColor("color", Color.White).Value,
+                                os,
+                                daemon.Attributes.GetString("foldername"),
+                                daemon.Attributes.GetBool("needsAuh")
+                            );
+                            uploadserver.hasReturnViewButton = daemon.Attributes.GetBool("hasReturnViewButton");
+                            comp.daemons.Add(uploadserver);
+                            break;
+                        case "DHSDaemon":
+                            comp.daemons.Add(new DLCHubServer(comp, "unknown", "unknown", os));
+                            break;
+                        case "CustomConnectDisplayDaemon":
+                            comp.daemons.Add(new CustomConnectDisplayDaemon(comp, os));
+                            break;
+                        case "DatabaseDaemon":
+                            var databaseserver = new DatabaseDaemon(
+                                comp,
+                                os,
+                                daemon.Attributes.GetString("Name", null),
+                                daemon.Attributes.GetString("Permissions"),
+                                daemon.Attributes.GetString("DataType"),
+                                daemon.Attributes.GetString("Foldername"),
+                                daemon.Attributes.GetColor("Color")
+                            );
+                            databaseserver.adminResetEmailHostID = daemon.Attributes.GetString("AdminEmailHostID", null);
+                            databaseserver.adminResetPassEmailAccount = daemon.Attributes.GetString("AdminEmailAccount", null);
+                            comp.daemons.Add(databaseserver);
+                            break;
+                        case "WhitelistAuthenticatorDaemon":
+                            var whitelistserver = new WhitelistConnectionDaemon(comp, os);
+                            whitelistserver.AuthenticatesItself = daemon.Attributes.GetBool("SelfAuthenticating", true);
+                            comp.daemons.Add(whitelistserver);
+                            break;
+                        case "IRCDaemon":
+                            comp.daemons.Add(new IRCDaemon(comp, os, "LOAD ERROR"));
+                            break;
+                        case "MarkovTextDaemon":
+                            comp.daemons.Add(new MarkovTextDaemon(
+                                comp,
+                                os,
+                                daemon.Attributes.GetString("Name", null),
+                                daemon.Attributes.GetString("SourceFilesContentFolder", null)
+                            ));
+                            break;
+                        case "AircraftDaemon":
+                            comp.daemons.Add(new AircraftDaemon(
+                                comp,
+                                os,
+                                daemon.Attributes.GetString("Name", "Pacific Charter Flight"),
+                                daemon.Attributes.GetVector("OriginX", "OriginY", Vector2.Zero).Value,
+                                daemon.Attributes.GetVector("DestX", "DestY", Vector2.One * 0.5f).Value,
+                                daemon.Attributes.GetFloat("Progress")
+                            ));
+                            break;
+                        case "LogoCustomConnectDisplayDaemon":
+                            comp.daemons.Add(new LogoCustomConnectDisplayDaemon(
+                                comp,
+                                os,
+                                daemon.Attributes.GetString("logo", null),
+                                daemon.Attributes.GetString("title", null),
+                                daemon.Attributes.GetBool("overdrawLogo"),
+                                daemon.Attributes.GetString("buttonAlignment", null)
+                            ));
+                            break;
+                        case "LogoDaemon":
+                            comp.daemons.Add(new LogoDaemon(
+                                comp,
+                                os,
+                                name,
+                                daemon.Attributes.GetBool("ShowsTitle", true),
+                                daemon.Attributes.GetString("LogoImagePath")
+                            ));
+                            break;
+                        case "DLCCredits":
+                            DLCCreditsDaemon dlcdaemon = null;
+                            string credits_title, credits_button = null;
+                            if (daemon.Attributes.TryGetValue("Title", out credits_title) ||
+                                daemon.Attributes.TryGetValue("Button", out credits_button))
+                                dlcdaemon = new DLCCreditsDaemon(comp, os, credits_title, credits_button);
+                            else
+                                dlcdaemon = new DLCCreditsDaemon(comp, os);
+                            dlcdaemon.ConditionalActionsToLoadOnButtonPress = daemon.Attributes.GetString("Action", null);
+                            comp.daemons.Add(dlcdaemon);
+                            break;
+                        case "FastActionHost":
+                            comp.daemons.Add(new FastActionHost(comp, os, name));
                             break;
                     }
                 }
             }
+            
+            #endregion
 
             return comp;
         }

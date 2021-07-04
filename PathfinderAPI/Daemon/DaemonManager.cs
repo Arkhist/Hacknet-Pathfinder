@@ -22,11 +22,11 @@ namespace Pathfinder.Daemon
 
         private static void OnComponentLoad(ComputerComponentLoadEvent args)
         {
-            var daemonType = CustomDaemons.FirstOrDefault(x => x.Name == args.Reader.Name);
+            var daemonType = CustomDaemons.FirstOrDefault(x => x.Name == args.Info.Name);
             if (daemonType != null)
             {
-                BaseDaemon daemon = (BaseDaemon)Activator.CreateInstance(daemonType, new object[] { args.Comp, args.Reader.Name, args.Os });
-                daemon.LoadFromXml(args.Reader);
+                BaseDaemon daemon = (BaseDaemon)Activator.CreateInstance(daemonType, new object[] { args.Comp, args.Info.Name, args.Os });
+                daemon.LoadFromXml(args.Info);
                 args.Comp.daemons.Add(daemon);
             }
         }
@@ -34,12 +34,13 @@ namespace Pathfinder.Daemon
         {
             if ((args.Type & ComponentType.Daemon) != 0)
             {
-                var daemonType = CustomDaemons.FirstOrDefault(x => x.Name == args.Reader.Name);
+                var daemonType = CustomDaemons.FirstOrDefault(x => x.Name == args.Info.Name);
                 if (daemonType != null)
                 {
-                    BaseDaemon daemon = (BaseDaemon)Activator.CreateInstance(daemonType, new object[] { args.Comp, args.Reader.Name, args.Os });
-                    daemon.LoadFromXml(args.Reader);
+                    BaseDaemon daemon = (BaseDaemon)Activator.CreateInstance(daemonType, new object[] { args.Comp, args.Info.Name, args.Os });
+                    daemon.LoadFromXml(args.Info);
                     args.Comp.daemons.Add(daemon);
+                    args.Cancelled = true;
                 }
             }
         }
