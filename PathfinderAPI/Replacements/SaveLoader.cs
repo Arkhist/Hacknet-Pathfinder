@@ -145,30 +145,15 @@ namespace Pathfinder.Replacements
                 comp.proxyActive = false;
             }
 
-            Administrator admin = null;
             if (info.Children.TryGetElement("admin", out var adminInfo))
             {
-                switch (adminInfo.Attributes.GetString("type"))
+                EventManager<SaveComponentLoadEvent>.InvokeAll(new SaveComponentLoadEvent(comp, adminInfo, os, ComponentType.Administrator));
+                if (comp.admin != null)
                 {
-                    case "fast":
-                        admin = new FastBasicAdministrator();
-                        break;
-                    case "basic":
-                        admin = new BasicAdministrator();
-                        break;
-                    case "progress":
-                        admin = new FastProgressOnlyAdministrator();
-                        break;
-                }
-
-                if (admin != null)
-                {
-                    admin.ResetsPassword = adminInfo.Attributes.GetBool("resetPass");
-                    admin.IsSuper = adminInfo.Attributes.GetBool("isSuper");
+                    comp.admin.ResetsPassword = adminInfo.Attributes.GetBool("resetPass");
+                    comp.admin.IsSuper = adminInfo.Attributes.GetBool("isSuper");
                 }
             }
-
-            comp.admin = admin;
 
             foreach (var link in info.Children.GetElement("links").Content?
                 .Split((char[]) null, StringSplitOptions.RemoveEmptyEntries) ?? new string[0])

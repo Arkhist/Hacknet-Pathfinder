@@ -14,7 +14,8 @@ namespace Pathfinder.Event.Loading.Save
         None = 0b0,
         Generic = 0b1,
         Daemon = 0b10,
-        All = 0b11
+        Administrator = 0b100,
+        All = 0b111
     }
     
     public class SaveComponentLoadEvent : PathfinderEvent
