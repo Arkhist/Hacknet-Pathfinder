@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -94,6 +95,13 @@ namespace Pathfinder.Replacements
                 (exec, info) => { os.netMap.nodes.Add(LoadComputer(info, os)); },
                 ParseOption.ParseInterior
             );
+            executor.RegisterExecutor("HacknetSave.NetworkMap.visible", (exec, info) =>
+            {
+                foreach (var node in info.Content.Split((char[]) null, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    os.netMap.visibleNodes.Add(int.Parse(node));
+                }
+            }, ParseOption.ParseInterior);
 
             executor.Parse();
 
@@ -122,7 +130,7 @@ namespace Pathfinder.Replacements
                 );
             }
 
-            var comp = new Computer(name, ip, info.Attributes.GetVector("x", "y", Vector2.Zero).Value, level, type, os)
+            var comp = new Computer(name, ip, location.Attributes.GetVector("x", "y", Vector2.Zero).Value, level, type, os)
             {
                 idName = info.Attributes.GetString("id"),
                 attatchedDeviceIDs = info.Attributes.GetString("devices", null),
@@ -392,8 +400,45 @@ namespace Pathfinder.Replacements
             }
             
             #endregion
+            
+            comp.files = new FileSystem(true)
+            {
+                root = LoadFolder(info.Children.GetElement("filesystem").Children.GetElement("folder"))
+            };
 
+            switch (spec)
+            {
+                case "player":
+                    os.thisComputer = comp;
+                    break;
+                case "mail":
+                    os.netMap.mailServer = comp;
+                    break;
+            }
+            
             return comp;
+        }
+
+        public static Folder LoadFolder(ElementInfo info)
+        {
+            var result = new Folder(Folder.deFilter(info.Attributes.GetString("name")));
+            foreach (var child in info.Children)
+            {
+                switch (child.Name)
+                {
+                    case "folder":
+                        result.folders.Add(LoadFolder(child));
+                        break;
+                    case "file":
+                        if (child.Attributes.GetBool("EduSafe", true) || !Settings.EducationSafeBuild)
+                        {
+                            result.files.Add(new FileEntry(child.Content, child.Attributes.GetString("name")));
+                        }
+                        break;
+                }
+            }
+
+            return result;
         }
     }
 }
