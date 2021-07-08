@@ -48,7 +48,7 @@ Install the mod by placing it in Hacknet/BepInEx/plugins or a folder called Plug
 2. Compile PathfinderPatcher and run it in the Hacknet directory
 3. Copy HacknetPathfinder.dll and FNA.dll to the libs/ directory
 4. Everything else should now compile fine
-5. Everything in BepInEx.Hacknet/bin/Debug goes into Hacknet/BepInEx/core, also grab Mono.Cecil.dll from the libs folder, for some reason it won't copy to the output directory.
+5. Everything in BepInEx.Hacknet/bin/Debug goes into Hacknet/BepInEx/core.
 6. Copy/symlink the .dll (or their containing folder) for PathfinderAPI and optionally ExampleMod to Hacknet/BepInEx/plugins
 
 ## Links
