@@ -90,7 +90,6 @@
     <Compile Include="Event\Loading\Content\LoadGoalEvent.cs" />
     <Compile Include="Event\Loading\ExtensionLoadEvent.cs" />
     <Compile Include="Event\Loading\PortsAddedEvent.cs" />
-    <Compile Include="Event\Loading\Save\SaveComponentLoadEvent.cs" />
     <Compile Include="Event\Loading\TextReplaceEvent.cs" />
     <Compile Include="Event\Menu\DrawMainMenuTitlesEvent.cs" />
     <Compile Include="Event\Menu\MainMenuEvent.cs" />

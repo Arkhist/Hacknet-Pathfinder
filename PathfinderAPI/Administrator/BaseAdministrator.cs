@@ -18,5 +18,13 @@ namespace Pathfinder.Administrator
             this.computer = computer;
             this.opSystem = opSystem;
         }
+        
+        public virtual void LoadFromXml(ElementInfo info)
+        {
+            base.ResetsPassword = info.Attributes.GetBool("resetPass");
+            base.IsSuper = info.Attributes.GetBool("isSuper");
+            
+            XMLStorageAttribute.ReadFromElement(info, this);
+        }
     }
 }

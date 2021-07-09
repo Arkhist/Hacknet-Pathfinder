@@ -11,7 +11,6 @@ using Hacknet.Security;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
-using Pathfinder.Event.Loading.Save;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
@@ -155,12 +154,7 @@ namespace Pathfinder.Replacements
 
             if (info.Children.TryGetElement("admin", out var adminInfo))
             {
-                EventManager<SaveComponentLoadEvent>.InvokeAll(new SaveComponentLoadEvent(comp, adminInfo, os, ComponentType.Administrator));
-                if (comp.admin != null)
-                {
-                    comp.admin.ResetsPassword = adminInfo.Attributes.GetBool("resetPass");
-                    comp.admin.IsSuper = adminInfo.Attributes.GetBool("isSuper");
-                }
+                Administrator.AdministratorManager.LoadAdministrator(adminInfo, comp, os);
             }
 
             foreach (var link in info.Children.GetElement("links").Content?
@@ -210,8 +204,9 @@ namespace Pathfinder.Replacements
             {
                 foreach (var daemon in daemons.Children)
                 {
-                    if (EventManager<SaveComponentLoadEvent>.InvokeAll(new SaveComponentLoadEvent(comp, daemon, os, ComponentType.Daemon)).Cancelled)
+                    if (Daemon.DaemonManager.TryLoadCustomDaemon(daemon, comp, os))
                         continue;
+                    
                     switch (daemon.Name)
                     {
                         case "MailServer":

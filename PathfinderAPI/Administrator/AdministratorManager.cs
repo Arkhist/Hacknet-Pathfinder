@@ -6,7 +6,8 @@ using System.Text;
 using Hacknet;
 using Pathfinder.Event;
 using Pathfinder.Event.Loading.Content;
-using Pathfinder.Event.Loading.Save;
+using Pathfinder.Util;
+using Pathfinder.Util.XML;
 
 namespace Pathfinder.Administrator
 {
@@ -17,7 +18,6 @@ namespace Pathfinder.Administrator
         static AdministratorManager()
         {
             EventManager<ComputerComponentLoadEvent>.AddHandler(OnComponentLoad);
-            EventManager<SaveComponentLoadEvent>.AddHandler(OnSavedComponentLoad);
             EventManager.onPluginUnload += onPluginUnload;
         }
 
@@ -25,39 +25,36 @@ namespace Pathfinder.Administrator
         {
             // TODO : Content loading
         }
-        private static void OnSavedComponentLoad(SaveComponentLoadEvent args)
+        
+        internal static void LoadAdministrator(ElementInfo info, Computer comp, OS os)
         {
-            Hacknet.Administrator admin = null;
-            if ((args.Type & ComponentType.Administrator) != 0)
+            if (!info.Attributes.TryGetValue("type", out var adminTypeName))
+                return;
+            
+            var adminType = CustomAdministrators.FirstOrDefault(x => x.Name == adminTypeName);
+            if (adminType != null) {
+                BaseAdministrator admin = (BaseAdministrator)Activator.CreateInstance(adminType, new object[] { comp, os });
+                admin.LoadFromXml(info);
+            }
+            else
             {
-                string adminTypeName = null;
-                if (!args.Info.Attributes.TryGetValue("type", out adminTypeName))
-                    return;
                 switch (adminTypeName)
                 {
                     case "fast":
-                        admin = new FastBasicAdministrator();
-                        args.Comp.admin = admin;
-                        args.Cancelled = true;
+                        comp.admin = new FastBasicAdministrator();
                         break;
                     case "basic":
-                        admin = new BasicAdministrator();
-                        args.Comp.admin = admin;
-                        args.Cancelled = true;
+                        comp.admin = new BasicAdministrator();
                         break;
                     case "progress":
-                        admin = new FastProgressOnlyAdministrator();
-                        args.Comp.admin = admin;
-                        args.Cancelled = true;
+                        comp.admin = new FastProgressOnlyAdministrator();
                         break;
-                    default:
-                        var adminType = CustomAdministrators.FirstOrDefault(x => x.Name == adminTypeName);
-                        if (adminType != null) {
-                            admin = (BaseAdministrator)Activator.CreateInstance(adminType, new object[] { args.Comp, args.Os });
-                            args.Comp.admin = admin;
-                            args.Cancelled = true;
-                        }
-                        break;
+                }
+
+                if (comp.admin != null)
+                {
+                    comp.admin.ResetsPassword = info.Attributes.GetBool("resetPass");
+                    comp.admin.IsSuper = info.Attributes.GetBool("isSuper");
                 }
             }
         }
