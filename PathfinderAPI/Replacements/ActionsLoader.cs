@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Hacknet;
 using HarmonyLib;
@@ -341,6 +342,8 @@ namespace Pathfinder.Replacements
                                 DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                             });
                             break;
+                        default:
+                            throw new KeyNotFoundException($"Unknown action type {actionInfo.Name}");
                     }
                 }
                 
