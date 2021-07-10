@@ -1,6 +1,7 @@
 ﻿using System.Xml;
 using Hacknet;
 using Pathfinder.Util;
+using Pathfinder.Util.XML;
 
 namespace Pathfinder.Action
 {
@@ -11,9 +12,9 @@ namespace Pathfinder.Action
             return XMLStorageAttribute.WriteToXml(this);
         }
 
-        public virtual void LoadFromXml(XmlReader reader)
+        public virtual void LoadFromXml(ElementInfo info)
         {
-            XMLStorageAttribute.ReadFromXml(reader, this);
+            XMLStorageAttribute.ReadFromElement(info, this);
         }
     }
 }

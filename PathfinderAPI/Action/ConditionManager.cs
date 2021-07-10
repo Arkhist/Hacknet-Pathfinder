@@ -8,6 +8,7 @@ using Hacknet.Mission;
 using HarmonyLib;
 using Pathfinder.Event;
 using Pathfinder.Event.Loading.Content;
+using Pathfinder.Util.XML;
 
 namespace Pathfinder.Action
 {
@@ -18,20 +19,20 @@ namespace Pathfinder.Action
 
         static ConditionManager()
         {
-            EventManager<GetAdditionalConditionsEvent>.AddHandler(OnGetAdditionalConditions);
             EventManager.onPluginUnload += OnPluginUnload;
         }
+        
+        internal static bool TryLoadCustomCondition(ElementInfo info, out PathfinderCondition action)
+        {
+            if (CustomConditions.TryGetValue(info.Name, out var actionType))
+            {
+                action = (PathfinderCondition)Activator.CreateInstance(actionType);
+                action.LoadFromXml(info);
+                return true;
+            }
 
-        private static void OnGetAdditionalConditions(GetAdditionalConditionsEvent args)
-        {
-            args.AdditonalConditions.AddRange(CustomConditions.Keys.Select(x => new GetAdditionalConditionsEvent.ConditionInfo { XmlName = x, Callback = ConditionLoadCallback}));
-        }
-        private static SerializableCondition ConditionLoadCallback(XmlReader reader)
-        {
-            var conditionType = CustomConditions[reader.Name];
-            PathfinderCondition condition = (PathfinderCondition)Activator.CreateInstance(conditionType);
-            condition.LoadFromXml(reader);
-            return condition;
+            action = null;
+            return false;
         }
         
         private static void OnPluginUnload(Assembly pluginAsm)

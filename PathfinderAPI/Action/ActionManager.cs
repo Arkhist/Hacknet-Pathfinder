@@ -8,6 +8,7 @@ using Hacknet.Mission;
 using HarmonyLib;
 using Pathfinder.Event;
 using Pathfinder.Event.Loading.Content;
+using Pathfinder.Util.XML;
 
 namespace Pathfinder.Action
 {
@@ -18,20 +19,20 @@ namespace Pathfinder.Action
 
         static ActionManager()
         {
-            EventManager<GetAdditionalActionsEvent>.AddHandler(OnGetAdditionalActions);
             EventManager.onPluginUnload += OnPluginUnload;
         }
 
-        private static void OnGetAdditionalActions(GetAdditionalActionsEvent args)
+        internal static bool TryLoadCustomAction(ElementInfo info, out PathfinderAction action)
         {
-            args.AdditonalActions.AddRange(CustomActions.Keys.Select(x => new GetAdditionalActionsEvent.ActionInfo { XmlName = x, Callback = ActionLoadCallback}));
-        }
-        private static SerializableAction ActionLoadCallback(XmlReader reader)
-        {
-            var actionType = CustomActions[reader.Name];
-            PathfinderAction action = (PathfinderAction)Activator.CreateInstance(actionType);
-            action.LoadFromXml(reader);
-            return action;
+            if (CustomActions.TryGetValue(info.Name, out var actionType))
+            {
+                action = (PathfinderAction) Activator.CreateInstance(actionType);
+                action.LoadFromXml(info);
+                return true;
+            }
+
+            action = null;
+            return false;
         }
         
         private static void OnPluginUnload(Assembly pluginAsm)

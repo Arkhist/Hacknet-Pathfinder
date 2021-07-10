@@ -66,10 +66,12 @@ namespace Pathfinder.Replacements
             });
             executor.RegisterExecutor("HackentSave.DLC.Flags",
                 (exec, info) => os.PreDLCFaction = info.Attributes.GetString("OriginalFaction"));
-            executor.RegisterExecutor("Hacknet.DLC.OriginalVisibleNodes",
+            executor.RegisterExecutor("HacknetSave.DLC.OriginalVisibleNodes",
                 (exec, info) => os.PreDLCVisibleNodesCache = info.Content,
                 ParseOption.ParseInterior);
-            // todo: conditional actions loader
+            executor.RegisterExecutor("HacknetSave.DLC.ConditionalActions",
+                (exec, info) => ActionsLoader.LoadActionSets(info), 
+                ParseOption.ParseInterior);
             executor.RegisterExecutor("HacknetSave.Flags", (exec, info) =>
             {
                 os.Flags.Flags.Clear();

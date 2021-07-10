@@ -72,7 +72,6 @@
     <Compile Include="Administrator\AdministratorManager.cs" />
     <Compile Include="Administrator\BaseAdministrator.cs" />
     <Compile Include="BaseGameFixes\AutoClearMissionsOnSingleComplete.cs" />
-    <Compile Include="BaseGameFixes\DoesNotHaveFlags.cs" />
     <Compile Include="BaseGameFixes\HHBS.cs" />
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
@@ -101,10 +100,12 @@
     <Compile Include="Mission\GoalManager.cs" />
     <Compile Include="Mission\InitializableGoal.cs" />
     <Compile Include="Port\PortManager.cs" />
+    <Compile Include="Replacements\ActionsLoader.cs" />
     <Compile Include="Replacements\ReplacementsCommon.cs" />
     <Compile Include="Replacements\SaveLoader.cs" />
     <Compile Include="Util\AssemblyAssociatedList.cs" />
     <Compile Include="Util\DictionaryExtensions.cs" />
+    <Compile Include="Util\StringExtensions.cs" />
     <Compile Include="Util\InitializeAttribute.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

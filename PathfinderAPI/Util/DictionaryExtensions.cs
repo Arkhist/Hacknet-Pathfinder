@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Hacknet;
 using Microsoft.Xna.Framework;
 
@@ -9,6 +10,18 @@ namespace Pathfinder.Util
         public static string GetString<Key>(this Dictionary<Key, string> dict, Key key, string defaultVal = "")
         {
             return dict.TryGetValue(key, out var ret) ? ret : defaultVal;
+        }
+
+        public static string GetOrThrow<Key>(this Dictionary<Key, string> dict, Key key, string exMessage, Predicate<string> validator = null)
+        {
+            if (dict.TryGetValue(key, out var ret))
+            {
+                if (validator != null && !validator(ret))
+                    throw new ArgumentException(exMessage);
+                return ret;
+            }
+
+            throw new KeyNotFoundException(exMessage);
         }
         
         public static int GetInt<Key>(this Dictionary<Key, string> dict, Key key, int defaultVal = 0)

@@ -12,6 +12,7 @@ using Pathfinder.Action;
 using Pathfinder.Util;
 using Pathfinder.Daemon;
 using Pathfinder.Mission;
+using Pathfinder.Util.XML;
 
 namespace ExampleMod2
 {
@@ -159,9 +160,9 @@ namespace ExampleMod2
             os.Flags.Flags.Add("randomInt" + Rand.Next(min, max));
         }
 
-        public override void LoadFromXml(XmlReader reader)
+        public override void LoadFromXml(ElementInfo info)
         {
-            base.LoadFromXml(reader);
+            base.LoadFromXml(info);
 
             if (Min != null)
                 min = int.Parse(Min);

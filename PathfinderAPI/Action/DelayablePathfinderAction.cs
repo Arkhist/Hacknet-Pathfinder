@@ -2,6 +2,7 @@
 using System.Xml;
 using Hacknet;
 using Pathfinder.Util;
+using Pathfinder.Util.XML;
 
 namespace Pathfinder.Action
 {
@@ -29,12 +30,12 @@ namespace Pathfinder.Action
 
         public abstract void Trigger(OS os);
 
-        public override void LoadFromXml(XmlReader reader)
+        public override void LoadFromXml(ElementInfo info)
         {
-            base.LoadFromXml(reader);
+            base.LoadFromXml(info);
             
             if (Delay != null && !float.TryParse(Delay, out delay))
-                throw new FormatException($"{this.GetType().Name}: ");
+                throw new FormatException($"{this.GetType().Name}: Couldn't parse delay time!");
 
             if (DelayHost != null)
             {
