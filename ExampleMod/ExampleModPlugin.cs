@@ -94,15 +94,17 @@ namespace ExampleMod2
         }
     }
 
-    public class TestGoal : InitializableGoal
+    public class TestGoal : PathfinderGoal
     {
         [XMLStorage]
         public string NodeID;
 
         public string OriginalIP;
 
-        public override void Initialize()
+        public override void LoadFromXML(ElementInfo info)
         {
+            base.LoadFromXML(info);
+            
             OriginalIP = Programs.getComputer(OS.currentInstance, NodeID).ip;
         }
 

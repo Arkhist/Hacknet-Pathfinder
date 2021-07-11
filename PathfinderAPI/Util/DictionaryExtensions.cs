@@ -66,5 +66,12 @@ namespace Pathfinder.Util
                 return Utils.convertStringToColor(color);
             return defaultVal;
         }
+
+        public static Computer GetComp<Key>(this Dictionary<Key, string> dict, Key key, string exMessage = null)
+        {
+            if (dict.TryGetValue(key, out var compString))
+                return Programs.getComputer(OS.currentInstance, compString.Filter()) ?? throw new NullReferenceException(exMessage ?? $"Could not find computer {compString} for attribute {key.ToString()}");
+            throw new KeyNotFoundException(exMessage ?? $"Could not find attribute {key.ToString()}");
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Hacknet;
+using Hacknet.Factions;
 using Hacknet.Localization;
 using Hacknet.PlatformAPI.Storage;
 using Hacknet.Security;
@@ -103,6 +104,26 @@ namespace Pathfinder.Replacements
                     os.netMap.visibleNodes.Add(int.Parse(node));
                 }
             }, ParseOption.ParseInterior);
+            executor.RegisterExecutor("HacknetSave.mission", (exec, info) => os.currentMission = LoadMission(info));
+            executor.RegisterExecutor("HacknetSave.AllFactions", (exec, info) =>
+            {
+                os.allFactions = new AllFactions
+                {
+                    currentFaction = info.Attributes.GetString("current", null)
+                };
+
+                foreach (var factionInfo in info.Children)
+                {
+                    var faction = LoadFaction(factionInfo);
+                    os.allFactions.factions.Add(faction.idName, faction);
+                }
+            }, ParseOption.ParseInterior);
+            executor.RegisterExecutor("HacknetSave.other", (exec, info) =>
+            {
+                MusicManager.playSongImmediatley(info.Attributes.GetString("music", null));
+                os.homeNodeID = info.Attributes.GetString("homeNode", os.homeNodeID);
+                os.homeAssetServerID = info.Attributes.GetString("homeAssetsNode", os.homeAssetServerID);
+            });
 
             executor.Parse();
 
@@ -416,7 +437,7 @@ namespace Pathfinder.Replacements
             return comp;
         }
 
-        public static Folder LoadFolder(ElementInfo info)
+        private static Folder LoadFolder(ElementInfo info)
         {
             var result = new Folder(Folder.deFilter(info.Attributes.GetString("name")));
             foreach (var child in info.Children)
@@ -429,13 +450,74 @@ namespace Pathfinder.Replacements
                     case "file":
                         if (child.Attributes.GetBool("EduSafe", true) || !Settings.EducationSafeBuild)
                         {
-                            result.files.Add(new FileEntry(child.Content, child.Attributes.GetString("name")));
+                            result.files.Add(new FileEntry(Folder.deFilter(child.Content ?? ""), Folder.deFilter(child.Attributes.GetString("name"))));
                         }
                         break;
                 }
             }
 
             return result;
+        }
+
+        private static ActiveMission LoadMission(ElementInfo root)
+        {
+            var next = root.Attributes.GetString("next", null);
+            if (next == "NULL_MISSION")
+                return null;
+
+            if (root.Attributes.TryGetValue("genTarget", out MissionGenerationParser.Comp))
+            {
+                MissionGenerationParser.File = root.Attributes.GetString("genFile", null);
+                MissionGenerationParser.Path = root.Attributes.GetString("genPath", null);
+                MissionGenerationParser.Target = root.Attributes.GetString("genTargetName", null);
+                MissionGenerationParser.Other = root.Attributes.GetString("genOther", null);
+            }
+            
+            var goalsFile = root.Attributes.GetOrThrow("goals", "Invalid goals file for active mission", StringExtensions.ContentFileExists).ContentFilePath();
+            return MissionLoader.LoadContentMission(goalsFile);
+        }
+
+        private static Faction LoadFaction(ElementInfo info)
+        {
+            Faction ret;
+
+            var name = info.Attributes.GetString("name", "UNKNOWN");
+            var needed = info.Attributes.GetInt("neededVal");
+            switch (info.Name)
+            {
+                case "HubFaction":
+                    ret = new HubFaction(name, needed);
+                    break;
+                case "EntropyFaction":
+                    ret = new EntropyFaction(name, needed);
+                    break;
+                case "CustomFaction":
+                    var actions = new List<CustomFactionAction>();
+                    foreach (var actionSetInfo in info.Children)
+                    {
+                        actions.Add(new CustomFactionAction()
+                        {
+                            ValueRequiredForTrigger = actionSetInfo.Attributes.GetInt("ValueRequired"),
+                            FlagsRequiredForTrigger = actionSetInfo.Attributes.GetString("Flags", null),
+                            TriggerActions = actionSetInfo.Children.Select(ActionsLoader.ReadAction).ToList()
+                        });
+                    }
+                    
+                    ret = new CustomFaction(name, 100)
+                    {
+                        CustomActions = actions
+                    };
+                    break;
+                default:
+                    ret = new Faction(name, needed);
+                    break;
+            }
+
+            ret.playerValue = info.Attributes.GetInt("playerVal");
+            ret.idName = info.Attributes.GetString("id");
+            ret.playerHasPassedValue = info.Attributes.GetBool("playerHasPassed");
+
+            return ret;
         }
     }
 }

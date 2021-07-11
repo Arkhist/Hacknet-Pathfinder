@@ -6,6 +6,7 @@ using Hacknet.Mission;
 using Pathfinder.Event;
 using Pathfinder.Event.Loading.Content;
 using Pathfinder.Util;
+using Pathfinder.Util.XML;
 
 namespace Pathfinder.Mission
 {
@@ -15,23 +16,19 @@ namespace Pathfinder.Mission
 
         static GoalManager()
         {
-            EventManager<LoadGoalEvent>.AddHandler(OnLoadGoal);
             EventManager.onPluginUnload += OnPluginUnload;
         }
 
-        private static void OnLoadGoal(LoadGoalEvent args)
+        internal static bool TryLoadCustomGoal(string type, out MisisonGoal customGoal)
         {
-            if (args.GoalName == null) return;
-            if (CustomGoals.TryGetValue(args.GoalName, out Type goalType))
+            if (CustomGoals.TryGetValue(type, out var goalType))
             {
-                args.GoalFound = true;
-
-                MisisonGoal goal = (MisisonGoal)Activator.CreateInstance(goalType);
-                XMLStorageAttribute.ReadFromXml(args.Reader, goal);
-                if (goal is InitializableGoal pathfinderGoal)
-                    pathfinderGoal.Initialize();
-                args.GoalList.Add(goal);
+                customGoal = (MisisonGoal)Activator.CreateInstance(goalType);
+                return true;
             }
+
+            customGoal = null;
+            return false;
         }
 
         private static void OnPluginUnload(Assembly pluginAsm)
@@ -46,7 +43,7 @@ namespace Pathfinder.Mission
         {
             if (!typeof(MisisonGoal).IsAssignableFrom(goalType))
                 throw new ArgumentException("Goal type must inherit from Hacknet.Mission.MisisonGoal (yes that is spelled right)", nameof(goalType));
-            CustomGoals.Add(xmlName, goalType);
+            CustomGoals.Add(xmlName.ToLower(), goalType);
         }
 
         public static void UnregisterGoal<T>() => UnregisterGoal(typeof(T));
@@ -58,7 +55,7 @@ namespace Pathfinder.Mission
         }
         public static void UnregisterGoal(string xmlName)
         {
-            CustomGoals.Remove(xmlName);
+            CustomGoals.Remove(xmlName.ToLower());
         }
     }
 }
