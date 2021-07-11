@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PathfinderPatcher")]
+[assembly: AssemblyTitle("ProxyCreator")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PathfinderPatcher")]
+[assembly: AssemblyProduct("ProxyCreator")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5B098FF0-05AA-4841-93CC-A5507BE4EBA2")]
+[assembly: Guid("976D989B-F98C-4AF1-8066-173662DBA869")]
 
 // Version information for an assembly consists of the following four values:
 //

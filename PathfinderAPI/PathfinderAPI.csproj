@@ -104,6 +104,7 @@
     <Compile Include="Replacements\MissionLoader.cs" />
     <Compile Include="Replacements\ReplacementsCommon.cs" />
     <Compile Include="Replacements\SaveLoader.cs" />
+    <Compile Include="Security.cs" />
     <Compile Include="Util\AssemblyAssociatedList.cs" />
     <Compile Include="Util\DictionaryExtensions.cs" />
     <Compile Include="Util\StringExtensions.cs" />

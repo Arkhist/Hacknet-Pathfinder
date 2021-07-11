@@ -8,10 +8,9 @@ using HN = global::Hacknet;
 
 namespace BepInEx.Hacknet
 {
-    public static class Entrypoint
+    public class Entrypoint
     {
-        
-        public static void Bootstrap()
+        public Entrypoint()
         {
             AppDomain.CurrentDomain.AssemblyResolve += ResolveBepAssembly;
 
@@ -39,22 +38,40 @@ namespace BepInEx.Hacknet
 
     internal static class LoadBepInEx
     {
+        internal static Assembly HacknetAsm;
+        
+        internal static Assembly ResolveHacknet(object sender, ResolveEventArgs args)
+        {
+            if (new AssemblyName(args.Name).Name == "Hacknet")
+                return HacknetAsm;
+            return null;
+        }
+        
         [MethodImpl(MethodImplOptions.NoInlining)]
         internal static void Load()
         {
             try
             {
                 // Do stuff for BepInEx to recognize where it is
-                Paths.SetExecutablePath(typeof(HN.Program).Assembly.GetName().Name);
+                Paths.SetExecutablePath(Path.Combine(Environment.CurrentDirectory, "Hacknet.exe"));
 
                 Logger.Listeners.Add(new ConsoleLogger());
                 HarmonyLib.AccessTools.PropertySetter(typeof(TraceLogSource), nameof(TraceLogSource.IsListening)).Invoke(null, new object[] { true });
                 ConsoleManager.Initialize(true);
+                Logger.Listeners.Add(new ConsoleLogListener());
 
-                // Start chainloader for plugins
-                var chainloader = new HacknetChainloader();
-                chainloader.Initialize();
-                chainloader.Execute();
+                using (var patcher = new Preloader.Core.AssemblyPatcher())
+                {
+                    patcher.LoadAssemblyDirectories(new [] { Paths.GameRootPath }, new [] { "dll", "exe" });
+                    patcher.AddPatchersFromDirectory(Paths.PatcherPluginPath);
+                    patcher.PatchAndLoad();
+
+                    HacknetAsm = patcher.LoadedAssemblies["Hacknet.exe"];
+                }
+
+                AppDomain.CurrentDomain.AssemblyResolve += ResolveHacknet;
+                
+                StartHacknet.Start();
             }
             catch (Exception ex)
             {
@@ -63,6 +80,20 @@ namespace BepInEx.Hacknet
                 Console.ReadLine();
                 Environment.Exit(1);
             }
+        }
+    }
+
+    internal static class StartHacknet
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        internal static void Start()
+        {
+            // Start chainloader for plugins
+            var chainloader = new HacknetChainloader();
+            chainloader.Initialize();
+            chainloader.Execute();
+
+            LoadBepInEx.HacknetAsm.EntryPoint.Invoke(null, new object[] { Environment.GetCommandLineArgs() });
         }
     }
 }
