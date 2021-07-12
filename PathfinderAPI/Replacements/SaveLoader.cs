@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Hacknet;
 using Hacknet.Factions;
 using Hacknet.Localization;
@@ -12,6 +13,7 @@ using Hacknet.Security;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
+using Pathfinder.Event.Loading;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
@@ -20,6 +22,54 @@ namespace Pathfinder.Replacements
     [HarmonyPatch]
     public static class SaveLoader
     {
+        public abstract class SaveExecutor
+        {
+            public OS Os { get; private set; }
+
+            public virtual void Init(OS os)
+            {
+                Os = os;
+            }
+
+            public abstract void Execute(IExecutor exec, ElementInfo info);
+        }
+
+        private struct SaveExecutorHolder
+        {
+            public string Element;
+            public Type ExecutorType;
+            public ParseOption Options;
+        }
+        
+        private static readonly List<SaveExecutorHolder> CustomExecutors = new List<SaveExecutorHolder>();
+
+        public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : SaveExecutor, new()
+        {
+            CustomExecutors.Add(new SaveExecutorHolder
+            {
+                Element = element,
+                ExecutorType = typeof(T),
+                Options = options
+            });
+        }
+
+        public static void UnregisterExecutor<T>() where T : SaveExecutor, new()
+        {
+            var tType = typeof(T);
+            CustomExecutors.RemoveAll(x => x.ExecutorType == tType);
+        }
+
+        static SaveLoader()
+        {
+            EventManager.onPluginUnload += OnPluginUnload;
+        }
+
+        private static void OnPluginUnload(Assembly pluginAsm)
+        {
+            var allTypes = AccessTools.GetTypesFromAssembly(pluginAsm);
+            CustomExecutors.RemoveAll(x => allTypes.Contains(x.ExecutorType));
+        }
+        
         [HarmonyPrefix]
         [HarmonyPatch(typeof(OS), nameof(OS.loadSaveFile))]
         internal static bool SaveLoadReplacementPrefix(ref OS __instance)
@@ -36,6 +86,14 @@ namespace Pathfinder.Replacements
             var os = __instance;
 
             var executor = new EventExecutor(new StreamReader(saveStream).ReadToEnd(), false);
+
+            foreach (var custom in CustomExecutors)
+            {
+                var customInstance = (SaveExecutor)Activator.CreateInstance(custom.ExecutorType);
+                customInstance.Init(os);
+                executor.RegisterExecutor(custom.Element, customInstance.Execute, custom.Options);
+            }
+            
             executor.RegisterExecutor("HacknetSave", (exec, info) =>
             {
                 MissionGenerator.generationCount = info.Attributes.GetInt("generatedMissionCount", 100);
@@ -433,6 +491,8 @@ namespace Pathfinder.Replacements
                     os.netMap.mailServer = comp;
                     break;
             }
+
+            EventManager<SaveComputerLoadedEvent>.InvokeAll(new SaveComputerLoadedEvent(os, comp, info));
             
             return comp;
         }

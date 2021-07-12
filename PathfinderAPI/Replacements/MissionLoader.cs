@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Hacknet;
 using Hacknet.Extensions;
 using Hacknet.Mission;
 using HarmonyLib;
+using Pathfinder.Event;
 using Pathfinder.Mission;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
@@ -12,6 +15,56 @@ namespace Pathfinder.Replacements
 {
     public static class MissionLoader
     {
+        public abstract class MissionExecutor
+        {
+            public OS Os { get; private set; }
+            public ActiveMission Mission { get; private set; }
+
+            public virtual void Init(OS os, ref ActiveMission mission)
+            {
+                Os = os;
+                Mission = mission;
+            }
+
+            public abstract void Execute(IExecutor exec, ElementInfo info);
+        }
+
+        private struct MissionExecutorHolder
+        {
+            public string Element;
+            public Type ExecutorType;
+            public ParseOption Options;
+        }
+        
+        private static readonly List<MissionExecutorHolder> CustomExecutors = new List<MissionExecutorHolder>();
+
+        public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : MissionExecutor, new()
+        {
+            CustomExecutors.Add(new MissionExecutorHolder
+            {
+                Element = element,
+                ExecutorType = typeof(T),
+                Options = options
+            });
+        }
+
+        public static void UnregisterExecutor<T>() where T : MissionExecutor, new()
+        {
+            var tType = typeof(T);
+            CustomExecutors.RemoveAll(x => x.ExecutorType == tType);
+        }
+
+        static MissionLoader()
+        {
+            EventManager.onPluginUnload += OnPluginUnload;
+        }
+
+        private static void OnPluginUnload(Assembly pluginAsm)
+        {
+            var allTypes = AccessTools.GetTypesFromAssembly(pluginAsm);
+            CustomExecutors.RemoveAll(x => allTypes.Contains(x.ExecutorType));
+        }
+        
         [HarmonyPrefix]
         [HarmonyPatch(typeof(ComputerLoader), nameof(ComputerLoader.readMission))]
         private static bool ReadMissionPrefix(string filename, out object __result)
@@ -33,6 +86,13 @@ namespace Pathfinder.Replacements
             mission.email.attachments = new List<string>();
             
             var executor = new EventExecutor(LocalizedFileLoader.GetLocalizedFilepath(filename), true);
+
+            foreach (var custom in CustomExecutors)
+            {
+                var customInstance = (MissionExecutor)Activator.CreateInstance(custom.ExecutorType);
+                customInstance.Init(OS.currentInstance, ref mission);
+                executor.RegisterExecutor(custom.Element, customInstance.Execute, custom.Options);
+            }
             
             executor.RegisterExecutor("mission", (exec, info) =>
             {

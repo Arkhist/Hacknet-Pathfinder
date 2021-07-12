@@ -30,6 +30,7 @@ namespace ExampleMod2
             Pathfinder.Mission.GoalManager.RegisterGoal<TestGoal>("resetIP");
             Pathfinder.Action.ConditionManager.RegisterCondition<TestCondition>("OnDelete");
             Pathfinder.Action.ActionManager.RegisterAction<TestAction>("RandomFlag");
+            Pathfinder.Replacements.ContentLoader.RegisterExecutor<TestComputerExecutor>("Computer", ParseOption.FireOnEnd);
 
             return true;
         }
@@ -38,6 +39,14 @@ namespace ExampleMod2
         {
             os.write("pathfinder is here!");
             os.write("Arguments passed in: " + string.Join(" ", args));
+        }
+    }
+
+    public class TestComputerExecutor : Pathfinder.Replacements.ContentLoader.ComputerExecutor
+    {
+        public override void Execute(IExecutor exec, ElementInfo info)
+        {
+            Comp.name = "hello from custom executor!";
         }
     }
 

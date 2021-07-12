@@ -1,13 +1,14 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Hacknet;
 using Hacknet.Extensions;
 using Hacknet.Security;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Pathfinder.Administrator;
+using Pathfinder.Event;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
@@ -16,6 +17,65 @@ namespace Pathfinder.Replacements
     [HarmonyPatch]
     public static class ContentLoader
     {
+        public abstract class ComputerExecutor
+        {
+            public OS Os { get; private set; }
+            private ComputerHolder _comp;
+            public Computer Comp => _comp;
+
+            public virtual void Init(OS os, ref ComputerHolder comp)
+            {
+                Os = os;
+                _comp = comp;
+            }
+
+            public abstract void Execute(IExecutor exec, ElementInfo info);
+        }
+
+        public class ComputerHolder
+        {
+            internal Computer Comp;
+            internal ComputerHolder() {}
+
+            public static implicit operator Computer(ComputerHolder holder) => holder.Comp;
+        }
+
+        private struct ComputerExecutorHolder
+        {
+            public string Element;
+            public Type ExecutorType;
+            public ParseOption Options;
+        }
+        
+        private static readonly List<ComputerExecutorHolder> CustomExecutors = new List<ComputerExecutorHolder>();
+
+        public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : ComputerExecutor, new()
+        {
+            CustomExecutors.Add(new ComputerExecutorHolder
+            {
+                Element = element,
+                ExecutorType = typeof(T),
+                Options = options
+            });
+        }
+
+        public static void UnregisterExecutor<T>() where T : ComputerExecutor, new()
+        {
+            var tType = typeof(T);
+            CustomExecutors.RemoveAll(x => x.ExecutorType == tType);
+        }
+
+        static ContentLoader()
+        {
+            EventManager.onPluginUnload += OnPluginUnload;
+        }
+
+        private static void OnPluginUnload(Assembly pluginAsm)
+        {
+            var allTypes = AccessTools.GetTypesFromAssembly(pluginAsm);
+            CustomExecutors.RemoveAll(x => allTypes.Contains(x.ExecutorType));
+        }
+        
         [HarmonyPrefix]
         [HarmonyPatch(typeof(ComputerLoader), nameof(ComputerLoader.loadComputer))]
         private static bool LoadComputerPrefix(string filename, bool preventAddingToNetmap, bool preventInitDaemons, out object __result)
@@ -33,6 +93,15 @@ namespace Pathfinder.Replacements
             var os = OS.currentInstance;
 
             var executor = new EventExecutor(filename, true);
+
+            var holder = new ComputerHolder();
+            
+            foreach (var custom in CustomExecutors)
+            {
+                var customInstance = (ComputerExecutor) Activator.CreateInstance(custom.ExecutorType);
+                customInstance.Init(os, ref holder);
+                executor.RegisterExecutor(custom.Element, customInstance.Execute, custom.Options);
+            }
 
             executor.RegisterExecutor("Computer", (exec, info) =>
             {
@@ -59,6 +128,7 @@ namespace Pathfinder.Replacements
                     AllowsDefaultBootModule = info.Attributes.GetBool("allowsDefaultBootModule"),
                     icon = info.Attributes.GetString("icon", null)
                 };
+                holder.Comp = comp;
 
                 if (type == 4)
                 {
