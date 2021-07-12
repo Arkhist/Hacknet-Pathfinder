@@ -544,8 +544,21 @@ namespace Pathfinder.Replacements
                 if (!DLC1SessionUpgrader.HasDLC1Installed)
                     throw new NotSupportedException("Labyrinths DLC must be installed for DatabaseDaemon!");
                 
-                throw new NotImplementedException("I don't feel like dealing with this database shit just yet, ill do it later");
-            });
+                comp.daemons.Add(new DatabaseDaemon(
+                    comp,
+                    os,
+                    info.Attributes.GetString("Name", "Database"),
+                    DatabaseDaemon.GetDatabasePermissionsFromString(info.Attributes.GetString("Permissions")),
+                    info.Attributes.GetString("DataType", null),
+                    info.Attributes.GetString("Foldername", null),
+                    info.Attributes.GetColor("Color")
+                )
+                {
+                    adminResetEmailHostID = info.Attributes.GetString("AdminEmailHostID", null),
+                    adminResetPassEmailAccount = info.Attributes.GetString("AdminEmailAccount"),
+                    Dataset = info.Children.Count == 0 ? null : info.Children.Cast<object>().ToList()
+                });
+            }, ParseOption.ParseInterior);
             executor.RegisterExecutor("Computer.WhitelistAuthenticatorDaemon", (exec, info) =>
             {
                 comp.daemons.Add(new WhitelistConnectionDaemon(comp, os)

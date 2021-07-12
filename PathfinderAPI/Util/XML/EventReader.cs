@@ -24,14 +24,20 @@ namespace Pathfinder.Util.XML
             Text = isPath ? File.ReadAllText(text) : text;
         }
 
+        public EventReader(XmlReader rdr)
+        {
+            Reader = rdr;
+        }
+
         public void Parse()
         {
             ParentNames.Clear();
             
             // verify xml is formatted legally
-            using (XmlReader reader = XmlReader.Create(new StringReader(Text))) while (reader.Read());
+            if (Reader == null)
+                using (XmlReader reader = XmlReader.Create(new StringReader(Text))) while (reader.Read());
 
-            using (Reader = XmlReader.Create(new StringReader(Text)))
+            using (Reader = Reader ?? XmlReader.Create(new StringReader(Text)))
             {
                 while (Reader.Read())
                 {

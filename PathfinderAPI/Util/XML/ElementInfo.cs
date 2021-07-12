@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Xml;
 
 namespace Pathfinder.Util.XML
@@ -14,6 +15,40 @@ namespace Pathfinder.Util.XML
         public Dictionary<string, string> Attributes = new Dictionary<string, string>();
         public List<ElementInfo> Children = new List<ElementInfo>();
         public readonly ulong NodeID = freeId++;
+
+        public override string ToString()
+        {
+            var builder = new StringBuilder();
+            var settings = new XmlWriterSettings
+            {
+                #if DEBUG
+                Indent = true
+                #endif
+            };
+            using (var writer = XmlWriter.Create(builder, settings))
+            {
+                WriteToXML(writer);
+            }
+
+            return builder.ToString();
+        }
+
+        public void WriteToXML(XmlWriter writer)
+        {
+            writer.WriteStartElement(Name, "");
+            foreach (var attr in Attributes)
+                writer.WriteAttributeString(attr.Key, attr.Value);
+            if (Content == null)
+            {
+                foreach (var child in Children)
+                    child.WriteToXML(writer);
+            }
+            else
+            {
+                writer.WriteValue(Content);
+            }
+            writer.WriteEndElement();
+        }
     }
 
     public static class ListExtensions

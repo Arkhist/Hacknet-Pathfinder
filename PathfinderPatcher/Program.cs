@@ -13,10 +13,16 @@ namespace PathfinderPatcher
         {
             using (AssemblyDefinition hn = AssemblyDefinition.ReadAssembly("Hacknet.exe"))
             {
-                // Make everything public
-                foreach (var type in hn.MainModule.Types)
+                void MakePublic(TypeDefinition type, bool nested = false)
                 {
-                    type.IsPublic = true;
+                    if (nested)
+                    {
+                        type.IsNestedPublic = true;
+                    }
+                    else
+                    {
+                        type.IsPublic = true;
+                    }
                     foreach (var method in type.Methods)
                         method.IsPublic = true;
                     foreach (var field in type.Fields)
@@ -28,6 +34,17 @@ namespace PathfinderPatcher
                         if (property.SetMethod != null)
                             property.SetMethod.IsPublic = true;
                     }
+
+                    foreach (var nestedType in type.NestedTypes)
+                    {
+                        MakePublic(nestedType, true);
+                    }
+                }
+                
+                // Make everything public
+                foreach (var type in hn.MainModule.Types)
+                {
+                    MakePublic(type);
                 }
 
                 // We want to run before everything else, including the Main program function, so we make a static module constructor

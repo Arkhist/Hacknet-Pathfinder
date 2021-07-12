@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 
 namespace Pathfinder.Util.XML
 {
@@ -17,6 +18,7 @@ namespace Pathfinder.Util.XML
         private List<ReadExecution> currentExecutors;
 
         public EventExecutor(string text, bool isPath) : base(text, isPath) {}
+        public EventExecutor(XmlReader rdr) : base(rdr) {}
         
         public void RegisterExecutor(string element, ReadExecution executor, ParseOption options = ParseOption.None)
         {
@@ -122,6 +124,10 @@ namespace Pathfinder.Util.XML
 
                 if (!name.Contains("."))
                 {
+                    if (Executors.TryGetValue("*", out executors))
+                    {
+                        return true;
+                    }
                     executors = new List<ExecutorHolder>();
                     return false;
                 }
