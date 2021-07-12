@@ -9,7 +9,8 @@ namespace Pathfinder.Util.XML
     {
         None = 0,
         ParseInterior = 0b1,
-        FireOnEnd = 0b10
+        FireOnEnd = 0b10,
+        DontAllowOthers = 0b100
     }
     
     public interface IExecutor

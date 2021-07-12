@@ -24,6 +24,12 @@ namespace Pathfinder.Util.XML
         {
             if (!Executors.TryGetValue(element, out _))
                 Executors.Add(element, new List<ExecutorHolder>());
+            if (Executors[element].Any(x => (x.Options & ParseOption.DontAllowOthers) != 0))
+            {
+                return;
+            }
+            if ((options & ParseOption.DontAllowOthers) != 0)
+                Executors[element].Clear();
             Executors[element].Add(new ExecutorHolder { Executor = executor, Options = options });
         }
 
