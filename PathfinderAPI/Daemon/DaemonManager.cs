@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using Hacknet;
 using Pathfinder.Event;
-using Pathfinder.Event.Loading.Content;
 using Pathfinder.Util.XML;
 
 namespace Pathfinder.Daemon
@@ -16,19 +14,7 @@ namespace Pathfinder.Daemon
 
         static DaemonManager()
         {
-            EventManager<ComputerComponentLoadEvent>.AddHandler(OnComponentLoad);
             EventManager.onPluginUnload += onPluginUnload;
-        }
-
-        private static void OnComponentLoad(ComputerComponentLoadEvent args)
-        {
-            var daemonType = CustomDaemons.FirstOrDefault(x => x.Name == args.Info.Name);
-            if (daemonType != null)
-            {
-                BaseDaemon daemon = (BaseDaemon)Activator.CreateInstance(daemonType, new object[] { args.Comp, args.Info.Name, args.Os });
-                daemon.LoadFromXml(args.Info);
-                args.Comp.daemons.Add(daemon);
-            }
         }
         
         internal static bool TryLoadCustomDaemon(ElementInfo info, Computer comp, OS os)

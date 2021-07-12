@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Xml;
 using Hacknet;
-using Hacknet.Mission;
 using HarmonyLib;
 using Pathfinder.Event;
-using Pathfinder.Event.Loading.Content;
 using Pathfinder.Util.XML;
 
 namespace Pathfinder.Action

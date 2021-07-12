@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using Hacknet;
 using Pathfinder.Event;
-using Pathfinder.Event.Loading.Content;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
@@ -17,13 +15,7 @@ namespace Pathfinder.Administrator
 
         static AdministratorManager()
         {
-            EventManager<ComputerComponentLoadEvent>.AddHandler(OnComponentLoad);
             EventManager.onPluginUnload += onPluginUnload;
-        }
-
-        private static void OnComponentLoad(ComputerComponentLoadEvent args)
-        {
-            // TODO : Content loading
         }
         
         internal static void LoadAdministrator(ElementInfo info, Computer comp, OS os)

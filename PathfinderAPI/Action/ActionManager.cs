@@ -7,7 +7,6 @@ using Hacknet;
 using Hacknet.Mission;
 using HarmonyLib;
 using Pathfinder.Event;
-using Pathfinder.Event.Loading.Content;
 using Pathfinder.Util.XML;
 
 namespace Pathfinder.Action
