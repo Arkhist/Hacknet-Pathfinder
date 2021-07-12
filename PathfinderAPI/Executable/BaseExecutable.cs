@@ -7,7 +7,7 @@ namespace Pathfinder.Executable
     {
         public abstract string GetIdentifier();
 
-        public string[] Args;
+        public readonly string[] Args;
 
         public BaseExecutable(Rectangle location, OS operatingSystem, string[] args) : base(location, operatingSystem)
         {

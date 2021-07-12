@@ -53,7 +53,7 @@ namespace Pathfinder.Administrator
 
                 if (comp.admin != null)
                 {
-                    comp.admin.ResetsPassword = info.Attributes.GetBool("resetPass");
+                    comp.admin.ResetsPassword = info.Attributes.GetBool("resetPass", true);
                     comp.admin.IsSuper = info.Attributes.GetBool("isSuper");
                 }
             }

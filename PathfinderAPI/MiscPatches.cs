@@ -87,6 +87,7 @@ namespace Pathfinder
 #if DEBUG
         [HarmonyILManipulator]
         [HarmonyPatch(typeof(Program), nameof(Program.Main))]
+        [HarmonyPatch(typeof(MainMenu), "<HookUpCreationEvents>b__1")]
         internal static void StopCatchingExceptionsIL(ILContext il)
         {
             ILCursor c = new ILCursor(il);

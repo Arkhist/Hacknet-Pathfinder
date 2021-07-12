@@ -72,7 +72,9 @@
     <Compile Include="Administrator\AdministratorManager.cs" />
     <Compile Include="Administrator\BaseAdministrator.cs" />
     <Compile Include="BaseGameFixes\AutoClearMissionsOnSingleComplete.cs" />
+    <Compile Include="BaseGameFixes\ClearPostLoadActions.cs" />
     <Compile Include="BaseGameFixes\HHBS.cs" />
+    <Compile Include="BaseGameFixes\MissionListingServerLoadTime.cs" />
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
     <Compile Include="Command\CommandManager.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="Mission\PathfinderGoal.cs" />
     <Compile Include="Port\PortManager.cs" />
     <Compile Include="Replacements\ActionsLoader.cs" />
+    <Compile Include="Replacements\ContentLoader.cs" />
     <Compile Include="Replacements\MissionLoader.cs" />
     <Compile Include="Replacements\ReplacementsCommon.cs" />
     <Compile Include="Replacements\SaveLoader.cs" />

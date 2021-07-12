@@ -66,7 +66,7 @@ namespace Pathfinder.Replacements
             {
                 var filePrefix = Settings.IsInExtensionMode ? ExtensionLoader.ActiveExtensionInfo.FolderPath + "/" : "Content/Missions/";
                 branches.Add(LoadContentMission(filePrefix + info.Content));
-            });
+            }, ParseOption.ParseInterior);
             executor.RegisterExecutor("mission.branchMissions", (exec, info) => OS.currentInstance.branchMissions = branches, ParseOption.FireOnEnd);
             executor.RegisterExecutor("mission.posting", (exec, info) =>
             {
