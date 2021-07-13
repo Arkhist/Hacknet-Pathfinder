@@ -9,6 +9,7 @@ using System.Xml;
 using Hacknet.Mission;
 using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.Action;
+using Pathfinder.Administrator;
 using Pathfinder.Util;
 using Pathfinder.Daemon;
 using Pathfinder.Mission;
@@ -31,6 +32,7 @@ namespace ExampleMod2
             Pathfinder.Action.ConditionManager.RegisterCondition<TestCondition>("OnDelete");
             Pathfinder.Action.ActionManager.RegisterAction<TestAction>("RandomFlag");
             Pathfinder.Replacements.ContentLoader.RegisterExecutor<TestComputerExecutor>("Computer", ParseOption.FireOnEnd);
+            Pathfinder.Administrator.AdministratorManager.RegisterAdministrator<TestAdministrator>();
 
             return true;
         }
@@ -180,6 +182,23 @@ namespace ExampleMod2
             if (Max != null)
                 max = int.Parse(Max);
         }
+    }
+
+    public class TestAdministrator : BaseAdministrator
+    {
+        public TestAdministrator(Computer computer, OS opSystem) : base(computer, opSystem)
+        {
+            Console.WriteLine("Test administrator created.");
+        }
+        public override void disconnectionDetected(Computer c, OS os)
+		{
+            os.write("TestAdmin detected disconnection");
+		}
+
+		public override void traceEjectionDetected(Computer c, OS os)
+		{
+            os.write("TestAdmin detected trace ejection");
+		}
     }
 
     [HarmonyPatch]

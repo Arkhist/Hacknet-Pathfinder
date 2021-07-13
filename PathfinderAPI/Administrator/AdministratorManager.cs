@@ -27,6 +27,7 @@ namespace Pathfinder.Administrator
             if (adminType != null) {
                 BaseAdministrator admin = (BaseAdministrator)Activator.CreateInstance(adminType, new object[] { comp, os });
                 admin.LoadFromXml(info);
+                comp.admin = admin;
             }
             else
             {
