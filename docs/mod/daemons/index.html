@@ -59,13 +59,19 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../executables/">Executables</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../ports/">Ports</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../computers/">Computers</a>
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Daemons</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#base-daemon">Base daemon</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#registration">Registration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-a-custom-daemon-in-a-computer">Adding a custom daemon in a computer</a>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../actions/">Actions</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../admins/">Administrators</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../missions/">Missions</a>
                     </li>
@@ -112,7 +118,32 @@
           <div role="main">
             <div class="section">
               
-                
+                <h1 id="creating-custom-daemons">Creating custom daemons</h1>
+<h2 id="base-daemon">Base daemon</h2>
+<pre><code class="language-CSharp">public class CustomDaemon : Pathfinder.Daemon.BaseDaemon
+{
+    public CustomDaemon(Computer computer, string serviceName, OS opSystem) : base(computer, serviceName, opSystem) { }
+
+    public override string Identifier =&gt; &quot;Custom Daemon&quot;;
+
+    [XMLStorage]
+    public string DisplayString;
+
+    public override void draw(Rectangle bounds, SpriteBatch sb)
+    {
+        base.draw(bounds, sb);
+
+        var center = os.display.bounds.Center;
+        Hacknet.Gui.TextItem.doLabel(new Vector2(center.X, center.Y), DisplayString, Color.Aquamarine);
+    }
+}
+</code></pre>
+<h2 id="registration">Registration</h2>
+<pre><code class="language-CSharp">Pathfinder.Daemon.DaemonManager.RegisterDaemon&lt;CustomDaemon&gt;();
+</code></pre>
+<h2 id="adding-a-custom-daemon-in-a-computer">Adding a custom daemon in a computer</h2>
+<pre><code class="language-XML">&lt;CustomDaemon /&gt;
+</code></pre>
               
             </div>
           </div>
@@ -123,7 +154,7 @@
         <a href="../actions/" class="btn btn-neutral float-right" title="Actions">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../ports/" class="btn btn-neutral" title="Ports"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../computers/" class="btn btn-neutral" title="Computers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -149,7 +180,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../ports/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../computers/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../actions/" style="color: #fcfcfc">Next &raquo;</a></span>

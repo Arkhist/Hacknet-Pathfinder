@@ -9,10 +9,9 @@ nav:
         - Getting started: mod/start.md
         - Commands: mod/commands.md
         - Executables: mod/executables.md
-        - Ports: mod/ports.md
+        - Computers: mod/computers.md
         - Daemons: mod/daemons.md
         - Actions: mod/actions.md
-        - Administrators: mod/admins.md
         - Missions: mod/missions.md
     - Pathfinder Development: 
         - Contributing: contributing.md

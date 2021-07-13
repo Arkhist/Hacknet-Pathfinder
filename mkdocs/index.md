@@ -21,6 +21,10 @@ Run the Hacknet Pathfinder installer, downloadable from: [Github](https://github
 
 Hacknet Pathfinder runs as normal Hacknet, there is no change.
 
+## Installing global mods
+
+Move the global mod contents into `Hacknet/BepInEx/plugins`.
+
 ## Troubleshooting
 
 ### [Windows] System.NotSupportedException on launch

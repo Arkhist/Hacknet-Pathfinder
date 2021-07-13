@@ -54,18 +54,18 @@
                 <p class="caption"><span class="caption-text">Mod Development</span></p>
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Getting started</a>
+    <ul class="current">
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../commands/">Commands</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../executables/">Executables</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../ports/">Ports</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../computers/">Computers</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../daemons/">Daemons</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../actions/">Actions</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../admins/">Administrators</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../missions/">Missions</a>
                     </li>
@@ -112,7 +112,36 @@
           <div role="main">
             <div class="section">
               
-                
+                <h1 id="getting-started-with-pathfinder-modding">Getting started with Pathfinder Modding</h1>
+<p>Use <a href="https://github.com/Windows10CE/HacknetPluginTemplate">this template</a> or follow the steps below.</p>
+<ul>
+<li>Start a new .NET library project with .NET Framework 4.0</li>
+<li>Link it against the <code>HacknetPathfinder.exe</code> (<code>Hacknet.exe</code> if you installed Pathfinder), <code>PathfinderAPI.dll</code>, <code>FNA.dll</code>, <code>BepInEx.Core.dll</code>, and <code>BepInEx.Hacknet.dll</code>. You may need more than this, but that's the reccomended set to begin on a simple mod.</li>
+<li>You may need to go into the project options and set the project to target the <code>x86</code> platform</li>
+<li>Create a class that inherits from <code>BepInEx.Hacknet.HacknetPlugin</code>, and add the <code>BepInEx.BepInPlugin</code> attribute to it with a name, guid, and version.</li>
+</ul>
+<pre><code class="language-CSharp">using BepInEx;
+using BepInEx.Hacknet;
+
+namespace HacknetPluginTemplate
+{
+    [BepInPlugin(ModGUID, ModName, ModVer)]
+    public class HacknetPluginTemplate : HacknetPlugin
+    {
+        public const string ModGUID = &quot;com.Windows10CE.Template&quot;;
+        public const string ModName = &quot;MOD NAME HERE&quot;;
+        public const string ModVer = &quot;1.0.0&quot;;
+
+        public override bool Load()
+        {
+            return true;
+        }
+    }
+}
+</code></pre>
+<p>And now you have a basic functioning mod, the rest is up to you!</p>
+<p>All of the "Register" calls should be placed in the <code>Load()</code> function of your mod.</p>
+<p>Install the mod by placing it in <code>Hacknet/BepInEx/plugins</code> or a folder called <code>Plugins</code> in your extension's folder if you want to make it extension-specific.</p>
               
             </div>
           </div>

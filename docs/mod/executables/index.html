@@ -58,14 +58,28 @@
                     <li class="toctree-l1"><a class="reference internal" href="../commands/">Commands</a>
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Executables</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#the-base-executable">The base executable</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#registration">Registration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#executable-features">Executable features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exiting">Exiting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#opening-a-port-starting-a-trace">Opening a port, starting a trace</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#drawing-in-the-executables-area">Drawing in the executable's area</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../ports/">Ports</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../computers/">Computers</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../daemons/">Daemons</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../actions/">Actions</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../admins/">Administrators</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../missions/">Missions</a>
                     </li>
@@ -112,7 +126,71 @@
           <div role="main">
             <div class="section">
               
-                
+                <h1 id="creating-custom-executables">Creating custom executables</h1>
+<h2 id="the-base-executable">The base executable</h2>
+<pre><code class="language-CSharp">public class BasicExecutable : Pathfinder.Executable.BaseExecutable
+{
+    public override string GetIdentifier() =&gt; &quot;ExecName&quot;;
+
+    public BasicExecutable(Rectangle location, OS operatingSystem, string[] args) : base(location, operatingSystem, args) {
+         this.ramCost = 761;
+    }
+
+    public override void LoadContent()
+    {
+        base.LoadContent();
+    }
+
+    public override void Draw(float t)
+    {
+        base.Draw(t);
+        drawTarget();
+        drawOutline();
+    }
+
+    private float lifetime = 0f;
+    public override void Update(float t)
+    {
+        base.Update(t);
+        lifetime += t;
+    }
+}
+</code></pre>
+<h2 id="registration">Registration</h2>
+<pre><code class="language-CSharp">Pathfinder.Executable.ExecutableManager.RegisterExecutable&lt;BasicExecutable&gt;(&quot;#PF_BASIC_EXE#&quot;);
+</code></pre>
+<p>The provided argument corresponds to the replacement tag for extensions.</p>
+<h2 id="executable-features">Executable features</h2>
+<h3 id="exiting">Exiting</h3>
+<p>Setting <code>isExiting</code> to <code>true</code> will close the executable slowly.</p>
+<p>Setting <code>needsRemoval</code> to <code>true</code> will close the executable instantly.</p>
+<p>Example:</p>
+<pre><code class="language-CSharp">private float lifetime = 0f;
+public override void Update(float t)
+{
+    base.Update(t);
+    lifetime += t;
+    if (lifetime &gt; 2.5f)
+        isExiting = true;
+}
+</code></pre>
+<h3 id="opening-a-port-starting-a-trace">Opening a port, starting a trace</h3>
+<p>The executable has access to the OS object <code>os</code> (interface with the game), <code>thisComputer</code> (the player's computer) and <code>targetIP</code>, the IP the player was connected to on executable launch.</p>
+<pre><code class="language-CSharp">Programs.getComputer(os, targetIP).openPort(PORT_NUMBER_HERE, os.thisComputer.ip);
+</code></pre>
+<p>To start a trace, if the computer has security:</p>
+<pre><code class="language-CSharp">Programs.getComputer(os, targetIP).hostileActionTaken();
+</code></pre>
+<h3 id="drawing-in-the-executables-area">Drawing in the executable's area</h3>
+<p>The <code>Hacknet.Gui</code> namespace contains most of the drawing functions.</p>
+<pre><code class="language-CSharp">public override void Draw(float t)
+{
+    base.Draw(t);
+    drawTarget();
+    drawOutline();
+    Hacknet.Gui.TextItem.doLabel(new Vector2(Bounds.Center.X, Bounds.Center.Y), &quot;blue text&quot;, new Color(255, 0, 0));
+}
+</code></pre>
               
             </div>
           </div>
@@ -120,7 +198,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ports/" class="btn btn-neutral float-right" title="Ports">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../computers/" class="btn btn-neutral float-right" title="Computers">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../commands/" class="btn btn-neutral" title="Commands"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -152,7 +230,7 @@
       <span><a href="../commands/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../ports/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../computers/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

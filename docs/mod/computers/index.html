@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="canonical" href="https://arkhist.github.io/Hacknet-Pathfinder/mod/admins/">
+  <link rel="canonical" href="https://arkhist.github.io/Hacknet-Pathfinder/mod/computers/">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Administrators - Hacknet Pathfinder Documentation</title>
+  <title>Computers - Hacknet Pathfinder Documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Administrators";
-    var mkdocs_page_input_path = "mod/admins.md";
-    var mkdocs_page_url = "/Hacknet-Pathfinder/mod/admins/";
+    var mkdocs_page_name = "Computers";
+    var mkdocs_page_input_path = "mod/computers.md";
+    var mkdocs_page_url = "/Hacknet-Pathfinder/mod/computers/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -59,13 +59,17 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../executables/">Executables</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../ports/">Ports</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Computers</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#new-ports">New ports</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#new-administrators">New administrators</a>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../daemons/">Daemons</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../actions/">Actions</a>
-                    </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Administrators</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../missions/">Missions</a>
                     </li>
@@ -100,7 +104,7 @@
         
       
     
-    <li>Administrators</li>
+    <li>Computers</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -112,7 +116,12 @@
           <div role="main">
             <div class="section">
               
-                
+                <h1 id="custom-computer-features">Custom computer features</h1>
+<h2 id="new-ports">New ports</h2>
+<pre><code class="language-CSharp">Pathfinder.Port.PortManager.RegisterPort(&quot;Example port&quot;, 50);
+</code></pre>
+<h2 id="new-administrators">New administrators</h2>
+<p>Feature programmed, not yet tested. Experiment at your own risk.</p>
               
             </div>
           </div>
@@ -120,10 +129,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../missions/" class="btn btn-neutral float-right" title="Missions">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../daemons/" class="btn btn-neutral float-right" title="Daemons">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../actions/" class="btn btn-neutral" title="Actions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../executables/" class="btn btn-neutral" title="Executables"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -149,10 +158,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../actions/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../executables/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../missions/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../daemons/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
