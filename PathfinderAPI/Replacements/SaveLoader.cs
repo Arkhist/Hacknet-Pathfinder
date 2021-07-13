@@ -135,7 +135,7 @@ namespace Pathfinder.Replacements
             {
                 os.Flags.Flags.Clear();
 
-                foreach (var flag in info.Content.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var flag in info.Content?.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries) ?? new string[0])
                 {
                     os.Flags.Flags.Add(flag
                         .Replace("[%%COMMAREPLACED%%]", ",")

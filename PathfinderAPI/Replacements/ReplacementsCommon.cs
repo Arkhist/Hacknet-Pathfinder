@@ -15,7 +15,7 @@ namespace Pathfinder.Replacements
 
             if (info.Children.TryGetElement("Commands", out var commands))
             {
-                foreach (var command in commands.Children.Select(x => x.Content))
+                foreach (var command in commands.Children.Select(x => x.Content).Where(StringExtensions.HasContent))
                 {
                     if (command.Contains("\n"))
                     {

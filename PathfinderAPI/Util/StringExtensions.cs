@@ -18,6 +18,6 @@ namespace Pathfinder.Util
             return filename.StartsWith("Content/") ? filename : "Content/" + filename;
         }
 
-        public static string Filter(this string s) => ComputerLoader.filter(s);
+        public static string Filter(this string s) => s == null ? null : ComputerLoader.filter(s);
     }
 }

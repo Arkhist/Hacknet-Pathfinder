@@ -63,5 +63,25 @@ namespace Pathfinder.BaseGameFixes
                     }));
             });
         }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(MissionHubServer), nameof(MissionHubServer.initFiles))]
+        internal static void FixMissionLoadTimes2(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.Before, x => x.MatchLdfld(AccessTools.Field(typeof(OS), nameof(OS.delayer))));
+
+            c.Index -= 2;
+
+            c.RemoveRange(4);
+
+            var postAllLoaded = AccessTools.Field(typeof(ComputerLoader), nameof(ComputerLoader.postAllLoadedActions));
+            c.Emit(OpCodes.Ldsfld, postAllLoaded);
+            c.Index += 3;
+            c.Remove();
+            c.Emit(OpCodes.Call, AccessTools.Method(typeof(Delegate), nameof(Delegate.Combine), new Type[] { typeof(Delegate), typeof(Delegate) }));
+            c.Emit(OpCodes.Stsfld, postAllLoaded);
+        }
     }
 }

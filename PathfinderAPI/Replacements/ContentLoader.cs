@@ -116,15 +116,15 @@ namespace Pathfinder.Replacements
                 }
 
                 comp = new Computer(
-                    info.Attributes.GetString("name", "UNKNOWN"),
-                    info.Attributes.GetString("ip", NetworkMap.generateRandomIP()),
+                    info.Attributes.GetString("name", "UNKNOWN").Filter(),
+                    info.Attributes.GetString("ip", NetworkMap.generateRandomIP()).Filter(),
                     os.netMap.getRandomPosition(),
                     info.Attributes.GetInt("security"),
                     type,
                     os
                 )
                 {
-                    idName = info.Attributes.GetString("id", "UNKNOWN"),
+                    idName = info.Attributes.GetString("id", "UNKNOWN").Filter(),
                     AllowsDefaultBootModule = info.Attributes.GetBool("allowsDefaultBootModule"),
                     icon = info.Attributes.GetString("icon", null)
                 };
@@ -416,7 +416,7 @@ namespace Pathfinder.Replacements
             executor.RegisterExecutor("Computer.missionHubServer", (exec, info) =>
             {
                 var missionPath = info.Attributes.GetString("missionFolderPath", null);
-                if (Settings.IsInExtensionMode)
+                if (!Settings.IsInExtensionMode)
                     missionPath = "Content/Missions/" + missionPath;
                 else
                     missionPath = ExtensionLoader.ActiveExtensionInfo.FolderPath + "/" + missionPath;
@@ -826,7 +826,7 @@ namespace Pathfinder.Replacements
             }
 
             if (comp == null)
-                throw new FormatException($"{filename}: No computer element where one was expected!");
+                return null;
 
             if (!preventInitDaemons)
                 comp.initDaemons();
