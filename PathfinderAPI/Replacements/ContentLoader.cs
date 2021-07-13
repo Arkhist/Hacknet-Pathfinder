@@ -8,6 +8,7 @@ using Hacknet.Security;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Pathfinder.Administrator;
+using Pathfinder.Daemon;
 using Pathfinder.Event;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
@@ -819,6 +820,14 @@ namespace Pathfinder.Replacements
                     info.Attributes.GetString("name", null)
                 ));
             }, ParseOption.ParseInterior);
+
+            foreach (var customDaemon in DaemonManager.CustomDaemons)
+            {
+                executor.RegisterExecutor("Computer." + customDaemon.Name, (exec, info) =>
+                {
+                    DaemonManager.TryLoadCustomDaemon(info, comp, os);
+                });
+            }
 
             if (!executor.TryParse(out var ex))
             {

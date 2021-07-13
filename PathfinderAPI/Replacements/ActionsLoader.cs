@@ -27,6 +27,9 @@ namespace Pathfinder.Replacements
             {
                 throw new FormatException($"{filepath}: {ex.Message}", ex);
             }
+
+            if (!os.ConditionalActions.IsUpdating)
+                os.ConditionalActions.Update(0f, os);
             
             return false;
         }
@@ -310,7 +313,7 @@ namespace Pathfinder.Replacements
                 case "ShowNode":
                     return new SAShowNode()
                     {
-                        Target = actionInfo.Attributes.GetOrThrow("Target", "Invalid target computer for ShowNode", StringExtensions.HasContent),
+                        Target = actionInfo.Attributes.GetAnyOrThrow(new[] { "Target", "TargetComp" }, "Invalid target computer for ShowNode", StringExtensions.HasContent),
                         Delay = actionInfo.Attributes.GetFloat("Delay"),
                         DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                     };
