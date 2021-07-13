@@ -53,10 +53,19 @@ namespace BepInEx.Hacknet
         {
             var type = pluginAssembly.GetType(pluginInfo.TypeName);
 
-            var pluginInstance = (HacknetPlugin)Activator.CreateInstance(type);
-            if (!pluginInstance.Load())
+            HacknetPlugin pluginInstance = null;
+            try
             {
-                throw new Exception($"{pluginInfo.Metadata.GUID} returned false on it's load method");
+                pluginInstance = (HacknetPlugin) Activator.CreateInstance(type);
+                if (!pluginInstance.Load())
+                {
+                    throw new Exception($"{pluginInfo.Metadata.GUID} returned false on its load method");
+                }
+            }
+            catch (Exception e)
+            {
+                TemporaryPluginGUIDs.Remove(pluginInfo.Metadata.GUID);
+                throw new Exception("", e);
             }
 
             return pluginInstance;
