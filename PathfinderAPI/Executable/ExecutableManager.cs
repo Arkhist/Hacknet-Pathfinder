@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Text;
 using Hacknet;
 using Pathfinder.Event;
 using Pathfinder.Event.Loading;
@@ -57,14 +58,18 @@ namespace Pathfinder.Executable
             if (!typeof(BaseExecutable).IsAssignableFrom(executableType))
                 throw new ArgumentException("Type of exe registered must inherit from Pathfinder.Executable.BaseExecutable!", nameof(executableType));
 
-            string hex = BitConverter.ToString(System.Text.Encoding.ASCII.GetBytes("PathfinderExe:" + executableType.FullName));
+            var builder = new StringBuilder();
+            foreach (var exeByte in Encoding.ASCII.GetBytes("PathfinderExe:" + executableType.FullName))
+                builder.Append(Convert.ToString(exeByte, 2));
             CustomExes.Add(new CustomExeInfo
             {
-                ExeData = hex,
+                ExeData = builder.ToString(),
                 XmlId = xmlName,
                 ExeType = executableType
             });
         }
+
+        public static string GetCustomExeData(string xmlName) => CustomExes.FirstOrDefault(x => x.Value.XmlId == xmlName)?.ExeData;
 
         public static void UnregisterExecutable(string xmlName)
         {
