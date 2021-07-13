@@ -1,4 +1,6 @@
 site_name: Hacknet Pathfinder Documentation
+site_dir: docs
+docs_dir: mkdocs
 site_url: https://arkhist.github.io/Hacknet-Pathfinder/
 nav:
     - Pathfinder:
