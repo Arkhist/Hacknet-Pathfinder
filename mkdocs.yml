@@ -1,0 +1,17 @@
+site_name: Hacknet Pathfinder Documentation
+site_url: https://arkhist.github.io/Hacknet-Pathfinder/
+nav:
+    - Pathfinder:
+        - Home: index.md
+    - Mod Development:
+        - Getting started: mod/start.md
+        - Commands: mod/commands.md
+        - Executables: mod/executables.md
+        - Ports: mod/ports.md
+        - Daemons: mod/daemons.md
+        - Actions: mod/actions.md
+        - Administrators: mod/admins.md
+        - Missions: mod/missions.md
+    - Pathfinder Development: 
+        - Contributing: contributing.md
+theme: readthedocs
