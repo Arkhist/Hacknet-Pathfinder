@@ -10,7 +10,7 @@ namespace Pathfinder.Daemon
 {
     public static class DaemonManager
     {
-        private static readonly List<Type> CustomDaemons = new List<Type>();
+        internal static readonly List<Type> CustomDaemons = new List<Type>();
 
         static DaemonManager()
         {

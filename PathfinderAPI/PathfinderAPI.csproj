@@ -77,6 +77,7 @@
     <Compile Include="BaseGameFixes\MissionListingServerLoadTime.cs" />
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
+    <Compile Include="BaseGameFixes\StartingActionsAfterNodes.cs" />
     <Compile Include="Command\CommandManager.cs" />
     <Compile Include="Daemon\BaseDaemon.cs" />
     <Compile Include="Daemon\DaemonManager.cs" />

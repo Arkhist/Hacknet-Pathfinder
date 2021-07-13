@@ -23,6 +23,21 @@ namespace Pathfinder.Util
 
             throw new KeyNotFoundException(exMessage);
         }
+
+        public static string GetAnyOrThrow<Key>(this Dictionary<Key, string> dict, Key[] keys, string exMessage, Predicate<string> validator = null)
+        {
+            foreach (var key in keys)
+            {
+                if (dict.TryGetValue(key, out var ret))
+                {
+                    if (validator != null && !validator(ret))
+                        continue;
+                    return ret;
+                }
+            }
+            
+            throw new KeyNotFoundException(exMessage);
+        }
         
         public static int GetInt<Key>(this Dictionary<Key, string> dict, Key key, int defaultVal = 0)
         {
