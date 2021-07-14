@@ -72,7 +72,13 @@ namespace Pathfinder.Util
                     continue;
                 }
 
+                string defaultValue = (string)fieldInfo.GetValue(obj);
+
                 string val = reader.GetAttribute(fieldInfo.Name);
+                if (val == null) {
+                    val = defaultValue;
+                }
+
                 fieldInfo.SetValue(obj, val);
             }
             foreach (var propertyInfo in thisType.GetProperties(Flags))
@@ -88,7 +94,12 @@ namespace Pathfinder.Util
                     continue;
                 }
 
+                string defaultValue = (string)propertyInfo.GetValue(obj, null);
+
                 string val = reader.GetAttribute(propertyInfo.Name);
+                if (val == null) {
+                    val = defaultValue;
+                }
                 setMethod.Invoke(obj, new object[] { val });
             }
         }
@@ -108,7 +119,7 @@ namespace Pathfinder.Util
                     continue;
                 }
 
-                fieldInfo.SetValue(obj, info.Attributes.GetString(fieldInfo.Name, null));
+                fieldInfo.SetValue(obj, info.Attributes.GetString(fieldInfo.Name, (string)fieldInfo.GetValue(obj)));
             }
             foreach (var propertyInfo in thisType.GetProperties(Flags))
             {
@@ -123,7 +134,7 @@ namespace Pathfinder.Util
                     continue;
                 }
 
-                setMethod.Invoke(obj, new object[] { info.Attributes.GetString(propertyInfo.Name, null) });
+                setMethod.Invoke(obj, new object[] { info.Attributes.GetString(propertyInfo.Name, (string)propertyInfo.GetValue(obj, null)) });
             }
         }
     }

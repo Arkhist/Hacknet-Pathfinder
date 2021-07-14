@@ -193,12 +193,12 @@ namespace ExampleMod2
         public override void disconnectionDetected(Computer c, OS os)
 		{
             os.write("TestAdmin detected disconnection");
-		}
+        }
 
-		public override void traceEjectionDetected(Computer c, OS os)
-		{
+        public override void traceEjectionDetected(Computer c, OS os)
+	    {
             os.write("TestAdmin detected trace ejection");
-		}
+        }
     }
 
     [HarmonyPatch]
