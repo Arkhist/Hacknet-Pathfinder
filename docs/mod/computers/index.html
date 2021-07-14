@@ -64,6 +64,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#new-ports">New ports</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#new-administrators">New administrators</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#registration">Registration</a>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -121,7 +125,23 @@
 <pre><code class="language-CSharp">Pathfinder.Port.PortManager.RegisterPort(&quot;Example port&quot;, 50);
 </code></pre>
 <h2 id="new-administrators">New administrators</h2>
-<p>Feature programmed, not yet tested. Experiment at your own risk.</p>
+<pre><code class="language-CSharp">public class CustomAdministrator : BaseAdministrator
+{
+    public CustomAdministrator(Computer computer, OS opSystem) : base(computer, opSystem)
+    {
+    }
+    public override void disconnectionDetected(Computer c, OS os)
+    {
+    }
+
+    public override void traceEjectionDetected(Computer c, OS os)
+    {
+    }
+}
+</code></pre>
+<h3 id="registration">Registration</h3>
+<pre><code class="language-CSharp">Pathfinder.Administrator.AdministratorManager.RegisterAdministrator&lt;CustomAdministrator&gt;();
+</code></pre>
               
             </div>
           </div>
