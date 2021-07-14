@@ -29,3 +29,9 @@ public class CustomAdministrator : BaseAdministrator
 ```CSharp
 Pathfinder.Administrator.AdministratorManager.RegisterAdministrator<CustomAdministrator>();
 ```
+
+### Adding the administrator to a computer
+
+```XML
+<admin type="CustomAdministrator" />
+```

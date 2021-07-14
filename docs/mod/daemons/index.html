@@ -67,6 +67,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#registration">Registration</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#xml-storage">XML Storage</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#adding-a-custom-daemon-in-a-computer">Adding a custom daemon in a computer</a>
     </li>
     </ul>
@@ -127,7 +129,7 @@
     public override string Identifier =&gt; &quot;Custom Daemon&quot;;
 
     [XMLStorage]
-    public string DisplayString;
+    public string DisplayString = &quot;Default text&quot;;
 
     public override void draw(Rectangle bounds, SpriteBatch sb)
     {
@@ -141,8 +143,14 @@
 <h2 id="registration">Registration</h2>
 <pre><code class="language-CSharp">Pathfinder.Daemon.DaemonManager.RegisterDaemon&lt;CustomDaemon&gt;();
 </code></pre>
+<h2 id="xml-storage">XML Storage</h2>
+<p>XMLStorage variables are <strong>string</strong> variables that can be specified in the Daemon's XML.</p>
+<p>In the code:</p>
+<pre><code class="language-CSharp">[XMLStorage]
+public string DisplayString;
+</code></pre>
 <h2 id="adding-a-custom-daemon-in-a-computer">Adding a custom daemon in a computer</h2>
-<pre><code class="language-XML">&lt;CustomDaemon /&gt;
+<pre><code class="language-XML">&lt;CustomDaemon DisplayString=&quot;XML Edited test&quot; /&gt;
 </code></pre>
               
             </div>

@@ -38,7 +38,7 @@ public class BasicExecutable : Pathfinder.Executable.BaseExecutable
 Pathfinder.Executable.ExecutableManager.RegisterExecutable<BasicExecutable>("#PF_BASIC_EXE#");
 ```
 
-The provided argument corresponds to the replacement tag for extensions.
+The provided argument corresponds to the replacement tag for extension files.
 
 ## Executable features
 
