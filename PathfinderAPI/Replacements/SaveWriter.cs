@@ -370,6 +370,7 @@ namespace Pathfinder.Replacements
                 result.SetAttributeValue("next", "NULL_MISSION");
                 result.SetAttributeValue("goals", "none");
                 result.SetAttributeValue("activeCheck", "none");
+                return result;
             }
             result.SetAttributeValue("next", mission.nextMission);
             result.SetAttributeValue("goals", mission.reloadGoalsSourceFile);
