@@ -105,6 +105,7 @@
     <Compile Include="Replacements\ObjectSerializerReplacement.cs" />
     <Compile Include="Replacements\ReplacementsCommon.cs" />
     <Compile Include="Replacements\SaveLoader.cs" />
+    <Compile Include="Replacements\SaveWriter.cs" />
     <Compile Include="Util\AssemblyAssociatedList.cs" />
     <Compile Include="Util\DictionaryExtensions.cs" />
     <Compile Include="Util\StringExtensions.cs" />

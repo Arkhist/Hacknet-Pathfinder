@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Globalization;
 using System.Reflection;
+using System.Text;
+using System.Xml;
 using System.Xml.Linq;
 using Hacknet;
 using Hacknet.Factions;
@@ -27,14 +30,14 @@ namespace Pathfinder.Replacements
         {
             XElement result = new XElement("HacknetSave");
             result.SetAttributeValue("generatedMissionCount", MissionGenerator.generationCount);
-            result.SetAttributeValue("Username", __instance.username);
-            result.SetAttributeValue("Language", __instance.LanguageCreatedIn);
-            result.SetAttributeValue("DLCMode", __instance.IsInDLCMode);
-            result.SetAttributeValue("DisableEmailIcon", __instance.DisableEmailIcon);
+            result.SetAttributeValue("Username", os.username);
+            result.SetAttributeValue("Language", os.LanguageCreatedIn);
+            result.SetAttributeValue("DLCMode", os.IsInDLCMode);
+            result.SetAttributeValue("DisableEmailIcon", os.DisableEmailIcon);
             return result;
         }
 
-        internal static XElement GetSerializableActionSaveElement(SerializableAction action)
+        internal static XElement GetActionSaveElement(SerializableAction action)
         {
             Type actionType = action.GetType();
             string saveTag = actionType.Name;
@@ -60,54 +63,85 @@ namespace Pathfinder.Replacements
                     contentValue = string.Format(CultureInfo.InvariantCulture, "{0}", new object[1] { fields[i].GetValue(action) });
                 }
                 else
-				{
+                {
                     string fieldVal = string.Format(CultureInfo.InvariantCulture, "{0}", new object[1] { fields[i].GetValue(action) });
-					result.SetAttributeValue(fields[i].Name, fieldVal);
-				}
+                    result.SetAttributeValue(fields[i].Name, fieldVal);
+                }
             }
 
             return result;
         }
 
-        internal static XElement GetConditionalActionsSaveElement(RunnableCondtionalActions actions)
+        internal static XElement GetConditionSaveElement(SerializableCondition cond)
+        {
+            Type condType = cond.GetType();
+            string saveTag = condType.Name;
+            if (saveTag.StartsWith("Hacknet."))
+            {
+                saveTag = saveTag.Substring("Hacknet.".Length);
+            }
+            if (saveTag.StartsWith("SC"))
+            {
+                saveTag = saveTag.Substring("SC".Length);
+            }
+            XElement result = new XElement(saveTag);
+            FieldInfo[] fields = condType.GetFields();
+            for (int i = 0; i < fields.Length; i++)
+            {
+                string fieldVal = string.Format(CultureInfo.InvariantCulture, "{0}", new object[1] { fields[i].GetValue(cond) });
+                result.SetAttributeValue(fields[i].Name, fieldVal);
+            }
+
+            return result;
+        }
+
+        internal static XElement GetConditionalActionSetSaveElement(SerializableConditionalActionSet set)
+        {
+            XElement result = GetConditionSaveElement(set.Condition);
+            for (int i = 0; i < set.Actions.Count; i++)
+                result.Add(GetActionSaveElement(set.Actions[i]));
+            return result;
+        }
+
+        internal static XElement GetConditionalActionsSaveElement(RunnableConditionalActions actions)
         {
             XElement result = new XElement("ConditionalActions");
             for (int i = 0; i < actions.Actions.Count; i++)
             {
-                result.Add(GetSerializableActionSaveElement(actions.Actions[i]));
+                result.Add(GetConditionalActionSetSaveElement(actions.Actions[i]));
             }
             return result;
         }
 
         internal static XElement GetDLCSaveElement(OS os)
         {
-            XElement result = XElement("DLC");
+            XElement result = new XElement("DLC");
             result.SetAttributeValue("Active", os.IsInDLCMode.ToString());
             result.SetAttributeValue("LoadedContent", os.HasLoadedDLCContent.ToString());
-            XElement DLCFlags = XElement("Flags");
+            XElement DLCFlags = new XElement("Flags");
             DLCFlags.SetAttributeValue("OriginalFaction", os.PreDLCFaction);
             result.Add(DLCFlags);
-            XElement OriginalNodes = XElement("OriginalVisibleNodes");
-            OriginalNodes.SetValue(PreDLCVisibleNodesCache);
+            XElement OriginalNodes = new XElement("OriginalVisibleNodes");
+            OriginalNodes.SetValue(os.PreDLCVisibleNodesCache);
             result.Add(OriginalNodes);
-            result.Add(GetConditionalActionsSaveElement(ConditionalActions));
+            result.Add(GetConditionalActionsSaveElement(os.ConditionalActions));
             return result;
         }
 
         internal static XElement GetFlagsSaveElement(ProgressionFlags flags)
         {
             XElement result = new XElement("Flags");
-            StringBuilder flags = new StringBuilder();
+            StringBuilder flagsBuild = new StringBuilder();
             for (int i = 0; i < flags.Flags.Count; i++)
             {
-                stringBuilder.Append(flags.Flags[i].Replace(",", "[%%COMMAREPLACED%%]"));
-                stringBuilder.Append(",");
+                flagsBuild.Append(flags.Flags[i].Replace(",", "[%%COMMAREPLACED%%]"));
+                flagsBuild.Append(",");
             }
-            if (stringBuilder.Length > 0)
+            if (flagsBuild.Length > 0)
 			{
-				stringBuilder.Remove(stringBuilder.Length - 1, 1);
+				flagsBuild.Length--;
 			}
-            result.SetValue(flags.ToString());
+            result.SetValue(flagsBuild.ToString());
             return result;
         }
 
@@ -117,7 +151,7 @@ namespace Pathfinder.Replacements
             StringBuilder visible = new StringBuilder();
             for (int i = 0; i < nmap.visibleNodes.Count; i++)
             {
-                stringBuilder.Append(nmap.visibleNodes[i] + ((i != nmap.visibleNodes.Count - 1) ? " " : ""));
+                visible.Append(nmap.visibleNodes[i] + ((i != nmap.visibleNodes.Count - 1) ? " " : ""));
             }
             result.SetValue(visible.ToString());
             return result;
@@ -140,10 +174,7 @@ namespace Pathfinder.Replacements
             XElement result = new XElement("portRemap");
             StringBuilder remaps = new StringBuilder();
             foreach (KeyValuePair<int, int> item in input)
-			{
-				object obj = text;
-				remaps.Append(item.Key, "=", item.Value, ",");
-			}
+                remaps.Append(item.Key.ToString() + "=" + item.Value.ToString() + ",");
             remaps.Length--;
             result.SetValue(remaps.ToString());
             return result;
@@ -229,10 +260,10 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetFilesystemSaveElement(Filesystem fs)
+        internal static XElement GetFilesystemSaveElement(FileSystem fs)
         {
             XElement result = new XElement("filesystem");
-            result.add(GetFolderSaveElement(fs.root));
+            result.Add(GetFolderSaveElement(fs.root));
             return result;
         }
 
@@ -247,7 +278,7 @@ namespace Pathfinder.Replacements
             {
                 spec = "mail";
             }
-            if (node.os.thisComputer.Equals(this))
+            if (node.os.thisComputer.Equals(node))
             {
                 spec = "player";
             }
@@ -327,15 +358,15 @@ namespace Pathfinder.Replacements
                 usersTag.Add(GetUserDetailSaveElement(node.users[i]));
             result.Add(usersTag);
 
-            if (Memory != null)
+            if (node.Memory != null)
                 result.Add(GetMemoryContentsSaveElement(node.Memory));
 
             
             XElement daemonsTag = new XElement("daemons");
             daemonsTag.SetValue("");
-            for (int i = 0; i < daemons.Count; i++)
+            for (int i = 0; i < node.daemons.Count; i++)
             {
-                daemonsTag.SetValue(daemonsTag.Value + daemons[i].getSaveString() + "\n");
+                daemonsTag.SetValue(daemonsTag.Value + node.daemons[i].getSaveString() + "\n");
             }
             result.Add(daemonsTag);
 
@@ -449,7 +480,7 @@ namespace Pathfinder.Replacements
 
                 XElement branchMissionsTag = new XElement("branchMissions");
                 for (int i = 0; i < __instance.branchMissions.Count; i++)
-                    branchMissionsTag.Add(GetMissionSaveElement(branchMissions[i]));
+                    branchMissionsTag.Add(GetMissionSaveElement(__instance.branchMissions[i]));
                 branchMissionsTag.WriteTo(writer);
 
                 GetAllFactionsSaveElement(__instance.allFactions).WriteTo(writer);
