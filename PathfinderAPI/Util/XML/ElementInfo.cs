@@ -21,9 +21,7 @@ namespace Pathfinder.Util.XML
             var builder = new StringBuilder();
             var settings = new XmlWriterSettings
             {
-                #if DEBUG
                 Indent = true
-                #endif
             };
             using (var writer = XmlWriter.Create(builder, settings))
             {

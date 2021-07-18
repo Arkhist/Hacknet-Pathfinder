@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using HarmonyLib;
 using System.Runtime.CompilerServices;
+using Pathfinder.Util;
 
 namespace Pathfinder.Event
 {
@@ -53,7 +54,9 @@ namespace Pathfinder.Event
         /// </summary>
         /// <param name="pathfinderEvent">The type of event to subscribe to, must inherit from <see cref="PathfinderEvent"/>></param>
         /// <param name="handler">MethodInfo of the handler method</param>
+        /// <param name="owner">Owner assembly of the MethodInfo</param>
         /// <exception cref="ArgumentException"></exception>
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static void AddHandler(Type pathfinderEvent, MethodInfo handler)
         {
             if (!typeof(PathfinderEvent).IsAssignableFrom(pathfinderEvent))
@@ -71,10 +74,13 @@ namespace Pathfinder.Event
                 .MakeGenericMethod(typeof(Action<>).MakeGenericType(pathfinderEvent))
                 .Invoke(null, new object[] { handler, null, true });
 
-            typeof(EventManager<>)
-                .MakeGenericType(pathfinderEvent)
-                .GetMethod("AddHandler", BindingFlags.Public | BindingFlags.Static)
-                .Invoke(null, new object[] { handlerDelegate });
+            var eventManagerType = typeof(EventManager<>).MakeGenericType(pathfinderEvent);
+
+            object instance = eventManagerType.GetProperty("Instance").GetGetMethod().Invoke(null, null);
+            
+            eventManagerType
+                .GetMethod("AddHandlerInternal", BindingFlags.NonPublic | BindingFlags.Static)
+                .Invoke(instance, new object[] { handlerDelegate, handler.Module.Assembly });
         }
     }
 
@@ -84,7 +90,7 @@ namespace Pathfinder.Event
     /// <typeparam name="T">The type of <see cref="PathfinderEvent"/></typeparam>
     public class EventManager<T> where T : PathfinderEvent
     {
-        private readonly Dictionary<Assembly, List<EventHandler<T>>> handlers = new Dictionary<Assembly, List<EventHandler<T>>>();
+        private readonly AssemblyAssociatedList<EventHandler<T>> handlers = new AssemblyAssociatedList<EventHandler<T>>();
 
         private static EventManager<T> _instance = null;
 
@@ -108,11 +114,7 @@ namespace Pathfinder.Event
         }
         private void AddHandlerInternal(EventHandler<T> handler, Assembly eventAssembly)
         {
-            if (!handlers.ContainsKey(eventAssembly))
-                handlers.Add(eventAssembly, new List<EventHandler<T>>());
-            var eventList = handlers[eventAssembly];
-            eventList.Add(handler);
-            eventList.Sort();
+            handlers.Add(handler, eventAssembly);
         }
 
         /// <summary>
@@ -127,21 +129,24 @@ namespace Pathfinder.Event
         }
         private void RemoveHandlerInternal(MethodInfo handler, Assembly eventAssembly)
         {
-            if (handlers.TryGetValue(eventAssembly, out List<EventHandler<T>> handlersList))
-            {
-                handlersList.RemoveAll(x => x.HandlerInfo.Equals(handler));
-                handlersList.Sort();
-            }
+            handlers.RemoveAll(x => x.Equals(handler), eventAssembly);
         }
+
+        /// <summary>
+        /// Number of event handlers attached to this event type
+        /// </summary>
+        public static int HandlerCount => Instance.handlers.AllItems.Count;
 
         private void OnPluginUnload(Assembly pluginAsm)
         {
-            handlers.Remove(pluginAsm);
+            handlers.RemoveAssembly(pluginAsm, out _);
         }
 
         internal static T InvokeAll(T eventArgs)
         {
-            foreach (var handler in Instance.handlers.Values.SelectMany(x => x))
+            var allHandlers = Instance.handlers.AllItems.ToList();
+            allHandlers.Sort();
+            foreach (var handler in allHandlers)
             {
                 try
                 {
