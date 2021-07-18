@@ -92,6 +92,7 @@
     <Compile Include="Event\Menu\DrawMainMenuTitlesEvent.cs" />
     <Compile Include="Event\Menu\MainMenuEvent.cs" />
     <Compile Include="Event\PathfinderEvent.cs" />
+    <Compile Include="Event\SaveEvent.cs" />
     <Compile Include="Executable\BaseExecutable.cs" />
     <Compile Include="Executable\ExecutableManager.cs" />
     <Compile Include="Logger.cs" />

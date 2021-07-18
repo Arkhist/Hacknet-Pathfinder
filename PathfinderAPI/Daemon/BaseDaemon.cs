@@ -1,5 +1,6 @@
 ﻿using System.Xml;
 using System.Text;
+using System.Xml.Linq;
 using BepInEx.Logging;
 using HarmonyLib;
 using Hacknet;
@@ -17,9 +18,15 @@ namespace Pathfinder.Daemon
 
         public virtual string Identifier => this.GetType().Name;
 
-        public override string getSaveString()
+        /// <summary>
+        /// DO NOT USE! This is a stubbed version of the base game method and is never saved by Pathfinder
+        /// </summary>
+        /// <returns>Returns null always</returns>
+        public sealed override string getSaveString() => null;
+
+        public virtual XElement GetSaveElement()
         {
-            return XMLStorageAttribute.WriteToXml(this);
+            return XMLStorageAttribute.WriteToElement(this);
         }
 
         public virtual void LoadFromXml(ElementInfo info)

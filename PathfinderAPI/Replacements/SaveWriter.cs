@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
@@ -11,14 +8,11 @@ using System.Xml;
 using System.Xml.Linq;
 using Hacknet;
 using Hacknet.Factions;
-using Hacknet.Localization;
 using Hacknet.PlatformAPI.Storage;
-using Hacknet.Security;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
+using Pathfinder.Daemon;
 using Pathfinder.Event;
-using Pathfinder.Event.Loading;
-using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
 namespace Pathfinder.Replacements
@@ -28,7 +22,7 @@ namespace Pathfinder.Replacements
     {
         internal static XElement GetHacknetSaveElement(OS os)
         {
-            XElement result = new XElement("HacknetSave");
+            var result = new XElement("HacknetSave");
             result.SetAttributeValue("generatedMissionCount", MissionGenerator.generationCount);
             result.SetAttributeValue("Username", os.username);
             result.SetAttributeValue("Language", os.LanguageCreatedIn);
@@ -39,8 +33,8 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetActionSaveElement(SerializableAction action)
         {
-            Type actionType = action.GetType();
-            string saveTag = actionType.Name;
+            var actionType = action.GetType();
+            var saveTag = actionType.Name;
             if (saveTag.StartsWith("Hacknet."))
             {
                 saveTag = saveTag.Substring("Hacknet.".Length);
@@ -49,23 +43,23 @@ namespace Pathfinder.Replacements
             {
                 saveTag = saveTag.Substring("SA".Length);
             }
-            XElement result = new XElement(saveTag);
+            var result = new XElement(saveTag);
             string contentValue = null;
-            FieldInfo[] fields = actionType.GetFields();
-            for (int i = 0; i < fields.Length; i++)
+            var fields = actionType.GetFields();
+            foreach (var field in fields)
             {
-                if (Utils.FieldContainsAttributeOfType(fields[i], typeof(XMLContentAttribute)))
+                if (Utils.FieldContainsAttributeOfType(field, typeof(XMLContentAttribute)))
                 {
                     if (contentValue != null)
                     {
                         throw new InvalidOperationException("More than one field in object " + action.ToString() + " is a content serializable type");
                     }
-                    contentValue = string.Format(CultureInfo.InvariantCulture, "{0}", new object[1] { fields[i].GetValue(action) });
+                    contentValue = string.Format(CultureInfo.InvariantCulture, "{0}", new object[1] { field.GetValue(action) });
                 }
                 else
                 {
-                    string fieldVal = string.Format(CultureInfo.InvariantCulture, "{0}", new object[1] { fields[i].GetValue(action) });
-                    result.SetAttributeValue(fields[i].Name, fieldVal);
+                    var fieldVal = string.Format(CultureInfo.InvariantCulture, "{0}", new object[1] { field.GetValue(action) });
+                    result.SetAttributeValue(field.Name, fieldVal);
                 }
             }
 
@@ -74,8 +68,8 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetConditionSaveElement(SerializableCondition cond)
         {
-            Type condType = cond.GetType();
-            string saveTag = condType.Name;
+            var condType = cond.GetType();
+            var saveTag = condType.Name;
             if (saveTag.StartsWith("Hacknet."))
             {
                 saveTag = saveTag.Substring("Hacknet.".Length);
@@ -84,12 +78,12 @@ namespace Pathfinder.Replacements
             {
                 saveTag = saveTag.Substring("SC".Length);
             }
-            XElement result = new XElement(saveTag);
-            FieldInfo[] fields = condType.GetFields();
-            for (int i = 0; i < fields.Length; i++)
+            var result = new XElement(saveTag);
+            var fields = condType.GetFields();
+            foreach (var field in fields)
             {
-                string fieldVal = string.Format(CultureInfo.InvariantCulture, "{0}", new object[1] { fields[i].GetValue(cond) });
-                result.SetAttributeValue(fields[i].Name, fieldVal);
+                var fieldVal = string.Format(CultureInfo.InvariantCulture, "{0}", new object[1] { field.GetValue(cond) });
+                result.SetAttributeValue(field.Name, fieldVal);
             }
 
             return result;
@@ -97,31 +91,31 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetConditionalActionSetSaveElement(SerializableConditionalActionSet set)
         {
-            XElement result = GetConditionSaveElement(set.Condition);
-            for (int i = 0; i < set.Actions.Count; i++)
+            var result = GetConditionSaveElement(set.Condition);
+            for (var i = 0; i < set.Actions.Count; i++)
                 result.Add(GetActionSaveElement(set.Actions[i]));
             return result;
         }
 
         internal static XElement GetConditionalActionsSaveElement(RunnableConditionalActions actions)
         {
-            XElement result = new XElement("ConditionalActions");
-            for (int i = 0; i < actions.Actions.Count; i++)
+            var result = new XElement("ConditionalActions");
+            foreach (var action in actions.Actions)
             {
-                result.Add(GetConditionalActionSetSaveElement(actions.Actions[i]));
+                result.Add(GetConditionalActionSetSaveElement(action));
             }
             return result;
         }
 
         internal static XElement GetDLCSaveElement(OS os)
         {
-            XElement result = new XElement("DLC");
+            var result = new XElement("DLC");
             result.SetAttributeValue("Active", os.IsInDLCMode.ToString());
             result.SetAttributeValue("LoadedContent", os.HasLoadedDLCContent.ToString());
-            XElement DLCFlags = new XElement("Flags");
+            var DLCFlags = new XElement("Flags");
             DLCFlags.SetAttributeValue("OriginalFaction", os.PreDLCFaction);
             result.Add(DLCFlags);
-            XElement OriginalNodes = new XElement("OriginalVisibleNodes");
+            var OriginalNodes = new XElement("OriginalVisibleNodes");
             OriginalNodes.SetValue(os.PreDLCVisibleNodesCache);
             result.Add(OriginalNodes);
             result.Add(GetConditionalActionsSaveElement(os.ConditionalActions));
@@ -130,11 +124,11 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetFlagsSaveElement(ProgressionFlags flags)
         {
-            XElement result = new XElement("Flags");
-            StringBuilder flagsBuild = new StringBuilder();
-            for (int i = 0; i < flags.Flags.Count; i++)
+            var result = new XElement("Flags");
+            var flagsBuild = new StringBuilder();
+            foreach (var flag in flags.Flags)
             {
-                flagsBuild.Append(flags.Flags[i].Replace(",", "[%%COMMAREPLACED%%]"));
+                flagsBuild.Append(flag.Replace(",", "[%%COMMAREPLACED%%]"));
                 flagsBuild.Append(",");
             }
             if (flagsBuild.Length > 0)
@@ -147,9 +141,9 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetNetmapVisibleNodesSaveElement(NetworkMap nmap)
         {
-            XElement result = new XElement("visible");
-            StringBuilder visible = new StringBuilder();
-            for (int i = 0; i < nmap.visibleNodes.Count; i++)
+            var result = new XElement("visible");
+            var visible = new StringBuilder();
+            for (var i = 0; i < nmap.visibleNodes.Count; i++)
             {
                 visible.Append(nmap.visibleNodes[i] + ((i != nmap.visibleNodes.Count - 1) ? " " : ""));
             }
@@ -159,7 +153,7 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetFirewallSaveElement(Firewall firewall)
         {
-            XElement result = new XElement("firewall");
+            var result = new XElement("firewall");
             result.SetAttributeValue("complexity", firewall.complexity);
             result.SetAttributeValue("solution", firewall.solution);
             result.SetAttributeValue("additionalDelay", firewall.additionalDelay.ToString(CultureInfo.InvariantCulture));
@@ -171,9 +165,9 @@ namespace Pathfinder.Replacements
             if (input == null || input.Count == 0)
                 return null;
             
-            XElement result = new XElement("portRemap");
-            StringBuilder remaps = new StringBuilder();
-            foreach (KeyValuePair<int, int> item in input)
+            var result = new XElement("portRemap");
+            var remaps = new StringBuilder();
+            foreach (var item in input)
                 remaps.Append(item.Key.ToString() + "=" + item.Value.ToString() + ",");
             remaps.Length--;
             result.SetValue(remaps.ToString());
@@ -182,7 +176,7 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetUserDetailSaveElement(UserDetail user)
         {
-            XElement result = new XElement("user");
+            var result = new XElement("user");
             result.SetAttributeValue("name", user.name);
             result.SetAttributeValue("pass", user.pass);
             result.SetAttributeValue("type", user.type);
@@ -192,48 +186,48 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetMemoryContentsSaveElement(MemoryContents contents)
         {
-            XElement result = new XElement("Memory");
+            var result = new XElement("Memory");
             if (contents.DataBlocks != null && contents.DataBlocks.Count > 0)
             {
-                XElement dataTag = new XElement("Data");
-                for (int i = 0; i < contents.DataBlocks.Count; i++)
+                var dataTag = new XElement("Data");
+                foreach (var dataBlock in contents.DataBlocks)
                 {
-                    XElement blockTag = new XElement("Block");
-                    blockTag.SetValue(Folder.Filter(contents.DataBlocks[i]));
+                    var blockTag = new XElement("Block");
+                    blockTag.SetValue(Folder.Filter(dataBlock));
                     dataTag.Add(blockTag);
                 }
                 result.Add(dataTag);
             }
             if (contents.CommandsRun != null && contents.CommandsRun.Count > 0)
             {
-                XElement dataTag = new XElement("Commands");
-                for (int i = 0; i < contents.CommandsRun.Count; i++)
+                var dataTag = new XElement("Commands");
+                foreach (var command in contents.CommandsRun)
                 {
-                    XElement blockTag = new XElement("Command");
-                    blockTag.SetValue(Folder.Filter(contents.CommandsRun[i]));
+                    var blockTag = new XElement("Command");
+                    blockTag.SetValue(Folder.Filter(command));
                     dataTag.Add(blockTag);
                 }
                 result.Add(dataTag);
             }
             if (contents.FileFragments != null && contents.FileFragments.Count > 0)
             {
-                XElement dataTag = new XElement("FileFragments");
-                for (int i = 0; i < contents.FileFragments.Count; i++)
+                var dataTag = new XElement("FileFragments");
+                foreach (var fileFrag in contents.FileFragments)
                 {
-                    XElement blockTag = new XElement("File");
-                    blockTag.SetAttributeValue("name", Folder.Filter(contents.FileFragments[i].Key));
-                    blockTag.SetValue(Folder.Filter(contents.FileFragments[i].Value));
+                    var blockTag = new XElement("File");
+                    blockTag.SetAttributeValue("name", Folder.Filter(fileFrag.Key));
+                    blockTag.SetValue(Folder.Filter(fileFrag.Value));
                     dataTag.Add(blockTag);
                 }
                 result.Add(dataTag);
             }
             if (contents.Images != null && contents.Images.Count > 0)
             {
-                XElement dataTag = new XElement("Images");
-                for (int i = 0; i < contents.Images.Count; i++)
+                var dataTag = new XElement("Images");
+                foreach (var image in contents.Images)
                 {
-                    XElement blockTag = new XElement("Image");
-                    blockTag.SetValue(Folder.Filter(contents.Images[i]));
+                    var blockTag = new XElement("Image");
+                    blockTag.SetValue(Folder.Filter(image));
                     dataTag.Add(blockTag);
                 }
                 result.Add(dataTag);
@@ -243,17 +237,17 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetFolderSaveElement(Folder folder)
         {
-            XElement result = new XElement("result");
+            var result = new XElement("result");
             result.SetAttributeValue("name", Folder.Filter(folder.name));
 
-            for (int i = 0; i < folder.folders.Count; i++)
-                result.Add(GetFolderSaveElement(folder.folders[i]));
-            
-            for (int i = 0; i < folder.files.Count; i++)
+            foreach (var internalFolder in folder.folders)
+                result.Add(GetFolderSaveElement(internalFolder));
+
+            foreach (var file in folder.files)
             {
-                XElement fileTag = new XElement("file");
-                fileTag.SetAttributeValue("name", Folder.Filter(folder.files[i].name));
-                fileTag.SetValue(Folder.Filter(folder.files[i].data));
+                var fileTag = new XElement("file");
+                fileTag.SetAttributeValue("name", Folder.Filter(file.name));
+                fileTag.SetValue(Folder.Filter(file.data));
                 result.Add(fileTag);
             }
 
@@ -262,18 +256,89 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetFilesystemSaveElement(FileSystem fs)
         {
-            XElement result = new XElement("filesystem");
+            var result = new XElement("filesystem");
             result.Add(GetFolderSaveElement(fs.root));
+            return result;
+        }
+
+        internal static XElement GetDaemonSaveElement(object daemon)
+        {
+            XElement CreateDaemonElement(object daemonObj, string name, string[] fields, string[] attribNames)
+            {
+                var type = daemonObj.GetType();
+                if (fields.Length != attribNames.Length)
+                    throw new ArgumentException("fields and attribNames arrays must be the same length");
+                
+                var daemonElement = new XElement(name);
+                for (int i = 0; i < fields.Length; i++)
+                {
+                    var content = AccessTools.Field(type, fields[i]);
+                    string contentString = null;
+                    if (content.FieldType == typeof(Color))
+                        contentString = Utils.convertColorToParseableString((Color) content.GetValue(daemonObj));
+                    else
+                        contentString = content.GetValue(daemonObj).ToString();
+                    daemonElement.SetAttributeValue(attribNames[i], contentString);
+                }
+
+                return daemonElement;
+            }
+
+            XElement result = null;
+
+            if (daemon is BaseDaemon pfDaemon)
+            {
+                return pfDaemon.GetSaveElement();
+            }
+            
+            switch (daemon)
+            {
+                case MailServer _:
+                    result = CreateDaemonElement(daemon, "MailServer", 
+                        new[] {"name", "themeColor"}, 
+                        new[] {"name", "color"}
+                    );
+                    break;
+                case MissionListingServer listServer:
+                    if (listServer.HasCustomColor)
+                        result = CreateDaemonElement(daemon, "MissionListingServer",
+                            new[]
+                            {
+                                "name", "groupName", "isPublic", "missionAssigner", "listingTitle", "IconReloadPath",
+                                "themeColor", "ArticleFolderPath"
+                            },
+                            new[] {"name", "group", "public", "assign", "title", "icon", "color", "articles"}
+                        );
+                    else
+                        result = CreateDaemonElement(daemon, "MissionListingServer",
+                            new[] {"name", "groupName", "isPublic", "missionAssigner", "listingTitle"},
+                            new[] {"name", "group", "public", "assign", "title"}
+                        );
+                    break;
+                case AddEmailDaemon _:
+                    result = CreateDaemonElement(daemon, "AddEmailServer",
+                        new[] {"name",},
+                        new[] {"name"}
+                    );
+                    break;
+                case MessageBoardDaemon _:
+                    result = CreateDaemonElement(daemon, "MessageBoard",
+                        new[] {"name", "BoardName"},
+                        new[] {"name", "boardName"}
+                    );
+                    break;
+            }
+
             return result;
         }
 
         internal static XElement GetNodeSaveElement(Computer node)
         {
-            XElement result = new XElement("computer");
+            var result = new XElement("computer");
             result.SetAttributeValue("name", node.name);
             result.SetAttributeValue("ip", node.name);
             result.SetAttributeValue("type", node.type);
-            string spec = "none";
+            var spec = "none";
             if (node.os.netMap.mailServer.Equals(node))
             {
                 spec = "mail";
@@ -297,12 +362,12 @@ namespace Pathfinder.Replacements
                 result.SetAttributeValue("tracker", "true");
             }
 
-            XElement locationTag = new XElement("location");
+            var locationTag = new XElement("location");
             locationTag.SetAttributeValue("x", node.location.X.ToString(CultureInfo.InvariantCulture));
             locationTag.SetAttributeValue("y", node.location.Y.ToString(CultureInfo.InvariantCulture));
             result.Add(locationTag);
 
-            XElement securityTag = new XElement("security");
+            var securityTag = new XElement("security");
             securityTag.SetAttributeValue("level", node.securityLevel);
             securityTag.SetAttributeValue("traceTime", node.traceTime.ToString(CultureInfo.InvariantCulture));
             if (node.startingOverloadTicks > 0f)
@@ -313,18 +378,26 @@ namespace Pathfinder.Replacements
             securityTag.SetAttributeValue("adminIP", node.adminIP);
             result.Add(securityTag);
 
-            XElement adminTag = new XElement("admin");
+            var adminTag = new XElement("admin");
             string adminType;
-            if (node.admin == null)
-                adminType = "none";
-            else if (node.admin is FastBasicAdministrator)
-                adminType = "fast";
-            else if (node.admin is FastProgressOnlyAdministrator)
-                adminType = "progress";
-            else if (node.admin is BasicAdministrator)
-                adminType = "basic";
-            else
-                adminType = node.admin.GetType().Name;
+            switch (node.admin)
+            {
+                case null:
+                    adminType = "none";
+                    break;
+                case FastBasicAdministrator _:
+                    adminType = "fast";
+                    break;
+                case FastProgressOnlyAdministrator _:
+                    adminType = "progress";
+                    break;
+                case BasicAdministrator _:
+                    adminType = "basic";
+                    break;
+                default:
+                    adminType = node.admin.GetType().Name;
+                    break;
+            }
 
             adminTag.SetAttributeValue("type", adminType);
             adminTag.SetAttributeValue("resetPass", node.admin != null && node.admin.ResetsPassword);
@@ -332,41 +405,43 @@ namespace Pathfinder.Replacements
             result.Add(adminTag);
 
 
-            XElement linksTag = new XElement("links");
-            StringBuilder links = new StringBuilder();
-            for (int i = 0; i < node.links.Count; i++)
-                links.Append(" " + node.links[i]);
+            var linksTag = new XElement("links");
+            var links = new StringBuilder();
+            foreach (var link in node.links)
+                links.Append(" " + link);
+
             linksTag.SetValue(links.ToString());
             result.Add(linksTag);
 
             if (node.firewall != null)
                 result.Add(GetFirewallSaveElement(node.firewall));
             
-            XElement portsOpenTag = new XElement("portsOpen");
-            StringBuilder ports = new StringBuilder();
-            for (int i = 0; i < node.portsOpen.Count; i++)
+            var portsOpenTag = new XElement("portsOpen");
+            var ports = new StringBuilder();
+            for (var i = 0; i < node.portsOpen.Count; i++)
                 ports.Append(" " + node.ports[i]);
             portsOpenTag.SetValue(ports);
             result.Add(portsOpenTag);
 
-            XElement portRemaps = GetPortRemappingSaveElement(node.PortRemapping);
+            var portRemaps = GetPortRemappingSaveElement(node.PortRemapping);
             if (portRemaps != null)
                 result.Add(portRemaps);
 
-            XElement usersTag = new XElement("users");
-            for (int i = 0; i < node.users.Count; i++)
-                usersTag.Add(GetUserDetailSaveElement(node.users[i]));
+            var usersTag = new XElement("users");
+            foreach (var detail in node.users)
+                usersTag.Add(GetUserDetailSaveElement(detail));
+
             result.Add(usersTag);
 
             if (node.Memory != null)
                 result.Add(GetMemoryContentsSaveElement(node.Memory));
 
             
-            XElement daemonsTag = new XElement("daemons");
+            var daemonsTag = new XElement("daemons");
             daemonsTag.SetValue("");
-            for (int i = 0; i < node.daemons.Count; i++)
+            foreach (var daemon in node.daemons)
             {
-                daemonsTag.SetValue(daemonsTag.Value + node.daemons[i].getSaveString() + "\n");
+                daemonsTag.SetValue(daemonsTag.Value + daemon.getSaveString() + "\n");
             }
             result.Add(daemonsTag);
 
@@ -377,17 +452,17 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetNetmapNodesSaveElement(NetworkMap nmap)
         {
-            XElement result = new XElement("network");
-            for (int i = 0; i < nmap.nodes.Count; i++)
+            var result = new XElement("network");
+            foreach (var node in nmap.nodes)
             {
-                result.Add(GetNodeSaveElement(nmap.nodes[i]));
+                result.Add(GetNodeSaveElement(node));
             }
             return result;
         }
 
         internal static XElement GetNetmapSaveElement(NetworkMap nmap)
         {
-            XElement result = new XElement("NetworkMap");
+            var result = new XElement("NetworkMap");
             result.SetAttributeValue("sort", nmap.SortingAlgorithm);
             result.Add(GetNetmapVisibleNodesSaveElement(nmap));
             result.Add(GetNetmapNodesSaveElement(nmap));
@@ -396,7 +471,7 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetMissionSaveElement(ActiveMission mission)
         {
-            XElement result = new XElement("mission");
+            var result = new XElement("mission");
             if (mission == null) {
                 result.SetAttributeValue("next", "NULL_MISSION");
                 result.SetAttributeValue("goals", "none");
@@ -418,18 +493,18 @@ namespace Pathfinder.Replacements
 
             result.SetAttributeValue("activeCheck", mission.activeCheck);
 
-            XElement email = new XElement("email");
+            var email = new XElement("email");
             email.SetAttributeValue("sender", Folder.Filter(mission.email.sender));
             email.SetAttributeValue("subject", Folder.Filter(mission.email.subject));
             email.SetValue(Folder.Filter(mission.email.body));
             result.Add(email);
 
-            XElement endFunctionVal = new XElement("endFunc");
+            var endFunctionVal = new XElement("endFunc");
             endFunctionVal.SetAttributeValue("val", mission.endFunctionValue);
             endFunctionVal.SetAttributeValue("name", mission.endFunctionName);
             result.Add(endFunctionVal);
 
-            XElement postingTag = new XElement("posting");
+            var postingTag = new XElement("posting");
             postingTag.SetAttributeValue("title", Folder.Filter(mission.postingTitle));
             postingTag.SetValue(Folder.Filter(mission.postingBody));
             result.Add(postingTag);
@@ -438,14 +513,20 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetFactionSaveElement(Faction faction)
         {
-            string tagName = "Faction";
-            if (faction is EntropyFaction)
-                tagName = "EntropyFaction";
-            else if (faction is HubFaction)
-                tagName = "HubFaction";
-            else if (faction is CustomFaction)
-                tagName = "CustomFaction";
-            XElement result = new XElement(tagName);
+            var tagName = "Faction";
+            switch (faction)
+            {
+                case EntropyFaction _:
+                    tagName = "EntropyFaction";
+                    break;
+                case HubFaction _:
+                    tagName = "HubFaction";
+                    break;
+                case CustomFaction _:
+                    tagName = "CustomFaction";
+                    break;
+            }
+            var result = new XElement(tagName);
             result.SetAttributeValue("name", faction.name);
             result.SetAttributeValue("id", faction.idName);
             result.SetAttributeValue("neededVal", faction.neededValue);
@@ -456,9 +537,9 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetAllFactionsSaveElement(AllFactions factions)
         {
-            XElement result = new XElement("AllFactions");
+            var result = new XElement("AllFactions");
             result.SetAttributeValue("current", factions.currentFaction);
-            foreach (KeyValuePair<string, Faction> faction in factions.factions)
+            foreach (var faction in factions.factions)
                 result.Add(GetFactionSaveElement(faction.Value));
             return result;
         }
@@ -467,9 +548,9 @@ namespace Pathfinder.Replacements
         [HarmonyPatch(typeof(OS), nameof(OS.writeSaveGame))]
         internal static bool SaveWriteReplacementPrefix(ref OS __instance, string filename)
         {
-            XmlWriterSettings settings = new XmlWriterSettings();
-            StringBuilder builder = new StringBuilder();
-            using (XmlWriter writer = XmlWriter.Create(builder, settings))
+            var settings = new XmlWriterSettings();
+            var builder = new StringBuilder();
+            using (var writer = XmlWriter.Create(builder, settings))
             {
                 writer.WriteStartDocument();
 
@@ -479,13 +560,14 @@ namespace Pathfinder.Replacements
                 GetNetmapSaveElement(__instance.netMap).WriteTo(writer);
                 GetMissionSaveElement(__instance.currentMission).WriteTo(writer);
 
-                XElement branchMissionsTag = new XElement("branchMissions");
-                for (int i = 0; i < __instance.branchMissions.Count; i++)
-                    branchMissionsTag.Add(GetMissionSaveElement(__instance.branchMissions[i]));
+                var branchMissionsTag = new XElement("branchMissions");
+                foreach (var branch in __instance.branchMissions)
+                    branchMissionsTag.Add(GetMissionSaveElement(branch));
+
                 branchMissionsTag.WriteTo(writer);
 
                 GetAllFactionsSaveElement(__instance.allFactions).WriteTo(writer);
-                XElement otherTag = new XElement("other");
+                var otherTag = new XElement("other");
                 otherTag.SetAttributeValue("music", MusicManager.currentSongName);
                 otherTag.SetAttributeValue("homeNode", __instance.homeNodeID);
                 otherTag.SetAttributeValue("homeAssetsNode", __instance.homeAssetServerID);
@@ -493,7 +575,24 @@ namespace Pathfinder.Replacements
 
                 writer.WriteEndDocument();
             }
-            SaveFileManager.WriteSaveData(builder.ToString(), filename);
+
+            if (EventManager<SaveEvent>.HandlerCount != 0)
+            {
+                ElementInfo saveElement = null;
+
+                var executor = new EventExecutor(builder.ToString(), false);
+                executor.RegisterExecutor("HacknetSave", (exec, info) => saveElement = info, ParseOption.ParseInterior);
+                executor.Parse();
+
+                EventManager<SaveEvent>.InvokeAll(new SaveEvent(saveElement, filename));
+
+                SaveFileManager.WriteSaveData(saveElement.ToString(), filename);
+            }
+            else
+            {
+                SaveFileManager.WriteSaveData(builder.ToString(), filename);
+            }
+
             return false;
         }
     }
