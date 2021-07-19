@@ -126,7 +126,7 @@ namespace Pathfinder.Replacements
             executor.RegisterExecutor("HackentSave.DLC.Flags",
                 (exec, info) => os.PreDLCFaction = info.Attributes.GetString("OriginalFaction"));
             executor.RegisterExecutor("HacknetSave.DLC.OriginalVisibleNodes",
-                (exec, info) => os.PreDLCVisibleNodesCache = info.Content,
+                (exec, info) => os.PreDLCVisibleNodesCache = info.Content ?? "",
                 ParseOption.ParseInterior);
             executor.RegisterExecutor("HacknetSave.DLC.ConditionalActions",
                 (exec, info) => ActionsLoader.LoadActionSets(info), 
@@ -175,6 +175,7 @@ namespace Pathfinder.Replacements
                     var faction = LoadFaction(factionInfo);
                     os.allFactions.factions.Add(faction.idName, faction);
                 }
+                
             }, ParseOption.ParseInterior);
             executor.RegisterExecutor("HacknetSave.other", (exec, info) =>
             {
@@ -253,6 +254,7 @@ namespace Pathfinder.Replacements
             if (info.Children.TryGetElement("portRemap", out var remap))
                 comp.PortRemapping = PortRemappingSerializer.Deserialize(remap.Content);
 
+            comp.users.Clear();
             if (info.Children.TryGetElement("users", out var users))
             {
                 foreach (var user in users.Children.Where(x => x.Name == "user"))

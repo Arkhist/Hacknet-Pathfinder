@@ -6,6 +6,7 @@ using HarmonyLib;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
 using BepInEx.Hacknet;
+using BepInEx.Logging;
 using Hacknet;
 using Hacknet.PlatformAPI.Storage;
 
@@ -22,7 +23,7 @@ namespace Pathfinder
                 return;
 
             var original = AccessTools.Method(typeof(StackTrace), nameof(StackTrace.ToString), new Type[] { formatType });
-            var manipulator = AccessTools.Method(typeof(MiscPatches), nameof(MiscPatches.IncludeILOffsetInTrace));
+            var manipulator = AccessTools.Method(typeof(MiscPatches), nameof(IncludeILOffsetInTrace));
 
             PathfinderAPIPlugin.HarmonyInstance.Patch(original, ilmanipulator: new HarmonyMethod(manipulator));
         }
@@ -105,5 +106,13 @@ namespace Pathfinder
             foreach (var brokenLabel in il.Labels.Where(x => !c.Instrs.Contains(x.Target))) brokenLabel.Target = c.Instrs.Last();
         }
 #endif
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Utils), nameof(Utils.SendRealWorldEmail))]
+        internal static bool FixSendRealWorldEmail(string body)
+        {
+            Logger.Log(LogLevel.Error, body.Substring(body.IndexOf("\r\n", StringComparison.Ordinal) + 2));
+            return false;
+        }
     }
 }
