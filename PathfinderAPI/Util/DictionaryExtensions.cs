@@ -38,7 +38,10 @@ namespace Pathfinder.Util
             
             throw new KeyNotFoundException(exMessage);
         }
-        
+
+        public static TValue GetOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key) =>
+            dict.TryGetValue(key, out var value) ? value : default;
+
         public static int GetInt<Key>(this Dictionary<Key, string> dict, Key key, int defaultVal = 0)
         {
             if (dict.TryGetValue(key, out var val) && int.TryParse(val, out var ret))
