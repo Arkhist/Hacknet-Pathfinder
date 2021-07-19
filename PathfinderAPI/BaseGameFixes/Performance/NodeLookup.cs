@@ -36,5 +36,12 @@ namespace Pathfinder.BaseGameFixes.Performance
             __result = ComputerLookup.Find(ip_Or_ID_or_Name);
             return false;
         }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(OS), nameof(OS.quitGame))]
+        internal static void ClearOnQuitGame()
+        {
+            ComputerLookup.ClearLookups();
+        }
     }
 }

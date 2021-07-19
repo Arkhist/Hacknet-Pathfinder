@@ -30,6 +30,13 @@ namespace Pathfinder.Util
             nameLookup[node.name] = node;
         }
 
+        internal static void ClearLookups()
+        {
+            idLookup.Clear();
+            ipLookup.Clear();
+            nameLookup.Clear();
+        }
+
         public static Computer Find(string target, SearchType type = SearchType.Any)
         {
             Computer node = null;
