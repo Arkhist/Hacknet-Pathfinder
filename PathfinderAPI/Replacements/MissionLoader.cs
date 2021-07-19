@@ -13,6 +13,7 @@ using Pathfinder.Util.XML;
 
 namespace Pathfinder.Replacements
 {
+    [HarmonyPatch]
     public static class MissionLoader
     {
         public abstract class MissionExecutor
@@ -80,7 +81,8 @@ namespace Pathfinder.Replacements
             
             var mission = new ActiveMission(new List<MisisonGoal>(), null, default)
             {
-                willSendEmail = true
+                willSendEmail = true,
+                reloadGoalsSourceFile = filename
             };
             var branches = new List<ActiveMission>();
             mission.email.attachments = new List<string>();
