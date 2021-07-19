@@ -76,6 +76,7 @@
     <Compile Include="BaseGameFixes\HHBS.cs" />
     <Compile Include="BaseGameFixes\MissionListingServerLoadTime.cs" />
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
+    <Compile Include="BaseGameFixes\Performance\NodeLookup.cs" />
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
     <Compile Include="BaseGameFixes\StartingActionsAfterNodes.cs" />
     <Compile Include="Command\CommandManager.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Replacements\SaveWriter.cs" />
     <Compile Include="Util\AssemblyAssociatedList.cs" />
     <Compile Include="Util\DictionaryExtensions.cs" />
+    <Compile Include="Util\ComputerLookup.cs" />
     <Compile Include="Util\StringExtensions.cs" />
     <Compile Include="Util\InitializeAttribute.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
