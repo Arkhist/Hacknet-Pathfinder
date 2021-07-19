@@ -65,7 +65,7 @@ namespace BepInEx.Hacknet
             catch (Exception e)
             {
                 TemporaryPluginGUIDs.Remove(pluginInfo.Metadata.GUID);
-                throw new Exception("", e);
+                throw;
             }
 
             return pluginInstance;
