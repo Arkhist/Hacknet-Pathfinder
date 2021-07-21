@@ -87,5 +87,9 @@ namespace Pathfinder.BaseGameFixes.Performance
 
             isFlickering = false;
         }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(ActiveEffectsUpdater), nameof(ActiveEffectsUpdater.CompleteThemeSwap))]
+        internal static void ClearCache2OnFlickerFinish() => displayCache2 = null;
     }
 }
