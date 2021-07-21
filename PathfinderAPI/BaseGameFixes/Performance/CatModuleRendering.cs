@@ -1,5 +1,7 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using Hacknet;
+using Hacknet.Effects;
 using HarmonyLib;
 using MonoMod.Cil;
 
@@ -40,8 +42,50 @@ namespace Pathfinder.BaseGameFixes.Performance
 
             c.EmitDelegate<Func<string, string>>(fileData =>
             {
+                lastFileData = fileData;
                 return Utils.SuperSmartTwimForWidth(LocalizedFileLoader.SafeFilterString(fileData), OS.currentInstance.display.bounds.Width - 40, GuiData.tinyfont);
             });
+        }
+
+        private static bool isFlickering = false;
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ActiveEffectsUpdater), nameof(ActiveEffectsUpdater.Update))]
+        internal static void CheckThemeSwapFlicker(ActiveEffectsUpdater __instance) => isFlickering = __instance.themeSwapTimeRemaining > 0f;
+
+        private static string displayCache2 = null;
+        private static string lastFileData = null;
+        
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(ThemeManager), nameof(ThemeManager.switchTheme), new Type[] { typeof(object), typeof(OSTheme) })]
+        internal static void CacheDisplayStringForThemeSwitch(object osObject)
+        {
+            var os = (OS) osObject;
+
+            if (os.displayCache == null || lastFileData == null || (os.display.command != "cat" && os.display.command != "less"))
+                return;
+
+            if (isFlickering)
+            {
+                if (displayCache2 == null)
+                {
+                    displayCache2 = os.displayCache;
+                    
+                    os.displayCache = Utils.SuperSmartTwimForWidth(LocalizedFileLoader.SafeFilterString(lastFileData), os.display.bounds.Width - 40, GuiData.tinyfont);
+                }
+                else
+                {
+                    var temp = displayCache2;
+                    displayCache2 = os.displayCache;
+                    os.displayCache = temp;
+                }
+            }
+            else
+            {
+                os.displayCache = Utils.SuperSmartTwimForWidth(LocalizedFileLoader.SafeFilterString(lastFileData), os.display.bounds.Width - 40, GuiData.tinyfont);
+            }
+
+            isFlickering = false;
         }
     }
 }
