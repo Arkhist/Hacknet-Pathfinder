@@ -42,11 +42,14 @@ namespace Pathfinder.Administrator
                     case "progress":
                         comp.admin = new FastProgressOnlyAdministrator();
                         break;
+                    case "none":
+                        comp.admin = null;
+                        break;
                 }
 
                 if (comp.admin != null)
                 {
-                    comp.admin.ResetsPassword = info.Attributes.GetBool("resetPass", true);
+                    comp.admin.ResetsPassword = info.Attributes.GetBool("resetPass", info.Attributes.GetBool("resetPassword", true));
                     comp.admin.IsSuper = info.Attributes.GetBool("isSuper");
                 }
             }
