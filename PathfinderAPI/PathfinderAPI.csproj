@@ -76,6 +76,7 @@
     <Compile Include="BaseGameFixes\HHBS.cs" />
     <Compile Include="BaseGameFixes\MissionListingServerLoadTime.cs" />
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
+    <Compile Include="BaseGameFixes\Performance\CatModuleRendering.cs" />
     <Compile Include="BaseGameFixes\Performance\NodeLookup.cs" />
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
     <Compile Include="BaseGameFixes\StartingActionsAfterNodes.cs" />
