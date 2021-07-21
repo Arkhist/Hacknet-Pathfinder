@@ -145,8 +145,9 @@ namespace Pathfinder.Replacements
             executor.RegisterExecutor("mission.email.body", (exec, info) => mission.email.body = info.Content.Filter(), ParseOption.ParseInterior);
             executor.RegisterExecutor("mission.email.attachments.link", (exec, info) =>
             {
-                var comp = info.Attributes.GetComp("comp");
-                mission.email.attachments.Add($"link#%#{comp.name}#%#{comp.ip}");
+                var comp = ComputerLookup.FindById(info.Attributes.GetString("comp"));
+                if (comp != null)
+                    mission.email.attachments.Add($"link#%#{comp.name}#%#{comp.ip}");
             });
             executor.RegisterExecutor("mission.email.attachments.account", (exec, info) =>
             {
@@ -184,10 +185,11 @@ namespace Pathfinder.Replacements
             switch (type)
             {
                 case "filedeletion":
+                    var compName = info.Attributes.GetString("target").Filter();
                     return new FileDeletionMission(
                         info.Attributes.GetString("path").Filter(),
                         info.Attributes.GetString("file").Filter(),
-                        info.Attributes.GetComp("target").ip,
+                        ComputerLookup.FindById(compName)?.ip ?? compName,
                         os
                     );
                 case "clearfolder":
