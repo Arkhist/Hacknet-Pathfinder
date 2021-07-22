@@ -34,6 +34,7 @@ namespace BepInEx.Hacknet
             HarmonyInstance = new Harmony("BepInEx.Hacknet.Chainloader");
 
             HarmonyInstance.PatchAll(typeof(ExtensionPluginPatches));
+            HarmonyInstance.PatchAll(typeof(ChainloaderFix));
         }
 
         protected override IList<PluginInfo> DiscoverPlugins()
@@ -98,17 +99,13 @@ namespace BepInEx.Hacknet
         private static readonly MethodInfo PluginPathSetter = AccessTools.PropertySetter(typeof(Paths), nameof(Paths.PluginPath));
         private static readonly MethodInfo ConfigPathSetter = AccessTools.PropertySetter(typeof(Paths), nameof(Paths.ConfigPath));
 
-        private static bool FirstExtensionLoaded = false;
+        internal static bool FirstExtensionLoaded = false;
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(ExtensionsMenuScreen), nameof(ExtensionsMenuScreen.ActivateExtensionPage))]
         internal static bool LoadTempPluginsPrefix(ExtensionInfo info)
         {
-            if (!FirstExtensionLoaded)
-            {
-                HacknetChainloader.Instance.HarmonyInstance.PatchAll(typeof(ChainloaderFix));
-                FirstExtensionLoaded = true;
-            }
+            FirstExtensionLoaded = true;
             
             try
             {
@@ -151,7 +148,7 @@ namespace BepInEx.Hacknet
     {
         [HarmonyILManipulator]
         [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "Execute")]
-        internal static void FixChainloaderForReload(ILContext il)
+        internal static void PluginCecilHacks(ILContext il)
         {
             ILCursor c = new ILCursor(il);
 
@@ -166,7 +163,8 @@ namespace BepInEx.Hacknet
 
                 using (var asm = AssemblyDefinition.ReadAssembly(path))
                 {
-                    asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
+                    if (ExtensionPluginPatches.FirstExtensionLoaded)
+                        asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
 
                     using (var ms = new MemoryStream())
                     {
