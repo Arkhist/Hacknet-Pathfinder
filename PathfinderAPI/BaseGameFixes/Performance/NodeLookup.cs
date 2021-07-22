@@ -1,4 +1,5 @@
-﻿using Hacknet;
+﻿using System.Collections.Generic;
+using Hacknet;
 using HarmonyLib;
 using Pathfinder.Event;
 using Pathfinder.Event.Loading;
@@ -9,24 +10,14 @@ namespace Pathfinder.BaseGameFixes.Performance
     [HarmonyPatch]
     internal static class NodeLookup
     {
-        [Util.Initialize]
-        internal static void Initialize()
-        {
-            EventManager<SaveComputerLoadedEvent>.AddHandler(PopulateOnComputerLoad);
-        }
-        
         [HarmonyPostfix]
-        [HarmonyPatch(typeof(ComputerLoader), nameof(ComputerLoader.loadComputer))]
-        internal static void PopulateOnComputerCreation(object __result)
+        [HarmonyPatch(typeof(List<Computer>), nameof(List<Computer>.Add))]
+        internal static void AddComputerReference(List<Computer> __instance, Computer item)
         {
-            if (__result == null)
-                return;
-            ComputerLookup.PopulateLookups((Computer) __result);
-        }
-
-        internal static void PopulateOnComputerLoad(SaveComputerLoadedEvent args)
-        {
-            ComputerLookup.PopulateLookups(args.Comp);
+            if (object.ReferenceEquals(__instance, OS.currentInstance?.netMap?.nodes))
+            {
+                ComputerLookup.PopulateLookups(item);
+            }
         }
         
         [HarmonyPrefix]
