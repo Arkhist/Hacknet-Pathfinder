@@ -6,28 +6,22 @@ using Hacknet;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoMod.Cil;
 using Pathfinder.Util.XML;
 
 namespace Pathfinder.Util
 {
-    public class CachedCustomTheme
+    [HarmonyPatch]
+    public class CachedCustomTheme : IDisposable
     {
-        private struct FastColorField
-        {
-            public AccessTools.FieldRef<OS, Color> Ref;
-        }
-        
-        private static readonly Dictionary<string, FastColorField> OSFieldsFast = new Dictionary<string, FastColorField>();
+        private static readonly Dictionary<string, AccessTools.FieldRef<OS, Color>> OSColorFieldsFast = new Dictionary<string, AccessTools.FieldRef<OS, Color>>();
         
         [Initialize]
         internal static void Initialize()
         {
             foreach (var field in AccessTools.GetDeclaredFields(typeof(OS)).Where(x => x.FieldType == typeof(Color)))
             {
-                OSFieldsFast.Add(field.Name, new FastColorField
-                {
-                    Ref = AccessTools.FieldRefAccess<OS, Color>(field)
-                });
+                OSColorFieldsFast.Add(field.Name, AccessTools.FieldRefAccess<OS, Color>(field));
             }
         }
         
@@ -94,22 +88,59 @@ namespace Pathfinder.Util
             }
         }
 
+        [HarmonyReversePatch]
+        [HarmonyPatch(typeof(CustomTheme), nameof(CustomTheme.GetThemeForLayout))]
+        private static OSTheme GetLayoutForTheme(string name)
+        {
+            void Manipulator(ILContext il)
+            {
+                ILCursor c = new ILCursor(il);
+
+                // instead of getting the theme string from this, get it from arg 0
+                while (c.TryGotoNext(x =>
+                    x.MatchLdfld(AccessTools.Field(typeof(CustomTheme), nameof(CustomTheme.themeLayoutName)))))
+                {
+                    c.Remove();
+                }
+            }
+            
+            Manipulator(null);
+            return default;
+        }
+
         public void ApplyTo(OS os)
         {
             if (!Loaded)
                 throw new InvalidOperationException("Can't apply a custom theme before it has finished loading!");
+            
+            ThemeManager.switchTheme(os, OSTheme.HacknetBlue);
                 
             foreach (var setting in ThemeInfo.Children)
             {
-                if (OSFieldsFast.TryGetValue(setting.Name, out var field))
+                if (OSColorFieldsFast.TryGetValue(setting.Name, out var field))
                 {
-                    ref Color fieldRef = ref field.Ref(os);
+                    ref Color fieldRef = ref field(os);
                     fieldRef = Utils.convertStringToColor(setting.Content);
+                }
+                else if (setting.Name == "UseAspectPreserveBackgroundScaling")
+                {
+                    if (bool.TryParse(setting.Content, out var preserve))
+                        os.UseAspectPreserveBackgroundScaling = preserve;
+                }
+                else if (setting.Name == "themeLayoutName")
+                {
+                    ThemeManager.switchThemeLayout(os, GetLayoutForTheme(setting.Content));
                 }
             }
 
             ThemeManager.backgroundImage = BackgroundImage;
             ThemeManager.LastLoadedCustomThemePath = Path;
+            os.RefreshTheme();
+        }
+
+        public void Dispose()
+        {
+            BackgroundImage?.Dispose();
         }
     }
 }
