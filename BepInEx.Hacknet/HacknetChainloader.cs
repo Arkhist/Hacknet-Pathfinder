@@ -34,7 +34,6 @@ namespace BepInEx.Hacknet
             HarmonyInstance = new Harmony("BepInEx.Hacknet.Chainloader");
 
             HarmonyInstance.PatchAll(typeof(ExtensionPluginPatches));
-            HarmonyInstance.PatchAll(typeof(ChainloaderFix));
         }
 
         protected override IList<PluginInfo> DiscoverPlugins()
@@ -99,13 +98,17 @@ namespace BepInEx.Hacknet
         private static readonly MethodInfo PluginPathSetter = AccessTools.PropertySetter(typeof(Paths), nameof(Paths.PluginPath));
         private static readonly MethodInfo ConfigPathSetter = AccessTools.PropertySetter(typeof(Paths), nameof(Paths.ConfigPath));
 
-        internal static bool FirstExtensionLoaded = false;
+        private static bool FirstExtensionLoaded = false;
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(ExtensionsMenuScreen), nameof(ExtensionsMenuScreen.ActivateExtensionPage))]
         internal static bool LoadTempPluginsPrefix(ExtensionInfo info)
         {
-            FirstExtensionLoaded = true;
+            if (!FirstExtensionLoaded)
+            {
+                HacknetChainloader.Instance.HarmonyInstance.PatchAll(typeof(ChainloaderFix));
+                FirstExtensionLoaded = true;
+            }
             
             try
             {
@@ -163,8 +166,7 @@ namespace BepInEx.Hacknet
 
                 using (var asm = AssemblyDefinition.ReadAssembly(path))
                 {
-                    if (ExtensionPluginPatches.FirstExtensionLoaded)
-                        asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
+                    asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
 
                     using (var ms = new MemoryStream())
                     {
