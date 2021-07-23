@@ -78,6 +78,7 @@
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
     <Compile Include="BaseGameFixes\Performance\CatModuleRendering.cs" />
     <Compile Include="BaseGameFixes\Performance\NodeLookup.cs" />
+    <Compile Include="BaseGameFixes\Performance\ThemeCaching.cs" />
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
     <Compile Include="BaseGameFixes\StartingActionsAfterNodes.cs" />
     <Compile Include="Command\CommandManager.cs" />
@@ -110,8 +111,10 @@
     <Compile Include="Replacements\SaveLoader.cs" />
     <Compile Include="Replacements\SaveWriter.cs" />
     <Compile Include="Util\AssemblyAssociatedList.cs" />
+    <Compile Include="Util\CachedCustomTheme.cs" />
     <Compile Include="Util\DictionaryExtensions.cs" />
     <Compile Include="Util\ComputerLookup.cs" />
+    <Compile Include="Util\FixedSizeCacheDict.cs" />
     <Compile Include="Util\StringExtensions.cs" />
     <Compile Include="Util\InitializeAttribute.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
