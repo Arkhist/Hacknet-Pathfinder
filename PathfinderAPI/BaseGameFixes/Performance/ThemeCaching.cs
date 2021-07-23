@@ -30,7 +30,7 @@ namespace Pathfinder.BaseGameFixes.Performance
                 return;
             }
 
-            CachedThemes = new FixedSizeCacheDict<string, CachedCustomTheme>(int.MaxValue /*int.MaxValue on PreLoadAll*/);
+            CachedThemes = new FixedSizeCacheDict<string, CachedCustomTheme>(0 /* 0 on PreLoadAll*/);
             
             // replace with PreLoadAll check
             if (true)
