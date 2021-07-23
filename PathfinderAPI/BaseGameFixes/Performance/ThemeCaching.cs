@@ -13,7 +13,9 @@ namespace Pathfinder.BaseGameFixes.Performance
     public static class ThemeCaching
     {
         private static FixedSizeCacheDict<string, CachedCustomTheme> CachedThemes = null;
-        private static List<Task> ThemeTasks = null;
+        private static List<string> ThemeTasks = new List<string>();
+
+        private static readonly object cacheLock = new object();
 
         private static string TargetTheme = null;
 
@@ -22,7 +24,7 @@ namespace Pathfinder.BaseGameFixes.Performance
         internal static void QueueUpCustomThemes(OS __instance)
         {
             TargetTheme = null;
-            ThemeTasks = new List<Task>();
+            ThemeTasks = new List<string>();
             
             if (!Settings.IsInExtensionMode)
             {
@@ -39,20 +41,24 @@ namespace Pathfinder.BaseGameFixes.Performance
                 if (!Directory.Exists(themesDir))
                     return;
 
-                foreach (var theme in Directory.GetFiles(themesDir, "*.xml", SearchOption.AllDirectories))
+                lock (cacheLock)
                 {
-                    var path = theme.Substring(ExtensionLoader.ActiveExtensionInfo.FolderPath.Length + 1);
-                    var task = new Task(() =>
+                    foreach (var theme in Directory.GetFiles(themesDir, "*.xml", SearchOption.AllDirectories))
                     {
-                        var result = new CachedCustomTheme(path);
-                        result.Load(false);
-                        lock (CachedThemes)
+                        var path = theme.Substring(ExtensionLoader.ActiveExtensionInfo.FolderPath.Length + 1).Replace('\\', '/');
+                        var task = new Task(() =>
                         {
-                            CachedThemes.Register(path.ToLower(), result);
-                        }
-                    });
-                    task.Start();
-                    ThemeTasks.Add(task);
+                            var result = new CachedCustomTheme(path);
+                            result.Load(false);
+                            lock (cacheLock)
+                            {
+                                CachedThemes.Register(path.ToLower(), result);
+                                ThemeTasks.Remove(path);
+                            }
+                        });
+                        ThemeTasks.Add(path);
+                        task.Start();
+                    }
                 }
             }
         }
@@ -62,15 +68,16 @@ namespace Pathfinder.BaseGameFixes.Performance
         internal static bool SwitchThemeReplacement(object osObject, string customThemePath)
         {
             var os = (OS) osObject;
-            lock (CachedThemes)
+            lock (cacheLock)
             {
                 if (CachedThemes.TryGetCached(customThemePath.ToLower(), out var cached))
                 {
                     if (!cached.Loaded)
                         cached.Load(true);
                     cached.ApplyTo(os);
+                    TargetTheme = null;
                 }
-                else
+                else if (!ThemeTasks.Contains(customThemePath))
                 {
                     TargetTheme = customThemePath;
                     var path = customThemePath;
@@ -78,13 +85,14 @@ namespace Pathfinder.BaseGameFixes.Performance
                     {
                         var result = new CachedCustomTheme(path);
                         result.Load(false);
-                        lock (CachedThemes)
+                        lock (cacheLock)
                         {
                             CachedThemes.Register(path, result);
+                            ThemeTasks.Remove(path);
                         }
                     });
+                    ThemeTasks.Add(path);
                     task.Start();
-                    ThemeTasks.Add(task);
                 }
             }
 
@@ -97,7 +105,7 @@ namespace Pathfinder.BaseGameFixes.Performance
         {
             if (TargetTheme != null)
             {
-                lock (CachedThemes)
+                lock (cacheLock)
                 {
                     if (CachedThemes.TryGetCached(TargetTheme, out var theme))
                     {
