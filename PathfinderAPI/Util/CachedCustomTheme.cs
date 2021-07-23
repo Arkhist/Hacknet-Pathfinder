@@ -6,7 +6,9 @@ using Hacknet;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using MonoMod.Utils;
 using Pathfinder.Util.XML;
 
 namespace Pathfinder.Util
@@ -14,14 +16,21 @@ namespace Pathfinder.Util
     [HarmonyPatch]
     public class CachedCustomTheme : IDisposable
     {
-        private static readonly Dictionary<string, AccessTools.FieldRef<OS, Color>> OSColorFieldsFast = new Dictionary<string, AccessTools.FieldRef<OS, Color>>();
+        public delegate ref Color RefColorFieldDelegate(OS instance);
+        
+        private static readonly Dictionary<string, RefColorFieldDelegate> OSColorFieldsFast = new Dictionary<string, RefColorFieldDelegate>();
         
         [Initialize]
         internal static void Initialize()
         {
             foreach (var field in AccessTools.GetDeclaredFields(typeof(OS)).Where(x => x.FieldType == typeof(Color)))
             {
-                OSColorFieldsFast.Add(field.Name, AccessTools.FieldRefAccess<OS, Color>(field));
+                var dynMethod = new DynamicMethodDefinition(field.Name, typeof(Color).MakeByRefType(), new Type[] {typeof(OS)});
+                var p = dynMethod.GetILProcessor();
+                p.Emit(OpCodes.Ldarg_0);
+                p.Emit(OpCodes.Ldflda, field);
+                p.Emit(OpCodes.Ret);
+                OSColorFieldsFast.Add(field.Name, dynMethod.Generate().CreateDelegate<RefColorFieldDelegate>());
             }
         }
         
