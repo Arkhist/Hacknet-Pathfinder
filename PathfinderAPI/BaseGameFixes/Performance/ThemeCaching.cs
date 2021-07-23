@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Hacknet;
 using Hacknet.Extensions;
 using HarmonyLib;
+using Pathfinder.Options;
 using Pathfinder.Util;
 
 namespace Pathfinder.BaseGameFixes.Performance
@@ -32,7 +33,7 @@ namespace Pathfinder.BaseGameFixes.Performance
                 return;
             }
 
-            CachedThemes = new FixedSizeCacheDict<string, CachedCustomTheme>(0 /* 0 on PreLoadAll*/);
+            CachedThemes = new FixedSizeCacheDict<string, CachedCustomTheme>(PathfinderOptions.PreloadAllThemes.Value ? 0 : 16);
             
             // replace with PreLoadAll check
             if (true)

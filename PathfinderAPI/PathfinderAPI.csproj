@@ -94,6 +94,7 @@
     <Compile Include="Event\Loading\TextReplaceEvent.cs" />
     <Compile Include="Event\Menu\DrawMainMenuTitlesEvent.cs" />
     <Compile Include="Event\Menu\MainMenuEvent.cs" />
+    <Compile Include="Event\Options\CustomOptionsSaveEvent.cs" />
     <Compile Include="Event\PathfinderEvent.cs" />
     <Compile Include="Event\SaveEvent.cs" />
     <Compile Include="Executable\BaseExecutable.cs" />
@@ -119,6 +120,10 @@
     <Compile Include="Util\InitializeAttribute.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Options\Options.cs" />
+    <Compile Include="Options\OptionsManager.cs" />
+    <Compile Include="Options\PathfinderOptions.cs" />
+    <Compile Include="Options\PathfinderOptionsMenu.cs" />
     <Compile Include="Util\XMLStorageAttribute.cs" />
     <Compile Include="Util\XML\ElementInfo.cs" />
     <Compile Include="Util\XML\EventExecutor.cs" />
