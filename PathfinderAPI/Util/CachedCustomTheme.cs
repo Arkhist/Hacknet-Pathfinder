@@ -144,6 +144,7 @@ namespace Pathfinder.Util
 
             ThemeManager.backgroundImage = BackgroundImage;
             ThemeManager.LastLoadedCustomThemePath = Path;
+            ThemeManager.currentTheme = OSTheme.Custom;
             os.RefreshTheme();
         }
 

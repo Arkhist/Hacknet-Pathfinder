@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Hacknet;
+using Hacknet.Effects;
 using Hacknet.Extensions;
 using HarmonyLib;
+using Mono.Cecil;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using Pathfinder.Options;
 using Pathfinder.Util;
 
@@ -52,7 +56,7 @@ namespace Pathfinder.BaseGameFixes.Performance
                             result.Load(false);
                             lock (cacheLock)
                             {
-                                CachedThemes.Register(path.ToLower(), result);
+                                CachedThemes.Register(path, result);
                                 ThemeTasks.Remove(path);
                             }
                         });
@@ -70,7 +74,7 @@ namespace Pathfinder.BaseGameFixes.Performance
             var os = (OS) osObject;
             lock (cacheLock)
             {
-                if (CachedThemes.TryGetCached(customThemePath.ToLower(), out var cached))
+                if (CachedThemes.TryGetCached(customThemePath, out var cached))
                 {
                     if (!cached.Loaded)
                         cached.Load(true);
@@ -94,6 +98,10 @@ namespace Pathfinder.BaseGameFixes.Performance
                     ThemeTasks.Add(path);
                     task.Start();
                 }
+                else
+                {
+                    TargetTheme = customThemePath;
+                }
             }
 
             return false;
@@ -105,18 +113,55 @@ namespace Pathfinder.BaseGameFixes.Performance
         {
             if (TargetTheme != null)
             {
-                lock (cacheLock)
-                {
-                    if (CachedThemes.TryGetCached(TargetTheme, out var theme))
-                    {
-                        if (!theme.Loaded)
-                            theme.Load(true);
-                        theme.ApplyTo(OS.currentInstance);
-
-                        TargetTheme = null;
-                    }
-                }
+                SwitchThemeReplacement(OS.currentInstance, TargetTheme);
             }
+        }
+
+        private static float themeFpsLimitCounter = 0f;
+        private delegate bool MakeSlowerDelegate(float timeSince, ref float timeRemaining);
+        
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(ActiveEffectsUpdater), nameof(ActiveEffectsUpdater.Update))]
+        internal static void MakeThemeTransitionSlower(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            FieldReference swapTimeRemaining = null;
+            ILLabel afterThemeSwap = null;
+            
+            c.GotoNext(MoveType.Before,
+                x => x.MatchLdarg(0),
+                x => x.MatchLdfld(out swapTimeRemaining),
+                x => x.MatchLdcR4(0f),
+                x => x.MatchCgt(),
+                x => x.MatchLdcI4(0),
+                x => x.MatchCeq(),
+                x => x.MatchStloc(out _),
+                x => x.MatchLdloc(out _),
+                x => x.MatchBrtrue(out afterThemeSwap)
+            );
+
+            c.RemoveRange(9);
+            
+            c.Emit(OpCodes.Ldarg_1);
+            c.Emit(OpCodes.Ldarg_0);
+            c.Emit(OpCodes.Ldflda, swapTimeRemaining);
+            c.EmitDelegate<MakeSlowerDelegate>((float timeSince, ref float currentTime) =>
+            {
+                if (currentTime <= 0)
+                    return false;
+                
+                themeFpsLimitCounter += timeSince;
+                if (themeFpsLimitCounter > 1f / 30f)
+                {
+                    currentTime -= themeFpsLimitCounter;
+                    themeFpsLimitCounter = 0f;
+
+                    return true;
+                }
+                return false;
+            });
+            c.Emit(OpCodes.Brfalse, afterThemeSwap);
         }
     }
 }
