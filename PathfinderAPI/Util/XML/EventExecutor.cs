@@ -88,6 +88,8 @@ namespace Pathfinder.Util.XML
             if (currentElementStack.Count != 0)
             {
                 var top = currentElementStack.Pop();
+                if (!Reader.IsEmptyElement && top.Children.Count == 0 && top.Content == null)
+                    top.Content = "";
                 if (currentElementStack.Count == 0)
                     foreach (var executor in currentExecutors)
                         executor(this, top);
