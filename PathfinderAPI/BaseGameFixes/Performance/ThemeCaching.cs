@@ -35,8 +35,7 @@ namespace Pathfinder.BaseGameFixes.Performance
 
             CachedThemes = new FixedSizeCacheDict<string, CachedCustomTheme>(PathfinderOptions.PreloadAllThemes.Value ? 0 : 16);
             
-            // replace with PreLoadAll check
-            if (true)
+            if (PathfinderOptions.PreloadAllThemes.Value)
             {
                 var themesDir = Path.Combine(ExtensionLoader.ActiveExtensionInfo.FolderPath, "Themes");
                 if (!Directory.Exists(themesDir))
