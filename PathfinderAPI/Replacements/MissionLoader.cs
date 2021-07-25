@@ -132,13 +132,13 @@ namespace Pathfinder.Replacements
             executor.RegisterExecutor("mission.branchMissions", (exec, info) => OS.currentInstance.branchMissions = branches, ParseOption.FireOnEnd);
             executor.RegisterExecutor("mission.posting", (exec, info) =>
             {
-                mission.postingTitle = info.Attributes.GetString("title", "UNKNOWN");
+                mission.postingTitle = info.Attributes.GetString("title", "UNKNOWN").Filter();
                 mission.postingBody = info.Content ?? "UNKNOWN";
                 mission.postingAcceptFlagRequirements = info.Attributes.GetString("reqs").Split(Utils.commaDelim, StringSplitOptions.RemoveEmptyEntries);
                 mission.requiredRank = info.Attributes.GetInt("requiredRank");
                 mission.difficulty = info.Attributes.GetInt("difficulty");
-                mission.client = info.Attributes.GetString("client");
-                mission.target = info.Attributes.GetString("target");
+                mission.client = info.Attributes.GetString("client").Filter();
+                mission.target = info.Attributes.GetString("target").Filter();
             }, ParseOption.ParseInterior);
             executor.RegisterExecutor("mission.email.sender", (exec, info) => mission.email.sender = info.Content.Filter(), ParseOption.ParseInterior);
             executor.RegisterExecutor("mission.email.subject", (exec, info) => mission.email.subject = info.Content.Filter(), ParseOption.ParseInterior);
@@ -153,12 +153,12 @@ namespace Pathfinder.Replacements
             {
                 var comp = info.Attributes.GetComp("comp");
                 mission.email.attachments.Add(
-                    $"account#%#{comp.name}#%#{comp.ip}#%#{info.Attributes.GetString("user", "UNKNOWN")}#%#{info.Attributes.GetString("pass", "UNKNOWN")}"
+                    $"account#%#{comp.name}#%#{comp.ip}#%#{info.Attributes.GetString("user", "UNKNOWN").Filter()}#%#{info.Attributes.GetString("pass", "UNKNOWN").Filter()}"
                 );
             });
             executor.RegisterExecutor("mission.email.attachments.note", (exec, info) =>
             {
-                mission.email.attachments.Add($"note#%#{info.Attributes.GetString("title", "Data")}#%#{info.Content ?? "ERROR LOADING NOTE"}");
+                mission.email.attachments.Add($"note#%#{info.Attributes.GetString("title", "Data").Filter()}#%#{info.Content.Filter()}");
             }, ParseOption.ParseInterior);
             
             if (!executor.TryParse(out var ex))

@@ -140,11 +140,14 @@ namespace Pathfinder.Replacements
                         FileContents = actionInfo.Attributes.GetString("FileContents", null)
                     };
                 case "AddMissionToHubServer":
+                    var tag = actionInfo.Attributes.GetString("AssignmentTag");
+                    if (string.IsNullOrWhiteSpace(tag))
+                        tag = null;
                     return new SAAddMissionToHubServer()
                     {
                         MissionFilepath = actionInfo.Attributes.GetOrThrow("MissionFilepath", "Invalid mission file path for AddMissionToHubServer", StringExtensions.ContentFileExists),
                         TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddMissionToHubServer", StringExtensions.HasContent),
-                        AssignmentTag = actionInfo.Attributes.GetString("AssignmentTag", null),
+                        AssignmentTag = tag,
                         StartsComplete = actionInfo.Attributes.GetBool("StartsComplete")
                     };
                 case "RemoveMissionFromHubServer":

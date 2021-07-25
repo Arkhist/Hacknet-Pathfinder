@@ -396,7 +396,10 @@ namespace Pathfinder.Replacements
                     info.Attributes.GetString("group", "ERROR"),
                     os,
                     info.Attributes.GetBool("public")
-                ));
+                )
+                {
+                    missionAssigner = info.Attributes.GetBool("assigner")
+                });
             });
             executor.RegisterExecutor("Computer.variableMissionListingServer", (exec, info) =>
             {
