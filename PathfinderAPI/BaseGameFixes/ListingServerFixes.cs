@@ -24,7 +24,7 @@ namespace Pathfinder.BaseGameFixes
             var end   = c.DefineLabel(); // IL_0132
 
             c.Emit(OpCodes.Dup);
-            c.Emit(OpCodes.Brfalse, start);
+            c.Emit(OpCodes.Brtrue, start);
             c.Emit(OpCodes.Pop);
             c.Emit(OpCodes.Ldc_I4_0);
             c.Emit(OpCodes.Br, end);
