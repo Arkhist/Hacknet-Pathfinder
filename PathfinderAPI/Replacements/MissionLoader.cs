@@ -95,9 +95,12 @@ namespace Pathfinder.Replacements
                 customInstance.Init(OS.currentInstance, ref mission);
                 executor.RegisterExecutor(custom.Element, customInstance.Execute, custom.Options);
             }
+
+            var hasMissionTag = false;
             
             executor.RegisterExecutor("mission", (exec, info) =>
             {
+                hasMissionTag = true;
                 mission.activeCheck = info.Attributes.GetBool("activeCheck");
                 mission.ShouldIgnoreSenderVerification = info.Attributes.GetBool("shouldIgnoreSenderVerification");
             });
@@ -166,7 +169,7 @@ namespace Pathfinder.Replacements
                 throw new FormatException($"{filename}: {ex.Message}", ex);
             }
 
-            return mission;
+            return hasMissionTag ? mission : null;
         }
 
         private static MisisonGoal LoadGoal(ElementInfo info)
