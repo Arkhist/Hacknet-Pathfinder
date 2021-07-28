@@ -81,6 +81,13 @@ namespace Pathfinder.BaseGameFixes.Performance
                     cached.ApplyTo(os);
                     TargetTheme = null;
                 }
+                else if (!Settings.IsInExtensionMode)
+                {
+                    var theme = new CachedCustomTheme(customThemePath);
+                    theme.Load(true);
+                    theme.ApplyTo(os);
+                    CachedThemes.Register(customThemePath, theme);
+                }
                 else if (!ThemeTasks.Contains(customThemePath))
                 {
                     TargetTheme = customThemePath;
@@ -115,6 +122,38 @@ namespace Pathfinder.BaseGameFixes.Performance
             {
                 SwitchThemeReplacement(OS.currentInstance, TargetTheme);
             }
+        }
+        
+        // this is ONLY done by DLCIntroExe.UpdateUIFlickerIn and nowhere else, this is so so so so dumb
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ThemeManager), nameof(ThemeManager.switchTheme), new Type[] { typeof(object), typeof(OSTheme) })]
+        internal static bool SwitchToLastCustomTheme(object osObject, OSTheme theme)
+        {
+            if (theme == OSTheme.Custom)
+            {
+                // just dont question it
+                CachedThemes.BackingListHead?.Value?.ApplyTo((OS)osObject);
+                return false;
+            }
+
+            return true;
+        }
+        
+        // AAAAAAAAAAAAAAAAAAAAAA
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(ThemeManager), nameof(ThemeManager.getThemeForDataString))]
+        internal static void LoadStartingCustomThemeWithReplacement(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(x => x.MatchCall(AccessTools.Method(typeof(CustomTheme), nameof(CustomTheme.Deserialize))));
+
+            c.Remove();
+            c.EmitDelegate<Func<string, CustomTheme>>(theme =>
+            {
+                SwitchThemeReplacement(OS.currentInstance, theme);
+                return null;
+            });
         }
 
         private static float themeFpsLimitCounter = 0f;

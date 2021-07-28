@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Pathfinder.Util
 {
-    internal class LRUCacheLinkedListNode<K,V> where K : class where V : class
+    public class LRUCacheLinkedListNode<K,V> where K : class where V : class
     {
         public K Key {get; set;} = default;
         public V Value {get; set;} = default;
@@ -15,8 +15,8 @@ namespace Pathfinder.Util
     public class FixedSizeCacheDict<K, V> where K : class where V : class
     {
         public readonly int Max;
-        private LRUCacheLinkedListNode<K,V> BackingListHead = null;
-        private LRUCacheLinkedListNode<K,V> BackingListTail = null;
+        public LRUCacheLinkedListNode<K, V> BackingListHead { get; private set; } = null;
+        public LRUCacheLinkedListNode<K,V> BackingListTail { get; private set; } = null;
         private readonly Dictionary<K, LRUCacheLinkedListNode<K,V>> FastAccessDict = new Dictionary<K, LRUCacheLinkedListNode<K,V>>();
         
         public FixedSizeCacheDict(int maxSize)
