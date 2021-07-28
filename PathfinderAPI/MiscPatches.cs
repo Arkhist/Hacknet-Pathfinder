@@ -114,5 +114,15 @@ namespace Pathfinder
             Logger.Log(LogLevel.Error, body.Substring(body.IndexOf("\r\n", StringComparison.Ordinal) + 2));
             return false;
         }
+
+        private static readonly ManualLogSource HacknetLogger = BepInEx.Logging.Logger.CreateLogSource("Hacknet");
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Utils), nameof(Utils.AppendToErrorFile))]
+        internal static bool RedirectErrorLog(string text)
+        {
+            HacknetLogger.LogError(text);
+            return false;
+        }
     }
 }

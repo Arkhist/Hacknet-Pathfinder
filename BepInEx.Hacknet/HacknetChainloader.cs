@@ -34,6 +34,8 @@ namespace BepInEx.Hacknet
             HarmonyInstance = new Harmony("BepInEx.Hacknet.Chainloader");
 
             HarmonyInstance.PatchAll(typeof(ExtensionPluginPatches));
+            LogWriteLineToDisk.LogWriter = (Logger.Listeners.FirstOrDefault(x => x is DiskLogListener) as DiskLogListener)?.LogWriter;
+            HarmonyInstance.PatchAll(typeof(LogWriteLineToDisk));
         }
 
         protected override IList<PluginInfo> DiscoverPlugins()
@@ -177,6 +179,19 @@ namespace BepInEx.Hacknet
 
                 return Assembly.Load(asmBytes);
             });
+        }
+    }
+
+    [HarmonyPatch]
+    internal static class LogWriteLineToDisk
+    {
+        internal static TextWriter LogWriter = null;
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(Console), nameof(Console.WriteLine), new Type[] { typeof(string) })]
+        internal static void WriteWriteLineToLog(string value)
+        {
+            LogWriter?.WriteLine(value);
         }
     }
 }
