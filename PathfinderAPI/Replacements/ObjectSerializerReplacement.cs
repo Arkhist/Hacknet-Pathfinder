@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Xml;
 using Hacknet;
 using HarmonyLib;
+using MonoMod.Cil;
 using Pathfinder.Util.XML;
 
 namespace Pathfinder.Replacements
@@ -10,6 +12,15 @@ namespace Pathfinder.Replacements
     [HarmonyPatch]
     public static class ObjectSerializerReplacement
     {
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(DatabaseDaemon), nameof(DatabaseDaemon.CleanXMLForFile))]
+        [HarmonyPatch(typeof(DatabaseDaemon), nameof(DatabaseDaemon.DeCleanXMLForFile))]
+        internal static bool DontCleanForXML(string data, out string __result)
+        {
+            __result = data;
+            return false;
+        }
+        
         [HarmonyPrefix]
         [HarmonyPatch(typeof(ObjectSerializer), nameof(ObjectSerializer.SerializeObject), new Type[] { typeof(object), typeof(bool) })]
         public static bool SerializeObject(object o, bool preventOuterTag, ref string __result)
@@ -47,6 +58,78 @@ namespace Pathfinder.Replacements
             __result = result;
 
             return false;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ObjectSerializer), nameof(ObjectSerializer.GetValueFromObject))]
+        internal static bool GetValueFromElementInfo(object o, string FieldName, ref object __result)
+        {
+            if (o is ElementInfo info)
+            {
+                __result = info.Children.TryGetElement(FieldName, out var field) ? field.Content : null;
+                return false;
+            }
+
+            return true;
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(DatabaseDaemon), nameof(DatabaseDaemon.DrawEntry))]
+        internal static void DatabaseDaemonDirectDeserialize(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.Before,
+                x => x.MatchLdarg(0),
+                x => x.MatchLdarg(0),
+                x => x.MatchLdarg(0)
+            );
+
+            c.Index += 2;
+            c.RemoveRange(8);
+
+            c.EmitDelegate<Func<DatabaseDaemon, object>>(database =>
+            {
+                var executor = new EventExecutor(database.ActiveFile.data, false);
+
+                ElementInfo result = null;
+            
+                executor.RegisterExecutor("*", (exec, info) =>
+                {
+                    result = info;
+                }, ParseOption.ParseInterior);
+            
+                executor.Parse();
+
+                return result;
+            });
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(DatabaseDaemon), nameof(DatabaseDaemon.GetFilenameForObject))]
+        internal static bool GetCorrectFileName(DatabaseDaemon __instance, object obj, ref string __result)
+        {
+            if (obj is ElementInfo info)
+            {
+                switch (info.Name)
+                {
+                    case "GitCommitEntry":
+                        __result =
+                            $"Commit#{int.Parse(info.Children.GetElement("EntryNumber").Content):000}{(info.Children.GetElement("SourceIP").Content.StartsWith("192.168.1.1") ? "" : "*")}";
+                        break;
+                    case "Person":
+                        __result = __instance.GetFilenameForPersonName(info.Children.GetElement("firstName").Content, info.Children.GetElement("lastName").Content);
+                        return false;
+                    default:
+                        __result = info.Name.Replace(" ", "_").ToLower();
+                        break;
+                }
+
+                __result = Utils.GetNonRepeatingFilename(__result, ".rec", __instance.DatasetFolder);
+                return false;
+            }
+
+            return true;
         }
 
         [HarmonyPrefix]
