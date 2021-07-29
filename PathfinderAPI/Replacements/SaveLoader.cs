@@ -175,7 +175,9 @@ namespace Pathfinder.Replacements
                     var faction = LoadFaction(factionInfo);
                     os.allFactions.factions.Add(faction.idName, faction);
                 }
-                
+
+                if (os.allFactions.currentFaction != null)
+                    os.allFactions.setCurrentFaction(os.allFactions.currentFaction, os);
             }, ParseOption.ParseInterior);
             executor.RegisterExecutor("HacknetSave.other", (exec, info) =>
             {
