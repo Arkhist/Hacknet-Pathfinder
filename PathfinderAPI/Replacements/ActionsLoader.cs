@@ -19,7 +19,7 @@ namespace Pathfinder.Replacements
         {
             OS os = (OS)OSobj;
             
-            var executor = new EventExecutor(LocalizedFileLoader.GetLocalizedFilepath(Utils.GetFileLoadPrefix() + filepath), true);
+            var executor = new EventExecutor(filepath.ContentFilePath(), true);
             
             executor.RegisterExecutor("ConditionalActions", (exec, info) => os.ConditionalActions.Actions.AddRange(LoadActionSets(info).Actions), ParseOption.ParseInterior);
 

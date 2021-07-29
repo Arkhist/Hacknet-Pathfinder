@@ -85,6 +85,7 @@
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
     <Compile Include="BaseGameFixes\StartingActionsAfterNodes.cs" />
     <Compile Include="Command\CommandManager.cs" />
+    <Compile Include="Command\DebugCommands.cs" />
     <Compile Include="Daemon\BaseDaemon.cs" />
     <Compile Include="Daemon\DaemonManager.cs" />
     <Compile Include="Event\EventManager.cs" />

@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using BepInEx;
 using BepInEx.Hacknet;
 using HarmonyLib;
+using Pathfinder.Util;
 
 namespace Pathfinder
 {
@@ -19,13 +21,16 @@ namespace Pathfinder
             PathfinderAPIPlugin.HarmonyInstance = base.HarmonyInstance;
             Logger.LogSource = base.Log;
 
-            foreach (var initMethod in typeof(PathfinderAPIPlugin).Assembly.GetTypes().SelectMany(x => AccessTools.GetDeclaredMethods(x)))
+            foreach (var initMethod in typeof(PathfinderAPIPlugin).Assembly.GetTypes().SelectMany(AccessTools.GetDeclaredMethods))
             {
                 if (initMethod.GetCustomAttributes(false).Any(x => x is Util.InitializeAttribute) && initMethod.IsStatic && initMethod.GetParameters().Length == 0)
                     initMethod.Invoke(null, null);
             }
 
             HarmonyInstance.PatchAll(typeof(PathfinderAPIPlugin).Assembly);
+            
+            if (Environment.GetCommandLineArgs().Any(x => x.ToLower() == "-enabledebug"))
+                Command.DebugCommands.AddCommands();
 
             return true;
         }
