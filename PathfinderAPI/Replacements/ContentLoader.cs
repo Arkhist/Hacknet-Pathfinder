@@ -126,7 +126,7 @@ namespace Pathfinder.Replacements
                 )
                 {
                     idName = info.Attributes.GetString("id", "UNKNOWN").Filter(),
-                    AllowsDefaultBootModule = info.Attributes.GetBool("allowsDefaultBootModule"),
+                    AllowsDefaultBootModule = info.Attributes.GetBool("allowsDefaultBootModule", true),
                     icon = info.Attributes.GetString("icon", null)
                 };
                 holder.Comp = comp;
