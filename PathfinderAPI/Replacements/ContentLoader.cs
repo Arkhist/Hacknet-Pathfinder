@@ -753,6 +753,10 @@ namespace Pathfinder.Replacements
             {
                 comp.daemons.Add(new FastActionHost(comp, os, comp.name));
             });
+            executor.RegisterExecutor("Computer.PorthackHeart", (exec, info) =>
+            {
+                comp.daemons.Add(new PorthackHeartDaemon(comp, os));
+            });
             executor.RegisterExecutor("Computer.Memory", (exec, info) => comp.Memory = ReplacementsCommon.LoadMemoryContents(info), ParseOption.ParseInterior);
             executor.RegisterExecutor("Computer.eosDevice", (exec, info) =>
             {
