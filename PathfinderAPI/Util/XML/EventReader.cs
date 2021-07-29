@@ -75,6 +75,7 @@ namespace Pathfinder.Util.XML
                                 ReadEndElement();
                                 ParentNames.RemoveAt(ParentNames.Count - 1);
                                 break;
+                            case XmlNodeType.CDATA:
                             case XmlNodeType.Text:
                                 ReadText();
                                 break;
