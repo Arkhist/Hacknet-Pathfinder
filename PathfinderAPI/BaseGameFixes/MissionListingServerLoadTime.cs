@@ -46,10 +46,10 @@ namespace Pathfinder.BaseGameFixes
                 ComputerLoader.postAllLoadedActions = (System.Action)Delegate.Combine(ComputerLoader.postAllLoadedActions, (System.Action)(
                     () =>
                     {
-                        foreach (var file in new DirectoryInfo(listingDaemon.CustomFolderLoadPath).GetFiles("*.xml"))
+                        foreach (var file in Directory.GetFiles(listingDaemon.CustomFolderLoadPath, "*.xml"))
                         {
                             OS.currentInstance.branchMissions = new List<ActiveMission>();
-                            listingDaemon.addMisison(MissionLoader.LoadContentMission(listingDaemon.CustomFolderLoadPath + file));
+                            listingDaemon.addMisison(MissionLoader.LoadContentMission(file));
                         }
 
                         if (shouldGen)

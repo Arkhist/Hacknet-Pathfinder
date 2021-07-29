@@ -64,7 +64,7 @@ namespace BepInEx.Hacknet
                     throw new Exception($"{pluginInfo.Metadata.GUID} returned false on its load method");
                 }
             }
-            catch (Exception e)
+            catch
             {
                 TemporaryPluginGUIDs.Remove(pluginInfo.Metadata.GUID);
                 throw;
