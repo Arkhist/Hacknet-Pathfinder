@@ -462,7 +462,7 @@ namespace Pathfinder.Replacements
                     var sender = emailInfo.Attributes.GetString("sender", "UNKNOWN").Filter();
                     var subject = emailInfo.Attributes.GetString("subject", "UNKNOWN").Filter();
                     var content = (emailInfo.Content ?? "UNKNOWN").Filter();
-                    if (info.Attributes.TryGetValue("recipient", out var recp))
+                    if (emailInfo.Attributes.TryGetValue("recipient", out var recp))
                     {
                         recp = recp.Filter();
                         var email = MailServer.generateEmail(subject, content, sender);
