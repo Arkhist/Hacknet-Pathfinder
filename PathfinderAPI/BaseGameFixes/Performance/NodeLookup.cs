@@ -20,6 +20,17 @@ namespace Pathfinder.BaseGameFixes.Performance
                 ComputerLookup.PopulateLookups(item);
             }
         }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(List<Computer>), nameof(List<Computer>.AddRange))]
+        internal static void AddComputerReferenceRange(List<Computer> __instance, IEnumerable<Computer> collection)
+        {
+            if (object.ReferenceEquals(__instance, OS.currentInstance?.netMap?.nodes))
+            {
+                foreach (var comp in collection)
+                    ComputerLookup.PopulateLookups(comp);
+            }
+        }
         
         [HarmonyPrefix]
         [HarmonyPatch(typeof(ComputerLoader), nameof(ComputerLoader.findComp))]
