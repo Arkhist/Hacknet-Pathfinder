@@ -124,5 +124,21 @@ namespace Pathfinder
             HacknetLogger.LogError(text);
             return false;
         }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(OS), nameof(OS.threadExecute))]
+        internal static void LogThreadedExceptions(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.After, x => x.MatchPop());
+
+            c.Prev.OpCode = OpCodes.Nop;
+            while (!c.Next.MatchLeaveS(out _)) c.Remove();
+            c.EmitDelegate<Action<Exception>>(ex =>
+            {
+                HacknetLogger.LogError(new Exception("Exception occurred during threaded execute", ex));
+            });
+        }
     }
 }
