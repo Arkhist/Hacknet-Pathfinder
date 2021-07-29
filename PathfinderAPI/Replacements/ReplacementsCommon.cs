@@ -11,6 +11,7 @@ namespace Pathfinder.Replacements
     {
         public static MemoryContents LoadMemoryContents(ElementInfo info)
         {
+            if (info.Children.TryGetElement("Memory", out var internalInfo)) info = internalInfo;
             var memory = new MemoryContents();
 
             if (info.Children.TryGetElement("Commands", out var commands))
