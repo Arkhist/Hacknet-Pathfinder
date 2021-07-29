@@ -21,11 +21,11 @@ namespace Pathfinder.Replacements
                     {
                         foreach (var trueCommand in command.Split(Utils.robustNewlineDelim, StringSplitOptions.RemoveEmptyEntries))
                         {
-                            memory.CommandsRun.Add(ComputerLoader.filter(Folder.deFilter(string.IsNullOrEmpty(trueCommand) ? " " : trueCommand)));
+                            memory.CommandsRun.Add(trueCommand.HasContent() ? trueCommand.Filter() : " ");
                         }
                     }
                     else
-                        memory.CommandsRun.Add(ComputerLoader.filter(Folder.deFilter(command)));
+                        memory.CommandsRun.Add(command.Filter());
                 }
             }
 
@@ -33,7 +33,7 @@ namespace Pathfinder.Replacements
             {
                 foreach (var block in data.Children)
                 {
-                    memory.DataBlocks.Add(ComputerLoader.filter(Folder.deFilter(block.Content)));
+                    memory.DataBlocks.Add(block.Content.Filter());
                 }
             }
 
@@ -42,8 +42,8 @@ namespace Pathfinder.Replacements
                 foreach (var file in files.Children)
                 {
                     memory.FileFragments.Add(new KeyValuePair<string, string>(
-                        Folder.deFilter(file.Attributes.GetString("name", "UNKNOWN")),
-                        Folder.deFilter(file.Content)
+                        file.Attributes.GetString("name", "UNKNOWN"),
+                        file.Content
                     ));
                 }
             }
@@ -52,7 +52,7 @@ namespace Pathfinder.Replacements
             {
                 foreach (var image in images.Children)
                 {
-                    memory.Images.Add(Folder.deFilter(image.Content));
+                    memory.Images.Add(image.Content);
                 }
             }
             

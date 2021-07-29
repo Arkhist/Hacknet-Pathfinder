@@ -199,7 +199,7 @@ namespace Pathfinder.Replacements
                 foreach (var dataBlock in contents.DataBlocks)
                 {
                     var blockTag = new XElement("Block");
-                    blockTag.SetValue(Folder.Filter(dataBlock));
+                    blockTag.SetValue(dataBlock);
                     dataTag.Add(blockTag);
                 }
                 result.Add(dataTag);
@@ -210,7 +210,7 @@ namespace Pathfinder.Replacements
                 foreach (var command in contents.CommandsRun)
                 {
                     var blockTag = new XElement("Command");
-                    blockTag.SetValue(Folder.Filter(command));
+                    blockTag.SetValue(command);
                     dataTag.Add(blockTag);
                 }
                 result.Add(dataTag);
@@ -221,8 +221,8 @@ namespace Pathfinder.Replacements
                 foreach (var fileFrag in contents.FileFragments)
                 {
                     var blockTag = new XElement("File");
-                    blockTag.SetAttributeValue("name", Folder.Filter(fileFrag.Key));
-                    blockTag.SetValue(Folder.Filter(fileFrag.Value));
+                    blockTag.SetAttributeValue("name", fileFrag.Key);
+                    blockTag.SetValue(fileFrag.Value);
                     dataTag.Add(blockTag);
                 }
                 result.Add(dataTag);
@@ -233,7 +233,7 @@ namespace Pathfinder.Replacements
                 foreach (var image in contents.Images)
                 {
                     var blockTag = new XElement("Image");
-                    blockTag.SetValue(Folder.Filter(image));
+                    blockTag.SetValue(image);
                     dataTag.Add(blockTag);
                 }
                 result.Add(dataTag);
@@ -244,7 +244,7 @@ namespace Pathfinder.Replacements
         internal static XElement GetFolderSaveElement(Folder folder)
         {
             var result = new XElement("folder");
-            result.SetAttributeValue("name", Folder.Filter(folder.name));
+            result.SetAttributeValue("name", folder.name);
 
             foreach (var internalFolder in folder.folders)
                 result.Add(GetFolderSaveElement(internalFolder));
@@ -252,8 +252,8 @@ namespace Pathfinder.Replacements
             foreach (var file in folder.files)
             {
                 var fileTag = new XElement("file");
-                fileTag.SetAttributeValue("name", Folder.Filter(file.name));
-                fileTag.SetValue(Folder.Filter(file.data));
+                fileTag.SetAttributeValue("name", file.name);
+                fileTag.SetValue(file.data);
                 result.Add(fileTag);
             }
 
@@ -629,9 +629,9 @@ namespace Pathfinder.Replacements
             result.SetAttributeValue("activeCheck", mission.activeCheck);
 
             var email = new XElement("email");
-            email.SetAttributeValue("sender", Folder.Filter(mission.email.sender));
-            email.SetAttributeValue("subject", Folder.Filter(mission.email.subject));
-            email.SetValue(Folder.Filter(mission.email.body));
+            email.SetAttributeValue("sender", mission.email.sender);
+            email.SetAttributeValue("subject", mission.email.subject);
+            email.SetValue(mission.email.body);
             result.Add(email);
 
             var endFunctionVal = new XElement("endFunc");
@@ -640,8 +640,8 @@ namespace Pathfinder.Replacements
             result.Add(endFunctionVal);
 
             var postingTag = new XElement("posting");
-            postingTag.SetAttributeValue("title", Folder.Filter(mission.postingTitle));
-            postingTag.SetValue(Folder.Filter(mission.postingBody));
+            postingTag.SetAttributeValue("title", mission.postingTitle);
+            postingTag.SetValue(mission.postingBody);
             result.Add(postingTag);
             return result;
         }
@@ -738,7 +738,7 @@ namespace Pathfinder.Replacements
                 writer.WriteEndDocument();
             }
             
-            SaveFileManager.WriteSaveData(builder.ToString(), filename);
+            SaveFileManager.WriteSaveData(builder.Replace("\t", "  ").ToString(), filename);
 
             return false;
         }

@@ -28,7 +28,7 @@ namespace Pathfinder.Util.XML
                 WriteToXML(writer);
             }
 
-            return builder.ToString();
+            return builder.Replace("\t", "  ").ToString();
         }
 
         public void WriteToXML(XmlWriter writer)

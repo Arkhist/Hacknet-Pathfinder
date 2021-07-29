@@ -501,7 +501,7 @@ namespace Pathfinder.Replacements
 
         private static Folder LoadFolder(ElementInfo info)
         {
-            var result = new Folder(Folder.deFilter(info.Attributes.GetString("name")));
+            var result = new Folder(info.Attributes.GetString("name"));
             foreach (var child in info.Children)
             {
                 switch (child.Name)
@@ -512,7 +512,7 @@ namespace Pathfinder.Replacements
                     case "file":
                         if (child.Attributes.GetBool("EduSafe", true) || !Settings.EducationSafeBuild)
                         {
-                            result.files.Add(new FileEntry(Folder.deFilter(child.Content ?? ""), Folder.deFilter(child.Attributes.GetString("name"))));
+                            result.files.Add(new FileEntry(child.Content, child.Attributes.GetString("name")));
                         }
                         break;
                 }
