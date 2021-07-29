@@ -12,6 +12,7 @@ namespace Pathfinder.BaseGameFixes.Performance
     {
         [HarmonyPostfix]
         [HarmonyPatch(typeof(List<Computer>), nameof(List<Computer>.Add))]
+        [HarmonyPatch(typeof(List<Computer>), nameof(List<Computer>.Insert))]
         internal static void AddComputerReference(List<Computer> __instance, Computer item)
         {
             if (object.ReferenceEquals(__instance, OS.currentInstance?.netMap?.nodes))
