@@ -17,7 +17,7 @@ namespace Pathfinder.Replacements
         [HarmonyPatch(typeof(DatabaseDaemon), nameof(DatabaseDaemon.DeCleanXMLForFile))]
         internal static bool DontCleanForXML(string data, out string __result)
         {
-            __result = data;
+            __result = data.Replace("\t", "  ");
             return false;
         }
         
