@@ -131,14 +131,18 @@ namespace Pathfinder.BaseGameFixes.Performance
         {
             if (theme == OSTheme.Custom)
             {
-                // just dont question it
-                var lastTheme = CachedThemes.BackingListHead?.Value;
-                if (lastTheme != null)
+                lock (cacheLock)
                 {
-                    if (!lastTheme.Loaded)
-                        lastTheme.Load(true);
-                    lastTheme.ApplyTo((OS)osObject);
+                    // just dont question it
+                    var lastTheme = CachedThemes.BackingListHead?.Value;
+                    if (lastTheme != null)
+                    {
+                        if (!lastTheme.Loaded)
+                            lastTheme.Load(true);
+                        lastTheme.ApplyTo((OS) osObject);
+                    }
                 }
+
                 return false;
             }
 
