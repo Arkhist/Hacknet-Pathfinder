@@ -419,11 +419,7 @@ namespace Pathfinder.Replacements
             });
             executor.RegisterExecutor("Computer.missionHubServer", (exec, info) =>
             {
-                var missionPath = info.Attributes.GetString("missionFolderPath", null);
-                if (!Settings.IsInExtensionMode)
-                    missionPath = "Content/Missions/" + missionPath;
-                else
-                    missionPath = ExtensionLoader.ActiveExtensionInfo.FolderPath + "/" + missionPath;
+                var missionPath = ExtensionLoader.ActiveExtensionInfo.FolderPath + "/" + info.Attributes.GetString("missionFolderPath", null);
                 missionPath = missionPath.Replace("\\", "/");
                 if (!missionPath.EndsWith("/"))
                     missionPath += "/";
