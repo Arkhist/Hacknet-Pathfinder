@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Xml;
 using Hacknet;
@@ -38,6 +40,17 @@ namespace Pathfinder.Replacements
             }
 
             return true;
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(ObjectSerializer), nameof(ObjectSerializer.SerializeObject), new Type[] {typeof(object), typeof(bool)})]
+        private static void DontSerializeStaticFields(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+            
+            c.GotoNext(MoveType.After, x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(Type), nameof(Type.GetFields), new Type[0])));
+
+            c.EmitDelegate<Func<FieldInfo[], FieldInfo[]>>(fields => fields.Where(x => !x.IsStatic).ToArray());
         }
 
         [HarmonyPrefix]
