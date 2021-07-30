@@ -27,11 +27,12 @@ def install_pathfinder(gen_event_callback, hacknet_directory):
         pathfinder_zip.extractall(path=hacknet_directory)
 
     patcher_exe = os.path.join(hacknet_directory, 'PathfinderPatcher.exe')
+    if platform.system() == 'Windows':
+        patcher_args = [patcher_exe]
+    else:
+        patcher_args = ['mono', patcher_exe]
 
-    if platform.system() == "Linux":
-        os.chmod(patcher_exe, stat.S_IRWXU)
-
-    completed = subprocess.run([patcher_exe], cwd=hacknet_directory)
+    completed = subprocess.run(patcher_args, cwd=hacknet_directory)
 
     if completed.returncode != 0:
         gen_event_callback('<<InstallFailure>>')
@@ -181,6 +182,9 @@ class App(Frame):
         if not self.valid_directory(hacknet_dir):
             return
 
+        if os.path.exists(os.path.join(hacknet_dir, "HacknetOld.exe")):
+            self.uninstall(True)
+
         self.progress = Progressbar(self.button_frame, orient=HORIZONTAL, length=500, mode='indeterminate')
         self.progress.grid(column=0, row=0, columnspan=2)
         self.progress.start()
@@ -197,7 +201,7 @@ class App(Frame):
         self.progress = None
         return
 
-    def uninstall(self):
+    def uninstall(self, silent=False):
         hacknet_dir = self.hacknet_directory.get()
 
         if not self.valid_directory(hacknet_dir):
@@ -205,7 +209,7 @@ class App(Frame):
         hacknet_exe_path = os.path.join(hacknet_dir, 'Hacknet.exe')
         old_hacknet_path = os.path.join(hacknet_dir, 'HacknetOld.exe')
         if not os.path.exists(old_hacknet_path):
-            self.make_message_box('Could not find OldHacknet.exe, are you sure Pathfinder is installed (and was installed by this installer)?', title='Error!')
+            self.make_message_box('Could not find HacknetOld.exe, are you sure Pathfinder is installed (and was installed by this installer)?', title='Error!')
             return
         try:
             os.remove(hacknet_exe_path)
@@ -214,7 +218,8 @@ class App(Frame):
         except OSError:
             self.make_message_box('Failed to clean up all files, you may be left with an incomplete uninstall!', title='Error!')
 
-        self.make_message_box('Pathfinder successfully uninstalled', title='Success')
+        if not silent:
+            self.make_message_box('Pathfinder successfully uninstalled', title='Success')
 
     def valid_directory(self, directory):
         valid = True
