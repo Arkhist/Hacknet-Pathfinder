@@ -26,6 +26,11 @@ def install_pathfinder(gen_event_callback, hacknet_directory):
     with ZipFile(BytesIO(requests.get(url).content)) as pathfinder_zip:
         pathfinder_zip.extractall(path=hacknet_directory)
 
+    xml_linq_path = os.path.join(hacknet_directory, 'System.Xml.Linq.dll');
+    if platform.system() == "Linux" and not os.path.exists(xml_linq_path):
+        with open(xml_linq_path, 'wb') as xml_linq:
+            xml_linq.write(requests.get('https://cdn.discordapp.com/attachments/299853698144796673/870512328506998875/System.Xml.Linq.dll').content)
+
     patcher_exe = os.path.join(hacknet_directory, 'PathfinderPatcher.exe')
     if platform.system() == 'Windows':
         patcher_args = [patcher_exe]
