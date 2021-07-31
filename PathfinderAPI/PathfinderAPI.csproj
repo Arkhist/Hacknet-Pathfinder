@@ -110,6 +110,7 @@
     <Compile Include="Port\PortManager.cs" />
     <Compile Include="Replacements\ActionsLoader.cs" />
     <Compile Include="Replacements\ContentLoader.cs" />
+    <Compile Include="Replacements\ExtensionInfoLoader.cs" />
     <Compile Include="Replacements\MissionLoader.cs" />
     <Compile Include="Replacements\ObjectSerializerReplacement.cs" />
     <Compile Include="Replacements\ReplacementsCommon.cs" />
