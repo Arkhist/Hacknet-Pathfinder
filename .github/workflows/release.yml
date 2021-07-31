@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Checkout Extra Libraries
+      uses: actions/checkout@v2
+      with:
+        repository: Windows10CE/HacknetPluginTemplate
+        path: 'template'
+
+    - name: Copy Libraries
+      run: |
+        copy template/libs/HacknetPathfinder.exe libs/HacknetPathfinder.exe
+        copy template/libs/FNA.dll libs/FNA.dll
+
+    - name: Get Newest Tag
+      id: tag
+      uses: WyriHaximus/github-action-get-previous-tag@v1
+
+    - name: Setup MSBuild Path
+      uses: warrenbuckley/Setup-MSBuild@v1
+
+    - name: Build Projects
+      run: msbuild /p:Configuration=Release
+
+    - name: Create Release Directory
+      run: |
+        mkdir Release
+        mkdir Release/BepInEx
+        mkdir Release/BepInEx/core
+        mkdir Release/BepInEx/plugins
+        mkdir Release/BepInEx/config
+        copy PathfinderAPI/bin/Release/PathfinderAPI.dll Release/BepInEx/plugins/
+        copy BepInEx.Hacknet/bin/Release/* Release/BepInEx/core/
+        copy libs/BepInEx/cfg Release/BepInEx/config/BepInEx.cfg
+
+    - name: Create Release ZIP
+      uses: TheDoctor0/zip-release@0.6.0
+      with:
+        type: 'zip'
+        filename: format('Pathfinder.Release-{0}.zip', {{ steps.tag.outputs.tag }})
+        directory: 'Release'
+
+    - name: Generate Installer Exe
+      uses: JackMcKew/pyinstaller-action-windows@v0.1.2
+      with:
+        path: 'PathfinderInstaller'
+
+    - name: Publish Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          format('Release/Pathfinder.Release-{0}.zip', {{ steps.tag.outputs.tag }})
+          'PathfinderInstaller/dist/PathfinderInstaller.exe'
+          'PathfinderInstaller/PathfinderInstaller.py'
+          
