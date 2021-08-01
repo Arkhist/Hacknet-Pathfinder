@@ -208,7 +208,7 @@ namespace Pathfinder.Util.XML
         {
             while (true)
             {
-                if (AllExecutors.TryGetValue("*", out executors))
+                if (AllExecutors.TryGetValue(name, out executors))
                 {
                     if (executors.Any(x => (x.Options & ParseOption.DontAllowOthers) != 0))
                         executors = executors.Where(x => (x.Options & ParseOption.ParseInterior) != 0).Take(1).ToList();
