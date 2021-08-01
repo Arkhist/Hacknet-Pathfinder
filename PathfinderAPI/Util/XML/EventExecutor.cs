@@ -24,7 +24,20 @@ namespace Pathfinder.Util.XML
             public ParseOption Options;
         }
 
-        private Dictionary<string, List<ExecutorHolder>> Executors = new Dictionary<string, List<ExecutorHolder>>();
+        private struct ExecutorState
+        {
+            public XmlReader Reader;
+            public string Text;
+            public Dictionary<string, List<ExecutorHolder>> Temps;
+            public Dictionary<string, List<ExecutorHolder>> AllExecs;
+            public List<ReadExecution> CurrentExecs;
+            public Stack<ElementInfo> ElementStack;
+            public List<string> ParentNames;
+        }
+
+        private readonly Stack<ExecutorState> stateStack = new Stack<ExecutorState>();
+
+        private readonly Dictionary<string, List<ExecutorHolder>> Executors = new Dictionary<string, List<ExecutorHolder>>();
 
         private Dictionary<string, List<ExecutorHolder>> TemporaryExecutors =
             new Dictionary<string, List<ExecutorHolder>>();
@@ -68,6 +81,40 @@ namespace Pathfinder.Util.XML
 
         public EventExecutor(XmlReader rdr) : base(rdr)
         {
+        }
+
+        public void SaveState()
+        {
+            stateStack.Push(new ExecutorState
+            {
+                Reader = Reader,
+                Text = Text,
+                Temps = TemporaryExecutors,
+                AllExecs = _allExecs,
+                CurrentExecs = currentExecutors,
+                ElementStack = currentElementStack,
+                ParentNames = ParentNames
+            });
+
+            Reader = null;
+            Text = null;
+            TemporaryExecutors = new Dictionary<string, List<ExecutorHolder>>();
+            _allExecs = null;
+            currentExecutors = new List<ReadExecution>();
+            currentElementStack = new Stack<ElementInfo>();
+            ParentNames = new List<string>();
+        }
+
+        public void PopState()
+        {
+            var state = stateStack.Pop();
+            Reader = state.Reader;
+            Text = state.Text;
+            TemporaryExecutors = state.Temps;
+            _allExecs = state.AllExecs;
+            currentExecutors = state.CurrentExecs;
+            currentElementStack = state.ElementStack;
+            ParentNames = state.ParentNames;
         }
 
         public void RegisterExecutor(string element, ReadExecution executor, ParseOption options = ParseOption.None)
