@@ -32,20 +32,20 @@ namespace Pathfinder.Util.XML
             return builder.Replace("\t", "  ").ToString();
         }
 
-        public bool ContentAsBoolean(string source)
+        public bool ContentAsBoolean()
             => bool.TryParse(Content, out var value)
                 ? value
-                : throw new FormatException($"Value of '{Name}' in '{source}' is not true or false");
+                : throw new FormatException($"Value of '{Name}' is not true or false");
 
-        public int ContentAsInt(string source)
+        public int ContentAsInt()
             => int.TryParse(Content, out var value)
                 ? value
-                : throw new FormatException($"Value of '{Name}' in '{source}' is not an integer, e.g.: 0, 1, 2");
+                : throw new FormatException($"Value of '{Name}' is not an integer, e.g.: 0, 1, 2");
         
-        public float ContentAsFloat(string source)
+        public float ContentAsFloat()
             => float.TryParse(Content, out var value)
                 ? value
-                : throw new FormatException($"Value of '{Name}' in '{source}' is not a float, e.g.: 1.0");
+                : throw new FormatException($"Value of '{Name}' is not a float, e.g.: 1.0");
 
         public void WriteToXML(XmlWriter writer)
         {

@@ -61,20 +61,75 @@ namespace Pathfinder.Replacements
             CustomExecutors.RemoveAll(x => x.ExecutorType == tType);
         }
         
-        static ExtensionInfoLoader()
-        {
-            EventManager.onPluginUnload += OnPluginUnload;
-        }
-        
         private static void OnPluginUnload(Assembly pluginAsm)
         {
             var allTypes = AccessTools.GetTypesFromAssembly(pluginAsm);
             CustomExecutors.RemoveAll(x => allTypes.Contains(x.ExecutorType));
         }
+
+        private static readonly EventExecutor executor = new EventExecutor();
+
+        private static ExtensionInfo extInfo;
+        
+        static ExtensionInfoLoader()
+        {
+            EventManager.onPluginUnload += OnPluginUnload;
+            
+            executor.RegisterExecutor("Name", (exec, info) => extInfo.Name = Utils.CleanStringToLanguageRenderable(info.Content), ParseOption.ParseInterior);
+            executor.RegisterExecutor("Language", (exec, info) =>
+            {
+                var language = info.Content;
+                if (!ValidLanguages.Contains(language))
+                    throw new FormatException($"Invalid language: {language}");
+                extInfo.Language = language;
+            }, ParseOption.ParseInterior);
+            executor.RegisterExecutor("AllowSaves", (exec, info) => extInfo.AllowSave = info.ContentAsBoolean(), ParseOption.ParseInterior);
+            executor.RegisterExecutor("StartingVisibleNodes", (exec, info) =>
+                extInfo.StartingVisibleNodes = info.Content
+                    .Split(new[] {',', ' ', '\t', '\n', '\r', '/'}, StringSplitOptions.RemoveEmptyEntries), ParseOption.ParseInterior);
+            executor.RegisterExecutor("StartingMission", (exec, info) => extInfo.StartingMissionPath = info.Content != "NONE" ? info.Content : null, ParseOption.ParseInterior);
+            executor.RegisterExecutor("StartingActions", (exec, info) => extInfo.StartingActionsPath = info.Content != "NONE" ? info.Content : null, ParseOption.ParseInterior);
+            executor.RegisterExecutor("Description", (exec, info) => extInfo.Description = Utils.CleanFilterStringToRenderable(info.Content), ParseOption.ParseInterior);
+            executor.RegisterExecutor("Faction", (exec, info) => extInfo.FactionDescriptorPaths.Add(info.Content), ParseOption.ParseInterior);
+            executor.RegisterExecutor("StartsWithTutorial", (exec, info) => extInfo.StartsWithTutorial = info.ContentAsBoolean(), ParseOption.ParseInterior);
+            executor.RegisterExecutor("HasIntroStartup", (exec, info) => extInfo.HasIntroStartup = info.ContentAsBoolean(), ParseOption.ParseInterior);
+            executor.RegisterExecutor("StartingTheme", (exec, info) => extInfo.Theme = info.Content, ParseOption.ParseInterior); // no more ToLower() :)
+            executor.RegisterExecutor("IntroStartupSong", (exec, info) => extInfo.IntroStartupSong = info.Content, ParseOption.ParseInterior);
+            executor.RegisterExecutor("IntroStartupSongDelay", (exec, info) => extInfo.IntroStartupSongDelay = info.ContentAsFloat(), ParseOption.ParseInterior);
+            executor.RegisterExecutor("SequencerSpinUpTime", (exec, info) => extInfo.SequencerSpinUpTime = info.ContentAsFloat(), ParseOption.ParseInterior);
+            executor.RegisterExecutor("ActionsToRunOnSequencerStart", (exec, info) => extInfo.ActionsToRunOnSequencerStart = info.Content, ParseOption.ParseInterior);
+            executor.RegisterExecutor("SequencerFlagRequiredForStart", (exec, info) => extInfo.SequencerFlagRequiredForStart = info.Content, ParseOption.ParseInterior);
+            executor.RegisterExecutor("SequencerTargetID", (exec, info) => extInfo.SequencerTargetID = info.Content, ParseOption.ParseInterior);
+            executor.RegisterExecutor("WorkshopDescription", (exec, info) => extInfo.WorkshopDescription = info.Content, ParseOption.ParseInterior);
+            executor.RegisterExecutor("WorkshopVisibility", (exec, info) =>
+            {
+                byte value;
+                switch (info.Content)
+                {
+                    case "public":
+                        value = 0;
+                        break;
+                    case "friends":
+                        value = 1;
+                        break;
+                    case "private":
+                        value = 2;
+                        break;
+                    default:
+                        value = (byte) info.ContentAsInt();
+                        break;
+                }
+                extInfo.WorkshopVisibility = value;
+            }, ParseOption.ParseInterior);
+            executor.RegisterExecutor("WorkshopTags", (exec, info) => extInfo.WorkshopTags = info.Content, ParseOption.ParseInterior);
+            executor.RegisterExecutor("WorkshopPreviewImagePath", (exec, info) => extInfo.WorkshopPreviewImagePath = info.Content, ParseOption.ParseInterior);
+            executor.RegisterExecutor("WorkshopLanguage", (exec, info) => extInfo.WorkshopLanguage = info.Content, ParseOption.ParseInterior);
+            executor.RegisterExecutor("WorkshopPublishID", (exec, info) => extInfo.WorkshopPublishID = info.Content, ParseOption.ParseInterior);
+        }
         
         [HarmonyPrefix]
         [HarmonyPatch(typeof(ExtensionInfo), nameof(ExtensionInfo.ReadExtensionInfo))]
-        private static bool LoadExtensionInfoPrefix(string folderpath, ref ExtensionInfo __result)
+        private static bool LoadExtensionInfoPrefix(string folderpath, out ExtensionInfo __result)
         {
             __result = LoadExtensionInfo(folderpath);
             return false;
@@ -87,7 +142,7 @@ namespace Pathfinder.Replacements
             if (!File.Exists(filepath))
                 throw new FileNotFoundException($"Could not find ExtensionInfo.xml in folder {folderpath}");
 
-            var extInfo = new ExtensionInfo();
+            extInfo = new ExtensionInfo();
             extInfo.FolderPath = folderpath;
             extInfo.Language = "en-us";
             
@@ -103,73 +158,19 @@ namespace Pathfinder.Replacements
                 using (var input = File.OpenRead(logopath + extension))
                     extInfo.LogoImage = Texture2D.FromStream(Game1.getSingleton().GraphicsDevice, input);
 
-            var exe = new EventExecutor(LocalizedFileLoader.GetLocalizedFilepath(filepath), true);
+            executor.SetText(LocalizedFileLoader.GetLocalizedFilepath(filepath), true);
 
             foreach (var custom in CustomExecutors)
             {
                 var instance = (ExtensionInfoExecutor)Activator.CreateInstance(custom.ExecutorType);
                 instance.Init(ref extInfo);
-                exe.RegisterExecutor(custom.Element, instance.Execute, custom.Options);
+                executor.RegisterTempExecutor(custom.Element, instance.Execute, custom.Options);
             }
 
-            exe.Reg("Name", (exec, info) => extInfo.Name = Utils.CleanStringToLanguageRenderable(info.Content));
-            exe.Reg("Language", (exec, info) =>
-            {
-                var language = info.Content;
-                if (!ValidLanguages.Contains(language))
-                    throw new FormatException($"Invalid language in '{filepath}': {language}");
-                extInfo.Language = language;
-            });
-            exe.Reg("AllowSaves", (exec, info) => extInfo.AllowSave = info.ContentAsBoolean(filepath));
-            exe.Reg("StartingVisibleNodes", (exec, info) =>
-                extInfo.StartingVisibleNodes = info.Content
-                    .Split(new[] {',', ' ', '\t', '\n', '\r', '/'}, StringSplitOptions.RemoveEmptyEntries));
-            exe.Reg("StartingMission", (exec, info) => extInfo.StartingMissionPath = info.Content != "NONE" ? info.Content : null);
-            exe.Reg("StartingActions", (exec, info) => extInfo.StartingActionsPath = info.Content != "NONE" ? info.Content : null);
-            exe.Reg("Description", (exec, info) => extInfo.Description = Utils.CleanFilterStringToRenderable(info.Content));
-            exe.Reg("Faction", (exec, info) => extInfo.FactionDescriptorPaths.Add(info.Content));
-            exe.Reg("StartsWithTutorial", (exec, info) => extInfo.StartsWithTutorial = info.ContentAsBoolean(filepath));
-            exe.Reg("HasIntroStartup", (exec, info) => extInfo.HasIntroStartup = info.ContentAsBoolean(filepath));
-            exe.Reg("StartingTheme", (exec, info) => extInfo.Theme = info.Content); // no more ToLower() :)
-            exe.Reg("IntroStartupSong", (exec, info) => extInfo.IntroStartupSong = info.Content);
-            exe.Reg("IntroStartupSongDelay", (exec, info) => extInfo.IntroStartupSongDelay = info.ContentAsFloat(filepath));
-            exe.Reg("SequencerSpinUpTime", (exec, info) => extInfo.SequencerSpinUpTime = info.ContentAsFloat(filepath));
-            exe.Reg("ActionsToRunOnSequencerStart", (exec, info) => extInfo.ActionsToRunOnSequencerStart = info.Content);
-            exe.Reg("SequencerFlagRequiredForStart", (exec, info) => extInfo.SequencerFlagRequiredForStart = info.Content);
-            exe.Reg("SequencerTargetID", (exec, info) => extInfo.SequencerTargetID = info.Content);
-            exe.Reg("WorkshopDescription", (exec, info) => extInfo.WorkshopDescription = info.Content);
-            exe.Reg("WorkshopVisibility", (exec, info) =>
-            {
-                byte value;
-                switch (info.Content)
-                {
-                    case "public":
-                        value = 0;
-                        break;
-                    case "friends":
-                        value = 1;
-                        break;
-                    case "private":
-                        value = 2;
-                        break;
-                    default:
-                        value = (byte) info.ContentAsInt(filepath);
-                        break;
-                }
-                extInfo.WorkshopVisibility = value;
-            });
-            exe.Reg("WorkshopTags", (exec, info) => extInfo.WorkshopTags = info.Content);
-            exe.Reg("WorkshopPreviewImagePath", (exec, info) => extInfo.WorkshopPreviewImagePath = info.Content);
-            exe.Reg("WorkshopLanguage", (exec, info) => extInfo.WorkshopLanguage = info.Content);
-            exe.Reg("WorkshopPublishID", (exec, info) => extInfo.WorkshopPublishID = info.Content);
-            
-            if (!exe.TryParse(out var ex))
+            if (!executor.TryParse(out var ex))
                 throw new FormatException($"An exception occurred while trying to parse '{filepath}'", ex);
             
             return extInfo;
         }
-
-        private static void Reg(this IExecutor executor, string childName, ReadExecution execution)
-            => executor.RegisterExecutor("HacknetExtension." + childName, execution, ParseOption.ParseInterior);
     }
 }
