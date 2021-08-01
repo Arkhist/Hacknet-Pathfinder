@@ -69,7 +69,7 @@ namespace Pathfinder.Replacements
 
         private static readonly EventExecutor executor = new EventExecutor();
 
-        private static ExtensionInfo extInfo;
+        private static ExtensionInfo extInfo = null;
         
         static ExtensionInfoLoader()
         {
@@ -169,8 +169,10 @@ namespace Pathfinder.Replacements
 
             if (!executor.TryParse(out var ex))
                 throw new FormatException($"An exception occurred while trying to parse '{filepath}'", ex);
-            
-            return extInfo;
+
+            var ret = extInfo;
+            extInfo = null;
+            return ret;
         }
     }
 }
