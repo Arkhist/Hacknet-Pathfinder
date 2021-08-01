@@ -55,48 +55,20 @@ namespace Pathfinder.Replacements
             CustomExecutors.RemoveAll(x => x.ExecutorType == tType);
         }
 
-        static MissionLoader()
-        {
-            EventManager.onPluginUnload += OnPluginUnload;
-        }
-
         private static void OnPluginUnload(Assembly pluginAsm)
         {
             var allTypes = AccessTools.GetTypesFromAssembly(pluginAsm);
             CustomExecutors.RemoveAll(x => allTypes.Contains(x.ExecutorType));
         }
+
+        private static EventExecutor executor = new EventExecutor();
+        private static ActiveMission mission = null;
+        private static List<ActiveMission> branches = null;
+        private static bool hasMissionTag = false;
         
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(ComputerLoader), nameof(ComputerLoader.readMission))]
-        private static bool ReadMissionPrefix(string filename, out object __result)
+        static MissionLoader()
         {
-            __result = LoadContentMission(filename);
-            return false;
-        }
-
-        public static ActiveMission LoadContentMission(string filename)
-        {
-            if (ComputerLoader.MissionPreLoadComplete != null)
-                ComputerLoader.MissionPreLoadComplete();
-            
-            var mission = new ActiveMission(new List<MisisonGoal>(), null, default)
-            {
-                willSendEmail = true,
-                reloadGoalsSourceFile = filename
-            };
-            var branches = new List<ActiveMission>();
-            mission.email.attachments = new List<string>();
-            
-            var executor = new EventExecutor(LocalizedFileLoader.GetLocalizedFilepath(filename), true);
-
-            foreach (var custom in CustomExecutors)
-            {
-                var customInstance = (MissionExecutor)Activator.CreateInstance(custom.ExecutorType);
-                customInstance.Init(OS.currentInstance, ref mission);
-                executor.RegisterExecutor(custom.Element, customInstance.Execute, custom.Options);
-            }
-
-            var hasMissionTag = false;
+            EventManager.onPluginUnload += OnPluginUnload;
             
             executor.RegisterExecutor("mission", (exec, info) =>
             {
@@ -130,7 +102,15 @@ namespace Pathfinder.Replacements
             executor.RegisterExecutor("mission.branchMissions.branch", (exec, info) =>
             {
                 var filePrefix = Settings.IsInExtensionMode ? ExtensionLoader.ActiveExtensionInfo.FolderPath + "/" : "Content/Missions/";
-                branches.Add(LoadContentMission(filePrefix + info.Content));
+                var currentMission = mission;
+                var currentBranches = branches;
+                mission = null;
+                branches = null;
+                exec.SaveState();
+                currentBranches.Add(LoadContentMission(filePrefix + info.Content));
+                exec.PopState();
+                mission = currentMission;
+                branches = currentBranches;
             }, ParseOption.ParseInterior);
             executor.RegisterExecutor("mission.branchMissions", (exec, info) => OS.currentInstance.branchMissions = branches, ParseOption.FireOnEnd);
             executor.RegisterExecutor("mission.posting", (exec, info) =>
@@ -163,13 +143,50 @@ namespace Pathfinder.Replacements
             {
                 mission.email.attachments.Add($"note#%#{info.Attributes.GetString("title", "Data").Filter()}#%#{info.Content.Filter()}");
             }, ParseOption.ParseInterior);
+        }
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ComputerLoader), nameof(ComputerLoader.readMission))]
+        private static bool ReadMissionPrefix(string filename, out object __result)
+        {
+            __result = LoadContentMission(filename);
+            return false;
+        }
+
+        public static ActiveMission LoadContentMission(string filename)
+        {
+            if (ComputerLoader.MissionPreLoadComplete != null)
+                ComputerLoader.MissionPreLoadComplete();
+            
+            mission = new ActiveMission(new List<MisisonGoal>(), null, default)
+            {
+                willSendEmail = true,
+                reloadGoalsSourceFile = filename
+            };
+            branches = new List<ActiveMission>();
+            mission.email.attachments = new List<string>();
+
+            hasMissionTag = false;
+            
+            executor.SetText(LocalizedFileLoader.GetLocalizedFilepath(filename), true);
+
+            foreach (var custom in CustomExecutors)
+            {
+                var customInstance = (MissionExecutor)Activator.CreateInstance(custom.ExecutorType);
+                customInstance.Init(OS.currentInstance, ref mission);
+                executor.RegisterTempExecutor(custom.Element, customInstance.Execute, custom.Options);
+            }
             
             if (!executor.TryParse(out var ex))
             {
                 throw new FormatException($"{filename}: {ex.Message}", ex);
             }
 
-            return hasMissionTag ? mission : null;
+            var ret = mission;
+            mission = null;
+            branches = null;
+
+            return hasMissionTag ? ret : null;
         }
 
         private static MisisonGoal LoadGoal(ElementInfo info)
