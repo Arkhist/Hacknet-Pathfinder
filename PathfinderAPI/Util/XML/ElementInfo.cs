@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Xml;
 
@@ -30,6 +31,21 @@ namespace Pathfinder.Util.XML
 
             return builder.Replace("\t", "  ").ToString();
         }
+
+        public bool ContentAsBoolean(string source)
+            => bool.TryParse(Content, out var value)
+                ? value
+                : throw new FormatException($"Value of '{Name}' in '{source}' is not true or false");
+
+        public int ContentAsInt(string source)
+            => int.TryParse(Content, out var value)
+                ? value
+                : throw new FormatException($"Value of '{Name}' in '{source}' is not an integer, e.g.: 0, 1, 2");
+        
+        public float ContentAsFloat(string source)
+            => float.TryParse(Content, out var value)
+                ? value
+                : throw new FormatException($"Value of '{Name}' in '{source}' is not a float, e.g.: 1.0");
 
         public void WriteToXML(XmlWriter writer)
         {
