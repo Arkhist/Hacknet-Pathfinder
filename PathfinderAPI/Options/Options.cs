@@ -22,8 +22,8 @@ namespace Pathfinder.Options
         public string Description = "";
         public bool Enabled = true;
 
-        public virtual int SizeX {get;} = 0;
-        public virtual int SizeY {get;} = 0;
+        public virtual int SizeX => 0;
+        public virtual int SizeY => 0;
 
         public Option(string name, string description="")
         {
@@ -38,8 +38,8 @@ namespace Pathfinder.Options
     {
         public bool Value;
 
-        public override int SizeX {get;} = 100;
-        public override int SizeY {get;} = 40;
+        public override int SizeX => 100;
+        public override int SizeY => 75;
 
         public OptionCheckbox(string name, string description="", bool defVal=false) : base(name, description)
         {
