@@ -12,12 +12,15 @@ namespace Pathfinder.Util.XML
         protected virtual void ReadElement(Dictionary<string, string> attributes) {}
         protected virtual void ReadEndElement() {}
         protected virtual void ReadText() {}
+        protected virtual void EndRead() {}
         
         public XmlReader Reader { get; protected set; }
         public readonly List<string> ParentNames = new List<string>();
         public string CurrentNamespace => string.Join(".", ParentNames);
         
-        protected readonly string Text;
+        protected string Text;
+        
+        public EventReader() {}
         
         public EventReader(string text, bool isPath)
         {
@@ -27,6 +30,11 @@ namespace Pathfinder.Util.XML
         public EventReader(XmlReader rdr)
         {
             Reader = rdr;
+        }
+
+        public void SetText(string text, bool isPath)
+        {
+            Text = isPath ? File.ReadAllText(text) : text;
         }
 
         public void Parse()
@@ -82,7 +90,11 @@ namespace Pathfinder.Util.XML
                         }
                     }
                 }
+                
+                EndRead();
             }
+
+            Reader = null;
         }
 
         public bool TryParse(out Exception exception)

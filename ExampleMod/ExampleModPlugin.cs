@@ -46,7 +46,7 @@ namespace ExampleMod2
 
     public class TestComputerExecutor : Pathfinder.Replacements.ContentLoader.ComputerExecutor
     {
-        public override void Execute(IExecutor exec, ElementInfo info)
+        public override void Execute(EventExecutor exec, ElementInfo info)
         {
             Comp.name = "hello from custom executor!";
         }

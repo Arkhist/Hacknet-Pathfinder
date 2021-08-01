@@ -27,7 +27,7 @@ namespace Pathfinder.Replacements
                 Mission = mission;
             }
 
-            public abstract void Execute(IExecutor exec, ElementInfo info);
+            public abstract void Execute(EventExecutor exec, ElementInfo info);
         }
 
         private struct MissionExecutorHolder

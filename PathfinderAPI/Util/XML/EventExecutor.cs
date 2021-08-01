@@ -1,10 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 
 namespace Pathfinder.Util.XML
 {
-    public class EventExecutor : EventReader, IExecutor
+    public delegate void ReadExecution(EventExecutor exec, ElementInfo info);
+
+    [Flags]
+    public enum ParseOption
+    {
+        None = 0,
+        ParseInterior = 0b1,
+        FireOnEnd = 0b10,
+        DontAllowOthers = 0b100
+    }
+
+    public class EventExecutor : EventReader
     {
         private struct ExecutorHolder
         {
@@ -14,28 +26,91 @@ namespace Pathfinder.Util.XML
 
         private Dictionary<string, List<ExecutorHolder>> Executors = new Dictionary<string, List<ExecutorHolder>>();
 
+        private Dictionary<string, List<ExecutorHolder>> TemporaryExecutors =
+            new Dictionary<string, List<ExecutorHolder>>();
+
+        private Dictionary<string, List<ExecutorHolder>> _allExecs = null;
+        
+        private Dictionary<string, List<ExecutorHolder>> AllExecutors
+        {
+            get
+            {
+                if (_allExecs != null)
+                    return _allExecs;
+                
+                var ret = new Dictionary<string, List<ExecutorHolder>>();
+                foreach (var exec in Executors)
+                {
+                    ret[exec.Key] = new List<ExecutorHolder>(exec.Value);
+                }
+
+                foreach (var temp in TemporaryExecutors)
+                {
+                    if (ret.ContainsKey(temp.Key))
+                        ret[temp.Key].AddRange(temp.Value);
+                    else
+                        ret[temp.Key] = new List<ExecutorHolder>(temp.Value);
+                }
+
+                _allExecs = ret;
+                return ret;
+            }
+        }
+
         private Stack<ElementInfo> currentElementStack = new Stack<ElementInfo>();
         private List<ReadExecution> currentExecutors;
-
-        public EventExecutor(string text, bool isPath) : base(text, isPath) {}
-        public EventExecutor(XmlReader rdr) : base(rdr) {}
         
+        public EventExecutor() {}
+
+        public EventExecutor(string text, bool isPath) : base(text, isPath)
+        {
+        }
+
+        public EventExecutor(XmlReader rdr) : base(rdr)
+        {
+        }
+
         public void RegisterExecutor(string element, ReadExecution executor, ParseOption options = ParseOption.None)
         {
-            if (!Executors.TryGetValue(element, out _))
+            if (!Executors.ContainsKey(element))
                 Executors.Add(element, new List<ExecutorHolder>());
-            if (Executors[element].Any(x => (x.Options & ParseOption.DontAllowOthers) != 0))
+            if (!TemporaryExecutors.ContainsKey(element))
+                TemporaryExecutors.Add(element, new List<ExecutorHolder>());
+            
+            if (Executors[element].Any(x => (x.Options & ParseOption.DontAllowOthers) != 0) ||
+                TemporaryExecutors[element].Any(x => (x.Options & ParseOption.DontAllowOthers) != 0))
             {
                 return;
             }
+
             if ((options & ParseOption.DontAllowOthers) != 0)
+            {
                 Executors[element].Clear();
-            Executors[element].Add(new ExecutorHolder { Executor = executor, Options = options });
+                TemporaryExecutors[element].Clear();
+            }
+
+            Executors[element].Add(new ExecutorHolder {Executor = executor, Options = options});
         }
 
-        public void UnregisterExecutors(string element)
+        public void RegisterTempExecutor(string element, ReadExecution executor, ParseOption options = ParseOption.None)
         {
-            Executors.Remove(element);
+            if (!TemporaryExecutors.ContainsKey(element))
+                TemporaryExecutors.Add(element, new List<ExecutorHolder>());
+            if (!Executors.ContainsKey(element))
+                Executors.Add(element, new List<ExecutorHolder>());
+            
+            if (TemporaryExecutors[element].Any(x => (x.Options & ParseOption.DontAllowOthers) != 0) ||
+                Executors[element].Any(x => (x.Options & ParseOption.DontAllowOthers) != 0))
+            {
+                return;
+            }
+
+            if ((options & ParseOption.DontAllowOthers) != 0)
+            {
+                TemporaryExecutors[element].Clear();
+            }
+
+            TemporaryExecutors[element].Add(new ExecutorHolder {Executor = executor, Options = options});
         }
 
         protected override void ReadElement(Dictionary<string, string> attributes)
@@ -52,7 +127,8 @@ namespace Pathfinder.Util.XML
                         Attributes = attributes
                     };
 
-                    var interiors = executors.Where(x => (x.Options & ParseOption.ParseInterior) != 0).Select(x => x.Executor).ToList();
+                    var interiors = executors.Where(x => (x.Options & ParseOption.ParseInterior) != 0)
+                        .Select(x => x.Executor).ToList();
 
                     if (interiors.Count > 0)
                     {
@@ -62,7 +138,8 @@ namespace Pathfinder.Util.XML
 
                     foreach (var executor in executors)
                     {
-                        if ((executor.Options & ParseOption.ParseInterior) == 0 && (executor.Options & ParseOption.FireOnEnd) == 0)
+                        if ((executor.Options & ParseOption.ParseInterior) == 0 &&
+                            (executor.Options & ParseOption.FireOnEnd) == 0)
                             executor.Executor(this, element);
                     }
                 }
@@ -121,22 +198,32 @@ namespace Pathfinder.Util.XML
             }
         }
 
+        protected override void EndRead()
+        {
+            _allExecs = null;
+            TemporaryExecutors.Clear();
+        }
+
         private bool FindExecutors(string name, out List<ExecutorHolder> executors)
         {
             while (true)
             {
-                if (Executors.TryGetValue(name, out executors))
+                if (AllExecutors.TryGetValue("*", out executors))
                 {
+                    if (executors.Any(x => (x.Options & ParseOption.DontAllowOthers) != 0))
+                        executors = executors.Where(x => (x.Options & ParseOption.ParseInterior) != 0).Take(1).ToList();
                     return true;
                 }
 
                 if (!name.Contains("."))
                 {
-                    if (Executors.TryGetValue("*", out executors))
+                    if (AllExecutors.TryGetValue("*", out executors))
                     {
+                        if (executors.Any(x => (x.Options & ParseOption.DontAllowOthers) != 0))
+                            executors = executors.Where(x => (x.Options & ParseOption.ParseInterior) != 0).Take(1).ToList();
                         return true;
                     }
-                    executors = new List<ExecutorHolder>();
+
                     return false;
                 }
 

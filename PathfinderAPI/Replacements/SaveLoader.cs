@@ -31,7 +31,7 @@ namespace Pathfinder.Replacements
                 Os = os;
             }
 
-            public abstract void Execute(IExecutor exec, ElementInfo info);
+            public abstract void Execute(EventExecutor exec, ElementInfo info);
         }
 
         private struct SaveExecutorHolder

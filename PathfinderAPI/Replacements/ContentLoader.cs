@@ -30,7 +30,7 @@ namespace Pathfinder.Replacements
                 _comp = comp;
             }
 
-            public abstract void Execute(IExecutor exec, ElementInfo info);
+            public abstract void Execute(EventExecutor exec, ElementInfo info);
         }
 
         public class ComputerHolder

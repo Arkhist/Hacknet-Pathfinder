@@ -26,7 +26,7 @@ namespace Pathfinder.Replacements
                 ExtensionInfo = extensionInfo;
             }
 
-            public abstract void Execute(IExecutor exec, ElementInfo info);
+            public abstract void Execute(EventExecutor exec, ElementInfo info);
         }
 
         private struct ExtensionInfoExecutorHolder
