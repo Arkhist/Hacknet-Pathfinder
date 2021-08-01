@@ -24,12 +24,8 @@ jobs:
         copy template/libs/HacknetPathfinder.exe libs/HacknetPathfinder.exe
         copy template/libs/FNA.dll libs/FNA.dll
 
-    - name: Get Newest Tag
-      id: tag
-      uses: WyriHaximus/github-action-get-previous-tag@v1
-
     - name: Setup MSBuild Path
-      uses: warrenbuckley/Setup-MSBuild@v1
+      uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build Projects
       run: msbuild /p:Configuration=Release
@@ -43,25 +39,36 @@ jobs:
         mkdir Release/BepInEx/config
         copy PathfinderAPI/bin/Release/PathfinderAPI.dll Release/BepInEx/plugins/
         copy BepInEx.Hacknet/bin/Release/* Release/BepInEx/core/
-        copy libs/BepInEx/cfg Release/BepInEx/config/BepInEx.cfg
+        copy libs/BepInEx.cfg Release/BepInEx/config/BepInEx.cfg
+        copy PathfinderPatcher/bin/Release/PathfinderPatcher.exe Release/PathfinderPatcher.exe
+        copy libs/Mono.Cecil.dll Release/Mono.Cecil.dll
 
     - name: Create Release ZIP
       uses: TheDoctor0/zip-release@0.6.0
       with:
         type: 'zip'
-        filename: format('Pathfinder.Release-{0}.zip', {{ steps.tag.outputs.tag }})
+        filename: 'Pathfinder.Release.zip'
         directory: 'Release'
 
-    - name: Generate Installer Exe
-      uses: JackMcKew/pyinstaller-action-windows@v0.1.2
+    - name: Setup Python
+      uses: actions/setup-python@v2.2.2
       with:
-        path: 'PathfinderInstaller'
+        python-version: '3.9'
+        
+    - name: Install PyInstaller
+      run: python -m pip install pyinstaller requests
+      
+    - name: Build Installer EXE
+      run: |
+        cd PathfinderInstaller
+        pyinstaller --onefile --noconsole PathfinderInstaller.py
+        cd ..
 
     - name: Publish Release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          format('Release/Pathfinder.Release-{0}.zip', {{ steps.tag.outputs.tag }})
-          'PathfinderInstaller/dist/PathfinderInstaller.exe'
-          'PathfinderInstaller/PathfinderInstaller.py'
+          Release/Pathfinder.Release.zip
+          PathfinderInstaller/dist/PathfinderInstaller.exe
+          PathfinderInstaller/PathfinderInstaller.py
           
