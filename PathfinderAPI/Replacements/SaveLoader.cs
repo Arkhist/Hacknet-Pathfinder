@@ -59,40 +59,18 @@ namespace Pathfinder.Replacements
             CustomExecutors.RemoveAll(x => x.ExecutorType == tType);
         }
 
-        static SaveLoader()
-        {
-            EventManager.onPluginUnload += OnPluginUnload;
-        }
-
         private static void OnPluginUnload(Assembly pluginAsm)
         {
             var allTypes = AccessTools.GetTypesFromAssembly(pluginAsm);
             CustomExecutors.RemoveAll(x => allTypes.Contains(x.ExecutorType));
         }
-        
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(OS), nameof(OS.loadSaveFile))]
-        internal static bool SaveLoadReplacementPrefix(ref OS __instance)
+
+        private static EventExecutor executor = new EventExecutor();
+        private static OS os = null;
+
+        static SaveLoader()
         {
-            __instance.FirstTimeStartup = false;
-
-            Stream saveStream = __instance.ForceLoadOverrideStream ??
-                                SaveFileManager.GetSaveReadStream(__instance.SaveGameUserName);
-            if (saveStream == null)
-            {
-                return false;
-            }
-
-            var os = __instance;
-
-            var executor = new EventExecutor(new StreamReader(saveStream).ReadToEnd(), false);
-
-            foreach (var custom in CustomExecutors)
-            {
-                var customInstance = (SaveExecutor)Activator.CreateInstance(custom.ExecutorType);
-                customInstance.Init(os);
-                executor.RegisterExecutor(custom.Element, customInstance.Execute, custom.Options);
-            }
+            EventManager.onPluginUnload += OnPluginUnload;
             
             executor.RegisterExecutor("HacknetSave", (exec, info) =>
             {
@@ -185,6 +163,31 @@ namespace Pathfinder.Replacements
                 os.homeNodeID = info.Attributes.GetString("homeNode", os.homeNodeID);
                 os.homeAssetServerID = info.Attributes.GetString("homeAssetsNode", os.homeAssetServerID);
             });
+        }
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(OS), nameof(OS.loadSaveFile))]
+        internal static bool SaveLoadReplacementPrefix(ref OS __instance)
+        {
+            __instance.FirstTimeStartup = false;
+
+            Stream saveStream = __instance.ForceLoadOverrideStream ??
+                                SaveFileManager.GetSaveReadStream(__instance.SaveGameUserName);
+            if (saveStream == null)
+            {
+                return false;
+            }
+
+            os = __instance;
+
+            executor.SetText(new StreamReader(saveStream).ReadToEnd(), false);
+
+            foreach (var custom in CustomExecutors)
+            {
+                var customInstance = (SaveExecutor)Activator.CreateInstance(custom.ExecutorType);
+                customInstance.Init(os);
+                executor.RegisterTempExecutor(custom.Element, customInstance.Execute, custom.Options);
+            }
 
             executor.Parse();
 
