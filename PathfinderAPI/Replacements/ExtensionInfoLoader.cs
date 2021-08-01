@@ -122,11 +122,11 @@ namespace Pathfinder.Replacements
             });
             exe.Reg("AllowSaves", (exec, info) => extInfo.AllowSave = info.ContentAsBoolean(filepath));
             exe.Reg("StartingVisibleNodes", (exec, info) =>
-                extInfo.StartingVisibleNodes = info.Content
-                    .Replace(@"\s+", "")
+                extInfo.StartingVisibleNodes = Regex
+                    .Replace(info.Content, @"\s+", "")
                     .Split(','));
-            exe.Reg("StartingMission", (exec, info) => extInfo.StartingMissionPath = info.Content);
-            exe.Reg("StartingActions", (exec, info) => extInfo.StartingActionsPath = info.Content);
+            exe.Reg("StartingMission", (exec, info) => extInfo.StartingMissionPath = info.Content != "NONE" ? info.Content : null);
+            exe.Reg("StartingActions", (exec, info) => extInfo.StartingActionsPath = info.Content != "NONE" ? info.Content : null);
             exe.Reg("Description", (exec, info) => extInfo.Description = Utils.CleanFilterStringToRenderable(info.Content));
             exe.Reg("Faction", (exec, info) => extInfo.FactionDescriptorPaths.Add(info.Content));
             exe.Reg("StartsWithTutorial", (exec, info) => extInfo.StartsWithTutorial = info.ContentAsBoolean(filepath));
