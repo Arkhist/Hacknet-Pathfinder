@@ -66,44 +66,23 @@ namespace Pathfinder.Replacements
             CustomExecutors.RemoveAll(x => x.ExecutorType == tType);
         }
 
-        static ContentLoader()
-        {
-            EventManager.onPluginUnload += OnPluginUnload;
-        }
-
         private static void OnPluginUnload(Assembly pluginAsm)
         {
             var allTypes = AccessTools.GetTypesFromAssembly(pluginAsm);
             CustomExecutors.RemoveAll(x => allTypes.Contains(x.ExecutorType));
         }
-        
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(ComputerLoader), nameof(ComputerLoader.loadComputer))]
-        private static bool LoadComputerPrefix(string filename, bool preventAddingToNetmap, bool preventInitDaemons, out object __result)
+
+        private static readonly EventExecutor executor = new EventExecutor();
+
+        private static OS os = null;
+        private static Computer comp = null;
+        private static Computer eos = null;
+        private static ComputerHolder holder = null;
+
+        static ContentLoader()
         {
-            __result = LoadComputer(filename, preventAddingToNetmap, preventInitDaemons);
-            return false;
-        }
-
-        public static Computer LoadComputer(string filename, bool preventAddingToNetmap = false, bool preventInitDaemons = false)
-        {
-            filename = LocalizedFileLoader.GetLocalizedFilepath(filename);
-
-            Computer comp = null;
-            Computer eos = null;
-            var os = OS.currentInstance;
-
-            var executor = new EventExecutor(filename, true);
-
-            var holder = new ComputerHolder();
+            EventManager.onPluginUnload += OnPluginUnload;
             
-            foreach (var custom in CustomExecutors)
-            {
-                var customInstance = (ComputerExecutor) Activator.CreateInstance(custom.ExecutorType);
-                customInstance.Init(os, ref holder);
-                executor.RegisterExecutor(custom.Element, customInstance.Execute, custom.Options);
-            }
-
             executor.RegisterExecutor("Computer", (exec, info) =>
             {
                 var typeString = info.Attributes.GetString("type", "1");
@@ -248,13 +227,16 @@ namespace Pathfinder.Replacements
                 var force = info.Attributes.GetBool("force");
                 var extraDistance = Math.Max(-1f, Math.Min(1f, info.Attributes.GetFloat("extraDistance")));
 
+                var sourceComp = comp;
+                var origOs = os;
+
                 ComputerLoader.postAllLoadedActions = (System.Action) Delegate.Combine(
                     ComputerLoader.postAllLoadedActions,
                     (System.Action)(() =>
                     {
                         var nearNode = Programs.getComputer(os, nearNodeId);
                         if (nearNode != null)
-                            comp.location = nearNode.location + Corporation.getNearbyNodeOffset(nearNode.location, position, total, os.netMap, extraDistance, force);
+                            sourceComp.location = nearNode.location + Corporation.getNearbyNodeOffset(nearNode.location, position, total, origOs.netMap, extraDistance, force);
                     }));
             });
             executor.RegisterExecutor("Computer.proxy", (exec, info) =>
@@ -306,13 +288,15 @@ namespace Pathfinder.Replacements
             executor.RegisterExecutor("Computer.dlink", (exec, info) =>
             {
                 var linked = info.Attributes.GetString("target");
+                var source = comp;
+                var origOS = os;
                 ComputerLoader.postAllLoadedActions = (System.Action)Delegate.Combine(
                     ComputerLoader.postAllLoadedActions,
                     (System.Action) (() =>
                         {
                             var linkedNode = Programs.getComputer(os, linked);
                             if (linkedNode != null)
-                                comp.links.Add(os.netMap.nodes.IndexOf(linkedNode));
+                                source.links.Add(origOS.netMap.nodes.IndexOf(linkedNode));
                         }));
             });
             executor.RegisterExecutor("Computer.trace", (exec, info) =>
@@ -824,10 +808,36 @@ namespace Pathfinder.Replacements
                     info.Attributes.GetString("name", null)
                 ));
             }, ParseOption.ParseInterior);
+        }
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ComputerLoader), nameof(ComputerLoader.loadComputer))]
+        private static bool LoadComputerPrefix(string filename, bool preventAddingToNetmap, bool preventInitDaemons, out object __result)
+        {
+            __result = LoadComputer(filename, preventAddingToNetmap, preventInitDaemons);
+            return false;
+        }
+
+        public static Computer LoadComputer(string filename, bool preventAddingToNetmap = false, bool preventInitDaemons = false)
+        {
+            filename = LocalizedFileLoader.GetLocalizedFilepath(filename);
+            
+            os = OS.currentInstance;
+
+            executor.SetText(filename, true);
+
+            holder = new ComputerHolder();
+            
+            foreach (var custom in CustomExecutors)
+            {
+                var customInstance = (ComputerExecutor) Activator.CreateInstance(custom.ExecutorType);
+                customInstance.Init(os, ref holder);
+                executor.RegisterTempExecutor(custom.Element, customInstance.Execute, custom.Options);
+            }
 
             foreach (var customDaemon in DaemonManager.CustomDaemons)
             {
-                executor.RegisterExecutor("Computer." + customDaemon.Name, (exec, info) =>
+                executor.RegisterTempExecutor("Computer." + customDaemon.Name, (exec, info) =>
                 {
                     DaemonManager.TryLoadCustomDaemon(info, comp, os);
                 });
@@ -838,18 +848,25 @@ namespace Pathfinder.Replacements
                 throw new FormatException($"{filename}: {ex.Message}", ex);
             }
 
-            if (comp == null)
+            var ret = comp;
+            comp = null;
+            
+            if (ret == null)
                 return null;
 
             if (!preventInitDaemons)
-                comp.initDaemons();
+                ret.initDaemons();
             if (!preventAddingToNetmap)
             {
-                os.netMap.nodes.Add(comp);
+                os.netMap.nodes.Add(ret);
                 eos?.links.Add(os.netMap.nodes.Count - 1);
             }
 
-            return comp;
+            os = null;
+            eos = null;
+            holder = null;
+
+            return ret;
         }
     }
 }
