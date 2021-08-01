@@ -22,32 +22,39 @@ namespace Pathfinder.Options
 {
     internal static class PathfinderOptions
     {
-        private static readonly string OPTION_TAG = "Pathfinder";
-        private static ConfigFile configFile = null;
+        private const string OPTION_TAG = "Pathfinder";
 
         internal static OptionCheckbox PreloadAllThemes = new OptionCheckbox("Preload All Themes",
             "Preload all themes at extension start\nimproves performance at the cost of memory");
+
+        internal static OptionCheckbox DisableSteamCloudError = new OptionCheckbox("Disable Steam Cloud Message", 
+            "Disables the Steam Cloud disabled message on the main menu");
         
         [Util.Initialize]
         static void Initialize()
         {
             OptionsManager.AddOption(OPTION_TAG, PreloadAllThemes);
+            OptionsManager.AddOption(OPTION_TAG, DisableSteamCloudError);
             EventManager<CustomOptionsSaveEvent>.AddHandler(onOptionsSave);
             initConfig();
         }
 
         private static void initConfig()
         {
-            configFile = new ConfigFile(BepInEx.Paths.ConfigPath + "/PathfinderAPI.cfg", false, null);
-            var preloadAllThemesDef = configFile.Bind<bool>("PathfinderAPI", "PreloadAllThemes", false);
+            var preloadAllThemesDef = PathfinderAPIPlugin.Config.Bind<bool>("PathfinderAPI", "PreloadAllThemes", false);
+            var disableSteamCloudDef = PathfinderAPIPlugin.Config.Bind<bool>("PathfinderAPI", "DisableSteamCloudMessage", false);
             PreloadAllThemes.Value = preloadAllThemesDef.Value;
+            DisableSteamCloudError.Value = disableSteamCloudDef.Value;
         }
 
         private static void onOptionsSave(CustomOptionsSaveEvent _)
         {
-            configFile.TryGetEntry<bool>("PathfinderAPI", "PreloadAllThemes", out var preloadAllThemesVal);
+            PathfinderAPIPlugin.Config.TryGetEntry<bool>("PathfinderAPI", "PreloadAllThemes", out var preloadAllThemesVal);
+            PathfinderAPIPlugin.Config.TryGetEntry<bool>("PathfinderAPI", "DisableSteamCloudMessage", out var disableCloudMessage);
+            
             preloadAllThemesVal.Value = PreloadAllThemes.Value;
-            configFile.Save();
+            disableCloudMessage.Value = DisableSteamCloudError.Value;
+            PathfinderAPIPlugin.Config.Save();
         }
     }
 }

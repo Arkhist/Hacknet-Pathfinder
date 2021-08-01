@@ -9,6 +9,7 @@ using BepInEx.Hacknet;
 using BepInEx.Logging;
 using Hacknet;
 using Hacknet.PlatformAPI.Storage;
+using Pathfinder.Options;
 
 namespace Pathfinder
 {
@@ -38,6 +39,23 @@ namespace Pathfinder
 
             c.Emit(OpCodes.Pop);
             c.Emit(OpCodes.Ldc_I4_0);
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.drawMainMenuButtons))]
+        private static void NoSteamErrorMessageIL(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.Before, x => x.MatchLdsfld(AccessTools.Field(typeof(PlatformAPISettings), nameof(PlatformAPISettings.RemoteStorageRunning))));
+
+            c.RemoveRange(3);
+
+            c.Emit(OpCodes.Ldsfld, AccessTools.Field(typeof(PathfinderOptions), nameof(PathfinderOptions.DisableSteamCloudError)));
+            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(OptionCheckbox), nameof(OptionCheckbox.Value)));
+
+            c.GotoNext(MoveType.Before, x => x.MatchLdstr(out _));
+            c.Next.Operand = "Steam Cloud saving disabled by Pathfinder";
         }
 
         [HarmonyILManipulator]
