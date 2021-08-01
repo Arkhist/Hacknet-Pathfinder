@@ -19,26 +19,16 @@ namespace Pathfinder.Replacements
     {
         public abstract class ExtensionInfoExecutor
         {
-            private ExtensionInfoHolder _extensionInfo;
+            public ExtensionInfo ExtensionInfo;
 
-            public ExtensionInfo ExtensionInfo => _extensionInfo;
-
-            public virtual void Init(ref ExtensionInfoHolder extensionInfo)
+            public virtual void Init(ref ExtensionInfo extensionInfo)
             {
-                _extensionInfo = extensionInfo;
+                ExtensionInfo = extensionInfo;
             }
 
             public abstract void Execute(IExecutor exec, ElementInfo info);
         }
-        
-        public class ExtensionInfoHolder
-        {
-            internal ExtensionInfo ExtensionInfo;
-            internal ExtensionInfoHolder() {}
 
-            public static implicit operator ExtensionInfo(ExtensionInfoHolder holder) => holder.ExtensionInfo;
-        }
-        
         private struct ExtensionInfoExecutorHolder
         {
             public string Element;
@@ -115,16 +105,12 @@ namespace Pathfinder.Replacements
 
             var exe = new EventExecutor(LocalizedFileLoader.GetLocalizedFilepath(filepath), true);
 
-            var holder = new ExtensionInfoHolder();
-
             foreach (var custom in CustomExecutors)
             {
                 var instance = (ExtensionInfoExecutor)Activator.CreateInstance(custom.ExecutorType);
-                instance.Init(ref holder);
+                instance.Init(ref extInfo);
                 exe.RegisterExecutor(custom.Element, instance.Execute, custom.Options);
             }
-
-            exe.RegisterExecutor("HacknetExtension", (exec, info) => holder.ExtensionInfo = extInfo);
 
             exe.Reg("Name", (exec, info) => extInfo.Name = Utils.CleanStringToLanguageRenderable(info.Content));
             exe.Reg("Language", (exec, info) =>
