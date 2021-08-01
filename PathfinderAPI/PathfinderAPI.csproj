@@ -78,7 +78,6 @@
     <Compile Include="BaseGameFixes\HHBS.cs" />
     <Compile Include="BaseGameFixes\MissionListingServerLoadTime.cs" />
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
-    <Compile Include="BaseGameFixes\NoToLowerOnTheme.cs" />
     <Compile Include="BaseGameFixes\Performance\CatModuleRendering.cs" />
     <Compile Include="BaseGameFixes\Performance\NodeLookup.cs" />
     <Compile Include="BaseGameFixes\Performance\ThemeCaching.cs" />
@@ -110,6 +109,7 @@
     <Compile Include="Port\PortManager.cs" />
     <Compile Include="Replacements\ActionsLoader.cs" />
     <Compile Include="Replacements\ContentLoader.cs" />
+    <Compile Include="Replacements\ExtensionInfoLoader.cs" />
     <Compile Include="Replacements\MissionLoader.cs" />
     <Compile Include="Replacements\ObjectSerializerReplacement.cs" />
     <Compile Include="Replacements\ReplacementsCommon.cs" />
