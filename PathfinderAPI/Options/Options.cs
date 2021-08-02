@@ -13,6 +13,7 @@ using Hacknet.Gui;
 using Hacknet.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Pathfinder.GUI;
 
 namespace Pathfinder.Options
 {
@@ -31,7 +32,7 @@ namespace Pathfinder.Options
             this.Description = description;
         }
 
-        public abstract void Draw(int id, int x, int y);
+        public abstract void Draw(int x, int y);
     }
 
     public class OptionCheckbox : Option
@@ -41,15 +42,17 @@ namespace Pathfinder.Options
         public override int SizeX => 100;
         public override int SizeY => 75;
 
+        private int ButtonID = PFButton.GetNextID();
+
         public OptionCheckbox(string name, string description="", bool defVal=false) : base(name, description)
         {
             this.Value = defVal;
         }
 
-        public override void Draw(int id, int x, int y)
+        public override void Draw(int x, int y)
         {
             TextItem.doLabel(new Vector2(x, y), Name, null, 200);
-			Value = CheckBox.doCheckBox(id, x, y + 34, Value, null);
+			Value = CheckBox.doCheckBox(ButtonID, x, y + 34, Value, null);
 
             TextItem.doSmallLabel(new Vector2(x+32, y+30), Description, null);
         }

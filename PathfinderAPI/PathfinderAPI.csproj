@@ -102,6 +102,7 @@
     <Compile Include="Event\SaveEvent.cs" />
     <Compile Include="Executable\BaseExecutable.cs" />
     <Compile Include="Executable\ExecutableManager.cs" />
+    <Compile Include="GUI\PFButton.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MiscPatches.cs" />
     <Compile Include="Mission\GoalManager.cs" />

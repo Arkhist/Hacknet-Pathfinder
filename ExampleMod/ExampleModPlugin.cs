@@ -12,6 +12,7 @@ using Pathfinder.Action;
 using Pathfinder.Administrator;
 using Pathfinder.Util;
 using Pathfinder.Daemon;
+using Pathfinder.GUI;
 using Pathfinder.Mission;
 using Pathfinder.Util.XML;
 
@@ -35,6 +36,13 @@ namespace ExampleMod2
             Pathfinder.Administrator.AdministratorManager.RegisterAdministrator<TestAdministrator>();
 
             return true;
+        }
+
+        public override bool Unload()
+        {
+            PatchClass2.bruhButton.Dispose();
+            
+            return base.Unload();
         }
 
         public static void TestCommand(OS os, string[] args)
@@ -204,12 +212,14 @@ namespace ExampleMod2
     [HarmonyPatch]
     public static class PatchClass2
     {
+        internal static PFButton bruhButton = new PFButton(5, 5, 30, 600, "bruh", Color.BlueViolet);
+        
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.Draw))]
         public static void MainMenuTextPatch()
         {
             GuiData.startDraw();
-            Hacknet.Gui.Button.doButton(3473249, 5, 5, 30, 600, "bruh", Color.BlueViolet);
+            bruhButton.Do();
             GuiData.endDraw();
         }
     }

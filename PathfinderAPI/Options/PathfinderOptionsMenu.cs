@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Pathfinder.Event;
 using Pathfinder.Event.Options;
+using Pathfinder.GUI;
 
 namespace Pathfinder.Options
 {
@@ -23,6 +24,8 @@ namespace Pathfinder.Options
     {
         private static bool isInPathfinderMenu = false;
         private static string currentTabName = null;
+
+        private static PFButton ReturnButton = new PFButton(10, 10, 220, 54, "Back to Options", Color.Yellow);
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(OptionsMenu), nameof(OptionsMenu.Draw))]
@@ -35,7 +38,7 @@ namespace Pathfinder.Options
 			GuiData.startDraw();
 			PatternDrawer.draw(new Rectangle(0, 0, __instance.ScreenManager.GraphicsDevice.Viewport.Width, __instance.ScreenManager.GraphicsDevice.Viewport.Height), 0.5f, Color.Black, new Color(2, 2, 2), GuiData.spriteBatch);
             
-            if (Button.doButton(798000, 10, 10, 220, 54, "Back to Options", Color.Yellow))
+            if (ReturnButton.Do())
             {
                 currentTabName = null;
                 isInPathfinderMenu = false;
@@ -48,7 +51,6 @@ namespace Pathfinder.Options
 
             var tabs = OptionsManager.Tabs;
             
-            int tabId = 798010;
             int tabX = 10;
 
             foreach (var tab in tabs.Values)
@@ -57,7 +59,7 @@ namespace Pathfinder.Options
                     currentTabName = tab.Name;
                 var active = currentTabName == tab.Name;
                 // Display tab button
-                if (Button.doButton(tabId++, tabX, 70, 128, 20, tab.Name, active ? Color.Green : Color.Gray))
+                if (Button.doButton(tab.ButtonID, tabX, 70, 128, 20, tab.Name, active ? Color.Green : Color.Gray))
                 {
                     currentTabName = tab.Name;
                     break;
@@ -68,11 +70,10 @@ namespace Pathfinder.Options
                     continue;
 
                 // Display options
-                int optId = 798100;
                 int optX = 80, optY = 110;
                 foreach (var option in tab.Options)
                 {
-                    option.Draw(optId++, optX, optY);
+                    option.Draw(optX, optY);
                     optY += 10 + option.SizeY;
                 }
             }
@@ -81,6 +82,8 @@ namespace Pathfinder.Options
 			PostProcessor.end();
             return false;
         }
+
+        private static PFButton EnterButton = new PFButton(240, 10, 220, 54, "Pathfinder Options", Color.Yellow);
 
         [HarmonyILManipulator]
         [HarmonyPatch(typeof(OptionsMenu), nameof(OptionsMenu.Draw))]
@@ -92,7 +95,7 @@ namespace Pathfinder.Options
 
             c.EmitDelegate<System.Action>(() =>
             {
-                if (Button.doButton(798000, 240, 10, 220, 54, "Pathfinder Options", Color.Yellow))
+                if (EnterButton.Do())
                 {
                     isInPathfinderMenu = true;
                 }
