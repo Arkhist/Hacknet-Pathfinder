@@ -117,7 +117,7 @@ namespace BepInEx.Hacknet
                 var newPluginPath = Path.Combine(info.GetFullFolderPath(), "Plugins");
                 var newConfigPath = Path.Combine(newPluginPath, "Configs");
 
-                if (Directory.Exists(newPluginPath) && Directory.GetFiles(newPluginPath).Length > 0)
+                if (Directory.Exists(newPluginPath) && Directory.GetFiles(newPluginPath, "*.dll", SearchOption.AllDirectories).Length > 0)
                 {
                     PluginPathSetter.Invoke(null, new object[] { newPluginPath });
                     ConfigPathSetter.Invoke(null, new object[] { newConfigPath });
