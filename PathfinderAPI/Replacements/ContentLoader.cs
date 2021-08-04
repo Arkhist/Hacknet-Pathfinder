@@ -502,7 +502,7 @@ namespace Pathfinder.Replacements
                     comp,
                     info.Attributes.GetString("name", "Web Server"),
                     os,
-                    info.Attributes.GetString("url", null)
+                    info.Attributes.GetOrThrow("url", "addWebServer requires a url")
                 );
                 webServer.registerAsDefaultBootDaemon();
                 comp.daemons.Add(webServer);
