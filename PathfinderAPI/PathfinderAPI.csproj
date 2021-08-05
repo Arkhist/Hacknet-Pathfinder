@@ -102,6 +102,7 @@
     <Compile Include="Event\SaveEvent.cs" />
     <Compile Include="Executable\BaseExecutable.cs" />
     <Compile Include="Executable\ExecutableManager.cs" />
+    <Compile Include="GUI\AnimatedTexture.cs" />
     <Compile Include="GUI\PFButton.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MiscPatches.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Util\DictionaryExtensions.cs" />
     <Compile Include="Util\ComputerLookup.cs" />
     <Compile Include="Util\FixedSizeCacheDict.cs" />
+    <Compile Include="Util\LZWBinaryReader.cs" />
     <Compile Include="Util\StringExtensions.cs" />
     <Compile Include="Util\InitializeAttribute.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
