@@ -298,7 +298,7 @@ namespace Pathfinder.Replacements
                     switch (daemon.Name)
                     {
                         case "MailServer":
-                            var mailserver = new MailServer(comp, info.Attributes.GetString("name"), os);
+                            var mailserver = new MailServer(comp, daemon.Attributes.GetString("name"), os);
                             if (daemon.Attributes.TryGetValue("color", out var mail_color))
                             {
                                 mailserver.setThemeColor(Utils.convertStringToColor(mail_color));
