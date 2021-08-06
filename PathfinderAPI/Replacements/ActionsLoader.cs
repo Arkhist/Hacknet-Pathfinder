@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Xml;
 using Hacknet;
 using HarmonyLib;
+using MonoMod.Cil;
 using Pathfinder.Action;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
@@ -32,6 +35,46 @@ namespace Pathfinder.Replacements
                 os.ConditionalActions.Update(0f, os);
             
             return false;
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(DelayableActionSystem), nameof(DelayableActionSystem.Update))]
+        [HarmonyPatch(typeof(FastDelayableActionSystem), nameof(FastDelayableActionSystem.DeserializeActions))]
+        private static void ReplaceDASDeserializeIL(ILContext il, MethodBase method)
+        {
+            ILCursor c = new ILCursor(il);
+            
+            c.GotoNext(MoveType.Before,
+                x => x.MatchLdloc(7),
+                x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(XmlReader), nameof(XmlReader.Create), new Type[] { typeof(Stream) })),
+                x => x.MatchStloc(8),
+                x => x.MatchLdloc(8),
+                x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(SerializableAction), nameof(SerializableAction.Deserialize)))
+            );
+
+            c.Index++;
+            c.RemoveRange(4);
+            c.EmitDelegate<Func<Stream, SerializableAction>>(stream =>
+            {
+                var executor = new EventExecutor(new StreamReader(stream).ReadToEnd(), false);
+                ElementInfo actionInfo = null;
+                executor.RegisterExecutor("*", (exec, info) =>
+                {
+                    actionInfo = info;
+                }, ParseOption.ParseInterior);
+                executor.Parse();
+                return ReadAction(actionInfo);
+            });
+
+            if (method.Name == nameof(DelayableActionSystem.Update))
+            {
+                c.GotoNext(MoveType.Before,
+                    x => x.MatchLdloc(8),
+                    x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(XmlReader), nameof(XmlReader.Close)))
+                );
+
+                c.RemoveRange(2);
+            }
         }
 
         public static RunnableConditionalActions LoadActionSets(ElementInfo root)
