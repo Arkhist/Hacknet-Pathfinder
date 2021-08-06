@@ -18,6 +18,14 @@ namespace Pathfinder.Action
         
         public sealed override void Trigger(object os_obj)
         {
+            if (delayHost == null && DelayHost != null)
+            {
+                var delayComp = Programs.getComputer(OS.currentInstance, DelayHost);
+                if (delayComp == null)
+                    throw new FormatException($"{this.GetType().Name}: DelayHost could not be found");
+                delayHost = DelayableActionSystem.FindDelayableActionSystemOnComputer(delayComp);
+            }
+            
             if (delay <= 0f || delayHost == null)
             {
                 Trigger((OS)os_obj);
@@ -36,14 +44,6 @@ namespace Pathfinder.Action
             
             if (Delay != null && !float.TryParse(Delay, out delay))
                 throw new FormatException($"{this.GetType().Name}: Couldn't parse delay time!");
-
-            if (DelayHost != null)
-            {
-                var delayComp = Programs.getComputer(OS.currentInstance, DelayHost);
-                if (delayComp == null)
-                    throw new FormatException($"{this.GetType().Name}: DelayHost could not be found");
-                delayHost = DelayableActionSystem.FindDelayableActionSystemOnComputer(delayComp);
-            }
         }
     }
 }
