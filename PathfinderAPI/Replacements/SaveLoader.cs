@@ -101,7 +101,7 @@ namespace Pathfinder.Replacements
                     os.IsExiting = true;
                 }
             });
-            executor.RegisterExecutor("HackentSave.DLC.Flags",
+            executor.RegisterExecutor("HacknetSave.DLC.Flags",
                 (exec, info) => os.PreDLCFaction = info.Attributes.GetString("OriginalFaction"));
             executor.RegisterExecutor("HacknetSave.DLC.OriginalVisibleNodes",
                 (exec, info) => os.PreDLCVisibleNodesCache = info.Content ?? "",
