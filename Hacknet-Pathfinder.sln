@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderAPI", "Pathfinder
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyCreator", "ProxyCreator\ProxyCreator.csproj", "{976D989B-F98C-4AF1-8066-173662DBA869}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderPatcher", "PathfinderPatcher\PathfinderPatcher.csproj", "{5B098FF0-05AA-4841-93CC-A5507BE4EBA2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{976D989B-F98C-4AF1-8066-173662DBA869}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{976D989B-F98C-4AF1-8066-173662DBA869}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{976D989B-F98C-4AF1-8066-173662DBA869}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B098FF0-05AA-4841-93CC-A5507BE4EBA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B098FF0-05AA-4841-93CC-A5507BE4EBA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B098FF0-05AA-4841-93CC-A5507BE4EBA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B098FF0-05AA-4841-93CC-A5507BE4EBA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

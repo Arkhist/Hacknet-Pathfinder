@@ -170,7 +170,12 @@ namespace BepInEx.Hacknet
                     
                     if (shouldDumpAssemblies)
                     {
-                        
+                        var newPath = Path.Combine(dumpPath, asm.Name.Name + ".dll");
+                        using (var fsStream = new FileStream(newPath, FileMode.Create))
+                        {
+                            asm.Write(fsStream);
+                        }
+                        return Assembly.LoadFile(newPath);
                     }
                     else
                     {
@@ -185,8 +190,6 @@ namespace BepInEx.Hacknet
                         return Assembly.Load(asmBytes);
                     }
                 }
-
-                return null;
             });
         }
     }
