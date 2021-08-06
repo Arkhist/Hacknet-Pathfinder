@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using BepInEx.Logging;
 using BepInEx.Bootstrap;
 using Hacknet.Extensions;
@@ -34,6 +35,7 @@ namespace BepInEx.Hacknet
             HarmonyInstance = new Harmony("BepInEx.Hacknet.Chainloader");
 
             HarmonyInstance.PatchAll(typeof(ExtensionPluginPatches));
+            HarmonyInstance.PatchAll(typeof(ChainloaderFix));
         }
 
         protected override IList<PluginInfo> DiscoverPlugins()
@@ -89,17 +91,13 @@ namespace BepInEx.Hacknet
         private static readonly MethodInfo PluginPathSetter = AccessTools.PropertySetter(typeof(Paths), nameof(Paths.PluginPath));
         private static readonly MethodInfo ConfigPathSetter = AccessTools.PropertySetter(typeof(Paths), nameof(Paths.ConfigPath));
 
-        private static bool FirstExtensionLoaded = false;
+        internal static bool FirstExtensionLoaded = false;
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(ExtensionsMenuScreen), nameof(ExtensionsMenuScreen.ActivateExtensionPage))]
         internal static bool LoadTempPluginsPrefix(ExtensionInfo info)
         {
-            if (!FirstExtensionLoaded)
-            {
-                HacknetChainloader.Instance.HarmonyInstance.PatchAll(typeof(ChainloaderFix));
-                FirstExtensionLoaded = true;
-            }
+            FirstExtensionLoaded = true;
             
             try
             {
@@ -140,10 +138,18 @@ namespace BepInEx.Hacknet
     [HarmonyPatch]
     internal static class ChainloaderFix
     {
+        private static bool shouldDumpAssemblies;
+        private static string dumpPath;
+        
         [HarmonyILManipulator]
         [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "Execute")]
         internal static void FixChainloaderForReload(ILContext il)
         {
+            shouldDumpAssemblies = Configuration.ConfigFile.CoreConfig.Bind<bool>("Preloader", "LoadDumpedAssemblies", false, "If enabled, BepInEx will load patched plugins from BepInEx/DumpedAssemblies instead of memory.\nThis can be used to be able to load patched plugins into debuggers like dnSpy.").Value;
+            dumpPath = Path.Combine(Path.GetFullPath(Paths.BepInExRootPath), "DumpedAssemblies");
+            if (shouldDumpAssemblies && !Directory.Exists(dumpPath))
+                Directory.CreateDirectory(dumpPath);
+            
             ILCursor c = new ILCursor(il);
 
             c.GotoNext(MoveType.Before,
@@ -153,20 +159,34 @@ namespace BepInEx.Hacknet
             c.Remove();
             c.EmitDelegate<Func<string, Assembly>>(path =>
             {
-                byte[] asmBytes;
-
                 using (var asm = AssemblyDefinition.ReadAssembly(path))
                 {
-                    asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
-
-                    using (var ms = new MemoryStream())
+                    if (ExtensionPluginPatches.FirstExtensionLoaded)
+                        asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
+                    
+                    var ignoreChecksAttrib = new CustomAttribute(asm.MainModule.ImportReference(AccessTools.Constructor(typeof(IgnoresAccessChecksToAttribute), new Type[] { typeof(string) })));
+                    ignoreChecksAttrib.ConstructorArguments.Add(new CustomAttributeArgument(asm.MainModule.TypeSystem.String, "Hacknet"));
+                    asm.CustomAttributes.Add(ignoreChecksAttrib);
+                    
+                    if (shouldDumpAssemblies)
                     {
-                        asm.Write(ms);
-                        asmBytes = ms.ToArray();
+                        
+                    }
+                    else
+                    {
+                        byte[] asmBytes;
+
+                        using (var ms = new MemoryStream())
+                        {
+                            asm.Write(ms);
+                            asmBytes = ms.ToArray();
+                        }
+
+                        return Assembly.Load(asmBytes);
                     }
                 }
 
-                return Assembly.Load(asmBytes);
+                return null;
             });
         }
     }

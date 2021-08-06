@@ -38,16 +38,6 @@ namespace BepInEx.Hacknet
 
     internal static class LoadBepInEx
     {
-        internal static Assembly HacknetAsm;
-        
-        internal static Assembly ResolveHacknet(object sender, ResolveEventArgs args)
-        {
-            if (new AssemblyName(args.Name).Name == "Hacknet")
-                return HacknetAsm;
-            return null;
-        }
-        
-        [MethodImpl(MethodImplOptions.NoInlining)]
         internal static void Load()
         {
             try
@@ -60,16 +50,14 @@ namespace BepInEx.Hacknet
                 ConsoleManager.Initialize(true);
                 Logger.Listeners.Add(new ConsoleLogListener());
 
-                using (var patcher = new Preloader.Core.AssemblyPatcher())
+                /*
+                using (var patcher = new Preloader.Core.Patching.AssemblyPatcher())
                 {
-                    patcher.LoadAssemblyDirectories(new [] { Paths.GameRootPath }, new [] { "dll", "exe" });
+                    patcher.LoadAssemblyDirectories(new[] { Paths.GameRootPath }, new[] { "dll", "exe" });
                     patcher.AddPatchersFromDirectory(Paths.PatcherPluginPath);
                     patcher.PatchAndLoad();
-
-                    HacknetAsm = patcher.LoadedAssemblies["Hacknet.exe"];
                 }
-
-                AppDomain.CurrentDomain.AssemblyResolve += ResolveHacknet;
+                */
                 
                 StartHacknet.Start();
             }
@@ -93,7 +81,7 @@ namespace BepInEx.Hacknet
             chainloader.Initialize();
             chainloader.Execute();
 
-            LoadBepInEx.HacknetAsm.EntryPoint.Invoke(null, new object[] { Environment.GetCommandLineArgs() });
+            typeof(HN.Program).Assembly.EntryPoint.Invoke(null, new object[] { Environment.GetCommandLineArgs() });
         }
     }
 }

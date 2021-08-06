@@ -44,8 +44,8 @@
       <HintPath>..\libs\BepInEx.Core.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="BepInEx.Preloader.Core, Version=6.0.0.377, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hacknet\BepInEx\core\BepInEx.Preloader.Core.dll</HintPath>
+    <Reference Include="BepInEx.Preloader.Core, Version=6.0.0.401, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\libs\BepInEx.Preloader.Core.dll</HintPath>
     </Reference>
     <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -95,6 +95,7 @@
     <Compile Include="HacknetChainloader.cs" />
     <Compile Include="HacknetPlugin.cs" />
     <Compile Include="Entrypoint.cs" />
+    <Compile Include="IgnoreAccessChecksAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

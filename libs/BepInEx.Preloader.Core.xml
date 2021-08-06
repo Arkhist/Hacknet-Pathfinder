@@ -47,30 +47,194 @@
         <member name="M:BepInEx.Preloader.Core.Logging.PreloaderConsoleListener.Dispose">
             <inheritdoc />
         </member>
-        <member name="T:BepInEx.Preloader.Core.AssemblyPatcherDelegate">
-            <summary>
-                Delegate used in patching assemblies.
-            </summary>
-            <param name="assembly">The assembly that is being patched.</param>
-        </member>
-        <member name="T:BepInEx.Preloader.Core.AssemblyPatcher">
+        <member name="T:BepInEx.Preloader.Core.Patching.AssemblyPatcher">
             <summary>
                 Worker class which is used for loading and patching entire folders of assemblies, or alternatively patching and
                 loading assemblies one at a time.
             </summary>
         </member>
-        <member name="P:BepInEx.Preloader.Core.AssemblyPatcher.PatcherPlugins">
+        <member name="P:BepInEx.Preloader.Core.Patching.AssemblyPatcher.PatcherContext">
             <summary>
-                A list of plugins that will be initialized and executed, in the order of the list.
+            The context of this assembly patcher instance that is passed to all patcher plugins.
             </summary>
         </member>
-        <member name="P:BepInEx.Preloader.Core.AssemblyPatcher.PatcherPluginsSafe">
+        <member name="P:BepInEx.Preloader.Core.Patching.AssemblyPatcher.PatcherPluginsSafe">
             <summary>
-                A cloned version of <see cref="P:BepInEx.Preloader.Core.AssemblyPatcher.PatcherPlugins" /> to ensure that any foreach loops do not break when the collection
+                A cloned version of <see cref="!:PatcherPlugins" /> to ensure that any foreach loops do not break when the collection
                 gets modified.
             </summary>
         </member>
-        <member name="P:BepInEx.Preloader.Core.AssemblyPatcher.AssembliesToPatch">
+        <member name="M:BepInEx.Preloader.Core.Patching.AssemblyPatcher.Dispose">
+            <summary>
+                Performs work to dispose collection objects.
+            </summary>
+        </member>
+        <member name="M:BepInEx.Preloader.Core.Patching.AssemblyPatcher.AddPatchersFromDirectory(System.String)">
+            <summary>
+                Adds all patchers from all managed assemblies specified in a directory.
+            </summary>
+            <param name="directory">Directory to search patcher DLLs from.</param>
+        </member>
+        <member name="M:BepInEx.Preloader.Core.Patching.AssemblyPatcher.LoadAssemblyDirectories(System.String[])">
+            <summary>
+                Adds all .dll assemblies in given directories to be patched and loaded by this patcher instance. Non-managed assemblies
+                are skipped.
+            </summary>
+            <param name="directories">The directories to search.</param>
+        </member>
+        <member name="M:BepInEx.Preloader.Core.Patching.AssemblyPatcher.LoadAssemblyDirectories(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+                Adds all assemblies in given directories to be patched and loaded by this patcher instance. Non-managed assemblies are
+                skipped.
+            </summary>
+            <param name="directories">The directory to search.</param>
+            <param name="assemblyExtensions">The file extensions to attempt to load.</param>
+        </member>
+        <member name="M:BepInEx.Preloader.Core.Patching.AssemblyPatcher.TryLoadAssembly(System.String,Mono.Cecil.AssemblyDefinition@)">
+            <summary>
+                Attempts to load a managed assembly as an <see cref="T:Mono.Cecil.AssemblyDefinition" />. Returns true if successful.
+            </summary>
+            <param name="path">The path of the assembly.</param>
+            <param name="assembly">The loaded assembly. Null if not successful in loading.</param>
+        </member>
+        <member name="M:BepInEx.Preloader.Core.Patching.AssemblyPatcher.PatchAndLoad">
+            <summary>
+                Applies patchers to all assemblies loaded into this assembly patcher and then loads patched assemblies into memory.
+            </summary>
+        </member>
+        <member name="T:BepInEx.Preloader.Core.Patching.PatcherPluginInfoAttribute">
+            <summary>
+                This attribute denotes that a class is a patcher plugin, and specifies the required metadata.
+            </summary>
+        </member>
+        <member name="M:BepInEx.Preloader.Core.Patching.PatcherPluginInfoAttribute.#ctor(System.String,System.String,System.String)">
+            <param name="GUID">The unique identifier of the plugin. Should not change between plugin versions.</param>
+            <param name="Name">The user friendly name of the plugin. Is able to be changed between versions.</param>
+            <param name="Version">The specific version of the plugin.</param>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.PatcherPluginInfoAttribute.GUID">
+            <summary>
+                The unique identifier of the plugin. Should not change between plugin versions.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.PatcherPluginInfoAttribute.Name">
+            <summary>
+                The user friendly name of the plugin. Is able to be changed between versions.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.PatcherPluginInfoAttribute.Version">
+            <summary>
+                The specific version of the plugin.
+            </summary>
+        </member>
+        <member name="T:BepInEx.Preloader.Core.Patching.TargetAssemblyAttribute">
+            <summary>
+            Defines an assembly that a patch method will target.
+            </summary>
+        </member>
+        <member name="F:BepInEx.Preloader.Core.Patching.TargetAssemblyAttribute.AllAssemblies">
+            <summary>
+            Marker used to indicate all possible assemblies to be targeted by a patch method.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.TargetAssemblyAttribute.TargetAssembly">
+            <summary>
+            The short filename of the assembly to target.
+            </summary>
+        </member>
+        <member name="M:BepInEx.Preloader.Core.Patching.TargetAssemblyAttribute.#ctor(System.String)">
+            <param name="targetAssembly">The short filename of the assembly. Use <see cref="F:BepInEx.Preloader.Core.Patching.TargetAssemblyAttribute.AllAssemblies"/> to mark all possible assemblies as targets.</param>
+        </member>
+        <member name="T:BepInEx.Preloader.Core.Patching.TargetTypeAttribute">
+            <summary>
+            Defines a type that a patch method will target.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.TargetTypeAttribute.TargetAssembly">
+            <summary>
+            The short filename of the assembly to target.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.TargetTypeAttribute.TargetType">
+            <summary>
+            The full name of the type to target for patching.
+            </summary>
+        </member>
+        <member name="M:BepInEx.Preloader.Core.Patching.TargetTypeAttribute.#ctor(System.String,System.String)">
+            <param name="targetAssembly">The short filename of the assembly of which <paramref name="targetType"/> belongs to.</param>
+            <param name="targetType">The full name of the type to target for patching.</param>
+        </member>
+        <member name="T:BepInEx.Preloader.Core.Patching.BasePatcher">
+            <summary>
+                A patcher that can contain multiple methods for patching assemblies.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.BasePatcher.Log">
+            <summary>
+                A <see cref="T:BepInEx.Logging.ILogSource"/> instance created for use by this patcher plugin.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.BasePatcher.Config">
+            <summary>
+                A configuration file binding created with the <see cref="P:BepInEx.Preloader.Core.Patching.PatcherPluginInfoAttribute.GUID"/> of this plugin as the filename.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.BasePatcher.Info">
+            <summary>
+                Metadata associated with this patcher plugin.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.BasePatcher.Context">
+            <summary>
+                The context of the <see cref="T:BepInEx.Preloader.Core.Patching.AssemblyPatcher"/> this BasePatcher is associated with.
+            </summary>
+        </member>
+        <member name="M:BepInEx.Preloader.Core.Patching.BasePatcher.Initialize">
+            <summary>
+                Executed before any patches from any plugin are applied.
+            </summary>
+        </member>
+        <member name="M:BepInEx.Preloader.Core.Patching.BasePatcher.Finalizer">
+            <summary>
+                Executed after all patches from all plugins have been applied.
+            </summary>
+        </member>
+        <member name="T:BepInEx.Preloader.Core.Patching.PatchDefinition">
+            <summary>
+                A definition of an individual patch for use by <see cref="T:BepInEx.Preloader.Core.Patching.AssemblyPatcher"/>.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.PatchDefinition.TargetAssembly">
+            <summary>
+                The assembly / assemblies this patch will target, if there any.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.PatchDefinition.TargetType">
+            <summary>
+                The type / types this patch will target, if there are any.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.PatchDefinition.Instance">
+            <summary>
+                The instance of the <see cref="T:BepInEx.Preloader.Core.Patching.BasePatcher"/> this <see cref="T:BepInEx.Preloader.Core.Patching.PatchDefinition"/> originates from.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.PatchDefinition.MethodInfo">
+            <summary>
+                The method that will perform the patching logic defined by this <see cref="T:BepInEx.Preloader.Core.Patching.PatchDefinition"/> instance.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.PatchDefinition.FullName">
+            <summary>
+                A friendly name for this patch definition, for use in logging and error tracking.
+            </summary>
+        </member>
+        <member name="T:BepInEx.Preloader.Core.Patching.PatcherContext">
+            <summary>
+            Context provided to patcher plugins from the associated patcher engine.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.PatcherContext.AvailableAssemblies">
             <summary>
                 <para>Contains a list of assemblies that will be patched and loaded into the runtime.</para>
                 <para>
@@ -81,94 +245,45 @@
                 <para>Order is not respected, as it will be sorted by dependencies.</para>
             </summary>
         </member>
-        <member name="P:BepInEx.Preloader.Core.AssemblyPatcher.LoadedAssemblies">
+        <member name="P:BepInEx.Preloader.Core.Patching.PatcherContext.LoadedAssemblies">
             <summary>
-                <para>Contains a dictionary of assemblies that have been loaded as part of executing this assembly patcher..</para>
+                <para>Contains a dictionary of assemblies that have been loaded as part of executing this assembly patcher.</para>
                 <para>
-                    The key is the same key as used in <see cref="P:BepInEx.Preloader.Core.AssemblyPatcher.LoadedAssemblies" />, while the value is the actual assembly
+                    The key is the same key as used in <see cref="P:BepInEx.Preloader.Core.Patching.PatcherContext.LoadedAssemblies" />, while the value is the actual assembly
                     itself.
                 </para>
             </summary>
         </member>
-        <member name="P:BepInEx.Preloader.Core.AssemblyPatcher.DumpedAssembliesPath">
+        <member name="P:BepInEx.Preloader.Core.Patching.PatcherContext.PatcherPlugins">
+            <summary>
+                A list of plugins that will be initialized and executed, in the order of the list.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.PatcherContext.PatchDefinitions">
+            <summary>
+                A list of individual patches that <see cref="T:BepInEx.Preloader.Core.Patching.AssemblyPatcher"/> will execute, generated by parsing <see cref="P:BepInEx.Preloader.Core.Patching.PatcherContext.PatcherPlugins"/>.
+            </summary>
+        </member>
+        <member name="P:BepInEx.Preloader.Core.Patching.PatcherContext.DumpedAssembliesPath">
             <summary>
                 The directory location as to where patched assemblies will be saved to and loaded from disk, for debugging
                 purposes. Defaults to BepInEx/DumpedAssemblies
             </summary>
         </member>
-        <member name="M:BepInEx.Preloader.Core.AssemblyPatcher.Dispose">
+        <member name="T:BepInEx.Preloader.Core.Patching.PatcherPluginMetadata">
             <summary>
-                Performs work to dispose collection objects.
+                A single cached assembly patcher.
             </summary>
         </member>
-        <member name="M:BepInEx.Preloader.Core.AssemblyPatcher.AddPatchersFromDirectory(System.String)">
-            <summary>
-                Adds all patchers from all managed assemblies specified in a directory.
-            </summary>
-            <param name="directory">Directory to search patcher DLLs from.</param>
-        </member>
-        <member name="M:BepInEx.Preloader.Core.AssemblyPatcher.LoadAssemblyDirectories(System.String[])">
-            <summary>
-                Adds all .dll assemblies in given directories to be patched and loaded by this patcher instance. Non-managed assemblies
-                are skipped.
-            </summary>
-            <param name="directories">The directories to search.</param>
-        </member>
-        <member name="M:BepInEx.Preloader.Core.AssemblyPatcher.LoadAssemblyDirectories(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-                Adds all assemblies in given directories to be patched and loaded by this patcher instance. Non-managed assemblies are
-                skipped.
-            </summary>
-            <param name="directories">The directory to search.</param>
-            <param name="assemblyExtensions">The file extensions to attempt to load.</param>
-        </member>
-        <member name="M:BepInEx.Preloader.Core.AssemblyPatcher.TryLoadAssembly(System.String,Mono.Cecil.AssemblyDefinition@)">
-            <summary>
-                Attempts to load a managed assembly as an <see cref="T:Mono.Cecil.AssemblyDefinition" />. Returns true if successful.
-            </summary>
-            <param name="path">The path of the assembly.</param>
-            <param name="assembly">The loaded assembly. Null if not successful in loading.</param>
-        </member>
-        <member name="M:BepInEx.Preloader.Core.AssemblyPatcher.PatchAndLoad">
-            <summary>
-                Applies patchers to all assemblies in the given directory and loads patched assemblies into memory.
-            </summary>
-            <param name="directory">Directory to load CLR assemblies from.</param>
-        </member>
-        <member name="T:BepInEx.Preloader.Core.PatcherPlugin">
-            <summary>
-                A single assembly patcher.
-            </summary>
-        </member>
-        <member name="P:BepInEx.Preloader.Core.PatcherPlugin.TargetDLLs">
-            <summary>
-                Target assemblies to patch.
-            </summary>
-        </member>
-        <member name="P:BepInEx.Preloader.Core.PatcherPlugin.Initializer">
-            <summary>
-                Initializer method that is run before any patching occurs.
-            </summary>
-        </member>
-        <member name="P:BepInEx.Preloader.Core.PatcherPlugin.Finalizer">
-            <summary>
-                Finalizer method that is run after all patching is done.
-            </summary>
-        </member>
-        <member name="P:BepInEx.Preloader.Core.PatcherPlugin.Patcher">
-            <summary>
-                The main patcher method that is called on every DLL defined in <see cref="P:BepInEx.Preloader.Core.PatcherPlugin.TargetDLLs" />.
-            </summary>
-        </member>
-        <member name="P:BepInEx.Preloader.Core.PatcherPlugin.TypeName">
+        <member name="P:BepInEx.Preloader.Core.Patching.PatcherPluginMetadata.TypeName">
             <summary>
                 Type name of the patcher.
             </summary>
         </member>
-        <member name="M:BepInEx.Preloader.Core.PatcherPlugin.Save(System.IO.BinaryWriter)">
+        <member name="M:BepInEx.Preloader.Core.Patching.PatcherPluginMetadata.Save(System.IO.BinaryWriter)">
             <inheritdoc />
         </member>
-        <member name="M:BepInEx.Preloader.Core.PatcherPlugin.Load(System.IO.BinaryReader)">
+        <member name="M:BepInEx.Preloader.Core.Patching.PatcherPluginMetadata.Load(System.IO.BinaryReader)">
             <inheritdoc />
         </member>
         <member name="M:BepInEx.Preloader.Core.PlatformUtils.SetPlatform">
