@@ -34,7 +34,8 @@ namespace Pathfinder.Util
                 }
 
                 string val = (string)fieldInfo.GetValue(obj);
-                builder.Append($"{fieldInfo.Name}=\"{val}\"");
+                if (val != null)
+                    builder.Append($"{fieldInfo.Name}=\"{val}\" ");
             }
             foreach (var propertyInfo in thisType.GetProperties(Flags))
             {
@@ -50,7 +51,8 @@ namespace Pathfinder.Util
                 }
 
                 string val = (string)getMethod.Invoke(obj, null);
-                builder.Append($"{propertyInfo.Name}=\"{val}\"");
+                if (val != null)
+                    builder.Append($"{propertyInfo.Name}=\"{val}\" ");
             }
 
             builder.Append("/>");
