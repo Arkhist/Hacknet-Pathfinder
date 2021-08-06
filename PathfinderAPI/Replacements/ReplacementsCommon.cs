@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Hacknet;
+using Hacknet.Factions;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
@@ -58,6 +59,49 @@ namespace Pathfinder.Replacements
             }
             
             return memory;
+        }
+        
+        public static Faction LoadFaction(ElementInfo info)
+        {
+            Faction ret;
+
+            var name = info.Attributes.GetString("name", "UNKNOWN");
+            var needed = info.Attributes.GetInt("neededVal");
+            switch (info.Name)
+            {
+                case "HubFaction":
+                    ret = new HubFaction(name, needed);
+                    break;
+                case "EntropyFaction":
+                    ret = new EntropyFaction(name, needed);
+                    break;
+                case "CustomFaction":
+                    var actions = new List<CustomFactionAction>();
+                    foreach (var actionSetInfo in info.Children)
+                    {
+                        actions.Add(new CustomFactionAction()
+                        {
+                            ValueRequiredForTrigger = actionSetInfo.Attributes.GetInt("ValueRequired"),
+                            FlagsRequiredForTrigger = actionSetInfo.Attributes.GetString("Flags", null),
+                            TriggerActions = actionSetInfo.Children.Select(ActionsLoader.ReadAction).ToList()
+                        });
+                    }
+                    
+                    ret = new CustomFaction(name, 100)
+                    {
+                        CustomActions = actions
+                    };
+                    break;
+                default:
+                    ret = new Faction(name, needed);
+                    break;
+            }
+
+            ret.playerValue = info.Attributes.GetInt("playerVal");
+            ret.idName = info.Attributes.GetString("id");
+            ret.playerHasPassedValue = info.Attributes.GetBool("playerHasPassed");
+
+            return ret;
         }
     }
 }

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Xml;
 using Hacknet;
 using Hacknet.Extensions;
 using Hacknet.Security;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
+using MonoMod.Cil;
 using Pathfinder.Administrator;
 using Pathfinder.Daemon;
 using Pathfinder.Event;
@@ -816,6 +819,35 @@ namespace Pathfinder.Replacements
         {
             __result = LoadComputer(filename, preventAddingToNetmap, preventInitDaemons);
             return false;
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(ExtensionLoader), nameof(ExtensionLoader.LoadNewExtensionSession))]
+        private static void ReplaceLoadFactionIL(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.Before,
+                x => x.MatchLdloc(4),
+                x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(XmlReader), nameof(XmlReader.Create), new Type[] { typeof(Stream) })),
+                x => x.MatchStloc(5),
+                x => x.MatchLdloc(5),
+                x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(Faction), nameof(Faction.loadFromSave)))
+            );
+
+            c.Index++;
+            c.RemoveRange(4);
+            c.EmitDelegate<Func<FileStream, Faction>>(file =>
+            {
+                var factionExec = new EventExecutor(new StreamReader(file).ReadToEnd(), false);
+                ElementInfo factionInfo = null;
+                factionExec.RegisterExecutor("*", (exec, info) =>
+                {
+                    factionInfo = info;
+                }, ParseOption.ParseInterior);
+                factionExec.Parse();
+                return ReplacementsCommon.LoadFaction(factionInfo);
+            });
         }
 
         public static Computer LoadComputer(string filename, bool preventAddingToNetmap = false, bool preventInitDaemons = false)
