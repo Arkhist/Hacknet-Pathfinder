@@ -462,7 +462,10 @@ namespace Pathfinder.Replacements
                                 name,
                                 daemon.Attributes.GetBool("ShowsTitle", true),
                                 daemon.Attributes.GetString("LogoImagePath")
-                            ));
+                            )
+                            {
+                                TextColor = daemon.Attributes.GetColor("TextColor", Color.White).Value
+                            });
                             break;
                         case "DLCCredits":
                             DLCCreditsDaemon dlcdaemon = null;
