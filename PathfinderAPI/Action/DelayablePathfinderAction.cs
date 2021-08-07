@@ -32,6 +32,8 @@ namespace Pathfinder.Action
                 return;
             }
 
+            DelayHost = null;
+            Delay = null;
             delayHost.AddAction(this, delay);
             delay = 0f;
         }
