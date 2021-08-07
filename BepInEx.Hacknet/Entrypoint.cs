@@ -10,10 +10,11 @@ namespace BepInEx.Hacknet
 {
     public static class Entrypoint
     {
-        
         public static void Bootstrap()
         {
             AppDomain.CurrentDomain.AssemblyResolve += ResolveBepAssembly;
+            if (Type.GetType("Mono.Runtime") != null)
+                AppDomain.CurrentDomain.AssemblyResolve += ResolveGACAssembly;
 
             Environment.SetEnvironmentVariable("MONOMOD_DMD_TYPE", "dynamicmethod");
 
@@ -24,7 +25,27 @@ namespace BepInEx.Hacknet
         {
             var asmName = new AssemblyName(args.Name);
 
-            foreach (var path in Directory.GetFiles("./BepInEx", $"{asmName.Name}.dll", SearchOption.AllDirectories).Select(x => Path.GetFullPath(x)))
+            foreach (var path in Directory
+                .GetFiles("./BepInEx", $"{asmName.Name}.dll", SearchOption.AllDirectories)
+                .Select(Path.GetFullPath))
+            {
+                try
+                {
+                    return Assembly.LoadFile(path);
+                }
+                catch {}
+            }
+
+            return null;
+        }
+
+        public static Assembly ResolveGACAssembly(object sender, ResolveEventArgs args)
+        {
+            var asmName = new AssemblyName(args.Name);
+
+            foreach (var path in Directory
+                .GetFiles($"/usr/lib/mono/gac/{asmName.Name}", $"{asmName.Name}.dll", SearchOption.AllDirectories)
+                .Select(Path.GetFullPath))
             {
                 try
                 {
