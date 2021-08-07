@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Xml;
 using Hacknet;
 using Hacknet.Mission;
@@ -67,7 +68,10 @@ namespace Pathfinder.Action
         {
             if (__instance is PathfinderAction pfAction)
             {
-                __result = pfAction.GetSaveStringOverridable();
+                var builder = new StringBuilder();
+                var writer = XmlWriter.Create(builder);
+                pfAction.GetSaveElement().WriteTo(writer);
+                __result = builder.ToString();
                 return false;
             }
 

@@ -12,6 +12,7 @@ using Hacknet.Factions;
 using Hacknet.PlatformAPI.Storage;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
+using Pathfinder.Action;
 using Pathfinder.Administrator;
 using Pathfinder.Daemon;
 using Pathfinder.Event;
@@ -36,6 +37,11 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetActionSaveElement(SerializableAction action)
         {
+            if (action is PathfinderAction pfAction)
+            {
+                return pfAction.GetSaveElement();
+            }
+            
             var actionType = action.GetType();
             var saveTag = actionType.Name;
             if (saveTag.StartsWith("Hacknet."))
@@ -74,6 +80,11 @@ namespace Pathfinder.Replacements
 
         internal static XElement GetConditionSaveElement(SerializableCondition cond)
         {
+            if (cond is PathfinderCondition pfCond)
+            {
+                return pfCond.GetSaveElement();
+            }
+            
             var condType = cond.GetType();
             var saveTag = condType.Name;
             if (saveTag.StartsWith("Hacknet."))

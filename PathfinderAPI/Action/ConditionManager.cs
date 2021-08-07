@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Xml;
 using Hacknet;
 using HarmonyLib;
 using Pathfinder.Event;
@@ -65,7 +67,10 @@ namespace Pathfinder.Action
         {
             if (__instance is PathfinderCondition pfCondition)
             {
-                __result = pfCondition.GetSaveStringOverridable();
+                var builder = new StringBuilder();
+                var writer = XmlWriter.Create(builder);
+                pfCondition.GetSaveElement().WriteTo(writer);
+                __result = builder.ToString();
                 return false;
             }
 
