@@ -68,8 +68,8 @@ namespace Pathfinder.Action
             if (__instance is PathfinderCondition pfCondition)
             {
                 var builder = new StringBuilder();
-                var writer = XmlWriter.Create(builder);
-                pfCondition.GetSaveElement().WriteTo(writer);
+                using (var writer = XmlWriter.Create(builder))
+                    pfCondition.GetSaveElement().WriteTo(writer);
                 __result = builder.ToString();
                 return false;
             }

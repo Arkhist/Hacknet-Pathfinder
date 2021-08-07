@@ -69,8 +69,8 @@ namespace Pathfinder.Action
             if (__instance is PathfinderAction pfAction)
             {
                 var builder = new StringBuilder();
-                var writer = XmlWriter.Create(builder);
-                pfAction.GetSaveElement().WriteTo(writer);
+                using (var writer = XmlWriter.Create(builder))
+                    pfAction.GetSaveElement().WriteTo(writer);
                 __result = builder.ToString();
                 return false;
             }
