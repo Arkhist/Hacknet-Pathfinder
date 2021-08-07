@@ -107,7 +107,7 @@ namespace Pathfinder.Replacements
                 (exec, info) => os.PreDLCVisibleNodesCache = info.Content ?? "",
                 ParseOption.ParseInterior);
             executor.RegisterExecutor("HacknetSave.DLC.ConditionalActions",
-                (exec, info) => ActionsLoader.LoadActionSets(info), 
+                (exec, info) => os.ConditionalActions = ActionsLoader.LoadActionSets(info), 
                 ParseOption.ParseInterior);
             executor.RegisterExecutor("HacknetSave.Flags", (exec, info) =>
             {
