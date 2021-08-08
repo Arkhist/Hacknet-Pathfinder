@@ -96,7 +96,7 @@ namespace Pathfinder.BaseGameFixes.Performance
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(Programs), nameof(Programs.scan))]
-        public static bool scan(string[] args, OS os)
+        public static bool ScanReplacement(string[] args, OS os)
         {
             if (args.Length > 1)
             {
