@@ -7,7 +7,7 @@ namespace Pathfinder.BaseGameFixes
     [HarmonyPatch]
     internal static class RandomIPNoRepeats
     {
-        [HarmonyPostfix]
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(NetworkMap), nameof(NetworkMap.generateRandomIP))]
         internal static bool GenerateRandomIPReplacement(out string __result)
         {
