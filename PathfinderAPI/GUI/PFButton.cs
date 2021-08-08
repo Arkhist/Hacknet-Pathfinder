@@ -60,7 +60,7 @@ namespace Pathfinder.GUI
 
         public void Dispose()
         {
-            returnedIds.Add(ID);
+            ReturnID(ID);
             invalid = true;
         }
     }
