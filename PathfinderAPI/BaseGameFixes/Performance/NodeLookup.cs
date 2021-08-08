@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Hacknet;
 using HarmonyLib;
 using Mono.Cecil.Cil;
@@ -91,6 +92,48 @@ namespace Pathfinder.BaseGameFixes.Performance
         internal static void ClearOnQuitGame()
         {
             ComputerLookup.ClearLookups();
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Programs), nameof(Programs.scan))]
+        internal static bool ScanReplacement(string[] args, OS os)
+        {
+            if (args.Length > 1)
+            {
+                Computer computer = ComputerLookup.FindByIp(args[1]);
+                if (computer == null)
+                {
+                    computer = ComputerLookup.FindByName(args[1]);
+                }
+                if (computer != null)
+                {
+                    os.netMap.discoverNode(computer);
+                    os.write("Found Terminal : " + computer.name + "@" + computer.ip);
+                }
+                return false;
+            }
+            Computer computer2 = ((os.connectedComp != null) ? os.connectedComp : os.thisComputer);
+            if (os.hasConnectionPermission(admin: true))
+            {
+                os.write("Scanning...");
+                for (int i = 0; i < computer2.links.Count; i++)
+                {
+                    if (!os.netMap.visibleNodes.Contains(computer2.links[i]))
+                    {
+                        os.netMap.visibleNodes.Add(computer2.links[i]);
+                    }
+                    os.netMap.nodes[computer2.links[i]].highlightFlashTime = 1f;
+                    os.write("Found Terminal : " + os.netMap.nodes[computer2.links[i]].name + "@" + os.netMap.nodes[computer2.links[i]].ip);
+                    os.netMap.lastAddedNode = os.netMap.nodes[computer2.links[i]];
+                    Thread.Sleep(400);
+                }
+                os.write("Scan Complete\n");
+            }
+            else
+            {
+                os.write("Scanning Requires Admin Access\n");
+            }
+			return false;
         }
     }
 }
