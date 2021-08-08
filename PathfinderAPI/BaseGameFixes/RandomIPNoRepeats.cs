@@ -14,7 +14,7 @@ namespace Pathfinder.BaseGameFixes
             while (true)
             {
                 var ip = Utils.random.Next(254) + 1 + "." + (Utils.random.Next(254) + 1) + "." + (Utils.random.Next(254) + 1) + "." + (Utils.random.Next(254) + 1);
-                if (ComputerLookup.FindByIp(ip) == null)
+                if (ComputerLookup.FindByIp(ip, false) == null)
                 {
                     __result = ip;
                     return false;
