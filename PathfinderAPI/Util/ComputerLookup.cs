@@ -66,8 +66,8 @@ namespace Pathfinder.Util
 
         public static Computer FindById(string id) => idLookup.GetOrDefault(id);
 
-        public static Computer FindByIp(string ip) => ipLookup.GetOrDefault(ip.Filter());
+        public static Computer FindByIp(string ip, bool filter = true) => ipLookup.GetOrDefault(filter ? ip.Filter() : ip);
 
-        public static Computer FindByName(string name) => nameLookup.GetOrDefault(name.Filter());
+        public static Computer FindByName(string name, bool filter = true) => nameLookup.GetOrDefault(filter ? name.Filter() : name);
     }
 }
