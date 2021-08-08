@@ -81,6 +81,7 @@
     <Compile Include="BaseGameFixes\Performance\CatModuleRendering.cs" />
     <Compile Include="BaseGameFixes\Performance\NodeLookup.cs" />
     <Compile Include="BaseGameFixes\Performance\ThemeCaching.cs" />
+    <Compile Include="BaseGameFixes\RandomIPNoRepeats.cs" />
     <Compile Include="BaseGameFixes\SendEmailMission.cs" />
     <Compile Include="BaseGameFixes\StartingActionsAfterNodes.cs" />
     <Compile Include="Command\CommandManager.cs" />

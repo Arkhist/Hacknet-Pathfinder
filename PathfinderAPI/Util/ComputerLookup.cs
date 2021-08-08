@@ -26,8 +26,22 @@ namespace Pathfinder.Util
         internal static void PopulateLookups(Computer node)
         {
             idLookup[node.idName] = node;
-            ipLookup[node.ip]     = node;
+            ipLookup[node.ip] = node;
             nameLookup[node.name] = node;
+        }
+
+        public static void NotifyIPChange(string oldIp, string newIp)
+        {
+            var comp = ipLookup[oldIp];
+            ipLookup.Remove(oldIp);
+            ipLookup[newIp] = comp;
+        }
+
+        public static void NotifyIDChange(string oldId, string newId)
+        {
+            var comp = idLookup[oldId];
+            idLookup.Remove(oldId);
+            idLookup[newId] = comp;
         }
 
         internal static void ClearLookups()

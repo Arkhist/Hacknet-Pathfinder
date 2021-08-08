@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Hacknet;
 using HarmonyLib;
-using Pathfinder.Event;
-using Pathfinder.Event.Loading;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using Pathfinder.Util;
 
 namespace Pathfinder.BaseGameFixes.Performance
@@ -46,6 +47,43 @@ namespace Pathfinder.BaseGameFixes.Performance
         {
             __result = ComputerLookup.Find(ip_Or_ID_or_Name);
             return false;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(SAChangeIP), nameof(SAChangeIP.Trigger))]
+        internal static void OnChangeIPTrigger(SAChangeIP __instance, out string __state)
+        {
+            __state = ComputerLookup.Find(__instance.TargetComp)?.ip;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(SAChangeIP), nameof(SAChangeIP.Trigger))]
+        internal static void OnChangeIPTrigger2(SAChangeIP __instance, string __state)
+        {
+            var comp = ComputerLookup.Find(__instance.TargetComp);
+            if (comp != null && comp.ip != __state)
+            {
+                ComputerLookup.NotifyIPChange(__state, comp.ip);
+            }
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(ISPDaemon), nameof(ISPDaemon.DrawIPEntryScreen))]
+        internal static void OnISPChangeIP(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+            
+            c.GotoNext(MoveType.After, x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(NetworkMap), nameof(NetworkMap.generateRandomIP))));
+
+            c.Emit(OpCodes.Dup);
+            c.Emit(OpCodes.Ldarg_0);
+            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(ISPDaemon), nameof(ISPDaemon.scannedComputer)));
+            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(Computer), nameof(Computer.ip)));
+            c.EmitDelegate<Action<string, string>>((newIp, oldIp) =>
+            {
+                if (ComputerLookup.FindByIp(newIp) == null)
+                    ComputerLookup.NotifyIPChange(oldIp, newIp);
+            });
         }
 
         [HarmonyPostfix]
