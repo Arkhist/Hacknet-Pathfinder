@@ -118,11 +118,12 @@
     <Compile Include="Replacements\SaveLoader.cs" />
     <Compile Include="Replacements\SaveWriter.cs" />
     <Compile Include="Util\AssemblyAssociatedList.cs" />
+    <Compile Include="Util\BitReader.cs" />
     <Compile Include="Util\CachedCustomTheme.cs" />
     <Compile Include="Util\DictionaryExtensions.cs" />
     <Compile Include="Util\ComputerLookup.cs" />
     <Compile Include="Util\FixedSizeCacheDict.cs" />
-    <Compile Include="Util\LZWBinaryReader.cs" />
+    <Compile Include="Util\SBAwareBinaryReader.cs" />
     <Compile Include="Util\StringExtensions.cs" />
     <Compile Include="Util\InitializeAttribute.cs" />
     <Compile Include="PathfinderAPIPlugin.cs" />
