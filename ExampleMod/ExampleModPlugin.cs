@@ -169,6 +169,8 @@ namespace ExampleMod2
         public string Min;
         [XMLStorage]
         public string Max;
+        [XMLStorage(true)]
+        public string stringToWrite;
 
         private int min = 0;
         private int max = 9;
@@ -179,6 +181,9 @@ namespace ExampleMod2
         {
             os.Flags.Flags.RemoveAll(x => x.StartsWith("randomInt"));
             os.Flags.Flags.Add("randomInt" + Rand.Next(min, max));
+            
+            if (stringToWrite != null)
+                os.write(stringToWrite);
         }
 
         public override void LoadFromXml(ElementInfo info)
