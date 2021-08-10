@@ -593,16 +593,14 @@ namespace Pathfinder.Replacements
 
             result.Add(GetFilesystemSaveElement(node.files));
 
-            return result;
+            var eventResult = EventManager<SaveComputerEvent>.InvokeAll(new SaveComputerEvent(node.os, node, result));
+            return eventResult.Cancelled ? null : eventResult.Element;
         }
 
         internal static XElement GetNetmapNodesSaveElement(NetworkMap nmap)
         {
             var result = new XElement("network");
-            foreach (var node in nmap.nodes)
-            {
-                result.Add(GetNodeSaveElement(node));
-            }
+            result.Add(nmap.nodes.Select(GetNodeSaveElement).Where(x => x != null).ToArray());
             return result;
         }
 
@@ -740,7 +738,7 @@ namespace Pathfinder.Replacements
                 otherTag.SetAttributeValue("homeAssetsNode", __instance.homeAssetServerID);
                 saveElement.Add(otherTag);
 
-                EventManager<SaveEvent>.InvokeAll(new SaveEvent(saveElement, filename));
+                EventManager<SaveEvent>.InvokeAll(new SaveEvent(__instance, saveElement, filename));
                 
                 writer.WriteStartDocument();
                 

@@ -26,7 +26,7 @@ namespace Pathfinder
 
             foreach (var initMethod in typeof(PathfinderAPIPlugin).Assembly.GetTypes().SelectMany(AccessTools.GetDeclaredMethods))
             {
-                if (initMethod.GetCustomAttributes(false).Any(x => x is Util.InitializeAttribute) && initMethod.IsStatic && initMethod.GetParameters().Length == 0)
+                if (initMethod.GetCustomAttributes(false).Any(x => x is InitializeAttribute) && initMethod.IsStatic && initMethod.GetParameters().Length == 0)
                     initMethod.Invoke(null, null);
             }
 
