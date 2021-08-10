@@ -732,6 +732,7 @@ namespace Pathfinder.Replacements
                 }
                 
                 credits.ConditionalActionsToLoadOnButtonPress = info.Attributes.GetString("ConditionalActionSetToRunOnButtonPressPath", null);
+                comp.daemons.Add(credits);
             });
             executor.RegisterExecutor("Computer.FastActionHost", (exec, info) =>
             {
