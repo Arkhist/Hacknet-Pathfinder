@@ -48,8 +48,7 @@ namespace Pathfinder.Executable
 
         private static void OnPluginUnload(Assembly pluginAsm)
         {
-            var pluginTypes = pluginAsm.GetTypes();
-            CustomExes.RemoveAll(x => pluginTypes.Contains(x.Value.ExeType));
+            CustomExes.RemoveAll(x => x.Value.ExeType.Assembly == pluginAsm);
         }
 
         public static void RegisterExecutable<T>(string xmlName) where T : BaseExecutable => RegisterExecutable(typeof(T), xmlName);
