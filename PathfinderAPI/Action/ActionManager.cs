@@ -16,6 +16,7 @@ namespace Pathfinder.Action
     public static class ActionManager
     {
         private static readonly Dictionary<string, Type> CustomActions = new Dictionary<string, Type>();
+        private static readonly Dictionary<Type, string> XmlNames = new Dictionary<Type, string>();
 
         static ActionManager()
         {
@@ -38,8 +39,11 @@ namespace Pathfinder.Action
         private static void OnPluginUnload(Assembly pluginAsm)
         {
             var allTypes = pluginAsm.GetTypes();
-            foreach (var name in CustomActions.Where(x => allTypes.Contains(x.Value)).Select(x => x.Key).ToList())
-                CustomActions.Remove(name);
+            foreach (var entry in CustomActions.Where(x => allTypes.Contains(x.Value)).ToList())
+            {
+                CustomActions.Remove(entry.Key);
+                XmlNames.Remove(entry.Value);
+            }
         }
         
         public static void RegisterAction<T>(string xmlName) where T : PathfinderAction => RegisterAction(typeof(T), xmlName);
@@ -48,6 +52,8 @@ namespace Pathfinder.Action
             if (!typeof(PathfinderAction).IsAssignableFrom(actionType))
                 throw new ArgumentException("Action type must inherit from Pathfinder.Action.PathfinderAction!", nameof(actionType));
             CustomActions.Add(xmlName, actionType);
+            if (!XmlNames.ContainsKey(actionType))
+                XmlNames.Add(actionType, xmlName);
         }
 
         public static void UnregisterAction<T>() where T : PathfinderAction => UnregisterAction(typeof(T));
@@ -56,10 +62,28 @@ namespace Pathfinder.Action
             var xmlName = CustomActions.FirstOrDefault(x => x.Value == actionType).Key;
             if (xmlName != null)
                 CustomActions.Remove(xmlName);
+            if (XmlNames.ContainsKey(actionType))
+            {
+                /* TODO: Get next name? */
+                XmlNames.Remove(actionType);
+            }
         }
         public static void UnregisterAction(string xmlName)
         {
+            if (!CustomActions.ContainsKey(xmlName))
+                return;
+            var actionType = CustomActions[xmlName];
             CustomActions.Remove(xmlName);
+            if (XmlNames[actionType] == xmlName)
+            {
+                /* TODO: Get next name? */
+                XmlNames.Remove(actionType);
+            }
+        }
+        public static string GetXmlNameFor(Type type)
+        {
+            XmlNames.TryGetValue(type, out string retVal);
+            return retVal;
         }
         
         [HarmonyPrefix]
