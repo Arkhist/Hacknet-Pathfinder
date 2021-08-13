@@ -20,13 +20,24 @@ namespace Pathfinder.Util
         }
         
         private const BindingFlags Flags = BindingFlags.Instance | BindingFlags.Public;
-        
+        public static XElement WriteToElement(IXmlName obj)
+        {
+            var element = new XElement(obj.XmlName);
+            WriteElementContent(obj, element);
+            return element;
+        }
+
         public static XElement WriteToElement(object obj)
+        {
+            var element = new XElement(obj.GetType().Name);
+            WriteElementContent(obj, element);
+            return element;
+        }
+        
+        private static void WriteElementContent(object obj, XElement element) 
         {
             var thisType = obj.GetType();
             var attribType = typeof(XMLStorageAttribute);
-
-            var element = new XElement(thisType.Name);
 
             bool hasSetContent = false;
             
@@ -91,8 +102,6 @@ namespace Pathfinder.Util
                     element.SetAttributeValue(propertyInfo.Name, val);
                 }
             }
-
-            return element;
         }
 
         public static void ReadFromElement(ElementInfo info, object obj)
@@ -159,5 +168,10 @@ namespace Pathfinder.Util
                 setMethod.Invoke(obj, new object[] { info.Attributes.GetString(propertyInfo.Name, (string)getMethod.Invoke(obj, null)) });
             }
         }
+    }
+
+    public interface IXmlName
+    {
+        string XmlName { get; }
     }
 }
