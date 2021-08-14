@@ -50,10 +50,8 @@
       <HintPath>..\libs\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Mono.Cecil, Version=0.11.3.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
       <HintPath>..\libs\Mono.Cecil.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="MonoMod.RuntimeDetour, Version=21.1.11.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
