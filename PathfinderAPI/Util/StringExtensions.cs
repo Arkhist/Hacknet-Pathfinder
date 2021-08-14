@@ -14,9 +14,11 @@ namespace Pathfinder.Util
         public static string ContentFilePath(this string filename)
         {
             filename = filename.Replace("\\", "/");
-            var extFolder = ExtensionLoader.ActiveExtensionInfo.FolderPath.Replace("\\", "/");
             if (Settings.IsInExtensionMode)
+            {
+                var extFolder = ExtensionLoader.ActiveExtensionInfo.FolderPath.Replace("\\", "/");
                 return filename.StartsWith(extFolder) ? filename : Path.Combine(extFolder, filename);
+            }
             return filename.StartsWith("Content/") ? filename : Path.Combine("Content", filename);
         }
 
