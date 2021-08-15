@@ -73,6 +73,7 @@
     <Compile Include="BaseGameFixes\AutoClearMissionsOnSingleComplete.cs" />
     <Compile Include="BaseGameFixes\ClearPostLoadActions.cs" />
     <Compile Include="BaseGameFixes\HHBS.cs" />
+    <Compile Include="BaseGameFixes\LoadBuiltinThemes.cs" />
     <Compile Include="BaseGameFixes\MissionListingServerLoadTime.cs" />
     <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
     <Compile Include="BaseGameFixes\Performance\CatModuleRendering.cs" />
