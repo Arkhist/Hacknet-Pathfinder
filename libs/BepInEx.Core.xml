@@ -887,14 +887,6 @@
             <param name="plugin">The plugin instance.</param>
             <returns>The attributes of the instance, if existing.</returns>
         </member>
-        <member name="M:BepInEx.MetadataHelper.GetAttributes``1(System.Reflection.MemberInfo)">
-            <summary>
-                Gets the specified attributes of a reflection metadata type, if they exist.
-            </summary>
-            <typeparam name="T">The attribute type to retrieve.</typeparam>
-            <param name="member">The reflection metadata instance.</param>
-            <returns>The attributes of the instance, if existing.</returns>
-        </member>
         <member name="M:BepInEx.MetadataHelper.GetDependencies(System.Type)">
             <summary>
                 Retrieves the dependencies of the specified plugin type.
