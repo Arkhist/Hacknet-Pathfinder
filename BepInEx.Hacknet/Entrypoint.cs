@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using BepInEx.Logging;
+using HarmonyLib;
 using HN = global::Hacknet;
 
 namespace BepInEx.Hacknet
@@ -65,6 +66,14 @@ namespace BepInEx.Hacknet
         {
             try
             {
+                // Fix a dumb harmonyx bug caused by yours truly that *could* be fixed by updating harmony but master branch of harmonyx
+                // depends on latest monomod release that has *another* dumb bug (that one wasnt me)
+                // so instead we workaround until we die
+                new Harmony("ILManipulatorUnpatchFix").Patch(
+                    AccessTools.Method(typeof(PatchInfo), nameof(PatchInfo.RemovePatch)),
+                    postfix: new HarmonyMethod(AccessTools.Method(typeof(LoadBepInEx), nameof(FixIlmanipulatorUnpatching)))
+                );
+
                 // Do stuff for BepInEx to recognize where it is
                 Paths.SetExecutablePath(typeof(HN.Program).Assembly.GetName().Name);
 
@@ -84,6 +93,11 @@ namespace BepInEx.Hacknet
                 Console.ReadLine();
                 Environment.Exit(1);
             }
+        }
+
+        internal static void FixIlmanipulatorUnpatching(PatchInfo __instance, MethodInfo patch)
+        {
+            __instance.ilmanipulators = __instance.ilmanipulators.Where(p => p.PatchMethod != patch).ToArray();
         }
     }
 }
