@@ -112,28 +112,7 @@ namespace Pathfinder.BaseGameFixes.Performance
                 }
                 return false;
             }
-            Computer computer2 = ((os.connectedComp != null) ? os.connectedComp : os.thisComputer);
-            if (os.hasConnectionPermission(admin: true))
-            {
-                os.write("Scanning...");
-                for (int i = 0; i < computer2.links.Count; i++)
-                {
-                    if (!os.netMap.visibleNodes.Contains(computer2.links[i]))
-                    {
-                        os.netMap.visibleNodes.Add(computer2.links[i]);
-                    }
-                    os.netMap.nodes[computer2.links[i]].highlightFlashTime = 1f;
-                    os.write("Found Terminal : " + os.netMap.nodes[computer2.links[i]].name + "@" + os.netMap.nodes[computer2.links[i]].ip);
-                    os.netMap.lastAddedNode = os.netMap.nodes[computer2.links[i]];
-                    Thread.Sleep(400);
-                }
-                os.write("Scan Complete\n");
-            }
-            else
-            {
-                os.write("Scanning Requires Admin Access\n");
-            }
-			return false;
+            return true;
         }
     }
 }
