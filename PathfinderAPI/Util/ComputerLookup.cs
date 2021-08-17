@@ -43,6 +43,13 @@ namespace Pathfinder.Util
             idLookup.Remove(oldId);
             idLookup[newId] = comp;
         }
+        
+        public static void NotifyNameChange(string oldName, string newName)
+        {
+            var comp = nameLookup[oldName];
+            nameLookup.Remove(oldName);
+            nameLookup[newName] = comp;
+        }
 
         internal static void ClearLookups()
         {
