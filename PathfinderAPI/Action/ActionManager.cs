@@ -59,14 +59,10 @@ namespace Pathfinder.Action
         public static void UnregisterAction<T>() where T : PathfinderAction => UnregisterAction(typeof(T));
         public static void UnregisterAction(Type actionType)
         {
-            var xmlName = CustomActions.FirstOrDefault(x => x.Value == actionType).Key;
-            if (xmlName != null)
+            foreach(var xmlName in CustomActions.Where(x => x.Value == actionType).Select(x => x.Key).ToList())
                 CustomActions.Remove(xmlName);
-            if (XmlNames.ContainsKey(actionType))
-            {
-                /* TODO: Get next name? */
+            if(XmlNames.ContainsKey(actionType))
                 XmlNames.Remove(actionType);
-            }
         }
         public static void UnregisterAction(string xmlName)
         {
@@ -74,11 +70,14 @@ namespace Pathfinder.Action
                 return;
             var actionType = CustomActions[xmlName];
             CustomActions.Remove(xmlName);
-            if (XmlNames[actionType] == xmlName)
-            {
-                /* TODO: Get next name? */
+            if (XmlNames[actionType] != xmlName)
+                return;
+            /* find the next applicable name */
+            string nextName = CustomActions.FirstOrDefault(x => x.Value == actionType).Key;
+            if (nextName == null)
                 XmlNames.Remove(actionType);
-            }
+            else
+                XmlNames[actionType] = nextName;
         }
         public static string GetXmlNameFor(Type type)
         {

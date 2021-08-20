@@ -58,15 +58,10 @@ namespace Pathfinder.Action
         public static void UnregisterCondition<T>() where T : PathfinderCondition => UnregisterCondition(typeof(T));
         public static void UnregisterCondition(Type conditionType)
         {
-            var xmlName = CustomConditions.FirstOrDefault(x => x.Value == conditionType).Key;
-            if (xmlName != null)
+            foreach(var xmlName in CustomConditions.Where(x => x.Value == conditionType).Select(x => x.Key).ToList())
                 CustomConditions.Remove(xmlName);
-
-            if (XmlNames.ContainsKey(conditionType))
-            {
-                /* TODO: Get next name? */
+            if(XmlNames.ContainsKey(conditionType))
                 XmlNames.Remove(conditionType);
-            }
         }
         public static void UnregisterCondition(string xmlName)
         {
@@ -74,11 +69,14 @@ namespace Pathfinder.Action
                 return;
             var conditionType = CustomConditions[xmlName];
             CustomConditions.Remove(xmlName);
-            if (XmlNames[conditionType] == xmlName)
-            {
-                /* TODO: Get next name? */
+            if (XmlNames[conditionType] != xmlName)
+                return;
+            /* find the next applicable name */
+            string nextName = CustomConditions.FirstOrDefault(x => x.Value == conditionType).Key;
+            if (nextName == null)
                 XmlNames.Remove(conditionType);
-            }
+            else
+                XmlNames[conditionType] = nextName;
         }
         public static string GetXmlNameFor(Type type)
         {
