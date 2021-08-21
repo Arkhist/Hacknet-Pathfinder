@@ -3,7 +3,10 @@ using System.Linq;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Hacknet;
+using Hacknet;
 using HarmonyLib;
+using Microsoft.Xna.Framework;
+using Pathfinder.GUI;
 using Pathfinder.Util;
 
 namespace Pathfinder
@@ -34,6 +37,13 @@ namespace Pathfinder
             
             if (Environment.GetCommandLineArgs().Any(x => x.ToLower() == "-enabledebug"))
                 Command.DebugCommands.AddCommands();
+
+            
+            
+            Command.CommandManager.RegisterCommand("loadtest", (os, args) =>
+            {
+                var animated = AnimatedTexture.ReadFromAPNG("test.png");
+            });
 
             return true;
         }

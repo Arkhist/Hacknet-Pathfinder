@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using Hacknet;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -73,11 +74,12 @@ namespace Pathfinder.GUI
                     throw new NotSupportedException("PNG magic mismatch!");
                 
                 uint width = 0;
+                // uint scanline = 0;
                 uint height = 0;
                 int bitDepth = 0;
                 byte colorType = 0;
                 Color[] colorTable = null; // required if color type == 3
-                Color[,] imageBuffer;
+                Color[] imageBuffer = null;
                 
                 while (true)
                 {
@@ -87,12 +89,30 @@ namespace Pathfinder.GUI
                         case 0x49484452: // IHDR
                             width = r.ReadUInt32();
                             height = r.ReadUInt32();
-                            bitDepth = r.ReadByte();
+                            imageBuffer = new Color[width * height];
+                            if (r.ReadByte() != 8)
+                                throw new NotSupportedException("PNG decoder only supports 8 bit color!");
                             colorType = r.ReadByte();
+                            /*
+                            switch (colorType)
+                            {
+                                case 2: // truecolor, rgb values per pixel
+                                    scanline = width * 3 + 1;
+                                    break;
+                                case 3: // index color, index per pixel
+                                    scanline = width + 1;
+                                    break;
+                                case 6: // truecolor + alpha, rgba values per pixel
+                                    scanline = width * 4 + 1;
+                                    break;
+                            }
+                            */
                             if (r.ReadByte() != 0) // compression method
                                 throw new NotSupportedException("PNGs compressed with anything other than Deflate are not supported!");
-                            r.ReadByte(); // filter method
-                            r.ReadByte(); // interlace method
+                            if (r.ReadByte() != 0)
+                                throw new NotSupportedException("PNG decoder only supports filter method 0");
+                            if (r.ReadByte() != 0) // interlace method
+                                throw new NotSupportedException("PNG decoder only supports non-interlaced PNGs!");
                             break;
                         case 0x504C5445: // PLTE
                             if (length % 3 != 0)
@@ -116,27 +136,45 @@ namespace Pathfinder.GUI
                                     bool hasData = true;
                                     switch (colorType)
                                     {
-                                        case 2:
-                                            while (true)
+                                        case 2: // truecolor, rgb values per pixel
+                                            for (int h = 0; h < height; h++)
                                             {
-                                                if (bitDepth == 8)
+                                                if (r.ReadByte() != 0)
+                                                    throw new NotSupportedException("PNG decoder only supports unfiltered images");
+                                                for (int w = 0; w < width; w++)
                                                 {
-                                                    
-                                                } 
+                                                    imageBuffer[h * w] = new Color(r.ReadByte(), r.ReadByte(), r.ReadByte(), r.ReadByte());
+                                                }
                                             }
                                             break;
-                                        case 3:
+                                        case 3: // index color, index per pixel
 
                                             break;
-                                        case 6:
-
+                                        case 6: // truecolor + alpha, rgba values per pixel
+                                            for (int h = 0; h < height; h++)
+                                            {
+                                                if (r.ReadByte() != 0)
+                                                    throw new NotSupportedException("PNG decoder only supports unfiltered images");
+                                                for (int w = 0; w < width; w++)
+                                                {
+                                                    imageBuffer[h * w] = new Color(r.ReadByte(), r.ReadByte(), r.ReadByte(), r.ReadByte());
+                                                }
+                                            }
                                             break;
                                     }
                                 }
                             }
                             break;
                         case 0x49454E44: // IEND
+                            var newFrame = new Texture2D(GuiData.spriteBatch.GraphicsDevice, (int)width, (int)height, false, SurfaceFormat.Color);
+                            newFrame.SetData(imageBuffer);
+                            frameList.Add(newFrame);
+                            
                             goto exit;
+                            break;
+                        default:
+                            r.ReadBytes(length);
+                            break;
                     }
 
                     r.ReadUInt32(); // CRC, dont wanna bother, and its Steam should verify on its end so the only way this could be wrong is a disk read error, and honestly i dont care enough to handle that edge case
@@ -146,6 +184,8 @@ namespace Pathfinder.GUI
                     r.ReadUInt32(); // CRC for IEND
                     break;
                 }
+
+                return new AnimatedTexture(frameList, Rectangle.Empty, 30);
             }
 
             return null;
