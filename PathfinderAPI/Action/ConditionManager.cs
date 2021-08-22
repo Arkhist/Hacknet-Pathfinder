@@ -15,6 +15,7 @@ namespace Pathfinder.Action
     public static class ConditionManager
     {
         private static readonly Dictionary<string, Type> CustomConditions = new Dictionary<string, Type>();
+        private static readonly Dictionary<Type, string> XmlNames = new Dictionary<Type, string>();
 
         static ConditionManager()
         {
@@ -37,8 +38,11 @@ namespace Pathfinder.Action
         private static void OnPluginUnload(Assembly pluginAsm)
         {
             var allTypes = pluginAsm.GetTypes();
-            foreach (var name in CustomConditions.Where(x => allTypes.Contains(x.Value)).Select(x => x.Key).ToList())
-                CustomConditions.Remove(name);
+            foreach (var entry in CustomConditions.Where(x => allTypes.Contains(x.Value)).ToList())
+            {
+                CustomConditions.Remove(entry.Key);
+                XmlNames.Remove(entry.Value);
+            }
         }
         
         public static void RegisterCondition<T>(string xmlName) where T : PathfinderCondition => RegisterCondition(typeof(T), xmlName);
@@ -47,18 +51,37 @@ namespace Pathfinder.Action
             if (!typeof(PathfinderCondition).IsAssignableFrom(conditionType))
                 throw new ArgumentException("Condition type must inherit from Pathfinder.Action.PathfinderCondition!", nameof(conditionType));
             CustomConditions.Add(xmlName, conditionType);
+            if (!XmlNames.ContainsKey(conditionType))
+                XmlNames.Add(conditionType, xmlName);
         }
 
         public static void UnregisterCondition<T>() where T : PathfinderCondition => UnregisterCondition(typeof(T));
         public static void UnregisterCondition(Type conditionType)
         {
-            var xmlName = CustomConditions.FirstOrDefault(x => x.Value == conditionType).Key;
-            if (xmlName != null)
+            foreach(var xmlName in CustomConditions.Where(x => x.Value == conditionType).Select(x => x.Key).ToList())
                 CustomConditions.Remove(xmlName);
+            if(XmlNames.ContainsKey(conditionType))
+                XmlNames.Remove(conditionType);
         }
         public static void UnregisterCondition(string xmlName)
         {
+            if (!CustomConditions.ContainsKey(xmlName))
+                return;
+            var conditionType = CustomConditions[xmlName];
             CustomConditions.Remove(xmlName);
+            if (XmlNames[conditionType] != xmlName)
+                return;
+            /* find the next applicable name */
+            string nextName = CustomConditions.FirstOrDefault(x => x.Value == conditionType).Key;
+            if (nextName == null)
+                XmlNames.Remove(conditionType);
+            else
+                XmlNames[conditionType] = nextName;
+        }
+        public static string GetXmlNameFor(Type type)
+        {
+            XmlNames.TryGetValue(type, out string retVal);
+            return retVal;
         }
         
         [HarmonyPrefix]
