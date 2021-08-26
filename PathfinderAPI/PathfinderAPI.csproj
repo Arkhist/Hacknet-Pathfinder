@@ -31,13 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
+    <Reference Include="0Harmony, Version=2.5.4.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\0Harmony.dll</HintPath>
-      <Private>False</Private>
+	  <Private>False</Private>
     </Reference>
-    <Reference Include="BepInEx.Core">
+    <Reference Include="BepInEx.Core, Version=6.0.0.409, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\BepInEx.Core.dll</HintPath>
-      <Private>False</Private>
+	  <Private>False</Private>
     </Reference>
     <Reference Include="FNA">
       <HintPath>..\libs\FNA.dll</HintPath>
@@ -47,13 +47,13 @@
       <HintPath>..\libs\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Mono.Cecil">
+    <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
       <HintPath>..\libs\Mono.Cecil.dll</HintPath>
-      <Private>False</Private>
+	  <Private>False</Private>
     </Reference>
-    <Reference Include="MonoMod.Utils">
+    <Reference Include="MonoMod.Utils, Version=21.8.19.1, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\MonoMod.Utils.dll</HintPath>
-      <Private>False</Private>
+	  <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
