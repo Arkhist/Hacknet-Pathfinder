@@ -102,8 +102,8 @@
     <Compile Include="Event\Menu\MainMenuEvent.cs" />
     <Compile Include="Event\Options\CustomOptionsSaveEvent.cs" />
     <Compile Include="Event\PathfinderEvent.cs" />
-    <Compile Include="Event\SaveComputerEvent.cs" />
-    <Compile Include="Event\SaveEvent.cs" />
+    <Compile Include="Event\Saving\SaveComputerEvent.cs" />
+    <Compile Include="Event\Saving\SaveEvent.cs" />
     <Compile Include="Executable\BaseExecutable.cs" />
     <Compile Include="Executable\ExecutableManager.cs" />
     <Compile Include="GUI\PFButton.cs" />

@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using Hacknet;
 
-namespace Pathfinder.Event
+namespace Pathfinder.Event.Saving
 {
     public class SaveComputerEvent : PathfinderEvent
     {

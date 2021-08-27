@@ -16,6 +16,7 @@ using Pathfinder.Action;
 using Pathfinder.Administrator;
 using Pathfinder.Daemon;
 using Pathfinder.Event;
+using Pathfinder.Event.Saving;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
