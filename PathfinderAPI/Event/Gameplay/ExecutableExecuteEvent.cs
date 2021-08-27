@@ -62,7 +62,7 @@ namespace Pathfinder.Event.Gameplay
 
         [HarmonyILManipulator]
         [HarmonyPatch(typeof(ProgramRunner), nameof(ProgramRunner.AttemptExeProgramExecution))]
-        internal static void onExecutableExecuteIL(ILContext il)
+        private static void onExecutableExecuteIL(ILContext il)
         {
             ILCursor c = new ILCursor(il);
 

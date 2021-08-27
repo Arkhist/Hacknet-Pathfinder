@@ -17,7 +17,7 @@ namespace Pathfinder.Event.Loading
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(ComputerLoader), nameof(ComputerLoader.loadPortsIntoComputer))]
-        public static void PortsAddedPostfix(ref object computer_obj, string portsList)
+        private static void PortsAddedPostfix(ref object computer_obj, string portsList)
         {
             var portsAddedEvent = new PortsAddedEvent((Computer)computer_obj, portsList.Split(' ', ','));
             EventManager<PortsAddedEvent>.InvokeAll(portsAddedEvent);

@@ -18,7 +18,7 @@ namespace Pathfinder.Event.Gameplay
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(OS), nameof(OS.Update))]
-        internal static void OSUpdatePostfix(OS __instance, GameTime gameTime)
+        private static void OSUpdatePostfix(OS __instance, GameTime gameTime)
         {
             var osUpdate = new OSUpdateEvent(__instance, gameTime);
             EventManager<OSUpdateEvent>.InvokeAll(osUpdate);

@@ -23,7 +23,7 @@ namespace Pathfinder.Event.Gameplay
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(ProgramRunner), nameof(ProgramRunner.ExecuteProgram))]
-        internal static bool OnCommandExecutePrefix(ref object os_object, ref string[] arguments, ref bool __result)
+        private static bool OnCommandExecutePrefix(ref object os_object, ref string[] arguments, ref bool __result)
         {
             var commandExecuteEvent = new CommandExecuteEvent((OS)os_object, arguments);
             EventManager<CommandExecuteEvent>.InvokeAll(commandExecuteEvent);

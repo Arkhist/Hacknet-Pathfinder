@@ -17,7 +17,7 @@ namespace Pathfinder.Event.Loading
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(ComputerLoader), nameof(ComputerLoader.filter))]
-        internal static void TextFilterPostfix(ref string s, ref string __result)
+        private static void TextFilterPostfix(ref string s, ref string __result)
         {
             var textReplaceEvent = new TextReplaceEvent(s, __result);
             EventManager<TextReplaceEvent>.InvokeAll(textReplaceEvent);

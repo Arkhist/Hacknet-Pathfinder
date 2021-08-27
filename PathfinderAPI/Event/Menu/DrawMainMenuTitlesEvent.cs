@@ -25,7 +25,7 @@ namespace Pathfinder.Event.Menu
 
         [HarmonyILManipulator]
         [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.DrawBackgroundAndTitle))]
-        internal static void onDrawMainMenuTitlesIL(ILContext il)
+        private static void onDrawMainMenuTitlesIL(ILContext il)
         {
             ILCursor c = new ILCursor(il);
 

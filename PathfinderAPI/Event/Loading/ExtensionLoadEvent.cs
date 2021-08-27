@@ -32,7 +32,7 @@ namespace Pathfinder.Event.Loading
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(OS), nameof(OS.quitGame))]
-        internal static void OSQuitPrefix()
+        private static void OSQuitPrefix()
         {
             if (Settings.IsInExtensionMode)
             {
@@ -45,7 +45,7 @@ namespace Pathfinder.Event.Loading
         [HarmonyPostfix]
         [HarmonyPatch(typeof(Button), nameof(Button.doButton), new Type[] { typeof(int), typeof(int), typeof(int), typeof(int), typeof(int), typeof(string), typeof(Color?) })]
         [HarmonyBefore("BepInEx.Hacknet.Chainloader")]
-        internal static void OnBackButtonPressPostfix(int myID, bool __result)
+        private static void OnBackButtonPressPostfix(int myID, bool __result)
         {
             if (myID == 7900040 && __result)
             {
