@@ -129,10 +129,13 @@ namespace Pathfinder.Replacements
 
                 os.netMap.loadAssignGameNodes();
             }, ParseOption.FireOnEnd);
-            executor.RegisterExecutor("HacknetSave.NetworkMap.network.computer",
-                (exec, info) => { os.netMap.nodes.Add(LoadComputer(info, os)); },
-                ParseOption.ParseInterior
-            );
+            executor.RegisterExecutor("HacknetSave.NetworkMap.network.computer", (exec, info) =>
+                {
+                    var comp = LoadComputer(info, os);
+                    if (comp != null)
+                        os.netMap.nodes.Add(comp);
+                },
+                ParseOption.ParseInterior);
             executor.RegisterExecutor("HacknetSave.NetworkMap.visible", (exec, info) =>
             {
                 foreach (var node in info.Content.Split((char[]) null, StringSplitOptions.RemoveEmptyEntries))
@@ -502,8 +505,12 @@ namespace Pathfinder.Replacements
                     break;
             }
 
-            EventManager<SaveComputerLoadedEvent>.InvokeAll(new SaveComputerLoadedEvent(os, comp, info));
+            if (EventManager<SaveComputerLoadedEvent>.InvokeAll(new SaveComputerLoadedEvent(os, comp, info)).Cancelled)
+            {
+                return null;
+            }
             
+            ComputerLookup.Add(comp);
             return comp;
         }
 

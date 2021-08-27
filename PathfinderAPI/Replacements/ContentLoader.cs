@@ -499,7 +499,7 @@ namespace Pathfinder.Replacements
             {
                 comp.daemons.Add(new AvconDemoEndDaemon(comp, "Demo End", os));
             });
-            executor.RegisterExecutor("addWebServer", (exec, info) =>
+            executor.RegisterExecutor("Computer.addWebServer", (exec, info) =>
             {
                 var webServer = new WebServerDaemon(
                     comp,
@@ -892,7 +892,12 @@ namespace Pathfinder.Replacements
             if (!preventAddingToNetmap)
             {
                 os.netMap.nodes.Add(ret);
-                eos?.links.Add(os.netMap.nodes.Count - 1);
+                if (eos != null)
+                {
+                    eos.links.Add(os.netMap.nodes.Count - 1);
+                    ComputerLookup.Add(eos);
+                }
+                ComputerLookup.Add(ret);
             }
 
             os = null;

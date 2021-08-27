@@ -23,32 +23,21 @@ namespace Pathfinder.Util
         private static readonly Dictionary<string, Computer> nameLookup = new Dictionary<string, Computer>();
         #endregion
         
-        internal static void PopulateLookups(Computer node)
+        public static void RebuildLookups(List<Computer> nodes)
         {
-            idLookup[node.idName] = node;
-            ipLookup[node.ip] = node;
-            nameLookup[node.name] = node;
+            ClearLookups();
+            foreach (var node in nodes)
+                Add(node);
         }
 
-        public static void NotifyIPChange(string oldIp, string newIp)
+        public static void Add(Computer node)
         {
-            var comp = ipLookup[oldIp];
-            ipLookup.Remove(oldIp);
-            ipLookup[newIp] = comp;
-        }
-
-        public static void NotifyIDChange(string oldId, string newId)
-        {
-            var comp = idLookup[oldId];
-            idLookup.Remove(oldId);
-            idLookup[newId] = comp;
-        }
-        
-        public static void NotifyNameChange(string oldName, string newName)
-        {
-            var comp = nameLookup[oldName];
-            nameLookup.Remove(oldName);
-            nameLookup[newName] = comp;
+            if (!idLookup.ContainsKey(node.idName))
+                idLookup[node.idName] = node;
+            if (!ipLookup.ContainsKey(node.ip))
+                ipLookup[node.ip] = node;
+            if (!nameLookup.ContainsKey(node.name))
+                nameLookup[node.name] = node;
         }
 
         internal static void ClearLookups()

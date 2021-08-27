@@ -103,9 +103,7 @@ namespace Pathfinder
             });
         }
         
-#if DEBUG
         [HarmonyILManipulator]
-        [HarmonyPatch(typeof(Program), nameof(Program.Main))]
         [HarmonyPatch(typeof(MainMenu), "<HookUpCreationEvents>b__1")]
         internal static void StopCatchingExceptionsIL(ILContext il)
         {
@@ -123,7 +121,6 @@ namespace Pathfinder
             
             foreach (var brokenLabel in il.Labels.Where(x => !c.Instrs.Contains(x.Target))) brokenLabel.Target = c.Instrs.Last();
         }
-#endif
         
         [HarmonyPrefix]
         [HarmonyPatch(typeof(Utils), nameof(Utils.SendRealWorldEmail))]

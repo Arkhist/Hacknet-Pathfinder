@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Threading;
 using Hacknet;
+using Hacknet.Extensions;
+using Hacknet.Misc;
 using HarmonyLib;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
@@ -12,28 +14,6 @@ namespace Pathfinder.BaseGameFixes.Performance
     [HarmonyPatch]
     internal static class NodeLookup
     {
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(List<Computer>), nameof(List<Computer>.Add))]
-        [HarmonyPatch(typeof(List<Computer>), nameof(List<Computer>.Insert))]
-        internal static void AddComputerReference(List<Computer> __instance, Computer item)
-        {
-            if (object.ReferenceEquals(__instance, OS.currentInstance?.netMap?.nodes))
-            {
-                ComputerLookup.PopulateLookups(item);
-            }
-        }
-
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(List<Computer>), nameof(List<Computer>.AddRange))]
-        internal static void AddComputerReferenceRange(List<Computer> __instance, IEnumerable<Computer> collection)
-        {
-            if (object.ReferenceEquals(__instance, OS.currentInstance?.netMap?.nodes))
-            {
-                foreach (var comp in collection)
-                    ComputerLookup.PopulateLookups(comp);
-            }
-        }
-        
         [HarmonyPrefix]
         [HarmonyPatch(typeof(ComputerLoader), nameof(ComputerLoader.findComp))]
         internal static bool ModifyComputerLoaderLookup(out Computer __result, string target)
@@ -64,7 +44,7 @@ namespace Pathfinder.BaseGameFixes.Performance
             var comp = ComputerLookup.Find(__instance.TargetComp);
             if (comp != null && comp.ip != __state)
             {
-                ComputerLookup.NotifyIPChange(__state, comp.ip);
+                ComputerLookup.RebuildLookups(OS.currentInstance.netMap.nodes);
             }
         }
 
@@ -74,17 +54,59 @@ namespace Pathfinder.BaseGameFixes.Performance
         {
             ILCursor c = new ILCursor(il);
             
-            c.GotoNext(MoveType.After, x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(NetworkMap), nameof(NetworkMap.generateRandomIP))));
+            c.GotoNext(MoveType.After, x => x.MatchStfld(AccessTools.Field(typeof(Computer), nameof(Computer.ip))));
 
-            c.Emit(OpCodes.Dup);
             c.Emit(OpCodes.Ldarg_0);
-            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(ISPDaemon), nameof(ISPDaemon.scannedComputer)));
-            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(Computer), nameof(Computer.ip)));
-            c.EmitDelegate<Action<string, string>>((newIp, oldIp) =>
-            {
-                if (ComputerLookup.FindByIp(newIp) == null)
-                    ComputerLookup.NotifyIPChange(oldIp, newIp);
-            });
+            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(Hacknet.Daemon), nameof(Hacknet.Daemon.os)));
+            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(OS), nameof(OS.netMap)));
+            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(NetworkMap), nameof(NetworkMap.nodes)));
+            c.Emit(OpCodes.Call, AccessTools.Method(typeof(ComputerLookup), nameof(ComputerLookup.RebuildLookups)));
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(ExtensionLoader), nameof(ExtensionLoader.LoadNewExtensionSession))]
+        [HarmonyPatch(typeof(OS), nameof(OS.loadMissionNodes))]
+        internal static void RebuildBeforePostLoad(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.AfterLabel, x => x.MatchLdsfld(typeof(ComputerLoader), nameof(ComputerLoader.postAllLoadedActions)));
+
+            c.Emit(OpCodes.Ldsfld, AccessTools.Field(typeof(OS), nameof(OS.currentInstance)));
+            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(OS), nameof(OS.netMap)));
+            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(NetworkMap), nameof(NetworkMap.nodes)));
+            c.Emit(OpCodes.Call, AccessTools.Method(typeof(ComputerLookup), nameof(ComputerLookup.RebuildLookups)));
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(SaveFixHacks), nameof(SaveFixHacks.FixSavesWithTerribleHacks))]
+        internal static void RebuildBeforePostLoadDLC(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.Before,
+                x => x.MatchLdsfld(typeof(ComputerLoader), nameof(ComputerLoader.postAllLoadedActions)),
+                x => x.MatchCallOrCallvirt(typeof(System.Action), nameof(System.Action.Invoke))
+            );
+
+            c.Emit(OpCodes.Ldloc_0);
+            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(OS), nameof(OS.netMap)));
+            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(NetworkMap), nameof(NetworkMap.nodes)));
+            c.Emit(OpCodes.Call, AccessTools.Method(typeof(ComputerLookup), nameof(ComputerLookup.RebuildLookups)));
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(NetworkMap), nameof(NetworkMap.generateGameNodes))]
+        internal static void RebuildAfterNodeGen()
+        {
+            ComputerLookup.RebuildLookups(OS.currentInstance.netMap.nodes);
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(OS), nameof(OS.LoadContent))]
+        internal static void RebuildOnEndLoad(OS __instance)
+        {
+            ComputerLookup.RebuildLookups(__instance.netMap.nodes);
         }
 
         [HarmonyPostfix]
