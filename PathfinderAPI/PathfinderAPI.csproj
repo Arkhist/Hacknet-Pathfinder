@@ -94,6 +94,7 @@
     <Compile Include="Event\Gameplay\CommandExecuteEvent.cs" />
     <Compile Include="Event\Gameplay\ExecutableExecuteEvent.cs" />
     <Compile Include="Event\Gameplay\OSUpdateEvent.cs" />
+    <Compile Include="Event\Loading\OSLoadedEvent.cs" />
     <Compile Include="Event\Loading\SaveComputerLoadedEvent.cs" />
     <Compile Include="Event\Loading\ExtensionLoadEvent.cs" />
     <Compile Include="Event\Loading\PortsAddedEvent.cs" />
