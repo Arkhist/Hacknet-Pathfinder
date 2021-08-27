@@ -44,7 +44,7 @@ namespace Pathfinder.BaseGameFixes.Performance
             var comp = ComputerLookup.Find(__instance.TargetComp);
             if (comp != null && comp.ip != __state)
             {
-                ComputerLookup.RebuildLookups(OS.currentInstance.netMap.nodes);
+                ComputerLookup.RebuildLookups();
             }
         }
 
@@ -56,10 +56,7 @@ namespace Pathfinder.BaseGameFixes.Performance
             
             c.GotoNext(MoveType.After, x => x.MatchStfld(AccessTools.Field(typeof(Computer), nameof(Computer.ip))));
 
-            c.Emit(OpCodes.Ldarg_0);
-            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(Hacknet.Daemon), nameof(Hacknet.Daemon.os)));
-            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(OS), nameof(OS.netMap)));
-            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(NetworkMap), nameof(NetworkMap.nodes)));
+            c.Emit(OpCodes.Ldnull);
             c.Emit(OpCodes.Call, AccessTools.Method(typeof(ComputerLookup), nameof(ComputerLookup.RebuildLookups)));
         }
 
@@ -72,9 +69,7 @@ namespace Pathfinder.BaseGameFixes.Performance
 
             c.GotoNext(MoveType.AfterLabel, x => x.MatchLdsfld(typeof(ComputerLoader), nameof(ComputerLoader.postAllLoadedActions)));
 
-            c.Emit(OpCodes.Ldsfld, AccessTools.Field(typeof(OS), nameof(OS.currentInstance)));
-            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(OS), nameof(OS.netMap)));
-            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(NetworkMap), nameof(NetworkMap.nodes)));
+            c.Emit(OpCodes.Ldnull);
             c.Emit(OpCodes.Call, AccessTools.Method(typeof(ComputerLookup), nameof(ComputerLookup.RebuildLookups)));
         }
 
@@ -89,9 +84,7 @@ namespace Pathfinder.BaseGameFixes.Performance
                 x => x.MatchCallOrCallvirt(typeof(System.Action), nameof(System.Action.Invoke))
             );
 
-            c.Emit(OpCodes.Ldloc_0);
-            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(OS), nameof(OS.netMap)));
-            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(NetworkMap), nameof(NetworkMap.nodes)));
+            c.Emit(OpCodes.Ldnull);
             c.Emit(OpCodes.Call, AccessTools.Method(typeof(ComputerLookup), nameof(ComputerLookup.RebuildLookups)));
         }
 
@@ -99,14 +92,14 @@ namespace Pathfinder.BaseGameFixes.Performance
         [HarmonyPatch(typeof(NetworkMap), nameof(NetworkMap.generateGameNodes))]
         internal static void RebuildAfterNodeGen()
         {
-            ComputerLookup.RebuildLookups(OS.currentInstance.netMap.nodes);
+            ComputerLookup.RebuildLookups();
         }
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(OS), nameof(OS.LoadContent))]
         internal static void RebuildOnEndLoad(OS __instance)
         {
-            ComputerLookup.RebuildLookups(__instance.netMap.nodes);
+            ComputerLookup.RebuildLookups();
         }
 
         [HarmonyPostfix]

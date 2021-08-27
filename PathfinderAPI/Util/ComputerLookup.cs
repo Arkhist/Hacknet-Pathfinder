@@ -23,8 +23,13 @@ namespace Pathfinder.Util
         private static readonly Dictionary<string, Computer> nameLookup = new Dictionary<string, Computer>();
         #endregion
         
-        public static void RebuildLookups(List<Computer> nodes)
+        public static void RebuildLookups(List<Computer> nodes = null)
         {
+            nodes ??= OS.currentInstance?.netMap?.nodes;
+            if (nodes == null)
+            {
+                throw new ArgumentNullException(nameof(nodes), "No nodes passed in and OS hasn't finished loading netmap");
+            }
             ClearLookups();
             foreach (var node in nodes)
                 Add(node);
