@@ -20,6 +20,7 @@ namespace Pathfinder.Command
             public string Name;
             public Action<OS, string[]> CommandAction;
             public bool Autocomplete;
+            public bool CaseSensitive;
         }
         
         private static readonly AssemblyAssociatedList<CustomCommand> CustomCommands = new AssemblyAssociatedList<CustomCommand>();
@@ -35,7 +36,7 @@ namespace Pathfinder.Command
             Action<OS, string[]> custom = null;
             foreach (var command in CustomCommands.AllItems)
             {
-                if (command.Name == args.Args[0])
+                if (string.Equals(command.Name, args.Args[0], command.CaseSensitive ? StringComparison.InvariantCulture : StringComparison.InvariantCultureIgnoreCase))
                 {
                     custom = command.CommandAction;
                     break;
@@ -82,7 +83,7 @@ namespace Pathfinder.Command
         }
         
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void RegisterCommand(string commandName, Action<OS, string[]> handler, bool addAutocomplete = true)
+        public static void RegisterCommand(string commandName, Action<OS, string[]> handler, bool addAutocomplete = true, bool caseSensitive = false)
         {
             var pluginAsm = Assembly.GetCallingAssembly();
 
@@ -93,7 +94,8 @@ namespace Pathfinder.Command
             {
                 Name = commandName,
                 CommandAction = handler,
-                Autocomplete = addAutocomplete
+                Autocomplete = addAutocomplete,
+                CaseSensitive = caseSensitive
             }, pluginAsm);
             
             if (addAutocomplete)
