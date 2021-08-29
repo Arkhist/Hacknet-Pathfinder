@@ -4,15 +4,25 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Hacknet;
+using HarmonyLib;
 using Pathfinder.Event;
 using Pathfinder.Event.Gameplay;
+using Pathfinder.Event.Pathfinder;
 using Pathfinder.Util;
 
 namespace Pathfinder.Command
 {
+    [HarmonyPatch]
     public static class CommandManager
     {
-        private static readonly AssemblyAssociatedList<KeyValuePair<string, Action<OS, string[]>>> CustomCommands = new AssemblyAssociatedList<KeyValuePair<string, Action<OS, string[]>>>();
+        private struct CustomCommand
+        {
+            public string Name;
+            public Action<OS, string[]> CommandAction;
+            public bool Autocomplete;
+        }
+        
+        private static readonly AssemblyAssociatedList<CustomCommand> CustomCommands = new AssemblyAssociatedList<CustomCommand>();
 
         static CommandManager()
         {
@@ -25,9 +35,9 @@ namespace Pathfinder.Command
             Action<OS, string[]> custom = null;
             foreach (var command in CustomCommands.AllItems)
             {
-                if (command.Key == args.Args[0])
+                if (command.Name == args.Args[0])
                 {
-                    custom = command.Value;
+                    custom = command.CommandAction;
                     break;
                 }
             }
@@ -41,26 +51,59 @@ namespace Pathfinder.Command
             }
         }
 
+        [HarmonyReversePatch(HarmonyReversePatchType.Original)]
+        [HarmonyPatch(typeof(ProgramList), nameof(ProgramList.init))]
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void OrigProgramListInit() { throw new NotImplementedException(); }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ProgramList), nameof(ProgramList.init))]
+        private static bool ProgramListInitPrefix()
+        {
+            RebuildAutoComplete();
+            return false;
+        }
+
+        private static void RebuildAutoComplete()
+        {
+            OrigProgramListInit();
+            foreach (var command in CustomCommands.AllItems)
+            {
+                if (command.Autocomplete && !ProgramList.programs.Contains(command.Name))
+                    ProgramList.programs.Add(command.Name);
+            }
+            ProgramList.programs = EventManager<BuildAutocompletesEvent>.InvokeAll(new BuildAutocompletesEvent(ProgramList.programs)).Autocompletes;
+        }
+
         private static void OnPluginUnload(Assembly pluginAsm)
         {
-            CustomCommands.RemoveAssembly(pluginAsm, out _);
+            if (CustomCommands.RemoveAssembly(pluginAsm, out _))
+                RebuildAutoComplete();
         }
         
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void RegisterCommand(string commandName, Action<OS, string[]> handler)
+        public static void RegisterCommand(string commandName, Action<OS, string[]> handler, bool addAutocomplete = true)
         {
             var pluginAsm = Assembly.GetCallingAssembly();
 
-            if (CustomCommands.AllItems.Any(x => x.Key == commandName))
+            if (CustomCommands.AllItems.Any(x => x.Name == commandName))
                 throw new ArgumentException($"Command {commandName} has already been registered!", nameof(commandName));
                 
-            CustomCommands.Add(new KeyValuePair<string, Action<OS, string[]>>(commandName, handler), pluginAsm);
+            CustomCommands.Add(new CustomCommand
+            {
+                Name = commandName,
+                CommandAction = handler,
+                Autocomplete = addAutocomplete
+            }, pluginAsm);
+            
+            if (addAutocomplete)
+                RebuildAutoComplete();
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static void UnregisterCommand(string commandName, Assembly pluginAsm = null)
         {
-            CustomCommands.RemoveAll(x => x.Key == commandName, pluginAsm ?? Assembly.GetCallingAssembly());
+            CustomCommands.RemoveAll(x => x.Name == commandName, pluginAsm ?? Assembly.GetCallingAssembly());
         }
     }
 }
