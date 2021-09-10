@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="canonical" href="https://arkhist.github.io/Hacknet-Pathfinder/mod/actions/">
+  <link rel="canonical" href="https://arkhist.github.io/Hacknet-Pathfinder/mod/ports/">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Actions - Hacknet Pathfinder Documentation</title>
+  <title>Ports - Hacknet Pathfinder Documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Actions";
-    var mkdocs_page_input_path = "mod\\actions.md";
-    var mkdocs_page_url = "/Hacknet-Pathfinder/mod/actions/";
+    var mkdocs_page_name = "Ports";
+    var mkdocs_page_input_path = "mod\\ports.md";
+    var mkdocs_page_url = "/Hacknet-Pathfinder/mod/ports/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -55,7 +55,13 @@
                 <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../start/">Getting started</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../ports/">Ports</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Ports</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#xml-side-of-ports">XML side of ports</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#code-side-of-ports">Code side of ports</a>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../commands/">Commands</a>
                     </li>
@@ -65,9 +71,7 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../daemons/">Daemons</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Actions</a>
-    <ul class="current">
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../actions/">Actions</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../missions/">Missions</a>
                     </li>
@@ -102,7 +106,7 @@
         
       
     
-    <li>Actions</li>
+    <li>Ports</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -114,8 +118,60 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="custom-actions">Custom actions</h1>
-<p>Implemented, not documented yet.</p>
+                <h2 id="ports">Ports</h2>
+<h3 id="xml-side-of-ports">XML side of ports</h3>
+<p>Pathfinder includes a new syntax for registering ports on a computer, which looks like this:</p>
+<pre><code class="language-XML">&lt;PFPorts replace=&quot;true&quot;&gt;ssh ftp:50 random_protocol:78:display_name_underscores_are_spaces&lt;/PFPorts&gt;
+</code></pre>
+<p>Using <code>replace="true"</code> makes it so that the Pathfinder ports list will replace the vanilla ports list when read, otherwise it will append to the port list. Putting the vanilla ports element after PFPorts will always append, no matter what is set here.</p>
+<p>In order, the parameters are:</p>
+<ul>
+<li>The protocol name, all lowercase as a convention</li>
+<li>The port number if you don't want the default</li>
+<li>The display name of the port when shown to the user, eg. <code>FTP Server</code> is the default for <code>ftp</code></li>
+</ul>
+<p>Here's a list of all the protocol names and their default ports included with Pathfinder:</p>
+<ul>
+<li>ssh 22</li>
+<li>ftp 21</li>
+<li>smtp 25</li>
+<li>web 80</li>
+<li>sql 1433</li>
+<li>medical 104</li>
+<li>torrent 6881</li>
+<li>ssl 443</li>
+<li>pacific 192</li>
+<li>rtsp 554</li>
+<li>transfer 211</li>
+<li>version 9418</li>
+<li>blizzard 3724</li>
+<li>eos 3659</li>
+<li>sigscramble 32</li>
+</ul>
+<h3 id="code-side-of-ports">Code side of ports</h3>
+<p>Ports are handled differently in Pathfinder than in the base game, which means you should try to ignore most of what you might see while decompiling.</p>
+<p><strong>DO NOT USE <code>Computer.ports</code>, <code>Computer.portsOpen</code>, or <code>Computer.portRemapping</code>! None of these are populated any more, and will not give you any information!</strong></p>
+<p>If you want to interface with ports, please add <code>using Pathfinder.Port;</code> to the top of your <code>.cs</code> files, and use the extension methods like so:</p>
+<pre><code class="language-CSharp">using BepInEx;
+using BepInEx.Hacknet;
+using Pathfinder.Port;
+
+[BepInPlugin(&quot;PortsExampleGuid&quot;, &quot;plugin name&quot;, &quot;0.0.1&quot;)]
+public class SomePlugin {
+    public override bool Load() {
+        Pathfinder.Command.CommandManager.RegisterCommand(&quot;openallifssh&quot;, (os, args) =&gt; {
+            if (os.connectedComp?.isPortOpen(&quot;ssh&quot;) ?? false) {
+                foreach (var port in os.connectedComp.GetAllPorts()) {
+                    os.connectedComp.openPort(port.Protocol, os.thisComputer.ip);
+                }
+            }
+        });
+    }
+}
+</code></pre>
+<p>This command would open all ports on the connected computer if there's a port open that uses the  <code>ssh</code> protocol.</p>
+<p>It's preferred to <em>always</em> use the protocol names and not the port numbers, and it is required for some methods except for the base game ports.</p>
+<p>If you would like to add a new port so you can take advantage of having defaults, use <code>Pathfinder.Port.PortManager.RegisterPort(string protocol, string displayName, int defaultPort)</code>. The last parameter is an optional one.</p>
               
             </div>
           </div>
@@ -123,10 +179,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../missions/" class="btn btn-neutral float-right" title="Missions">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../commands/" class="btn btn-neutral float-right" title="Commands">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../daemons/" class="btn btn-neutral" title="Daemons"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../start/" class="btn btn-neutral" title="Getting started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -152,10 +208,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../daemons/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../start/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../missions/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../commands/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

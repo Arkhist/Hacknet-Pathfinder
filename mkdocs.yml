@@ -7,6 +7,7 @@ nav:
         - Home: index.md
     - Mod Development:
         - Getting started: mod/start.md
+        - Ports: mod/ports.md
         - Commands: mod/commands.md
         - Executables: mod/executables.md
         - Computers: mod/computers.md
