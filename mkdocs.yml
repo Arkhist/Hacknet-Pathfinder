@@ -7,13 +7,13 @@ nav:
         - Home: index.md
     - Mod Development:
         - Getting started: mod/start.md
-        - Ports: mod/ports.md
-        - Commands: mod/commands.md
-        - Executables: mod/executables.md
-        - Computers: mod/computers.md
-        - Daemons: mod/daemons.md
         - Actions: mod/actions.md
+        - Administrators: mod/administrators.md
+        - Commands: mod/commands.md
+        - Daemons: mod/daemons.md
+        - Executables: mod/executables.md
         - Missions: mod/missions.md
+        - Ports: mod/ports.md
     - Pathfinder Development: 
         - Contributing: contributing.md
 theme: readthedocs

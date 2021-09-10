@@ -1,6 +1,6 @@
-## Ports
+# Ports
 
-### XML side of ports
+## Extension development
 
 Pathfinder includes a new syntax for registering ports on a computer, which looks like this:
 ```XML
@@ -32,7 +32,12 @@ Here's a list of all the protocol names and their default ports included with Pa
 - eos 3659
 - sigscramble 32
 
-### Code side of ports
+## Plugin development
+
+### Adding new port defaults
+You can add a new default with `Pathfinder.Port.PortManager.RegisterPort(string protocol, string displayName, int defaultPort)`. The last parameter is optional, and if you omit it you will always have to specify a port number in XML.
+
+### Reading port data
 
 Ports are handled differently in Pathfinder than in the base game, which means you should try to ignore most of what you might see while decompiling.
 
@@ -60,5 +65,3 @@ public class SomePlugin {
 This command would open all ports on the connected computer if there's a port open that uses the  `ssh` protocol.
 
 It's preferred to *always* use the protocol names and not the port numbers, and it is required for some methods except for the base game ports.
-
-If you would like to add a new port so you can take advantage of having defaults, use `Pathfinder.Port.PortManager.RegisterPort(string protocol, string displayName, int defaultPort)`. The last parameter is an optional one.
