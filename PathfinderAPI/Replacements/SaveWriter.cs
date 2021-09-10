@@ -17,6 +17,7 @@ using Pathfinder.Administrator;
 using Pathfinder.Daemon;
 using Pathfinder.Event;
 using Pathfinder.Event.Saving;
+using Pathfinder.Port;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
@@ -178,17 +179,15 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetPortRemappingSaveElement(Dictionary<int, int> input)
+        internal static XElement GetPortSaveElement(Computer node)
         {
-            if (input == null || input.Count == 0)
-                return null;
-            
-            var result = new XElement("portRemap");
-            var remaps = new StringBuilder();
-            foreach (var item in input)
-                remaps.Append(item.Key.ToString() + "=" + item.Value.ToString() + ",");
-            remaps.Length--;
-            result.SetValue(remaps.ToString());
+            var result = new XElement("ports");
+            var builder = new StringBuilder();
+            foreach (var port in node.GetAllPorts())
+            {
+                builder.Append($"{port.Protocol}:{port.OriginalPort}:{port.Port}:{port.DisplayName.Replace(' ', '_')} ");
+            }
+            result.Value = builder.ToString();
             return result;
         }
 
@@ -519,9 +518,10 @@ namespace Pathfinder.Replacements
             {
                 securityTag.SetAttributeValue("proxyTime", (node.hasProxy ? node.startingOverloadTicks.ToString(CultureInfo.InvariantCulture) : "-1"));
             }
-            securityTag.SetAttributeValue("portsToCrack", node.portsNeededForCrack);
             securityTag.SetAttributeValue("adminIP", node.adminIP);
             result.Add(securityTag);
+            
+            result.Add(GetPortSaveElement(node));
 
             var adminTag = new XElement("admin");
             string adminType;
@@ -553,7 +553,6 @@ namespace Pathfinder.Replacements
             adminTag.SetAttributeValue("isSuper", node.admin?.IsSuper ?? false);
             result.Add(adminTag);
 
-
             var linksTag = new XElement("links");
             var links = new StringBuilder();
             foreach (var link in node.links)
@@ -564,17 +563,6 @@ namespace Pathfinder.Replacements
 
             if (node.firewall != null)
                 result.Add(GetFirewallSaveElement(node.firewall));
-            
-            var portsOpenTag = new XElement("portsOpen");
-            var ports = new StringBuilder();
-            for (var i = 0; i < node.portsOpen.Count; i++)
-                ports.Append(" " + node.ports[i]);
-            portsOpenTag.SetValue(ports);
-            result.Add(portsOpenTag);
-
-            var portRemaps = GetPortRemappingSaveElement(node.PortRemapping);
-            if (portRemaps != null)
-                result.Add(portRemaps);
 
             var usersTag = new XElement("users");
             foreach (var detail in node.users)

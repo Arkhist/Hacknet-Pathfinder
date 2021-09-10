@@ -13,8 +13,11 @@ using MonoMod.Cil;
 using Pathfinder.Administrator;
 using Pathfinder.Daemon;
 using Pathfinder.Event;
+using Pathfinder.Port;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
+// tired of seeing the unused parameter warning, there were 90 of them
+// ReSharper disable UnusedParameter.Local
 
 namespace Pathfinder.Replacements
 {
@@ -221,7 +224,6 @@ namespace Pathfinder.Replacements
                     folder.files.Add(new FileEntry(contents, name));
                 }
             }, ParseOption.ParseInterior);
-            executor.RegisterExecutor("Computer.ports", (exec, info) => ComputerLoader.loadPortsIntoComputer(info.Content ?? "", comp), ParseOption.ParseInterior);
             executor.RegisterExecutor("Computer.positionNear", (exec, info) =>
             {
                 var nearNodeId = info.Attributes.GetString("target");
@@ -311,16 +313,17 @@ namespace Pathfinder.Replacements
                 comp.setAdminPassword(info.Attributes.GetString("pass", PortExploits.getRandomPassword()));
             });
             executor.RegisterExecutor("Computer.admin", (exec, info) => AdministratorManager.LoadAdministrator(info, comp, os));
+            executor.RegisterExecutor("Computer.ports", (exec, info) =>
+            {
+                PortManager.LoadPortsFromStringVanilla(comp, info.Content);
+            }, ParseOption.ParseInterior);
             executor.RegisterExecutor("Computer.portRemap", (exec, info) =>
             {
-                try
-                {
-                    comp.PortRemapping = PortRemappingSerializer.Deserialize(info.Content);
-                }
-                catch (Exception e)
-                {
-                    throw new FormatException("Invalid port remappings", e);
-                }
+                PortManager.LoadPortRemapsFromStringVanilla(comp, info.Content);
+            }, ParseOption.ParseInterior);
+            executor.RegisterExecutor("Computer.PFPorts", (exec, info) =>
+            {
+                PortManager.LoadPortsFromString(comp, info.Content, info.Attributes.GetBool("replace"));
             }, ParseOption.ParseInterior);
             executor.RegisterExecutor("Computer.ExternalCounterpart", (exec, info) =>
             {

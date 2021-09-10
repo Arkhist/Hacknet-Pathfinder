@@ -1,105 +1,126 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Pathfinder.Event;
-using Pathfinder.Event.Loading;
-using HarmonyLib;
 using Hacknet;
+using Hacknet.Security;
 using Pathfinder.Util;
 
 namespace Pathfinder.Port
 {
-    [HarmonyPatch]
     public static class PortManager
     {
-        public struct PortInfo
-        {
-            public string PortName;
-            public int PortNumber;
-        }
-
-        private static readonly AssemblyAssociatedList<PortInfo?> CustomPorts = new AssemblyAssociatedList<PortInfo?>();
+        private static readonly AssemblyAssociatedList<PortData> CustomPorts = new AssemblyAssociatedList<PortData>();
 
         static PortManager()
         {
-            EventManager<PortsAddedEvent>.AddHandler(OnPortsAdded);
             EventManager.onPluginUnload += OnPluginUnload;
-        }
-
-        private static void OnPortsAdded(PortsAddedEvent e)
-        {
-            var allPorts = CustomPorts.AllItems;
-            foreach (var portToAdd in e.PortsList)
-            {
-                PortInfo? info = null;
-                if (int.TryParse(portToAdd, out int portNum))
-                    info = allPorts.FirstOrDefault(x => x.Value.PortNumber == portNum);
-                else
-                    info = allPorts.FirstOrDefault(x => x.Value.PortName == portToAdd);
-
-                if (info != null)
-                {
-                    e.Comp.ports.Add(info.Value.PortNumber);
-                    e.Comp.portsOpen.Add(0);
-                }
-            }
         }
 
         private static void OnPluginUnload(Assembly pluginAsm)
         {
-            if (CustomPorts.RemoveAssembly(pluginAsm, out var removed))
+            CustomPorts.RemoveAssembly(pluginAsm, out _);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void RegisterPort(string protocol, string displayName, int defaultPort = -1) => RegisterPortInternal(new PortData(protocol, defaultPort, displayName), Assembly.GetCallingAssembly());
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void RegisterPort(PortData info) => RegisterPortInternal(info, Assembly.GetCallingAssembly());
+
+        private static void RegisterPortInternal(PortData info, Assembly portAsm) 
+        {
+            CustomPorts.Add(info, portAsm);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void UnregisterPort(string protocol, Assembly pluginAsm = null)
+        {
+            pluginAsm = pluginAsm ?? Assembly.GetCallingAssembly();
+
+            CustomPorts.RemoveAll(x => x.Protocol == protocol, pluginAsm);
+        }
+
+        public static PortData GetPortDataFromProtocol(string proto)
+        {
+            var port = CustomPorts.AllItems.FirstOrDefault(x => x.Protocol == proto);
+            if (port != null)
+                return port;
+            return ComputerExtensions.OGPorts.FirstOrDefault(x => x.Protocol == proto);
+        }
+        
+        public static PortData GetPortDataFromNumber(int num)
+        {
+            var port = CustomPorts.AllItems.FirstOrDefault(x => x.Port == num);
+            if (port != null)
+                return port;
+            return ComputerExtensions.OGPorts.FirstOrDefault(x => x.Port == num);
+        }
+        
+        public static void LoadPortsFromString(Computer comp, string portString, bool clearExisting)
+        {
+            if (clearExisting)
+                comp.ClearPorts();
+            foreach (var port in portString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
             {
-                foreach (var port in removed)
+                var portParts = port.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+                if (portParts.Length == 1)
                 {
-                    if (portExploitsInit)
-                        PortExploits.services.Remove(port.Value.PortNumber);
-                    else
-                        portsToAdd.RemoveAll(x => x.PortNumber == port.Value.PortNumber);
+                    var data = GetPortDataFromProtocol(portParts[0]);
+                    if (data is null)
+                        throw new ArgumentException($"Protocol '{portParts[0]}' does not exist");
+                    if (data.Port == -1)
+                        throw new ArgumentException($"Protocol '{portParts[0]}' has no default port");
+                    comp.AddPort(data.Clone());
+                }
+                else if (portParts.Length == 2)
+                {
+                    var data = GetPortDataFromProtocol(portParts[0]);
+                    data = data?.Clone() ?? throw new ArgumentException($"Protocol '{portParts[0]}' does not exist");
+                    if (!int.TryParse(portParts[1], out var portNum))
+                        throw new FormatException($"Unable to parse port number for protocol '{portParts[0]}'");
+                    data.Port = portNum;
+                    comp.AddPort(data);
+                }
+                else if (portParts.Length == 3)
+                {
+                    if (!int.TryParse(portParts[1], out var portNum))
+                        throw new FormatException($"Unable to parse port number for protocol '{portParts[0]}'");
+                    comp.AddPort(new PortData(portParts[0], portNum, portParts[2].Replace('_', ' ')));
+                }
+                else
+                {
+                    throw new FormatException("PFPorts input string is in the wrong format!");
                 }
             }
         }
 
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void RegisterPort(string name, int number) => RegisterPortInternal(new PortInfo { PortName = name, PortNumber = number }, Assembly.GetCallingAssembly());
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void RegisterPort(PortInfo info) => RegisterPortInternal(info, Assembly.GetCallingAssembly());
-
-        private static void RegisterPortInternal(PortInfo info, Assembly portAsm) 
+        public static void LoadPortsFromStringVanilla(Computer comp, string portsList)
         {
-            CustomPorts.Add(info, portAsm);
-
-            if (portExploitsInit)
-                PortExploits.services.Add(info.PortNumber, info.PortName);
-            else
-                portsToAdd.Add(info);
-        }
-
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void UnregisterPort(int portNumber, Assembly pluginAsm = null)
-        {
-            pluginAsm = pluginAsm ?? Assembly.GetCallingAssembly();
-
-            if (portExploitsInit)
-                PortExploits.services.Remove(portNumber);
-            else
-                portsToAdd.RemoveAll(x => x.PortNumber == portNumber);
-
-            CustomPorts.RemoveAll(x => x.Value.PortNumber == portNumber, pluginAsm);
-        }
-
-        private static readonly List<PortInfo> portsToAdd = new List<PortInfo>();
-        private static bool portExploitsInit = false;
-
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(PortExploits), nameof(PortExploits.populate))]
-        private static void PortExploitsPopulatePostfix()
-        {
-            portExploitsInit = true;
-            foreach (var port in portsToAdd)
+            foreach (var port in portsList.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
-                PortExploits.services.Add(port.PortNumber, port.PortName);
+                if (!int.TryParse(port, out var portNum))
+                    throw new FormatException($"Failed to parse port number from '{port}'");
+                var data = GetPortDataFromNumber(portNum);
+                comp.AddPort(data?.Clone() ?? throw new ArgumentException($"No port has the default {port}"));
+            }
+        }
+
+        public static void LoadPortRemapsFromStringVanilla(Computer comp, string remap)
+        {
+            var ports = comp.GetAllPorts();
+            foreach (var binding in PortRemappingSerializer.Deserialize(remap))
+            {
+                var port = ports.FirstOrDefault(x => x.Port == binding.Key);
+                if (port == null)
+                {
+                    port = ComputerExtensions.OGPorts.FirstOrDefault(x => x.OriginalPort == binding.Key).Clone();
+                }
+                if (port == null)
+                {
+                    throw new ArgumentException($"Invalid port remap, port {binding.Key} does not exist");
+                }
+                port.Port = binding.Value;
             }
         }
     }

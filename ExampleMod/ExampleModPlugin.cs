@@ -26,7 +26,7 @@ namespace ExampleMod2
             base.HarmonyInstance.PatchAll(typeof(PatchClass2));
 
             Pathfinder.Executable.ExecutableManager.RegisterExecutable<TestExe>("#PF_TEST_EXE#");
-            Pathfinder.Port.PortManager.RegisterPort("Example port", 50);
+            Pathfinder.Port.PortManager.RegisterPort("ex", "example port");
             Pathfinder.Daemon.DaemonManager.RegisterDaemon<TestDaemon>();
             Pathfinder.Command.CommandManager.RegisterCommand("pathfinder", TestCommand);
             Pathfinder.Mission.GoalManager.RegisterGoal<TestGoal>("resetIP");

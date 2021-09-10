@@ -14,6 +14,7 @@ using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 using Pathfinder.Event.Loading;
+using Pathfinder.Port;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
@@ -254,13 +255,19 @@ namespace Pathfinder.Replacements
             }
 
             if (info.Children.TryGetElement("portsOpen", out var portsOpen))
-            {
-                if ((portsOpen.Content?.Length ?? 0) > 0)
-                    ComputerLoader.loadPortsIntoComputer(portsOpen.Content, comp);
-            }
+                PortManager.LoadPortsFromStringVanilla(comp, portsOpen.Content);
 
             if (info.Children.TryGetElement("portRemap", out var remap))
-                comp.PortRemapping = PortRemappingSerializer.Deserialize(remap.Content);
+                PortManager.LoadPortRemapsFromStringVanilla(comp, remap.Content);
+
+            if (info.Children.TryGetElement("ports", out var ports))
+            {
+                foreach (var port in ports.Content.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    var parts = port.Split(':');
+                    comp.AddPort(new PortData(parts[0], int.Parse(parts[1]), int.Parse(parts[2]), parts[3].Replace('_', ' ')));
+                }
+            }
 
             comp.users.Clear();
             if (info.Children.TryGetElement("users", out var users))
