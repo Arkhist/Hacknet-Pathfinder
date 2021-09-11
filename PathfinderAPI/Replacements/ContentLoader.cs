@@ -234,15 +234,13 @@ namespace Pathfinder.Replacements
 
                 var sourceComp = comp;
                 var origOs = os;
-
-                ComputerLoader.postAllLoadedActions = (System.Action) Delegate.Combine(
-                    ComputerLoader.postAllLoadedActions,
-                    (System.Action)(() =>
-                    {
-                        var nearNode = Programs.getComputer(os, nearNodeId);
-                        if (nearNode != null)
-                            sourceComp.location = nearNode.location + Corporation.getNearbyNodeOffset(nearNode.location, position, total, origOs.netMap, extraDistance, force);
-                    }));
+                
+                ComputerLoader.postAllLoadedActions += () =>
+                {
+                    var nearNode = Programs.getComputer(os, nearNodeId);
+                    if (nearNode != null)
+                        sourceComp.location = nearNode.location + Corporation.getNearbyNodeOffset(nearNode.location, position, total, origOs.netMap, extraDistance, force);
+                };
             });
             executor.RegisterExecutor("Computer.proxy", (exec, info) =>
             {
@@ -295,14 +293,13 @@ namespace Pathfinder.Replacements
                 var linked = info.Attributes.GetString("target");
                 var source = comp;
                 var origOS = os;
-                ComputerLoader.postAllLoadedActions = (System.Action)Delegate.Combine(
-                    ComputerLoader.postAllLoadedActions,
-                    (System.Action) (() =>
-                        {
-                            var linkedNode = Programs.getComputer(os, linked);
-                            if (linkedNode != null)
-                                source.links.Add(origOS.netMap.nodes.IndexOf(linkedNode));
-                        }));
+                
+                ComputerLoader.postAllLoadedActions += () =>
+                {
+                    var linkedNode = Programs.getComputer(os, linked);
+                    if (linkedNode != null)
+                        source.links.Add(origOS.netMap.nodes.IndexOf(linkedNode));
+                };
             });
             executor.RegisterExecutor("Computer.trace", (exec, info) =>
             {

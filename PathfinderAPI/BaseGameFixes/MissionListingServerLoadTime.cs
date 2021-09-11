@@ -43,24 +43,23 @@ namespace Pathfinder.BaseGameFixes
             c.Emit(OpCodes.Ldloc_1);
             c.EmitDelegate<Action<MissionListingServer, bool>>((listingDaemon, shouldGen) =>
             {
-                ComputerLoader.postAllLoadedActions = (System.Action)Delegate.Combine(ComputerLoader.postAllLoadedActions, (System.Action)(
-                    () =>
+                ComputerLoader.postAllLoadedActions += () =>
+                {
+                    foreach (var file in Directory.GetFiles(listingDaemon.CustomFolderLoadPath, "*.xml"))
                     {
-                        foreach (var file in Directory.GetFiles(listingDaemon.CustomFolderLoadPath, "*.xml"))
+                        OS.currentInstance.branchMissions = new List<ActiveMission>();
+                        listingDaemon.addMisison(MissionLoader.LoadContentMission(file));
+                    }
+
+                    if (shouldGen)
+                    {
+                        for (int i = 0; i < 2; i++)
                         {
                             OS.currentInstance.branchMissions = new List<ActiveMission>();
-                            listingDaemon.addMisison(MissionLoader.LoadContentMission(file));
+                            listingDaemon.addMisison((ActiveMission)MissionGenerator.generate(2));
                         }
-
-                        if (shouldGen)
-                        {
-                            for (int i = 0; i < 2; i++)
-                            {
-                                OS.currentInstance.branchMissions = new List<ActiveMission>();
-                                listingDaemon.addMisison((ActiveMission)MissionGenerator.generate(2));
-                            }
-                        }
-                    }));
+                    }
+                };
             });
         }
     }
