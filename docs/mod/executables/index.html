@@ -177,8 +177,8 @@ public override void Update(float t)
 }
 </code></pre>
 <h3 id="opening-a-port-starting-a-trace">Opening a port, starting a trace</h3>
-<p>The executable has access to the OS object <code>os</code> (interface with the game), <code>thisComputer</code> (the player's computer) and <code>targetIP</code>, the IP the player was connected to on executable launch.</p>
-<pre><code class="language-CSharp">Programs.getComputer(os, targetIP).openPort(PORT_NUMBER_HERE, os.thisComputer.ip);
+<p>The executable has access to the OS object <code>os</code> (interface with the game), <code>thisComputer</code> (the player's computer) and <code>targetIP</code>, the IP the player was connected to on executable launch (See <a href="../ports/#protocol-list">this page</a> for a list of all the included port protocols).</p>
+<pre><code class="language-CSharp">Programs.getComputer(os, targetIP).openPort(&quot;ssh&quot;, os.thisComputer.ip);
 </code></pre>
 <p>To start a trace, if the computer has security:</p>
 <pre><code class="language-CSharp">Programs.getComputer(os, targetIP).hostileActionTaken();

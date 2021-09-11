@@ -14,6 +14,8 @@ In order, the parameters are:
 - The port number if you don't want the default
 - The display name of the port when shown to the user, eg. `FTP Server` is the default for `ftp`
 
+### Protocol list
+
 Here's a list of all the protocol names and their default ports included with Pathfinder:
 
 - ssh 22

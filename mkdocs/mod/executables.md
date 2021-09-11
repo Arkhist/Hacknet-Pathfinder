@@ -63,10 +63,10 @@ public override void Update(float t)
 
 ### Opening a port, starting a trace
 
-The executable has access to the OS object `os` (interface with the game), `thisComputer` (the player's computer) and `targetIP`, the IP the player was connected to on executable launch.
+The executable has access to the OS object `os` (interface with the game), `thisComputer` (the player's computer) and `targetIP`, the IP the player was connected to on executable launch (See [this page](ports.md#protocol-list) for a list of all the included port protocols).
 
 ```CSharp
-Programs.getComputer(os, targetIP).openPort(PORT_NUMBER_HERE, os.thisComputer.ip);
+Programs.getComputer(os, targetIP).openPort("ssh", os.thisComputer.ip);
 ```
 
 To start a trace, if the computer has security:
