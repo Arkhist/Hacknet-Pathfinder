@@ -47,7 +47,7 @@ namespace Pathfinder.Port
             
         public bool Equals(PortData other)
         {
-            return other is not null && Protocol == other.Protocol && Port == other.Port;
+            return !object.ReferenceEquals(other, null) && Protocol == other.Protocol && Port == other.Port;
         }
         public static bool operator ==(PortData first, PortData second)
         {
@@ -305,9 +305,9 @@ namespace Pathfinder.Port
                     var start = GuiData.font.MeasureString(portNumText);
                     batch.DrawString(GuiData.font, portNumText, new Vector2(display.x, display.y + 3), Color.White);
                     string portNameText = $" - {port.DisplayName}";
-                    var end = GuiData.smallfont.MeasureString(portNameText);
+                    var second = GuiData.smallfont.MeasureString(portNameText);
                     float num2 = rect.Width - start.X - 50f;
-                    float scale = Math.Min(1f, num2 / end.X);
+                    float scale = Math.Min(1f, num2 / second.X);
                     batch.DrawString(GuiData.smallfont, portNameText, new Vector2(display.x + start.X, display.y + 4), Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0.8f);
                     display.y += 45;
                 }
