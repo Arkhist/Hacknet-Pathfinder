@@ -47,7 +47,7 @@ namespace Pathfinder.Port
             
         public bool Equals(PortData other)
         {
-            return !object.ReferenceEquals(other, null) && Protocol == other.Protocol && Port == other.Port;
+            return !object.ReferenceEquals(other, null) && Protocol == other.Protocol && Port == other.Port && OriginalPort == other.OriginalPort;
         }
         public static bool operator ==(PortData first, PortData second)
         {
@@ -56,6 +56,26 @@ namespace Pathfinder.Port
         public static bool operator !=(PortData first, PortData second)
         {
             return !(first == second);
+        }
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            if (obj.GetType() != this.GetType())
+                return false;
+            return Equals((PortData)obj);
+        }
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (Protocol != null ? Protocol.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ Port;
+                hashCode = (hashCode * 397) ^ OriginalPort;
+                return hashCode;
+            }
         }
     }
     
