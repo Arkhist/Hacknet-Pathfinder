@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using BepInEx.Logging;
 using Pathfinder.Event;
 using Hacknet;
 using Hacknet.Security;
@@ -61,7 +62,7 @@ namespace Pathfinder.Port
         {
             if (clearExisting)
                 comp.ClearPorts();
-            foreach (var port in portString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var port in portString.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 var portParts = port.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
                 if (portParts.Length == 1)
@@ -102,7 +103,12 @@ namespace Pathfinder.Port
                 if (!int.TryParse(port, out var portNum))
                     throw new FormatException($"Failed to parse port number from '{port}'");
                 var data = GetPortDataFromNumber(portNum);
-                comp.AddPort(data?.Clone() ?? throw new ArgumentException($"No port has the default {port}"));
+                if (data == null)
+                {
+                    Logger.Log(LogLevel.Warning, $"{comp.idName} has port {port}, which does not exist");
+                    continue;
+                }
+                comp.AddPort(data.Clone());
             }
         }
 
