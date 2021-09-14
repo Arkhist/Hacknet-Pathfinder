@@ -52,7 +52,7 @@ namespace Pathfinder.GUI
         public bool Do()
         {
             if (invalid)
-                throw new InvalidOperationException("This Button has been disposed, and is no longer valid");
+                throw new ObjectDisposedException(nameof(PFButton), "This Button has been disposed, and is no longer valid");
             if (Texture == null)
                 return Button.doButton(ID, X, Y, Width, Height, Text, Color);
             return Button.doButton(ID, X, Y, Width, Height, Text, Color, Texture);
@@ -60,6 +60,8 @@ namespace Pathfinder.GUI
 
         public void Dispose()
         {
+            if (invalid)
+                return;
             returnedIds.Add(ID);
             invalid = true;
         }
