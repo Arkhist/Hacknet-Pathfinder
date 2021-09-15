@@ -47,7 +47,8 @@ namespace Pathfinder.Port
             var port = CustomPorts.AllItems.FirstOrDefault(x => x.Protocol == proto);
             if (port != null)
                 return port;
-            return ComputerExtensions.OGPorts.FirstOrDefault(x => x.Protocol == proto);
+            ComputerExtensions.OGPorts.TryGetValue(proto, out port);
+            return port;
         }
         
         public static PortData GetPortDataFromNumber(int num)
@@ -55,7 +56,7 @@ namespace Pathfinder.Port
             var port = CustomPorts.AllItems.FirstOrDefault(x => x.Port == num);
             if (port != null)
                 return port;
-            return ComputerExtensions.OGPorts.FirstOrDefault(x => x.Port == num);
+            return ComputerExtensions.OGPorts.Values.FirstOrDefault(x => x.Port == num);
         }
         
         public static void LoadPortsFromString(Computer comp, string portString, bool clearExisting)
@@ -120,7 +121,7 @@ namespace Pathfinder.Port
                 var port = ports.FirstOrDefault(x => x.Port == binding.Key);
                 if (port == null)
                 {
-                    port = ComputerExtensions.OGPorts.FirstOrDefault(x => x.OriginalPort == binding.Key).Clone();
+                    port = ComputerExtensions.OGPorts.Values.FirstOrDefault(x => x.OriginalPort == binding.Key).Clone();
                 }
                 if (port == null)
                 {

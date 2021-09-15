@@ -82,7 +82,7 @@ namespace Pathfinder.Port
     [HarmonyPatch]
     public static class ComputerExtensions
     {
-        public static readonly List<PortData> OGPorts;
+        internal static readonly Dictionary<string, PortData> OGPorts;
         private static readonly Dictionary<int, string> OGPortToProto = new Dictionary<int, string>()
         {
             {22, "ssh"},
@@ -106,11 +106,11 @@ namespace Pathfinder.Port
 
         static ComputerExtensions()
         {
-            OGPorts = new List<PortData>();
+            OGPorts = new Dictionary<string, PortData>();
             PortExploits.populate();
             foreach (var port in PortExploits.portNums.Where(x => PortExploits.services.ContainsKey(x)))
             {
-                OGPorts.Add(new PortData(OGPortToProto[port], port, PortExploits.services[port]));
+                OGPorts.Add(OGPortToProto[port], new PortData(OGPortToProto[port], port, PortExploits.services[port]));
             }
         }
 
@@ -146,6 +146,11 @@ namespace Pathfinder.Port
             return PortTable.GetOrCreateValue(comp);
         }
 
+        public static int CountOpenPorts(this Computer comp)
+        {
+            return comp.GetAllPorts().Count(x => x.Cracked);
+        }
+
         public static void openPort(this Computer comp, string protocol, string ipFrom)
         {
             if (PortTable.GetOrCreateValue(comp).TryGetValue(protocol, out var port))
@@ -174,6 +179,17 @@ namespace Pathfinder.Port
             {
                 __instance.sendNetworkMessage($"cPortOpen {__instance.ip} {ipFrom} {portNum}");
             }
+            return false;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Computer), nameof(Computer.openPorts))]
+        private static bool OpenPortsPrefix(Computer __instance)
+        {
+            __instance.AddPort(OGPorts["ssh"].Clone());
+            __instance.AddPort(OGPorts["ftp"].Clone());
+            __instance.AddPort(OGPorts["smtp"].Clone());
+            __instance.AddPort(OGPorts["web"].Clone());
             return false;
         }
 
@@ -336,7 +352,7 @@ namespace Pathfinder.Port
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(FastBasicAdministrator), nameof(FastBasicAdministrator.disconnectionDetected))]
-        private static void ResetPortsFastPrefix(FastBasicAdministrator __instance, Computer c, OS os)
+        private static void ResetPortsFastPostfix(FastBasicAdministrator __instance, Computer c, OS os)
         {
             foreach (var port in c.GetAllPorts())
                 c.closePort(port.Protocol, "LOCAL_ADMIN");
@@ -350,7 +366,7 @@ namespace Pathfinder.Port
         
         [HarmonyPostfix]
         [HarmonyPatch(typeof(FastProgressOnlyAdministrator), nameof(FastProgressOnlyAdministrator.disconnectionDetected))]
-        private static void ResetPortsProgressOnlyPrefix(Computer c)
+        private static void ResetPortsProgressOnlyPostfix(Computer c)
         {
             foreach (var port in c.GetAllPorts())
                 c.closePort(port.Protocol, "LOCAL_ADMIN");
@@ -358,13 +374,65 @@ namespace Pathfinder.Port
         
         [HarmonyPostfix]
         [HarmonyPatch(typeof(BasicAdministrator), nameof(BasicAdministrator.disconnectionDetected))]
-        private static void ResetPortsBasicPrefix(Computer c, OS os)
+        private static void ResetPortsBasicPostfix(Computer c, OS os)
         {
             os.delayer.Post(os.delayer.nextPairs.Last().Condition, () =>
             {
                 foreach (var port in c.GetAllPorts())
                     c.closePort(port.Protocol, "LOCAL_ADMIN");
             });
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(ProgramRunner), nameof(ProgramRunner.AttemptExeProgramExecution))]
+        private static void FixPortCrackers(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.Before,
+                x => x.MatchLdcI4(0),
+                x => x.MatchStloc(9),
+                x => x.MatchBr(out _),
+                x => x.MatchNop(),
+                x => x.MatchLdloc(0),
+                x => x.MatchLdfld(AccessTools.Field(typeof(Computer), nameof(Computer.ports))),
+                x => x.MatchLdloc(9),
+                x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(List<int>), "get_Item"))
+            );
+
+            c.RemoveRange(36);
+
+            c.Emit(OpCodes.Ldloc_0);
+            c.Emit(OpCodes.Ldloc, 11);
+            c.EmitDelegate<Func<Computer, int, int>>((comp, port) =>
+            {
+                if (comp.GetAllPorts().Any(x => x.OriginalPort == port))
+                    return port;
+                return -1;
+            });
+            c.Emit(OpCodes.Stloc, 10);
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(OS), nameof(OS.launchExecutable))]
+        private static void FixPortHack(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.Before,
+                x => x.MatchNop(),
+                x => x.MatchLdcI4(0),
+                x => x.MatchStloc(5),
+                x => x.MatchLdcI4(0),
+                x => x.MatchStloc(1),
+                x => x.MatchBr(out _)
+            );
+
+            c.RemoveRange(30);
+
+            c.Emit(OpCodes.Ldarg_0);
+            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(OS), nameof(OS.connectedComp)));
+            c.Emit(OpCodes.Call, AccessTools.Method(typeof(ComputerExtensions), nameof(CountOpenPorts)));
         }
     }
 }
