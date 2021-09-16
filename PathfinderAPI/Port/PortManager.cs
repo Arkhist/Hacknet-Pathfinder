@@ -116,7 +116,10 @@ namespace Pathfinder.Port
         public static void LoadPortRemapsFromStringVanilla(Computer comp, string remap)
         {
             var ports = comp.GetAllPorts();
-            foreach (var binding in PortRemappingSerializer.Deserialize(remap))
+            var remaps = PortRemappingSerializer.Deserialize(remap);
+            if (remaps == null)
+                return;
+            foreach (var binding in remaps)
             {
                 var port = ports.FirstOrDefault(x => x.Port == binding.Key);
                 if (port == null)
