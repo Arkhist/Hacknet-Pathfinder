@@ -64,7 +64,7 @@ namespace Pathfinder.BaseGameFixes.Performance
         [HarmonyPatch(typeof(AircraftDaemon), nameof(AircraftDaemon.CrashAircraft))]
         internal static void OnAircraftDaemonChangeIP()
         {
-            ComputerLookup.RebuildLookups(null);
+            ComputerLookup.RebuildLookups();
         }
 
         [HarmonyILManipulator]
