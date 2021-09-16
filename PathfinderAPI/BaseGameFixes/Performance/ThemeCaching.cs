@@ -161,7 +161,14 @@ namespace Pathfinder.BaseGameFixes.Performance
             c.Remove();
             c.EmitDelegate<Func<string, CustomTheme>>(theme =>
             {
-                SwitchThemeReplacement(OS.currentInstance, theme);
+                lock (cacheLock)
+                {
+                    if (!CachedThemes.TryGetCached(theme, out _))
+                    {
+                        var cacheTheme = new CachedCustomTheme(theme);
+                        CachedThemes.Register(theme, cacheTheme);
+                    }
+                }
                 return null;
             });
         }
