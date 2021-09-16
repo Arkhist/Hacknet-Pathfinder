@@ -60,6 +60,13 @@ namespace Pathfinder.BaseGameFixes.Performance
             c.Emit(OpCodes.Call, AccessTools.Method(typeof(ComputerLookup), nameof(ComputerLookup.RebuildLookups)));
         }
 
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(AircraftDaemon), nameof(AircraftDaemon.CrashAircraft))]
+        internal static void OnAircraftDaemonChangeIP()
+        {
+            ComputerLookup.RebuildLookups();
+        }
+
         [HarmonyILManipulator]
         [HarmonyPatch(typeof(ExtensionLoader), nameof(ExtensionLoader.LoadNewExtensionSession))]
         [HarmonyPatch(typeof(OS), nameof(OS.loadMissionNodes))]
