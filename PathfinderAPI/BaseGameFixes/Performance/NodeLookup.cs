@@ -109,25 +109,33 @@ namespace Pathfinder.BaseGameFixes.Performance
             ComputerLookup.ClearLookups();
         }
 
-        [HarmonyPrefix]
+        [HarmonyILManipulator]
         [HarmonyPatch(typeof(Programs), nameof(Programs.scan))]
-        internal static bool ScanReplacement(string[] args, OS os)
+        internal static void ScanReplacementIL(ILContext il)
         {
-            if (args.Length > 1)
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.Before,
+                x => x.MatchLdloc(0),
+                x => x.MatchLdnull(),
+                x => x.MatchCeq()
+            );
+            int endInst = c.Index;
+
+            c.GotoPrev(MoveType.Before,
+                x => x.MatchLdnull(),
+                x => x.MatchStloc(0)
+            );
+            c.RemoveRange(endInst - c.Index);
+
+            c.Emit(OpCodes.Ldarg_0);
+            c.Emit(OpCodes.Ldc_I4_1);
+            c.Emit(OpCodes.Ldelem_Ref);
+            c.EmitDelegate<Func<string, Computer>>(ipOrName =>
             {
-                Computer computer = ComputerLookup.FindByIp(args[1]);
-                if (computer == null)
-                {
-                    computer = ComputerLookup.FindByName(args[1]);
-                }
-                if (computer != null)
-                {
-                    os.netMap.discoverNode(computer);
-                    os.write("Found Terminal : " + computer.name + "@" + computer.ip);
-                }
-                return false;
-            }
-            return true;
+                return ComputerLookup.Find(ipOrName, SearchType.Ip | SearchType.Name);
+            });
+            c.Emit(OpCodes.Stloc_0);
         }
     }
 }
