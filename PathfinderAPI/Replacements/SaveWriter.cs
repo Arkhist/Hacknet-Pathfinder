@@ -519,6 +519,7 @@ namespace Pathfinder.Replacements
                 securityTag.SetAttributeValue("proxyTime", (node.hasProxy ? node.startingOverloadTicks.ToString(CultureInfo.InvariantCulture) : "-1"));
             }
             securityTag.SetAttributeValue("adminIP", node.adminIP);
+            securityTag.SetAttributeValue("portsToCrack", node.portsNeededForCrack);
             result.Add(securityTag);
             
             result.Add(GetPortSaveElement(node));
