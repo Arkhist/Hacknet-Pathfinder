@@ -247,7 +247,7 @@ namespace Pathfinder.Replacements
                 var time = info.Attributes.GetFloat("time", 1f);
                 if (time > 0f)
                 {
-                    comp.addProxy(time);
+                    comp.addProxy(Computer.BASE_PROXY_TICKS * time);
                 }
                 else
                 {
