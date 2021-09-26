@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Security;
-using System.Reflection;
+using SR = System.Reflection;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
@@ -66,17 +66,17 @@ namespace PathfinderPatcher
                 processor.Emit(OpCodes.Ldstr, "./BepInEx/core/BepInEx.Hacknet.dll");
                 processor.Emit(OpCodes.Call, hn.MainModule.ImportReference(typeof(System.IO.Path).GetMethod("GetFullPath", new Type[] { typeof(string) })));
                 // Load BepInEx.Hacknet.dll
-                processor.Emit(OpCodes.Call, hn.MainModule.ImportReference(typeof(Assembly).GetMethod("LoadFile", new Type[] { typeof(string) })));
+                processor.Emit(OpCodes.Call, hn.MainModule.ImportReference(typeof(SR.Assembly).GetMethod("LoadFile", new Type[] { typeof(string) })));
                 // Get Entrypoint type
                 processor.Emit(OpCodes.Ldstr, "BepInEx.Hacknet.Entrypoint");
-                processor.Emit(OpCodes.Call, hn.MainModule.ImportReference(typeof(Assembly).GetMethod("GetType", new Type[] { typeof(string) })));
+                processor.Emit(OpCodes.Call, hn.MainModule.ImportReference(typeof(SR.Assembly).GetMethod("GetType", new Type[] { typeof(string) })));
                 // Get bootstrap method
                 processor.Emit(OpCodes.Ldstr, "Bootstrap");
                 processor.Emit(OpCodes.Call, hn.MainModule.ImportReference(typeof(Type).GetMethod("GetMethod", new Type[] { typeof(string) })));
                 // Call bootstrap method
                 processor.Emit(OpCodes.Ldnull);
                 processor.Emit(OpCodes.Ldnull);
-                processor.Emit(OpCodes.Callvirt, hn.MainModule.ImportReference(typeof(MethodBase).GetMethod("Invoke", new Type[] { typeof(object), typeof(object[]) })));
+                processor.Emit(OpCodes.Callvirt, hn.MainModule.ImportReference(typeof(SR.MethodBase).GetMethod("Invoke", new Type[] { typeof(object), typeof(object[]) })));
                 processor.Emit(OpCodes.Pop);
                 // Return
                 processor.Emit(OpCodes.Ret);
@@ -87,6 +87,17 @@ namespace PathfinderPatcher
                 var unverifiableType = hn.MainModule.ImportReference(typeof(UnverifiableCodeAttribute)).Resolve();
                 var unverifiableCtor = hn.MainModule.ImportReference(unverifiableType.Methods.First(x => x.IsConstructor && x.Parameters.Count == 0));
                 hn.MainModule.CustomAttributes.Add(new CustomAttribute(unverifiableCtor));
+
+                var corlibRef = hn.MainModule.AssemblyReferences.FirstOrDefault(x => x.Name == "mscorlib");
+                corlibRef.PublicKey = null;
+                corlibRef.PublicKeyToken = null;
+                corlibRef.HasPublicKey = false;
+
+                var targetRuntime = hn.CustomAttributes.FirstOrDefault(x => x.AttributeType.Name == "TargetFrameworkAttribute");
+                targetRuntime.ConstructorArguments.Clear();
+                targetRuntime.ConstructorArguments.Add(new CustomAttributeArgument(hn.MainModule.TypeSystem.String, ".NETFramework,Version=v4.5"));
+                targetRuntime.Properties.Clear();
+                targetRuntime.Properties.Add(new CustomAttributeNamedArgument("FrameworkDisplayName", new CustomAttributeArgument(hn.MainModule.TypeSystem.String, ".NET Framework 4.5")));
 
                 // Write modified assembly to disk
                 hn.Write("HacknetPathfinder.exe");

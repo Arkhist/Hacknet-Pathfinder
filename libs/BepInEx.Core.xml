@@ -810,7 +810,7 @@
         </member>
         <member name="P:BepInEx.BepInDependency.VersionRange">
             <summary>
-                The version <see cref="T:SemVer.Range">range</see> of the referenced plugin.
+                The version <see cref="!:SemVer.Range">range</see> of the referenced plugin.
             </summary>
         </member>
         <member name="T:BepInEx.BepInIncompatibility">
@@ -885,6 +885,14 @@
             </summary>
             <typeparam name="T">The attribute type to retrieve.</typeparam>
             <param name="plugin">The plugin instance.</param>
+            <returns>The attributes of the instance, if existing.</returns>
+        </member>
+        <member name="M:BepInEx.MetadataHelper.GetAttributes``1(System.Reflection.MemberInfo)">
+            <summary>
+                Gets the specified attributes of a reflection metadata type, if they exist.
+            </summary>
+            <typeparam name="T">The attribute type to retrieve.</typeparam>
+            <param name="member">The reflection metadata instance.</param>
             <returns>The attributes of the instance, if existing.</returns>
         </member>
         <member name="M:BepInEx.MetadataHelper.GetDependencies(System.Type)">

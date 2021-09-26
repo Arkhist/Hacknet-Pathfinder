@@ -41,9 +41,12 @@ def install_pathfinder(gen_event_callback, hacknet_directory):
     try:
         os.remove(patcher_exe)
         os.remove(os.path.join(hacknet_directory, 'Mono.Cecil.dll'))
-        hacknet_exe = os.path.join(hacknet_directory, 'Hacknet.exe')
-        os.rename(hacknet_exe, os.path.join(hacknet_directory, 'HacknetOld.exe'))
-        os.rename(os.path.join(hacknet_directory, 'HacknetPathfinder.exe'), hacknet_exe)
+        if platform.system() == 'Windows':
+            hacknet_exe = os.path.join(hacknet_directory, 'Hacknet.exe')
+            os.rename(hacknet_exe, os.path.join(hacknet_directory, 'HacknetOld.exe'))
+            os.rename(os.path.join(hacknet_directory, 'HacknetPathfinder.exe'), hacknet_exe)
+        else:
+            shutil.copy(os.path.join(hacknet_directory, 'Hacknet.bin.x86_64'), os.path.join(hacknet_directory, 'HacknetPathfinder.bin.x86_64'))
     except OSError:
         gen_event_callback('<<InstallFailure>>')
         return

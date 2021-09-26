@@ -11,6 +11,7 @@ using Hacknet.Screens;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Mono.Cecil;
+using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using HN = global::Hacknet;
 
@@ -138,13 +139,27 @@ namespace BepInEx.Hacknet
         [HarmonyPatch(typeof(HN.OS), nameof(HN.OS.quitGame))]
         internal static void UnloadOnOSQuitPostfix() => HacknetChainloader.Instance.UnloadTemps();
         
-        // I would hook Hacknet.Screens.DrawExtensionInfoDetail instead, but for some reason that method is cursed, so I look here instead
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(Button), nameof(Button.doButton), new Type[] { typeof(int), typeof(int), typeof(int), typeof(int), typeof(int), typeof(string), typeof(Color?) })]
-        internal static void OnBackButtonPressPostfix(int myID, bool __result)
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(ExtensionsMenuScreen), nameof(ExtensionsMenuScreen.DrawExtensionInfoDetail))]
+        internal static void OnBackButtonPressPostfix(ILContext il)
         {
-            if (myID == 7900040 && __result)
-                HacknetChainloader.Instance.UnloadTemps();
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.Before,
+                x => x.MatchLdnull(),
+                x => x.MatchStfld(AccessTools.Field(typeof(ExtensionsMenuScreen), nameof(ExtensionsMenuScreen.ExtensionInfoToShow)))
+            );
+
+            c.Emit(OpCodes.Ldsfld, AccessTools.Field(typeof(HacknetChainloader), nameof(HacknetChainloader.Instance)));
+            c.Emit(OpCodes.Callvirt, AccessTools.Method(typeof(HacknetChainloader), nameof(HacknetChainloader.UnloadTemps)));
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(AppDomain), "get_BaseDirectory")]
+        private static bool ReturnCorrectDirectoryPrefix(out string __result)
+        {
+            __result = Paths.GameRootPath;
+            return false;
         }
     }
 

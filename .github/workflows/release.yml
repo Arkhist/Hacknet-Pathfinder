@@ -42,6 +42,8 @@ jobs:
         copy libs/BepInEx.cfg Release/BepInEx/config/BepInEx.cfg
         copy PathfinderPatcher/bin/Release/PathfinderPatcher.exe Release/PathfinderPatcher.exe
         copy libs/Mono.Cecil.dll Release/Mono.Cecil.dll
+        copy Linux/intercept.so Release/intercept.so
+        copy Linux/StartPathfinder.sh Release/StartPathfinder.sh
 
     - name: Create Release ZIP
       uses: TheDoctor0/zip-release@0.6.0

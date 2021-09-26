@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Pathfinder</RootNamespace>
     <AssemblyName>PathfinderAPI</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <LangVersion>8</LangVersion>
@@ -32,29 +32,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.5.4.0, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="0Harmony, Version=2.5.5.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\0Harmony.dll</HintPath>
-	  <Private>False</Private>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="BepInEx.Core, Version=6.0.0.409, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="BepInEx.Core, Version=6.0.0.423, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\BepInEx.Core.dll</HintPath>
-	  <Private>False</Private>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="FNA">
+    <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\FNA.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HacknetPathfinder">
+    <Reference Include="Hacknet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
       <HintPath>..\libs\Mono.Cecil.dll</HintPath>
-	  <Private>False</Private>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="MonoMod.Utils, Version=21.8.19.1, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="MonoMod.Utils, Version=21.9.19.1, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\MonoMod.Utils.dll</HintPath>
-	  <Private>False</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

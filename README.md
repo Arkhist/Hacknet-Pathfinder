@@ -8,19 +8,31 @@ There are several options available to choose to install Pathfinder, the install
 
 ### Installer
 
-If you're on Windows, it's recommended that you use the installer .exe from [here](https://github.com/Arkhist/Hacknet-Pathfinder/releases). Just run the installer and it should automatically find your Hacknet folder, then just hit install. Launching Hacknet from Steam will launch Pathfinder!
+If you're on Windows, it's recommended that you use the installer .exe from [here](https://github.com/Arkhist/Hacknet-Pathfinder/releases). Just run the installer and it should automatically find your Hacknet folder, then just hit install. Launching Hacknet from Steam will launch Pathfinder (on Windows)!
 
 If you decide to use the .py installer (or you're just on Linux and have to use it) keep in mind it requires python3 and tk to be installed before you run it.
 
+If you're on Linux, once the installer is complete, make sure to +x StartPathfinder.sh yourself.
+
 To uninstall, just reopen the installer and click uninstall. This will clear out all of the changes the installer made, and will also delete all of your mods with it.
 
-### Manually
+### Manually (Windows)
 
 Get the latest ZIP from the releases page [here](https://github.com/Arkhist/Hacknet-Pathfinder/releases) and extract it to your Hacknet folder.
 
-Run PathfinderPatcher.exe and it will create HacknetPathfinder.exe, if you want this to be launched when you launch from Steam rename Hacknet.exe and replace it with HacknetPathfinder.exe (this also applies to Linux).
+Run PathfinderPatcher.exe and it will create HacknetPathfinder.exe, if you want this to be launched when you launch from Steam rename Hacknet.exe and replace it with HacknetPathfinder.exe.
 
 To uninstall, just delete HacknetPathfinder.exe (or whatever you renamed it to) and move back the original Hacknet.exe if you renamed it. If you also want to remove all your mods and configs, delete the BepInEx directory.
+
+### Manually (Linux)
+
+Get the latest ZIP from the releases page [here](https://github.com/Arkhist/Hacknet-Pathfinder/releases) and extract it to your Hacknet folder.
+
+Run PathfinderPatcher.exe and it will create HacknetPathfinder.exe.
+
+Copy `Hacknet.bin.x86_64` to `HacknetPathfinder.bin.x86_64`
+
+Make StartPathfinder.sh executable and run it.
 
 ## Troubleshooting
 
