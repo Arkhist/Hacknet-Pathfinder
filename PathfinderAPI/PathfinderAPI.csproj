@@ -44,7 +44,7 @@
       <HintPath>..\libs\FNA.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Hacknet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="HacknetPathfinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\libs\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
     </Reference>
