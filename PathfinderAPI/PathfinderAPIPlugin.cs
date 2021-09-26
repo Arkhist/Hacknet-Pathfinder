@@ -31,9 +31,6 @@ namespace Pathfinder
             }
 
             HarmonyInstance.PatchAll(typeof(PathfinderAPIPlugin).Assembly);
-            
-            if (Environment.GetCommandLineArgs().Any(x => x.ToLower() == "-enabledebug"))
-                Command.DebugCommands.AddCommands();
 
             return true;
         }

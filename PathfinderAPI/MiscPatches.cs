@@ -9,6 +9,7 @@ using BepInEx.Hacknet;
 using BepInEx.Logging;
 using Hacknet;
 using Hacknet.PlatformAPI.Storage;
+using Pathfinder.Command;
 using Pathfinder.Options;
 
 namespace Pathfinder
@@ -154,6 +155,14 @@ namespace Pathfinder
             {
                 HacknetLogger.LogError(new Exception("Exception occurred during threaded execute", ex));
             });
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Program), nameof(Program.Main))]
+        private static void CheckDebug(string[] args)
+        {
+            if (args.Any(x => x.ToLower() == "-enabledebug"))
+                DebugCommands.AddCommands();
         }
     }
 }
