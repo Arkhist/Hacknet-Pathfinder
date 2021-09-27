@@ -760,7 +760,7 @@ namespace Pathfinder.Replacements
                     portsNeededForCrack = 2
                 };
                 
-                ComputerLoader.loadPortsIntoComputer("22,3659", eos);
+                PortManager.LoadPortsFromStringVanilla(eos, "22,3659");
                 eos.setAdminPassword(info.Attributes.GetString("passOverride", "alpine"));
                 
                 EOSComp.GenerateEOSFilesystem(eos);
