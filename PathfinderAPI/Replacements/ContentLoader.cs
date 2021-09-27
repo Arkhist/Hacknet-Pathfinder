@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
+using BepInEx.Logging;
 using Hacknet;
 using Hacknet.Extensions;
 using Hacknet.Security;
@@ -881,6 +882,11 @@ namespace Pathfinder.Replacements
                 throw new FormatException($"{filename}: {ex.Message}", ex);
             }
 
+            if (!ComputerExtensions.HasInitializedPorts(comp))
+            {
+                PortManager.LoadPortsFromString(comp, "ssh ftp smtp web", false);
+            }
+            
             var ret = comp;
             comp = null;
             

@@ -146,6 +146,8 @@ namespace Pathfinder.Port
             return PortTable.GetOrCreateValue(comp);
         }
 
+        public static bool HasInitializedPorts(Computer comp) => PortTable.TryGetValue(comp, out _);
+
         public static int CountOpenPorts(this Computer comp)
         {
             return comp.GetAllPorts().Count(x => x.Cracked);
@@ -186,10 +188,6 @@ namespace Pathfinder.Port
         [HarmonyPatch(typeof(Computer), nameof(Computer.openPorts))]
         private static bool OpenPortsPrefix(Computer __instance)
         {
-            __instance.AddPort(OGPorts["ssh"].Clone());
-            __instance.AddPort(OGPorts["ftp"].Clone());
-            __instance.AddPort(OGPorts["smtp"].Clone());
-            __instance.AddPort(OGPorts["web"].Clone());
             return false;
         }
 
@@ -433,6 +431,14 @@ namespace Pathfinder.Port
             c.Emit(OpCodes.Ldarg_0);
             c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(OS), nameof(OS.connectedComp)));
             c.Emit(OpCodes.Call, AccessTools.Method(typeof(ComputerExtensions), nameof(CountOpenPorts)));
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ComputerLoader), nameof(ComputerLoader.loadPortsIntoComputer))]
+        private static bool LoadPortsIntoComputerReplacement(string portsList, object computer_obj)
+        {
+            PortManager.LoadPortsFromStringVanilla((Computer)computer_obj, portsList);
+            return false;
         }
     }
 }
