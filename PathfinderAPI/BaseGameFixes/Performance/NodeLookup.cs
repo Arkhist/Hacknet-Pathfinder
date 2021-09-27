@@ -116,6 +116,15 @@ namespace Pathfinder.BaseGameFixes.Performance
             ComputerLookup.ClearLookups();
         }
 
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(MissionGenerator), nameof(MissionGenerator.generateComputer))]
+        private static void AddMissionGenComputer(object __result)
+        {
+            var comp = (Computer)__result;
+            comp.idName = "Gen" + MissionGenerator.generationCount;
+            ComputerLookup.Add(comp);
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(Programs), nameof(Programs.scan))]
         internal static bool ScanReplacement(string[] args, OS os)

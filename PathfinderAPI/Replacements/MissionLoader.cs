@@ -76,6 +76,16 @@ namespace Pathfinder.Replacements
                 mission.activeCheck = info.Attributes.GetBool("activeCheck");
                 mission.ShouldIgnoreSenderVerification = info.Attributes.GetBool("shouldIgnoreSenderVerification");
             });
+            executor.RegisterExecutor("mission.generationKeys", (exec, info) =>
+            {
+                if (!string.IsNullOrEmpty(info.Content))
+                {
+                    info.Attributes.Add("Data", info.Content);
+                }
+                MissionGenerator.setMissionGenerationKeys(info.Attributes);
+                if (ComputerLoader.MissionPreLoadComplete != null)
+                    ComputerLoader.MissionPreLoadComplete();
+            }, ParseOption.ParseInterior);
             executor.RegisterExecutor("mission.goals.goal", (exec, info) => mission.goals.Add(LoadGoal(info)), ParseOption.ParseInterior);
             executor.RegisterExecutor("mission.missionStart", (exec, info) =>
             {
@@ -128,7 +138,7 @@ namespace Pathfinder.Replacements
             executor.RegisterExecutor("mission.email.body", (exec, info) => mission.email.body = info.Content.Filter(), ParseOption.ParseInterior);
             executor.RegisterExecutor("mission.email.attachments.link", (exec, info) =>
             {
-                var comp = ComputerLookup.FindById(info.Attributes.GetString("comp"));
+                var comp = info.Attributes.GetComp("comp", SearchType.Id);
                 if (comp != null)
                     mission.email.attachments.Add($"link#%#{comp.name}#%#{comp.ip}");
             });
