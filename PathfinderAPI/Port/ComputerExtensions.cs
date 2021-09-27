@@ -354,12 +354,12 @@ namespace Pathfinder.Port
         [HarmonyPatch(typeof(FastBasicAdministrator), nameof(FastBasicAdministrator.disconnectionDetected))]
         private static void ResetPortsFastPostfix(FastBasicAdministrator __instance, Computer c, OS os)
         {
-            foreach (var port in c.GetAllPorts())
+            foreach (var port in c.GetAllPorts().Where(x => x.Cracked))
                 c.closePort(port.Protocol, "LOCAL_ADMIN");
             if (!__instance.IsSuper)
                 os.delayer.Post(os.delayer.nextPairs.Last().Condition, () =>
                 {
-                    foreach (var port in c.GetAllPorts())
+                    foreach (var port in c.GetAllPorts().Where(x => x.Cracked))
                         c.closePort(port.Protocol, "LOCAL_ADMIN");
                 });
         }
@@ -368,7 +368,7 @@ namespace Pathfinder.Port
         [HarmonyPatch(typeof(FastProgressOnlyAdministrator), nameof(FastProgressOnlyAdministrator.disconnectionDetected))]
         private static void ResetPortsProgressOnlyPostfix(Computer c)
         {
-            foreach (var port in c.GetAllPorts())
+            foreach (var port in c.GetAllPorts().Where(x => x.Cracked))
                 c.closePort(port.Protocol, "LOCAL_ADMIN");
         }
         
@@ -378,7 +378,7 @@ namespace Pathfinder.Port
         {
             os.delayer.Post(os.delayer.nextPairs.Last().Condition, () =>
             {
-                foreach (var port in c.GetAllPorts())
+                foreach (var port in c.GetAllPorts().Where(x => x.Cracked))
                     c.closePort(port.Protocol, "LOCAL_ADMIN");
             });
         }
