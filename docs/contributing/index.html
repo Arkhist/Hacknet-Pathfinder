@@ -122,16 +122,24 @@
 <h2 id="compiling-and-installing">Compiling and installing</h2>
 <ul>
 <li>Clone from source Hacknet Pathfinder <a href="https://github.com/Arkhist/Hacknet-Pathfinder">https://github.com/Arkhist/Hacknet-Pathfinder</a></li>
-<li>Compile PathfinderPatcher (<code>msbuild</code> or <code>xbuild</code> in root folder)</li>
+<li>Compile PathfinderPatcher (<code>msbuild</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> or <code>xbuild</code> in root folder or specically against PathfinderPatcher.csproj)</li>
 <li>Move <code>PathfinderPatcher/bin/Debug/PathfinderPatcher.exe</code> to Hacknet's root directory</li>
 <li>Run <code>PathfinderPatcher.exe</code> in the root Hacknet directory to obtain <code>HacknetPathfinder.exe</code></li>
 <li>Move <code>HacknetPathfinder.exe</code> and <code>FNA.dll</code> to the Pathfinder <code>libs</code> folder.</li>
-<li>Compile the rest of the project (<code>msbuild</code> or <code>xbuild</code> in root folder)</li>
+<li>Compile the rest of the project (<code>msbuild</code><sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> or <code>xbuild</code> in root folder)</li>
 <li>Copy everything in <code>BepInEx.Hacknet/bin/Debug</code> into <code>Hacknet/BepInEx/core</code>.</li>
 <li>Copy <code>PathfinderAPI/bin/PathfinderAPI.dll</code> into <code>Hacknet/BepInEx/plugins</code></li>
 </ul>
 <h2 id="adding-features">Adding features</h2>
 <p>Branch off the <code>master</code> branch, program your feature and send the dev team a Pull Request!</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><code>msbuild</code> is broken on Arch unless you use mono-git from the AUR, see <a href="https://bugs.archlinux.org/task/71007">this bug report</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
               
             </div>
           </div>

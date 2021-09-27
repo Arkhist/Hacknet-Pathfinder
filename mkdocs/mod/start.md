@@ -2,7 +2,7 @@
 
 Use [this template](https://github.com/Windows10CE/HacknetPluginTemplate) or follow the steps below.
 
-- Start a new .NET library project with .NET Framework 4.0
+- Start a new .NET library project with .NET Framework 4.5
 - Link it against the `HacknetPathfinder.exe` (`Hacknet.exe` if you installed Pathfinder), `PathfinderAPI.dll`, `FNA.dll`, `BepInEx.Core.dll`, and `BepInEx.Hacknet.dll`. You may need more than this, but that's the reccomended set to begin on a simple mod.
 - You may need to go into the project options and set the project to target the `x86` platform
 - Create a class that inherits from `BepInEx.Hacknet.HacknetPlugin`, and add the `BepInEx.BepInPlugin` attribute to it with a name, guid, and version.

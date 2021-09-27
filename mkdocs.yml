@@ -17,3 +17,5 @@ nav:
     - Pathfinder Development: 
         - Contributing: contributing.md
 theme: readthedocs
+markdown_extensions:
+    - footnotes

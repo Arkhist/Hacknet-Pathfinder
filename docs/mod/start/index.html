@@ -19,7 +19,7 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Getting started";
-    var mkdocs_page_input_path = "mod\\start.md";
+    var mkdocs_page_input_path = "mod/start.md";
     var mkdocs_page_url = "/Hacknet-Pathfinder/mod/start/";
   </script>
   
@@ -117,7 +117,7 @@
                 <h1 id="getting-started-with-pathfinder-modding">Getting started with Pathfinder Modding</h1>
 <p>Use <a href="https://github.com/Windows10CE/HacknetPluginTemplate">this template</a> or follow the steps below.</p>
 <ul>
-<li>Start a new .NET library project with .NET Framework 4.0</li>
+<li>Start a new .NET library project with .NET Framework 4.5</li>
 <li>Link it against the <code>HacknetPathfinder.exe</code> (<code>Hacknet.exe</code> if you installed Pathfinder), <code>PathfinderAPI.dll</code>, <code>FNA.dll</code>, <code>BepInEx.Core.dll</code>, and <code>BepInEx.Hacknet.dll</code>. You may need more than this, but that's the reccomended set to begin on a simple mod.</li>
 <li>You may need to go into the project options and set the project to target the <code>x86</code> platform</li>
 <li>Create a class that inherits from <code>BepInEx.Hacknet.HacknetPlugin</code>, and add the <code>BepInEx.BepInPlugin</code> attribute to it with a name, guid, and version.</li>

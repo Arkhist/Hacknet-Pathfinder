@@ -7,15 +7,15 @@ Hacknet Pathfinder is a cross-platform modding system for Hacknet.
 Run the Hacknet Pathfinder installer, downloadable from: [Github](https://github.com/Arkhist/Hacknet-Pathfinder/releases)
 
 - For Windows, run `PathfinderInstaller.exe`
-- For Linux and MacOS, run `PathfinderInstaller.py`
+- For Linux, run `PathfinderInstaller.py`
 
 ## Manual Install
 
 1. Download Hacknet Pathfinder's zipped files from [Github](https://github.com/Arkhist/Hacknet-Pathfinder/releases).
 2. Extract the contents into Hacknet's folder.
-3. Run `PathfinderPatcher.exe` (For Linux/MacOS users, `mono PathfinderPatcher.exe`)
-4. Rename Hacknet.exe into OldHacknet.exe
-5. Rename HacknetPathfinder.exe into Hacknet.exe
+3. Run `PathfinderPatcher.exe` (For Linux users, `mono PathfinderPatcher.exe`).
+4. (For Linux) Copy `Hacknet.bin.x86(_64)` to `HacknetPathfinder.bin.x86(_64)` and make `StartPathfinder.sh` executable.
+5. Run HacknetPathfinder.exe on Windows or StartPathfinder.sh on Linux to start Pathfinder.
 
 ## Running
 
