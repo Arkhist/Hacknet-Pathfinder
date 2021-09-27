@@ -122,8 +122,8 @@ namespace Pathfinder.BaseGameFixes.Performance
         {
             ILCursor c = new ILCursor(il);
 
-            c.GotoNext(MoveType.Before,
-                x => x.MatchLdstr("entropy00"),
+            c.GotoNext(MoveType.After,
+                x => x.MatchLdstr("practiceServer"),
                 x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(NetworkMap), nameof(NetworkMap.discoverNode), new Type[] { typeof(string) }))
             );
 
