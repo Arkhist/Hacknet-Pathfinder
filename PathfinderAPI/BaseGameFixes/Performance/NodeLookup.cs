@@ -116,6 +116,21 @@ namespace Pathfinder.BaseGameFixes.Performance
             ComputerLookup.ClearLookups();
         }
 
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(ProgramRunner), nameof(ProgramRunner.ExecuteProgram))]
+        internal static void RebuildInDebugCommand(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            c.GotoNext(MoveType.After,
+                x => x.MatchLdstr("practiceServer"),
+                x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(NetworkMap), nameof(NetworkMap.discoverNode), new Type[] { typeof(string) }))
+            );
+
+            c.Emit(OpCodes.Ldnull);
+            c.Emit(OpCodes.Call, AccessTools.Method(typeof(ComputerLookup), nameof(ComputerLookup.RebuildLookups)));
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MissionGenerator), nameof(MissionGenerator.generateComputer))]
         private static void AddMissionGenComputer(object __result)
