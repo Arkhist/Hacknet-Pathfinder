@@ -169,7 +169,7 @@ namespace ExampleMod2
         public string Min;
         [XMLStorage]
         public string Max;
-        [XMLStorage(true)]
+        [XMLStorage(IsContent = true)]
         public string stringToWrite;
 
         private int min = 0;

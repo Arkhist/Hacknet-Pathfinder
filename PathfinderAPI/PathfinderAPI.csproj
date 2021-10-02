@@ -136,6 +136,7 @@
     <Compile Include="Options\PathfinderOptions.cs" />
     <Compile Include="Options\PathfinderOptionsMenu.cs" />
     <Compile Include="Util\XMLStorageAttribute.cs" />
+    <Compile Include="Util\XMLTypeConverter.cs" />
     <Compile Include="Util\XML\ElementInfo.cs" />
     <Compile Include="Util\XML\EventExecutor.cs" />
     <Compile Include="Util\XML\EventReader.cs" />
