@@ -109,8 +109,11 @@ namespace BepInEx.Hacknet
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(ExtensionsMenuScreen), nameof(ExtensionsMenuScreen.ActivateExtensionPage))]
-        internal static bool LoadTempPluginsPrefix(ExtensionInfo info)
+        internal static void LoadTempPluginsPrefix(ExtensionInfo info, ref bool __runOriginal)
         {
+            if (!__runOriginal)
+                return;
+            
             if (!FirstExtensionLoaded)
             {
                 HacknetChainloader.Instance.HarmonyInstance.PatchAll(typeof(ChainloaderFix));
@@ -129,13 +132,13 @@ namespace BepInEx.Hacknet
                     HacknetChainloader.Instance.Execute();
                 }
 
-                return true;
+                __runOriginal = true;
             }
             catch (Exception ex)
             {
                 HacknetChainloader.Instance.Log.LogError($"A fatal exception occured while loading extension plugins, aborting:\n{ex}");
 
-                return false;
+                __runOriginal = false;
             }
         }
 
@@ -145,7 +148,7 @@ namespace BepInEx.Hacknet
         
         [HarmonyILManipulator]
         [HarmonyPatch(typeof(ExtensionsMenuScreen), nameof(ExtensionsMenuScreen.DrawExtensionInfoDetail))]
-        internal static void OnBackButtonPressPostfix(ILContext il)
+        internal static void OnBackButtonPressIL(ILContext il)
         {
             ILCursor c = new ILCursor(il);
 
@@ -157,6 +160,10 @@ namespace BepInEx.Hacknet
             c.Emit(OpCodes.Ldsfld, AccessTools.Field(typeof(HacknetChainloader), nameof(HacknetChainloader.Instance)));
             c.Emit(OpCodes.Callvirt, AccessTools.Method(typeof(HacknetChainloader), nameof(HacknetChainloader.UnloadTemps)));
         }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ExtensionsMenuScreen), nameof(ExtensionsMenuScreen.ExitExtensionsScreen))]
+        private static void OnMainMenuButtonPressPrefix() => HacknetChainloader.Instance.UnloadTemps();
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(AppDomain), "get_BaseDirectory")]
