@@ -53,7 +53,8 @@ namespace PathfinderUpdater
 
             if (!IsEnabled.Value)
                 return true;
-            
+
+            AppDomain.CurrentDomain.SetupInformation.ConfigurationFile = "";
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             var client = new HttpClient();
