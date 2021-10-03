@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Hacknet;
+using BepInEx.Logging;
 using Hacknet;
 using Hacknet.Gui;
 using HarmonyLib;
@@ -48,13 +51,19 @@ namespace PathfinderUpdater
             AcceptedUpdate = Config.Bind<string>("AutoUpdater", "LatestAcceptedUpdate", "", "Used internally to keep track of whether you accepted the update or not");
             CurrentVersion = Config.Bind<string>("AutoUpdater", "CurrentVersion", HacknetChainloader.VERSION,
                 "Used internally to keep track of version.\nIf you want to skip updating to a version but keep the updater on, set this manually to the latest verison.");
-            
+
             HarmonyInstance.PatchAll(typeof(PathfinderUpdaterPlugin));
+            if (Type.GetType("Mono.Runtime") != null)
+            {
+                HarmonyInstance.Patch(
+                    AccessTools.Method(
+                        typeof(ConfigurationManager), "OpenExeConfigurationInternal"),
+                    prefix: new HarmonyMethod(AccessTools.Method(typeof(PathfinderUpdaterPlugin), nameof(FixConfig))));
+            }
 
             if (!IsEnabled.Value)
                 return true;
 
-            AppDomain.CurrentDomain.SetupInformation.ConfigurationFile = "";
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             var client = new HttpClient();
@@ -67,8 +76,9 @@ namespace PathfinderUpdater
                     .GetAsync("https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases").Result.Content
                     .ReadAsStringAsync().Result);
             }
-            catch
+            catch (Exception e)
             {
+                Log.Log(LogLevel.Error, e);
                 client.Dispose();
                 return true;
             }
@@ -118,6 +128,11 @@ namespace PathfinderUpdater
         [HarmonyPrefix]
         [HarmonyPatch(typeof(Program), nameof(Program.Main))]
         private static void WaitToPFAPI() => PFWrapper.PFAPILoaded();
+
+        private static void FixConfig(out string exePath)
+        {
+            exePath = Paths.ExecutablePath;
+        }
     }
 
     internal static class PFWrapper
