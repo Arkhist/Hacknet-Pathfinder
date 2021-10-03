@@ -179,6 +179,7 @@ namespace Pathfinder.Util.XML
 
                     if (interiors.Count > 0)
                     {
+                        element.Content = null;
                         currentElementStack.Push(element);
                         currentExecutors = interiors;
                     }
@@ -198,7 +199,8 @@ namespace Pathfinder.Util.XML
                 {
                     Name = Reader.Name,
                     Attributes = attributes,
-                    Parent = topElement
+                    Parent = topElement,
+                    Content = null
                 };
                 topElement.Children.Add(element);
                 currentElementStack.Push(element);

@@ -10,12 +10,27 @@ namespace Pathfinder.Util.XML
     {
         private static ulong freeId = 0;
         
-        public string Name;
-        public string Content;
-        public ElementInfo Parent;
-        public Dictionary<string, string> Attributes = new Dictionary<string, string>();
-        public List<ElementInfo> Children = new List<ElementInfo>();
-        public readonly ulong NodeID = freeId++;
+        public string Name { get; set; }
+        
+        private string content = null;
+        private bool processedContent = false;
+        public string Content
+        {
+            get
+            {
+                return processedContent ? content : throw new InvalidOperationException("");
+            }
+            set
+            {
+                processedContent = true;
+                content = value;
+            }
+        }
+
+        public ElementInfo Parent { get; set; }
+        public Dictionary<string, string> Attributes { get; set; } = new Dictionary<string, string>();
+        public List<ElementInfo> Children { get; set; } = new List<ElementInfo>();
+        public ulong NodeID { get; } = freeId++;
 
         public override string ToString()
         {
