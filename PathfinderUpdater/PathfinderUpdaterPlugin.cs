@@ -125,7 +125,7 @@ namespace PathfinderUpdater
         private static OptionCheckbox IncludePrerelease = new OptionCheckbox("IncludePreReleases", "Autoupdate to pre-releases", PathfinderUpdaterPlugin.EnablePreReleases.Value);
         private static PFButton AcceptVersion = new PFButton(760, 330, 120, 30, "Yes", new Color(102,255,127));
         private static PFButton DenyVersion = new PFButton(900, 330, 120, 30, "No", new Color(255,92,87));
-        private static PFButton SkipVersion = new PFButton(1040, 330, 120, 30, "Skip", new Color(255, 255, 0));
+        private static PFButton SkipVersion = new PFButton(1040, 330, 120, 30, "Skip", new Color(255, 255, 87));
         
         [MethodImpl(MethodImplOptions.NoInlining)]
         internal static void PFAPILoaded()
