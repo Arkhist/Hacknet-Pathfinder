@@ -41,6 +41,7 @@ namespace ExampleMod2
         public override bool Unload()
         {
             PatchClass2.bruhButton.Dispose();
+            PatchClass2.bruhButton = null;
             
             return base.Unload();
         }
@@ -223,6 +224,9 @@ namespace ExampleMod2
         [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.Draw))]
         public static void MainMenuTextPatch()
         {
+            if (bruhButton == null)
+                return;
+            
             GuiData.startDraw();
             bruhButton.Do();
             GuiData.endDraw();

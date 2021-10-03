@@ -42,6 +42,7 @@
         </Reference>
         <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, PublicKeyToken=null">
           <HintPath>..\libs\FNA.dll</HintPath>
+          <Private>False</Private>
         </Reference>
         <Reference Include="Hacknet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
           <HintPath>..\libs\HacknetPathfinder.exe</HintPath>
@@ -53,6 +54,7 @@
         </Reference>
         <Reference Include="SemanticVersioning, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a89bb7dc6f7a145c">
           <HintPath>..\libs\SemanticVersioning.dll</HintPath>
+          <Private>False</Private>
         </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
