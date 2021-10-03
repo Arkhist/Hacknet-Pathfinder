@@ -38,7 +38,7 @@ Make StartPathfinder.sh executable and run it.
 
 ### The game crashes before it even loads! (Windows only)
 
-If the game crashes before loading, or you see an error in the console that says `An attempt was made to load an assembly from a network location which would have caused the assembly to be sandboxed in previous versions of the .NET Framework.` on Windows, head into the BepInEx/core and BepInEx/plugins folders, open the properties for each DLL, and hit the unlock checkbox at the bottom.
+If the game crashes before loading, or you see an error in the console that says `An attempt was made to load an assembly from a network location which would have caused the assembly to be sandboxed in previous versions of the .NET Framework.` on Windows, head into the BepInEx/core and BepInEx/plugins folders, open the properties for each DLL, and hit the unblock checkbox at the bottom.
 
 As an alternative, run this command in PowerShell in the Hacknet directory `Get-ChildItem -Recurse "./BepInEx" | Unblock-File`
 
