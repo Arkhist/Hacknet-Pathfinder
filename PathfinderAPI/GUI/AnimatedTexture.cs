@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using Hacknet;
 using Hacknet.Gui;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.Util;
+using Color = Microsoft.Xna.Framework.Color;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace Pathfinder.GUI
 {
@@ -56,139 +59,46 @@ namespace Pathfinder.GUI
             spriteBatch.Draw(Frames[0], DestRect, Color.White);
         }
 
-        public static AnimatedTexture ReadFromAPNG(string filename)
+        public static AnimatedTexture ReadFromFile(string filename)
         {
             var stream = new FileStream(filename, FileMode.Open);
-            var ret = ReadFromAPNG(stream);
+            var ret = ReadFromStream(stream);
             stream.Dispose();
             return ret;
         }
         
-        public static AnimatedTexture ReadFromAPNG(Stream stream, int x = 0, int y = 0)
+        public static AnimatedTexture ReadFromStream(Stream stream)
         {
             var frameList = new List<Texture2D>();
-            using (var r = new SBAwareBinaryReader(stream, SBAwareBinaryReader.Endianess.BIG))
+
+            int width = 0;
+            int height = 0;
+            using (var image = new Bitmap(stream))
             {
-                var magic = r.ReadBytes(8);
-                if (!magic.SequenceEqual(new byte[] { 137, 80, 78, 71, 13, 10, 26, 10 }))
-                    throw new NotSupportedException("PNG magic mismatch!");
-                
-                uint width = 0;
-                // uint scanline = 0;
-                uint height = 0;
-                int bitDepth = 0;
-                byte colorType = 0;
-                Color[] colorTable = null; // required if color type == 3
-                Color[] imageBuffer = null;
-                
-                while (true)
+                width = image.Width;
+                height = image.Height;
+                for (int i = 0; i < image.GetFrameCount(FrameDimension.Time); i++)
                 {
-                    var length = r.ReadInt32();
-                    switch (r.ReadUInt32())
+                    image.SelectActiveFrame(FrameDimension.Page, i);
+                    var data = image.LockBits(new System.Drawing.Rectangle(0, 0, width, height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+                    Color[] colors = new Color[height * width];
+                    unsafe
                     {
-                        case 0x49484452: // IHDR
-                            width = r.ReadUInt32();
-                            height = r.ReadUInt32();
-                            imageBuffer = new Color[width * height];
-                            if (r.ReadByte() != 8)
-                                throw new NotSupportedException("PNG decoder only supports 8 bit color!");
-                            colorType = r.ReadByte();
-                            /*
-                            switch (colorType)
-                            {
-                                case 2: // truecolor, rgb values per pixel
-                                    scanline = width * 3 + 1;
-                                    break;
-                                case 3: // index color, index per pixel
-                                    scanline = width + 1;
-                                    break;
-                                case 6: // truecolor + alpha, rgba values per pixel
-                                    scanline = width * 4 + 1;
-                                    break;
-                            }
-                            */
-                            if (r.ReadByte() != 0) // compression method
-                                throw new NotSupportedException("PNGs compressed with anything other than Deflate are not supported!");
-                            if (r.ReadByte() != 0)
-                                throw new NotSupportedException("PNG decoder only supports filter method 0");
-                            if (r.ReadByte() != 0) // interlace method
-                                throw new NotSupportedException("PNG decoder only supports non-interlaced PNGs!");
-                            break;
-                        case 0x504C5445: // PLTE
-                            if (length % 3 != 0)
-                                throw new NotSupportedException("PLTE color table length must be divisible by 3");
-                            var entries = length / 3;
-                            colorTable = new Color[entries];
-                            for (int i = 0; i < entries; i++)
-                            {
-                                colorTable[i] = new Color(r.ReadByte(), r.ReadByte(), r.ReadByte());
-                            }
-                            break;
-                        case 0x49444154: // IDAT
-                            if (colorType == 3 && colorTable == null)
-                                throw new NotSupportedException("Color type of 3 must have PLTE chunk before first IDAT!");
-                            var dataBytes = r.ReadBytes(length);
-                            var ms = new MemoryStream(dataBytes);
-                            using (var ds = new DeflateStream(ms, CompressionMode.Decompress))
-                            {
-                                using (var dr = new SBAwareBinaryReader(ds, SBAwareBinaryReader.Endianess.BIG))
-                                {
-                                    bool hasData = true;
-                                    switch (colorType)
-                                    {
-                                        case 2: // truecolor, rgb values per pixel
-                                            for (int h = 0; h < height; h++)
-                                            {
-                                                if (r.ReadByte() != 0)
-                                                    throw new NotSupportedException("PNG decoder only supports unfiltered images");
-                                                for (int w = 0; w < width; w++)
-                                                {
-                                                    imageBuffer[h * w] = new Color(r.ReadByte(), r.ReadByte(), r.ReadByte(), r.ReadByte());
-                                                }
-                                            }
-                                            break;
-                                        case 3: // index color, index per pixel
-
-                                            break;
-                                        case 6: // truecolor + alpha, rgba values per pixel
-                                            for (int h = 0; h < height; h++)
-                                            {
-                                                if (r.ReadByte() != 0)
-                                                    throw new NotSupportedException("PNG decoder only supports unfiltered images");
-                                                for (int w = 0; w < width; w++)
-                                                {
-                                                    imageBuffer[h * w] = new Color(r.ReadByte(), r.ReadByte(), r.ReadByte(), r.ReadByte());
-                                                }
-                                            }
-                                            break;
-                                    }
-                                }
-                            }
-                            break;
-                        case 0x49454E44: // IEND
-                            var newFrame = new Texture2D(GuiData.spriteBatch.GraphicsDevice, (int)width, (int)height, false, SurfaceFormat.Color);
-                            newFrame.SetData(imageBuffer);
-                            frameList.Add(newFrame);
-                            
-                            goto exit;
-                            break;
-                        default:
-                            r.ReadBytes(length);
-                            break;
+                        Color* ptr = (Color*)data.Scan0.ToPointer();
+                        for (int arrayIndex = 0; arrayIndex < colors.Length; arrayIndex++)
+                        {
+                            Color color = *ptr++;
+                            colors[arrayIndex] = new Color(color.B, color.G, color.R, color.A);
+                        }
                     }
-
-                    r.ReadUInt32(); // CRC, dont wanna bother, and its Steam should verify on its end so the only way this could be wrong is a disk read error, and honestly i dont care enough to handle that edge case
-                    continue;
-                    
-                    exit:
-                    r.ReadUInt32(); // CRC for IEND
-                    break;
+                    image.UnlockBits(data);
+                    var frame = new Texture2D(GuiData.spriteBatch.GraphicsDevice, width, height, false, SurfaceFormat.Color);
+                    frame.SetData(colors);
+                    frameList.Add(frame);
                 }
-
-                return new AnimatedTexture(frameList, Rectangle.Empty, 30);
             }
 
-            return null;
+            return new AnimatedTexture(frameList, new Rectangle(0, 0, width, height), 30);
         }
 
         public void Dispose()

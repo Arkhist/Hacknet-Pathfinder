@@ -7,6 +7,7 @@ using Hacknet.Gui;
 using Hacknet.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Pathfinder.GUI;
 
 namespace Pathfinder.Event.Menu
 {
@@ -22,6 +23,8 @@ namespace Pathfinder.Event.Menu
         static SpriteFont defaultTitleFont;
 
         delegate void EmitDelegate(MainMenu menu, ref Rectangle rect);
+
+        private static AnimatedTexture anim = null;
 
         [HarmonyILManipulator]
         [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.DrawBackgroundAndTitle))]
@@ -71,6 +74,13 @@ namespace Pathfinder.Event.Menu
                     main.Color
                 );
                 TextItem.doFontLabel(new Vector2(sub.Destination.Location.X, sub.Destination.Location.Y), sub.Title, sub.Font, sub.Color, 600f, 26f);
+
+                if (anim == null)
+                {
+                    anim = AnimatedTexture.ReadFromFile("swirl.gif");
+                    anim.ShouldLoop = true;
+                }
+                anim.Draw(1f / 60f, GuiData.spriteBatch);
             });
 
             var firstLabel = c.MarkLabel();

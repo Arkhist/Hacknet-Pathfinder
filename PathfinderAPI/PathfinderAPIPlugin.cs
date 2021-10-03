@@ -38,13 +38,6 @@ namespace Pathfinder
             if (Environment.GetCommandLineArgs().Any(x => x.ToLower() == "-enabledebug"))
                 Command.DebugCommands.AddCommands();
 
-            
-            
-            Command.CommandManager.RegisterCommand("loadtest", (os, args) =>
-            {
-                var animated = AnimatedTexture.ReadFromAPNG("test.png");
-            });
-
             return true;
         }
     }
