@@ -8,12 +8,12 @@ using Pathfinder.Util;
 
 namespace Pathfinder
 {
-    [BepInPlugin(ModGUID, ModName, ModVer)]
+    [BepInPlugin(ModGUID, ModName, HacknetChainloader.VERSION)]
+    [BepInDependency("com.Pathfinder.Updater", BepInDependency.DependencyFlags.SoftDependency)]
     public class PathfinderAPIPlugin : HacknetPlugin
     {
         public const string ModGUID = "com.Pathfinder.API";
         public const string ModName = "PathfinderAPI";
-        public const string ModVer = "5.0.0";
 
         new internal static Harmony HarmonyInstance;
         new internal static ConfigFile Config;

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleMod", "ExampleMod\Ex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderAPI", "PathfinderAPI\PathfinderAPI.csproj", "{4DE0A4CF-EC60-46E1-AD96-BE3A0F5BE406}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderUpdater", "PathfinderUpdater\PathfinderUpdater.csproj", "{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4DE0A4CF-EC60-46E1-AD96-BE3A0F5BE406}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DE0A4CF-EC60-46E1-AD96-BE3A0F5BE406}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DE0A4CF-EC60-46E1-AD96-BE3A0F5BE406}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

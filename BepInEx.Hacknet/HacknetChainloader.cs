@@ -14,11 +14,15 @@ using Mono.Cecil;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using HN = global::Hacknet;
+using Version = SemanticVersioning.Version;
 
 namespace BepInEx.Hacknet
 {
     public class HacknetChainloader : BaseChainloader<HacknetPlugin>
     {
+        public const string VERSION = "5.0.0-beta13";
+        public static readonly Version Version = Version.Parse(VERSION);
+        
         public static HacknetChainloader Instance;
 
         internal ManualLogSource Log = Logger.CreateLogSource("HacknetChainloader");

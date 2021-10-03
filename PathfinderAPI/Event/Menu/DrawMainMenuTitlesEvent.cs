@@ -1,4 +1,5 @@
 ﻿using System;
+using BepInEx.Hacknet;
 using HarmonyLib;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
@@ -39,7 +40,7 @@ namespace Pathfinder.Event.Menu
             {
                 if (defaultTitleFont == null) defaultTitleFont = self.ScreenManager.Game.Content.Load<SpriteFont>("Kremlin");
 
-                var version = PathfinderAPIPlugin.ModVer;
+                var version = HacknetChainloader.VERSION;
                 var mainTitle = "HACKNET";
                 var subtitle = "OS"
                     + (DLC1SessionUpgrader.HasDLC1Installed ? "+Labyrinths " : " ")

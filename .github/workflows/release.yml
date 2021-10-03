@@ -38,6 +38,7 @@ jobs:
         mkdir Release/BepInEx/plugins
         mkdir Release/BepInEx/config
         copy PathfinderAPI/bin/Release/PathfinderAPI.dll Release/BepInEx/plugins/
+        copy PathfinderUpdater/bin/Release/PathfinderUpdater.dll Release/BepInEx/plugins/
         copy BepInEx.Hacknet/bin/Release/* Release/BepInEx/core/
         copy libs/BepInEx.cfg Release/BepInEx/config/BepInEx.cfg
         copy PathfinderPatcher/bin/Release/PathfinderPatcher.exe Release/PathfinderPatcher.exe
