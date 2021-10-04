@@ -220,6 +220,7 @@ namespace Pathfinder.Replacements
                 );
             }
 
+            ReplacementsCommon.isPathfinderComputer = true;
             var comp = new Computer(name, ip, location.Attributes.GetVector("x", "y", Vector2.Zero).Value, level, type, os)
             {
                 idName = info.Attributes.GetString("id"),
@@ -231,6 +232,7 @@ namespace Pathfinder.Replacements
                 portsNeededForCrack = security.Attributes.GetInt("portsToCrack"),
                 adminIP = security.Attributes.GetString("adminIP")
             };
+            ReplacementsCommon.isPathfinderComputer = false;
 
             var proxyTime = security.Attributes.GetFloat("proxyTime");
             if (proxyTime > 0)

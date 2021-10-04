@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Hacknet;
 using Hacknet.Factions;
+using HarmonyLib;
+using Microsoft.Xna.Framework;
+using Pathfinder.Port;
 using Pathfinder.Util;
 using Pathfinder.Util.XML;
 
@@ -102,6 +105,18 @@ namespace Pathfinder.Replacements
             ret.playerHasPassedValue = info.Attributes.GetBool("playerHasPassed");
 
             return ret;
+        }
+
+        internal static bool isPathfinderComputer = false;
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(Computer), MethodType.Constructor, new Type[] { typeof(string), typeof(string), typeof(Vector2), typeof(int), typeof(byte), typeof(OS) })]
+        private static void LoadDefaultPortsIfReplacement(Computer __instance)
+        {
+            if (!isPathfinderComputer)
+            {
+                PortManager.LoadPortsFromString(__instance, "ssh ftp smtp web", false);
+            }
         }
     }
 }
