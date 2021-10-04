@@ -188,7 +188,7 @@ namespace Pathfinder.Replacements
                         tag = null;
                     return new SAAddMissionToHubServer()
                     {
-                        MissionFilepath = actionInfo.Attributes.GetOrThrow("MissionFilepath", "Invalid mission file path for AddMissionToHubServer", StringExtensions.ContentFileExists),
+                        MissionFilepath = actionInfo.Attributes.GetOrWarn("MissionFilepath", "Invalid mission file path for AddMissionToHubServer", StringExtensions.ContentFileExists),
                         TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddMissionToHubServer", StringExtensions.HasContent),
                         AssignmentTag = tag,
                         StartsComplete = actionInfo.Attributes.GetBool("StartsComplete")
@@ -196,13 +196,13 @@ namespace Pathfinder.Replacements
                 case "RemoveMissionFromHubServer":
                     return new SARemoveMissionFromHubServer()
                     {
-                        MissionFilepath = actionInfo.Attributes.GetOrThrow("MissionFilepath", "Invalid mission file path for RemoveMissionFromHubServer", StringExtensions.ContentFileExists),
+                        MissionFilepath = actionInfo.Attributes.GetOrWarn("MissionFilepath", "Invalid mission file path for RemoveMissionFromHubServer", StringExtensions.ContentFileExists),
                         TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for RemoveMissionFromHubServer", StringExtensions.HasContent)
                     };
                 case "AddThreadToMissionBoard":
                     return new SAAddThreadToMissionBoard()
                     {
-                        ThreadFilepath = actionInfo.Attributes.GetOrThrow("ThreadFilepath", "Invalid thread path for AddThreadToMissionBoard", StringExtensions.ContentFileExists),
+                        ThreadFilepath = actionInfo.Attributes.GetOrWarn("ThreadFilepath", "Invalid thread path for AddThreadToMissionBoard", StringExtensions.ContentFileExists),
                         TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddThreadToMissionBoard", StringExtensions.HasContent)
                     };
                 case "AddIRCMessage":
@@ -216,7 +216,7 @@ namespace Pathfinder.Replacements
                 case "AddConditionalActions":
                     return new SAAddConditionalActions()
                     {
-                        Filepath = actionInfo.Attributes.GetOrThrow("Filepath", "Invalid actions path for AddConditionalActions", StringExtensions.ContentFileExists),
+                        Filepath = actionInfo.Attributes.GetOrWarn("Filepath", "Invalid actions path for AddConditionalActions", StringExtensions.ContentFileExists),
                         Delay = actionInfo.Attributes.GetFloat("Delay"),
                         DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                     };

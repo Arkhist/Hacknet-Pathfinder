@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BepInEx.Logging;
 using Hacknet;
 using Microsoft.Xna.Framework;
 
@@ -37,6 +38,23 @@ namespace Pathfinder.Util
             }
             
             throw new KeyNotFoundException(exMessage);
+        }
+
+        public static string GetOrWarn<Key>(this Dictionary<Key, string> dict, Key key, string warnMessage,
+            Predicate<string> validator = null)
+        {
+            if (dict.TryGetValue(key, out var ret))
+            {
+                if (validator != null && !validator(ret))
+                {
+                    Logger.Log(LogLevel.Warning, warnMessage);
+                    return "";
+                }
+                return ret;
+            }
+
+            Logger.Log(LogLevel.Warning, $"Key not found: {warnMessage}");
+            return "";
         }
 
         public static TValue GetOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key) =>
