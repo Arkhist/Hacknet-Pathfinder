@@ -852,6 +852,18 @@ namespace Pathfinder.Replacements
             });
         }
 
+        private static bool isComputerLoader = false;
+        
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(Computer), MethodType.Constructor, new Type[] { typeof(string), typeof(string), typeof(Vector2), typeof(int), typeof(byte), typeof(OS) })]
+        private static void LoadDefaultPortsIfNotComptuterLoader(Computer __instance)
+        {
+            if (!isComputerLoader)
+            {
+                PortManager.LoadPortsFromString(__instance, "ssh ftp smtp web", false);
+            }
+        }
+
         public static Computer LoadComputer(string filename, bool preventAddingToNetmap = false, bool preventInitDaemons = false)
         {
             filename = LocalizedFileLoader.GetLocalizedFilepath(filename);
@@ -877,10 +889,13 @@ namespace Pathfinder.Replacements
                 });
             }
 
+            isComputerLoader = true;
             if (!executor.TryParse(out var ex))
             {
+                isComputerLoader = false;
                 throw new FormatException($"{filename}: {ex.Message}", ex);
             }
+            isComputerLoader = false;
 
             if (!ComputerExtensions.HasInitializedPorts(comp))
             {
