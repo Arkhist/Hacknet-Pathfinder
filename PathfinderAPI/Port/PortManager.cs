@@ -88,7 +88,17 @@ namespace Pathfinder.Port
                 {
                     if (!int.TryParse(portParts[1], out var portNum))
                         throw new FormatException($"Unable to parse port number for protocol '{portParts[0]}'");
-                    comp.AddPort(new PortData(portParts[0], portNum, portParts[2].Replace('_', ' ')));
+                    var data = GetPortDataFromProtocol(portParts[0])?.Clone();
+                    if (data != null)
+                    {
+                        data.Port = portNum;
+                        data.DisplayName = portParts[2].Replace('_', ' ');
+                        comp.AddPort(data);
+                    }
+                    else
+                    {
+                        comp.AddPort(new PortData(portParts[0], portNum, portParts[2].Replace('_', ' ')));
+                    }
                 }
                 else
                 {
