@@ -122,6 +122,8 @@ namespace PathfinderUpdater
             archive.Dispose();
             client.Dispose();
 
+            CurrentVersion.Value = tag.ToString();
+
             return true;
         }
 
