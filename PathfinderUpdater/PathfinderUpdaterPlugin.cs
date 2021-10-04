@@ -172,7 +172,9 @@ namespace PathfinderUpdater
             if (AcceptVersion.Do())
             {
                 PathfinderUpdaterPlugin.AcceptedUpdate.Value = PathfinderUpdaterPlugin.VersionToRequest.ToString();
-                Environment.Exit(0);
+                MusicManager.stop();
+                Game1.threadsExiting = true;
+                Game1.getSingleton().Exit();
             }
             else if (DenyVersion.Do())
             {

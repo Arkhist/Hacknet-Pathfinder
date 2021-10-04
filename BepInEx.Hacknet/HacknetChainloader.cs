@@ -20,7 +20,7 @@ namespace BepInEx.Hacknet
 {
     public class HacknetChainloader : BaseChainloader<HacknetPlugin>
     {
-        public const string VERSION = "5.0.1";
+        public const string VERSION = "5.0.2-pre";
         public static readonly Version Version = Version.Parse(VERSION);
         
         public static HacknetChainloader Instance;
