@@ -250,6 +250,7 @@ namespace Pathfinder.Port
             return false;
         }
 
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(Computer), nameof(Computer.GetDisplayPortNumberFromCodePort))]
         private static bool CodeToDisplayPrefix(Computer __instance, int codePort, out int __result)
         {
