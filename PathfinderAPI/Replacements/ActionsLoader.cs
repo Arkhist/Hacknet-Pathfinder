@@ -251,8 +251,8 @@ namespace Pathfinder.Replacements
                     return new SALaunchHackScript()
                     {
                         Filepath = actionInfo.Attributes.GetOrThrow("Filepath", "Invalid hackerscript path for LaunchHackScript", StringExtensions.ContentFileExists),
-                        TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target comp for LaunchHackScript", StringExtensions.HasContent),
-                        SourceComp = actionInfo.Attributes.GetOrThrow("SourceComp", "Invalid source computer for LaunchHackScript", StringExtensions.HasContent),
+                        TargetComp = actionInfo.Attributes.GetString("TargetComp", null),
+                        SourceComp = actionInfo.Attributes.GetString("SourceComp", null),
                         RequireSourceIntact = actionInfo.Attributes.GetBool("RequireSourceIntact"),
                         RequireLogsOnSource = actionInfo.Attributes.GetBool("RequireLogsOnSource"),
                         Delay = actionInfo.Attributes.GetFloat("Delay"),
