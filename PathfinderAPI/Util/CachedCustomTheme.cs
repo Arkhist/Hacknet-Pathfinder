@@ -66,19 +66,18 @@ namespace Pathfinder.Util
                 {
                     if (imagePath.Content.HasContent())
                     {
-                        // If there is no background image, exit early and set Loaded (also print warning).
-                        if (!imagePath.Content.ContentFileExists())
+                        if (imagePath.Content.ContentFileExists())
+                        {
+                            using (FileStream imageSteam = File.OpenRead(imagePath.Content.ContentFilePath()))
+                            {
+                                BackgroundImage = Texture2D.FromStream(GuiData.spriteBatch.GraphicsDevice, imageSteam);
+                            }
+                        }
+                        else
                         {
                             Logger.Log(BepInEx.Logging.LogLevel.Warning, "Could not find theme background image " + imagePath.Content + " for theme " + Path);
-                            Loaded = true;
-                            return;
                         }
 
-                        // Else, load the background image as normal.
-                        using (FileStream imageSteam = File.OpenRead(imagePath.Content.ContentFilePath()))
-                        {
-                            BackgroundImage = Texture2D.FromStream(GuiData.spriteBatch.GraphicsDevice, imageSteam);
-                        }
                         Loaded = true;
                     }
                 }
