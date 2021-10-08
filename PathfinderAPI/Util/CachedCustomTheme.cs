@@ -64,14 +64,16 @@ namespace Pathfinder.Util
             {
                 if (ThemeInfo.Children.TryGetElement("backgroundImagePath", out var imagePath))
                 {
-                    if (imagePath.Content.HasContent() && imagePath.Content.ContentFileExists())
+                    if (imagePath.Content.HasContent())
                     {
-                        using (FileStream imageSteam = File.OpenRead(imagePath.Content.ContentFilePath()))
-                        {
-                            BackgroundImage = Texture2D.FromStream(GuiData.spriteBatch.GraphicsDevice, imageSteam);
-                        }
-
                         Loaded = true;
+                        if (imagePath.Content.ContentFileExists())
+                        {
+                            using (FileStream imageSteam = File.OpenRead(imagePath.Content.ContentFilePath()))
+                            {
+                                BackgroundImage = Texture2D.FromStream(GuiData.spriteBatch.GraphicsDevice, imageSteam);
+                            }
+                        }
                     }
                 }
             }
