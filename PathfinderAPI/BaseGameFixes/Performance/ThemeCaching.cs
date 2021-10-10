@@ -6,6 +6,7 @@ using Hacknet;
 using Hacknet.Effects;
 using Hacknet.Extensions;
 using HarmonyLib;
+using Microsoft.Xna.Framework;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
@@ -218,6 +219,35 @@ namespace Pathfinder.BaseGameFixes.Performance
                 return false;
             });
             c.Emit(OpCodes.Brfalse, afterThemeSwap);
+        }
+
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(ThemeManager), nameof(ThemeManager.drawBackgroundImage))]
+        internal static void FixDrawHexGridBackground(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            // LastLoadedCustomTheme is null now
+            c.GotoNext(MoveType.Before,
+                x => x.MatchLdsfld(AccessTools.Field(typeof(ThemeManager), nameof(ThemeManager.LastLoadedCustomTheme))),
+                x => x.MatchLdfld(AccessTools.Field(typeof(CustomTheme), nameof(CustomTheme.moduleColorBacking)))
+            );
+            c.RemoveRange(2);
+
+            // Replicating base game behavior of loading these colors from LastLoadedCustomTheme instead of from OS
+            c.EmitDelegate<Func<Color>>(() =>
+                Utils.convertStringToColor(CachedThemes?.BackingListHead?.Value?.ThemeInfo?.Children?.Find(x => x.Name == "moduleColorBacking")?.Content)
+            );
+
+            c.GotoNext(MoveType.Before,
+                x => x.MatchLdsfld(AccessTools.Field(typeof(ThemeManager), nameof(ThemeManager.LastLoadedCustomTheme))),
+                x => x.MatchLdfld(AccessTools.Field(typeof(CustomTheme), nameof(CustomTheme.moduleColorStrong)))
+            );
+            c.RemoveRange(2);
+
+            c.EmitDelegate<Func<Color>>(() =>
+                Utils.convertStringToColor(CachedThemes?.BackingListHead?.Value?.ThemeInfo?.Children?.Find(x => x.Name == "moduleColorStrong")?.Content)
+            );
         }
     }
 }
