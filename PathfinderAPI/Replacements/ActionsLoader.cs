@@ -162,10 +162,10 @@ namespace Pathfinder.Replacements
             switch (actionInfo.Name)
             {
                 case "LoadMission":
-                    return new SALoadMission()
+                    return DelayAction.Create(actionInfo, new SALoadMission()
                     {
                         MissionName = actionInfo.Attributes.GetOrThrow("MissionName", "Invalid mission for LoadMission action", StringExtensions.ContentFileExists)
-                    };
+                    });
                 case "RunFunction":
                     return new SARunFunction()
                     {
@@ -175,36 +175,36 @@ namespace Pathfinder.Replacements
                         DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                     };
                 case "AddAsset":
-                    return new SAAddAsset()
+                    return DelayAction.Create(actionInfo, new SAAddAsset()
                     {
                         TargetComp = actionInfo.Attributes.GetString("TargetComp", null),
                         TargetFolderpath = actionInfo.Attributes.GetString("TargetFolderpath", null),
                         FileName = actionInfo.Attributes.GetString("FileName", null),
                         FileContents = actionInfo.Attributes.GetString("FileContents", null)
-                    };
+                    });
                 case "AddMissionToHubServer":
                     var tag = actionInfo.Attributes.GetString("AssignmentTag");
                     if (string.IsNullOrWhiteSpace(tag))
                         tag = null;
-                    return new SAAddMissionToHubServer()
+                    return DelayAction.Create(actionInfo, new SAAddMissionToHubServer()
                     {
                         MissionFilepath = actionInfo.Attributes.GetOrWarn("MissionFilepath", "Invalid mission file path for AddMissionToHubServer", StringExtensions.ContentFileExists),
                         TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddMissionToHubServer", StringExtensions.HasContent),
                         AssignmentTag = tag,
                         StartsComplete = actionInfo.Attributes.GetBool("StartsComplete")
-                    };
+                    });
                 case "RemoveMissionFromHubServer":
-                    return new SARemoveMissionFromHubServer()
+                    return DelayAction.Create(actionInfo, new SARemoveMissionFromHubServer()
                     {
                         MissionFilepath = actionInfo.Attributes.GetOrWarn("MissionFilepath", "Invalid mission file path for RemoveMissionFromHubServer", StringExtensions.ContentFileExists),
                         TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for RemoveMissionFromHubServer", StringExtensions.HasContent)
-                    };
+                    });
                 case "AddThreadToMissionBoard":
-                    return new SAAddThreadToMissionBoard()
+                    return DelayAction.Create(actionInfo, new SAAddThreadToMissionBoard()
                     {
                         ThreadFilepath = actionInfo.Attributes.GetOrWarn("ThreadFilepath", "Invalid thread path for AddThreadToMissionBoard", StringExtensions.ContentFileExists),
                         TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddThreadToMissionBoard", StringExtensions.HasContent)
-                    };
+                    });
                 case "AddIRCMessage":
                     return new SAAddIRCMessage()
                     {
@@ -221,7 +221,7 @@ namespace Pathfinder.Replacements
                         DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                     };
                 case "CopyAsset":
-                    return new SACopyAsset()
+                    return DelayAction.Create(actionInfo, new SACopyAsset()
                     {
                         SourceComp = actionInfo.Attributes.GetOrThrow("SourceComp", "Invalid source computer for CopyAsset", StringExtensions.HasContent),
                         SourceFilePath = actionInfo.Attributes.GetOrThrow("SourceFilePath", "Source file path is required for CopyAsset"),
@@ -229,7 +229,7 @@ namespace Pathfinder.Replacements
                         DestComp = actionInfo.Attributes.GetOrThrow("DestComp", "Invalid dest computer for CopyAsset", StringExtensions.HasContent),
                         DestFilePath = actionInfo.Attributes.GetOrThrow("DestFilePath", "Invalid dest file path for CopyAsset", StringExtensions.HasContent),
                         DestFileName = actionInfo.Attributes.GetString("DestFileName", actionInfo.Attributes.GetString("SourceFileName"))
-                    };
+                    });
                 case "CrashComputer":
                     return new SACrashComputer()
                     {

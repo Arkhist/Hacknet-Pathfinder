@@ -142,6 +142,7 @@
     <Compile Include="Util\XML\ElementInfo.cs" />
     <Compile Include="Util\XML\EventExecutor.cs" />
     <Compile Include="Util\XML\EventReader.cs" />
+    <Compile Include="Action\DelayAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BepInEx.Hacknet\BepInEx.Hacknet.csproj">
