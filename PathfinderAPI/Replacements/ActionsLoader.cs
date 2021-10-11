@@ -162,7 +162,7 @@ namespace Pathfinder.Replacements
             switch (actionInfo.Name)
             {
                 case "LoadMission":
-                    return DelayAction.Create(actionInfo, new SALoadMission()
+                    return ActionDelayDecorator.Create(actionInfo, new SALoadMission()
                     {
                         MissionName = actionInfo.Attributes.GetOrThrow("MissionName", "Invalid mission for LoadMission action", StringExtensions.ContentFileExists)
                     });
@@ -175,7 +175,7 @@ namespace Pathfinder.Replacements
                         DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                     };
                 case "AddAsset":
-                    return DelayAction.Create(actionInfo, new SAAddAsset()
+                    return ActionDelayDecorator.Create(actionInfo, new SAAddAsset()
                     {
                         TargetComp = actionInfo.Attributes.GetString("TargetComp", null),
                         TargetFolderpath = actionInfo.Attributes.GetString("TargetFolderpath", null),
@@ -186,7 +186,7 @@ namespace Pathfinder.Replacements
                     var tag = actionInfo.Attributes.GetString("AssignmentTag");
                     if (string.IsNullOrWhiteSpace(tag))
                         tag = null;
-                    return DelayAction.Create(actionInfo, new SAAddMissionToHubServer()
+                    return ActionDelayDecorator.Create(actionInfo, new SAAddMissionToHubServer()
                     {
                         MissionFilepath = actionInfo.Attributes.GetOrWarn("MissionFilepath", "Invalid mission file path for AddMissionToHubServer", StringExtensions.ContentFileExists),
                         TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddMissionToHubServer", StringExtensions.HasContent),
@@ -194,13 +194,13 @@ namespace Pathfinder.Replacements
                         StartsComplete = actionInfo.Attributes.GetBool("StartsComplete")
                     });
                 case "RemoveMissionFromHubServer":
-                    return DelayAction.Create(actionInfo, new SARemoveMissionFromHubServer()
+                    return ActionDelayDecorator.Create(actionInfo, new SARemoveMissionFromHubServer()
                     {
                         MissionFilepath = actionInfo.Attributes.GetOrWarn("MissionFilepath", "Invalid mission file path for RemoveMissionFromHubServer", StringExtensions.ContentFileExists),
                         TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for RemoveMissionFromHubServer", StringExtensions.HasContent)
                     });
                 case "AddThreadToMissionBoard":
-                    return DelayAction.Create(actionInfo, new SAAddThreadToMissionBoard()
+                    return ActionDelayDecorator.Create(actionInfo, new SAAddThreadToMissionBoard()
                     {
                         ThreadFilepath = actionInfo.Attributes.GetOrWarn("ThreadFilepath", "Invalid thread path for AddThreadToMissionBoard", StringExtensions.ContentFileExists),
                         TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddThreadToMissionBoard", StringExtensions.HasContent)
@@ -221,7 +221,7 @@ namespace Pathfinder.Replacements
                         DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                     };
                 case "CopyAsset":
-                    return DelayAction.Create(actionInfo, new SACopyAsset()
+                    return ActionDelayDecorator.Create(actionInfo, new SACopyAsset()
                     {
                         SourceComp = actionInfo.Attributes.GetOrThrow("SourceComp", "Invalid source computer for CopyAsset", StringExtensions.HasContent),
                         SourceFilePath = actionInfo.Attributes.GetOrThrow("SourceFilePath", "Source file path is required for CopyAsset"),
