@@ -27,7 +27,10 @@
       SourceFiles="$(HacknetDir)HacknetPathfinder.exe"
       DestinationFiles="$(HacknetDir)HacknetPathfinder.exe.temp"
     />
-    <Exec Command="mono $(PatcherBinDir)PathfinderPatcher.exe" WorkingDirectory="$(HacknetDir)" />
+    <Exec Condition="$(OS) == 'Windows_NT' "
+      Command="$(PatcherBinDir)PathfinderPatcher.exe" WorkingDirectory="$(HacknetDir)" />
+    <Exec Condition="$(OS) == 'Unix' "
+      Command="mono $(PatcherBinDir)PathfinderPatcher.exe" WorkingDirectory="$(HacknetDir)" />
     <Move
       SourceFiles="$(HacknetDir)HacknetPathfinder.exe"
       DestinationFiles="$(LibsDir)HacknetPathfinder.exe"
