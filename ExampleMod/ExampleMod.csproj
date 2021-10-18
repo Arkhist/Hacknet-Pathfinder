@@ -1,30 +1,76 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
-    <LangVersion>latest</LangVersion>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0">
+
+    <PropertyGroup Label="GetSteamLibraryDir" Condition=" '$(SteamLibraryDir)' == '' ">
+        <SteamLibraryDir Condition=" $([MSBuild]::IsOSPlatform('Windows'))">
+            C:\Program Files (x86)\Steam\steamapps\common\
+        </SteamLibraryDir>
+        <SteamLibraryDir Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+            <!-- Not supported currently -->
+        </SteamLibraryDir>
+        <SteamLibraryDir Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+            $(Home)/.local/share/Steam/steamapps/common/
+        </SteamLibraryDir>
+        <SteamLibraryDir>$(SteamLibraryDir.Trim())</SteamLibraryDir>
+    </PropertyGroup>
+
+    <PropertyGroup Label="GetHacknetDir" Condition=" '$(HacknetDir)' == '' ">
+        <HacknetDir Condition=" $([MSBuild]::IsOSPlatform('Windows'))">
+            $(SteamLibraryDir)Hacknet\
+        </HacknetDir>
+        <HacknetDir Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+            $(SteamLibraryDir)Hacknet/
+        </HacknetDir>
+        <HacknetDir Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+            $(SteamLibraryDir)Hacknet/
+        </HacknetDir>
+        <HacknetDir>$(HacknetDir.Trim())</HacknetDir>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Build">
+        <TargetFramework>net45</TargetFramework>
+        <TargetFrameworkProfile />
+        <LangVersion>8</LangVersion>
+        <AssemblySearchPaths>
+        $(AssemblySearchPaths);
+        ../libs/;
+        $(HacknetDir);
+        </AssemblySearchPaths>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DebugType>pdbonly</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Package">
+        <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+        <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+        <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+        <Version>5.0.0.0</Version>
+        <Copyright>Copyright ©  2021</Copyright>
+    </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Private="false" Include="..\BepInEx.Hacknet\BepInEx.Hacknet.csproj" />
-    <ProjectReference Private="false" Include="..\PathfinderAPI\PathfinderAPI.csproj" />
+    <Reference Include="0Harmony, Version=2.5.5.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="BepInEx.Core, Version=6.0.0.423, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="Hacknet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Private="False">
+      <HintPath>../libs/HacknetPathfinder.exe</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.5.5.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\0Harmony.dll</HintPath>
+    <ProjectReference Include="..\BepInEx.Hacknet\BepInEx.Hacknet.csproj">
+      <Project>{64faeda5-e87c-47ed-8200-e1de1f263040}</Project>
+      <Name>BepInEx.Hacknet</Name>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="BepInEx.Core, Version=6.0.0.423, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\BepInEx.Core.dll</HintPath>
+    </ProjectReference>
+    <ProjectReference Include="..\PathfinderAPI\PathfinderAPI.csproj">
+      <Project>{4de0a4cf-ec60-46e1-ad96-be3a0f5be406}</Project>
+      <Name>PathfinderAPI</Name>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\FNA.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Hacknet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\HacknetPathfinder.exe</HintPath>
-      <Private>False</Private>
-    </Reference>
+    </ProjectReference>
   </ItemGroup>
 </Project>

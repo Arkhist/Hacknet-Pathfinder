@@ -1,17 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
+﻿<Project ToolsVersion="16.0">
+
+  <PropertyGroup Label="Build">
     <OutputType>Exe</OutputType>
-    <TargetFramework>net472</TargetFramework>
-    <LangVersion>latest</LangVersion>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <Import Project="..\Configurations.props" />
+
   <ItemGroup>
-    <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
-      <HintPath>..\libs\Mono.Cecil.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0">
+
+  <PropertyGroup Label="GetSteamLibraryDir" Condition=" '$(SteamLibraryDir)' == '' ">
+    <SteamLibraryDir Condition=" $([MSBuild]::IsOSPlatform('Windows'))">
+      C:\Program Files (x86)\Steam\steamapps\common\
+    </SteamLibraryDir>
+    <SteamLibraryDir Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+      <!-- Not supported currently -->
+    </SteamLibraryDir>
+    <SteamLibraryDir Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+      $(Home)/.local/share/Steam/steamapps/common/
+    </SteamLibraryDir>
+    <SteamLibraryDir>$(SteamLibraryDir.Trim())</SteamLibraryDir>
+  </PropertyGroup>
+
+  <PropertyGroup Label="GetHacknetDir" Condition=" '$(HacknetDir)' == '' ">
+    <HacknetDir Condition=" $([MSBuild]::IsOSPlatform('Windows'))">
+      $(SteamLibraryDir)Hacknet\
+    </HacknetDir>
+    <HacknetDir Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+      $(SteamLibraryDir)Hacknet/
+    </HacknetDir>
+    <HacknetDir Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+      $(SteamLibraryDir)Hacknet/
+    </HacknetDir>
+    <HacknetDir>$(HacknetDir.Trim())</HacknetDir>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Build">
+    <TargetFramework>net472</TargetFramework>
+    <TargetFrameworkProfile />
+    <LangVersion>10</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <PathfinderSolutionDir>$(MSBuildThisFileDirectory)</PathfinderSolutionDir>
+    <LibsDir>$(PathfinderSolutionDir)libs/</LibsDir>
+    <PatcherDir>$(PathfinderSolutionDir)PathfinderPatcher/</PatcherDir>
+    <PatcherBinDir>$(PatcherDir)bin/$(Configuration)/$(TargetFramework)/</PatcherBinDir>
+    <AssemblySearchPaths>
+    $(AssemblySearchPaths);
+    $(LibsDir);
+    $(HacknetDir);
+    </AssemblySearchPaths>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package">
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <Version>5.0.0.0</Version>
+    <Copyright>Copyright ©  2021</Copyright>
+  </PropertyGroup>
+
+</Project>
