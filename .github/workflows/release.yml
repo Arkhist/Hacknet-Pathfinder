@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Checkout Extra Libraries
       uses: actions/checkout@v2
       with:
@@ -57,10 +57,10 @@ jobs:
       uses: actions/setup-python@v2.2.2
       with:
         python-version: '3.9'
-        
+
     - name: Install PyInstaller
       run: python -m pip install pyinstaller requests
-      
+
     - name: Build Installer EXE
       run: |
         cd PathfinderInstaller
@@ -74,4 +74,35 @@ jobs:
           Release/Pathfinder.Release.zip
           PathfinderInstaller/dist/PathfinderInstaller.exe
           PathfinderInstaller/PathfinderInstaller.py
-          
+
+  upload-linux-installer-binary:
+
+    needs: Build-Windows
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Python
+      uses: actions/setup-python@v2.2.2
+      with:
+        python-version: '3.9'
+
+    - name: Install PyInstaller
+      run: python -m pip install pyinstaller requests
+
+    - name: Build Linux Installer Binary
+      run: |
+        cd PathfinderInstaller
+        pyinstaller --onefile --noconsole PathfinderInstaller.py
+        mv ./dist/PathfinderInstaller ./dist/PathfinderInstaller.x86_64
+        chmod +x ./dist/PathfinderInstaller.x86_64
+        cd ..
+
+    - name: Upload Linux Installer Binary
+      uses: alexellis/upload-assets@0.2.2
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        asset_paths: '["./PathfinderInstaller/dist/PathfinderInstaller.x86_64"]'
+
