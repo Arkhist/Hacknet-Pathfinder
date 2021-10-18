@@ -19,7 +19,8 @@
     <Reference Include="SemanticVersioning, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a89bb7dc6f7a145c" />
   </ItemGroup>
 
-  <Target Name="PrepareForBuild" >
+  <Target Condition=" $(DisableBepInExHacknetPrepareForBuild.ToLower()) != 'true' "
+    Name="PrepareForBuild" >
     <MSBuild Projects="$(PatcherDir)PathfinderPatcher.csproj" />
     <Exec Condition="$([MSBuild]::IsOSPlatform('Linux'))"
       Command="chmod +x $(PatcherBinDir)PathfinderPatcher.exe" />
