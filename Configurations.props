@@ -38,7 +38,7 @@
     <LibsDir>$(PathfinderSolutionDir)libs/</LibsDir>
     <PatcherDir>$(PathfinderSolutionDir)PathfinderPatcher/</PatcherDir>
     <PatcherBinDir>$(PatcherDir)bin/$(Configuration)/</PatcherBinDir>
-    <BepInExTestDir>$(PathfinderSolutionDir).BepInEx/</BepInExTestDir>
+    <BepInExTestDir>$(PathfinderSolutionDir).debug/</BepInExTestDir>
     <AssemblySearchPaths>
     $(AssemblySearchPaths);
     $(LibsDir);

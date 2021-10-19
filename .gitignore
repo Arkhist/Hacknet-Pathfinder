@@ -141,4 +141,4 @@ libs/FNA.dll
 Custom.props
 
 #Plugin Testing
-.BepInEx/
+.debug/
