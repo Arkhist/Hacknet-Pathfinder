@@ -1,4 +1,4 @@
-<Project ToolsVersion="16.0" >
+﻿<Project  Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0" >
 
   <Import Project="..\Configurations.props" />
 
@@ -20,6 +20,9 @@
 
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
+
+
+  <Import Project="..\Configurations.targets" />
 
   <Target Condition=" $(DisableBepInExHacknetPrepareForBuild.ToLower()) != 'true' "
     Name="BepInExPrebuild" BeforeTargets="PrepareForBuild" >
@@ -45,4 +48,39 @@
       DestinationFiles="$(HacknetDir)HacknetPathfinder.exe"
     />
   </Target>
+
+  <ItemGroup Label="BeforeRunGameSetup">
+    <_BepInExCoreFiles Include="$(MSBuildThisFileDirectory)bin/$(Configuration)/$(TargetFramework)/*" />
+  </ItemGroup>
+
+  <Target Name="BeforeRunGame"  BeforeTargets="RunGame">
+    <MSBuild Condition="Exists('$(HacknetDir)BepInEx')" Projects ="$(MSBuildProjectFullPath)"
+      Targets="MoveFolder"
+      Properties="__src='$(HacknetDir)BepInEx';__dest='$(HacknetDir)temp'"
+    />
+    <MakeDir Condition="!Exists('$(BepInExTestDir)')" Directories="$(BepInExTestDir)" />
+    <Copy
+      SourceFiles="@(_BepInExCoreFiles)"
+      DestinationFolder="$(BepInExTestDir)core"
+      UseHardlinksIfPossible="true"
+    />
+    <MakeDir Condition="!Exists('$(BepInExTestDir)plugins')" Directories="$(BepInExTestDir)plugins" />
+
+    <MSBuild Projects ="$(MSBuildProjectFullPath)"
+      Targets="GenerateDirSymLinks"
+      Properties="__src='$(BepInExTestDir)';__dest='$(HacknetDir)BepInEx'"
+    />
+  </Target>
+
+  <Target Name="ProjectRunGameCleanup" BeforeTargets="RunGameCleanup">
+    <MSBuild Projects ="$(MSBuildProjectFullPath)"
+      Targets="RemoveDirSymLinks"
+      Properties="__src=$(HacknetDir)BepInEx"
+    />
+    <MSBuild Condition="Exists('$(HacknetDir)temp/BepInEx')" Projects ="$(MSBuildProjectFullPath)"
+      Targets="MoveFolder"
+      Properties="__src='$(HacknetDir)temp/BepInEx';__dest='$(HacknetDir)'"
+    />
+  </Target>
+
 </Project>

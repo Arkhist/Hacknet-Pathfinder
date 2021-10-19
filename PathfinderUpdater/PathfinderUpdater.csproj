@@ -1,40 +1,48 @@
-﻿<Project ToolsVersion="16.0" DefaultTargets="Build">
+﻿<Project  Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0" DefaultTargets="Build">
 
-    <Import Project="..\Configurations.props" />
+  <Import Project="..\Configurations.props" />
 
-    <ItemGroup>
-        <Reference Include="0Harmony, Version=2.5.5.0, Culture=neutral, PublicKeyToken=null" Private="False" />
-        <Reference Include="BepInEx.Core, Version=6.0.0.423, Culture=neutral, PublicKeyToken=null" Private="False" />
-        <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
-        <Reference Include="Hacknet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>$(LibsDir)HacknetPathfinder.exe</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed" Private="False" />
-        <Reference Include="SemanticVersioning, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a89bb7dc6f7a145c"  Private="False" />
-        <Reference Include="System.Configuration" />
-        <Reference Include="System.IO.Compression" />
+  <ItemGroup>
+    <Reference Include="0Harmony, Version=2.5.5.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="BepInEx.Core, Version=6.0.0.423, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="Hacknet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(LibsDir)HacknetPathfinder.exe</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed" Private="False" />
+    <Reference Include="SemanticVersioning, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a89bb7dc6f7a145c"  Private="False" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.IO.Compression" />
 
-        <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj">
-        <Project>{64faeda5-e87c-47ed-8200-e1de1f263040}</Project>
-        <Name>BepInEx.Hacknet</Name>
-        <Private>False</Private>
-      </ProjectReference>
-      <ProjectReference Include="$(PathfinderSolutionDir)PathfinderAPI\PathfinderAPI.csproj">
-        <Project>{4de0a4cf-ec60-46e1-ad96-be3a0f5be406}</Project>
-        <Name>PathfinderAPI</Name>
-        <Private>False</Private>
-      </ProjectReference>
-    </ItemGroup>
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj">
+      <Project>{64faeda5-e87c-47ed-8200-e1de1f263040}</Project>
+      <Name>BepInEx.Hacknet</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="$(PathfinderSolutionDir)PathfinderAPI\PathfinderAPI.csproj">
+      <Project>{4de0a4cf-ec60-46e1-ad96-be3a0f5be406}</Project>
+      <Name>PathfinderAPI</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+
+  <Import Project="..\Configurations.targets" />
+
+  <Target Name="BeforeRunGame" BeforeTargets="RunGame">
+    <MSBuild Projects="$(PathfinderSolutionDir)PathfinderAPI\PathfinderAPI.csproj" Targets="BeforeRunGame" />
+    <Copy
+      SourceFiles="$(MSBuildThisFileDirectory)bin/$(Configuration)/$(TargetFramework)/$(AssemblyName).dll"
+      DestinationFolder="$(BepInExTestDir)plugins"
+      UseHardlinksIfPossible="true"
+    />
+  </Target>
+
+  <Target Name="ProjectRunGameCleanup" BeforeTargets="RunGameCleanup">
+    <MSBuild Projects="$(PathfinderSolutionDir)PathfinderAPI\PathfinderAPI.csproj" Targets="ProjectRunGameCleanup" />
+  </Target>
 
 </Project>

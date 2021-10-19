@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="16.0">
+﻿<Project  Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0">
 
   <Import Project="..\Configurations.props" />
 
@@ -26,4 +26,20 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
+
+  <Import Project="..\Configurations.targets" />
+
+  <Target Name="BeforeRunGame" BeforeTargets="RunGame">
+    <MSBuild Projects="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj" Targets="BeforeRunGame" />
+    <Copy
+      SourceFiles="$(MSBuildThisFileDirectory)bin/$(Configuration)/$(TargetFramework)/$(AssemblyName).dll"
+      DestinationFolder="$(BepInExTestDir)plugins"
+      UseHardlinksIfPossible="true"
+    />
+  </Target>
+
+  <Target Name="ProjectRunGameCleanup" BeforeTargets="RunGameCleanup">
+    <MSBuild Projects="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj" Targets="ProjectRunGameCleanup" />
+  </Target>
+
 </Project>

@@ -1,0 +1,83 @@
+<Project ToolsVersion="16.0">
+
+  <ItemGroup Label="RunGameSetup">
+    <_PathfinderTempMoveFiles Include="$(HacknetDir)HacknetPathfinder.*" />
+    <_PathfinderTempMoveFiles Include="$(HacknetDir)StartPathfinder.sh" />
+    <_PathfinderTempMoveFiles Include="$(HacknetDir)Linux/intercept.so" />
+    <_PathfinderTempMoveFiles Include="$(Hacknetdir)BepInEx" />
+    <_PathfinderUnixRunFiles Include="$(PathfinderSolutionDir)Linux/StartPathfinder.sh" />
+    <_PathfinderUnixRunFiles Include="$(PathfinderSolutionDir)Linux/intercept.so" />
+    <_HacknetKickstartFiles Include="$(HacknetDir)Hacknet.bin.*" />
+  </ItemGroup>
+
+  <Target Name="GenerateSymLinks" >
+    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command="mklink '$(__src)' '$(__dest)'" />
+    <Exec Condition=" '$(OS)' == 'Unix' " Command="ln -sr '$(__src)' '$(__dest)'" />
+  </Target>
+
+  <Target Name="GenerateDirSymLinks" >
+    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command="mklink /d '$(__src)' '$(__dest)'" />
+    <Exec Condition=" '$(OS)' == 'Unix' " Command="ln -dsr '$(__src)' '$(__dest)'" />
+  </Target>
+
+  <Target Name="RemoveDirSymLinks" >
+    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command="rmdir '$(__src)'" />
+    <Exec Condition=" '$(OS)' == 'Unix' " Command="rm '$(__src)'" />
+  </Target>
+
+  <Target Name="MoveFolder" >
+    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command="move '$(__src)' '$(__dest)'" />
+    <Exec Condition=" '$(OS)' == 'Unix' " Command="mv '$(__src)' '$(__dest)'" />
+  </Target>
+
+  <Target Condition=" !Exists('$(HacknetDir)temp') and Exists('$(HacknetDir)HacknetPathfinder.exe')"
+    Name="MoveGameFilesToTemp" AfterTargets="Build">
+    <Move ContinueOnError="WarnAndContinue"
+      SourceFiles="@(_PathfinderTempMoveFiles)"
+      DestinationFolder="$(HacknetDir)temp"
+    />
+  </Target>
+
+  <Target Name="LinkBuiltFiles" DependsOnTargets="MoveGameFilesToTemp">
+    <Copy
+      SourceFiles="$(LibsDir)HacknetPathfinder.exe"
+      DestinationFolder="$(HacknetDir)"
+    />
+    <Copy Condition=" '$(OS)' == 'Unix' "
+      SourceFiles="@(_PathfinderUnixRunFiles)"
+      DestinationFolder="$(HacknetDir)"
+    />
+    <Copy Condition=" '$(OS)' == 'Unix' "
+      SourceFiles="@(_HacknetKickstartFiles)"
+      DestinationFiles="@(_HacknetKickstartFiles->Replace('Hacknet.', 'HacknetPathfinder.'))"
+    />
+    <Exec Condition=" '$(OS)' == 'Unix' " Command="chmod +x $(HacknetDir)StartPathfinder.sh"/>
+  </Target>
+
+  <!-- Conditional sanity check, prevent something stupid from breaking  -->
+  <Target Condition=" '$(AssemblyName)' != 'PathfinderPatcher'"
+    Name="RunGame" DependsOnTargets="LinkBuiltFiles">
+    <Exec ContinueOnError="WarnAndContinue" Condition=" '$(OS)' == 'Windows_NT' "
+      Command="$(HacknetDir)HacknetPathfinder.exe"
+    />
+    <Exec ContinueOnError="WarnAndContinue" Condition=" '$(OS)' == 'Unix' "
+      Command="$(HacknetDir)StartPathfinder.sh"
+    />
+  </Target>
+
+  <Target Name="RunGameCleanup" AfterTargets="RunGame">
+    <Delete Files="$(HacknetDir)HacknetPathfinder.exe" />
+    <Delete Condition=" '$(OS)' == 'Unix' "
+      Files="@(_PathfinderUnixRunFiles->Replace('$(PathfinderSolutionDir)Linux/', '$(HacknetDir)'))"
+    />
+    <Delete Condition=" '$(OS)' == 'Unix' "
+      Files="@(_HacknetKickstartFiles->Replace('Hacknet.', 'HacknetPathfinder.'))"
+    />
+    <Move Condition="Exists('$(HacknetDir)temp')" ContinueOnError="WarnAndContinue"
+      SourceFiles="@(_PathfinderTempMoveFiles->Replace('$(HacknetDir)', '$(HacknetDir)temp/'))"
+      DestinationFolder="$(HacknetDir)"
+    />
+    <RemoveDir Condition="Exists('$(HacknetDir)temp')" Directories="$(HacknetDir)temp" />
+  </Target>
+
+</Project>
