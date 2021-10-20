@@ -16,6 +16,13 @@ nav:
         - Ports: mod/ports.md
     - Pathfinder Development: 
         - Contributing: contributing.md
+    - API:
+        - Classes: /doxybook/Classes
+        - Namespaces: /doxybook/Namespaces
+        - Modules: /doxybook/Modules
+        - Files: /doxybook/Files
+        - Related Pages: /doxybook/Pages
+        - Examples: /doxybook/Examples
 theme: readthedocs
 markdown_extensions:
     - footnotes

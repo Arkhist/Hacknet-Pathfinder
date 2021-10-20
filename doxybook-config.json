@@ -1,0 +1,13 @@
+{
+    "baseUrl": "/doxybook/",
+    "indexInFolders": true,
+    "linkSuffix": "/",
+    "mainPageInRoot": true,
+    "mainPageName": "index",
+    "indexClassesName": "index",
+    "indexFilesName": "index",
+    "indexGroupsName": "index",
+    "indexNamespacesName": "index",
+    "indexRelatedPagesName": "index",
+    "indexExamplesName": "index"
+  }
