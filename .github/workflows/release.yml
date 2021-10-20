@@ -74,4 +74,22 @@ jobs:
           Release/Pathfinder.Release.zip
           PathfinderInstaller/dist/PathfinderInstaller.exe
           PathfinderInstaller/PathfinderInstaller.py
-          
+
+  deploy-latest-docs:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Generate Documentation
+        run: |
+          sudo apt-get install doxygen -y
+          doxygen
+          cd docs/html
+
+      - name: Deploy Documentation
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: master

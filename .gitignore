@@ -136,3 +136,6 @@ libs/FNA.dll
 
 #Rider files
 .idea/
+
+#Documentation
+docs/
