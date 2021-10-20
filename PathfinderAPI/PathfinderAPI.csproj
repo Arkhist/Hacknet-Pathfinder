@@ -40,6 +40,7 @@
 
   <Target Name="ProjectRunGameCleanup" BeforeTargets="RunGameCleanup">
     <MSBuild Projects="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj" Targets="ProjectRunGameCleanup" />
+    <Delete Files="$(BepInExTestDir)plugins/$(AssemblyName).dll" />
   </Target>
 
 </Project>
