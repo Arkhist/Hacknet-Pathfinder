@@ -1,5 +1,7 @@
 <Project ToolsVersion="16.0">
 
+  <UsingTask TaskName="PathfinderBuildTasks.MoveDir" AssemblyFile="PathfinderBuildTasks/tasks/PathfinderBuildTasks.dll" />
+
   <ItemGroup Label="RunGameSetup">
     <_PathfinderTempMoveFiles Include="$(HacknetDir)HacknetPathfinder.*" />
     <_PathfinderTempMoveFiles Include="$(HacknetDir)StartPathfinder.sh" />
@@ -9,26 +11,6 @@
     <_PathfinderUnixRunFiles Include="$(PathfinderSolutionDir)Linux/intercept.so" />
     <_HacknetKickstartFiles Include="$(HacknetDir)Hacknet.bin.*" />
   </ItemGroup>
-
-  <Target Name="GenerateSymLinks" >
-    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command="mklink '$(__src)' '$(__dest)'" />
-    <Exec Condition=" '$(OS)' == 'Unix' " Command="ln -sr '$(__src)' '$(__dest)'" />
-  </Target>
-
-  <Target Name="GenerateDirSymLinks" >
-    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command="mklink /d '$(__src)' '$(__dest)'" />
-    <Exec Condition=" '$(OS)' == 'Unix' " Command="ln -dsr '$(__src)' '$(__dest)'" />
-  </Target>
-
-  <Target Name="RemoveDirSymLinks" >
-    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command="rmdir '$(__src)'" />
-    <Exec Condition=" '$(OS)' == 'Unix' " Command="rm '$(__src)'" />
-  </Target>
-
-  <Target Name="MoveFolder" >
-    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command="move '$(__src)' '$(__dest)'" />
-    <Exec Condition=" '$(OS)' == 'Unix' " Command="mv '$(__src)' '$(__dest)'" />
-  </Target>
 
   <Target Condition=" !Exists('$(HacknetDir)temp') and Exists('$(HacknetDir)HacknetPathfinder.exe')"
     Name="MoveGameFilesToTemp" AfterTargets="Build">

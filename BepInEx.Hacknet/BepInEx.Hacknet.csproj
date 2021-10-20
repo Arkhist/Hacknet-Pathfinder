@@ -54,9 +54,9 @@
   </ItemGroup>
 
   <Target Name="BeforeRunGame"  BeforeTargets="RunGame">
-    <MSBuild Condition="Exists('$(HacknetDir)BepInEx')" Projects ="$(MSBuildProjectFullPath)"
-      Targets="MoveFolder"
-      Properties="__src='$(HacknetDir)BepInEx';__dest='$(HacknetDir)temp'"
+    <MoveDir Condition="Exists('$(HacknetDir)BepInEx')"
+      SourceDirectories="$(HacknetDir)BepInEx"
+      DestinationFolder="$(HacknetDir)temp"
     />
     <MakeDir Condition="!Exists('$(BepInExTestDir)')" Directories="$(BepInExTestDir)" />
     <Copy
@@ -66,20 +66,14 @@
     />
     <MakeDir Condition="!Exists('$(BepInExTestDir)plugins')" Directories="$(BepInExTestDir)plugins" />
 
-    <MSBuild Projects ="$(MSBuildProjectFullPath)"
-      Targets="GenerateDirSymLinks"
-      Properties="__src='$(BepInExTestDir)';__dest='$(HacknetDir)BepInEx'"
-    />
+    <MoveDir SourceDirectories="$(BepInExTestDir)" DestinationDirectories="$(HacknetDir)BepInEx" UseSymlinkOrJunction="true" />
   </Target>
 
   <Target Name="ProjectRunGameCleanup" BeforeTargets="RunGameCleanup">
-    <MSBuild Projects ="$(MSBuildProjectFullPath)"
-      Targets="RemoveDirSymLinks"
-      Properties="__src=$(HacknetDir)BepInEx"
-    />
-    <MSBuild Condition="Exists('$(HacknetDir)temp/BepInEx')" Projects ="$(MSBuildProjectFullPath)"
-      Targets="MoveFolder"
-      Properties="__src='$(HacknetDir)temp/BepInEx';__dest='$(HacknetDir)'"
+    <RemoveDir Directories="$(HacknetDir)BepInEx" />
+    <MoveDir Condition="Exists('$(HacknetDir)temp/BepInEx')"
+      SourceDirectories="$(HacknetDir)temp/BepInEx"
+      DestinationFolder="$(HacknetDir)"
     />
   </Target>
 
