@@ -20,8 +20,10 @@
   </ItemGroup>
 
   <Target Condition=" $(DisableBepInExHacknetPrepareForBuild.ToLower()) != 'true' "
-    Name="PrepareForBuild" >
-    <MSBuild Projects="$(PatcherDir)PathfinderPatcher.csproj" />
+    Name="BepInExPrebuild" BeforeTargets="PrepareForBuild" >
+    <MSBuild Projects="$(PatcherDir)PathfinderPatcher.csproj"
+      Properties="Configuration=$(Configuration)"
+    />
     <Exec Condition="$([MSBuild]::IsOSPlatform('Linux'))"
       Command="chmod +x $(PatcherBinDir)PathfinderPatcher.exe" />
     <Move Condition="Exists('$(HacknetDir)HacknetPathfinder.exe')"
