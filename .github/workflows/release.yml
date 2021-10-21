@@ -119,7 +119,7 @@ jobs:
         run: |
           doxybook2 \
             --input ./docs/doxygen/xml
-            --output ./docs/doxybook/mkdocs
+            --output ./docs/mkdocs/doxybook
             --config ./docs/doxybook-config.json
           cd ./docs
           mkdocs build
