@@ -16,6 +16,7 @@ namespace BepInEx.Hacknet
             AppDomain.CurrentDomain.AssemblyResolve += ResolveBepAssembly;
             if (Type.GetType("Mono.Runtime") != null)
                 AppDomain.CurrentDomain.AssemblyResolve += ResolveGACAssembly;
+            AppDomain.CurrentDomain.AssemblyResolve += ResolveRenamedAssembly;
 
             Environment.SetEnvironmentVariable("MONOMOD_DMD_TYPE", "dynamicmethod");
 
@@ -54,6 +55,23 @@ namespace BepInEx.Hacknet
                 }
                 catch {}
             }
+
+            return null;
+        }
+
+        public static Assembly ResolveRenamedAssembly(object sender, ResolveEventArgs args)
+        {
+            HacknetChainloader.Instance.Log.LogInfo("ResolveRenamedAssembly : Attempting resolve");
+            HacknetChainloader.Instance.Log.LogInfo("ResolveRenamedAssembly : args.Name = " + args.Name);
+
+            var asmName = new AssemblyName(args.Name);
+
+            HacknetChainloader.Instance.Log.LogInfo("ResolveRenamedAssembly : asmName.Name " + asmName.Name);
+
+            if (ChainloaderFix.Remaps.TryGetValue(asmName.Name, out Assembly ret))
+                return ret;
+
+            HacknetChainloader.Instance.Log.LogInfo("ResolveRenamedAssembly : Could not find assembly.");
 
             return null;
         }

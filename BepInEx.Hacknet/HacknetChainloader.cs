@@ -93,7 +93,10 @@ namespace BepInEx.Hacknet
                 Log.LogMessage($"Unloaded {temp}");
             }
             TemporaryPluginGUIDs.Clear();
-            
+            ChainloaderFix.Remaps.Clear();
+
+            Log.LogInfo("UnloadTemps : Assembly remaps cleared.");
+
             Log.LogMessage("Finished unloading extension plugins");
         }
     }
@@ -177,6 +180,8 @@ namespace BepInEx.Hacknet
     [HarmonyPatch]
     internal static class ChainloaderFix
     {
+        internal static Dictionary<string, Assembly> Remaps = new Dictionary<string, Assembly>();
+
         [HarmonyILManipulator]
         [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "Execute")]
         internal static void PluginCecilHacks(ILContext il)
@@ -191,19 +196,29 @@ namespace BepInEx.Hacknet
             c.EmitDelegate<Func<string, Assembly>>(path =>
             {
                 byte[] asmBytes;
+                string name;
 
                 using (var asm = AssemblyDefinition.ReadAssembly(path))
                 {
+                    name = asm.Name.Name;
                     asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
+
+                    HacknetChainloader.Instance.Log.LogInfo("PluginCecilHacks : Added remap " + name + " -> " + asm.Name.Name);
 
                     using (var ms = new MemoryStream())
                     {
                         asm.Write(ms);
                         asmBytes = ms.ToArray();
                     }
+
                 }
 
-                return Assembly.Load(asmBytes);
+                var loaded = Assembly.Load(asmBytes);
+                Remaps[name] = loaded;
+
+                HacknetChainloader.Instance.Log.LogInfo("PluginCecilHacks : Assembly loaded from bytes.");
+
+                return loaded;
             });
         }
     }
