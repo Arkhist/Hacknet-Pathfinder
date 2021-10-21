@@ -306,7 +306,7 @@ namespace Pathfinder.Replacements
                         {
                             if (s != "mail" && !DLC1SessionUpgrader.HasDLC1Installed)
                                 return false;
-                            if (s != "mail" && s != "board" && s != "irc")
+                            if (s != "mail" && s != "board" && s != "irc" && s != "irchub")
                                 return false;
                             return true;
                         }),
