@@ -884,17 +884,17 @@ namespace Pathfinder.Replacements
                 throw new FormatException($"{filename}: {ex.Message}", ex);
             }
             ReplacementsCommon.isPathfinderComputer = false;
-
-            if (!ComputerExtensions.HasInitializedPorts(comp))
-            {
-                PortManager.LoadPortsFromString(comp, "ssh ftp smtp web", false);
-            }
             
             var ret = comp;
             comp = null;
             
             if (ret == null)
                 return null;
+
+            if (!ComputerExtensions.HasInitializedPorts(ret))
+            {
+                PortManager.LoadPortsFromString(ret, "ssh ftp smtp web", false);
+            }
 
             if (!preventInitDaemons)
                 ret.initDaemons();
