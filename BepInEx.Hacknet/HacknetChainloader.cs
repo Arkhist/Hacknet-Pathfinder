@@ -95,8 +95,6 @@ namespace BepInEx.Hacknet
             TemporaryPluginGUIDs.Clear();
             ChainloaderFix.Remaps.Clear();
 
-            Log.LogInfo("UnloadTemps : Assembly remaps cleared.");
-
             Log.LogMessage("Finished unloading extension plugins");
         }
     }
@@ -203,8 +201,6 @@ namespace BepInEx.Hacknet
                     name = asm.Name.Name;
                     asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
 
-                    HacknetChainloader.Instance.Log.LogInfo("PluginCecilHacks : Added remap " + name + " -> " + asm.Name.Name);
-
                     using (var ms = new MemoryStream())
                     {
                         asm.Write(ms);
@@ -215,8 +211,6 @@ namespace BepInEx.Hacknet
 
                 var loaded = Assembly.Load(asmBytes);
                 Remaps[name] = loaded;
-
-                HacknetChainloader.Instance.Log.LogInfo("PluginCecilHacks : Assembly loaded from bytes.");
 
                 return loaded;
             });
