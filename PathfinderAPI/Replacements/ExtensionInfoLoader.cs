@@ -44,13 +44,20 @@ namespace Pathfinder.Replacements
         public static void AddLanguage(string language) => ValidLanguages.Add(language);
         
         private static readonly List<ExtensionInfoExecutorHolder> CustomExecutors = new List<ExtensionInfoExecutorHolder>();
-        
-        public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : ExtensionInfoExecutor, new()
+
+        public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : ExtensionInfoExecutor, new() => RegisterExecutor(typeof(T), element, options);
+        public static void RegisterExecutor(Type executorType, string element, ParseOption options = ParseOption.None)
         {
+            if (!typeof(ExtensionInfoExecutor).IsAssignableFrom(executorType))
+                throw new ArgumentException("Type of executor registered must inherit from Pathfinder.Replacements.ExtensionInfoLoader.ExtensionInfoExecutor!", nameof(executorType));
+
+            if(!executorType.GetConstructors().Any(ctor => ctor.GetParameters().Length == 0))
+                throw new ArgumentException("Type of executor registered must have a default constructor", nameof(executorType));
+
             CustomExecutors.Add(new ExtensionInfoExecutorHolder
             {
                 Element = element,
-                ExecutorType = typeof(T),
+                ExecutorType = executorType,
                 Options = options
             });
         }

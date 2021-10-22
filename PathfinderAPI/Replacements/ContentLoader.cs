@@ -57,12 +57,19 @@ namespace Pathfinder.Replacements
         
         private static readonly List<ComputerExecutorHolder> CustomExecutors = new List<ComputerExecutorHolder>();
 
-        public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : ComputerExecutor, new()
+        public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : ComputerExecutor, new() => RegisterExecutor(typeof(T), element, options);
+        public static void RegisterExecutor(Type executorType, string element, ParseOption options = ParseOption.None)
         {
+            if (!typeof(ComputerExecutor).IsAssignableFrom(executorType))
+                throw new ArgumentException("Type of executor registered must inherit from Pathfinder.Replacements.ContentLoader.ComputerExecutor!", nameof(executorType));
+
+            if(!executorType.GetConstructors().Any(ctor => ctor.GetParameters().Length == 0))
+                throw new ArgumentException("Type of executor registered must have a default constructor", nameof(executorType));
+
             CustomExecutors.Add(new ComputerExecutorHolder
             {
                 Element = element,
-                ExecutorType = typeof(T),
+                ExecutorType = executorType,
                 Options = options
             });
         }

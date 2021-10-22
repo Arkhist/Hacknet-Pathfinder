@@ -39,12 +39,19 @@ namespace Pathfinder.Replacements
         
         private static readonly List<MissionExecutorHolder> CustomExecutors = new List<MissionExecutorHolder>();
 
-        public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : MissionExecutor, new()
+        public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : MissionExecutor, new() => RegisterExecutor(typeof(T), element, options);
+        public static void RegisterExecutor(Type executorType, string element, ParseOption options = ParseOption.None)
         {
+            if (!typeof(MissionExecutor).IsAssignableFrom(executorType))
+                throw new ArgumentException("Type of executor registered must inherit from Pathfinder.Replacements.MissionLoader.MissionExecutor!", nameof(executorType));
+
+            if(!executorType.GetConstructors().Any(ctor => ctor.GetParameters().Length == 0))
+                throw new ArgumentException("Type of executor registered must have a default constructor", nameof(executorType));
+
             CustomExecutors.Add(new MissionExecutorHolder
             {
                 Element = element,
-                ExecutorType = typeof(T),
+                ExecutorType = executorType,
                 Options = options
             });
         }
