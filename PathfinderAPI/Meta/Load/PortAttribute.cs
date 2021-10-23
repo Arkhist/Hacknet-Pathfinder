@@ -4,7 +4,7 @@ using BepInEx.Hacknet;
 using Pathfinder.Meta.Load;
 using Pathfinder.Port;
 
-namespace PathfinderAPI.Meta.Load
+namespace Pathfinder.Meta.Load
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public class PortAttribute : BaseAttribute
