@@ -29,7 +29,7 @@ namespace Pathfinder.Port
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static void RegisterPort(PortData info) => RegisterPortInternal(info, Assembly.GetCallingAssembly());
 
-        private static void RegisterPortInternal(PortData info, Assembly portAsm) 
+        internal static void RegisterPortInternal(PortData info, Assembly portAsm) 
         {
             CustomPorts.Add(info, portAsm);
         }
