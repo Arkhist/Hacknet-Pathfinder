@@ -24,7 +24,7 @@ namespace Pathfinder.Meta.Load
         {
             if(Tag == null)
             {
-                Tag = plugin.GetOptionTag();
+                Tag = plugin.GetOptionsTag();
                 if(Tag == null)
                     throw new InvalidOperationException($"Could not find Pathfinder.Meta.Load.PluginsOptionsTabAttribute for {targettedInfo.DeclaringType.FullName}");
             }
