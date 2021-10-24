@@ -20,19 +20,10 @@ namespace Pathfinder.Port
             set => _PortNumber = value;
         }
         private bool _Cracked;
-        public bool CrackedSilent
-        {
-            get => _Cracked;
-            set => _Cracked = value;
-        }
-        /// <summary>
-        /// When set, expects ip to be the Player's Computer
-        /// </summary>
-        /// <value></value>
         public bool Cracked
         {
             get => _Cracked;
-            set => SetPort(value, Computer.os.thisComputer.ip);
+            set => _Cracked = value;
         }
         public void SetPort(bool toOpen, string ipFrom)
         {
@@ -46,7 +37,7 @@ namespace Pathfinder.Port
         {
             Computer = comp;
             Record = record;
-            CrackedSilent = cracked;
+            Cracked = cracked;
         }
         public PortState(Computer comp, PortRecord record, string displayName, int portNumber = -1, bool cracked = false) : this(comp, record, cracked)
         {
@@ -57,12 +48,22 @@ namespace Pathfinder.Port
         {
             Computer = comp;
             Record = PortManager.GetPortRecordFromProtocol(protocol);
-            CrackedSilent = cracked;
+            Cracked = cracked;
         }
         public PortState(Computer comp, string protocol, string displayName, int portNumber = -1, bool cracked = false) : this(comp, protocol, cracked)
         {
             DisplayName = displayName;
             PortNumber = portNumber;
+        }
+
+        public PortState Clone(Computer comp = null)
+        {
+            return Record.CreateState(comp, _DisplayName, _PortNumber, Cracked);
+        }
+
+        public bool Remove()
+        {
+            return Computer.RemovePort(Record);
         }
 
         [Obsolete("Avoid PortData")]

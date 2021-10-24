@@ -48,7 +48,7 @@ namespace Pathfinder.Port
         public static PortRecord GetPortRecordFromProtocol(string proto)
         {
             var port = CustomPorts.AllItems.FirstOrDefault(x => x.Protocol == proto);
-            if (port.IsValid)
+            if (port == null)
                 return port;
             ComputerExtensions.OGPorts.TryGetValue(proto, out port);
             return port;
@@ -57,7 +57,7 @@ namespace Pathfinder.Port
         public static PortRecord GetPortRecordFromNumber(int num)
         {
             var port = CustomPorts.AllItems.FirstOrDefault(x => x.DefaultPortNumber == num);
-            if (port.IsValid)
+            if (port == null)
                 return port;
             return ComputerExtensions.OGPorts.Values.FirstOrDefault(x => x.DefaultPortNumber == num);
         }
@@ -84,7 +84,7 @@ namespace Pathfinder.Port
                 if (portParts.Length == 1)
                 {
                     var record = GetPortRecordFromProtocol(portParts[0]);
-                    if (!record.IsValid)
+                    if (record == null)
                         throw new ArgumentException($"Protocol '{portParts[0]}' does not exist");
                     if (record.DefaultPortNumber == -1)
                         throw new ArgumentException($"Protocol '{portParts[0]}' has no default port");
@@ -93,7 +93,7 @@ namespace Pathfinder.Port
                 else if (portParts.Length == 2)
                 {
                     var record = GetPortRecordFromProtocol(portParts[0]);
-                    if(!record.IsValid)
+                    if(record == null)
                         throw new ArgumentException($"Protocol '{portParts[0]}' does not exist");
                     if (!int.TryParse(portParts[1], out var portNum))
                         throw new FormatException($"Unable to parse port number for protocol '{portParts[0]}'");
@@ -104,7 +104,7 @@ namespace Pathfinder.Port
                     if (!int.TryParse(portParts[1], out var portNum))
                         throw new FormatException($"Unable to parse port number for protocol '{portParts[0]}'");
                     var record = GetPortRecordFromProtocol(portParts[0]);
-                    if (record.IsValid)
+                    if (record != null)
                     {
                         comp.AddPort(record.CreateState(comp, portParts[2].Replace('_', ' '), portNum));
                     }
@@ -127,7 +127,7 @@ namespace Pathfinder.Port
                 if (!int.TryParse(port, out var portNum))
                     throw new FormatException($"Failed to parse port number from '{port}'");
                 var record = GetPortRecordFromNumber(portNum);
-                if (!record.IsValid)
+                if (record == null)
                 {
                     Logger.Log(LogLevel.Warning, $"{comp.idName} has port {port}, which does not exist");
                     continue;
@@ -147,7 +147,7 @@ namespace Pathfinder.Port
                 var port = ports.FirstOrDefault(x => x.PortNumber == binding.Key);
                 if (port == null)
                 {
-                    port = ComputerExtensions.OGPorts.Values.FirstOrDefault(x => x.OriginalPortNumber == binding.Key).CreateState(comp);
+                    port = ComputerExtensions.OGPorts.Values.FirstOrDefault(x => x.OriginalPortNumber == binding.Key)?.CreateState(comp);
                 }
                 if (port == null)
                 {
