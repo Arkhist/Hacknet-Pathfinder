@@ -12,7 +12,7 @@ namespace Pathfinder.Port
 {
     public static class PortManager
     {
-        private static readonly AssemblyAssociatedList<PortData> CustomPorts = new AssemblyAssociatedList<PortData>();
+        private static readonly AssemblyAssociatedList<PortRecord> CustomPorts = new AssemblyAssociatedList<PortRecord>();
 
         static PortManager()
         {
@@ -25,11 +25,14 @@ namespace Pathfinder.Port
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void RegisterPort(string protocol, string displayName, int defaultPort = -1) => RegisterPortInternal(new PortData(protocol, defaultPort, displayName), Assembly.GetCallingAssembly());
+        public static void RegisterPort(string protocol, string displayName, int defaultPort = -1) => RegisterPortInternal(new PortRecord(protocol, displayName, defaultPort), Assembly.GetCallingAssembly());
+        [Obsolete("PortData is obsolete, use RegisterPort(PortRecord)")]
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void RegisterPort(PortData info) => RegisterPortInternal(info, Assembly.GetCallingAssembly());
+        public static void RegisterPort(PortData info) => RegisterPortInternal((PortRecord)info, Assembly.GetCallingAssembly());
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void RegisterPort(PortRecord record) => RegisterPortInternal(record, Assembly.GetCallingAssembly());
 
-        internal static void RegisterPortInternal(PortData info, Assembly portAsm) 
+        internal static void RegisterPortInternal(PortRecord info, Assembly portAsm)
         {
             CustomPorts.Add(info, portAsm);
         }
@@ -42,23 +45,35 @@ namespace Pathfinder.Port
             CustomPorts.RemoveAll(x => x.Protocol == protocol, pluginAsm);
         }
 
-        public static PortData GetPortDataFromProtocol(string proto)
+        public static PortRecord GetPortRecordFromProtocol(string proto)
         {
             var port = CustomPorts.AllItems.FirstOrDefault(x => x.Protocol == proto);
-            if (port != null)
+            if (port == null)
                 return port;
             ComputerExtensions.OGPorts.TryGetValue(proto, out port);
             return port;
         }
-        
+
+        public static PortRecord GetPortRecordFromNumber(int num)
+        {
+            var port = CustomPorts.AllItems.FirstOrDefault(x => x.DefaultPortNumber == num);
+            if (port == null)
+                return port;
+            return ComputerExtensions.OGPorts.Values.FirstOrDefault(x => x.DefaultPortNumber == num);
+        }
+
+        [Obsolete("Use GetPortRecordFromProtocol(string)")]
+        public static PortData GetPortDataFromProtocol(string proto)
+        {
+            return (PortData)GetPortRecordFromProtocol(proto);
+        }
+
+        [Obsolete("Use GetPortRecordFromNumber(int)")]
         public static PortData GetPortDataFromNumber(int num)
         {
-            var port = CustomPorts.AllItems.FirstOrDefault(x => x.Port == num);
-            if (port != null)
-                return port;
-            return ComputerExtensions.OGPorts.Values.FirstOrDefault(x => x.Port == num);
+            return (PortData)GetPortRecordFromNumber(num);
         }
-        
+
         public static void LoadPortsFromString(Computer comp, string portString, bool clearExisting)
         {
             if (clearExisting)
@@ -68,36 +83,34 @@ namespace Pathfinder.Port
                 var portParts = port.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
                 if (portParts.Length == 1)
                 {
-                    var data = GetPortDataFromProtocol(portParts[0]);
-                    if (data is null)
+                    var record = GetPortRecordFromProtocol(portParts[0]);
+                    if (record == null)
                         throw new ArgumentException($"Protocol '{portParts[0]}' does not exist");
-                    if (data.Port == -1)
+                    if (record.DefaultPortNumber == -1)
                         throw new ArgumentException($"Protocol '{portParts[0]}' has no default port");
-                    comp.AddPort(data.Clone());
+                    comp.AddPort(record);
                 }
                 else if (portParts.Length == 2)
                 {
-                    var data = GetPortDataFromProtocol(portParts[0]);
-                    data = data?.Clone() ?? throw new ArgumentException($"Protocol '{portParts[0]}' does not exist");
+                    var record = GetPortRecordFromProtocol(portParts[0]);
+                    if(record == null)
+                        throw new ArgumentException($"Protocol '{portParts[0]}' does not exist");
                     if (!int.TryParse(portParts[1], out var portNum))
                         throw new FormatException($"Unable to parse port number for protocol '{portParts[0]}'");
-                    data.Port = portNum;
-                    comp.AddPort(data);
+                    comp.AddPort(record.CreateState(comp, portNumber: portNum));
                 }
                 else if (portParts.Length == 3)
                 {
                     if (!int.TryParse(portParts[1], out var portNum))
                         throw new FormatException($"Unable to parse port number for protocol '{portParts[0]}'");
-                    var data = GetPortDataFromProtocol(portParts[0])?.Clone();
-                    if (data != null)
+                    var record = GetPortRecordFromProtocol(portParts[0]);
+                    if (record != null)
                     {
-                        data.Port = portNum;
-                        data.DisplayName = portParts[2].Replace('_', ' ');
-                        comp.AddPort(data);
+                        comp.AddPort(record.CreateState(comp, portParts[2].Replace('_', ' '), portNum));
                     }
                     else
                     {
-                        comp.AddPort(new PortData(portParts[0], portNum, portParts[2].Replace('_', ' ')));
+                        comp.AddPort(portParts[0], portNum, portParts[2].Replace('_', ' '));
                     }
                 }
                 else
@@ -113,34 +126,34 @@ namespace Pathfinder.Port
             {
                 if (!int.TryParse(port, out var portNum))
                     throw new FormatException($"Failed to parse port number from '{port}'");
-                var data = GetPortDataFromNumber(portNum);
-                if (data == null)
+                var record = GetPortRecordFromNumber(portNum);
+                if (record == null)
                 {
                     Logger.Log(LogLevel.Warning, $"{comp.idName} has port {port}, which does not exist");
                     continue;
                 }
-                comp.AddPort(data.Clone());
+                comp.AddPort(record);
             }
         }
 
         public static void LoadPortRemapsFromStringVanilla(Computer comp, string remap)
         {
-            var ports = comp.GetAllPorts();
+            var ports = comp.GetAllPortStates();
             var remaps = PortRemappingSerializer.Deserialize(remap);
             if (remaps == null)
                 return;
             foreach (var binding in remaps)
             {
-                var port = ports.FirstOrDefault(x => x.Port == binding.Key);
+                var port = ports.FirstOrDefault(x => x.PortNumber == binding.Key);
                 if (port == null)
                 {
-                    port = ComputerExtensions.OGPorts.Values.FirstOrDefault(x => x.OriginalPort == binding.Key).Clone();
+                    port = ComputerExtensions.OGPorts.Values.FirstOrDefault(x => x.OriginalPortNumber == binding.Key)?.CreateState(comp);
                 }
                 if (port == null)
                 {
                     throw new ArgumentException($"Invalid port remap, port {binding.Key} does not exist");
                 }
-                port.Port = binding.Value;
+                port.PortNumber = binding.Value;
             }
         }
     }

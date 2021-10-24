@@ -274,7 +274,7 @@ namespace Pathfinder.Replacements
                 foreach (var port in ports.Content.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     var parts = port.Split(':');
-                    comp.AddPort(new PortData(parts[0], int.Parse(parts[1]), int.Parse(parts[2]), parts[3].Replace('_', ' ')));
+                    comp.AddPort(new PortRecord(parts[0], parts[3].Replace('_', ' '), int.Parse(parts[2]), int.Parse(parts[1])));
                 }
             }
 

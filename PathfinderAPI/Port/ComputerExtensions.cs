@@ -12,6 +12,7 @@ using MonoMod.Cil;
 
 namespace Pathfinder.Port
 {
+    [Obsolete("Use PortState or PortRecord instead")]
     public class PortData : IEquatable<PortData>
     {
         public string Protocol { get; }
@@ -82,7 +83,7 @@ namespace Pathfinder.Port
     [HarmonyPatch]
     public static class ComputerExtensions
     {
-        internal static readonly Dictionary<string, PortData> OGPorts;
+        internal static readonly Dictionary<string, PortRecord> OGPorts;
         private static readonly Dictionary<int, string> OGPortToProto = new Dictionary<int, string>()
         {
             {22, "ssh"},
@@ -106,23 +107,46 @@ namespace Pathfinder.Port
 
         static ComputerExtensions()
         {
-            OGPorts = new Dictionary<string, PortData>();
+            OGPorts = new Dictionary<string, PortRecord>();
             PortExploits.populate();
             foreach (var port in PortExploits.portNums.Where(x => PortExploits.services.ContainsKey(x)))
             {
-                OGPorts.Add(OGPortToProto[port], new PortData(OGPortToProto[port], port, PortExploits.services[port]));
+                OGPorts.Add(OGPortToProto[port], new PortRecord(OGPortToProto[port], PortExploits.services[port], port));
             }
         }
 
-        private static readonly ConditionalWeakTable<Computer, Dictionary<string, PortData>> PortTable = new ConditionalWeakTable<Computer, Dictionary<string, PortData>>();
+        private static readonly ConditionalWeakTable<Computer, Dictionary<string, PortState>> PortTable = new ConditionalWeakTable<Computer, Dictionary<string, PortState>>();
         
-        public static void AddPort(this Computer comp, string protocol, int portNum, string displayName) => AddPort(comp, new PortData(protocol, portNum, displayName));
+        public static void AddPort(this Computer comp, string protocol, int portNum, string displayName) => comp.AddPort(new PortState(comp, protocol, displayName, portNum));
+        [Obsolete("Use AddPort(PortRecord) or AddPort(PortState) instead")]
         public static void AddPort(this Computer comp, PortData port)
         {
             var ports = PortTable.GetOrCreateValue(comp);
             if (ports.ContainsKey(port.Protocol))
                 return;
-            ports.Add(port.Protocol, port);
+            ports.Add(port.Protocol, (PortState)port);
+        }
+        public static void AddPort(this Computer comp, PortRecord record)
+        {
+            if(record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            comp.AddPort(record.CreateState(comp));
+        }
+        public static void AddPort(this Computer comp, PortState port)
+        {
+            if(port == null)
+                throw new ArgumentNullException(nameof(port));
+
+            if(port.Computer != null && port.Computer != comp)
+                throw new InvalidOperationException($"{nameof(port)} already a Computer assigned to it");
+
+            var ports = PortTable.GetOrCreateValue(comp);
+            if (ports.ContainsKey(port.Record.Protocol))
+                return;
+
+            ports.Add(port.Record.Protocol, port);
+            port.Computer = comp;
         }
 
         public static bool RemovePort(this Computer comp, string protocol)
@@ -130,27 +154,52 @@ namespace Pathfinder.Port
             return PortTable.GetOrCreateValue(comp).Remove(protocol);
         }
 
-        public static PortData GetPort(this Computer comp, string protocol)
+        public static bool RemovePort(this Computer comp, PortRecord record)
+        {
+            return comp.RemovePort(record.Protocol);
+        }
+
+        public static PortState GetPortState(this Computer comp, string protocol)
         {
             PortTable.GetOrCreateValue(comp).TryGetValue(protocol, out var ret);
             return ret;
         }
 
-        public static List<PortData> GetAllPorts(this Computer comp)
+        [Obsolete("Use GetPortState(string) instead")]
+        public static PortData GetPort(this Computer comp, string protocol)
+        {
+            return (PortData)comp.GetPortState(protocol);
+        }
+
+        public static List<PortState> GetAllPortStates(this Computer comp)
         {
             return PortTable.GetOrCreateValue(comp).Values.ToList();
         }
 
-        public static Dictionary<string, PortData> GetPortDict(this Computer comp)
+        [Obsolete("Use GetAllPortStates() instead")]
+        public static List<PortData> GetAllPorts(this Computer comp)
+        {
+            return PortTable.GetOrCreateValue(comp).Values.Select(record => (PortData)record).ToList();
+        }
+
+        public static Dictionary<string, PortState> GetPortStateDict(this Computer comp)
         {
             return PortTable.GetOrCreateValue(comp);
+        }
+
+        [Obsolete("Use GetPortStateDict() instead")]
+        public static Dictionary<string, PortData> GetPortDict(this Computer comp)
+        {
+            return comp.GetPortStateDict()
+                .Select(pair => new KeyValuePair<string, PortData>(pair.Key, (PortData)pair.Value))
+                .ToDictionary(p => p.Key, p => p.Value);
         }
 
         public static bool HasInitializedPorts(Computer comp) => PortTable.TryGetValue(comp, out _);
 
         public static int CountOpenPorts(this Computer comp)
         {
-            return comp.GetAllPorts().Count(x => x.Cracked);
+            return comp.GetAllPortStates().Count(x => x.Cracked);
         }
 
         public static void openPort(this Computer comp, string protocol, string ipFrom)
@@ -159,10 +208,10 @@ namespace Pathfinder.Port
             {
                 port.Cracked = true;
             }
-            comp.log($"{ipFrom} Opened Port#{port?.Port ?? -1}");
+            comp.log($"{ipFrom} Opened Port#{port?.PortNumber ?? -1}");
             if (!comp.silent)
             {
-                comp.sendNetworkMessage($"cPortOpen {comp.ip} {ipFrom} {port?.Port ?? -1}");
+                comp.sendNetworkMessage($"cPortOpen {comp.ip} {ipFrom} {port?.PortNumber ?? -1}");
             }
         }
 
@@ -170,8 +219,8 @@ namespace Pathfinder.Port
         [HarmonyPatch(typeof(Computer), nameof(Computer.openPort))]
         private static bool OpenPortPrefix(Computer __instance, int portNum, string ipFrom)
         {
-            var ports = __instance.GetAllPorts();
-            var port = ports.FirstOrDefault(x => x.OriginalPort == portNum);
+            var ports = __instance.GetAllPortStates();
+            var port = ports.FirstOrDefault(x => x.Record.OriginalPortNumber == portNum);
             if (port != null)
             {
                 port.Cracked = true;
@@ -197,10 +246,10 @@ namespace Pathfinder.Port
             {
                 port.Cracked = false;
             }
-            comp.log($"{ipFrom} Closed Port#{port?.Port ?? -1}");
+            comp.log($"{ipFrom} Closed Port#{port?.PortNumber ?? -1}");
             if (!comp.silent)
             {
-                comp.sendNetworkMessage($"cPortClose {comp.ip} {ipFrom} {port?.Port ?? -1}");
+                comp.sendNetworkMessage($"cPortClose {comp.ip} {ipFrom} {port?.PortNumber ?? -1}");
             }
         }
 
@@ -208,8 +257,8 @@ namespace Pathfinder.Port
         [HarmonyPatch(typeof(Computer), nameof(Computer.closePort))]
         private static bool ClosePortPrefix(Computer __instance, int portNum, string ipFrom)
         {
-            var ports = __instance.GetAllPorts();
-            var port = ports.FirstOrDefault(x => x.OriginalPort == portNum);
+            var ports = __instance.GetAllPortStates();
+            var port = ports.FirstOrDefault(x => x.Record.OriginalPortNumber == portNum);
             if (port != null)
             {
                 port.Cracked = false;
@@ -224,7 +273,7 @@ namespace Pathfinder.Port
 
         public static bool isPortOpen(this Computer comp, string protocol)
         {
-            return comp.GetPort(protocol)?.Cracked ?? false;
+            return comp.GetPortState(protocol)?.Cracked ?? false;
         }
 
         [HarmonyPrefix]
@@ -233,7 +282,7 @@ namespace Pathfinder.Port
         {
             if (!OGPortToProto.TryGetValue(portNum, out var proto))
                 throw new ArgumentException("Checking if a port is open by it's number is only supported for base game ports!", nameof(portNum));
-            __result = __instance.GetPort(proto)?.Cracked ?? false;
+            __result = __instance.GetPortState(proto)?.Cracked ?? false;
             return false;
         }
 
@@ -246,7 +295,7 @@ namespace Pathfinder.Port
         [HarmonyPatch(typeof(Computer), nameof(Computer.GetCodePortNumberFromDisplayPort))]
         private static bool DisplayToCodePrefix(Computer __instance, int displayPort, out int __result)
         {
-            __result = __instance.GetAllPorts().FirstOrDefault(x => x.Port == displayPort)?.OriginalPort ?? displayPort;
+            __result = __instance.GetAllPortStates().FirstOrDefault(x => x.PortNumber == displayPort)?.Record.OriginalPortNumber ?? displayPort;
             return false;
         }
 
@@ -254,7 +303,7 @@ namespace Pathfinder.Port
         [HarmonyPatch(typeof(Computer), nameof(Computer.GetDisplayPortNumberFromCodePort))]
         private static bool CodeToDisplayPrefix(Computer __instance, int codePort, out int __result)
         {
-            __result = __instance.GetAllPorts().FirstOrDefault(x => x.OriginalPort == codePort)?.Port ?? codePort;
+            __result = __instance.GetAllPortStates().FirstOrDefault(x => x.Record.OriginalPortNumber == codePort)?.PortNumber ?? codePort;
             return false;
         }
 
@@ -289,9 +338,9 @@ namespace Pathfinder.Port
             c.Emit(OpCodes.Ldloc_1);
             c.EmitDelegate<Action<OS, Computer>>((os, comp) =>
             {
-                foreach (var port in comp.GetAllPorts())
+                foreach (var port in comp.GetAllPortStates())
                 {
-                    os.write($"Port#: {port.Port}  -  {port.DisplayName}{(port.Cracked ? " : OPEN" : "")}");
+                    os.write($"Port#: {port.PortNumber}  -  {port.DisplayName}{(port.Cracked ? " : OPEN" : "")}");
                     Thread.Sleep(120);
                 }
             });
@@ -330,13 +379,13 @@ namespace Pathfinder.Port
             {
                 var batch = display.spriteBatch;
                 var os = display.os;
-                foreach (var port in comp.GetAllPorts())
+                foreach (var port in comp.GetAllPortStates())
                 {
                     rect.Y = display.y + 4;
                     pos.Y = rect.Y + 4;
                     batch.Draw(Utils.white, rect, port.Cracked ? os.unlockedColor : os.lockedColor);
                     batch.Draw(port.Cracked ? display.openLockSprite : display.lockSprite, pos, Color.White);
-                    string portNumText = $"Port#: {port.Port}";
+                    string portNumText = $"Port#: {port.PortNumber}";
                     var start = GuiData.font.MeasureString(portNumText);
                     batch.DrawString(GuiData.font, portNumText, new Vector2(display.x, display.y + 3), Color.White);
                     string portNameText = $" - {port.DisplayName}";
@@ -353,13 +402,13 @@ namespace Pathfinder.Port
         [HarmonyPatch(typeof(FastBasicAdministrator), nameof(FastBasicAdministrator.disconnectionDetected))]
         private static void ResetPortsFastPostfix(FastBasicAdministrator __instance, Computer c, OS os)
         {
-            foreach (var port in c.GetAllPorts().Where(x => x.Cracked))
-                c.closePort(port.Protocol, "LOCAL_ADMIN");
+            foreach (var port in c.GetAllPortStates().Where(x => x.Cracked))
+                c.closePort(port.Record.Protocol, "LOCAL_ADMIN");
             if (!__instance.IsSuper)
                 os.delayer.Post(os.delayer.nextPairs.Last().Condition, () =>
                 {
-                    foreach (var port in c.GetAllPorts().Where(x => x.Cracked))
-                        c.closePort(port.Protocol, "LOCAL_ADMIN");
+                    foreach (var port in c.GetAllPortStates().Where(x => x.Cracked))
+                        c.closePort(port.Record.Protocol, "LOCAL_ADMIN");
                 });
         }
         
@@ -367,8 +416,8 @@ namespace Pathfinder.Port
         [HarmonyPatch(typeof(FastProgressOnlyAdministrator), nameof(FastProgressOnlyAdministrator.disconnectionDetected))]
         private static void ResetPortsProgressOnlyPostfix(Computer c)
         {
-            foreach (var port in c.GetAllPorts().Where(x => x.Cracked))
-                c.closePort(port.Protocol, "LOCAL_ADMIN");
+            foreach (var port in c.GetAllPortStates().Where(x => x.Cracked))
+                c.closePort(port.Record.Protocol, "LOCAL_ADMIN");
         }
         
         [HarmonyPostfix]
@@ -377,8 +426,8 @@ namespace Pathfinder.Port
         {
             os.delayer.Post(os.delayer.nextPairs.Last().Condition, () =>
             {
-                foreach (var port in c.GetAllPorts().Where(x => x.Cracked))
-                    c.closePort(port.Protocol, "LOCAL_ADMIN");
+                foreach (var port in c.GetAllPortStates().Where(x => x.Cracked))
+                    c.closePort(port.Record.Protocol, "LOCAL_ADMIN");
             });
         }
 
@@ -405,7 +454,7 @@ namespace Pathfinder.Port
             c.Emit(OpCodes.Ldloc, 11);
             c.EmitDelegate<Func<Computer, int, int>>((comp, port) =>
             {
-                if (comp.GetAllPorts().Any(x => x.OriginalPort == port))
+                if (comp.GetAllPortStates().Any(x => x.Record.OriginalPortNumber == port))
                     return port;
                 return -1;
             });
