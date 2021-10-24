@@ -57,8 +57,7 @@ namespace Pathfinder.Administrator
 
         private static void onPluginUnload(Assembly pluginAsm)
         {
-            var allTypes = pluginAsm.GetTypes();
-            CustomAdministrators.RemoveAll(x => allTypes.Contains(x));
+            CustomAdministrators.RemoveAll(x => x.Assembly == pluginAsm);
         }
 
         public static void RegisterAdministrator<T>() where T : BaseAdministrator => RegisterAdministrator(typeof(T));

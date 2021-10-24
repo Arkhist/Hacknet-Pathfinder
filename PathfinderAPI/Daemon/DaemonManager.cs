@@ -33,8 +33,7 @@ namespace Pathfinder.Daemon
 
         private static void onPluginUnload(Assembly pluginAsm)
         {
-            var allTypes = pluginAsm.GetTypes();
-            CustomDaemons.RemoveAll(x => allTypes.Contains(x));
+            CustomDaemons.RemoveAll(x => x.Assembly == pluginAsm);
         }
 
         public static void RegisterDaemon<T>() where T : BaseDaemon => RegisterDaemon(typeof(T));

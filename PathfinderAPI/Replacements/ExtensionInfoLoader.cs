@@ -70,8 +70,7 @@ namespace Pathfinder.Replacements
         
         private static void OnPluginUnload(Assembly pluginAsm)
         {
-            var allTypes = AccessTools.GetTypesFromAssembly(pluginAsm);
-            CustomExecutors.RemoveAll(x => allTypes.Contains(x.ExecutorType));
+            CustomExecutors.RemoveAll(x => x.ExecutorType.Assembly == pluginAsm);
         }
 
         private static readonly EventExecutor executor = new EventExecutor();

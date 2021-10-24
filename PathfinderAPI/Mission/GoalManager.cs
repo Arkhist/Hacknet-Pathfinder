@@ -30,8 +30,7 @@ namespace Pathfinder.Mission
 
         private static void OnPluginUnload(Assembly pluginAsm)
         {
-            var allTypes = pluginAsm.GetTypes();
-            foreach (var name in CustomGoals.Where(x => allTypes.Contains(x.Value)).Select(x => x.Key).ToList())
+            foreach (var name in CustomGoals.Where(x => x.Value.Assembly == pluginAsm).Select(x => x.Key).ToList())
                 CustomGoals.Remove(name);
         }
         
