@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using BepInEx.Logging;
 using Hacknet;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
@@ -117,19 +118,31 @@ namespace Pathfinder.Port
 
         private static readonly ConditionalWeakTable<Computer, Dictionary<string, PortState>> PortTable = new ConditionalWeakTable<Computer, Dictionary<string, PortState>>();
         
-        public static void AddPort(this Computer comp, string protocol, int portNum, string displayName) => comp.AddPort(new PortState(comp, protocol, displayName, portNum));
+        public static void AddPort(this Computer comp, string protocol, int portNum, string displayName)
+        {
+            var record = PortManager.GetPortRecordFromProtocol(protocol);
+            if(record == null)
+                record = new PortRecord(protocol, displayName, portNum);
+            comp.AddPort(record.CreateState(null, displayName, portNum));
+        }
         [Obsolete("Use AddPort(PortRecord) or AddPort(PortState) instead")]
         public static void AddPort(this Computer comp, PortData port)
         {
             var ports = PortTable.GetOrCreateValue(comp);
             if (ports.ContainsKey(port.Protocol))
                 return;
-            ports.Add(port.Protocol, (PortState)port);
+            comp.AddPort(port.Protocol, port.Port, port.DisplayName);
         }
         public static void AddPort(this Computer comp, PortRecord record)
         {
             if(record == null)
                 throw new ArgumentNullException(nameof(record));
+
+            if(!PortManager.IsPortRecordRegistered(record))
+            {
+                Logger.Log(LogLevel.Warning, $"Protocol '{record.Protocol}' not registered, please correct, this will crash in 6.0.0");
+                PortManager.RegisterPort(record);
+            }
 
             comp.AddPort(record.CreateState(comp));
         }
@@ -139,7 +152,16 @@ namespace Pathfinder.Port
                 throw new ArgumentNullException(nameof(port));
 
             if(port.Computer != null && port.Computer != comp)
-                throw new InvalidOperationException($"{nameof(port)} already a Computer assigned to it");
+                throw new InvalidOperationException($"{nameof(port)} already has a Computer assigned to it");
+
+            if(port.Record == null)
+                throw new InvalidOperationException($"{nameof(port)}.{nameof(port.Record)} can not be null");
+
+            if(!PortManager.IsPortRecordRegistered(port.Record))
+            {
+                Logger.Log(LogLevel.Warning, $"Protocol '{port.Record.Protocol}' not registered, please correct, this will crash in 6.0.0");
+                PortManager.RegisterPort(port.Record);
+            }
 
             var ports = PortTable.GetOrCreateValue(comp);
             if (ports.ContainsKey(port.Record.Protocol))

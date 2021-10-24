@@ -18,6 +18,12 @@ namespace Pathfinder.Port
             if(protocol == null)
                 throw new ArgumentNullException(nameof(protocol));
 
+            if(defDisplayName == null)
+                throw new ArgumentNullException(nameof(defDisplayName));
+
+            if(defPortNumber < 0)
+                throw new ArgumentOutOfRangeException(nameof(defPortNumber));
+
             Protocol = protocol;
             DefaultDisplayName = defDisplayName;
             DefaultPortNumber = defPortNumber;

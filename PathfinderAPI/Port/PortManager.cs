@@ -45,6 +45,12 @@ namespace Pathfinder.Port
             CustomPorts.RemoveAll(x => x.Protocol == protocol, pluginAsm);
         }
 
+        public static bool IsPortRecordRegistered(PortRecord record)
+            => CustomPorts.AllItems.Contains(record) || ComputerExtensions.OGPorts.ContainsValue(record);
+
+        public static bool IsPortRegistered(string protocol)
+            => CustomPorts.AllItems.Any(p => p.Protocol == protocol) || ComputerExtensions.OGPorts.ContainsKey(protocol);
+
         public static PortRecord GetPortRecordFromProtocol(string proto)
         {
             var port = CustomPorts.AllItems.FirstOrDefault(x => x.Protocol == proto);
