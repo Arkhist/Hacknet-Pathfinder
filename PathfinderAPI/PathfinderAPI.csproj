@@ -143,6 +143,7 @@
     <Compile Include="Util\XML\EventExecutor.cs" />
     <Compile Include="Util\XML\EventReader.cs" />
     <Compile Include="Action\ActionDelayDecorator.cs" />
+    <Compile Include="BaseGameFixes\SelfAuthenticatingHostWhitelistDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BepInEx.Hacknet\BepInEx.Hacknet.csproj">
