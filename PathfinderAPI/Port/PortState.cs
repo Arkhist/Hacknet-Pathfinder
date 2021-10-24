@@ -22,6 +22,7 @@ namespace Pathfinder.Port
         private bool _Cracked;
         public bool CrackedSilent
         {
+            get => _Cracked;
             set => _Cracked = value;
         }
         /// <summary>

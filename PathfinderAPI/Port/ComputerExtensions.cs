@@ -194,7 +194,7 @@ namespace Pathfinder.Port
         {
             if (PortTable.GetOrCreateValue(comp).TryGetValue(protocol, out var port))
             {
-                port.Cracked = true;
+                port.CrackedSilent = true;
             }
             comp.log($"{ipFrom} Opened Port#{port?.PortNumber ?? -1}");
             if (!comp.silent)
@@ -211,7 +211,7 @@ namespace Pathfinder.Port
             var port = ports.FirstOrDefault(x => x.Record.OriginalPortNumber == portNum);
             if (port != null)
             {
-                port.Cracked = true;
+                port.CrackedSilent = true;
             }
             __instance.log($"{ipFrom} Opened Port#{portNum}");
             if (!__instance.silent)
@@ -232,7 +232,7 @@ namespace Pathfinder.Port
         {
             if (PortTable.GetOrCreateValue(comp).TryGetValue(protocol, out var port))
             {
-                port.Cracked = false;
+                port.CrackedSilent = false;
             }
             comp.log($"{ipFrom} Closed Port#{port?.PortNumber ?? -1}");
             if (!comp.silent)
@@ -249,7 +249,7 @@ namespace Pathfinder.Port
             var port = ports.FirstOrDefault(x => x.Record.OriginalPortNumber == portNum);
             if (port != null)
             {
-                port.Cracked = false;
+                port.CrackedSilent = false;
             }
             __instance.log($"{ipFrom} Closed Port#{portNum}");
             if (!__instance.silent)
