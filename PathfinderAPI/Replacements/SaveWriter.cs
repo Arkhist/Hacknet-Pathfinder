@@ -183,9 +183,9 @@ namespace Pathfinder.Replacements
         {
             var result = new XElement("ports");
             var builder = new StringBuilder();
-            foreach (var port in node.GetAllPorts())
+            foreach (var port in node.GetAllPortStates())
             {
-                builder.Append($"{port.Protocol}:{port.OriginalPort}:{port.Port}:{port.DisplayName.Replace(' ', '_')} ");
+                builder.Append($"{port.Record.Protocol}:{port.Record.OriginalPortNumber}:{port.PortNumber}:{port.DisplayName.Replace(' ', '_')} ");
             }
             result.Value = builder.ToString();
             return result;
