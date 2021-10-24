@@ -138,7 +138,7 @@ namespace Pathfinder.Port
             if(port == null)
                 throw new ArgumentNullException(nameof(port));
 
-            if(port.Computer != comp)
+            if(port.Computer != null && port.Computer != comp)
                 throw new InvalidOperationException($"{nameof(port)} already a Computer assigned to it");
 
             var ports = PortTable.GetOrCreateValue(comp);
