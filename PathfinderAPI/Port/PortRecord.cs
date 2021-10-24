@@ -31,7 +31,7 @@ namespace Pathfinder.Port
 
         public PortState CreateState(Computer computer, bool cracked)
         {
-            return CreateState(computer, cracked: cracked);
+            return CreateState(computer, null, cracked: cracked);
         }
 
         public bool Equals(PortRecord other)
@@ -62,7 +62,8 @@ namespace Pathfinder.Port
                 return hashCode;
             }
         }
-
+        
+#pragma warning disable 618
         [Obsolete("Avoid PortData")]
         public static explicit operator PortRecord(PortData data)
             => new PortRecord(data.Protocol, data.DisplayName, data.Port, data.OriginalPort);
