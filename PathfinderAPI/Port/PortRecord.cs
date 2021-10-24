@@ -29,6 +29,11 @@ namespace Pathfinder.Port
             return new PortState(computer, this, displayName, portNumber, cracked);
         }
 
+        public PortState CreateState(Computer computer, bool cracked)
+        {
+            return CreateState(computer, cracked: cracked);
+        }
+
         public bool Equals(PortRecord other)
         {
             return Protocol == other.Protocol && OriginalPortNumber == other.OriginalPortNumber;

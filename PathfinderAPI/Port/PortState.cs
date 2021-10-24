@@ -10,48 +10,43 @@ namespace Pathfinder.Port
         private string _DisplayName;
         public string DisplayName
         {
-            get => _DisplayName ?? Record.DefaultDisplayName;
-            set => _DisplayName = value;
+            get => _DisplayName;
+            set => _DisplayName = value ?? Record.DefaultDisplayName;
         }
-        private int _PortNumber = -1;
+        private int _PortNumber;
         public int PortNumber
         {
-            get => _PortNumber > -1 ? _PortNumber : Record.DefaultPortNumber;
-            set => _PortNumber = value;
+            get => _PortNumber;
+            set => _PortNumber = value  > -1 ? _PortNumber : Record.DefaultPortNumber;
         }
-        private bool _Cracked;
-        public bool Cracked
+        public bool Cracked { get; set; }
+        public void SetCracked(bool cracked, string ipFrom)
         {
-            get => _Cracked;
-            set => _Cracked = value;
-        }
-        public void SetPort(bool toOpen, string ipFrom)
-        {
-            if(toOpen && !Cracked)
+            if(cracked && !Cracked)
                 Computer.openPort(Record.Protocol, ipFrom);
-            else if(!toOpen && Cracked)
+            else if(!cracked && Cracked)
                 Computer.closePort(Record.Protocol, ipFrom);
         }
 
-        public PortState(Computer comp, PortRecord record, bool cracked = false)
+        public PortState(Computer comp, PortRecord record, bool cracked) : this(comp, record, null, cracked: cracked)
+        {
+        }
+        public PortState(Computer comp, PortRecord record, string displayName = null, int portNumber = -1, bool cracked = false)
         {
             Computer = comp;
             Record = record;
             Cracked = cracked;
-        }
-        public PortState(Computer comp, PortRecord record, string displayName, int portNumber = -1, bool cracked = false) : this(comp, record, cracked)
-        {
             DisplayName = displayName;
             PortNumber = portNumber;
         }
-        public PortState(Computer comp, string protocol, bool cracked = false)
+        public PortState(Computer comp, string protocol, bool cracked) : this(comp, protocol, null, cracked: cracked)
+        {
+        }
+        public PortState(Computer comp, string protocol, string displayName = null, int portNumber = -1, bool cracked = false)
         {
             Computer = comp;
             Record = PortManager.GetPortRecordFromProtocol(protocol);
             Cracked = cracked;
-        }
-        public PortState(Computer comp, string protocol, string displayName, int portNumber = -1, bool cracked = false) : this(comp, protocol, cracked)
-        {
             DisplayName = displayName;
             PortNumber = portNumber;
         }
