@@ -17,7 +17,7 @@ namespace Pathfinder.Port
         public int PortNumber
         {
             get => _PortNumber;
-            set => _PortNumber = value  > -1 ? _PortNumber : Record.DefaultPortNumber;
+            set => _PortNumber = value  > -1 ? value : Record.DefaultPortNumber;
         }
         public bool Cracked { get; set; }
         public void SetCracked(bool cracked, string ipFrom)
