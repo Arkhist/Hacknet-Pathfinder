@@ -160,6 +160,7 @@ namespace Pathfinder.Util.XML
             TemporaryExecutors[element].Add(new ExecutorHolder {Executor = executor, Options = options});
         }
 
+#pragma warning disable 618
         protected override void ReadElement(Dictionary<string, string> attributes)
         {
             base.ReadElement(attributes);

@@ -109,13 +109,21 @@ namespace Pathfinder.Replacements
 
         internal static bool isPathfinderComputer = false;
 
+        internal static readonly List<ElementInfo> defaultPorts = new List<ElementInfo>
+        {
+            new ElementInfo() { Name = "ssh" },
+            new ElementInfo() { Name = "ftp" },
+            new ElementInfo() { Name = "smtp" },
+            new ElementInfo() { Name = "web" }
+        };
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(Computer), MethodType.Constructor, new Type[] { typeof(string), typeof(string), typeof(Vector2), typeof(int), typeof(byte), typeof(OS) })]
         private static void LoadDefaultPortsIfReplacement(Computer __instance)
         {
             if (!isPathfinderComputer)
             {
-                PortManager.LoadPortsFromString(__instance, "ssh ftp smtp web", false);
+                PortManager.LoadPortsFromChildren(__instance, defaultPorts, false);
             }
         }
     }

@@ -11,22 +11,11 @@ namespace Pathfinder.Util.XML
         private static ulong freeId = 0;
         
         public string Name { get; set; }
-        
-        private string content = null;
-        private bool processedContent = false;
-        public string Content
-        {
-            get
-            {
-                return processedContent ? content : throw new InvalidOperationException("");
-            }
-            set
-            {
-                processedContent = true;
-                content = value;
-            }
-        }
-
+        public string Content {
+            get;
+            [Obsolete("Do not use, will become internal")]
+            set;
+        } = null;
         public ElementInfo Parent { get; set; }
         public Dictionary<string, string> Attributes { get; set; } = new Dictionary<string, string>();
         public List<ElementInfo> Children { get; set; } = new List<ElementInfo>();

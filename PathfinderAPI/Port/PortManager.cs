@@ -7,6 +7,8 @@ using Pathfinder.Event;
 using Hacknet;
 using Hacknet.Security;
 using Pathfinder.Util;
+using System.Collections.Generic;
+using Pathfinder.Util.XML;
 
 namespace Pathfinder.Port
 {
@@ -78,6 +80,55 @@ namespace Pathfinder.Port
         public static PortData GetPortDataFromNumber(int num)
         {
             return (PortData)GetPortRecordFromNumber(num);
+        }
+
+        public static void LoadPortsFromChildren(Computer comp, IEnumerable<ElementInfo> children, bool clearAll)
+        {
+            if (clearAll)
+                comp.ClearPorts();
+            foreach(var element in children)
+            {
+                var protocol = element.Name;
+                if(element.Attributes.GetString("Remove")?.ToLower() == "true")
+                {
+                    comp.RemovePort(protocol);
+                    continue;
+                }
+                var portNumString = element.Attributes.GetString("Number", null);
+                var displayName = element.Attributes.GetString("Display", null);
+                if(element.Content != null)
+                    displayName = element.Content;
+                var numElement = element.Children.GetElement("Number");
+                var displayElement = element.Children.GetElement("Display");
+                if(numElement != null)
+                    portNumString = numElement.Content;
+                if(displayElement != null)
+                    displayName = displayElement.Content;
+                var record = GetPortRecordFromProtocol(protocol);
+                int portNum = -1;
+                if(record == null) {
+
+                    if(portNumString == null || displayName == null)
+                        throw new ArgumentException($"Protocol '{protocol}' does not exist");
+
+                    if (!int.TryParse(portNumString, out portNum))
+                        throw new FormatException($"Unable to parse port number for protocol '{protocol}'");
+
+                    PortManager.RegisterPort(protocol, displayName, portNum);
+                }
+                else if (!int.TryParse(portNumString, out portNum))
+                    throw new FormatException($"Unable to parse port number for protocol '{protocol}'");
+
+                var state = comp.GetPortState(protocol);
+                if(state != null)
+                {
+                    state.DisplayName = displayName;
+                    state.PortNumber = portNum;
+                    continue;
+                }
+
+                comp.AddPort(protocol, portNum, displayName);
+            }
         }
 
         public static void LoadPortsFromString(Computer comp, string portString, bool clearExisting)
