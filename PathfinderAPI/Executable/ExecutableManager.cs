@@ -150,31 +150,5 @@ namespace Pathfinder.Executable
                     exe.Completed();
             });
         }
-
-        [HarmonyILManipulator]
-        [HarmonyPatch(typeof(Programs), nameof(Programs.kill), typeof(string[]), typeof(OS))]
-        private static void onProgramsKill(ILContext il)
-        {
-            var c = new ILCursor(il);
-
-            c.GotoNext(MoveType.Before,
-                x => x.MatchNop(),
-                x => x.MatchLdarg(0),
-                x => x.MatchLdfld(AccessTools.Field(typeof(OS), nameof(OS.exes))),
-                x => x.MatchLdloc(1),
-                x => x.MatchCallvirt(AccessTools.Method(typeof(List<ExeModule>), nameof(List<ExeModule>.RemoveAt), new[] {typeof(int)}))
-            );
-
-            c.RemoveRange(5);
-
-            c.Emit(OpCodes.Ldarg, 0);
-            c.Emit(OpCodes.Ldloc, 1);
-
-            c.EmitDelegate<Action<OS, int>>((os, index) =>
-            {
-                if(!(os.exes[index] is GameExecutable))
-                    os.exes.RemoveAt(index);
-            });
-        }
     }
 }

@@ -159,7 +159,6 @@ namespace Pathfinder.Executable
             Result = CompletionResult.Killed;
             needsRemoval = true;
             Completed();
-            os.exes.Remove(this);
         }
 
         public override void Update(float t)
