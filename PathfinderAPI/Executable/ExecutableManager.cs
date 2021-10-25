@@ -157,19 +157,23 @@ namespace Pathfinder.Executable
         {
             var c = new ILCursor(il);
 
-            c.GotoNext(MoveType.After,
+            c.GotoNext(MoveType.Before,
+                x => x.MatchNop(),
+                x => x.MatchLdarg(0),
+                x => x.MatchLdfld(AccessTools.Field(typeof(OS), nameof(OS.exes))),
                 x => x.MatchLdloc(1),
-                x => x.MatchCallvirt(AccessTools.Method(typeof(List<ExeModule>), "get_Item", new[] {typeof(int)})),
-                x => x.MatchCallvirt(AccessTools.Method(typeof(ExeModule), nameof(ExeModule.Killed)))
+                x => x.MatchCallvirt(AccessTools.Method(typeof(List<ExeModule>), nameof(List<ExeModule>.RemoveAt), new[] {typeof(int)}))
             );
+
+            c.RemoveRange(5);
 
             c.Emit(OpCodes.Ldarg, 0);
             c.Emit(OpCodes.Ldloc, 1);
 
             c.EmitDelegate<Action<OS, int>>((os, index) =>
             {
-                if(os.exes[index] is GameExecutable exe)
-                    exe.Completed();
+                if(!(os.exes[index] is GameExecutable))
+                    os.exes.RemoveAt(index);
             });
         }
     }

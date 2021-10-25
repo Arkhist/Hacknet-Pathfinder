@@ -158,6 +158,7 @@ namespace Pathfinder.Executable
         {
             Result = CompletionResult.Killed;
             needsRemoval = true;
+            os.exes.Remove(this);
         }
 
         public override void Update(float t)
@@ -176,7 +177,8 @@ namespace Pathfinder.Executable
             base.Update(t);
         }
 
-        public override string GetIdentifier()
+        [Obsolete]
+        public sealed override string GetIdentifier()
         {
             throw new NotImplementedException();
         }
