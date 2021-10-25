@@ -111,10 +111,10 @@ namespace Pathfinder.Replacements
 
         internal static readonly List<ElementInfo> defaultPorts = new List<ElementInfo>
         {
-            new ElementInfo() { Name = "ssh" },
-            new ElementInfo() { Name = "ftp" },
+            new ElementInfo() { Name = "web" },
             new ElementInfo() { Name = "smtp" },
-            new ElementInfo() { Name = "web" }
+            new ElementInfo() { Name = "ftp" },
+            new ElementInfo() { Name = "ssh" }
         };
 
         [HarmonyPostfix]
