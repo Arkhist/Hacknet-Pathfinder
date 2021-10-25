@@ -121,8 +121,10 @@ namespace Pathfinder.Port
                 var state = comp.GetPortState(protocol);
                 if(state != null)
                 {
-                    state.DisplayName = displayName;
-                    state.PortNumber = portNum;
+                    if(displayName != null)
+                        state.DisplayName = displayName;
+                    if(portNumString != null)
+                        state.PortNumber = portNum;
                     continue;
                 }
 
