@@ -107,7 +107,6 @@ namespace Pathfinder.Port
                 var record = GetPortRecordFromProtocol(protocol);
                 int portNum = -1;
                 if(record == null) {
-
                     if(portNumString == null || displayName == null)
                         throw new ArgumentException($"Protocol '{protocol}' does not exist");
 
@@ -116,7 +115,7 @@ namespace Pathfinder.Port
 
                     PortManager.RegisterPort(protocol, displayName, portNum);
                 }
-                else if (!int.TryParse(portNumString, out portNum))
+                else if (portNumString != null && !int.TryParse(portNumString, out portNum))
                     throw new FormatException($"Unable to parse port number for protocol '{protocol}'");
 
                 var state = comp.GetPortState(protocol);
