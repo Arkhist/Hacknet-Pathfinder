@@ -160,7 +160,7 @@ namespace Pathfinder.Executable
             needsRemoval = true;
         }
 
-        public sealed override void Update(float t)
+        public override void Update(float t)
         {
             if(Result != CompletionResult.Running) return;
             Lifetime += t;
@@ -173,6 +173,7 @@ namespace Pathfinder.Executable
                 if(CatchException(e))
                     throw e;
             }
+            base.Update(t);
         }
 
         public override string GetIdentifier()
