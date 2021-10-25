@@ -38,7 +38,7 @@ namespace Pathfinder.Executable
         /// <summary>
         /// Determines whether the executable is added to the OS when executed
         /// </summary>
-        public virtual bool CanAddToSystem { get; set; }
+        public virtual bool CanAddToSystem { get; set; } = true;
         /// <summary>
         /// Written to the terminal if failed or errored when not null
         /// </summary>
