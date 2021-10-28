@@ -17,7 +17,7 @@ namespace Pathfinder.Util
 
         public static void ThrowNoDefaultCtor(this Type type, string nameOf)
         {
-            if(!type.GetConstructors().Any(m => m.GetParameters().Length != 0))
+            if(type.GetConstructors().All(m => m.GetParameters().Length != 0))
                 throw new ArgumentException($"{nameOf} must have a default constructor", nameOf);
         }
 
