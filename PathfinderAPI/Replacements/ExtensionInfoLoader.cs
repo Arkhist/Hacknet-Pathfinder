@@ -11,6 +11,7 @@ using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.Event;
 using Pathfinder.Util.XML;
+using Pathfinder.Util;
 
 namespace Pathfinder.Replacements
 {
@@ -48,12 +49,8 @@ namespace Pathfinder.Replacements
         public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : ExtensionInfoExecutor, new() => RegisterExecutor(typeof(T), element, options);
         public static void RegisterExecutor(Type executorType, string element, ParseOption options = ParseOption.None)
         {
-            if (!typeof(ExtensionInfoExecutor).IsAssignableFrom(executorType))
-                throw new ArgumentException("Type of executor registered must inherit from Pathfinder.Replacements.ExtensionInfoLoader.ExtensionInfoExecutor!", nameof(executorType));
-
-            if(!executorType.GetConstructors().Any(ctor => ctor.GetParameters().Length == 0))
-                throw new ArgumentException("Type of executor registered must have a default constructor", nameof(executorType));
-
+            executorType.ThrowNotInherit<ExtensionInfoExecutor>(nameof(executorType));
+            executorType.ThrowNoDefaultCtor(nameof(executorType));
             CustomExecutors.Add(new ExtensionInfoExecutorHolder
             {
                 Element = element,

@@ -26,10 +26,7 @@ namespace Pathfinder.Util
         public static void RebuildLookups(List<Computer> nodes = null)
         {
             nodes ??= OS.currentInstance?.netMap?.nodes;
-            if (nodes == null)
-            {
-                throw new ArgumentNullException(nameof(nodes), "No nodes passed in and OS hasn't finished loading netmap");
-            }
+            nodes.ThrowNull(nameof(nodes), "No nodes passed in and OS hasn't finished loading netmap");
             ClearLookups();
             foreach (var node in nodes)
                 Add(node);

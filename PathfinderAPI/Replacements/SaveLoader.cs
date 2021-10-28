@@ -47,9 +47,7 @@ namespace Pathfinder.Replacements
         public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : SaveExecutor, new() => RegisterExecutor(typeof(T), element, options);
         public static void RegisterExecutor(Type executorType, string element, ParseOption options = ParseOption.None)
         {
-            if (!typeof(SaveExecutor).IsAssignableFrom(executorType))
-                throw new ArgumentException("Type of executor registered must inherit from Pathfinder.Replacements.SaveLoader.SaveExecutor!", nameof(executorType));
-
+            executorType.ThrowNotInherit<SaveExecutor>(nameof(executorType));
             if(!executorType.GetConstructors().Any(ctor => ctor.GetParameters().Length == 0))
                 throw new ArgumentException("Type of executor registered must have a default constructor", nameof(executorType));
 
