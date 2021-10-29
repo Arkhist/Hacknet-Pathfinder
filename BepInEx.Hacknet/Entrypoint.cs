@@ -16,6 +16,7 @@ namespace BepInEx.Hacknet
             AppDomain.CurrentDomain.AssemblyResolve += ResolveBepAssembly;
             if (Type.GetType("Mono.Runtime") != null)
                 AppDomain.CurrentDomain.AssemblyResolve += ResolveGACAssembly;
+            AppDomain.CurrentDomain.AssemblyResolve += ResolveRenamedAssembly;
 
             Environment.SetEnvironmentVariable("MONOMOD_DMD_TYPE", "dynamicmethod");
 
@@ -44,16 +45,30 @@ namespace BepInEx.Hacknet
         {
             var asmName = new AssemblyName(args.Name);
 
-            foreach (var path in Directory
-                .GetFiles($"/usr/lib/mono/gac/{asmName.Name}", $"{asmName.Name}.dll", SearchOption.AllDirectories)
-                .Select(Path.GetFullPath))
+            try
             {
-                try
+                foreach (var path in Directory
+                    .GetFiles($"/usr/lib/mono/gac/{asmName.Name}", $"{asmName.Name}.dll", SearchOption.AllDirectories)
+                    .Select(Path.GetFullPath))
                 {
-                    return Assembly.LoadFile(path);
+                    try
+                    {
+                        return Assembly.LoadFile(path);
+                    }
+                    catch { }
                 }
-                catch {}
             }
+            catch { }
+
+            return null;
+        }
+
+        public static Assembly ResolveRenamedAssembly(object sender, ResolveEventArgs args)
+        {
+            var asmName = new AssemblyName(args.Name);
+
+            if (ChainloaderFix.Remaps.TryGetValue(asmName.Name, out Assembly ret))
+                return ret;
 
             return null;
         }
