@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Hacknet.Mission;
 using Pathfinder.Event;
+using Pathfinder.Util;
 
 namespace Pathfinder.Mission
 {
@@ -37,8 +38,7 @@ namespace Pathfinder.Mission
         public static void RegisterGoal<T>(string xmlName) where T : MisisonGoal => RegisterGoal(typeof(T), xmlName);
         public static void RegisterGoal(Type goalType, string xmlName)
         {
-            if (!typeof(MisisonGoal).IsAssignableFrom(goalType))
-                throw new ArgumentException("Goal type must inherit from Hacknet.Mission.MisisonGoal (yes that is spelled right)", nameof(goalType));
+            goalType.ThrowNotInherit<MisisonGoal>(nameof(goalType), " (yes, that is how its spelled)");
             CustomGoals.Add(xmlName.ToLower(), goalType);
         }
 

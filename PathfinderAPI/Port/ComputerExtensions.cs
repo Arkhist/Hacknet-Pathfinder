@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using Pathfinder.Util;
 
 namespace Pathfinder.Port
 {
@@ -135,9 +136,7 @@ namespace Pathfinder.Port
         }
         public static void AddPort(this Computer comp, PortRecord record)
         {
-            if(record == null)
-                throw new ArgumentNullException(nameof(record));
-
+            record.ThrowNull(nameof(record));
             if(!PortManager.IsPortRecordRegistered(record))
             {
                 Logger.Log(LogLevel.Warning, $"Protocol '{record.Protocol}' not registered, please correct, this will crash in 6.0.0");

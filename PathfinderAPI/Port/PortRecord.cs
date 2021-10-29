@@ -1,5 +1,6 @@
 using System;
 using Hacknet;
+using Pathfinder.Util;
 
 namespace Pathfinder.Port
 {
@@ -15,15 +16,9 @@ namespace Pathfinder.Port
 
         internal PortRecord(string protocol, string defDisplayName, int defPortNumber, int originalPortNumber)
         {
-            if(protocol == null)
-                throw new ArgumentNullException(nameof(protocol));
-
-            if(defDisplayName == null)
-                throw new ArgumentNullException(nameof(defDisplayName));
-
-            if(defPortNumber < 0)
-                throw new ArgumentOutOfRangeException(nameof(defPortNumber));
-
+            protocol.ThrowNull(nameof(protocol));
+            defDisplayName.ThrowNull(nameof(defDisplayName));
+            defPortNumber.ThrowOutOfRange(nameof(defPortNumber), 0);
             Protocol = protocol;
             DefaultDisplayName = defDisplayName;
             DefaultPortNumber = defPortNumber;

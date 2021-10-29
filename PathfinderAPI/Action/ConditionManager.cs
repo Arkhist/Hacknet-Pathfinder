@@ -8,6 +8,7 @@ using Hacknet;
 using HarmonyLib;
 using Pathfinder.Event;
 using Pathfinder.Util.XML;
+using Pathfinder.Util;
 
 namespace Pathfinder.Action
 {
@@ -47,8 +48,7 @@ namespace Pathfinder.Action
         public static void RegisterCondition<T>(string xmlName) where T : PathfinderCondition => RegisterCondition(typeof(T), xmlName);
         public static void RegisterCondition(Type conditionType, string xmlName)
         {
-            if (!typeof(PathfinderCondition).IsAssignableFrom(conditionType))
-                throw new ArgumentException("Condition type must inherit from Pathfinder.Action.PathfinderCondition!", nameof(conditionType));
+            conditionType.ThrowNotInherit<PathfinderCondition>(nameof(conditionType));
             CustomConditions.Add(xmlName, conditionType);
             if (!XmlNames.ContainsKey(conditionType))
                 XmlNames.Add(conditionType, xmlName);

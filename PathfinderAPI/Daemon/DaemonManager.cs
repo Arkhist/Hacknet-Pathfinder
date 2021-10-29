@@ -5,6 +5,7 @@ using System.Reflection;
 using Hacknet;
 using Pathfinder.Event;
 using Pathfinder.Util.XML;
+using Pathfinder.Util;
 
 namespace Pathfinder.Daemon
 {
@@ -39,9 +40,7 @@ namespace Pathfinder.Daemon
         public static void RegisterDaemon<T>() where T : BaseDaemon => RegisterDaemon(typeof(T));
         public static void RegisterDaemon(Type daemonType)
         {
-            if (!typeof(BaseDaemon).IsAssignableFrom(daemonType))
-                throw new ArgumentException("Daemon type must inherit from BaseDaemon!", nameof(daemonType));
-            
+            daemonType.ThrowNotInherit<BaseDaemon>(nameof(daemonType));
             CustomDaemons.Add(daemonType);
         }
 
