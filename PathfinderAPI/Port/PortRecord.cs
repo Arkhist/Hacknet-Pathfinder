@@ -42,7 +42,7 @@ namespace Pathfinder.Port
 
         public bool Equals(PortRecord other)
         {
-            return Protocol == other.Protocol && OriginalPortNumber == other.OriginalPortNumber;
+            return !(other is null) && Protocol == other.Protocol && OriginalPortNumber == other.OriginalPortNumber;
         }
         public static bool operator ==(PortRecord first, PortRecord second)
         {
