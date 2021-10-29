@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 using MonoMod.Cil;
 using HarmonyLib;
 using Mono.Cecil.Cil;
+using Pathfinder.Util;
 
 namespace Pathfinder.Executable
 {
@@ -65,9 +66,7 @@ namespace Pathfinder.Executable
         public static void RegisterExecutable<T>(string xmlName) where T : BaseExecutable => RegisterExecutable(typeof(T), xmlName);
         public static void RegisterExecutable(Type executableType, string xmlName)
         {
-            if (!typeof(BaseExecutable).IsAssignableFrom(executableType))
-                throw new ArgumentException("Type of exe registered must inherit from Pathfinder.Executable.BaseExecutable!", nameof(executableType));
-
+            executableType.ThrowNotInherit<BaseExecutable>(nameof(executableType));
             var builder = new StringBuilder();
             foreach (var exeByte in Encoding.ASCII.GetBytes("PathfinderExe:" + executableType.FullName))
                 builder.Append(Convert.ToString(exeByte, 2));

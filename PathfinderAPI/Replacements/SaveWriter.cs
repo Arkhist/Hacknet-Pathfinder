@@ -283,9 +283,7 @@ namespace Pathfinder.Replacements
             XElement CreateDaemonElement(object daemonObj, string name, string[] fields, string[] attribNames)
             {
                 var type = daemonObj.GetType();
-                if (fields.Length != attribNames.Length)
-                    throw new ArgumentException("fields and attribNames arrays must be the same length");
-                
+                fields.ThrowNotSameSizeAs(nameof(fields), attribNames, nameof(attribNames));
                 var daemonElement = new XElement(name);
                 for (int i = 0; i < fields.Length; i++)
                 {

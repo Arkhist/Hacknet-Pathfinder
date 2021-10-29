@@ -59,10 +59,7 @@ namespace Pathfinder.Event
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static void AddHandler(Type pathfinderEvent, MethodInfo handler)
         {
-            if (!typeof(PathfinderEvent).IsAssignableFrom(pathfinderEvent))
-            {
-                throw new ArgumentException("Type must derive from PathfinderAPI.Event.PathfinderEvent!", nameof(pathfinderEvent));
-            }
+            pathfinderEvent.ThrowNotInherit<PathfinderEvent>(nameof(pathfinderEvent));
             var parameters = handler.GetParameters();
             if (parameters.Length != 1 || parameters[0].ParameterType != pathfinderEvent)
             {

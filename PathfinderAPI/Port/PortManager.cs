@@ -54,7 +54,7 @@ namespace Pathfinder.Port
         public static PortRecord GetPortRecordFromProtocol(string proto)
         {
             var port = CustomPorts.AllItems.FirstOrDefault(x => x.Protocol == proto);
-            if (port == null)
+            if (port != null)
                 return port;
             ComputerExtensions.OGPorts.TryGetValue(proto, out port);
             return port;
@@ -63,7 +63,7 @@ namespace Pathfinder.Port
         public static PortRecord GetPortRecordFromNumber(int num)
         {
             var port = CustomPorts.AllItems.FirstOrDefault(x => x.DefaultPortNumber == num);
-            if (port == null)
+            if (port != null)
                 return port;
             return ComputerExtensions.OGPorts.Values.FirstOrDefault(x => x.DefaultPortNumber == num);
         }

@@ -63,9 +63,7 @@ namespace Pathfinder.Administrator
         public static void RegisterAdministrator<T>() where T : BaseAdministrator => RegisterAdministrator(typeof(T));
         public static void RegisterAdministrator(Type adminType)
         {
-            if (!typeof(BaseAdministrator).IsAssignableFrom(adminType))
-                throw new ArgumentException("Administrator type must inherit from BaseAdministrator!", nameof(adminType));
-            
+            adminType.ThrowNotInherit<BaseAdministrator>(nameof(adminType));
             CustomAdministrators.Add(adminType);
         }
 

@@ -131,6 +131,7 @@
     <Compile Include="Util\AssemblyAssociatedList.cs" />
     <Compile Include="Util\CachedCustomTheme.cs" />
     <Compile Include="Util\DictionaryExtensions.cs" />
+    <Compile Include="Util\ErrorHelper.cs" />
     <Compile Include="Util\ComputerLookup.cs" />
     <Compile Include="Util\FixedSizeCacheDict.cs" />
     <Compile Include="Util\StringExtensions.cs" />

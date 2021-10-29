@@ -9,6 +9,7 @@ using Hacknet.Mission;
 using HarmonyLib;
 using Pathfinder.Event;
 using Pathfinder.Util.XML;
+using Pathfinder.Util;
 
 namespace Pathfinder.Action
 {
@@ -48,8 +49,7 @@ namespace Pathfinder.Action
         public static void RegisterAction<T>(string xmlName) where T : PathfinderAction => RegisterAction(typeof(T), xmlName);
         public static void RegisterAction(Type actionType, string xmlName)
         {
-            if (!typeof(PathfinderAction).IsAssignableFrom(actionType))
-                throw new ArgumentException("Action type must inherit from Pathfinder.Action.PathfinderAction!", nameof(actionType));
+            actionType.ThrowNotInherit<PathfinderAction>(nameof(actionType));
             CustomActions.Add(xmlName, actionType);
             if (!XmlNames.ContainsKey(actionType))
                 XmlNames.Add(actionType, xmlName);
