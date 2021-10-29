@@ -45,6 +45,14 @@ namespace Pathfinder.Util
 
         public static object ConvertToType(Type t, string s)
         {
+            if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                if (string.IsNullOrWhiteSpace(s))
+                    return null;
+
+                t = t.GenericTypeArguments[0];
+            }
+
             try
             {
                 return TypeConverters[t].ToType(s);
@@ -61,9 +69,17 @@ namespace Pathfinder.Util
 
         public static string ConvertToString(object o, Type t = null)
         {
+            if (o == null)
+                return null;
+
+            t ??= o.GetType();
+
+            if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>))
+                t = t.GenericTypeArguments[0];
+
             try
             {
-                return TypeConverters[t ?? o.GetType()].FromType(o);
+                return TypeConverters[t].FromType(o);
             }
             catch (KeyNotFoundException e)
             {
