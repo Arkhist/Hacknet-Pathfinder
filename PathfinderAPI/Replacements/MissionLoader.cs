@@ -203,7 +203,7 @@ namespace Pathfinder.Replacements
             return hasMissionTag ? ret : null;
         }
 
-        private static MisisonGoal LoadGoal(ElementInfo info)
+        public static MisisonGoal LoadGoal(ElementInfo info)
         {
             var type = info.Attributes.GetString("type").ToLower();
 
