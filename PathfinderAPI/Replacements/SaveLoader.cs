@@ -202,7 +202,7 @@ namespace Pathfinder.Replacements
             return false;
         }
 
-        private static Computer LoadComputer(ElementInfo info, OS os)
+        public static Computer LoadComputer(ElementInfo info, OS os)
         {
             var name = info.Attributes.GetString("name");
             var ip = info.Attributes.GetString("ip");
@@ -527,7 +527,7 @@ namespace Pathfinder.Replacements
             return comp;
         }
 
-        private static Folder LoadFolder(ElementInfo info)
+        public static Folder LoadFolder(ElementInfo info)
         {
             var result = new Folder(info.Attributes.GetString("name"));
             foreach (var child in info.Children)
@@ -549,7 +549,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        private static ActiveMission LoadMission(ElementInfo root)
+        public static ActiveMission LoadMission(ElementInfo root)
         {
             var next = root.Attributes.GetString("next", null);
             if (next == "NULL_MISSION")
