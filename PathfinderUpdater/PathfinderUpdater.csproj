@@ -33,6 +33,7 @@
   <Import Project="..\Configurations.targets" />
 
   <Target Name="BeforeRunGame" BeforeTargets="RunGame">
+    <CallTarget Targets="Build" />
     <MSBuild Projects="$(PathfinderSolutionDir)PathfinderAPI\PathfinderAPI.csproj"
       Targets="BeforeRunGame"
       Properties="Configuration=$(Configuration)"

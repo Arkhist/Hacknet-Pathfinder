@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <Target Condition=" !Exists('$(HacknetDir)temp') and Exists('$(HacknetDir)HacknetPathfinder.exe')"
-    Name="MoveGameFilesToTemp" AfterTargets="Build">
+    Name="MoveGameFilesToTemp" AfterTargets="Build, LinkBuiltFiles">
     <Move ContinueOnError="WarnAndContinue"
       SourceFiles="@(_PathfinderTempMoveFiles)"
       DestinationFolder="$(HacknetDir)temp"

@@ -30,6 +30,7 @@
   <Import Project="..\Configurations.targets" />
 
   <Target Name="BeforeRunGame" BeforeTargets="RunGame">
+    <CallTarget Targets="Build" />
     <MSBuild Projects="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj"
       Targets="BeforeRunGame"
       Properties="Configuration=$(Configuration)"

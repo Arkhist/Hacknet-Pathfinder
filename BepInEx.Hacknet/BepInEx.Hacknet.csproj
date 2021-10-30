@@ -54,6 +54,7 @@
   </ItemGroup>
 
   <Target Name="BeforeRunGame"  BeforeTargets="RunGame">
+    <CallTarget Targets="Build" />
     <MoveDir Condition="Exists('$(HacknetDir)BepInEx')"
       SourceDirectories="$(HacknetDir)BepInEx"
       DestinationFolder="$(HacknetDir)temp"
