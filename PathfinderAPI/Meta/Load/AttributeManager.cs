@@ -5,6 +5,7 @@ using HarmonyLib;
 
 namespace Pathfinder.Meta.Load
 {
+    [HarmonyPatch]
     internal static class AttributeManager
     {
         [HarmonyPrefix]
