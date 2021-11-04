@@ -78,13 +78,20 @@ namespace BepInEx.Hacknet
             return pluginInstance;
         }
 
+        public override void Execute()
+        {
+            base.Execute();
+            foreach(var p in Plugins)
+                ((HacknetPlugin)p.Value.Instance).PostLoad();
+        }
+
         internal void UnloadTemps()
         {
             Log.LogMessage("Unloading extension plugins...");
             
             foreach (var temp in TemporaryPluginGUIDs)
             {
-                if (!(this.Plugins[temp].Instance as HacknetPlugin)?.Unload() ?? true)
+                if (!((HacknetPlugin)this.Plugins[temp].Instance).Unload())
                 {
                     Log.LogError($"{temp} failed to unload, this could cause problems without a game restart!");
                 }

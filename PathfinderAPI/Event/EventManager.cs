@@ -139,11 +139,9 @@ namespace Pathfinder.Event
             handlers.RemoveAssembly(pluginAsm, out _);
         }
 
-        internal static T InvokeAll(T eventArgs)
+        private static T InvokeOn(IEnumerable<EventHandler<T>> list, T eventArgs)
         {
-            var allHandlers = Instance.handlers.AllItems.ToList();
-            allHandlers.Sort();
-            foreach (var handler in allHandlers)
+            foreach (var handler in list)
             {
                 try
                 {
@@ -152,13 +150,26 @@ namespace Pathfinder.Event
                 }
                 catch (Exception e)
                 {
-                    Logger.Log(BepInEx.Logging.LogLevel.Error, $"{handler.HandlerInfo.DeclaringType.FullName}::{handler.HandlerInfo.FullDescription()}");
-                    Logger.Log(BepInEx.Logging.LogLevel.Error, e);
+                    Logger.Log(global::BepInEx.Logging.LogLevel.Error, $"{handler.HandlerInfo.DeclaringType.FullName}::{handler.HandlerInfo.FullDescription()}");
+                    Logger.Log(global::BepInEx.Logging.LogLevel.Error, e);
                     eventArgs.Thrown = true;
                 }
             }
-
             return eventArgs;
+        }
+
+        internal static T InvokeAll(T eventArgs)
+        {
+            var allHandlers = Instance.handlers.AllItems.ToList();
+            allHandlers.Sort();
+            return InvokeOn(allHandlers, eventArgs);
+        }
+
+        internal static T InvokeAssembly(Assembly asm, T eventArgs)
+        {
+            var asmHandlers = Instance.handlers[asm].ToList();
+            asmHandlers.Sort();
+            return InvokeOn(asmHandlers, eventArgs);
         }
     }
 }
