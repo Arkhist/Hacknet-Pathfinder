@@ -2,17 +2,27 @@ using System;
 using System.Reflection;
 using BepInEx.Hacknet;
 using HarmonyLib;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 
 namespace Pathfinder.Meta.Load
 {
     [HarmonyPatch]
     internal static class AttributeManager
     {
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(HacknetPlugin), nameof(HacknetPlugin.Load))]
-        private static void OnPluginLoad(ref HacknetPlugin __instance)
+        [HarmonyILManipulator]
+        [HarmonyPatch(typeof(HacknetChainloader), nameof(HacknetChainloader.LoadPlugin))]
+        private static void OnPluginLoadIL(ILContext il)
         {
-            ReadAttributesFor(__instance);
+            var c = new ILCursor(il);
+
+            c.GotoNext(
+                x => x.MatchLdloc(1),
+                x => x.MatchCallvirt(AccessTools.Method(typeof(HacknetPlugin), nameof(HacknetPlugin.Load)))
+            );
+
+            c.Emit(OpCodes.Ldloc, 1);
+            c.Emit(OpCodes.Call, AccessTools.Method(typeof(AttributeManager), nameof(ReadAttributesFor)));
         }
 
         public static void ReadAttributesFor(HacknetPlugin plugin)

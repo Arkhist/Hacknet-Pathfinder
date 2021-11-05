@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Reflection;
 using BepInEx.Hacknet;
 using Pathfinder.Replacements;
@@ -7,12 +7,12 @@ using Pathfinder.Util.XML;
 namespace Pathfinder.Meta.Load
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class ComputerExecutor : BaseAttribute
+    public class ComputerExecutorAttribute : BaseAttribute
     {
         public string Element { get; }
         public ParseOption ParseOptions { get; set; }
 
-        public ComputerExecutor(string element, ParseOption parseOptions = ParseOption.None)
+        public ComputerExecutorAttribute(string element, ParseOption parseOptions = ParseOption.None)
         {
             Element = element;
             ParseOptions = parseOptions;

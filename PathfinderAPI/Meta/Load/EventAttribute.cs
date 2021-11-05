@@ -6,7 +6,7 @@ using BepInEx.Hacknet;
 
 namespace Pathfinder.Meta.Load
 {
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true)]
     public class EventAttribute : BaseAttribute
     {
         private EventHandlerOptions eventHandlerOptions;
@@ -44,11 +44,35 @@ namespace Pathfinder.Meta.Load
             };
         }
 
+        private void CallOn(HacknetPlugin plugin, MethodInfo info)
+        {
+            var eventType = info.GetParameters().FirstOrDefault()?.ParameterType;
+            EventManager.AddHandler(eventType, info);
+        }
+
+        private void CallOn(HacknetPlugin plugin, Type type)
+        {
+            foreach(var method in type.GetMethods(
+                BindingFlags.Public
+                | BindingFlags.NonPublic
+                | BindingFlags.Static
+            ))
+            {
+                if(method.GetCustomAttribute<IgnoreEventAttribute>() != null)
+                    continue;
+                var parameter = method.GetParameters().FirstOrDefault();
+                if(method.ReturnType == typeof(void)
+                    && (parameter?.ParameterType?.IsSubclassOf(typeof(PathfinderEvent)) ?? false))
+                    CallOn(plugin, method);
+            }
+        }
+
         protected internal override void CallOn(HacknetPlugin plugin, MemberInfo targettedInfo)
         {
-            var methodInfo = (MethodInfo)targettedInfo;
-            var eventType = methodInfo.GetParameters().FirstOrDefault()?.ParameterType;
-            EventManager.AddHandler(eventType, methodInfo);
+            if(targettedInfo is MethodInfo method)
+                CallOn(plugin, method);
+            else
+                CallOn(plugin, (Type) targettedInfo);
         }
     }
 }
