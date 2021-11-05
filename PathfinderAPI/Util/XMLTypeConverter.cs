@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Hacknet;
 using Microsoft.Xna.Framework;
@@ -12,9 +12,8 @@ namespace Pathfinder.Util
     {
         private class ConversionFailureException : Exception
         {
-            public ConversionFailureException(string val, Type t, Exception inner) : base($"The value \"{(val is null ? "is null and" : $"\"{val}\"")}\" could not be converted to {t.Name}"
-, inner) {}
-            public ConversionFailureException(object o, Exception inner) : base($"The object {(o is null ? "is null and" : $"\"{o.ToString()}\"")} could not be converted to a string", inner) {}
+            public ConversionFailureException(string val, Type t, Exception inner) : base($"The value \"{(val is null ? "is null and" : $"\"{val}\"")}\" could not be converted to {t.Name}", inner) { }
+            public ConversionFailureException(object o, Exception inner) : base($"The object {(o is null ? "is null and" : $"\"{o.ToString()}\"")} could not be converted to a string", inner) { }
         }
 
         private class TypeConverter
