@@ -1,3 +1,5 @@
+using System.Xml.Linq;
+using System.Linq;
 using System;
 using System.Reflection;
 using BepInEx.Hacknet;
@@ -30,8 +32,10 @@ namespace Pathfinder.Meta.Load
             var pluginType = plugin.GetType();
             if(pluginType.GetCustomAttribute<IgnorePluginAttribute>() != null)
                 return;
+            ReadAttributesOnType(plugin, pluginType);
             foreach(var type in pluginType.Assembly.GetTypes())
             {
+                if(type == pluginType) continue;
                 ReadAttributesOnType(plugin, type);
             }
         }
@@ -42,7 +46,7 @@ namespace Pathfinder.Meta.Load
             {
                 attribute.CallOn(plugin, type);
             }
-            foreach (var member in type.GetMembers(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static))
+            foreach (var member in type.GetMembers(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static))
             {
                 if (member.MemberType == MemberTypes.NestedType)
                 {

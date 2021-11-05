@@ -46,6 +46,8 @@ namespace Pathfinder.Meta.Load
 
         private void CallOn(HacknetPlugin plugin, MethodInfo info)
         {
+            if(!info.IsStatic)
+                throw new InvalidOperationException("EventAttribute can not register event handlers to instance methods");
             var eventType = info.GetParameters().FirstOrDefault()?.ParameterType;
             EventManager.AddHandler(eventType, info);
         }

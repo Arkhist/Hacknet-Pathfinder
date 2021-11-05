@@ -26,11 +26,11 @@ namespace Pathfinder.Meta.Load
             {
                 Tag = plugin.GetOptionsTag();
                 if(Tag == null)
-                    throw new InvalidOperationException($"Could not find Pathfinder.Meta.Load.PluginsOptionsTabAttribute for {targettedInfo.DeclaringType.FullName}");
+                    throw new InvalidOperationException($"Could not find Pathfinder.Meta.Load.OptionsTabAttribute for {targettedInfo.DeclaringType.FullName}");
             }
 
             if(targettedInfo.DeclaringType != plugin.GetType())
-                throw new InvalidOperationException($"Pathfinder.Meta.Load.PluginsOptionAttribute is only valid in a class derived from BepInEx.Hacknet.HacknetPlugin");
+                throw new InvalidOperationException($"Pathfinder.Meta.Load.OptionAttribute is only valid in a class derived from BepInEx.Hacknet.HacknetPlugin");
 
             Option option = null;
             switch(targettedInfo)
