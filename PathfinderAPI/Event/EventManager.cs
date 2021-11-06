@@ -158,14 +158,14 @@ namespace Pathfinder.Event
             return eventArgs;
         }
 
-        internal static T InvokeAll(T eventArgs)
+        public static T InvokeAll(T eventArgs)
         {
             var allHandlers = Instance.handlers.AllItems.ToList();
             allHandlers.Sort();
             return InvokeOn(allHandlers, eventArgs);
         }
 
-        internal static T InvokeAssembly(Assembly asm, T eventArgs)
+        public static T InvokeAssembly(Assembly asm, T eventArgs)
         {
             var asmHandlers = Instance.handlers[asm].ToList();
             asmHandlers.Sort();
