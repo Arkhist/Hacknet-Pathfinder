@@ -47,7 +47,7 @@ namespace PathfinderUpdater
 
         public static Version VersionToRequest = null;
         public static bool NeedsUpdate;
-        private static Updater PathfinderUpdater;
+        internal static Updater PathfinderUpdater;
 
         public static readonly List<Updater> Updaters = new List<Updater>();
         private static readonly List<string> UpdaterWhitelistGuids = new List<string>

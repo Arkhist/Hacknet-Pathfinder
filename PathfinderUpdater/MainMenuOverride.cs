@@ -23,7 +23,8 @@ namespace PathfinderUpdater
         private static OptionCheckbox IncludePrerelease = new OptionCheckbox("IncludePreReleases", "Autoupdate to pre-releases", PathfinderUpdaterPlugin.EnablePreReleases.Value);
         internal static OptionCheckbox NoRestartPrompt = new OptionCheckbox("NoRestartPrompt", "Prevents a restart prompt appearing");
         private static PFButton CheckForUpdate = new PFButton(10, 10, 160, 30, "Check For Update", new Color(255, 255, 87));
-        private static PFButton PerformUpdate = new PFButton(180, 10, 160, 30, "Update");
+        private const string UPDATE_STRING = "Update";
+        private static PFButton PerformUpdate = new PFButton(180, 10, 160, 30, UPDATE_STRING);
         private static RestartPopupScreen popupScreen;
 
 
@@ -50,6 +51,7 @@ namespace PathfinderUpdater
 
         internal static async Task PerformCheckAndUpdateButtonAsync()
         {
+            PerformUpdate.Text = UPDATE_STRING;
             CanCheckForUpdate = false;
             var oldText = CheckForUpdate.Text;
             CheckForUpdate.Text = "Finding Latest Update...";
@@ -57,6 +59,7 @@ namespace PathfinderUpdater
                 = (await PathfinderUpdaterPlugin.PerformCheckAsync(true)).Length > 0;
             CheckForUpdate.Text = oldText;
             CanCheckForUpdate = true;
+            PerformUpdate.Text += $" (${PathfinderUpdaterPlugin.PathfinderUpdater.LatestVersion})";
         }
 
         private static async Task PerformUpdateAndUpdateButtonAsync(MainMenu menu)
