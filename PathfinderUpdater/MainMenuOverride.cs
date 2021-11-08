@@ -59,7 +59,7 @@ namespace PathfinderUpdater
                 = (await PathfinderUpdaterPlugin.PerformCheckAsync(true)).Length > 0;
             CheckForUpdate.Text = oldText;
             CanCheckForUpdate = true;
-            PerformUpdate.Text += $" (${PathfinderUpdaterPlugin.PathfinderUpdater.LatestVersion})";
+            PerformUpdate.Text += $" (v{PathfinderUpdaterPlugin.PathfinderUpdater.LatestVersion})";
         }
 
         private static async Task PerformUpdateAndUpdateButtonAsync(MainMenu menu)
