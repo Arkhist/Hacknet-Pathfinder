@@ -132,7 +132,7 @@ namespace PathfinderUpdater
 
         public static void PerformUpdateCheck()
         {
-            Task.Run(async() => await PFWrapper.PerformCheckAndUpdateButtonAsync());
+            Task.Run(async() => await MainMenuOverride.PerformCheckAndUpdateButtonAsync());
         }
 
         public static async Task<bool[]> PerformCheckAsync(bool forceData = false)

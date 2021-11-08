@@ -44,7 +44,7 @@ namespace PathfinderUpdater
         {
             base.ExitScreen();
             PathfinderUpdaterPlugin.NoRestartPrompt.Value = NoRestartPrompt.Value;
-            PFWrapper.NoRestartPrompt.Value = PathfinderUpdaterPlugin.NoRestartPrompt.Value;
+            MainMenuOverride.NoRestartPrompt.Value = PathfinderUpdaterPlugin.NoRestartPrompt.Value;
         }
     }
 }
