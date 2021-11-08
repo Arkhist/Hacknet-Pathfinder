@@ -66,7 +66,10 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="MainMenuOverride.cs" />
         <Compile Include="PathfinderUpdaterPlugin.cs" />
+        <Compile Include="RestartPopupScreen.cs" />
+        <Compile Include="Updater.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
