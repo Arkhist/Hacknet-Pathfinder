@@ -26,7 +26,7 @@ namespace Pathfinder.Replacements
     [HarmonyPatch]
     public static class SaveWriter
     {
-        internal static XElement GetHacknetSaveElement(OS os)
+        public static XElement GetHacknetSaveElement(OS os)
         {
             var result = new XElement("HacknetSave");
             result.SetAttributeValue("generatedMissionCount", MissionGenerator.generationCount);
@@ -37,7 +37,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetActionSaveElement(SerializableAction action)
+        public static XElement GetActionSaveElement(SerializableAction action)
         {
             if (action is PathfinderAction pfAction)
             {
@@ -80,7 +80,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetConditionSaveElement(SerializableCondition cond)
+        public static XElement GetConditionSaveElement(SerializableCondition cond)
         {
             if (cond is PathfinderCondition pfCond)
             {
@@ -108,7 +108,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetConditionalActionSetSaveElement(SerializableConditionalActionSet set)
+        public static XElement GetConditionalActionSetSaveElement(SerializableConditionalActionSet set)
         {
             var result = GetConditionSaveElement(set.Condition);
             for (var i = 0; i < set.Actions.Count; i++)
@@ -116,7 +116,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetConditionalActionsSaveElement(RunnableConditionalActions actions)
+        public static XElement GetConditionalActionsSaveElement(RunnableConditionalActions actions)
         {
             var result = new XElement("ConditionalActions");
             foreach (var action in actions.Actions)
@@ -126,7 +126,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetDLCSaveElement(OS os)
+        public static XElement GetDLCSaveElement(OS os)
         {
             var result = new XElement("DLC");
             result.SetAttributeValue("Active", os.IsInDLCMode.ToString());
@@ -141,7 +141,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetFlagsSaveElement(ProgressionFlags flags)
+        public static XElement GetFlagsSaveElement(ProgressionFlags flags)
         {
             var result = new XElement("Flags");
             var flagsBuild = new StringBuilder();
@@ -158,7 +158,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetNetmapVisibleNodesSaveElement(NetworkMap nmap)
+        public static XElement GetNetmapVisibleNodesSaveElement(NetworkMap nmap)
         {
             var result = new XElement("visible");
             var visible = new StringBuilder();
@@ -170,7 +170,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetFirewallSaveElement(Firewall firewall)
+        public static XElement GetFirewallSaveElement(Firewall firewall)
         {
             var result = new XElement("firewall");
             result.SetAttributeValue("complexity", firewall.complexity);
@@ -179,7 +179,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetPortSaveElement(Computer node)
+        public static XElement GetPortSaveElement(Computer node)
         {
             var result = new XElement("ports");
             var builder = new StringBuilder();
@@ -191,7 +191,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetUserDetailSaveElement(UserDetail user)
+        public static XElement GetUserDetailSaveElement(UserDetail user)
         {
             var result = new XElement("user");
             result.SetAttributeValue("name", user.name);
@@ -201,7 +201,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetMemoryContentsSaveElement(MemoryContents contents)
+        public static XElement GetMemoryContentsSaveElement(MemoryContents contents)
         {
             var result = new XElement("Memory");
             if (contents.DataBlocks != null && contents.DataBlocks.Count > 0)
@@ -252,7 +252,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetFolderSaveElement(Folder folder)
+        public static XElement GetFolderSaveElement(Folder folder)
         {
             var result = new XElement("folder");
             result.SetAttributeValue("name", folder.name);
@@ -271,14 +271,14 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetFilesystemSaveElement(FileSystem fs)
+        public static XElement GetFilesystemSaveElement(FileSystem fs)
         {
             var result = new XElement("filesystem");
             result.Add(GetFolderSaveElement(fs.root));
             return result;
         }
 
-        internal static XElement GetDaemonSaveElement(object daemon)
+        public static XElement GetDaemonSaveElement(object daemon)
         {
             XElement CreateDaemonElement(object daemonObj, string name, string[] fields, string[] attribNames)
             {
@@ -474,7 +474,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetNodeSaveElement(Computer node)
+        public static XElement GetNodeSaveElement(Computer node)
         {
             var result = new XElement("computer");
             result.SetAttributeValue("name", node.name);
@@ -585,14 +585,14 @@ namespace Pathfinder.Replacements
             return eventResult.Cancelled ? null : eventResult.Element;
         }
 
-        internal static XElement GetNetmapNodesSaveElement(NetworkMap nmap)
+        public static XElement GetNetmapNodesSaveElement(NetworkMap nmap)
         {
             var result = new XElement("network");
             result.Add(nmap.nodes.Select(GetNodeSaveElement).Where(x => x != null).ToArray());
             return result;
         }
 
-        internal static XElement GetNetmapSaveElement(NetworkMap nmap)
+        public static XElement GetNetmapSaveElement(NetworkMap nmap)
         {
             var result = new XElement("NetworkMap");
             result.SetAttributeValue("sort", nmap.SortingAlgorithm);
@@ -601,7 +601,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetMissionSaveElement(ActiveMission mission)
+        public static XElement GetMissionSaveElement(ActiveMission mission)
         {
             var result = new XElement("mission");
             if (mission == null) {
@@ -643,7 +643,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetFactionSaveElement(Faction faction)
+        public static XElement GetFactionSaveElement(Faction faction)
         {
             var tagName = "Faction";
             switch (faction)
@@ -685,7 +685,7 @@ namespace Pathfinder.Replacements
             return result;
         }
 
-        internal static XElement GetAllFactionsSaveElement(AllFactions factions)
+        public static XElement GetAllFactionsSaveElement(AllFactions factions)
         {
             var result = new XElement("AllFactions");
             result.SetAttributeValue("current", factions.currentFaction);
