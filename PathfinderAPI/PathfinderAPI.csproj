@@ -91,6 +91,9 @@
     <Compile Include="Daemon\BaseDaemon.cs" />
     <Compile Include="Daemon\DaemonManager.cs" />
     <Compile Include="Event\EventManager.cs" />
+    <Compile Include="Event\BepInEx\LoadEvent.cs" />
+    <Compile Include="Event\BepInEx\PostLoadEvent.cs" />
+    <Compile Include="Event\BepInEx\UnloadEvent.cs" />
     <Compile Include="Event\Gameplay\CommandExecuteEvent.cs" />
     <Compile Include="Event\Gameplay\ExecutableExecuteEvent.cs" />
     <Compile Include="Event\Gameplay\OSUpdateEvent.cs" />

@@ -10,12 +10,22 @@ namespace Pathfinder.Util
         private Dictionary<Assembly, List<T>> asmDictionary = new Dictionary<Assembly, List<T>>();
         public ReadOnlyCollection<T> AllItems { get; private set; } = new ReadOnlyCollection<T>(new List<T>());
 
+        public ReadOnlyCollection<T> this[Assembly assembly]
+        {
+            get
+            {
+                if(!asmDictionary.TryGetValue(assembly, out var list))
+                    return new ReadOnlyCollection<T>(new List<T>());
+                return new ReadOnlyCollection<T>(list);
+            }
+        }
+
         public void Add(T val, Assembly owner)
         {
             if (!asmDictionary.ContainsKey(owner))
                 asmDictionary[owner] = new List<T>();
             asmDictionary[owner].Add(val);
-            
+
             RefreshCache();
         }
 

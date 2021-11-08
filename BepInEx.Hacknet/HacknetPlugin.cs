@@ -25,6 +25,11 @@ namespace BepInEx.Hacknet
 
         public abstract bool Load();
 
+        /// <summary>
+        /// Runs after all plugins have executed thier Load method
+        /// </summary>
+        public virtual void PostLoad() {}
+
         public virtual bool Unload()
         {
             HarmonyInstance.UnpatchSelf();
