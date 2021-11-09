@@ -4,6 +4,7 @@ using Pathfinder.GUI;
 
 namespace Pathfinder.Options;
 
+[Obsolete("Use BasePluginOption")]
 public abstract class Option
 {
     public string Name;
@@ -22,6 +23,7 @@ public abstract class Option
     public abstract void Draw(int x, int y);
 }
 
+[Obsolete("Use PluginCheckbox")]
 public class OptionCheckbox : Option
 {
     public bool Value;

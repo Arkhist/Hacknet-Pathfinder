@@ -3,6 +3,9 @@ using BepInEx.Configuration;
 using BepInEx.Hacknet;
 using HarmonyLib;
 using Pathfinder.Meta;
+using Pathfinder.Event;
+using Pathfinder.Event.Options;
+using Pathfinder.Options;
 using Pathfinder.Util;
 using System.Globalization;
 
@@ -40,5 +43,15 @@ public class PathfinderAPIPlugin : HacknetPlugin
         CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
         CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
         return true;
+    }
+
+    public override void PostLoad()
+    {
+        OptionsManager.OnConfigLoad(Config);
+        EventManager<CustomOptionsSaveEvent>.AddHandler(_ =>
+        {
+            OptionsManager.OnConfigSave(Config);
+            Config.Save();
+        });
     }
 }

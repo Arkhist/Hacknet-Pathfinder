@@ -13,7 +13,7 @@ namespace Pathfinder.Options;
 internal static class PathfinderOptionsMenu
 {
     private static bool isInPathfinderMenu = false;
-    private static string currentTabName = null;
+    internal static string currentTabName = null;
 
     private static PFButton ReturnButton = new PFButton(10, 10, 220, 54, "Back to Options", Color.Yellow);
 
@@ -21,13 +21,13 @@ internal static class PathfinderOptionsMenu
     [HarmonyPatch(typeof(OptionsMenu), nameof(OptionsMenu.Draw))]
     internal static bool Draw(ref OptionsMenu __instance, GameTime gameTime)
     {
-        if (!isInPathfinderMenu) 
+        if (!isInPathfinderMenu)
             return true;
-        
+
         PostProcessor.begin();
-        GuiData.startDraw();
-        PatternDrawer.draw(new Rectangle(0, 0, __instance.ScreenManager.GraphicsDevice.Viewport.Width, __instance.ScreenManager.GraphicsDevice.Viewport.Height), 0.5f, Color.Black, new Color(2, 2, 2), GuiData.spriteBatch);
-            
+			GuiData.startDraw();
+			PatternDrawer.draw(new Rectangle(0, 0, __instance.ScreenManager.GraphicsDevice.Viewport.Width, __instance.ScreenManager.GraphicsDevice.Viewport.Height), 0.5f, Color.Black, new Color(2, 2, 2), GuiData.spriteBatch);
+
         if (ReturnButton.Do())
         {
             currentTabName = null;
@@ -39,9 +39,18 @@ internal static class PathfinderOptionsMenu
             return false;
         }
 
+        #pragma warning disable 618
         var tabs = OptionsManager.Tabs;
-            
+        #pragma warning restore 618
+
         int tabX = 10;
+
+        foreach (var tab in OptionsManager.PluginTabs)
+        {
+            tab.ButtonData = tab.ButtonData.Set(tabX);
+            tab.OnDraw(gameTime);
+            tabX += 10 + tab.ButtonData.Width;
+        }
 
         foreach (var tab in tabs.Values)
         {
@@ -69,7 +78,7 @@ internal static class PathfinderOptionsMenu
         }
 
         GuiData.endDraw();
-        PostProcessor.end();
+			PostProcessor.end();
         return false;
     }
 
@@ -80,7 +89,7 @@ internal static class PathfinderOptionsMenu
     internal static void BeforeEndDrawOptions(ILContext il)
     {
         ILCursor c = new ILCursor(il);
-            
+
         c.GotoNext(MoveType.AfterLabel, x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(GuiData), nameof(GuiData.endDraw))));
 
         c.EmitDelegate<System.Action>(() =>

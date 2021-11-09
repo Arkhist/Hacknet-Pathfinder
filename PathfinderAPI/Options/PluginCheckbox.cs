@@ -1,0 +1,23 @@
+﻿using BepInEx.Configuration;
+using Hacknet.Gui;
+using Microsoft.Xna.Framework;
+
+namespace Pathfinder.Options;
+
+public class PluginCheckbox : BasePluginOption<bool>
+{
+    public PluginCheckbox(string headerText, string descriptionText = null, bool defaultValue = false)
+    {
+        HeaderText = headerText;
+        DescriptionText = descriptionText;
+        DefaultValue = defaultValue;
+    }
+
+    public override void OnDraw(GameTime gameTime)
+    {
+        TextItem.doLabel(DrawDataField, HeaderText, null, 200);
+        Value = CheckBox.doCheckBox(HacknetGuiId, DrawDataField.X, DrawDataField.Y + 34, Value, null);
+
+        TextItem.doSmallLabel(DrawDataField.Add(32, 30), DescriptionText, null);
+    }
+}
