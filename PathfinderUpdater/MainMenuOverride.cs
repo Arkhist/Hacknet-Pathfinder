@@ -12,9 +12,23 @@ namespace PathfinderUpdater;
 [HarmonyPatch]
 internal static class MainMenuOverride
 {
-    private static OptionCheckbox IsEnabledBox = new OptionCheckbox("Enabled", "Enables the auto updater", PathfinderUpdaterPlugin.IsEnabled.Value);
-    private static OptionCheckbox IncludePrerelease = new OptionCheckbox("IncludePreReleases", "Autoupdate to pre-releases", PathfinderUpdaterPlugin.EnablePreReleases.Value);
-    internal static OptionCheckbox NoRestartPrompt = new OptionCheckbox("NoRestartPrompt", "Prevents a restart prompt appearing");
+    internal static PluginCheckbox IsEnabledBox = new PluginCheckbox(
+        "Enabled",
+        "Enables the auto updater",
+        true,
+        "Enables or disables automatic updates for PathfinderAPI"
+    );
+    internal static PluginCheckbox IncludePrerelease = new PluginCheckbox(
+        "IncludePreReleases",
+        "Autoupdate to pre-releases",
+        configDesc: "Whether or not to automatically update to beta versions"
+    );
+    internal static PluginCheckbox NoRestartPrompt = new PluginCheckbox(
+        "NoRestartPrompt",
+        "Prevents a restart prompt appearing",
+        configDesc: "Whether ot not the restart prompt will automatically appear when the update is finished"
+    );
+
     private static PFButton CheckForUpdate = new PFButton(10, 10, 160, 30, "Check For Update", new Color(255, 255, 87));
     private const string UPDATE_STRING = "Update";
     private static PFButton PerformUpdate = new PFButton(180, 10, 160, 30, UPDATE_STRING);
@@ -25,10 +39,10 @@ internal static class MainMenuOverride
     [HarmonyPatch(typeof(Program), nameof(Program.Main))]
     internal static void PFAPILoaded()
     {
-        OptionsManager.AddOption("Updater", IsEnabledBox);
-        OptionsManager.AddOption("Updater", IncludePrerelease);
-        OptionsManager.AddOption("Updater", NoRestartPrompt);
-        EventManager<CustomOptionsSaveEvent>.AddHandler(OptionsSaved);
+        OptionsManager.GetOrRegisterTab("Updater", "AutoUpdater")
+        .AddOption(IsEnabledBox)
+        .AddOption(IncludePrerelease)
+        .AddOption(NoRestartPrompt);
         EventManager<DrawMainMenuEvent>.AddHandler(OnDrawMainMenu);
         CanPerformUpdate = PathfinderUpdaterPlugin.NeedsUpdate;
     }

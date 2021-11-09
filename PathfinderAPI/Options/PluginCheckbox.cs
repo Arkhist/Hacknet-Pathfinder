@@ -6,11 +6,12 @@ namespace Pathfinder.Options;
 
 public class PluginCheckbox : BasePluginOption<bool>
 {
-    public PluginCheckbox(string headerText, string descriptionText = null, bool defaultValue = false)
+    public PluginCheckbox(string headerText, string descriptionText = null, bool defaultValue = false, string configDesc = null)
     {
         HeaderText = headerText;
         DescriptionText = descriptionText;
         DefaultValue = defaultValue;
+        ConfigDescription = configDesc;
     }
 
     public override void OnDraw(GameTime gameTime)

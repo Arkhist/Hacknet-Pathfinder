@@ -27,6 +27,7 @@ public abstract class BasePluginOption<ValueT> : IPluginOption
     public virtual ValueT DefaultValue { get; set; } = default;
     public virtual string HeaderText { get; protected set; }
     public virtual string DescriptionText { get; protected set; }
+    public virtual string ConfigDescription { get; protected set; }
     public virtual string Id { get; private set; }
 
     public bool TrySetHeaderText(string text)
@@ -39,6 +40,12 @@ public abstract class BasePluginOption<ValueT> : IPluginOption
     {
         DescriptionText = text;
         return DescriptionText == text;
+    }
+
+    public bool TrySetConfigDescription(string desc)
+    {
+        ConfigDescription = desc;
+        return ConfigDescription == desc;
     }
 
     public virtual void OnRegistered()
