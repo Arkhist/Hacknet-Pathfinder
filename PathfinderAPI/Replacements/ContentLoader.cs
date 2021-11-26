@@ -323,7 +323,10 @@ namespace Pathfinder.Replacements
             }, ParseOption.ParseInterior);
             executor.RegisterExecutor("Computer.PFPorts", (exec, info) =>
             {
-                PortManager.LoadPortsFromString(comp, info.Content, info.Attributes.GetBool("replace"));
+                if(info.Children.Count != 0)
+                    PortManager.LoadPortsFromChildren(comp, info.Children, info.Attributes.GetBool("replace"));
+                else
+                    PortManager.LoadPortsFromString(comp, info.Content, info.Attributes.GetBool("replace"));
             }, ParseOption.ParseInterior);
             executor.RegisterExecutor("Computer.ExternalCounterpart", (exec, info) =>
             {
@@ -895,7 +898,7 @@ namespace Pathfinder.Replacements
 
             if (!ComputerExtensions.HasInitializedPorts(ret))
             {
-                PortManager.LoadPortsFromString(ret, "ssh ftp smtp web", false);
+                PortManager.LoadPortsFromChildren(ret, ReplacementsCommon.defaultPorts, false);
             }
 
             if (!preventInitDaemons)

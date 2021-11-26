@@ -182,12 +182,15 @@ namespace Pathfinder.Replacements
         public static XElement GetPortSaveElement(Computer node)
         {
             var result = new XElement("ports");
-            var builder = new StringBuilder();
             foreach (var port in node.GetAllPortStates())
             {
-                builder.Append($"{port.Record.Protocol}:{port.Record.OriginalPortNumber}:{port.PortNumber}:{port.DisplayName.Replace(' ', '_')} ");
+                result.Add(
+                    new XElement(port.Record.Protocol,
+                        new XElement("Original", port.Record.OriginalPortNumber),
+                        new XElement("Number", port.PortNumber),
+                        new XElement("Display", port.DisplayName)
+                ));
             }
-            result.Value = builder.ToString();
             return result;
         }
 
