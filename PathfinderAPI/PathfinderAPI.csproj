@@ -115,6 +115,7 @@
     <Compile Include="Executable\GameExecutable.cs" />
     <Compile Include="GUI\ArbitraryCodeWarning.cs" />
     <Compile Include="GUI\PFButton.cs" />
+    <Compile Include="Meta\UpdaterAttribute.cs" />
     <Compile Include="Meta\Load\ActionAttribute.cs" />
     <Compile Include="Meta\Load\AdministratorAttribute.cs" />
     <Compile Include="Meta\Load\AttributeManager.cs" />

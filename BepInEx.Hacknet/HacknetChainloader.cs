@@ -20,6 +20,13 @@ namespace BepInEx.Hacknet
 {
     public class HacknetChainloader : BaseChainloader<HacknetPlugin>
     {
+        private static Tuple<string, string, string> __UpdaterData
+            = new Tuple<string, string, string>(
+                "https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases",
+                "Pathfinder.Release.zip",
+                "BepInEx/core/BepInEx.Hacknet.dll"
+            );
+
         public const string VERSION = "5.0.2-pre";
         public static readonly Version Version = Version.Parse(VERSION);
         

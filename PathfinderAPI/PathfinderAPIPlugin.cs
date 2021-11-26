@@ -4,12 +4,18 @@ using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Hacknet;
 using HarmonyLib;
+using Pathfinder.Meta;
 using Pathfinder.Util;
 
 namespace Pathfinder
 {
     [BepInPlugin(ModGUID, ModName, HacknetChainloader.VERSION)]
     [BepInDependency("com.Pathfinder.Updater", BepInDependency.DependencyFlags.SoftDependency)]
+    [Updater(
+        "https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases",
+        "Pathfinder.Release.zip",
+        "BepInEx/plugins/PathfinderAPI.dll"
+    )]
     public class PathfinderAPIPlugin : HacknetPlugin
     {
         public const string ModGUID = "com.Pathfinder.API";
