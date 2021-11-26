@@ -268,10 +268,49 @@ namespace Pathfinder.Replacements
 
             if (info.Children.TryGetElement("ports", out var ports))
             {
-                foreach (var port in ports.Content.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+                if (ports.Content != null)
+                    foreach (var port in ports.Content.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        var parts = port.Split(':');
+                        var record = PortManager.GetPortRecordFromProtocol(parts[0]);
+                        var displayName = parts[3].Replace('_', ' ');
+                        var portNum = int.Parse(parts[2]);
+                        if(record == null)
+                        {
+                            PortManager.RegisterPort(record = new PortRecord(
+                                parts[0],
+                                displayName,
+                                portNum,
+                                int.Parse(parts[1])
+                            ));
+                        }
+
+                        comp.AddPort(record.CreateState(
+                            comp,
+                            displayName,
+                            portNum
+                        ));
+                    }
+
+                foreach (var port in ports.Children)
                 {
-                    var parts = port.Split(':');
-                    comp.AddPort(new PortRecord(parts[0], parts[3].Replace('_', ' '), int.Parse(parts[2]), int.Parse(parts[1])));
+                    var record = PortManager.GetPortRecordFromProtocol(port.Name);
+                    var displayName = port.Children.GetElement("Display").Content;
+                    var portNum = int.Parse(port.Children.GetElement("Number").Content);
+                    if(record == null)
+                    {
+                        PortManager.RegisterPort(record = new PortRecord(
+                            port.Name,
+                            displayName,
+                            portNum,
+                            int.Parse(port.Children.GetElement("Original").Content)
+                        ));
+                    }
+                    comp.AddPort(record.CreateState(
+                        comp,
+                        displayName,
+                        portNum
+                    ));
                 }
             }
 
