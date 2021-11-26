@@ -126,7 +126,7 @@
     <Compile Include="Meta\Load\DaemonAttribute.cs" />
     <Compile Include="Meta\Load\EventAttribute.cs" />
     <Compile Include="Meta\Load\ExecutableAttribute.cs" />
-    <Compile Include="Meta\Load\ExtensionInfoAttribute.cs" />
+    <Compile Include="Meta\Load\ExtensionInfoExecutorAttribute.cs" />
     <Compile Include="Meta\Load\GoalAttribute.cs" />
     <Compile Include="Meta\Load\HacknetPluginExtensions.cs" />
     <Compile Include="Meta\Load\IgnoreEventAttribute.cs" />
