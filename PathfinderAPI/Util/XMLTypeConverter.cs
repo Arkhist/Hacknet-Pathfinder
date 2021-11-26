@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Hacknet;
 using Microsoft.Xna.Framework;
@@ -12,8 +12,8 @@ namespace Pathfinder.Util
     {
         private class ConversionFailureException : Exception
         {
-            public ConversionFailureException(string val, Type t, Exception inner) : base($"The value \"{val}\" could not be converted to {t.Name}", inner) {}
-            public ConversionFailureException(object o, Exception inner) : base($"The object \"{o.ToString()}\" could not be converted to a string", inner) {}
+            public ConversionFailureException(string val, Type t, Exception inner) : base($"The value \"{(val is null ? "is null and" : $"\"{val}\"")}\" could not be converted to {t.Name}", inner) { }
+            public ConversionFailureException(object o, Exception inner) : base($"The object {(o is null ? "is null and" : $"\"{o.ToString()}\"")} could not be converted to a string", inner) { }
         }
 
         private class TypeConverter
@@ -45,6 +45,14 @@ namespace Pathfinder.Util
 
         public static object ConvertToType(Type t, string s)
         {
+            if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                if (string.IsNullOrWhiteSpace(s))
+                    return null;
+
+                t = t.GenericTypeArguments[0];
+            }
+
             try
             {
                 return TypeConverters[t].ToType(s);
@@ -61,9 +69,25 @@ namespace Pathfinder.Util
 
         public static string ConvertToString(object o, Type t = null)
         {
+            if (t == null)
+            {
+                if (o == null)
+                    return null; //Should this error instead?
+
+                t = o.GetType();
+            }
+
+            if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                if (o == null)
+                    return null;
+
+                t = t.GenericTypeArguments[0];
+            }
+
             try
             {
-                return TypeConverters[t ?? o.GetType()].FromType(o);
+                return TypeConverters[t].FromType(o);
             }
             catch (KeyNotFoundException e)
             {
