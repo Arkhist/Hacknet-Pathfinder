@@ -111,6 +111,8 @@
     <Compile Include="Event\Saving\SaveEvent.cs" />
     <Compile Include="Executable\BaseExecutable.cs" />
     <Compile Include="Executable\ExecutableManager.cs" />
+    <Compile Include="Executable\ExeModuleExtensions.cs" />
+    <Compile Include="Executable\GameExecutable.cs" />
     <Compile Include="GUI\ArbitraryCodeWarning.cs" />
     <Compile Include="GUI\PFButton.cs" />
     <Compile Include="Meta\Load\ActionAttribute.cs" />
