@@ -7,7 +7,7 @@ namespace Pathfinder.Executable
     public abstract class BaseExecutable : ExeModule
     {
         [Obsolete("To be removed in 6.0.0")]
-        public abstract string GetIdentifier();
+        public virtual string GetIdentifier() => null;
 
         public string[] Args;
 
