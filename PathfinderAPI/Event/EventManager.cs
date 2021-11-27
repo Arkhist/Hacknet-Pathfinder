@@ -66,14 +66,12 @@ namespace Pathfinder.Event
                 throw new ArgumentException("Handler method must have one parameter of the same type of event you're subscribing to!", nameof(handler));
             }
 
-            var delegateType = typeof(Action<>).MakeGenericType(pathfinderEvent);
-
             object handlerDelegate = typeof(AccessTools)
                 .GetMethod("MethodDelegate")
-                .MakeGenericMethod(delegateType)
+                .MakeGenericMethod(typeof(Action<>).MakeGenericType(pathfinderEvent))
                 .Invoke(null, new object[] { handler, null, true });
 
-            object eventHandler = Activator.CreateInstance(typeof(EventHandler<>).MakeGenericType(delegateType), handlerDelegate, options);
+            object eventHandler = Activator.CreateInstance(typeof(EventHandler<>).MakeGenericType(pathfinderEvent), handlerDelegate, options);
 
             var eventManagerType = typeof(EventManager<>).MakeGenericType(pathfinderEvent);
 
