@@ -54,10 +54,10 @@ namespace Pathfinder.Event
         /// </summary>
         /// <param name="pathfinderEvent">The type of event to subscribe to, must inherit from <see cref="PathfinderEvent"/>></param>
         /// <param name="handler">MethodInfo of the handler method</param>
-        /// <param name="owner">Owner assembly of the MethodInfo</param>
+        /// <param name="options">Options to use for the handler</param>
         /// <exception cref="ArgumentException"></exception>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void AddHandler(Type pathfinderEvent, MethodInfo handler)
+        public static void AddHandler(Type pathfinderEvent, MethodInfo handler, EventHandlerOptions options = default)
         {
             pathfinderEvent.ThrowNotInherit<PathfinderEvent>(nameof(pathfinderEvent));
             var parameters = handler.GetParameters();
@@ -66,10 +66,14 @@ namespace Pathfinder.Event
                 throw new ArgumentException("Handler method must have one parameter of the same type of event you're subscribing to!", nameof(handler));
             }
 
+            var delegateType = typeof(Action<>).MakeGenericType(pathfinderEvent);
+
             object handlerDelegate = typeof(AccessTools)
                 .GetMethod("MethodDelegate")
-                .MakeGenericMethod(typeof(Action<>).MakeGenericType(pathfinderEvent))
+                .MakeGenericMethod(delegateType)
                 .Invoke(null, new object[] { handler, null, true });
+
+            object eventHandler = Activator.CreateInstance(typeof(EventHandler<>).MakeGenericType(delegateType), handlerDelegate, options);
 
             var eventManagerType = typeof(EventManager<>).MakeGenericType(pathfinderEvent);
 
@@ -77,7 +81,7 @@ namespace Pathfinder.Event
             
             eventManagerType
                 .GetMethod("AddHandlerInternal", BindingFlags.NonPublic | BindingFlags.Static)
-                .Invoke(instance, new object[] { handlerDelegate, handler.Module.Assembly });
+                .Invoke(instance, new object[] { eventHandler, handler.Module.Assembly });
         }
     }
 
