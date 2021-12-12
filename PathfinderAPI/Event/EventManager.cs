@@ -71,14 +71,20 @@ namespace Pathfinder.Event
                 .MakeGenericMethod(typeof(Action<>).MakeGenericType(pathfinderEvent))
                 .Invoke(null, new object[] { handler, null, true });
 
-            object eventHandler = Activator.CreateInstance(typeof(EventHandler<>).MakeGenericType(pathfinderEvent), handlerDelegate, options);
+            object eventHandler = Activator.CreateInstance(
+                typeof(EventHandler<>).MakeGenericType(pathfinderEvent),
+                AccessTools.all,
+                default,
+                new object[] { handlerDelegate, options },
+                default
+            );
 
             var eventManagerType = typeof(EventManager<>).MakeGenericType(pathfinderEvent);
 
             object instance = eventManagerType.GetProperty("Instance").GetGetMethod().Invoke(null, null);
             
             eventManagerType
-                .GetMethod("AddHandlerInternal", BindingFlags.NonPublic | BindingFlags.Static)
+                .GetMethod("AddHandlerInternal", AccessTools.all)
                 .Invoke(instance, new object[] { eventHandler, handler.Module.Assembly });
         }
     }
