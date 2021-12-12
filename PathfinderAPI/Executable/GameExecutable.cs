@@ -55,7 +55,7 @@ namespace Pathfinder.Executable
         /// <value></value>
         public virtual bool IgnoreMemoryBehaviorPrint { get; set; }
 
-        public GameExecutable() : base(default, null, null)
+        public GameExecutable() : base(default, OS.currentInstance, null)
         {
         }
 
