@@ -90,9 +90,13 @@ namespace Pathfinder.Executable
             CustomExes.RemoveAll(x => x.Value.ExeType == exeType);
         }
 
-        private static void AddGameExecutable(this OS os, GameExecutable exe, Rectangle location, string[] args)
+        public static void AddGameExecutable(this OS os, GameExecutable exe, Rectangle location, string[] args)
         {
             exe.Assign(location, os, args);
+            os.AddGameExecutable(exe);
+        }
+        public static void AddGameExecutable(this OS os, GameExecutable exe)
+        {
             var computer = os.connectedComp ?? os.thisComputer;
             try
             {
@@ -124,6 +128,19 @@ namespace Pathfinder.Executable
                 if(exe.CatchException(e))
                     throw e;
             }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(OS), nameof(OS.addExe))]
+        private static bool AddExePrefix(OS __instance, ExeModule exe)
+        {
+            exe.os = __instance;
+            if (exe is GameExecutable gameExe)
+            {
+                __instance.AddGameExecutable(gameExe);
+                return false;
+            }
+            return true;
         }
 
         [HarmonyILManipulator]
