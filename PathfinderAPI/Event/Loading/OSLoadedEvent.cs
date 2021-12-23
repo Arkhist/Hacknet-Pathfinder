@@ -3,6 +3,7 @@ using HarmonyLib;
 
 namespace Pathfinder.Event.Loading
 {
+    [HarmonyPatch]
     public class OSLoadedEvent : PathfinderEvent
     {
         public OS Os { get; }
