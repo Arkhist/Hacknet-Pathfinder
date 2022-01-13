@@ -127,7 +127,7 @@ namespace Pathfinder.Replacements
                         case "OnDisconnect":
                             set.Condition = new SCOnDisconnect()
                             {
-                                target = conditionInfo.Attributes.GetOrThrow("target", "No target found for OnDisconnect condition!")
+                                target = conditionInfo.Attributes.GetOrDefault("target")
                             };
                             break;
                         case "DoesNotHaveFlags":
