@@ -27,7 +27,7 @@ namespace BepInEx.Hacknet
                 "BepInEx/core/BepInEx.Hacknet.dll"
             );
 
-        public const string VERSION = "5.0.2-pre";
+        public const string VERSION = "5.1.0";
         public static readonly Version Version = Version.Parse(VERSION);
         
         public static HacknetChainloader Instance;
