@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -86,6 +86,7 @@ namespace Pathfinder.Replacements
         private static OS os = null;
         private static Computer comp = null;
         private static Computer eos = null;
+        private static readonly List<Computer> eosList = new List<Computer>();
         private static ComputerHolder holder = null;
 
         static ContentLoader()
@@ -765,6 +766,7 @@ namespace Pathfinder.Replacements
                     location = comp.location + Corporation.getNearbyNodeOffset(comp.location, Utils.random.Next(12), 12, os.netMap),
                     portsNeededForCrack = 2
                 };
+                eosList.Add(eos);
                 
                 PortManager.LoadPortsFromStringVanilla(eos, "22,3659");
                 eos.setAdminPassword(info.Attributes.GetString("passOverride", "alpine"));
@@ -906,16 +908,17 @@ namespace Pathfinder.Replacements
             if (!preventAddingToNetmap)
             {
                 os.netMap.nodes.Add(ret);
-                if (eos != null)
+                foreach (Computer eosDevice in eosList)
                 {
-                    eos.links.Add(os.netMap.nodes.Count - 1);
-                    ComputerLookup.Add(eos);
+                    eosDevice.links.Add(os.netMap.nodes.Count - 1);
+                    ComputerLookup.Add(eosDevice);
                 }
                 ComputerLookup.Add(ret);
             }
 
             os = null;
             eos = null;
+            eosList.Clear();
             holder = null;
 
             return ret;
