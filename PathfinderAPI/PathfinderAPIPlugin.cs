@@ -6,6 +6,7 @@ using BepInEx.Hacknet;
 using HarmonyLib;
 using Pathfinder.Meta;
 using Pathfinder.Util;
+using System.Globalization;
 
 namespace Pathfinder
 {
@@ -38,6 +39,8 @@ namespace Pathfinder
 
             HarmonyInstance.PatchAll(typeof(PathfinderAPIPlugin).Assembly);
 
+            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
             return true;
         }
     }
