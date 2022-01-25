@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using System.Globalization;
 
 namespace Pathfinder.Util.XML
 {
@@ -42,12 +43,12 @@ namespace Pathfinder.Util.XML
                 : throw new FormatException($"Value of '{Name}' is not true or false");
 
         public int ContentAsInt()
-            => int.TryParse(Content, out var value)
+            => int.TryParse(Content, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value)
                 ? value
                 : throw new FormatException($"Value of '{Name}' is not an integer, e.g.: 0, 1, 2");
         
         public float ContentAsFloat()
-            => float.TryParse(Content, out var value)
+            => float.TryParse(Content, NumberStyles.Float, CultureInfo.InvariantCulture, out var value)
                 ? value
                 : throw new FormatException($"Value of '{Name}' is not a float, e.g.: 1.0");
 
