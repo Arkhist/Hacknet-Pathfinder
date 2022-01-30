@@ -55,7 +55,7 @@ namespace Pathfinder.Executable
         /// <value></value>
         public virtual bool IgnoreMemoryBehaviorPrint { get; set; }
 
-        public GameExecutable() : base(default, null, null)
+        public GameExecutable() : base(default, OS.currentInstance, null)
         {
         }
 
@@ -163,6 +163,7 @@ namespace Pathfinder.Executable
 
         public override void Update(float t)
         {
+            base.Update(t);
             if(Result != CompletionResult.Running) return;
             Lifetime += t;
             try
@@ -174,7 +175,6 @@ namespace Pathfinder.Executable
                 if(CatchException(e))
                     throw e;
             }
-            base.Update(t);
         }
 
         [Obsolete]
