@@ -1,8 +1,6 @@
-using System;
-namespace Pathfinder.Meta.Load
+namespace Pathfinder.Meta.Load;
+
+[AttributeUsage(AttributeTargets.Method)]
+public class IgnoreEventAttribute : System.Attribute
 {
-    [AttributeUsage(AttributeTargets.Method)]
-    public class IgnoreEventAttribute : System.Attribute
-    {
-    }
 }

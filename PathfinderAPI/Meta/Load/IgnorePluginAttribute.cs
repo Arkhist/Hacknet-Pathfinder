@@ -1,9 +1,6 @@
-using System;
+namespace Pathfinder.Meta.Load;
 
-namespace Pathfinder.Meta.Load
+[AttributeUsage(AttributeTargets.Class)]
+public class IgnorePluginAttribute : Attribute
 {
-    [AttributeUsage(AttributeTargets.Class)]
-    public class IgnorePluginAttribute : Attribute
-    {
-    }
 }

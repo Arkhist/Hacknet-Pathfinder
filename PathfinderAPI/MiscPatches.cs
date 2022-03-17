@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Diagnostics;
 using HarmonyLib;
 using MonoMod.Cil;
@@ -12,157 +10,156 @@ using Hacknet.PlatformAPI.Storage;
 using Pathfinder.Command;
 using Pathfinder.Options;
 
-namespace Pathfinder
+namespace Pathfinder;
+
+[HarmonyPatch]
+internal static class MiscPatches
 {
-    [HarmonyPatch]
-    internal static class MiscPatches
+    [Util.Initialize]
+    internal static void Initialize()
     {
-        [Util.Initialize]
-        internal static void Initialize()
-        {
-            var formatType = typeof(StackTrace).GetNestedType("TraceFormat", System.Reflection.BindingFlags.NonPublic);
-            if (formatType == null)
-                return;
+        var formatType = typeof(StackTrace).GetNestedType("TraceFormat", System.Reflection.BindingFlags.NonPublic);
+        if (formatType == null)
+            return;
 
-            var original = AccessTools.Method(typeof(StackTrace), nameof(StackTrace.ToString), new Type[] { formatType });
-            var manipulator = AccessTools.Method(typeof(MiscPatches), nameof(IncludeILOffsetInTrace));
+        var original = AccessTools.Method(typeof(StackTrace), nameof(StackTrace.ToString), new Type[] { formatType });
+        var manipulator = AccessTools.Method(typeof(MiscPatches), nameof(IncludeILOffsetInTrace));
 
-            PathfinderAPIPlugin.HarmonyInstance.Patch(original, ilmanipulator: new HarmonyMethod(manipulator));
-        }
+        PathfinderAPIPlugin.HarmonyInstance.Patch(original, ilmanipulator: new HarmonyMethod(manipulator));
+    }
 
-        [HarmonyILManipulator]
-        [HarmonyPatch(typeof(PlatformAPISettings), nameof(PlatformAPISettings.InitPlatformAPI))]
-        private static void NoSteamCloudSavesIL(ILContext il)
-        {
-            ILCursor c = new ILCursor(il);
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(PlatformAPISettings), nameof(PlatformAPISettings.InitPlatformAPI))]
+    private static void NoSteamCloudSavesIL(ILContext il)
+    {
+        ILCursor c = new ILCursor(il);
             
-            c.GotoNext(MoveType.Before, x => x.MatchStsfld(AccessTools.Field(typeof(PlatformAPISettings), nameof(PlatformAPISettings.RemoteStorageRunning))));
+        c.GotoNext(MoveType.Before, x => x.MatchStsfld(AccessTools.Field(typeof(PlatformAPISettings), nameof(PlatformAPISettings.RemoteStorageRunning))));
 
-            c.Emit(OpCodes.Pop);
-            c.Emit(OpCodes.Ldc_I4_0);
-        }
+        c.Emit(OpCodes.Pop);
+        c.Emit(OpCodes.Ldc_I4_0);
+    }
 
-        [HarmonyILManipulator]
-        [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.drawMainMenuButtons))]
-        private static void NoSteamErrorMessageIL(ILContext il)
-        {
-            ILCursor c = new ILCursor(il);
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.drawMainMenuButtons))]
+    private static void NoSteamErrorMessageIL(ILContext il)
+    {
+        ILCursor c = new ILCursor(il);
 
-            c.GotoNext(MoveType.Before, x => x.MatchLdsfld(AccessTools.Field(typeof(PlatformAPISettings), nameof(PlatformAPISettings.RemoteStorageRunning))));
+        c.GotoNext(MoveType.Before, x => x.MatchLdsfld(AccessTools.Field(typeof(PlatformAPISettings), nameof(PlatformAPISettings.RemoteStorageRunning))));
 
-            c.RemoveRange(3);
+        c.RemoveRange(3);
 
-            c.Emit(OpCodes.Ldsfld, AccessTools.Field(typeof(PathfinderOptions), nameof(PathfinderOptions.DisableSteamCloudError)));
-            c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(OptionCheckbox), nameof(OptionCheckbox.Value)));
+        c.Emit(OpCodes.Ldsfld, AccessTools.Field(typeof(PathfinderOptions), nameof(PathfinderOptions.DisableSteamCloudError)));
+        c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(OptionCheckbox), nameof(OptionCheckbox.Value)));
 
-            c.GotoNext(MoveType.Before, x => x.MatchLdstr(out _));
-            c.Next.Operand = "Steam Cloud saving disabled by Pathfinder";
-        }
+        c.GotoNext(MoveType.Before, x => x.MatchLdstr(out _));
+        c.Next.Operand = "Steam Cloud saving disabled by Pathfinder";
+    }
 
-        [HarmonyILManipulator]
-        [HarmonyPatch(typeof(LocalDocumentsStorageMethod), nameof(LocalDocumentsStorageMethod.Load))]
-        internal static void ChangeSaveDirIL(ILContext il)
-        {
-            ILCursor c = new ILCursor(il);
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(LocalDocumentsStorageMethod), nameof(LocalDocumentsStorageMethod.Load))]
+    internal static void ChangeSaveDirIL(ILContext il)
+    {
+        ILCursor c = new ILCursor(il);
             
-            string str = "./";
+        string str = "./";
 
-            while (c.TryGotoNext(MoveType.Before, x => x.MatchLdstr(out str)))
-            {
-                c.Next.Operand = str.Replace("Hacknet", "HacknetPathfinder");
-            }
+        while (c.TryGotoNext(MoveType.Before, x => x.MatchLdstr(out str)))
+        {
+            c.Next.Operand = str.Replace("Hacknet", "HacknetPathfinder");
         }
+    }
 
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(HacknetPlugin), nameof(HacknetPlugin.Unload))]
-        internal static void OnPluginUnload(ref HacknetPlugin __instance) => Event.EventManager.InvokeOnPluginUnload(__instance.GetType().Assembly);
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(HacknetPlugin), nameof(HacknetPlugin.Unload))]
+    internal static void OnPluginUnload(ref HacknetPlugin __instance) => Event.EventManager.InvokeOnPluginUnload(__instance.GetType().Assembly);
         
-        internal static void IncludeILOffsetInTrace(ILContext il)
+    internal static void IncludeILOffsetInTrace(ILContext il)
+    {
+        ILCursor c = new ILCursor(il);
+
+        int frameLoc = 6;
+        ILLabel targetLabel = null;
+
+        var found = c.TryGotoNext(MoveType.Before,
+            x => x.MatchLdloc(out frameLoc),
+            x => x.MatchCallvirt(AccessTools.Method(typeof(StackFrame), nameof(StackFrame.GetILOffset))),
+            x => x.MatchLdcI4(-1),
+            x => x.MatchBeq(out targetLabel)
+        );
+
+        if (!found)
+            return;
+
+        c.GotoLabel(targetLabel);
+
+        c.Emit(OpCodes.Ldloc, frameLoc);
+        c.Emit(OpCodes.Ldloc, 4);
+        c.EmitDelegate<Action<StackFrame, StringBuilder>>((frame, builder) =>
         {
-            ILCursor c = new ILCursor(il);
-
-            int frameLoc = 6;
-            ILLabel targetLabel = null;
-
-            var found = c.TryGotoNext(MoveType.Before,
-                x => x.MatchLdloc(out frameLoc),
-                x => x.MatchCallvirt(AccessTools.Method(typeof(StackFrame), nameof(StackFrame.GetILOffset))),
-                x => x.MatchLdcI4(-1),
-                x => x.MatchBeq(out targetLabel)
-            );
-
-            if (!found)
-                return;
-
-            c.GotoLabel(targetLabel);
-
-            c.Emit(OpCodes.Ldloc, frameLoc);
-            c.Emit(OpCodes.Ldloc, 4);
-            c.EmitDelegate<Action<StackFrame, StringBuilder>>((frame, builder) =>
-            {
-                builder.Append($" IL<0x{frame.GetILOffset().ToString("X4")}>");
-            });
-        }
+            builder.Append($" IL<0x{frame.GetILOffset().ToString("X4")}>");
+        });
+    }
         
-        [HarmonyILManipulator]
-        [HarmonyPatch(typeof(MainMenu), "<HookUpCreationEvents>b__1")]
-        internal static void StopCatchingExceptionsIL(ILContext il)
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(MainMenu), "<HookUpCreationEvents>b__1")]
+    internal static void StopCatchingExceptionsIL(ILContext il)
+    {
+        ILCursor c = new ILCursor(il);
+            
+        foreach (var exHandler in il.Body.ExceptionHandlers)
         {
-            ILCursor c = new ILCursor(il);
-            
-            foreach (var exHandler in il.Body.ExceptionHandlers)
-            {
-                c.Goto(exHandler.HandlerEnd, MoveType.After);
-                var end = c.Index;
-                c.Goto(exHandler.HandlerStart, MoveType.Before);
-                c.RemoveRange(end - c.Index);
-            }
-            
-            il.Body.ExceptionHandlers.Clear();
-            
-            foreach (var brokenLabel in il.Labels.Where(x => !c.Instrs.Contains(x.Target))) brokenLabel.Target = c.Instrs.Last();
+            c.Goto(exHandler.HandlerEnd, MoveType.After);
+            var end = c.Index;
+            c.Goto(exHandler.HandlerStart, MoveType.Before);
+            c.RemoveRange(end - c.Index);
         }
+            
+        il.Body.ExceptionHandlers.Clear();
+            
+        foreach (var brokenLabel in il.Labels.Where(x => !c.Instrs.Contains(x.Target))) brokenLabel.Target = c.Instrs.Last();
+    }
         
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Utils), nameof(Utils.SendRealWorldEmail))]
-        internal static bool FixSendRealWorldEmail(string body)
-        {
-            Logger.Log(LogLevel.Error, body.Substring(body.IndexOf("\r\n", StringComparison.Ordinal) + 2));
-            return false;
-        }
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Utils), nameof(Utils.SendRealWorldEmail))]
+    internal static bool FixSendRealWorldEmail(string body)
+    {
+        Logger.Log(LogLevel.Error, body.Substring(body.IndexOf("\r\n", StringComparison.Ordinal) + 2));
+        return false;
+    }
 
-        private static readonly ManualLogSource HacknetLogger = BepInEx.Logging.Logger.CreateLogSource("Hacknet");
+    private static readonly ManualLogSource HacknetLogger = BepInEx.Logging.Logger.CreateLogSource("Hacknet");
         
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Utils), nameof(Utils.AppendToErrorFile))]
-        internal static bool RedirectErrorLog(string text)
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Utils), nameof(Utils.AppendToErrorFile))]
+    internal static bool RedirectErrorLog(string text)
+    {
+        HacknetLogger.LogError(text);
+        return false;
+    }
+
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(OS), nameof(OS.threadExecute))]
+    internal static void LogThreadedExceptions(ILContext il)
+    {
+        ILCursor c = new ILCursor(il);
+
+        c.GotoNext(MoveType.After, x => x.MatchPop());
+
+        c.Prev.OpCode = OpCodes.Nop;
+        while (!c.Next.MatchLeaveS(out _)) c.Remove();
+        c.EmitDelegate<Action<Exception>>(ex =>
         {
-            HacknetLogger.LogError(text);
-            return false;
-        }
+            HacknetLogger.LogError(new Exception("Exception occurred during threaded execute", ex));
+        });
+    }
 
-        [HarmonyILManipulator]
-        [HarmonyPatch(typeof(OS), nameof(OS.threadExecute))]
-        internal static void LogThreadedExceptions(ILContext il)
-        {
-            ILCursor c = new ILCursor(il);
-
-            c.GotoNext(MoveType.After, x => x.MatchPop());
-
-            c.Prev.OpCode = OpCodes.Nop;
-            while (!c.Next.MatchLeaveS(out _)) c.Remove();
-            c.EmitDelegate<Action<Exception>>(ex =>
-            {
-                HacknetLogger.LogError(new Exception("Exception occurred during threaded execute", ex));
-            });
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Program), nameof(Program.Main))]
-        private static void CheckDebug(string[] args)
-        {
-            if (args.Any(x => x.ToLower() == "-enabledebug"))
-                DebugCommands.AddCommands();
-        }
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Program), nameof(Program.Main))]
+    private static void CheckDebug(string[] args)
+    {
+        if (args.Any(x => x.ToLower() == "-enabledebug"))
+            DebugCommands.AddCommands();
     }
 }

@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
+﻿namespace Pathfinder.Event.Pathfinder;
 
-namespace Pathfinder.Event.Pathfinder
+public class BuildAutocompletesEvent : PathfinderEvent
 {
-    public class BuildAutocompletesEvent : PathfinderEvent
-    {
-        public List<string> Autocompletes { get; set; }
+    public List<string> Autocompletes { get; set; }
 
-        public BuildAutocompletesEvent(List<string> autocompletes)
-        {
-            Autocompletes = autocompletes;
-        }
+    public BuildAutocompletesEvent(List<string> autocompletes)
+    {
+        Autocompletes = autocompletes;
     }
 }

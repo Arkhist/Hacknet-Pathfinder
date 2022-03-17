@@ -2,23 +2,22 @@
 using HarmonyLib;
 using Pathfinder.Util;
 
-namespace Pathfinder.BaseGameFixes
+namespace Pathfinder.BaseGameFixes;
+
+[HarmonyPatch]
+internal static class RandomIPNoRepeats
 {
-    [HarmonyPatch]
-    internal static class RandomIPNoRepeats
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(NetworkMap), nameof(NetworkMap.generateRandomIP))]
+    internal static bool GenerateRandomIPReplacement(out string __result)
     {
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(NetworkMap), nameof(NetworkMap.generateRandomIP))]
-        internal static bool GenerateRandomIPReplacement(out string __result)
+        while (true)
         {
-            while (true)
+            var ip = Utils.random.Next(254) + 1 + "." + (Utils.random.Next(254) + 1) + "." + (Utils.random.Next(254) + 1) + "." + (Utils.random.Next(254) + 1);
+            if (ComputerLookup.FindByIp(ip, false) == null)
             {
-                var ip = Utils.random.Next(254) + 1 + "." + (Utils.random.Next(254) + 1) + "." + (Utils.random.Next(254) + 1) + "." + (Utils.random.Next(254) + 1);
-                if (ComputerLookup.FindByIp(ip, false) == null)
-                {
-                    __result = ip;
-                    return false;
-                }
+                __result = ip;
+                return false;
             }
         }
     }

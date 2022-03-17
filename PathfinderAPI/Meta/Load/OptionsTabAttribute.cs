@@ -1,25 +1,22 @@
-using System;
-using System.Collections.Generic;
 using System.Reflection;
 using BepInEx.Hacknet;
 
-namespace Pathfinder.Meta.Load
+namespace Pathfinder.Meta.Load;
+
+[AttributeUsage(AttributeTargets.Class)]
+public class OptionsTabAttribute : BaseAttribute
 {
-    [AttributeUsage(AttributeTargets.Class)]
-    public class OptionsTabAttribute : BaseAttribute
+    internal static readonly Dictionary<HacknetPlugin, string> pluginToOptionsTag = new Dictionary<HacknetPlugin, string>();
+
+    public string Tag { get; }
+
+    public OptionsTabAttribute(string tag)
     {
-        internal static readonly Dictionary<HacknetPlugin, string> pluginToOptionsTag = new Dictionary<HacknetPlugin, string>();
+        this.Tag = tag;
+    }
 
-        public string Tag { get; }
-
-        public OptionsTabAttribute(string tag)
-        {
-            this.Tag = tag;
-        }
-
-        protected internal override void CallOn(HacknetPlugin plugin, MemberInfo targettedInfo)
-        {
-            pluginToOptionsTag.Add(plugin, Tag);
-        }
+    protected internal override void CallOn(HacknetPlugin plugin, MemberInfo targettedInfo)
+    {
+        pluginToOptionsTag.Add(plugin, Tag);
     }
 }

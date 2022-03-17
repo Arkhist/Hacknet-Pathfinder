@@ -1,53 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using Hacknet;
 using Pathfinder.Event;
 using Pathfinder.Util.XML;
 using Pathfinder.Util;
 
-namespace Pathfinder.Daemon
+namespace Pathfinder.Daemon;
+
+public static class DaemonManager
 {
-    public static class DaemonManager
+    internal static readonly List<Type> CustomDaemons = new List<Type>();
+
+    static DaemonManager()
     {
-        internal static readonly List<Type> CustomDaemons = new List<Type>();
-
-        static DaemonManager()
-        {
-            EventManager.onPluginUnload += onPluginUnload;
-        }
+        EventManager.onPluginUnload += onPluginUnload;
+    }
         
-        internal static bool TryLoadCustomDaemon(ElementInfo info, Computer comp, OS os)
+    internal static bool TryLoadCustomDaemon(ElementInfo info, Computer comp, OS os)
+    {
+        var daemonType = CustomDaemons.FirstOrDefault(x => x.Name == info.Name);
+        if (daemonType != null)
         {
-            var daemonType = CustomDaemons.FirstOrDefault(x => x.Name == info.Name);
-            if (daemonType != null)
-            {
-                BaseDaemon daemon = (BaseDaemon)Activator.CreateInstance(daemonType, new object[] { comp, info.Name, os });
-                daemon.LoadFromXml(info);
-                comp.daemons.Add(daemon);
-                return true;
-            }
-
-            return false;
+            BaseDaemon daemon = (BaseDaemon)Activator.CreateInstance(daemonType, new object[] { comp, info.Name, os });
+            daemon.LoadFromXml(info);
+            comp.daemons.Add(daemon);
+            return true;
         }
 
-        private static void onPluginUnload(Assembly pluginAsm)
-        {
-            CustomDaemons.RemoveAll(x => x.Assembly == pluginAsm);
-        }
+        return false;
+    }
 
-        public static void RegisterDaemon<T>() where T : BaseDaemon => RegisterDaemon(typeof(T));
-        public static void RegisterDaemon(Type daemonType)
-        {
-            daemonType.ThrowNotInherit<BaseDaemon>(nameof(daemonType));
-            CustomDaemons.Add(daemonType);
-        }
+    private static void onPluginUnload(Assembly pluginAsm)
+    {
+        CustomDaemons.RemoveAll(x => x.Assembly == pluginAsm);
+    }
 
-        public static void UnregisterDaemon<T>() where T : BaseDaemon => UnregisterDaemon(typeof(T));
-        public static void UnregisterDaemon(Type daemonType)
-        {
-            CustomDaemons.Remove(daemonType);
-        }
+    public static void RegisterDaemon<T>() where T : BaseDaemon => RegisterDaemon(typeof(T));
+    public static void RegisterDaemon(Type daemonType)
+    {
+        daemonType.ThrowNotInherit<BaseDaemon>(nameof(daemonType));
+        CustomDaemons.Add(daemonType);
+    }
+
+    public static void UnregisterDaemon<T>() where T : BaseDaemon => UnregisterDaemon(typeof(T));
+    public static void UnregisterDaemon(Type daemonType)
+    {
+        CustomDaemons.Remove(daemonType);
     }
 }

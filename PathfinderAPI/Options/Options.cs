@@ -1,60 +1,46 @@
-using System;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
-using HarmonyLib;
-using MonoMod.Cil;
-using Mono.Cecil.Cil;
-using BepInEx.Hacknet;
-using BepInEx.Logging;
-using Hacknet;
-using Hacknet.PlatformAPI.Storage;
 using Hacknet.Gui;
-using Hacknet.Localization;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using Pathfinder.GUI;
 
-namespace Pathfinder.Options
+namespace Pathfinder.Options;
+
+public abstract class Option
 {
-    public abstract class Option
+    public string Name;
+    public string Description = "";
+    public bool Enabled = true;
+
+    public virtual int SizeX => 0;
+    public virtual int SizeY => 0;
+
+    public Option(string name, string description="")
     {
-        public string Name;
-        public string Description = "";
-        public bool Enabled = true;
-
-        public virtual int SizeX => 0;
-        public virtual int SizeY => 0;
-
-        public Option(string name, string description="")
-        {
-            this.Name = name;
-            this.Description = description;
-        }
-
-        public abstract void Draw(int x, int y);
+        this.Name = name;
+        this.Description = description;
     }
 
-    public class OptionCheckbox : Option
+    public abstract void Draw(int x, int y);
+}
+
+public class OptionCheckbox : Option
+{
+    public bool Value;
+
+    public override int SizeX => 100;
+    public override int SizeY => 75;
+
+    private int ButtonID = PFButton.GetNextID();
+
+    public OptionCheckbox(string name, string description="", bool defVal=false) : base(name, description)
     {
-        public bool Value;
+        this.Value = defVal;
+    }
 
-        public override int SizeX => 100;
-        public override int SizeY => 75;
+    public override void Draw(int x, int y)
+    {
+        TextItem.doLabel(new Vector2(x, y), Name, null, 200);
+        Value = CheckBox.doCheckBox(ButtonID, x, y + 34, Value, null);
 
-        private int ButtonID = PFButton.GetNextID();
-
-        public OptionCheckbox(string name, string description="", bool defVal=false) : base(name, description)
-        {
-            this.Value = defVal;
-        }
-
-        public override void Draw(int x, int y)
-        {
-            TextItem.doLabel(new Vector2(x, y), Name, null, 200);
-			Value = CheckBox.doCheckBox(ButtonID, x, y + 34, Value, null);
-
-            TextItem.doSmallLabel(new Vector2(x+32, y+30), Description, null);
-        }
+        TextItem.doSmallLabel(new Vector2(x+32, y+30), Description, null);
     }
 }
