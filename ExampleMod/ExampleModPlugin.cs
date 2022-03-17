@@ -63,8 +63,6 @@ namespace ExampleMod2
 
     public class TestExe : Pathfinder.Executable.BaseExecutable
     {
-        public override string GetIdentifier() => "Some";
-
         public TestExe(Rectangle location, OS operatingSystem, string[] args) : base(location, operatingSystem, args) { this.ramCost = 761; }
 
         public override void LoadContent()

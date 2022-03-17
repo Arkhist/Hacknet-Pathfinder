@@ -95,9 +95,9 @@ namespace PathfinderPatcher
 
                 var targetRuntime = hn.CustomAttributes.FirstOrDefault(x => x.AttributeType.Name == "TargetFrameworkAttribute");
                 targetRuntime.ConstructorArguments.Clear();
-                targetRuntime.ConstructorArguments.Add(new CustomAttributeArgument(hn.MainModule.TypeSystem.String, ".NETFramework,Version=v4.5"));
+                targetRuntime.ConstructorArguments.Add(new CustomAttributeArgument(hn.MainModule.TypeSystem.String, ".NETFramework,Version=v4.7.2"));
                 targetRuntime.Properties.Clear();
-                targetRuntime.Properties.Add(new CustomAttributeNamedArgument("FrameworkDisplayName", new CustomAttributeArgument(hn.MainModule.TypeSystem.String, ".NET Framework 4.5")));
+                targetRuntime.Properties.Add(new CustomAttributeNamedArgument("FrameworkDisplayName", new CustomAttributeArgument(hn.MainModule.TypeSystem.String, ".NET Framework 4.7.2")));
 
                 // Write modified assembly to disk
                 hn.Write("HacknetPathfinder.exe");
