@@ -10,7 +10,7 @@ public class ElementInfo
     public string Name { get; set; }
     public string Content {
         get;
-        internal set;
+        set;
     } = null;
     public ElementInfo Parent { get; set; }
     public Dictionary<string, string> Attributes { get; set; } = new Dictionary<string, string>();
