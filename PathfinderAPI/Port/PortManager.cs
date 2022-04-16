@@ -180,7 +180,10 @@ public static class PortManager
         foreach (var port in portsList.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries))
         {
             if (!int.TryParse(port, out var portNum))
-                throw new FormatException($"Failed to parse port number from '{port}'");
+            {
+                Logger.Log(LogLevel.Warning, $"{comp.idName} Failed to parse port number from '{port}'");
+                continue;
+            }
             var record = GetPortRecordFromNumber(portNum);
             if (record == null)
             {
