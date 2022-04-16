@@ -170,7 +170,7 @@ public static class ExecutableManager
 
         c.EmitDelegate<Func<Folder, int, OS, bool>>((folder, i, os) => {
             if(CustomExes.Any(x => x != null && x.Value.ExeData == folder.files[i].data)){
-				os.write(folder.files[i].name.Replace(".exe", ""));
+                os.write(folder.files[i].name.Replace(".exe", ""));
                 return true;
             }
             return false;
