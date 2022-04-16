@@ -139,6 +139,52 @@ public static class ExecutableManager
         }
         return true;
     }
+    
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(Programs), nameof(Programs.execute))]
+    private static void programsExecuteFix(ILContext il){
+        var c = new ILCursor(il);
+
+        ILLabel branchCondition = null;
+
+        c.GotoNext(MoveType.After,
+            // for (int i = 0; i < folder.files.Count; i++)
+            // int i = 0;
+            x => x.MatchNop(),
+            x => x.MatchLdcI4(0),
+            x => x.MatchStloc(2),
+            x => x.MatchBr(out branchCondition),
+            // for (int j = 0; j < PortExploits.exeNums.Count; j++)
+            // int j = 0;
+            x => x.MatchNop(),
+            x => x.MatchLdcI4(0),
+            x => x.MatchStloc(3),
+            x => x.MatchBr(out ILLabel _)
+        );
+
+        c.Index -= 3;
+
+        c.Emit(OpCodes.Ldloc_1);
+        c.Emit(OpCodes.Ldloc_2);
+        c.Emit(OpCodes.Ldarg_1);
+
+        c.EmitDelegate<Func<Folder, int, OS, bool>>((folder, i, os) => {
+            if(CustomExes.Any(x => x != null && x.Value.ExeData == folder.files[i].data)){
+				os.write(folder.files[i].name.Replace(".exe", ""));
+                return true;
+            }
+            return false;
+        });
+
+        int i = c.Index;
+
+        c.GotoLabel(branchCondition, MoveType.Before);
+        c.Index -= 5;
+        ILLabel branchIncrement = c.MarkLabel();
+
+        c.Index = i;
+        c.Emit(OpCodes.Brtrue, branchIncrement);
+    }
 
     [HarmonyILManipulator]
     [HarmonyPatch(typeof(OS), nameof(OS.Update), typeof(GameTime), typeof(bool), typeof(bool))]
