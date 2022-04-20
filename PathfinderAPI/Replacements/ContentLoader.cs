@@ -903,11 +903,20 @@ public static class ContentLoader
         {
             os.netMap.nodes.Add(ret);
             foreach (Computer eosDevice in eosList)
-            {
-                eosDevice.links.Add(os.netMap.nodes.Count - 1);
                 ComputerLookup.Add(eosDevice);
-            }
             ComputerLookup.Add(ret);
+
+            if (eosList.Count > 0)
+            {
+                var devices = new List<Computer>(eosList);
+                var origOs = os;
+
+                ComputerLoader.postAllLoadedActions += ()=>{
+                    int i = origOs.netMap.nodes.IndexOf(ret);
+                    foreach (Computer eosDevice in devices)
+                        eosDevice.links.Add(i);
+                };
+            }
         }
 
         os = null;
