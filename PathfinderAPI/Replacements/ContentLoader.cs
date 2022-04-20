@@ -906,14 +906,17 @@ public static class ContentLoader
                 ComputerLookup.Add(eosDevice);
             ComputerLookup.Add(ret);
 
-            var devices = new List<Computer>(eosList);
-            var origOs = os;
+            if (eosList.Count > 0)
+            {
+                var devices = new List<Computer>(eosList);
+                var origOs = os;
 
-            ComputerLoader.postAllLoadedActions += ()=>{
-                int i = origOs.netMap.nodes.IndexOf(ret);
-                foreach (Computer eosDevice in devices)
-                    eosDevice.links.Add(i);
-            };
+                ComputerLoader.postAllLoadedActions += ()=>{
+                    int i = origOs.netMap.nodes.IndexOf(ret);
+                    foreach (Computer eosDevice in devices)
+                        eosDevice.links.Add(i);
+                };
+            }
         }
 
         os = null;
