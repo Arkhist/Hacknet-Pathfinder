@@ -156,13 +156,8 @@ public static class ExecutableManager
             x => x.MatchBr(out branchCondition),
             // for (int j = 0; j < PortExploits.exeNums.Count; j++)
             // int j = 0;
-            x => x.MatchNop(),
-            x => x.MatchLdcI4(0),
-            x => x.MatchStloc(3),
-            x => x.MatchBr(out ILLabel _)
+            x => x.MatchNop()
         );
-
-        c.Index -= 3;
 
         c.Emit(OpCodes.Ldloc_1);
         c.Emit(OpCodes.Ldloc_2);
