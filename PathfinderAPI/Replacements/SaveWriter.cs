@@ -519,7 +519,7 @@ public static class SaveWriter
             
         result.Add(GetPortSaveElement(node));
 
-        var adminTag = new XElement("admin");
+        XElement adminTag = null;
         string adminType;
         switch (node.admin)
         {
@@ -527,7 +527,7 @@ public static class SaveWriter
                 adminType = "none";
                 break;
             case BaseAdministrator pfAdmin:
-                adminTag = XMLStorageAttribute.WriteToElement(pfAdmin);
+                adminTag = pfAdmin.GetSaveElement();
                 adminType = node.admin.GetType().Name;
                 break;
             case FastBasicAdministrator _:
@@ -543,6 +543,8 @@ public static class SaveWriter
                 adminType = node.admin.GetType().Name;
                 break;
         }
+        
+        adminTag ??= new XElement("admin");
 
         adminTag.SetAttributeValue("type", adminType);
         adminTag.SetAttributeValue("resetPass", node.admin?.ResetsPassword ?? false);
