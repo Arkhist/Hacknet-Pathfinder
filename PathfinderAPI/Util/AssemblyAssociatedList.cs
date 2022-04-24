@@ -6,7 +6,14 @@ namespace Pathfinder.Util;
 public class AssemblyAssociatedList<T>
 {
     private Dictionary<Assembly, List<T>> asmDictionary = new Dictionary<Assembly, List<T>>();
-    public ReadOnlyCollection<T> AllItems { get; private set; } = new ReadOnlyCollection<T>(new List<T>());
+    private ReadOnlyCollection<T>? _allItems = null;
+    public ReadOnlyCollection<T> AllItems {
+        get {
+             if(_allItems == null)
+                  RefreshCache();
+             return _allItems;
+        }
+    }
 
     public ReadOnlyCollection<T> this[Assembly assembly]
     {
@@ -24,7 +31,7 @@ public class AssemblyAssociatedList<T>
             asmDictionary[owner] = new List<T>();
         asmDictionary[owner].Add(val);
 
-        RefreshCache();
+        InvalidateCache();
     }
 
     public void Remove(T val, Assembly owner)
@@ -32,7 +39,7 @@ public class AssemblyAssociatedList<T>
         if (asmDictionary.TryGetValue(owner, out var list))
         {
             list.Remove(val);
-            RefreshCache();
+            InvalidateCache();
         }
     }
 
@@ -41,7 +48,7 @@ public class AssemblyAssociatedList<T>
         if (asmDictionary.TryGetValue(owner, out var list))
         {
             list.RemoveAll(predicate);
-            RefreshCache();
+            InvalidateCache();
         }
     }
 
@@ -50,10 +57,15 @@ public class AssemblyAssociatedList<T>
         asmDictionary.TryGetValue(asm, out removed);
         if (asmDictionary.Remove(asm))
         {
-            RefreshCache();
+            InvalidateCache();
             return true;
         }
         return false;
+    }
+
+    private void InvalidateCache()
+    {
+        _allItems = null;
     }
 
     private void RefreshCache()
@@ -63,6 +75,6 @@ public class AssemblyAssociatedList<T>
         {
             allItems.AddRange(list);
         }
-        AllItems = new ReadOnlyCollection<T>(allItems);
+        _allItems = new ReadOnlyCollection<T>(allItems);
     }
 }
