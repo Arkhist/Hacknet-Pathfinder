@@ -5,7 +5,7 @@ using Pathfinder.Util.XML;
 
 namespace Pathfinder.Administrator;
 
-public abstract class BaseAdministrator : Hacknet.Administrator
+public abstract class BaseAdministrator : Hacknet.Administrator, IXmlName
 {
     protected Computer computer;
     protected OS opSystem;
@@ -15,6 +15,8 @@ public abstract class BaseAdministrator : Hacknet.Administrator
         this.computer = computer;
         this.opSystem = opSystem;
     }
+    
+    public string XmlName => "admin";
         
     public virtual void LoadFromXml(ElementInfo info)
     {
