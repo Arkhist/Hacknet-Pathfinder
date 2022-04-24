@@ -80,6 +80,7 @@ public class EventReader
                             ReadEndElement();
                             ParentNames.RemoveAt(ParentNames.Count - 1);
                             break;
+                        case XmlNodeType.SignificantWhitespace:
                         case XmlNodeType.CDATA:
                         case XmlNodeType.Text:
                             ReadText();
