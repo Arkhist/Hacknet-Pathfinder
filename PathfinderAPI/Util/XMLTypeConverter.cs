@@ -1,4 +1,5 @@
 using Hacknet;
+using System.Numerics;
 using Microsoft.Xna.Framework;
 
 namespace Pathfinder.Util;
@@ -29,13 +30,19 @@ public static class XMLTypeConverter
     private static readonly Dictionary<Type, TypeConverter> TypeConverters = new Dictionary<Type, TypeConverter>()
     {
         { typeof(string), new TypeConverter(s => s, s => (string)s) },
+        { typeof(char), new TypeConverter(s => char.Parse(s), c => c.ToString()) },
+        { typeof(sbyte), new TypeConverter(s => sbyte.Parse(s), b => b.ToString()) },
         { typeof(byte), new TypeConverter(s => byte.Parse(s), b => b.ToString()) },
         { typeof(int), new TypeConverter(s => int.Parse(s), i => i.ToString()) },
         { typeof(uint), new TypeConverter(s => uint.Parse(s), i => i.ToString()) },
         { typeof(long), new TypeConverter(s => long.Parse(s), i => i.ToString()) },
         { typeof(ulong), new TypeConverter(s => ulong.Parse(s), i => i.ToString()) },
+        { typeof(short), new TypeConverter(s => short.Parse(s), i => i.ToString()) },
+        { typeof(ushort), new TypeConverter(s => ushort.Parse(s), i => i.ToString()) },
+        { typeof(BigInteger), new TypeConverter(s => BigInteger.Parse(s), i => i.ToString()) },
         { typeof(float), new TypeConverter(s => float.Parse(s), f => f.ToString()) },
         { typeof(double), new TypeConverter(s => double.Parse(s), f => f.ToString()) },
+        { typeof(decimal), new TypeConverter(s => decimal.Parse(s), f => f.ToString()) },
         { typeof(bool), new TypeConverter(s => bool.Parse(s), b => b.ToString()) },
         { typeof(Computer), new TypeConverter(s => ComputerLookup.Find(s), c => ((Computer)c).idName) },
         { typeof(Color), new TypeConverter(s => Utils.convertStringToColor(s), c => Utils.convertColorToParseableString((Color)c)) }
