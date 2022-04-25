@@ -17,12 +17,14 @@ internal static class PathfinderOptionsMenu
 
     public static void SetCurrentTab(string tabId)
     {
+        #pragma warning disable 618
         if(OptionsManager.PluginTabs.Any(pt => pt.Id == tabId) || OptionsManager.Tabs.ContainsKey(tabId))
         {
             CurrentTabId = tabId;
             return;
         }
         throw new InvalidOperationException($"Tab {tabId} not found in {typeof(OptionsManager).FullName}.{nameof(OptionsManager.PluginTabs)} or {typeof(OptionsManager).FullName}.{nameof(OptionsManager.Tabs)}");
+        #pragma warning restore 618
     }
 
     public static PluginOptionTab SetCurrentTab(PluginOptionTab tab)
@@ -33,6 +35,7 @@ internal static class PathfinderOptionsMenu
         return tab;
     }
 
+    #pragma warning disable 618
     public static OptionsTab SetCurrentTab(OptionsTab tab)
     {
         if(!OptionsManager.Tabs.TryGetValue(tab.Name, out var newTab) || tab != newTab)
@@ -40,6 +43,7 @@ internal static class PathfinderOptionsMenu
         CurrentTabId = tab.Name;
         return tab;
     }
+    #pragma warning restore 618
 
     private static PFButton ReturnButton = new PFButton(10, 10, 220, 54, "Back to Options", Color.Yellow);
 

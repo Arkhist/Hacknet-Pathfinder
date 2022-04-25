@@ -1,3 +1,5 @@
+#pragma warning disable 618
+
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Pathfinder.GUI;
