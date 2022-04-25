@@ -60,6 +60,9 @@ public static class XMLTypeConverter
 
         try
         {
+            if (t.IsEnum)
+                return Enum.Parse(t, s);
+
             return TypeConverters[t].ToType(s);
         }
         catch (KeyNotFoundException e)
@@ -92,6 +95,9 @@ public static class XMLTypeConverter
 
         try
         {
+            if (t.IsEnum)
+                return o.ToString();
+
             return TypeConverters[t].FromType(o);
         }
         catch (KeyNotFoundException e)
