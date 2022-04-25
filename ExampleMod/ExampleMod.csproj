@@ -27,9 +27,9 @@
     </PropertyGroup>
 
     <PropertyGroup Label="Build">
-        <TargetFramework>net45</TargetFramework>
+        <TargetFramework>net472</TargetFramework>
         <TargetFrameworkProfile />
-        <LangVersion>8</LangVersion>
+        <LangVersion>10</LangVersion>
         <AssemblySearchPaths>
         $(AssemblySearchPaths);
         ../libs/;
