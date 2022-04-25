@@ -242,16 +242,19 @@ public static class ElementInfoDictionaryExtensions
     public static bool TryAsBoolean(this IDictionary<string, string> attribute, string key, out bool result)
     {
         result = default;
+        if(attribute == null) return false;
         return attribute.TryGetValue(key, out var str) ? str.TryAsBoolean(out result) : false;
     }
     public static bool TryAsInt(this IDictionary<string, string> attribute, string key, out int result)
     {
         result = default;
+        if(attribute == null) return false;
         return attribute.TryGetValue(key, out var str) ? str.TryAsInt(out result) : false;
     }
     public static bool TryAsFloat(this IDictionary<string, string> attribute, string key, out float result)
     {
         result = default;
+        if(attribute == null) return false;
         return attribute.TryGetValue(key, out var str) ? str.TryAsFloat(out result) : false;
     }
     public static bool AsBoolean(this IDictionary<string, string> attribute, string key, string valName = "attribute[key]")
