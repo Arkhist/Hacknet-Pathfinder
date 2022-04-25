@@ -17,8 +17,8 @@ public class PluginCheckbox : BasePluginOption<bool>
     public override void OnDraw(GameTime gameTime)
     {
         TextItem.doLabel(DrawDataField, HeaderText, null, 200);
-        Value = CheckBox.doCheckBox(HacknetGuiId, DrawDataField.X, DrawDataField.Y + 34, Value, null);
+        Value = CheckBox.doCheckBox(HacknetGuiId, DrawDataField.X.Value, DrawDataField.Y.Value + 34, Value, null);
 
-        TextItem.doSmallLabel(DrawDataField.Add(32, 30), DescriptionText, null);
+        TextItem.doSmallLabel(DrawDataField.QuickAdd(32, 30), DescriptionText, null);
     }
 }

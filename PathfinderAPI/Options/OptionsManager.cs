@@ -36,7 +36,7 @@ public static class OptionsManager
 
     public static PluginOptionTab RegisterTab(string tabName, string tabId = null)
     {
-        if(GetTab(tabId ?? string.Concat(tabName.Where(c => !char.IsWhiteSpace(c) && c != '='))) != null)
+        if(GetTab<PluginOptionTab>(tabId ?? string.Concat(tabName.Where(c => !char.IsWhiteSpace(c) && c != '='))) != null)
             throw new InvalidOperationException("Can not register tabs with a registered id");
         return RegisterTab(new PluginOptionTab(tabName, tabId));
     }
@@ -44,7 +44,7 @@ public static class OptionsManager
     public static TabT RegisterTab<TabT>(TabT tab)
         where TabT : PluginOptionTab
     {
-        if(GetTab(tab.Id) != null)
+        if(GetTab<TabT>(tab.Id) != null)
             throw new InvalidOperationException("Can not register tabs with a registered id");
         PluginTabs.Add(tab);
         tab.OnRegistered();

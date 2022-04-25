@@ -13,7 +13,33 @@ namespace Pathfinder.Options;
 internal static class PathfinderOptionsMenu
 {
     private static bool isInPathfinderMenu = false;
-    internal static string currentTabName = null;
+    public static string CurrentTabId { get; private set; } = null;
+
+    public static void SetCurrentTab(string tabId)
+    {
+        if(OptionsManager.PluginTabs.Any(pt => pt.Id == tabId) || OptionsManager.Tabs.ContainsKey(tabId))
+        {
+            CurrentTabId = tabId;
+            return;
+        }
+        throw new InvalidOperationException($"Tab {tabId} not found in {typeof(OptionsManager).FullName}.{nameof(OptionsManager.PluginTabs)} or {typeof(OptionsManager).FullName}.{nameof(OptionsManager.Tabs)}");
+    }
+
+    public static PluginOptionTab SetCurrentTab(PluginOptionTab tab)
+    {
+        if(!OptionsManager.PluginTabs.Contains(tab))
+            throw new InvalidOperationException($"Tab {tab.Id} not found in {typeof(OptionsManager).FullName}.{nameof(OptionsManager.PluginTabs)}");
+        CurrentTabId = tab.Id;
+        return tab;
+    }
+
+    public static OptionsTab SetCurrentTab(OptionsTab tab)
+    {
+        if(!OptionsManager.Tabs.TryGetValue(tab.Name, out var newTab) || tab != newTab)
+            throw new InvalidOperationException($"Tab {tab.Name} not found in {typeof(OptionsManager).FullName}.{nameof(OptionsManager.Tabs)}");
+        CurrentTabId = tab.Name;
+        return tab;
+    }
 
     private static PFButton ReturnButton = new PFButton(10, 10, 220, 54, "Back to Options", Color.Yellow);
 
@@ -30,7 +56,7 @@ internal static class PathfinderOptionsMenu
 
         if (ReturnButton.Do())
         {
-            currentTabName = null;
+            CurrentTabId = null;
             isInPathfinderMenu = false;
             GuiData.endDraw();
             PostProcessor.end();
@@ -47,25 +73,28 @@ internal static class PathfinderOptionsMenu
 
         foreach (var tab in OptionsManager.PluginTabs)
         {
-            tab.ButtonData = tab.ButtonData.Set(tabX);
+            if(tab.ButtonData.X == null)
+            {
+                tab.ButtonData.Set(tabX);
+                tabX += 10 + tab.ButtonData.Width.GetValueOrDefault();
+            }
             tab.OnDraw(gameTime);
-            tabX += 10 + tab.ButtonData.Width;
         }
 
         foreach (var tab in tabs.Values)
         {
-            if (currentTabName == null)
-                currentTabName = tab.Name;
-            var active = currentTabName == tab.Name;
+            if (CurrentTabId == null)
+                CurrentTabId = tab.Name;
+            var active = CurrentTabId == tab.Name;
             // Display tab button
             if (Button.doButton(tab.ButtonID, tabX, 70, 128, 20, tab.Name, active ? Color.Green : Color.Gray))
             {
-                currentTabName = tab.Name;
+                CurrentTabId = tab.Name;
                 break;
             }
             tabX += 128 + 10;
 
-            if (currentTabName != tab.Name)
+            if (CurrentTabId != tab.Name)
                 continue;
 
             // Display options

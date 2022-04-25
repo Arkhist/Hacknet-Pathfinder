@@ -8,7 +8,7 @@ public interface IPluginOption
 {
     PluginOptionTab Tab { get; set; }
     string Id { get; }
-    DrawData DrawData { get; set; }
+    PluginOptionDrawData DrawData { get; set; }
     void OnRegistered();
     void OnDraw(GameTime gameTime);
     void OnSave(ConfigFile config);
@@ -19,8 +19,8 @@ public abstract class BasePluginOption<ValueT> : IPluginOption
 {
     public PluginOptionTab Tab { get; set; }
 
-    public DrawData DrawDataField;
-    public DrawData DrawData { get => DrawDataField; set => DrawDataField = value; }
+    public PluginOptionDrawData DrawDataField;
+    public PluginOptionDrawData DrawData { get => DrawDataField; set => DrawDataField = value; }
     public int HacknetGuiId { get; private set; }
 
     public virtual ValueT Value { get; set; }

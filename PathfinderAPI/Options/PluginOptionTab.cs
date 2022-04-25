@@ -16,7 +16,7 @@ public class PluginOptionTab : IReadOnlyList<IPluginOption>
     public string TabName { get; private set; }
     public int HacknetGuiId { get; }
     public bool IsRegistered { get; internal set; }
-    public DrawData ButtonData { get; set; } = new DrawData
+    public PluginOptionDrawData ButtonData { get; set; } = new PluginOptionDrawData
     {
         X = 0,
         Y = 70,
@@ -44,12 +44,7 @@ public class PluginOptionTab : IReadOnlyList<IPluginOption>
         if(IsRegistered)
         {
             option.OnRegistered();
-            int optX = ButtonData.Rectangle.Bottom, optY = 110;
-            foreach (var opt in this)
-            {
-                option.DrawData = option.DrawData.Set(optX, optY);
-                optY += 10 + option.DrawData.Height;
-            }
+            _SetDrawPositions();
         }
         return this;
     }
@@ -79,13 +74,7 @@ public class PluginOptionTab : IReadOnlyList<IPluginOption>
     {
         foreach(var opt in options)
             opt.OnRegistered();
-        int optX = ButtonData.Rectangle.Bottom, optY = 110;
-        foreach (var option in this)
-        {
-            option.DrawData = option.DrawData.Set(optX, optY);
-            optY += 10 + option.DrawData.Height;
-        }
-
+        _SetDrawPositions();
     }
 
     public virtual void OnSave(ConfigFile config)
@@ -102,17 +91,23 @@ public class PluginOptionTab : IReadOnlyList<IPluginOption>
 
     public virtual void OnDraw(GameTime gameTime)
     {
-        if (PathfinderOptionsMenu.currentTabName == null)
-            PathfinderOptionsMenu.currentTabName = TabName;
-        var active = PathfinderOptionsMenu.currentTabName == TabName;
+        if (PathfinderOptionsMenu.CurrentTabId == null)
+            PathfinderOptionsMenu.SetCurrentTab(this);
+        var active = PathfinderOptionsMenu.CurrentTabId == Id;
         // Display tab button
-        if (Button.doButton(HacknetGuiId, ButtonData.X, ButtonData.Y, ButtonData.Width, ButtonData.Height, TabName, active ? Color.Green : Color.Gray))
+        if (Button.doButton(HacknetGuiId,
+            ButtonData.X.GetValueOrDefault(),
+            ButtonData.Y.GetValueOrDefault(),
+            ButtonData.Width.GetValueOrDefault(),
+            ButtonData.Height.GetValueOrDefault(),
+            TabName,
+            active ? Color.Green : Color.Gray))
         {
-            PathfinderOptionsMenu.currentTabName = TabName;
+            PathfinderOptionsMenu.SetCurrentTab(this);
             return;
         }
 
-        if (PathfinderOptionsMenu.currentTabName != TabName)
+        if (PathfinderOptionsMenu.CurrentTabId != Id)
             return;
 
         // Display options
@@ -124,4 +119,17 @@ public class PluginOptionTab : IReadOnlyList<IPluginOption>
         => options.GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    private void _SetDrawPositions()
+    {
+        int defOptionXPos = ButtonData.Rectangle.Bottom, defOptionYPos = 110;
+        foreach (var option in this)
+        {
+            if(option.DrawData.X == null)
+                option.DrawData = option.DrawData.Set(defOptionXPos);
+            if(option.DrawData.Y == null)
+                option.DrawData = option.DrawData.Set(y: defOptionYPos);
+            defOptionYPos += 10 + option.DrawData.Height.GetValueOrDefault();
+        }
+    }
 }
