@@ -47,12 +47,9 @@ public class PathfinderUpdaterPlugin : HacknetPlugin
     {
         Config = base.Config;
 
-        IsEnabled = Config.Bind<bool>("AutoUpdater", "EnableAutoUpdates", true, "Enables or disables automatic updates for PathfinderAPI");
-        EnablePreReleases = Config.Bind<bool>("AutoUpdater", "UsePreReleases", false, "Whether or not to automatically update to beta versions");
         AcceptedUpdate = Config.Bind<string>("AutoUpdater", "LatestAcceptedUpdate", "", "Used internally to keep track of whether you accepted the update or not");
         CurrentVersion = Config.Bind<string>("AutoUpdater", "CurrentVersion", HacknetChainloader.VERSION,
             "Used internally to keep track of version.\nIf you want to skip updating to a version but keep the updater on, set this manually to the latest verison.");
-        NoRestartPrompt = Config.Bind<bool>("AutoUpdater", "NoRestartPrompt", false, "Whether ot not the restart prompt will automatically appear when the update is finished");
 
         HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
         if (Type.GetType("Mono.Runtime") != null)

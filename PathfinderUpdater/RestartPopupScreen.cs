@@ -43,7 +43,6 @@ internal class RestartPopupScreen : GameScreen
     public new void ExitScreen()
     {
         base.ExitScreen();
-        PathfinderUpdaterPlugin.NoRestartPrompt.Value = NoRestartPrompt.Value;
-        MainMenuOverride.NoRestartPrompt.Value = PathfinderUpdaterPlugin.NoRestartPrompt.Value;
+        MainMenuOverride.NoRestartPrompt.Value = NoRestartPrompt.Value;
     }
 }

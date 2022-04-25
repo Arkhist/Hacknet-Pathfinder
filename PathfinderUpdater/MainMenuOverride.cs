@@ -47,15 +47,6 @@ internal static class MainMenuOverride
         CanPerformUpdate = PathfinderUpdaterPlugin.NeedsUpdate;
     }
 
-    internal static void OptionsSaved(CustomOptionsSaveEvent args)
-    {
-        PathfinderUpdaterPlugin.IsEnabled.Value = IsEnabledBox.Value;
-        PathfinderUpdaterPlugin.EnablePreReleases.Value = IncludePrerelease.Value;
-        PathfinderUpdaterPlugin.NoRestartPrompt.Value = NoRestartPrompt.Value;
-        if(popupScreen != null)
-            popupScreen.NoRestartPrompt.Value = PathfinderUpdaterPlugin.NoRestartPrompt.Value;
-    }
-
     internal static async Task PerformCheckAndUpdateButtonAsync()
     {
         PerformUpdate.Text = UPDATE_STRING;

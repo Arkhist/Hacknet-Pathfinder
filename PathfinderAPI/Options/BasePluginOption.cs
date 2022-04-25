@@ -57,7 +57,7 @@ public abstract class BasePluginOption<ValueT> : IPluginOption
     public abstract void OnDraw(GameTime gameTime);
     public virtual void OnSave(ConfigFile config)
     {
-        config.Bind<ValueT>(Tab.Id, Id, DefaultValue);
+        config.Bind<ValueT>(Tab.Id, Id, DefaultValue, ConfigDescription);
     }
     public virtual void OnLoad(ConfigFile config)
     {
