@@ -19,33 +19,50 @@ public static class OptionsManager
         tab.Options.Add(opt);
     }
 
-    public static bool TryGetTab(string tabName, out PluginOptionTab tab)
+    public static bool TryGetTab<TabT>(string tabId, out TabT tab)
+        where TabT : PluginOptionTab
     {
-        tab = PluginTabs.Find(t => t.Id == tabName);
+        tab = PluginTabs.Find(t => t.Id == tabId) as TabT;
         return tab != null;
     }
 
-    public static PluginOptionTab GetTab(string tabName)
+    public static PluginOptionTab GetTab<TabT>(string tabId)
+        where TabT : PluginOptionTab
     {
-        if(!TryGetTab(tabName, out var tab))
+        if(!TryGetTab(tabId, out TabT tab))
             return tab;
         return null;
     }
 
     public static PluginOptionTab RegisterTab(string tabName, string tabId = null)
     {
-        if(GetTab(tabName) != null)
-            throw new InvalidOperationException("Can not deliberately register an existing tab");
-        PluginOptionTab tab;
-        PluginTabs.Add(tab = new PluginOptionTab(tabName, tabId));
+        if(GetTab(tabId ?? string.Concat(tabName.Where(c => !char.IsWhiteSpace(c) && c != '='))) != null)
+            throw new InvalidOperationException("Can not register tabs with a registered id");
+        return RegisterTab(new PluginOptionTab(tabName, tabId));
+    }
+
+    public static TabT RegisterTab<TabT>(TabT tab)
+        where TabT : PluginOptionTab
+    {
+        if(GetTab(tab.Id) != null)
+            throw new InvalidOperationException("Can not register tabs with a registered id");
+        PluginTabs.Add(tab);
         tab.OnRegistered();
         return tab;
     }
 
     public static PluginOptionTab GetOrRegisterTab(string tabName, string tabId = null)
     {
-        if(!TryGetTab(tabName, out var tab))
+        if(!TryGetTab(tabId ?? string.Concat(tabName.Where(c => !char.IsWhiteSpace(c) && c != '=')), out PluginOptionTab tab))
             tab = RegisterTab(tabName, tabId);
+        return tab;
+    }
+
+    public static TabT GetOrRegisterTab<TabT>(string tabName, string tabId, Func<TabT> generatorFunc)
+        where TabT : PluginOptionTab
+    {
+        if(!TryGetTab(tabId ?? string.Concat(tabName.Where(c => !char.IsWhiteSpace(c) && c != '=')), out TabT tab))
+            tab = RegisterTab(generatorFunc());
         return tab;
     }
 
