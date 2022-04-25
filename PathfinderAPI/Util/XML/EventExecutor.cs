@@ -193,14 +193,7 @@ public class EventExecutor : EventReader
         else
         {
             var topElement = currentElementStack.Peek();
-            var element = new ElementInfo()
-            {
-                Name = Reader.Name,
-                Attributes = attributes,
-                Parent = topElement,
-                Content = null
-            };
-            topElement.Children.Add(element);
+            var element = new ElementInfo(Reader.Name, attributes: attributes).SetParent(topElement);
             currentElementStack.Push(element);
         }
     }
@@ -242,6 +235,7 @@ public class EventExecutor : EventReader
                 topElement.Content = Reader.Value;
             else
                 topElement.Content += "\n" + Reader.Value;
+            topElement.AddChild(ElementInfo.FromText(Reader.Value));
         }
     }
 
