@@ -36,18 +36,18 @@ public class OptionAttribute : BaseAttribute
         {
             case PropertyInfo propertyInfo:
                 if(!typeof(IPluginOption).IsAssignableFrom(propertyInfo.PropertyType))
-                    throw new InvalidOperationException($"Property {propertyInfo.Name}'s type does not derive from Pathfinder.Options.Option");
+                    throw new InvalidOperationException($"Property {propertyInfo.Name}'s type does not derive from Pathfinder.Options.IPluginOption");
                 option = (IPluginOption)(propertyInfo.GetGetMethod()?.Invoke(plugin, null));
                 break;
             case FieldInfo fieldInfo:
                 if(!typeof(IPluginOption).IsAssignableFrom(fieldInfo.FieldType))
-                    throw new InvalidOperationException($"Field {fieldInfo.Name}'s type does not derive from Pathfinder.Options.Option");
+                    throw new InvalidOperationException($"Field {fieldInfo.Name}'s type does not derive from Pathfinder.Options.IPluginOption");
                 option = (IPluginOption)fieldInfo.GetValue(plugin);
                 break;
         }
 
         if(option == null)
-            throw new InvalidOperationException($"Option not set to a default value, Option members should be set before HacknetPlugin.Load() is called");
+            throw new InvalidOperationException($"IPluginOption not set to a default value, IPluginOption members should be set before HacknetPlugin.Load() is called");
 
         OptionsManager.GetOrRegisterTab(Tag).AddOption(option);
     }
