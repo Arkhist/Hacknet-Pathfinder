@@ -29,7 +29,7 @@ public class OptionAttribute : BaseAttribute
     {
         if(TabName == null)
         {
-            if(!OptionsTabAttribute.pluginToOptionsTag.TryGetValue(plugin, out var tab))
+            if(!OptionsTabAttribute.pluginToOptTabAttribute.TryGetValue(plugin, out var tab))
                 throw new InvalidOperationException($"Could not find Pathfinder.Meta.Load.OptionsTabAttribute for {targettedInfo.DeclaringType.FullName}");
             TabName = tab.TabName;
             TabId = tab.TabId;
