@@ -36,7 +36,7 @@ public static class OptionsManager
 
     public static PluginOptionTab RegisterTab(string tabName, string tabId = null)
     {
-        if(GetTab<PluginOptionTab>(tabId ?? string.Concat(tabName.Where(c => !char.IsWhiteSpace(c) && c != '='))) != null)
+        if(GetTab<PluginOptionTab>(GetIdFrom(tabName, tabId)) != null)
             throw new InvalidOperationException("Can not register tabs with a registered id");
         return RegisterTab(new PluginOptionTab(tabName, tabId));
     }
@@ -53,7 +53,7 @@ public static class OptionsManager
 
     public static PluginOptionTab GetOrRegisterTab(string tabName, string tabId = null)
     {
-        if(!TryGetTab(tabId ?? string.Concat(tabName.Where(c => !char.IsWhiteSpace(c) && c != '=')), out PluginOptionTab tab))
+        if(!TryGetTab(GetIdFrom(tabName, tabId), out PluginOptionTab tab))
             tab = RegisterTab(tabName, tabId);
         return tab;
     }
@@ -61,7 +61,7 @@ public static class OptionsManager
     public static TabT GetOrRegisterTab<TabT>(string tabName, string tabId, Func<TabT> generatorFunc)
         where TabT : PluginOptionTab
     {
-        if(!TryGetTab(tabId ?? string.Concat(tabName.Where(c => !char.IsWhiteSpace(c) && c != '=')), out TabT tab))
+        if(!TryGetTab(GetIdFrom(tabName, tabId), out TabT tab))
             tab = RegisterTab(generatorFunc());
         return tab;
     }
@@ -96,6 +96,9 @@ public static class OptionsManager
         foreach(var tab in PluginTabs)
             tab.OnLoad(config);
     }
+
+    internal static string GetIdFrom(string name, string id = null)
+        => id ?? string.Concat(name.Where(c => !char.IsWhiteSpace(c) && c != '='));
 }
 
 [Obsolete("Use PluginOptionTab")]

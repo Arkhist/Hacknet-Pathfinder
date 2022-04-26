@@ -7,25 +7,32 @@ namespace Pathfinder.Meta.Load;
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 public class OptionAttribute : BaseAttribute
 {
-    public string Tag { get; set; }
+    [Obsolete("Use TabName")]
+    public string Tag { get => TabName; set => TabName = value; }
+    public string TabName { get; set; }
+    public string TabId { get; set; }
 
-    public OptionAttribute(string tag = null)
+    public OptionAttribute(string tag = null, string tabId = null)
     {
-        this.Tag = tag;
+        TabName = tag;
+        TabId = tabId;
     }
 
     public OptionAttribute(Type pluginType)
     {
-        this.Tag = pluginType.GetCustomAttribute<OptionsTabAttribute>()?.Tag;
+        var tabAttr = pluginType.GetCustomAttribute<OptionsTabAttribute>();
+        TabName = tabAttr.TabName;
+        TabId = tabAttr.TabId;
     }
 
     protected internal override void CallOn(HacknetPlugin plugin, MemberInfo targettedInfo)
     {
-        if(Tag == null)
+        if(TabName == null)
         {
-            Tag = plugin.GetOptionsTag();
-            if(Tag == null)
+            if(!OptionsTabAttribute.pluginToOptionsTag.TryGetValue(plugin, out var tab))
                 throw new InvalidOperationException($"Could not find Pathfinder.Meta.Load.OptionsTabAttribute for {targettedInfo.DeclaringType.FullName}");
+            TabName = tab.TabName;
+            TabId = tab.TabId;
         }
 
         if(targettedInfo.DeclaringType != plugin.GetType())
@@ -49,6 +56,6 @@ public class OptionAttribute : BaseAttribute
         if(option == null)
             throw new InvalidOperationException($"IPluginOption not set to a default value, IPluginOption members should be set before HacknetPlugin.Load() is called");
 
-        OptionsManager.GetOrRegisterTab(Tag).AddOption(option);
+        OptionsManager.GetOrRegisterTab(TabName, TabId).AddOption(option);
     }
 }

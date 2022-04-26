@@ -27,7 +27,7 @@ public class PluginOptionTab : IReadOnlyList<IPluginOption>
     public PluginOptionTab(string tabName, string tabId = null)
     {
         TabName = tabName;
-        Id = tabId ?? string.Concat(TabName.Where(c => !char.IsWhiteSpace(c) && c != '='));
+        Id = OptionsManager.GetIdFrom(tabName, tabId);
         HacknetGuiId = PFButton.GetNextID();
     }
 
