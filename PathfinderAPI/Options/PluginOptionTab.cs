@@ -3,19 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using BepInEx.Configuration;
+using Hacknet;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Pathfinder.GUI;
 
 namespace Pathfinder.Options;
 
-public class PluginOptionTab : IReadOnlyList<IPluginOption>
+public class PluginOptionTab : IReadOnlyDictionary<string, IPluginOption>
 {
-    private List<IPluginOption> options = new List<IPluginOption>();
+    private IDictionary<string, IPluginOption> options = new Dictionary<string, IPluginOption>();
     public string Id { get; private set; }
     public string TabName { get; private set; }
+
+    public SpriteBatch Batch { get; internal set; }
     public int HacknetGuiId { get; }
-    public bool IsRegistered { get; internal set; }
+    public bool IsLoaded { get; internal set; }
     public PluginOptionDrawData ButtonData { get; set; } = new PluginOptionDrawData
     {
         X = 0,
@@ -32,18 +36,17 @@ public class PluginOptionTab : IReadOnlyList<IPluginOption>
     }
 
     public int Count => options.Count;
-
-    public IPluginOption this[int index] => options[index];
+    public IEnumerable<string> Keys => options.Keys;
+    public IEnumerable<IPluginOption> Values => options.Values;
+    public IPluginOption this[string key] => options[key];
 
     public PluginOptionTab AddOption(IPluginOption option)
     {
-        if(options.Any(p => p.Id == option.Id))
-            throw new InvalidOperationException("Option tabs may not have two options with the same id");
-        options.Add(option);
+        options.Add(option.Id, option);
         option.Tab = this;
-        if(IsRegistered)
+        if(IsLoaded)
         {
-            option.OnRegistered();
+            option.LoadContent();
             _SetDrawPositions();
         }
         return this;
@@ -51,7 +54,9 @@ public class PluginOptionTab : IReadOnlyList<IPluginOption>
 
     public IPluginOption GetOption(string id)
     {
-        return options.Find(p => p.Id == id);
+        if(TryGetValue(id, out var result))
+            return result;
+        return null;
     }
 
     public OptionT GetOption<OptionT>(string id) where OptionT : IPluginOption
@@ -62,31 +67,33 @@ public class PluginOptionTab : IReadOnlyList<IPluginOption>
 
     public bool RemoveOption(IPluginOption option)
     {
-        return options.Remove(option);
+        return RemoveOption(option.Id);
     }
 
     public bool RemoveOption(string id)
     {
-        return RemoveOption(options.Find(p => p.Id == id));
+        return options.Remove(id);
     }
 
-    public virtual void OnRegistered()
+    public virtual void LoadContent()
     {
+        Batch = GuiData.spriteBatch;
         foreach(var opt in options)
-            opt.OnRegistered();
+            opt.Value.LoadContent();
         _SetDrawPositions();
+        IsLoaded = true;
     }
 
     public virtual void OnSave(ConfigFile config)
     {
         foreach(var opt in options)
-            opt.OnSave(config);
+            opt.Value.OnSave(config);
     }
 
     public virtual void OnLoad(ConfigFile config)
     {
         foreach(var opt in options)
-            opt.OnLoad(config);
+            opt.Value.OnLoad(config);
     }
 
     public virtual void OnDraw(GameTime gameTime)
@@ -112,24 +119,31 @@ public class PluginOptionTab : IReadOnlyList<IPluginOption>
 
         // Display options
         foreach (var option in this)
-            option.OnDraw(gameTime);
+            option.Value.OnDraw(gameTime);
     }
 
-    public IEnumerator<IPluginOption> GetEnumerator()
+    public IEnumerator<KeyValuePair<string, IPluginOption>> GetEnumerator()
         => options.GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
     private void _SetDrawPositions()
     {
-        int defOptionXPos = ButtonData.Rectangle.Bottom, defOptionYPos = 110;
-        foreach (var option in this)
+        int defOptionXPos = 80, defOptionYPos = 110;
+        foreach (var pair in options)
         {
-            if(option.DrawData.X == null)
-                option.DrawData = option.DrawData.Set(defOptionXPos);
-            if(option.DrawData.Y == null)
-                option.DrawData = option.DrawData.Set(y: defOptionYPos);
-            defOptionYPos += 10 + option.DrawData.Height.GetValueOrDefault();
+            var opt = pair.Value;
+            if(!opt.DrawData.X.HasValue)
+                opt.DrawData = opt.DrawData.Set(defOptionXPos);
+            if(!opt.DrawData.Y.HasValue)
+                opt.DrawData = opt.DrawData.Set(y: defOptionYPos);
+            defOptionYPos += 10 + opt.DrawData.Height.GetValueOrDefault();
         }
     }
+
+    public bool ContainsKey(string key)
+        => options.ContainsKey(key);
+
+    public bool TryGetValue(string key, out IPluginOption value)
+        => options.TryGetValue(key, out value);
 }

@@ -49,15 +49,17 @@ public struct PluginOptionDrawData
 
     public PluginOptionDrawData QuickAdd(int x = 0, int y = 0, int width = 0, int height = 0)
     {
-        X = x + X.GetValueOrDefault();
-        Y = y + Y.GetValueOrDefault();
-        Width = width + Width.GetValueOrDefault();
-        Height = height + Height.GetValueOrDefault();
-        return this;
+        var result = this;
+        result.X = x + X.GetValueOrDefault();
+        result.Y = y + Y.GetValueOrDefault();
+        result.Width = width + Width.GetValueOrDefault();
+        result.Height = height + Height.GetValueOrDefault();
+        return result;
     }
 
     public PluginOptionDrawData Add(int? x, int? y = null, int? width = null, int? height = null, bool xycombo = false, bool whcombo = false)
     {
+        var result = this;
         if(xycombo && (x == null || y == null) && x != y)
         {
             if(x.HasValue) y = x;
@@ -71,25 +73,25 @@ public struct PluginOptionDrawData
 
         if(x != null)
         {
-            if(X == null) X = 0;
-            X += x;
+            if(result.X == null) result.X = 0;
+            result.X += x;
         }
         if(y != null)
         {
-            if(Y == null) Y = 0;
-            Y += y.Value;
+            if(result.Y == null) result.Y = 0;
+            result.Y += y.Value;
         }
         if(width != null)
         {
-            if(Width == null) Width = 0;
-            Width += width;
+            if(result.Width == null) result.Width = 0;
+            result.Width += width;
         }
         if(height != null)
         {
-            if(Height == null) Height = 0;
-            Height = height.Value;
+            if(result.Height == null) result.Height = 0;
+            result.Height = height.Value;
         }
-        return this;
+        return result;
     }
     public PluginOptionDrawData Set(int? x = null, int? y = null, int? width = null, int? height = null)
     {

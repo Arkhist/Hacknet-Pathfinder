@@ -3,6 +3,7 @@ using BepInEx.Configuration;
 
 namespace Pathfinder.Options;
 
+[HarmonyPatch]
 public static class OptionsManager
 {
     [Obsolete("Use PluginTabs")]
@@ -45,9 +46,8 @@ public static class OptionsManager
         where TabT : PluginOptionTab
     {
         if(GetTab<TabT>(tab.Id) != null)
-            throw new InvalidOperationException("Can not register tabs with a registered id");
+            throw new InvalidOperationException("Can not register new tabs with an already registered id");
         PluginTabs.Add(tab);
-        tab.OnRegistered();
         return tab;
     }
 
@@ -97,8 +97,16 @@ public static class OptionsManager
             tab.OnLoad(config);
     }
 
-    internal static string GetIdFrom(string name, string id = null)
+    public static string GetIdFrom(string name, string id = null)
         => id ?? string.Concat(name.Where(c => !char.IsWhiteSpace(c) && c != '='));
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Game1), nameof(Game1.LoadContent))]
+    private static void OnPostGame1LoadContent(Game1 __instance)
+    {
+        foreach(var tab in PluginTabs)
+            tab.LoadContent();
+    }
 }
 
 [Obsolete("Use PluginOptionTab")]
