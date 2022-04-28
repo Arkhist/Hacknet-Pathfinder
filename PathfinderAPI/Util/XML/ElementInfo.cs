@@ -94,13 +94,13 @@ public class ElementInfo
         => TryAttributeAsFloat(attribName, out var result) ? result : defaultVal;
 
     public bool AttributeAsBoolean(string attribName)
-        => Attributes.AsBoolean(attribName, $"{nameof(Attributes)}[{nameof(attribName)}]");
+        => Attributes.AsBoolean(attribName, $"{nameof(Attributes)}");
 
     public int AttributeAsInt(string attribName)
-        => Attributes.AsInt(attribName, $"{nameof(Attributes)}[{nameof(attribName)}]");
+        => Attributes.AsInt(attribName, $"{nameof(Attributes)}");
 
     public float AttributeAsFloat(string attribName)
-        => Attributes.AsFloat(attribName, $"{nameof(Attributes)}[{nameof(attribName)}]");
+        => Attributes.AsFloat(attribName, $"{nameof(Attributes)}");
 
     public bool TryAddChild(ElementInfo info)
     {
@@ -204,15 +204,15 @@ public static class ElementInfoStringExtensions
     public static bool AsBoolean(this string content, string valName = "content")
         => content.TryAsBoolean(out var value)
             ? value
-            : throw new FormatException($"Value of '{valName}' is not true or false");
+            : throw new FormatException($"Value of '{valName}' is '{content}' which is not true or false");
     public static int AsInt(this string content, string valName = "content")
         => content.TryAsInt(out var value)
             ? value
-            : throw new FormatException($"Value of '{valName}' is not an integer, e.g.: 0, 1, 2");
+            : throw new FormatException($"Value of '{valName}' is '{content}' which is not an integer, e.g.: 0, 1, 2");
     public static float AsFloat(this string content, string valName = "content")
         => content.TryAsFloat(out var value)
             ? value
-            : throw new FormatException($"Value of '{valName}' is not a float, e.g.: 1.0");
+            : throw new FormatException($"Value of '{valName}' is '{content}' which is not a float, e.g.: 1.0");
 }
 
 public static class ElementInfoListExtensions
@@ -257,10 +257,10 @@ public static class ElementInfoDictionaryExtensions
         if(attribute == null) return false;
         return attribute.TryGetValue(key, out var str) ? str.TryAsFloat(out result) : false;
     }
-    public static bool AsBoolean(this IDictionary<string, string> attribute, string key, string valName = "attribute[key]")
-        => attribute[key].AsBoolean(valName);
-    public static int AsInt(this IDictionary<string, string> attribute, string key, string valName = "attribute[key]")
-        => attribute[key].AsInt(valName);
-    public static float AsFloat(this IDictionary<string, string> attribute, string key, string valName = "attribute[key]")
-        => attribute[key].AsFloat(valName);
+    public static bool AsBoolean(this IDictionary<string, string> attribute, string key, string dictName = "attribute")
+        => attribute[key].AsBoolean($"{dictName}[{key}]");
+    public static int AsInt(this IDictionary<string, string> attribute, string key, string dictName = "attribute")
+        => attribute[key].AsInt($"{dictName}[{key}]");
+    public static float AsFloat(this IDictionary<string, string> attribute, string key, string dictName = "attribute")
+        => attribute[key].AsFloat($"{dictName}[{key}]");
 }
