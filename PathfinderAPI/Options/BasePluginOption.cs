@@ -10,7 +10,9 @@ public interface IPluginOption
 {
     PluginOptionTab Tab { get; set; }
     string Id { get; }
-    PluginOptionDrawData DrawData { get; set; }
+    Rectangle Rectangle { get; set; }
+    Vector2 Size { get; }
+    bool TrySetOffset(Vector2 offset);
     void LoadContent();
     void OnDraw(GameTime gameTime);
     void OnSave(ConfigFile config);
@@ -21,7 +23,7 @@ public abstract class BasePluginOption<ValueT> : IPluginOption
 {
     public PluginOptionTab Tab { get; set; }
 
-    public PluginOptionDrawData DrawData { get; set; }
+    public Rectangle Rectangle { get; set; }
     public int HacknetGuiId { get; private set; }
 
     public virtual ValueT Value { get; set; }
@@ -40,6 +42,27 @@ public abstract class BasePluginOption<ValueT> : IPluginOption
     public Vector2 HeaderTextSize => HeaderFont.MeasureString(HeaderText);
     public Vector2 DescriptionTextSize => DescriptionFont.MeasureString(DescriptionText);
 
+    public virtual Vector2 Position => new Vector2(Rectangle.X + Offset.X, Rectangle.Y + Offset.Y);
+    public virtual Vector2 Offset { get; set; }
+
+    public Vector2 Size
+    {
+        get
+        {
+            var minsize = MinSize;
+            return new Vector2(Math.Max(Rectangle.Width, minsize.X), Math.Max(Rectangle.Height, minsize.Y)); 
+        }
+    }
+    public virtual Vector2 MinSize
+    {
+        get
+        {
+            var headerSize = HeaderTextSize;
+            var descSize = DescriptionTextSize;
+            return new Vector2(Math.Max(headerSize.X, descSize.X), headerSize.Y + descSize.Y);
+        }
+    }
+
     protected BasePluginOption(string headerText, string descriptionText = null, ValueT defaultValue = default, string configDesc = null, string id = null)
     {
         HeaderText = headerText;
@@ -47,6 +70,12 @@ public abstract class BasePluginOption<ValueT> : IPluginOption
         DefaultValue = defaultValue;
         ConfigDescription = configDesc;
         Id = OptionsManager.GetIdFrom(HeaderText, id);
+    }
+
+    public bool TrySetOffset(Vector2 offset)
+    {
+        Offset = offset;
+        return Offset == offset;
     }
 
     public bool TrySetHeaderText(string text)
@@ -72,17 +101,6 @@ public abstract class BasePluginOption<ValueT> : IPluginOption
         HacknetGuiId = PFButton.GetNextID();
         HeaderFont ??= GuiData.font;
         DescriptionFont ??= GuiData.smallfont;
-        SetSize();
-    }
-
-    public virtual void SetSize()
-    {
-        var headerSize = HeaderTextSize;
-        var descSize = DescriptionTextSize;
-        if(DrawData.Width == null)
-            DrawData = DrawData.Set(width: (int)(Math.Max(headerSize.X, descSize.X + 32)));
-        if(DrawData.Height == null)
-            DrawData = DrawData.Set(height: (int)(headerSize.Y + descSize.Y));
     }
 
     public abstract void OnDraw(GameTime gameTime);

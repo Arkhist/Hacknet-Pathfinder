@@ -15,11 +15,21 @@ public class PluginCheckbox : BasePluginOption<bool>
     {
     }
 
+    public override Vector2 MinSize
+    {
+        get
+        {
+            var minsize = base.MinSize;
+            minsize.X = Math.Max(HeaderTextSize.X, DescriptionTextSize.X + 32);
+            return minsize;
+        }
+    }
+
     public override void OnDraw(GameTime gameTime)
     {
-        DrawString(DrawData, HeaderText, HeaderColor, HeaderFont);
-        Value = CheckBox.doCheckBox(HacknetGuiId, DrawData.X.Value, DrawData.Y.Value + 34, Value, SelectedColor);
-        DrawString(DrawData.QuickAdd(32, 30), DescriptionText, DescriptionColor, DescriptionFont);
-        RenderedRectangle.doRectangleOutline(DrawData.X.Value, DrawData.Y.Value, DrawData.Width.Value, DrawData.Height.Value, 2, null);
+        DrawString(Position, HeaderText, HeaderColor, HeaderFont);
+        Value = CheckBox.doCheckBox(HacknetGuiId, (int)Position.X, (int)Position.Y + 34, Value, SelectedColor);
+        DrawString(Position + new Vector2(32, 30), DescriptionText, DescriptionColor, DescriptionFont);
+        RenderedRectangle.doRectangleOutline((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y, 2, null);
     }
 }

@@ -47,7 +47,6 @@ public class PluginOptionTab : IReadOnlyDictionary<string, IPluginOption>
         if(IsLoaded)
         {
             option.LoadContent();
-            _SetDrawPositions();
         }
         return this;
     }
@@ -80,7 +79,6 @@ public class PluginOptionTab : IReadOnlyDictionary<string, IPluginOption>
         Batch = GuiData.spriteBatch;
         foreach(var opt in options)
             opt.Value.LoadContent();
-        _SetDrawPositions();
         IsLoaded = true;
     }
 
@@ -118,28 +116,19 @@ public class PluginOptionTab : IReadOnlyDictionary<string, IPluginOption>
             return;
 
         // Display options
+        int defOptionXPos = 80, defOptionYPos = 110;
         foreach (var option in this)
+        {
+            if(option.Value.TrySetOffset(new Vector2(defOptionXPos, defOptionYPos)))
+                defOptionYPos += 10 + (int)option.Value.Size.Y;
             option.Value.OnDraw(gameTime);
+        }
     }
 
     public IEnumerator<KeyValuePair<string, IPluginOption>> GetEnumerator()
         => options.GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-    private void _SetDrawPositions()
-    {
-        int defOptionXPos = 80, defOptionYPos = 110;
-        foreach (var pair in options)
-        {
-            var opt = pair.Value;
-            if(!opt.DrawData.X.HasValue)
-                opt.DrawData = opt.DrawData.Set(defOptionXPos);
-            if(!opt.DrawData.Y.HasValue)
-                opt.DrawData = opt.DrawData.Set(y: defOptionYPos);
-            defOptionYPos += 10 + opt.DrawData.Height.GetValueOrDefault();
-        }
-    }
 
     public bool ContainsKey(string key)
         => options.ContainsKey(key);

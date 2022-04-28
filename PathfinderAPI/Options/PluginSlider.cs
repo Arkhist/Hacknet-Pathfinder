@@ -17,23 +17,23 @@ public class PluginSlider : BasePluginOption<float>
         StepSize = stepSize;
     }
 
-    public override void SetSize()
+    public override Vector2 MinSize
     {
-        var headerSize = HeaderTextSize;
-        var descSize = DescriptionTextSize;
-        if(DrawData.Width == null)
-            DrawData = DrawData.Set(width: (int)(Math.Max(headerSize.X, descSize.X + SliderRangeWidth + 10)));
-        if(DrawData.Height == null)
-            DrawData = DrawData.Set(height: (int)(headerSize.Y + Math.Max(descSize.Y, SliderHeight + 9)));
+        get
+        {
+            var headerSize = HeaderTextSize;
+            var descSize = DescriptionTextSize;
+            return new Vector2(Math.Max(headerSize.X, descSize.X + SliderRangeWidth + 10), headerSize.Y + Math.Max(descSize.Y, SliderHeight + 9));
+        }
     }
 
     public override void OnDraw(GameTime gameTime)
     {
-        DrawString(DrawData, HeaderText, HeaderColor, HeaderFont);
+        DrawString(Position, HeaderText, HeaderColor, HeaderFont);
         Value = SliderBar.doSliderBar(
             HacknetGuiId,
-            DrawData.X.Value + 5,
-            DrawData.Y.Value + 45,
+            (int)Position.X + 5,
+            (int)Position.Y + 45,
             SliderRangeWidth,
             SliderHeight,
             MaximumValue,
@@ -42,7 +42,7 @@ public class PluginSlider : BasePluginOption<float>
             StepSize
         );
 
-        DrawString(DrawData.QuickAdd(SliderRangeWidth + 10, 45), DescriptionText, DescriptionColor, DescriptionFont);
-        RenderedRectangle.doRectangleOutline(DrawData.X.Value, DrawData.Y.Value, DrawData.Width.Value, DrawData.Height.Value, 2, null);
+        DrawString(Position + new Vector2(SliderRangeWidth + 10, 43), DescriptionText, DescriptionColor, DescriptionFont);
+        RenderedRectangle.doRectangleOutline((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y, 2, null);
     }
 }
