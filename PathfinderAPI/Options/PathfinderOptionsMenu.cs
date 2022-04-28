@@ -72,16 +72,13 @@ internal static class PathfinderOptionsMenu
         #pragma warning disable 618
         var tabs = OptionsManager.Tabs;
         #pragma warning restore 618
-
-        int tabX = 10;
+            
+        int tabX = 10, tabY = 70;
 
         foreach (var tab in OptionsManager.PluginTabs)
         {
-            if(tab.ButtonData.X == null)
-            {
-                tab.ButtonData.Set(tabX);
-                tabX += 10 + tab.ButtonData.Width.GetValueOrDefault();
-            }
+            if(tab.TrySetButtonOffset(new Point(tabX, tabY)))
+                tabX += 10 + tab.ButtonRect.Width;
             tab.OnDraw(gameTime);
         }
 
@@ -91,7 +88,7 @@ internal static class PathfinderOptionsMenu
                 CurrentTabId = tab.Name;
             var active = CurrentTabId == tab.Name;
             // Display tab button
-            if (Button.doButton(tab.ButtonID, tabX, 70, 128, 20, tab.Name, active ? Color.Green : Color.Gray))
+            if (Button.doButton(tab.ButtonID, tabX, tabY, 128, 20, tab.Name, active ? Color.Green : Color.Gray))
             {
                 CurrentTabId = tab.Name;
                 break;

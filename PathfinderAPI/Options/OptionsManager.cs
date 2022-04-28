@@ -1,5 +1,7 @@
 using Pathfinder.GUI;
 using BepInEx.Configuration;
+using HarmonyLib;
+using Hacknet;
 
 namespace Pathfinder.Options;
 

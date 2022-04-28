@@ -20,13 +20,21 @@ public class PluginOptionTab : IReadOnlyDictionary<string, IPluginOption>
     public SpriteBatch Batch { get; internal set; }
     public int HacknetGuiId { get; }
     public bool IsLoaded { get; internal set; }
-    public PluginOptionDrawData ButtonData { get; set; } = new PluginOptionDrawData
+    public Rectangle ButtonRect { get; set; } = new Rectangle
     {
         X = 0,
-        Y = 70,
+        Y = 0,
         Width = 128,
         Height = 20
     };
+
+    public Point ButtonPosition => ButtonRect.Location + ButtonOffset;
+    public Point ButtonOffset { get; protected set; }
+    public virtual bool TrySetButtonOffset(Point offset)
+    {
+        ButtonOffset = offset;
+        return ButtonOffset == offset;
+    }
 
     public PluginOptionTab(string tabName, string tabId = null)
     {
@@ -101,10 +109,10 @@ public class PluginOptionTab : IReadOnlyDictionary<string, IPluginOption>
         var active = PathfinderOptionsMenu.CurrentTabId == Id;
         // Display tab button
         if (Button.doButton(HacknetGuiId,
-            ButtonData.X.GetValueOrDefault(),
-            ButtonData.Y.GetValueOrDefault(),
-            ButtonData.Width.GetValueOrDefault(),
-            ButtonData.Height.GetValueOrDefault(),
+            ButtonPosition.X,
+            ButtonPosition.Y,
+            ButtonRect.Width,
+            ButtonRect.Height,
             TabName,
             active ? Color.Green : Color.Gray))
         {
