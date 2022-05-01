@@ -57,11 +57,13 @@ Install the mod by placing it in Hacknet/BepInEx/plugins or a folder called Plug
 ## Contributing to Pathfinder
 
 1. Clone the project with `git clone https://github.com/Arkhist/Hacknet-Pathfinder` or preferably fork it and clone that repo so you can pull request
-2. Compile PathfinderPatcher and run it in the Hacknet directory
-3. Copy HacknetPathfinder.exe and FNA.dll to the libs/ directory
-4. Everything else should now compile fine
-5. Everything in BepInEx.Hacknet/bin/Debug goes into Hacknet/BepInEx/core.
-6. Copy/symlink the .dll (or their containing folder) for PathfinderAPI and optionally ExampleMod to Hacknet/BepInEx/plugins
+2. Compile PathfinderAPI or BepInEx.Hacknet
+
+### Testing contiburitons
+
+1. Copy libs/HacknetPathfinder.exe over to the Hacknet directory
+2. Everything in BepInEx.Hacknet/bin/Debug goes into Hacknet/BepInEx/core.
+3. Copy/symlink the .dll (or their containing folder) for PathfinderAPI and optionally ExampleMod to Hacknet/BepInEx/plugins
 
 ## Links
 
