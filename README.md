@@ -61,7 +61,7 @@ Install the mod by placing it in Hacknet/BepInEx/plugins or a folder called Plug
 
 ### Testing contiburitons
 
-Just run `msbuild /target:<ProjectName>:RunGame` and it automatically prepares and executes the game for that project. It also cleans up after itself and preserves your regular game files. Applicable projects are BepInEx.Hacknet, PathfinderAPI, and PathfinderUpdater
+Just run `dotnet build /target:<ProjectName>:RunGame` and it automatically prepares and executes the game for that project. It also cleans up after itself and preserves your regular game files. Applicable projects are BepInEx.Hacknet, PathfinderAPI, and PathfinderUpdater
 
 * Do note that if any project name contains `%`, `$`, `@`, `;`, `.`, `(`, `)`, or `'` it must be replaced with `_` (eg: `BepInEx.Hacknet` becomes `BepInEx_Hacknet`)
 

@@ -36,7 +36,7 @@
       Properties="Configuration=$(Configuration)"
     />
     <Copy
-      SourceFiles="$(MSBuildThisFileDirectory)bin/$(Configuration)/$(TargetFramework)/$(AssemblyName).dll"
+      SourceFiles="$(MSBuildThisFileDirectory)bin/$(Configuration)/$(AssemblyName).dll"
       DestinationFolder="$(BepInExTestDir)plugins"
       UseHardlinksIfPossible="true"
     />

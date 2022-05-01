@@ -50,7 +50,7 @@
   </Target>
 
   <ItemGroup Label="BeforeRunGameSetup">
-    <_BepInExCoreFiles Include="$(MSBuildThisFileDirectory)bin/$(Configuration)/$(TargetFramework)/*" />
+    <_BepInExCoreFiles Include="$(MSBuildThisFileDirectory)bin/$(Configuration)/*" />
   </ItemGroup>
 
   <Target Name="BeforeRunGame"  BeforeTargets="RunGame">
