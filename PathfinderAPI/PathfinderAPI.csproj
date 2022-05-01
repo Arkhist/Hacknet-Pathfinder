@@ -1,41 +1,29 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project ToolsVersion="16.0">
+
+  <Import Project="..\Configurations.props" />
+
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
-    <LangVersion>latest</LangVersion>
     <RootNamespace>Pathfinder</RootNamespace>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.5.5.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\0Harmony.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="0Harmony, Version=2.5.5.0" Private="False" />
+    <Reference Include="BepInEx.Core, Version=6.0.0.423" Private="False" />
+    <Reference Include="FNA, Version=17.2.0.0" Private="False" />
+    <Reference Include="Hacknet, Version=1.0.0.0" Private="False">
+      <HintPath>$(LibsDir)HacknetPathfinder.exe</HintPath>
     </Reference>
-    <Reference Include="BepInEx.Core, Version=6.0.0.423, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\BepInEx.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\FNA.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Hacknet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\HacknetPathfinder.exe</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
-      <HintPath>..\libs\Mono.Cecil.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="MonoMod.Utils, Version=21.9.19.1, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\MonoMod.Utils.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Private="false" Include="..\BepInEx.Hacknet\BepInEx.Hacknet.csproj" />
-  </ItemGroup>
-  <ItemGroup>
+    <Reference Include="Mono.Cecil, Version=0.11.4.0" Private="False" />
+    <Reference Include="MonoMod.Utils, Version=21.9.19.1" Private="False" />
+
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj" Private="False">
+      <Project>{64faeda5-e87c-47ed-8200-e1de1f263040}</Project>
+      <Name>BepInEx.Hacknet</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
 </Project>
