@@ -31,6 +31,10 @@
       <HintPath>..\libs\MonoMod.Utils.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="SemanticVersioning, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a89bb7dc6f7a145c">
+      <HintPath>..\libs\SemanticVersioning.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Private="false" Include="..\BepInEx.Hacknet\BepInEx.Hacknet.csproj" />

@@ -10,6 +10,15 @@ namespace Pathfinder;
 
 [BepInPlugin(ModGUID, ModName, HacknetChainloader.VERSION)]
 [BepInDependency("com.Pathfinder.Updater", BepInDependency.DependencyFlags.SoftDependency)]
+[PluginInfo("An extensive modding API for Hacknet that enables practically limitless programable extensions to the game.",
+    Authors = new string[]
+    {
+        "Windows10CE (Araon)", "Spartan322 (George)", "Fayti1703", "Arkhist", "SoundOfScooting",
+        "CanadaHonk", "Seeker1437", "MaowImpl (Aidan)"
+    }
+)]
+[PluginWebsite("Github", "https://github.com/Arkhist/Hacknet-Pathfinder")]
+[PluginWebsite("Documentation", "https://arkhist.github.io/Hacknet-Pathfinder/")]
 [Updater(
     "https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases",
     "Pathfinder.Release.zip",
