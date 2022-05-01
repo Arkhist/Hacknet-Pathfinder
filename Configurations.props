@@ -35,7 +35,7 @@
     <PathfinderSolutionDir>$(MSBuildThisFileDirectory)</PathfinderSolutionDir>
     <LibsDir>$(PathfinderSolutionDir)libs/</LibsDir>
     <PatcherDir>$(PathfinderSolutionDir)PathfinderPatcher/</PatcherDir>
-    <PatcherBinDir>$(PatcherDir)bin/$(Configuration)/$(TargetFramework)/</PatcherBinDir>
+    <PatcherBinDir>$(PatcherDir)bin/$(Configuration)/</PatcherBinDir>
     <AssemblySearchPaths>
     $(AssemblySearchPaths);
     $(LibsDir);

@@ -30,6 +30,7 @@
         <TargetFramework>net472</TargetFramework>
         <TargetFrameworkProfile />
         <LangVersion>10</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
         <AssemblySearchPaths>
         $(AssemblySearchPaths);
         ../libs/;
