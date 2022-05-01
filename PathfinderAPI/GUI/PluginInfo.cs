@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Reflection;
 using BepInEx;
 using BepInEx.Hacknet;
 using Hacknet;
@@ -36,6 +37,13 @@ public class PluginInfo
     private readonly SortedDictionary<string, string> _websites = new SortedDictionary<string, string>();
     private readonly Texture2D ImageTexture;
 
+    private readonly PFButton CheckForUpdateButton;
+    private readonly PFButton UpdateButton;
+    private readonly Func<PFButton, PFButton, Task> CheckForUpdateAction;
+    private readonly Func<GameScreen, PFButton, Task> UpdateAction;
+    private readonly Func<bool> CanPerformUpdate;
+    private readonly Func<bool> CanCheckForUpdate;
+
     public PluginInfo(PluginListScreen screen, HacknetPlugin plugin)
     {
         Plugin = plugin;
@@ -50,6 +58,7 @@ public class PluginInfo
         var pluginDataAttrib = MetadataHelper.GetAttributes<PluginInfoAttribute>(Plugin).FirstOrDefault();
         if(pluginDataAttrib != null)
         {
+            Description = pluginDataAttrib.Description;
             Authors = new ReadOnlyCollection<string>(pluginDataAttrib.Authors);
             TeamName = pluginDataAttrib.TeamName;
             if(pluginDataAttrib.ImageName != null)
@@ -96,6 +105,22 @@ public class PluginInfo
         };
 
         ConfigPathButton = new PFButton(0,0,0,0,"");
+
+        var updaterAttrb = MetadataHelper.GetAttributes<UpdaterAttribute>(Plugin).FirstOrDefault();
+        if(updaterAttrb != null && HacknetChainloader.Instance.Plugins.TryGetValue("com.Pathfinder.Updater", out var updaterInfo))
+        {
+            var mainMenuOverrideType = updaterInfo.Instance.GetType().Assembly.GetType("PathfinderUpdater.MainMenuOverride");
+            var methInfo = mainMenuOverrideType.GetMethod("PerformCheckAndUpdateButtonAsync", BindingFlags.NonPublic | BindingFlags.Static);
+            if(methInfo.GetParameters().FirstOrDefault() != null)
+            {
+                CheckForUpdateAction = (Func<PFButton, PFButton, Task>)methInfo.CreateDelegate(typeof(Func<PFButton, PFButton, Task>));
+                UpdateAction = (Func<GameScreen, PFButton, Task>)mainMenuOverrideType.GetMethod("PerformUpdateAndUpdateButtonAsync", BindingFlags.NonPublic | BindingFlags.Static).CreateDelegate(typeof(Func<GameScreen, PFButton, Task>));
+                CanPerformUpdate = (Func<bool>)mainMenuOverrideType.GetProperty("CanPerformUpdate", BindingFlags.NonPublic | BindingFlags.Static).GetGetMethod(true).CreateDelegate(typeof(Func<bool>));
+                CanCheckForUpdate = (Func<bool>)mainMenuOverrideType.GetProperty("CanCheckForUpdate", BindingFlags.NonPublic | BindingFlags.Static).GetGetMethod(true).CreateDelegate(typeof(Func<bool>));
+                CheckForUpdateButton = new PFButton(0,0,0,0, "Check For Update", new Color(255, 255, 87));
+                UpdateButton = new PFButton(0,0,0,0, "Update");
+            }
+        }
     }
 
     public virtual int Width { get; } = 300;
@@ -159,6 +184,25 @@ public class PluginInfo
         labelYPos += yPosAdd;
         TextItem.doLabel(new Vector2(10, labelYPos), $"Version: {Version}", null);
         labelYPos += yPosAdd;
+        if(CheckForUpdateButton != null && UpdateButton != null)
+        {
+            CheckForUpdateButton.X = 10;
+            CheckForUpdateButton.Y = labelYPos;
+            CheckForUpdateButton.Width = 160;
+            CheckForUpdateButton.Height = 30;
+            UpdateButton.X = CheckForUpdateButton.X + CheckForUpdateButton.Width + 10;
+            UpdateButton.Y = labelYPos;
+            UpdateButton.Width = 160;
+            UpdateButton.Height = 30;
+            labelYPos += CheckForUpdateButton.Height + 10;
+
+            if(CheckForUpdateButton.Do() && CanCheckForUpdate())
+                Task.Run(async () => await CheckForUpdateAction(UpdateButton, CheckForUpdateButton));
+
+            if(UpdateButton.Do() && CanPerformUpdate())
+                Task.Run(async () => await UpdateAction(screen, UpdateButton));
+
+        }
         TextItem.doLabel(new Vector2(10, labelYPos), $"Enabled: {Enabled}", null);
         labelYPos += yPosAdd;
         if(Enabled)
@@ -190,7 +234,7 @@ public class PluginInfo
         labelYPos += yPosAdd;
         if(Description != null)
         {
-            TextItem.doLabel(new Vector2(10, labelYPos), $"Description: {Description ?? ""}", null);
+            TextItem.doLabel(new Vector2(10, labelYPos), $"Description: {Description}", null);
             labelYPos += yPosAdd;
         }
         if(Authors != null)
@@ -250,6 +294,7 @@ public class PluginInfo
                 break;
             }
         }
+        if(!File.Exists(fileName)) return null;
         try
         {
             using(FileStream fs = File.Open(fileName, FileMode.Open))

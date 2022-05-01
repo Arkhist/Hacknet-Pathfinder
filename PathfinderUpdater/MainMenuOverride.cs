@@ -42,36 +42,39 @@ internal static class MainMenuOverride
             popupScreen.NoRestartPrompt.Value = PathfinderUpdaterPlugin.NoRestartPrompt.Value;
     }
 
-    internal static async Task PerformCheckAndUpdateButtonAsync()
+    internal static async Task PerformCheckAndUpdateButtonAsync(PFButton updateButton = null, PFButton checkButton = null)
     {
-        PerformUpdate.Text = UPDATE_STRING;
+        if(updateButton == null) updateButton = PerformUpdate;
+        if(checkButton == null) checkButton = CheckForUpdate;
+        updateButton.Text = UPDATE_STRING;
         CanCheckForUpdate = false;
-        var oldText = CheckForUpdate.Text;
-        CheckForUpdate.Text = "Finding Latest Update...";
+        var oldText = checkButton.Text;
+        checkButton.Text = "Finding Latest Update...";
         CanPerformUpdate = PathfinderUpdaterPlugin.NeedsUpdate
             = (await PathfinderUpdaterPlugin.PerformCheckAsync(true)).Length > 0;
-        CheckForUpdate.Text = oldText;
+        checkButton.Text = oldText;
         CanCheckForUpdate = true;
-        PerformUpdate.Text += $" (v{PathfinderUpdaterPlugin.PathfinderUpdater.LatestVersion})";
+        updateButton.Text += $" (v{PathfinderUpdaterPlugin.PathfinderUpdater.LatestVersion})";
     }
 
-    private static async Task PerformUpdateAndUpdateButtonAsync(MainMenu menu)
+    private static async Task PerformUpdateAndUpdateButtonAsync(GameScreen menu, PFButton updateButton = null)
     {
+        if(updateButton == null) updateButton = PerformUpdate;
         var couldCheckForUpdate = CanCheckForUpdate;
         CanCheckForUpdate = false;
         CanPerformUpdate = false;
-        var oldText = PerformUpdate.Text;
-        PerformUpdate.Text = "Currently Updating...";
+        var oldText = updateButton.Text;
+        updateButton.Text = "Currently Updating...";
         await PathfinderUpdaterPlugin.PerformUpdateAsync();
-        PerformUpdate.Text = oldText;
+        updateButton.Text = oldText;
         if(!menu.ScreenManager.screens.Contains(popupScreen) && !PathfinderUpdaterPlugin.NoRestartPrompt.Value)
             menu.ScreenManager.AddScreen(popupScreen ??= new RestartPopupScreen());
         CanPerformUpdate = !menu.ScreenManager.screens.Contains(popupScreen);
         CanCheckForUpdate = couldCheckForUpdate;
     }
 
-    private static bool CanCheckForUpdate = true;
-    private static bool CanPerformUpdate;
+    private static bool CanCheckForUpdate { get; set; } = true;
+    private static bool CanPerformUpdate { get; set; }
     internal static void OnDrawMainMenu(MainMenuEvent args)
     {
         if(CheckForUpdate.Do() && CanCheckForUpdate)
