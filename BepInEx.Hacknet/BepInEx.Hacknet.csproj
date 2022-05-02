@@ -60,6 +60,11 @@
       DestinationFolder="$(HacknetDir)temp"
     />
     <MakeDir Condition="!Exists('$(BepInExTestDir)')" Directories="$(BepInExTestDir)" />
+    <WriteLinesToFile
+      File="$(BepInExTestDir)/.gitignore"
+      Lines="*"
+      Override="true"
+    />
     <Copy
       SourceFiles="@(_BepInExCoreFiles)"
       DestinationFolder="$(BepInExTestDir)core"
