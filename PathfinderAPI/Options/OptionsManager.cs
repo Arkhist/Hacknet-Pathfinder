@@ -51,7 +51,6 @@ public static class OptionsManager
         var pair = MakeTabDataFrom(plugin, tabName);
         tabName ??= pair.Name;
         tabId ??= pair.Id;
-        Console.WriteLine($"Registering tab {tabId} with name {tabName}");
         if(GetTab<PluginOptionTab>(GetIdFrom(plugin, tabName, tabId)) != null)
             ThrowDuplicateIdAttempt(tabId);
         return RegisterTab(plugin, new PluginOptionTab(plugin, tabName, tabId));
