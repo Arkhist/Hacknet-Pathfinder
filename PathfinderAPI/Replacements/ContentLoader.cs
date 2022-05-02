@@ -711,8 +711,9 @@ namespace Pathfinder.Replacements
             executor.RegisterExecutor("Computer.DLCCredits", (exec, info) =>
             {
                 DLCCreditsDaemon credits;
-                string title, text = null;
-                if (info.Attributes.TryGetValue("Title", out title) || info.Attributes.TryGetValue("ButtonText", out text))
+                string title = info.Attributes.TryGetValue("Title", out string titleValue) ? titleValue : null;
+                string text = info.Attributes.TryGetValue("ButtonText", out string textValue) ? textValue : null;
+                if (title != null || text != null)
                 {
                     credits = new DLCCreditsDaemon(comp, os, title.Filter(), text.Filter());
                 }
@@ -720,15 +721,15 @@ namespace Pathfinder.Replacements
                 {
                     credits = new DLCCreditsDaemon(comp, os);
                 }
-                
                 credits.ConditionalActionsToLoadOnButtonPress = info.Attributes.GetString("ConditionalActionSetToRunOnButtonPressPath", null);
                 comp.daemons.Add(credits);
             });
             executor.RegisterExecutor("Computer.CreditsDaemon", (exec, info) =>
             {
                 DLCCreditsDaemon credits;
-                string title, text = null;
-                if (info.Attributes.TryGetValue("Title", out title) || info.Attributes.TryGetValue("ButtonText", out text))
+                string title = info.Attributes.TryGetValue("Title", out string titleValue) ? titleValue : null;
+                string text = info.Attributes.TryGetValue("ButtonText", out string textValue) ? textValue : null;
+                if (title != null || text != null)
                 {
                     credits = new DLCCreditsDaemon(comp, os, title.Filter(), text.Filter());
                 }
@@ -736,7 +737,6 @@ namespace Pathfinder.Replacements
                 {
                     credits = new DLCCreditsDaemon(comp, os);
                 }
-                
                 credits.ConditionalActionsToLoadOnButtonPress = info.Attributes.GetString("ConditionalActionSetToRunOnButtonPressPath", null);
                 comp.daemons.Add(credits);
             });
