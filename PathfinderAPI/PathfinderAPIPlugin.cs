@@ -18,6 +18,7 @@ namespace Pathfinder;
     "Pathfinder.Release.zip",
     "BepInEx/plugins/PathfinderAPI.dll"
 )]
+[HarmonyPatch]
 public class PathfinderAPIPlugin : HacknetPlugin
 {
     public const string ModGUID = "com.Pathfinder.API";
@@ -25,12 +26,14 @@ public class PathfinderAPIPlugin : HacknetPlugin
 
     new internal static Harmony HarmonyInstance;
     new internal static ConfigFile Config;
+    internal static PathfinderAPIPlugin Instance;
 
     public override bool Load()
     {
         PathfinderAPIPlugin.HarmonyInstance = base.HarmonyInstance;
         Logger.LogSource = base.Log;
         PathfinderAPIPlugin.Config = base.Config;
+        Instance = this;
 
         foreach (var initMethod in typeof(PathfinderAPIPlugin).Assembly.GetTypes().SelectMany(AccessTools.GetDeclaredMethods))
         {
@@ -42,16 +45,21 @@ public class PathfinderAPIPlugin : HacknetPlugin
 
         CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
         CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+
         return true;
     }
 
-    public override void PostLoad()
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(HacknetPlugin), nameof(HacknetPlugin.PostLoad))]
+    private static void PrefixPostLoad(HacknetPlugin __instance)
     {
-        OptionsManager.OnConfigLoad(Config);
+        var pluginInfo = MetadataHelper.GetMetadata(__instance);
+        OptionsManager.OnConfigLoad(pluginInfo.GUID, __instance.Config);
+        EventManager<CustomOptionsLoadEvent>.AddHandler(_ => OptionsManager.OnConfigLoad(pluginInfo.GUID, __instance.Config));
         EventManager<CustomOptionsSaveEvent>.AddHandler(_ =>
         {
-            OptionsManager.OnConfigSave(Config);
-            Config.Save();
+            OptionsManager.OnConfigSave(pluginInfo.GUID, __instance.Config);
+            __instance.Config.Save();
         });
     }
 }

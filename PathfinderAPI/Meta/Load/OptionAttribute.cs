@@ -56,6 +56,6 @@ public class OptionAttribute : BaseAttribute
         if(option == null)
             throw new InvalidOperationException($"IPluginOption not set to a default value, IPluginOption members should be set before HacknetPlugin.Load() is called");
 
-        OptionsManager.GetOrRegisterTab(TabName, TabId).AddOption(option);
+        OptionsManager.GetOrRegisterTab(plugin, TabName, TabId).AddOption(option);
     }
 }

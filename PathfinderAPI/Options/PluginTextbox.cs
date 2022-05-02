@@ -61,6 +61,5 @@ public class PluginTextbox : BasePluginOption<string>
         );
 
         DrawString(Position + new Vector2(textBoxSize.X + 10, 32), DescriptionText, DescriptionColor, DescriptionFont);
-        RenderedRectangle.doRectangleOutline((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y, 2, null);
     }
 }

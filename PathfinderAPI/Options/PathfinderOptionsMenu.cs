@@ -13,12 +13,13 @@ namespace Pathfinder.Options;
 internal static class PathfinderOptionsMenu
 {
     private static bool isInPathfinderMenu = false;
+    private static bool _canReloadMenu = true;
     public static string CurrentTabId { get; private set; } = null;
 
     public static void SetCurrentTab(string tabId)
     {
         #pragma warning disable 618
-        if(OptionsManager.PluginTabs.Any(pt => pt.Id == tabId) || OptionsManager.Tabs.ContainsKey(tabId))
+        if(OptionsManager.PluginTabs.ContainsKey(tabId) || OptionsManager.Tabs.ContainsKey(tabId))
         {
             CurrentTabId = tabId;
             return;
@@ -29,7 +30,7 @@ internal static class PathfinderOptionsMenu
 
     public static PluginOptionTab SetCurrentTab(PluginOptionTab tab)
     {
-        if(!OptionsManager.PluginTabs.Contains(tab))
+        if(!OptionsManager.PluginTabs.ContainsKey(tab.Id))
             throw new InvalidOperationException($"Tab {tab.Id} not found in {typeof(OptionsManager).FullName}.{nameof(OptionsManager.PluginTabs)}");
         CurrentTabId = tab.Id;
         return tab;
@@ -54,9 +55,16 @@ internal static class PathfinderOptionsMenu
         if (!isInPathfinderMenu)
             return true;
 
+        if(_canReloadMenu)
+        {
+            var loadEvent = new CustomOptionsLoadEvent();
+            EventManager<CustomOptionsLoadEvent>.InvokeAll(loadEvent);
+            _canReloadMenu = false;
+        }
+
         PostProcessor.begin();
-			GuiData.startDraw();
-			PatternDrawer.draw(new Rectangle(0, 0, __instance.ScreenManager.GraphicsDevice.Viewport.Width, __instance.ScreenManager.GraphicsDevice.Viewport.Height), 0.5f, Color.Black, new Color(2, 2, 2), GuiData.spriteBatch);
+        GuiData.startDraw();
+        PatternDrawer.draw(new Rectangle(0, 0, __instance.ScreenManager.GraphicsDevice.Viewport.Width, __instance.ScreenManager.GraphicsDevice.Viewport.Height), 0.5f, Color.Black, new Color(2, 2, 2), GuiData.spriteBatch);
 
         if (ReturnButton.Do())
         {
@@ -66,17 +74,19 @@ internal static class PathfinderOptionsMenu
             PostProcessor.end();
             var saveEvent = new CustomOptionsSaveEvent();
             EventManager<CustomOptionsSaveEvent>.InvokeAll(saveEvent);
+            _canReloadMenu = true;
             return false;
         }
 
         #pragma warning disable 618
         var tabs = OptionsManager.Tabs;
         #pragma warning restore 618
-            
+
         int tabX = 10, tabY = 70;
 
-        foreach (var tab in OptionsManager.PluginTabs)
+        foreach (var pair in OptionsManager.PluginTabs)
         {
+            var tab = pair.Value;
             if(tab.TrySetButtonOffset(new Point(tabX, tabY)))
                 tabX += 10 + tab.ButtonRect.Width;
             tab.OnDraw(gameTime);

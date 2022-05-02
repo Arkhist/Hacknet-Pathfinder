@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using BepInEx.Configuration;
+using BepInEx.Hacknet;
 using Hacknet;
 using Hacknet.Gui;
 using Microsoft.Xna.Framework;
@@ -14,6 +15,7 @@ namespace Pathfinder.Options;
 public class PluginOptionTab : IReadOnlyDictionary<string, IPluginOption>
 {
     private IDictionary<string, IPluginOption> options = new Dictionary<string, IPluginOption>();
+    public HacknetPlugin Plugin { get; internal set; }
     public string Id { get; private set; }
     public string TabName { get; private set; }
 
@@ -36,10 +38,11 @@ public class PluginOptionTab : IReadOnlyDictionary<string, IPluginOption>
         return ButtonOffset == offset;
     }
 
-    public PluginOptionTab(string tabName, string tabId = null)
+    public PluginOptionTab(HacknetPlugin plugin, string tabName, string tabId = null)
     {
+        Plugin = plugin;
         TabName = tabName;
-        Id = OptionsManager.GetIdFrom(tabName, tabId);
+        Id = OptionsManager.GetIdFrom(plugin, tabName, tabId);
         HacknetGuiId = PFButton.GetNextID();
     }
 
@@ -90,16 +93,13 @@ public class PluginOptionTab : IReadOnlyDictionary<string, IPluginOption>
         IsLoaded = true;
     }
 
-    public virtual void OnSave(ConfigFile config)
+    public virtual void Save()
     {
-        foreach(var opt in options)
-            opt.Value.OnSave(config);
+        Plugin.Config.Save();
     }
 
-    public virtual void OnLoad(ConfigFile config)
+    public virtual void Load()
     {
-        foreach(var opt in options)
-            opt.Value.OnLoad(config);
     }
 
     public virtual void OnDraw(GameTime gameTime)

@@ -43,6 +43,5 @@ public class PluginSlider : BasePluginOption<float>
         );
 
         DrawString(Position + new Vector2(SliderRangeWidth + 10, 43), DescriptionText, DescriptionColor, DescriptionFont);
-        RenderedRectangle.doRectangleOutline((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y, 2, null);
     }
 }

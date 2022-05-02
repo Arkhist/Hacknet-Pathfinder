@@ -2,8 +2,6 @@ namespace Pathfinder.Options;
 
 internal static class PathfinderOptions
 {
-    private const string OPTION_TAG = "Pathfinder";
-
     internal static PluginCheckbox PreloadAllThemes = new PluginCheckbox("Preload All Themes",
         "Preload all themes at extension start\nimproves performance at the cost of memory");
 
@@ -13,7 +11,7 @@ internal static class PathfinderOptions
     [Util.Initialize]
     static void Initialize()
     {
-        OptionsManager.GetOrRegisterTab(OPTION_TAG)
+        OptionsManager.GetOrRegisterTab(PathfinderAPIPlugin.Instance, "Pathfinder")
         .AddOption(PreloadAllThemes)
         .AddOption(DisableSteamCloudError);
     }

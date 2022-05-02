@@ -1,6 +1,5 @@
 using System.Reflection;
 using BepInEx.Hacknet;
-using Pathfinder.Options;
 
 namespace Pathfinder.Meta.Load;
 

@@ -30,6 +30,5 @@ public class PluginCheckbox : BasePluginOption<bool>
         DrawString(Position, HeaderText, HeaderColor, HeaderFont);
         Value = CheckBox.doCheckBox(HacknetGuiId, (int)Position.X, (int)Position.Y + 34, Value, SelectedColor);
         DrawString(Position + new Vector2(32, 30), DescriptionText, DescriptionColor, DescriptionFont);
-        RenderedRectangle.doRectangleOutline((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y, 2, null);
     }
 }
