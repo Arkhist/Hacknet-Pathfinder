@@ -707,7 +707,7 @@ public static class ContentLoader
         {
             DLCCreditsDaemon credits;
             string title, text = null;
-            if (info.Attributes.TryGetValue("Title", out title) || info.Attributes.TryGetValue("ButtonText", out text))
+            if (info.Attributes.TryGetValue("Title", out title) | info.Attributes.TryGetValue("ButtonText", out text))
             {
                 credits = new DLCCreditsDaemon(comp, os, title.Filter(), text.Filter());
             }
@@ -723,7 +723,7 @@ public static class ContentLoader
         {
             DLCCreditsDaemon credits;
             string title, text = null;
-            if (info.Attributes.TryGetValue("Title", out title) || info.Attributes.TryGetValue("ButtonText", out text))
+            if (info.Attributes.TryGetValue("Title", out title) | info.Attributes.TryGetValue("ButtonText", out text))
             {
                 credits = new DLCCreditsDaemon(comp, os, title.Filter(), text.Filter());
             }
