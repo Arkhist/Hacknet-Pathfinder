@@ -62,8 +62,9 @@
     <MakeDir Condition="!Exists('$(BepInExTestDir)')" Directories="$(BepInExTestDir)" />
     <WriteLinesToFile
       File="$(BepInExTestDir)/.gitignore"
-      Lines="*"
-      Override="true"
+      Lines="#Plugin Testing
+*"
+      Overwrite="true"
     />
     <Copy
       SourceFiles="@(_BepInExCoreFiles)"
