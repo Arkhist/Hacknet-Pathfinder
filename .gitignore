@@ -139,6 +139,3 @@ libs/FNA.dll
 
 #Custom properties
 Custom.props
-
-#Plugin Testing
-.debug/
