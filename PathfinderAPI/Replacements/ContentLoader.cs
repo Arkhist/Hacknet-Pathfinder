@@ -711,9 +711,7 @@ namespace Pathfinder.Replacements
             executor.RegisterExecutor("Computer.DLCCredits", (exec, info) =>
             {
                 DLCCreditsDaemon credits;
-                string title = info.Attributes.TryGetValue("Title", out string titleValue) ? titleValue : null;
-                string text = info.Attributes.TryGetValue("ButtonText", out string textValue) ? textValue : null;
-                if (title != null || text != null)
+                if (info.Attributes.TryGetValue("Title", out string title) && info.Attributes.TryGetValue("ButtonText", out string text))
                 {
                     credits = new DLCCreditsDaemon(comp, os, title.Filter(), text.Filter());
                 }
@@ -727,9 +725,7 @@ namespace Pathfinder.Replacements
             executor.RegisterExecutor("Computer.CreditsDaemon", (exec, info) =>
             {
                 DLCCreditsDaemon credits;
-                string title = info.Attributes.TryGetValue("Title", out string titleValue) ? titleValue : null;
-                string text = info.Attributes.TryGetValue("ButtonText", out string textValue) ? textValue : null;
-                if (title != null || text != null)
+                if (info.Attributes.TryGetValue("Title", out string title) && info.Attributes.TryGetValue("ButtonText", out string text))
                 {
                     credits = new DLCCreditsDaemon(comp, os, title.Filter(), text.Filter());
                 }

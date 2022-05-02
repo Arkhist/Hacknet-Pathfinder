@@ -48,9 +48,6 @@
       <HintPath>..\libs\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HacknetPathfinder">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hacknet\HacknetPathfinder.exe</HintPath>
-    </Reference>
     <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
       <HintPath>..\libs\Mono.Cecil.dll</HintPath>
       <Private>False</Private>
