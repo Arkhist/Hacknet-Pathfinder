@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Checkout Extra Libraries
       uses: actions/checkout@v2
       with:
@@ -24,11 +24,13 @@ jobs:
         copy template/libs/HacknetPathfinder.exe libs/HacknetPathfinder.exe
         copy template/libs/FNA.dll libs/FNA.dll
 
-    - name: Setup MSBuild Path
-      uses: microsoft/setup-msbuild@v1.0.2
+    - name: Setup .NET
+      uses: actions/setup-dotnet
+      with:
+        dotnet-version: '6.0.x'
 
     - name: Build Projects
-      run: msbuild /p:Configuration=Release /p:DisableBepInExHacknetPrepareForBuild=true
+      run: dotnet build -c release /p:DisableBepInExHacknetPrepareForBuild=true
 
     - name: Create Release Directory
       run: |
@@ -57,10 +59,10 @@ jobs:
       uses: actions/setup-python@v2.2.2
       with:
         python-version: '3.9'
-        
+
     - name: Install PyInstaller
       run: python -m pip install pyinstaller requests
-      
+
     - name: Build Installer EXE
       run: |
         cd PathfinderInstaller
@@ -74,4 +76,4 @@ jobs:
           Release/Pathfinder.Release.zip
           PathfinderInstaller/dist/PathfinderInstaller.exe
           PathfinderInstaller/PathfinderInstaller.py
-          
+
