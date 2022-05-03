@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0">
 
+  <Import Condition="Exists('Custom.props')" Project="Custom.props" />
+
   <PropertyGroup Label="GetSteamLibraryDir" Condition=" '$(SteamLibraryDir)' == '' ">
     <SteamLibraryDir Condition=" $([MSBuild]::IsOSPlatform('Windows'))">
       C:\Program Files (x86)\Steam\steamapps\common\
