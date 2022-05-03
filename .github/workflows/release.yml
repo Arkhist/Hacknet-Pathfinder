@@ -6,7 +6,7 @@ on:
       - "v*.*.*"
 
 jobs:
-  build:
+  build-windows:
 
     runs-on: windows-latest
 
@@ -77,7 +77,7 @@ jobs:
 
   upload-linux-installer-binary:
 
-    needs: Build-Windows
+    needs: build-windows
     runs-on: ubuntu-latest
 
     steps:
