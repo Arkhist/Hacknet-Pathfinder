@@ -1,155 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project ToolsVersion="16.0">
+
+  <Import Project="..\Configurations.props" />
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4DE0A4CF-EC60-46E1-AD96-BE3A0F5BE406}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Pathfinder</RootNamespace>
-    <AssemblyName>PathfinderAPI</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <LangVersion>8</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.5.5.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\0Harmony.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="0Harmony, Version=2.5.5.0" Private="False" />
+    <Reference Include="BepInEx.Core, Version=6.0.0.423" Private="False" />
+    <Reference Include="FNA, Version=17.2.0.0" Private="False" />
+    <Reference Include="Hacknet, Version=1.0.0.0" Private="False">
+      <HintPath>$(LibsDir)HacknetPathfinder.exe</HintPath>
     </Reference>
-    <Reference Include="BepInEx.Core, Version=6.0.0.423, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\BepInEx.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\FNA.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Hacknet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\HacknetPathfinder.exe</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
-      <HintPath>..\libs\Mono.Cecil.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="MonoMod.Utils, Version=21.9.19.1, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\MonoMod.Utils.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="Mono.Cecil, Version=0.11.4.0" Private="False" />
+    <Reference Include="MonoMod.Utils, Version=21.9.19.1" Private="False" />
+
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Action\ActionManager.cs" />
-    <Compile Include="Action\ConditionManager.cs" />
-    <Compile Include="Action\DelayablePathfinderAction.cs" />
-    <Compile Include="Action\PathfinderAction.cs" />
-    <Compile Include="Action\PathfinderCondition.cs" />
-    <Compile Include="Administrator\AdministratorManager.cs" />
-    <Compile Include="Administrator\BaseAdministrator.cs" />
-    <Compile Include="BaseGameFixes\DontLosePlayerCompAdmin.cs" />
-    <Compile Include="BaseGameFixes\ListingServerFixes.cs" />
-    <Compile Include="BaseGameFixes\AutoClearMissionsOnSingleComplete.cs" />
-    <Compile Include="BaseGameFixes\ClearPostLoadActions.cs" />
-    <Compile Include="BaseGameFixes\HHBS.cs" />
-    <Compile Include="BaseGameFixes\LoadBuiltinThemes.cs" />
-    <Compile Include="BaseGameFixes\MissionListingServerLoadTime.cs" />
-    <Compile Include="BaseGameFixes\NeedsMissionComplete.cs" />
-    <Compile Include="BaseGameFixes\Performance\CatModuleRendering.cs" />
-    <Compile Include="BaseGameFixes\Performance\NodeLookup.cs" />
-    <Compile Include="BaseGameFixes\Performance\ThemeCaching.cs" />
-    <Compile Include="BaseGameFixes\RandomIPNoRepeats.cs" />
-    <Compile Include="BaseGameFixes\SendEmailMission.cs" />
-    <Compile Include="BaseGameFixes\StartingActionsAfterNodes.cs" />
-    <Compile Include="Command\CommandManager.cs" />
-    <Compile Include="Command\DebugCommands.cs" />
-    <Compile Include="Daemon\BaseDaemon.cs" />
-    <Compile Include="Daemon\DaemonManager.cs" />
-    <Compile Include="Event\EventManager.cs" />
-    <Compile Include="Event\Gameplay\CommandExecuteEvent.cs" />
-    <Compile Include="Event\Gameplay\ExecutableExecuteEvent.cs" />
-    <Compile Include="Event\Gameplay\OSUpdateEvent.cs" />
-    <Compile Include="Event\Loading\OSLoadedEvent.cs" />
-    <Compile Include="Event\Loading\SaveComputerLoadedEvent.cs" />
-    <Compile Include="Event\Loading\ExtensionLoadEvent.cs" />
-    <Compile Include="Event\Loading\TextReplaceEvent.cs" />
-    <Compile Include="Event\Menu\DrawMainMenuEvent.cs" />
-    <Compile Include="Event\Menu\DrawMainMenuTitlesEvent.cs" />
-    <Compile Include="Event\Menu\MainMenuEvent.cs" />
-    <Compile Include="Event\Options\CustomOptionsSaveEvent.cs" />
-    <Compile Include="Event\PathfinderEvent.cs" />
-    <Compile Include="Event\Pathfinder\BuildAutocompletesEvent.cs" />
-    <Compile Include="Event\Saving\SaveComputerEvent.cs" />
-    <Compile Include="Event\Saving\SaveEvent.cs" />
-    <Compile Include="Executable\BaseExecutable.cs" />
-    <Compile Include="Executable\ExecutableManager.cs" />
-    <Compile Include="GUI\ArbitraryCodeWarning.cs" />
-    <Compile Include="GUI\PFButton.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="MiscPatches.cs" />
-    <Compile Include="Mission\GoalManager.cs" />
-    <Compile Include="Mission\PathfinderGoal.cs" />
-    <Compile Include="Port\ComputerExtensions.cs" />
-    <Compile Include="Port\PortManager.cs" />
-    <Compile Include="Replacements\ActionsLoader.cs" />
-    <Compile Include="Replacements\ContentLoader.cs" />
-    <Compile Include="Replacements\ExtensionInfoLoader.cs" />
-    <Compile Include="Replacements\MissionLoader.cs" />
-    <Compile Include="Replacements\ObjectSerializerReplacement.cs" />
-    <Compile Include="Replacements\ReplacementsCommon.cs" />
-    <Compile Include="Replacements\SaveLoader.cs" />
-    <Compile Include="Replacements\SaveWriter.cs" />
-    <Compile Include="Util\AssemblyAssociatedList.cs" />
-    <Compile Include="Util\CachedCustomTheme.cs" />
-    <Compile Include="Util\DictionaryExtensions.cs" />
-    <Compile Include="Util\ComputerLookup.cs" />
-    <Compile Include="Util\FixedSizeCacheDict.cs" />
-    <Compile Include="Util\StringExtensions.cs" />
-    <Compile Include="Util\InitializeAttribute.cs" />
-    <Compile Include="PathfinderAPIPlugin.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Options\Options.cs" />
-    <Compile Include="Options\OptionsManager.cs" />
-    <Compile Include="Options\PathfinderOptions.cs" />
-    <Compile Include="Options\PathfinderOptionsMenu.cs" />
-    <Compile Include="Util\XMLStorageAttribute.cs" />
-    <Compile Include="Util\XMLTypeConverter.cs" />
-    <Compile Include="Util\XML\ElementInfo.cs" />
-    <Compile Include="Util\XML\EventExecutor.cs" />
-    <Compile Include="Util\XML\EventReader.cs" />
-    <Compile Include="Action\ActionDelayDecorator.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BepInEx.Hacknet\BepInEx.Hacknet.csproj">
+    <ProjectReference Include="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj" Private="False">
       <Project>{64faeda5-e87c-47ed-8200-e1de1f263040}</Project>
       <Name>BepInEx.Hacknet</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

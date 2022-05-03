@@ -1,17 +1,17 @@
 ﻿using Hacknet;
 using Microsoft.Xna.Framework;
 
-namespace Pathfinder.Executable
+namespace Pathfinder.Executable;
+
+public abstract class BaseExecutable : ExeModule
 {
-    public abstract class BaseExecutable : ExeModule
+    [Obsolete("To be removed in 6.0.0")]
+    public virtual string GetIdentifier() => null;
+
+    public string[] Args;
+
+    public BaseExecutable(Rectangle location, OS operatingSystem, string[] args) : base(location, operatingSystem)
     {
-        public abstract string GetIdentifier();
-
-        public readonly string[] Args;
-
-        public BaseExecutable(Rectangle location, OS operatingSystem, string[] args) : base(location, operatingSystem)
-        {
-            Args = args;
-        }
+        Args = args;
     }
 }

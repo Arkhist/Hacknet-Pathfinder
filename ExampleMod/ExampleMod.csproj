@@ -1,65 +1,66 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D9FD21F5-A4EA-4B32-915F-31FD1EB7F2BD}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExampleMod</RootNamespace>
-    <AssemblyName>ExampleMod</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
-    <LangVersion>8</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0">
+
+    <PropertyGroup Label="GetSteamLibraryDir" Condition=" '$(SteamLibraryDir)' == '' ">
+        <SteamLibraryDir Condition=" $([MSBuild]::IsOSPlatform('Windows'))">
+            C:\Program Files (x86)\Steam\steamapps\common\
+        </SteamLibraryDir>
+        <SteamLibraryDir Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+            <!-- Not supported currently -->
+        </SteamLibraryDir>
+        <SteamLibraryDir Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+            $(Home)/.local/share/Steam/steamapps/common/
+        </SteamLibraryDir>
+        <SteamLibraryDir>$(SteamLibraryDir.Trim())</SteamLibraryDir>
+    </PropertyGroup>
+
+    <PropertyGroup Label="GetHacknetDir" Condition=" '$(HacknetDir)' == '' ">
+        <HacknetDir Condition=" $([MSBuild]::IsOSPlatform('Windows'))">
+            $(SteamLibraryDir)Hacknet\
+        </HacknetDir>
+        <HacknetDir Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+            $(SteamLibraryDir)Hacknet/
+        </HacknetDir>
+        <HacknetDir Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+            $(SteamLibraryDir)Hacknet/
+        </HacknetDir>
+        <HacknetDir>$(HacknetDir.Trim())</HacknetDir>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Build">
+        <TargetFramework>net472</TargetFramework>
+        <TargetFrameworkProfile />
+        <LangVersion>10</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <AssemblySearchPaths>
+        $(AssemblySearchPaths);
+        ../libs/;
+        $(HacknetDir);
+        </AssemblySearchPaths>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DebugType>pdbonly</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Package">
+        <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+        <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+        <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+        <Version>5.0.0.0</Version>
+        <Copyright>Copyright ©  2021</Copyright>
+    </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.5.5.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\0Harmony.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="0Harmony, Version=2.5.5.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="BepInEx.Core, Version=6.0.0.423, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="Hacknet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Private="False">
+      <HintPath>../libs/HacknetPathfinder.exe</HintPath>
     </Reference>
-    <Reference Include="BepInEx.Core, Version=6.0.0.423, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\BepInEx.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\FNA.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Hacknet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\libs\HacknetPathfinder.exe</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ExampleModPlugin.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BepInEx.Hacknet\BepInEx.Hacknet.csproj">
@@ -73,5 +74,4 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

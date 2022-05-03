@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using Hacknet;
 using HarmonyLib;
@@ -10,102 +7,101 @@ using Pathfinder.Event.Gameplay;
 using Pathfinder.Event.Pathfinder;
 using Pathfinder.Util;
 
-namespace Pathfinder.Command
+namespace Pathfinder.Command;
+
+[HarmonyPatch]
+public static class CommandManager
 {
-    [HarmonyPatch]
-    public static class CommandManager
+    private struct CustomCommand
     {
-        private struct CustomCommand
-        {
-            public string Name;
-            public Action<OS, string[]> CommandAction;
-            public bool Autocomplete;
-            public bool CaseSensitive;
-        }
+        public string Name;
+        public Action<OS, string[]> CommandAction;
+        public bool Autocomplete;
+        public bool CaseSensitive;
+    }
         
-        private static readonly AssemblyAssociatedList<CustomCommand> CustomCommands = new AssemblyAssociatedList<CustomCommand>();
+    private static readonly AssemblyAssociatedList<CustomCommand> CustomCommands = new AssemblyAssociatedList<CustomCommand>();
 
-        static CommandManager()
+    static CommandManager()
+    {
+        EventManager<CommandExecuteEvent>.AddHandler(OnCommandExecute);
+        EventManager.onPluginUnload += OnPluginUnload;
+    }
+
+    private static void OnCommandExecute(CommandExecuteEvent args)
+    {
+        Action<OS, string[]> custom = null;
+        foreach (var command in CustomCommands.AllItems)
         {
-            EventManager<CommandExecuteEvent>.AddHandler(OnCommandExecute);
-            EventManager.onPluginUnload += OnPluginUnload;
+            if (string.Equals(command.Name, args.Args[0], command.CaseSensitive ? StringComparison.InvariantCulture : StringComparison.InvariantCultureIgnoreCase))
+            {
+                custom = command.CommandAction;
+                break;
+            }
         }
 
-        private static void OnCommandExecute(CommandExecuteEvent args)
+        if (custom != null)
         {
-            Action<OS, string[]> custom = null;
-            foreach (var command in CustomCommands.AllItems)
-            {
-                if (string.Equals(command.Name, args.Args[0], command.CaseSensitive ? StringComparison.InvariantCulture : StringComparison.InvariantCultureIgnoreCase))
-                {
-                    custom = command.CommandAction;
-                    break;
-                }
-            }
-
-            if (custom != null)
-            {
-                args.Found = true;
-                args.Cancelled = true;
+            args.Found = true;
+            args.Cancelled = true;
                 
-                custom(args.Os, args.Args);
-            }
+            custom(args.Os, args.Args);
         }
+    }
 
-        [HarmonyReversePatch(HarmonyReversePatchType.Original)]
-        [HarmonyPatch(typeof(ProgramList), nameof(ProgramList.init))]
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        private static void OrigProgramListInit() { throw new NotImplementedException(); }
+    [HarmonyReversePatch(HarmonyReversePatchType.Original)]
+    [HarmonyPatch(typeof(ProgramList), nameof(ProgramList.init))]
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static void OrigProgramListInit() { throw new NotImplementedException(); }
 
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(ProgramList), nameof(ProgramList.init))]
-        private static bool ProgramListInitPrefix()
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(ProgramList), nameof(ProgramList.init))]
+    private static bool ProgramListInitPrefix()
+    {
+        RebuildAutoComplete();
+        return false;
+    }
+
+    private static void RebuildAutoComplete()
+    {
+        OrigProgramListInit();
+        foreach (var command in CustomCommands.AllItems)
         {
+            if (command.Autocomplete && !ProgramList.programs.Contains(command.Name))
+                ProgramList.programs.Add(command.Name);
+        }
+        ProgramList.programs = EventManager<BuildAutocompletesEvent>.InvokeAll(new BuildAutocompletesEvent(ProgramList.programs)).Autocompletes;
+    }
+
+    private static void OnPluginUnload(Assembly pluginAsm)
+    {
+        if (CustomCommands.RemoveAssembly(pluginAsm, out _))
             RebuildAutoComplete();
-            return false;
-        }
-
-        private static void RebuildAutoComplete()
-        {
-            OrigProgramListInit();
-            foreach (var command in CustomCommands.AllItems)
-            {
-                if (command.Autocomplete && !ProgramList.programs.Contains(command.Name))
-                    ProgramList.programs.Add(command.Name);
-            }
-            ProgramList.programs = EventManager<BuildAutocompletesEvent>.InvokeAll(new BuildAutocompletesEvent(ProgramList.programs)).Autocompletes;
-        }
-
-        private static void OnPluginUnload(Assembly pluginAsm)
-        {
-            if (CustomCommands.RemoveAssembly(pluginAsm, out _))
-                RebuildAutoComplete();
-        }
+    }
         
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void RegisterCommand(string commandName, Action<OS, string[]> handler, bool addAutocomplete = true, bool caseSensitive = false)
-        {
-            var pluginAsm = Assembly.GetCallingAssembly();
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public static void RegisterCommand(string commandName, Action<OS, string[]> handler, bool addAutocomplete = true, bool caseSensitive = false)
+    {
+        var pluginAsm = Assembly.GetCallingAssembly();
 
-            if (CustomCommands.AllItems.Any(x => x.Name == commandName))
-                throw new ArgumentException($"Command {commandName} has already been registered!", nameof(commandName));
+        if (CustomCommands.AllItems.Any(x => x.Name == commandName))
+            throw new ArgumentException($"Command {commandName} has already been registered!", nameof(commandName));
                 
-            CustomCommands.Add(new CustomCommand
-            {
-                Name = commandName,
-                CommandAction = handler,
-                Autocomplete = addAutocomplete,
-                CaseSensitive = caseSensitive
-            }, pluginAsm);
-            
-            if (addAutocomplete)
-                RebuildAutoComplete();
-        }
-
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void UnregisterCommand(string commandName, Assembly pluginAsm = null)
+        CustomCommands.Add(new CustomCommand
         {
-            CustomCommands.RemoveAll(x => x.Name == commandName, pluginAsm ?? Assembly.GetCallingAssembly());
-        }
+            Name = commandName,
+            CommandAction = handler,
+            Autocomplete = addAutocomplete,
+            CaseSensitive = caseSensitive
+        }, pluginAsm);
+            
+        if (addAutocomplete)
+            RebuildAutoComplete();
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public static void UnregisterCommand(string commandName, Assembly pluginAsm = null)
+    {
+        CustomCommands.RemoveAll(x => x.Name == commandName, pluginAsm ?? Assembly.GetCallingAssembly());
     }
 }

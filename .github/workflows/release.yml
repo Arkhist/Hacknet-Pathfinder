@@ -24,11 +24,13 @@ jobs:
         copy template/libs/HacknetPathfinder.exe libs/HacknetPathfinder.exe
         copy template/libs/FNA.dll libs/FNA.dll
 
-    - name: Setup MSBuild Path
-      uses: microsoft/setup-msbuild@v1.0.2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '6.0.x'
 
     - name: Build Projects
-      run: msbuild /p:Configuration=Release
+      run: dotnet build -c release /p:DisableBepInExHacknetPrepareForBuild=true
 
     - name: Create Release Directory
       run: |
@@ -105,4 +107,3 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         asset_paths: '["./PathfinderInstaller/dist/PathfinderInstaller.x86_64"]'
-
