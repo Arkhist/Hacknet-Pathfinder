@@ -35,7 +35,7 @@ public static class GoalManager
     public static void RegisterGoal<T>(string xmlName) where T : MisisonGoal => RegisterGoal(typeof(T), xmlName);
     public static void RegisterGoal(Type goalType, string xmlName)
     {
-        goalType.ThrowNotInherit<MisisonGoal>(nameof(goalType), " (yes, that is how its spelled)");
+        goalType.ThrowNotInherit<MisisonGoal>(nameof(goalType), " (yes, that is how it's spelled)");
         CustomGoals.Add(xmlName.ToLower(), goalType);
     }
 
