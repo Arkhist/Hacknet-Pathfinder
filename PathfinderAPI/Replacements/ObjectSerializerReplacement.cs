@@ -129,6 +129,12 @@ public static class ObjectSerializerReplacement
                 case "Person":
                     __result = __instance.GetFilenameForPersonName(info.Children.GetElement("firstName").Content, info.Children.GetElement("lastName").Content);
                     return false;
+                case "TextRecord":
+                    __result = info.Children.GetElement("Title").Content;
+                    break;
+                case "OnlineAccount":
+                    __result = info.Children.GetElement("Username").Content;
+                    break;
                 default:
                     __result = info.Name.Replace(" ", "_").ToLower();
                     break;
