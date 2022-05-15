@@ -1,5 +1,7 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Pathfinder.Util.XML;
 
@@ -62,6 +64,37 @@ public class ElementInfo
             writer.WriteValue(Content);
         }
         writer.WriteEndElement();
+    }
+
+    public static XElement ConvertToXElement(ElementInfo el)
+    {
+        XElement Xel = new XElement(el.Name, el.Content);
+        foreach (KeyValuePair<string, string> elAt in el.Attributes)
+        {
+            Xel.SetAttributeValue(elAt.Key, elAt.Value);
+        }
+        foreach (ElementInfo elx in el.Children)
+        {
+
+            Xel.Add(ConvertToXElement(elx));
+        }
+        return Xel;
+    }
+
+    public XElement ConvertToXElement()
+    {
+        ElementInfo el = this;
+        XElement Xel = new XElement(el.Name, el.Content);
+        foreach (KeyValuePair<string, string> elAt in el.Attributes)
+        {
+            Xel.SetAttributeValue(elAt.Key, elAt.Value);
+        }
+        foreach (ElementInfo elx in el.Children)
+        {
+
+            Xel.Add(ConvertToXElement(elx));
+        }
+        return Xel;
     }
 }
 
