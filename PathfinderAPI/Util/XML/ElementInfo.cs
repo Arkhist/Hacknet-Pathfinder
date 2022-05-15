@@ -75,7 +75,6 @@ public class ElementInfo
         }
         foreach (ElementInfo elx in el.Children)
         {
-
             Xel.Add(ConvertToXElement(elx));
         }
         return Xel;
