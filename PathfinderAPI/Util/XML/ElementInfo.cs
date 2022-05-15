@@ -83,18 +83,7 @@ public class ElementInfo
 
     public XElement ConvertToXElement()
     {
-        ElementInfo el = this;
-        XElement Xel = new XElement(el.Name, el.Content);
-        foreach (KeyValuePair<string, string> elAt in el.Attributes)
-        {
-            Xel.SetAttributeValue(elAt.Key, elAt.Value);
-        }
-        foreach (ElementInfo elx in el.Children)
-        {
-
-            Xel.Add(ConvertToXElement(elx));
-        }
-        return Xel;
+        return ConvertToXElement(this);
     }
 }
 
