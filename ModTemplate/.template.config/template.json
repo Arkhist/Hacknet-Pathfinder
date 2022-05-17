@@ -1,0 +1,199 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "George L. Albany (Spartan322)",
+    "classifications": [
+        "Hacknet",
+        "Pathfinder",
+        "Modding",
+        "Gaming"
+    ],
+    "name": "Pathfinder Mod",
+    "generatorVersions": "[1.0.0.0-*)",
+    "description": "A project for creating a Hacknet Pathfinder Mod that supports",
+    "groupIdentity": "Arkhist.HacknetPathfinder.Mod",
+    "precedence": "9000",
+    "identity": "Arkhist.HacknetPathfinder.Mod.CSharp",
+    "shortName": "pathfinderMod",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "sourceName": "ModTemplate",
+    "preferNameDirectory": true,
+    "symbols": {
+        "pathfinderSolutionDirectory": {
+            "type":"parameter",
+            "description": "The solution source directory for Pathfinder",
+            "datatype":"text",
+            "replaces": "$(PathfinderSolutionDirectoryPath)",
+            "displayName": "Pathfinder Solution Directory",
+            "defaultValue": ""
+        },
+        "hacknetDirectory": {
+            "type":"parameter",
+            "description": "The game directory for Hacknet",
+            "datatype":"text",
+            "replaces": "$(HacknetDirectoryPath)",
+            "displayName": "Hacknet Directory",
+            "defaultValue": ""
+        },
+        "includeHacknetBepInEx": {
+            "type":"parameter",
+            "description": "Whether to include Hacknet.BepInEx",
+            "datatype":"bool",
+            "replaces": "$(HacknetDirectoryPath)",
+            "displayName": "Include Hacknet.BepInEx",
+            "defaultValue": "true"
+        },
+        "includePathfinderAPI": {
+            "type":"parameter",
+            "description": "Whether to include PathfinderAPI",
+            "datatype":"bool",
+            "replaces": "$(HacknetDirectoryPath)",
+            "displayName": "Include PathfinderAPI",
+            "defaultValue": "true"
+        },
+        "includePathfinderUpdater": {
+            "type":"parameter",
+            "description": "Whether to include Pathfinder Updater",
+            "datatype":"bool",
+            "replaces": "$(HacknetDirectoryPath)",
+            "displayName": "Include Pathfinder Updater",
+            "defaultValue": "false"
+        },
+        "langVersion": {
+            "type": "parameter",
+            "datatype": "text",
+            "description": "Sets the LangVersion property in the created project file",
+            "defaultValue": "10",
+            "replaces": "$(ProjectLanguageVersion)",
+            "displayName": "Language version"
+        },
+        "modName": {
+            "type": "parameter",
+            "datatype": "text",
+            "description": "The publicly represent name of the mod",
+            "defaultValue": "ModTemplate",
+            "replaces": "$(ModName)",
+            "displayName": "Public Mod Name",
+            "isRequired": true
+        },
+        "modGuid": {
+            "type": "parameter",
+            "datatype": "text",
+            "description": "The unique identifier of the mod",
+            "defaultValue": "com.ModTemplate.Plugin",
+            "replaces": "$(ModGUID)",
+            "displayName": "Mod Unique Identifier",
+            "isRequired": true
+        },
+        "modVersion": {
+            "type": "parameter",
+            "datatype": "text",
+            "description": "The initial semantic version of the mod",
+            "defaultValue": "1.0.0",
+            "replaces": "$(ModVersion)",
+            "displayName": "Mod Version"
+        },
+        "modCopyright": {
+            "type": "parameter",
+            "datatype": "text",
+            "description": "The copyright for the mod",
+            "defaultValue": "Copyright ©  2022",
+            "replaces": "$(ModCopyright)",
+            "displayName": "Mod Copyright"
+        },
+        "HostIdentifier": {
+            "type": "bind",
+            "binding": "HostIdentifier"
+        },
+        "skipRestore": {
+            "type": "parameter",
+            "datatype": "bool",
+            "description": "If specified, skips the automatic restore of the project on create.",
+            "defaultValue": "false",
+            "displayName": "Skip restore"
+        },
+        "csharp10orLater": {
+            "type": "generated",
+            "generator": "regexMatch",
+            "datatype": "bool",
+            "parameters": {
+                "pattern": "^(|10\\.0|10|preview|latest|default|latestMajor)$",
+                "source": "langVersion"
+            }
+        },
+        "csharp9orLater": {
+            "type": "generated",
+            "generator": "regexMatch",
+            "datatype": "bool",
+            "parameters": {
+                "pattern": "^(|9|9\\.0|10\\.0|10|preview|latest|default|latestMajor)$",
+                "source": "langVersion"
+            }
+        },
+        "csharp8orLater": {
+            "type": "generated",
+            "generator": "regexMatch",
+            "datatype": "bool",
+            "parameters": {
+                "pattern": "^(|8|8\\.0|9|9\\.0|10\\.0|10|preview|latest|default|latestMajor)$",
+                "source": "langVersion"
+            }
+        },
+        "csharpFeature_ImplicitUsings": {
+            "type": "computed",
+            "value": "csharp10orLater == \"true\""
+        },
+        "csharpFeature_Nullable": {
+            "type": "computed",
+            "value": "csharp8orLater == \"true\""
+        },
+        "csharpFeature_TopLevelProgram": {
+            "type": "computed",
+            "value": "csharp9orLater == \"true\""
+        },
+        "csharpFeature_FileScopedNamespaces": {
+            "type": "computed",
+            "value": "csharp10orLater == \"true\""
+        }
+    },
+    "primaryOutputs": [
+        {
+            "path": "Configurations.props"
+        },
+        {
+            "path": "ModTemplate.csproj"
+        },
+        {
+            "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+            "path": "Plugin.cs"
+        }
+    ],
+    "defaultName": "BasicMod",
+    "postActions": [
+        {
+            "id": "restore",
+            "condition": "(!skipRestore)",
+            "description": "Restore NuGet packages required by this project.",
+            "manualInstructions": [
+                {
+                    "text": "Run 'dotnet restore'"
+                }
+            ],
+            "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+            "continueOnError": true
+        },
+        {
+            "id": "open-file",
+            "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+            "description": "Opens Program.cs in the editor",
+            "manualInstructions": [],
+            "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+            "args": {
+                "files": "1"
+            },
+            "continueOnError": true
+        }
+    ]
+}

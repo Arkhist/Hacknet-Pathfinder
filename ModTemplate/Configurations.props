@@ -1,0 +1,81 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0">
+
+  <Import Condition="Exists('Custom.props')" Project="Custom.props" />
+
+  <PropertyGroup Condition=" '$(hacknetDirectory)' != '' ">
+    <HacknetDir>$(HacknetDirectoryPath)</HacknetDir>
+  </PropertyGroup>
+
+  <PropertyGroup Label="GetSteamLibraryDir" Condition=" '$(SteamLibraryDir)' == '' ">
+    <SteamLibraryDir Condition=" $([MSBuild]::IsOSPlatform('Windows'))">
+      C:\Program Files (x86)\Steam\steamapps\common\
+    </SteamLibraryDir>
+    <SteamLibraryDir Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+      <!-- Not supported currently -->
+    </SteamLibraryDir>
+    <SteamLibraryDir Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+      $(Home)/.local/share/Steam/steamapps/common/
+    </SteamLibraryDir>
+    <SteamLibraryDir>$(SteamLibraryDir.Trim())</SteamLibraryDir>
+  </PropertyGroup>
+
+  <PropertyGroup Label="GetHacknetDir" Condition=" '$(HacknetDir)' == '' ">
+    <HacknetDir Condition=" $([MSBuild]::IsOSPlatform('Windows'))">
+      $(SteamLibraryDir)Hacknet\
+    </HacknetDir>
+    <HacknetDir Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+      $(SteamLibraryDir)Hacknet/
+    </HacknetDir>
+    <HacknetDir Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+      $(SteamLibraryDir)Hacknet/
+    </HacknetDir>
+    <HacknetDir>$(HacknetDir.Trim())</HacknetDir>
+  </PropertyGroup>
+
+  <PropertyGroup Label="GetPathfinderSolutionDir" Condition=" '$(PathfinderSolutionDir)' == '' ">
+    <PathfinderSolutionDir>$(PathfinderSolutionDirectoryPath)</PathfinderSolutionDir>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Build">
+    <TargetFramework>net472</TargetFramework>
+    <TargetFrameworkProfile />
+    <LangVersion Condition="'$(langVersion)' != ''">$(ProjectLanguageVersion)</LangVersion>
+    <ImplicitUsings Condition="'$(csharpFeature_ImplicitUsings)' == 'true'">enable</ImplicitUsings>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <LibsDir>$(MSBuildThisFileDirectory)libs/</LibsDir>
+    <PathfinderLibsDir Condition=" '$(PathfinderLibsDir)' == '' && '$(PathfinderSolutionDir)' != '' ">$(PathfinderSolutionDir)libs/</PathfinderLibsDir>
+    <PatcherDir Condition=" '$(PatcherDir)' == '' && '$(PathfinderSolutionDir)' != '' ">$(PathfinderSolutionDir)PathfinderPatcher/</PatcherDir>
+    <PatcherBinDir>$(PatcherDir)bin/$(Configuration)/</PatcherBinDir>
+    <BepInExGameDir>$(HacknetDir)BepInEx/</BepInExGameDir>
+    <BepInExCoreDir>$(BepInExGameDir)core/</BepInExCoreDir>
+    <BepInExPluginDir>$(BepInExGameDir)plugins/</BepInExPluginDir>
+    <AssemblySearchPaths>
+    $(AssemblySearchPaths);
+    $(LibsDir);
+    $(PathfinderLibsDir);
+    $(HacknetDir);
+    </AssemblySearchPaths>
+    <AssemblySearchPaths Condition=" '$(PathfinderLibsDir)' == '' ">
+    $(AssemblySearchPaths);
+    $(BepInExCoreDir);
+    $(BepInExPluginDir);
+    </AssemblySearchPaths>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package">
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <Version>$(ModVersion)</Version>
+    <Copyright>Copyright ©  2022</Copyright>
+  </PropertyGroup>
+
+</Project>

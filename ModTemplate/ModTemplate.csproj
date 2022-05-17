@@ -1,0 +1,52 @@
+﻿<Project ToolsVersion="16.0" DefaultTargets="Build">
+
+    <Import Project="..\Configurations.props" />
+
+    <ItemGroup Condition=" '$(includeHacknetBepInEx)' == 'true' " Label="FindBepInExReference">
+      <ProjectReference Condition=" '$(PathfinderSolutionDir)' != '' " Include="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj">
+        <Project>{64faeda5-e87c-47ed-8200-e1de1f263040}</Project>
+        <Name>BepInEx.Hacknet</Name>
+        <Private>False</Private>
+      </ProjectReference>
+      <Reference Condition=" '$(PathfinderSolutionDir)' == '' " Include="BepInEx.Hacknet" Private="False" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(includePathfinderAPI)' == 'true' " Label="FindPathfinderAPIReference">
+      <ProjectReference Condition=" '$(PathfinderSolutionDir)' != '' " Include="$(PathfinderSolutionDir)PathfinderAPI\PathfinderAPI.csproj">
+        <Project>{4de0a4cf-ec60-46e1-ad96-be3a0f5be406}</Project>
+        <Name>PathfinderAPI</Name>
+        <Private>False</Private>
+      </ProjectReference>
+      <Reference Condition=" '$(PathfinderSolutionDir)' == '' " Include="PathfinderAPI" Private="False"/>
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(includePathfinderUpdater)' == 'true' " Label="FindPathfinderUpdaterReference">
+      <ProjectReference Condition=" '$(PathfinderSolutionDir)' != '' " Include="$(PathfinderSolutionDir)PathfinderUpdater\PathfinderUpdater.csproj">
+        <Project>{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</Project>
+        <Name>PathfinderUpdater</Name>
+        <Private>False</Private>
+      </ProjectReference>
+      <Reference Condition=" '$(PathfinderSolutionDir)' == '' " Include="PathfinderUpdater" Private="False"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="0Harmony, Version=2.5.5.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+        <Reference Include="BepInEx.Core, Version=6.0.0.423, Culture=neutral, PublicKeyToken=null" Private="False" />
+        <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+        <Reference Include="HacknetPathfinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed" Private="False" />
+        <Reference Include="SemanticVersioning, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a89bb7dc6f7a145c"  Private="False" />
+        <Reference Include="System.Configuration" />
+        <Reference Include="System.IO.Compression" />
+
+        <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    </ItemGroup>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>
