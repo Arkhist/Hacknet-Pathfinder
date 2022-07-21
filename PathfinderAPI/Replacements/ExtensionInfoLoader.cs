@@ -83,7 +83,7 @@ public static class ExtensionInfoLoader
         executor.RegisterExecutor("AllowSaves", (exec, info) => extInfo.AllowSave = info.ContentAsBoolean(), ParseOption.ParseInterior);
         executor.RegisterExecutor("StartingVisibleNodes", (exec, info) =>
             extInfo.StartingVisibleNodes = info.Content
-                .Split(new[] {',', ' ', '\t', '\n', '\r', '/'}, StringSplitOptions.RemoveEmptyEntries), ParseOption.ParseInterior);
+                ?.Split(new[] {',', ' ', '\t', '\n', '\r', '/'}, StringSplitOptions.RemoveEmptyEntries) ?? new string[]{}, ParseOption.ParseInterior);
         executor.RegisterExecutor("StartingMission", (exec, info) => extInfo.StartingMissionPath = info.Content != "NONE" ? info.Content : null, ParseOption.ParseInterior);
         executor.RegisterExecutor("StartingActions", (exec, info) => extInfo.StartingActionsPath = info.Content != "NONE" ? info.Content : null, ParseOption.ParseInterior);
         executor.RegisterExecutor("Description", (exec, info) => extInfo.Description = Utils.CleanFilterStringToRenderable(info.Content), ParseOption.ParseInterior);
