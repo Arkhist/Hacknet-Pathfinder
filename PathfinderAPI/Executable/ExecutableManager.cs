@@ -122,7 +122,7 @@ public static class ExecutableManager
         }
         catch(Exception e)
         {
-            if(exe.CatchException(e))
+            if(!exe.CatchException(e))
                 throw e;
         }
     }
