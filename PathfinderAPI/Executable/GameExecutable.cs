@@ -146,7 +146,7 @@ public class GameExecutable : BaseExecutable
         }
         catch(Exception e)
         {
-            if(CatchException(e))
+            if(!CatchException(e))
                 throw e;
         }
     }
@@ -169,7 +169,7 @@ public class GameExecutable : BaseExecutable
         }
         catch(Exception e)
         {
-            if(CatchException(e))
+            if(!CatchException(e))
                 throw e;
         }
     }
