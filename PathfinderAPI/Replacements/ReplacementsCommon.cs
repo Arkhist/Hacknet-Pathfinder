@@ -8,6 +8,7 @@ using Pathfinder.Util.XML;
 
 namespace Pathfinder.Replacements;
 
+[HarmonyPatch]
 public static class ReplacementsCommon
 {
     public static MemoryContents LoadMemoryContents(ElementInfo info)
