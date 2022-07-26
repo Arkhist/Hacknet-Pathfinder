@@ -1,7 +1,9 @@
+# Custom administrators
+
 ## New administrators
 
 ```CSharp
-public class CustomAdministrator : BaseAdministrator
+public class CustomAdministrator : Pathfinder.Administrator.BaseAdministrator
 {
     public CustomAdministrator(Computer computer, OS opSystem) : base(computer, opSystem)
     {
@@ -16,13 +18,20 @@ public class CustomAdministrator : BaseAdministrator
 }
 ```
 
-### Registration
+## Registration
+
+Administrator can be registered manually or with the Administrator attribute.
 
 ```CSharp
 Pathfinder.Administrator.AdministratorManager.RegisterAdministrator<CustomAdministrator>();
 ```
 
-### Adding the administrator to a computer
+```CSharp
+[Pathfinder.Meta.Load.Administrator]
+public class CustomAdministrator : BaseAdministrator
+```
+
+## Adding a custom administrator to a computer
 
 ```XML
 <admin type="CustomAdministrator" />

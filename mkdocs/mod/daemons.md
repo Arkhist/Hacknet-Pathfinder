@@ -24,8 +24,15 @@ public class CustomDaemon : Pathfinder.Daemon.BaseDaemon
 
 ## Registration
 
+Daemons can be registered manually or with the Daemon attribute.
+
 ```CSharp
 Pathfinder.Daemon.DaemonManager.RegisterDaemon<CustomDaemon>();
+```
+
+```CSharp
+[Pathfinder.Meta.Load.Daemon]
+public class CustomDaemon : Pathfinder.Daemon.BaseDaemon
 ```
 
 ## XML Storage
@@ -39,7 +46,7 @@ In the code:
 public string DisplayString;
 ```
 
-## Adding a custom daemon in a computer
+## Adding a custom daemon to a computer
 
 ```XML
 <CustomDaemon DisplayString="XML Edited test" />

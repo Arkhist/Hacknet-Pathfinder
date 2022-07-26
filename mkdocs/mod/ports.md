@@ -39,6 +39,13 @@ Here's a list of all the protocol names and their default ports included with Pa
 ### Adding new port defaults
 You can add a new default with `Pathfinder.Port.PortManager.RegisterPort(string protocol, string displayName, int defaultPort)`. The last parameter is optional, and if you omit it you will always have to specify a port number in XML.
 
+Ports can also be added by using the Port attribute on a field or property.
+
+```CSharp
+[Pathfinder.Meta.Load.Port]
+public Pathfinder.Port.PortRecord customPort = new Pathfinder.Port.PortRecord("protocol", "displayName", 50);
+```
+
 ### Reading port data
 
 Ports are handled differently in Pathfinder than in the base game, which means you should try to ignore most of what you might see while decompiling.
