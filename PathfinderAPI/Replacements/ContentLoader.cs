@@ -747,7 +747,7 @@ public static class ContentLoader
         executor.RegisterExecutor("Computer.eosDevice", (exec, info) =>
         {
             eos = new Computer(
-                info.Attributes.GetString("name", "Unregistered eOS Device"),
+                info.Attributes.GetString("name", "Unregistered eOS Device").Filter(),
                 NetworkMap.generateRandomIP(),
                 os.netMap.getRandomPosition(),
                 0,
@@ -781,7 +781,7 @@ public static class ContentLoader
         });
         executor.RegisterExecutor("Computer.eosDevice.note", (exec, info) =>
         {
-            var noteFile = info.Attributes.GetString("filename", null);
+            var noteFile = info.Attributes.GetString("filename", null)?.Filter();
             var content = info.Content.TrimStart().Filter();
             var notesFolder = eos.files.root.searchForFolder("eos").searchForFolder("notes");
 
@@ -798,8 +798,8 @@ public static class ContentLoader
         }, ParseOption.ParseInterior);
         executor.RegisterExecutor("Computer.eosDevice.mail", (exec, info) =>
         {
-            var username = info.Attributes.GetString("username", null);
-            var password = info.Attributes.GetString("pass", null);
+            var username = info.Attributes.GetString("username", null)?.Filter();
+            var password = info.Attributes.GetString("pass", null)?.Filter();
             var mailFolder = eos.files.root.searchForFolder("eos").searchForFolder("mail");
 
             mailFolder.files.Add(new FileEntry(
