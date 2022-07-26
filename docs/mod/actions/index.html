@@ -1,146 +1,186 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="canonical" href="https://arkhist.github.io/Hacknet-Pathfinder/mod/actions/">
-  <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Actions - Hacknet Pathfinder Documentation</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
-
-  <link rel="stylesheet" href="../../css/theme.css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Actions";
-    var mkdocs_page_input_path = "mod/actions.md";
-    var mkdocs_page_url = "/Hacknet-Pathfinder/mod/actions/";
-  </script>
-  
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://arkhist.github.io/Hacknet-Pathfinder/mod/actions/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Actions - Hacknet Pathfinder Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Actions";
+        var mkdocs_page_input_path = "mod/actions.md";
+        var mkdocs_page_url = "/Hacknet-Pathfinder/mod/actions/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> Hacknet Pathfinder Documentation</a>
-        <div role="search">
+          <a href="../.." class="icon icon-home"> Hacknet Pathfinder Documentation
+        </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <p class="caption"><span class="caption-text">Pathfinder</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Mod Development</span></p>
-                <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../start/">Getting started</a>
-                    </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Actions</a>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Pathfinder</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mod Development</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../start/">Getting started</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Actions</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#base-action">Base action</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#delayable-action">Delayable action</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#registration">Registration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-a-custom-action-to-an-actions-file">Adding a custom action to an actions file</a>
+    </li>
     </ul>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../administrators/">Administrators</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../commands/">Commands</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../daemons/">Daemons</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../executables/">Executables</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../missions/">Missions</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../ports/">Ports</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Pathfinder Development</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../contributing/">Contributing</a>
-                    </li>
-                </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../administrators/">Administrators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commands/">Commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../conditions/">Conditions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../daemons/">Daemons</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../executables/">Executables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../missions/">Missions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ports/">Ports</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pathfinder Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../contributing/">Contributing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="/doxybook/Classes">Classes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/doxybook/Namespaces">Namespaces</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/doxybook/Modules">Modules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/doxybook/Files">Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/doxybook/Pages">Related Pages</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/doxybook/Examples">Examples</a>
+                  </li>
+              </ul>
       </div>
     </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">Hacknet Pathfinder Documentation</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Hacknet Pathfinder Documentation</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
-    
-      
-        
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>Mod Development &raquo;</li>
-        
-      
-    
-    <li>Actions</li>
+      <li>Actions</li>
     <li class="wy-breadcrumbs-aside">
-      
     </li>
   </ul>
-  
   <hr/>
 </div>
-
-          <div role="main">
-            <div class="section">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
                 <h1 id="custom-actions">Custom actions</h1>
-<p>Implemented, not documented yet.</p>
+<h2 id="base-action">Base action</h2>
+<pre><code class="language-CSharp">public class CustomAction : Pathfinder.Action.PathfinderAction
+{
+    [XMLStorage]
+    public string Attribute1;
+
+    [XMLStorage]
+    public string Attribute2 = &quot;Default value!&quot;;
+
+    public override void Trigger (object os_obj)
+    {
+        OS os = (OS)os_obj;
+        os.write(&quot;Custom action triggered!&quot;);
+        os.write(Attribute1);
+        os.write(Attribute2);
+    }
+}
+</code></pre>
+<h3 id="delayable-action">Delayable action</h3>
+<p>DelayablePathfinderAction is a subtype of PathfinderAction that implements the DelayHost and Delay attributes.</p>
+<pre><code class="language-CSharp">public class CustomDelayableAction : Pathfinder.Action.DelayablePathfinderAction
+{
+    public override void Trigger (OS os)
+    {
+        if (DelayHost != null)
+        {
+            os.write(&quot;Custom action triggered after &quot; + Delay + &quot; seconds with host &quot; + DelayHost + &quot;!&quot;);
+        }
+    }
+}
+</code></pre>
+<h2 id="registration">Registration</h2>
+<p>Actions can be registered manually or with the Action attribute.</p>
+<pre><code class="language-CSharp">Pathfinder.Action.ActionManager.RegisterAction&lt;CustomAction&gt;(&quot;CustomActionXMLTag&quot;);
+</code></pre>
+<pre><code class="language-CSharp">[Pathfinder.Meta.Load.Action(&quot;CustomActionXMLTag&quot;)]
+public class CustomAction : PathfinderAction
+</code></pre>
+<h2 id="adding-a-custom-action-to-an-actions-file">Adding a custom action to an actions file</h2>
+<pre><code class="language-XML">&lt;CustomActionXMLTag Attribute1=&quot;Value&quot; /&gt;
+</code></pre>
               
             </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../start/" class="btn btn-neutral float-left" title="Getting started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../administrators/" class="btn btn-neutral float-right" title="Administrators">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../start/" class="btn btn-neutral" title="Getting started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -148,7 +188,7 @@
 
   </div>
 
-  <div class="rst-versions" role="note" aria-label="versions">
+  <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     

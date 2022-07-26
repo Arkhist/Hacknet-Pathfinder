@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://arkhist.github.io/Hacknet-Pathfinder/mod/administrators/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://arkhist.github.io/Hacknet-Pathfinder/mod/conditions/" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Administrators - Hacknet Pathfinder Documentation</title>
+    <title>Conditions - Hacknet Pathfinder Documentation</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Administrators";
-        var mkdocs_page_input_path = "mod/administrators.md";
-        var mkdocs_page_url = "/Hacknet-Pathfinder/mod/administrators/";
+        var mkdocs_page_name = "Conditions";
+        var mkdocs_page_input_path = "mod/conditions.md";
+        var mkdocs_page_url = "/Hacknet-Pathfinder/mod/conditions/";
       </script>
     
     <script src="../../js/jquery-3.6.0.min.js" defer></script>
@@ -51,19 +51,19 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../actions/">Actions</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Administrators</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#new-administrators">New administrators</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#registration">Registration</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#adding-a-custom-administrator-to-a-computer">Adding a custom administrator to a computer</a>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../administrators/">Administrators</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../commands/">Commands</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../conditions/">Conditions</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Conditions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#new-conditions">New conditions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#registration">Registration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-a-custom-condition-to-an-actions-file">Adding a custom condition to an actions file</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../daemons/">Daemons</a>
                   </li>
@@ -109,7 +109,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>Mod Development &raquo;</li>
-      <li>Administrators</li>
+      <li>Conditions</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -118,38 +118,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="custom-administrators">Custom administrators</h1>
-<h2 id="new-administrators">New administrators</h2>
-<pre><code class="language-CSharp">public class CustomAdministrator : Pathfinder.Administrator.BaseAdministrator
+                <h1 id="custom-conditions">Custom conditions</h1>
+<h2 id="new-conditions">New conditions</h2>
+<pre><code class="language-CSharp">public class CustomCondition : Pathfinder.Action.PathfinderCondition
 {
-    public CustomAdministrator(Computer computer, OS opSystem) : base(computer, opSystem)
-    {
-    }
-    public override void disconnectionDetected(Computer c, OS os)
-    {
-    }
+    [XMLStorage]
+    public string Attribute;
 
-    public override void traceEjectionDetected(Computer c, OS os)
+    public override bool Check(object os_obj)
     {
+        OS os = (OS)os_obj;
+
+        // return true if actions inside condition should be triggered
+        // return false otherwise
     }
 }
 </code></pre>
 <h2 id="registration">Registration</h2>
-<p>Administrator can be registered manually or with the Administrator attribute.</p>
-<pre><code class="language-CSharp">Pathfinder.Administrator.AdministratorManager.RegisterAdministrator&lt;CustomAdministrator&gt;();
+<p>Conditions can be registered manually or with the Condition attribute.</p>
+<pre><code class="language-CSharp">Pathfinder.Action.ConditionManager.RegisterCondition&lt;CustomCondition&gt;(&quot;CustomConditionXMLTag&quot;);
 </code></pre>
-<pre><code class="language-CSharp">[Pathfinder.Meta.Load.Administrator]
-public class CustomAdministrator : BaseAdministrator
+<pre><code class="language-CSharp">[Pathfinder.Meta.Load.Condition]
+public class CustomCondition : PathfinderCondition
 </code></pre>
-<h2 id="adding-a-custom-administrator-to-a-computer">Adding a custom administrator to a computer</h2>
-<pre><code class="language-XML">&lt;admin type=&quot;CustomAdministrator&quot; /&gt;
+<h2 id="adding-a-custom-condition-to-an-actions-file">Adding a custom condition to an actions file</h2>
+<pre><code class="language-XML">&lt;CustomConditionXMLTag Attribue=&quot;value&quot;&gt;
+    &lt;!-- Actions go here! --&gt;
+&lt;/CustomConditionXMLTag&gt;
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../actions/" class="btn btn-neutral float-left" title="Actions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../commands/" class="btn btn-neutral float-right" title="Commands">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../commands/" class="btn btn-neutral float-left" title="Commands"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../daemons/" class="btn btn-neutral float-right" title="Daemons">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -172,10 +174,10 @@ public class CustomAdministrator : BaseAdministrator
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../actions/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../commands/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../commands/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../daemons/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

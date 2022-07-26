@@ -10,6 +10,7 @@ nav:
         - Actions: mod/actions.md
         - Administrators: mod/administrators.md
         - Commands: mod/commands.md
+        - Conditions: mod/conditions.md
         - Daemons: mod/daemons.md
         - Executables: mod/executables.md
         - Missions: mod/missions.md

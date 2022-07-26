@@ -1,14 +1,13 @@
 # Creating custom executables
 
-## The base executable
+## New executables
 
 ```CSharp
 public class BasicExecutable : Pathfinder.Executable.BaseExecutable
 {
-    public override string GetIdentifier() => "ExecName";
-
     public BasicExecutable(Rectangle location, OS operatingSystem, string[] args) : base(location, operatingSystem, args) {
-         this.ramCost = 761;
+        this.ramCost = 761;
+        this.IdentifierName = "ExecName";
     }
 
     public override void LoadContent()
@@ -32,10 +31,21 @@ public class BasicExecutable : Pathfinder.Executable.BaseExecutable
 }
 ```
 
+### GameExecutable
+
+Implemented, not documented yet.
+
 ## Registration
+
+Executables can be registered manually or with the Executable attribute.
 
 ```CSharp
 Pathfinder.Executable.ExecutableManager.RegisterExecutable<BasicExecutable>("#PF_BASIC_EXE#");
+```
+
+```CSharp
+[Pathfinder.Meta.Load.Executable("#PF_BASIC_EXE#")]
+public class BasicExecutable : Pathfinder.Executable.BaseExecutable
 ```
 
 The provided argument corresponds to the replacement tag for extension files.
