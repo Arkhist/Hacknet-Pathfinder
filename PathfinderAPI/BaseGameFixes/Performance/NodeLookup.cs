@@ -1,4 +1,4 @@
-﻿using Hacknet;
+using Hacknet;
 using Hacknet.Extensions;
 using Hacknet.Misc;
 using HarmonyLib;
@@ -143,11 +143,7 @@ internal static class NodeLookup
     {
         if (args.Length > 1)
         {
-            Computer computer = ComputerLookup.FindByIp(args[1]);
-            if (computer == null)
-            {
-                computer = ComputerLookup.FindByName(args[1]);
-            }
+            Computer computer = ComputerLookup.Find(args[1], SearchType.Ip | SearchType.Name);
             if (computer != null)
             {
                 os.netMap.discoverNode(computer);
@@ -156,5 +152,69 @@ internal static class NodeLookup
             return false;
         }
         return true;
+    }
+
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(Programs), nameof(Programs.connect))]
+    internal static void ConnectILManipulator(ILContext il)
+    {
+        ILCursor c = new ILCursor(il);
+        ILLabel incrementLabel = null;
+
+        // Remove from here
+        // for (int i = 0; i < os.netMap.nodes.Count; i++)
+        c.GotoNext(MoveType.Before,
+            x => x.MatchNop(),
+            x => x.MatchLdcI4(0),
+            x => x.MatchStloc(1),
+            x => x.MatchBr(out ILLabel _)
+        );
+        int i = c.Index;
+
+        // if (!os.netMap.nodes[i].ip.Equals(args[1]) && !os.netMap.nodes[i].name.Equals(args[1]))
+        // {
+        //     continue;   
+        // }
+        // To here
+        c.GotoNext(MoveType.After,
+            x => x.MatchLdcI4(0),
+            x => x.MatchNop(),
+            x => x.MatchStloc(10),
+            x => x.MatchLdloc(10),
+            x => x.MatchBrtrue(out incrementLabel)
+        );
+        int j = c.Index;
+
+        c.Index = i;
+        c.RemoveRange(j-i);
+
+        // Now before if (os.netMap.nodes[i].connect(os.thisComputer.ip))
+
+        c.Emit(OpCodes.Ldarg_0);
+        c.Emit(OpCodes.Ldarg_1);
+        c.EmitDelegate<Func<string[], OS, int>>((args, os) => 
+            os.netMap.nodes.IndexOf(ComputerLookup.Find(args[1], SearchType.Ip | SearchType.Name))
+        );
+        c.Emit(OpCodes.Dup);
+
+        c.Emit(OpCodes.Ldc_I4_M1);
+        c.Emit(OpCodes.Ceq);
+        // incrementLabel will be preserved but loop behavior removed
+        c.Emit(OpCodes.Brtrue, incrementLabel);
+
+        c.Emit(OpCodes.Stloc_1);
+
+        // Remove remaining loop behavior
+        c.GotoLabel(incrementLabel);
+        i = ++c.Index; // preserve label on nop
+        c.GotoNext(MoveType.After,
+            x => x.MatchStloc(10),
+            x => x.MatchLdloc(10),
+            x => x.MatchBrtrue(out ILLabel _)
+        );
+        j = c.Index;
+
+        c.Index = i;
+        c.RemoveRange(j-i);
     }
 }
