@@ -6,7 +6,7 @@ namespace Pathfinder.Util;
 public class AssemblyAssociatedList<T>
 {
     private Dictionary<Assembly, List<T>> asmDictionary = new Dictionary<Assembly, List<T>>();
-    private ReadOnlyCollection<T>? _allItems = null;
+    private ReadOnlyCollection<T> _allItems = null;
     public ReadOnlyCollection<T> AllItems {
         get {
              if(_allItems == null)
