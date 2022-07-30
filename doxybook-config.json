@@ -1,5 +1,5 @@
 {
-    "baseUrl": "/doxybook/",
+    "baseUrl": "../",
     "indexInFolders": true,
     "linkSuffix": "/",
     "mainPageInRoot": true,
