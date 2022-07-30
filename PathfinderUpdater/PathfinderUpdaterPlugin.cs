@@ -26,15 +26,13 @@ public class PathfinderUpdaterPlugin : HacknetPlugin
 
     new internal static ConfigFile Config;
 
-    internal static ConfigEntry<bool> IsEnabled;
-    internal static ConfigEntry<bool> EnablePreReleases;
-    internal static ConfigEntry<bool> NoRestartPrompt;
     internal static ConfigEntry<string> AcceptedUpdate;
     internal static ConfigEntry<string> CurrentVersion;
 
     public static Version VersionToRequest = null;
     public static bool NeedsUpdate;
     internal static Updater PathfinderUpdater;
+    internal static PathfinderUpdaterPlugin Instance;
 
     public static readonly List<Updater> Updaters = new List<Updater>();
     private static readonly List<string> UpdaterWhitelistGuids = new List<string>
@@ -46,19 +44,19 @@ public class PathfinderUpdaterPlugin : HacknetPlugin
     public override bool Load()
     {
         Config = base.Config;
+        Instance = this;
 
-        IsEnabled = Config.Bind<bool>("AutoUpdater", "EnableAutoUpdates", true, "Enables or disables automatic updates for PathfinderAPI");
-        EnablePreReleases = Config.Bind<bool>("AutoUpdater", "UsePreReleases", false, "Whether or not to automatically update to beta versions");
         AcceptedUpdate = Config.Bind<string>("AutoUpdater", "LatestAcceptedUpdate", "", "Used internally to keep track of whether you accepted the update or not");
         CurrentVersion = Config.Bind<string>("AutoUpdater", "CurrentVersion", HacknetChainloader.VERSION,
             "Used internally to keep track of version.\nIf you want to skip updating to a version but keep the updater on, set this manually to the latest verison.");
-        NoRestartPrompt = Config.Bind<bool>("AutoUpdater", "NoRestartPrompt", false, "Whether ot not the restart prompt will automatically appear when the update is finished");
+
+        MainMenuOverride.PFAPILoaded();
 
         HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
         if (Type.GetType("Mono.Runtime") != null)
             HarmonyInstance.CreateClassProcessor(typeof(MonoRuntimeFixConfig), true).Patch();
 
-        if (!IsEnabled.Value)
+        if (!MainMenuOverride.IsEnabledBox.Value)
             return true;
 
         ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -68,12 +66,12 @@ public class PathfinderUpdaterPlugin : HacknetPlugin
 
     public override void PostLoad()
     {
-        if(!IsEnabled.Value) return;
+        if(!MainMenuOverride.IsEnabledBox.Value) return;
         if(!Updater.TryCreate(typeof(HacknetChainloader), out var chainLoaderUpdater, true))
             throw new InvalidOperationException("HacknetChainloader missing __UpdaterData");
         Updaters.Add(chainLoaderUpdater);
         chainLoaderUpdater.TryDeleteDllTempFile();
-        chainLoaderUpdater.IncludePrerelease = EnablePreReleases.Value;
+        chainLoaderUpdater.IncludePrerelease = MainMenuOverride.IncludePrerelease.Value;
         chainLoaderUpdater.CurrentVersion = CurrentVersion.Value;
 
         foreach(var kvPair in HacknetChainloader.Instance.Plugins)
@@ -84,7 +82,7 @@ public class PathfinderUpdaterPlugin : HacknetPlugin
                 continue;
             Updaters.Add(updater);
             updater.TryDeleteDllTempFile();
-            updater.IncludePrerelease = EnablePreReleases.Value;
+            updater.IncludePrerelease = MainMenuOverride.IncludePrerelease.Value;
             updater.CurrentVersion = CurrentVersion.Value;
             if(kvPair.Key == UpdaterWhitelistGuids[0])
                 PathfinderUpdater = updater;

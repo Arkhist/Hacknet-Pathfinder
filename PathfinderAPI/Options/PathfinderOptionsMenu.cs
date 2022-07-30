@@ -13,7 +13,38 @@ namespace Pathfinder.Options;
 internal static class PathfinderOptionsMenu
 {
     private static bool isInPathfinderMenu = false;
-    private static string currentTabName = null;
+    private static bool _canReloadMenu = true;
+    public static string CurrentTabId { get; private set; } = null;
+
+    public static void SetCurrentTab(string tabId)
+    {
+        #pragma warning disable 618
+        if(OptionsManager.PluginTabs.ContainsKey(tabId) || OptionsManager.Tabs.ContainsKey(tabId))
+        {
+            CurrentTabId = tabId;
+            return;
+        }
+        throw new InvalidOperationException($"Tab {tabId} not found in {typeof(OptionsManager).FullName}.{nameof(OptionsManager.PluginTabs)} or {typeof(OptionsManager).FullName}.{nameof(OptionsManager.Tabs)}");
+        #pragma warning restore 618
+    }
+
+    public static PluginOptionTab SetCurrentTab(PluginOptionTab tab)
+    {
+        if(!OptionsManager.PluginTabs.ContainsKey(tab.Id))
+            throw new InvalidOperationException($"Tab {tab.Id} not found in {typeof(OptionsManager).FullName}.{nameof(OptionsManager.PluginTabs)}");
+        CurrentTabId = tab.Id;
+        return tab;
+    }
+
+    #pragma warning disable 618
+    public static OptionsTab SetCurrentTab(OptionsTab tab)
+    {
+        if(!OptionsManager.Tabs.TryGetValue(tab.Name, out var newTab) || tab != newTab)
+            throw new InvalidOperationException($"Tab {tab.Name} not found in {typeof(OptionsManager).FullName}.{nameof(OptionsManager.Tabs)}");
+        CurrentTabId = tab.Name;
+        return tab;
+    }
+    #pragma warning restore 618
 
     private static PFButton ReturnButton = new PFButton(10, 10, 220, 54, "Back to Options", Color.Yellow);
 
@@ -21,42 +52,60 @@ internal static class PathfinderOptionsMenu
     [HarmonyPatch(typeof(OptionsMenu), nameof(OptionsMenu.Draw))]
     internal static bool Draw(ref OptionsMenu __instance, GameTime gameTime)
     {
-        if (!isInPathfinderMenu) 
+        if (!isInPathfinderMenu)
             return true;
-        
+
+        if(_canReloadMenu)
+        {
+            var loadEvent = new CustomOptionsLoadEvent();
+            EventManager<CustomOptionsLoadEvent>.InvokeAll(loadEvent);
+            _canReloadMenu = false;
+        }
+
         PostProcessor.begin();
         GuiData.startDraw();
         PatternDrawer.draw(new Rectangle(0, 0, __instance.ScreenManager.GraphicsDevice.Viewport.Width, __instance.ScreenManager.GraphicsDevice.Viewport.Height), 0.5f, Color.Black, new Color(2, 2, 2), GuiData.spriteBatch);
-            
+
         if (ReturnButton.Do())
         {
-            currentTabName = null;
+            CurrentTabId = null;
             isInPathfinderMenu = false;
             GuiData.endDraw();
             PostProcessor.end();
             var saveEvent = new CustomOptionsSaveEvent();
             EventManager<CustomOptionsSaveEvent>.InvokeAll(saveEvent);
+            _canReloadMenu = true;
             return false;
         }
 
+        #pragma warning disable 618
         var tabs = OptionsManager.Tabs;
-            
-        int tabX = 10;
+        #pragma warning restore 618
+
+        int tabX = 10, tabY = 70;
+
+        foreach (var pair in OptionsManager.PluginTabs)
+        {
+            var tab = pair.Value;
+            if(tab.TrySetButtonOffset(new Point(tabX, tabY)))
+                tabX += 10 + tab.ButtonRect.Width;
+            tab.OnDraw(gameTime);
+        }
 
         foreach (var tab in tabs.Values)
         {
-            if (currentTabName == null)
-                currentTabName = tab.Name;
-            var active = currentTabName == tab.Name;
+            if (CurrentTabId == null)
+                CurrentTabId = tab.Name;
+            var active = CurrentTabId == tab.Name;
             // Display tab button
-            if (Button.doButton(tab.ButtonID, tabX, 70, 128, 20, tab.Name, active ? Color.Green : Color.Gray))
+            if (Button.doButton(tab.ButtonID, tabX, tabY, 128, 20, tab.Name, active ? Color.Green : Color.Gray))
             {
-                currentTabName = tab.Name;
+                CurrentTabId = tab.Name;
                 break;
             }
             tabX += 128 + 10;
 
-            if (currentTabName != tab.Name)
+            if (CurrentTabId != tab.Name)
                 continue;
 
             // Display options
@@ -69,7 +118,7 @@ internal static class PathfinderOptionsMenu
         }
 
         GuiData.endDraw();
-        PostProcessor.end();
+			PostProcessor.end();
         return false;
     }
 
@@ -80,7 +129,7 @@ internal static class PathfinderOptionsMenu
     internal static void BeforeEndDrawOptions(ILContext il)
     {
         ILCursor c = new ILCursor(il);
-            
+
         c.GotoNext(MoveType.AfterLabel, x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(GuiData), nameof(GuiData.endDraw))));
 
         c.EmitDelegate<System.Action>(() =>

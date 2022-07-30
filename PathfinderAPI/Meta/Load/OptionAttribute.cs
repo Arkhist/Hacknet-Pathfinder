@@ -7,48 +7,55 @@ namespace Pathfinder.Meta.Load;
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 public class OptionAttribute : BaseAttribute
 {
-    public string Tag { get; set; }
+    [Obsolete("Use TabName")]
+    public string Tag { get => TabName; set => TabName = value; }
+    public string TabName { get; set; }
+    public string TabId { get; set; }
 
-    public OptionAttribute(string tag = null)
+    public OptionAttribute(string tag = null, string tabId = null)
     {
-        this.Tag = tag;
+        TabName = tag;
+        TabId = tabId;
     }
 
     public OptionAttribute(Type pluginType)
     {
-        this.Tag = pluginType.GetCustomAttribute<OptionsTabAttribute>()?.Tag;
+        var tabAttr = pluginType.GetCustomAttribute<OptionsTabAttribute>();
+        TabName = tabAttr.TabName;
+        TabId = tabAttr.TabId;
     }
 
     protected internal override void CallOn(HacknetPlugin plugin, MemberInfo targettedInfo)
     {
-        if(Tag == null)
+        if(TabName == null)
         {
-            Tag = plugin.GetOptionsTag();
-            if(Tag == null)
+            if(!OptionsTabAttribute.pluginToOptTabAttribute.TryGetValue(plugin, out var tab))
                 throw new InvalidOperationException($"Could not find Pathfinder.Meta.Load.OptionsTabAttribute for {targettedInfo.DeclaringType.FullName}");
+            TabName = tab.TabName;
+            TabId = tab.TabId;
         }
 
         if(targettedInfo.DeclaringType != plugin.GetType())
             throw new InvalidOperationException($"Pathfinder.Meta.Load.OptionAttribute is only valid in a class derived from BepInEx.Hacknet.HacknetPlugin");
 
-        Option option = null;
+        IPluginOption option = null;
         switch(targettedInfo)
         {
             case PropertyInfo propertyInfo:
-                if(!propertyInfo.PropertyType.IsSubclassOf(typeof(Option)))
-                    throw new InvalidOperationException($"Property {propertyInfo.Name}'s type does not derive from Pathfinder.Options.Option");
-                option = (Option)(propertyInfo.GetGetMethod()?.Invoke(plugin, null));
+                if(!typeof(IPluginOption).IsAssignableFrom(propertyInfo.PropertyType))
+                    throw new InvalidOperationException($"Property {propertyInfo.Name}'s type does not derive from Pathfinder.Options.IPluginOption");
+                option = (IPluginOption)(propertyInfo.GetGetMethod()?.Invoke(plugin, null));
                 break;
             case FieldInfo fieldInfo:
-                if(!fieldInfo.FieldType.IsSubclassOf(typeof(Option)))
-                    throw new InvalidOperationException($"Field {fieldInfo.Name}'s type does not derive from Pathfinder.Options.Option");
-                option = (Option)fieldInfo.GetValue(plugin);
+                if(!typeof(IPluginOption).IsAssignableFrom(fieldInfo.FieldType))
+                    throw new InvalidOperationException($"Field {fieldInfo.Name}'s type does not derive from Pathfinder.Options.IPluginOption");
+                option = (IPluginOption)fieldInfo.GetValue(plugin);
                 break;
         }
 
         if(option == null)
-            throw new InvalidOperationException($"Option not set to a default value, Option members should be set before HacknetPlugin.Load() is called");
+            throw new InvalidOperationException($"IPluginOption not set to a default value, IPluginOption members should be set before HacknetPlugin.Load() is called");
 
-        OptionsManager.AddOption(Tag, option);
+        OptionsManager.GetOrRegisterTab(plugin, TabName, TabId).AddOption(option);
     }
 }

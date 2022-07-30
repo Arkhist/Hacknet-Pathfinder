@@ -2,44 +2,45 @@
 using Microsoft.Xna.Framework;
 using Pathfinder.Event;
 using Pathfinder.Event.Menu;
-using Pathfinder.Event.Options;
 using Pathfinder.GUI;
 using Pathfinder.Options;
-using HarmonyLib;
 
 namespace PathfinderUpdater;
 
-[HarmonyPatch]
 internal static class MainMenuOverride
 {
-    private static OptionCheckbox IsEnabledBox = new OptionCheckbox("Enabled", "Enables the auto updater", PathfinderUpdaterPlugin.IsEnabled.Value);
-    private static OptionCheckbox IncludePrerelease = new OptionCheckbox("IncludePreReleases", "Autoupdate to pre-releases", PathfinderUpdaterPlugin.EnablePreReleases.Value);
-    internal static OptionCheckbox NoRestartPrompt = new OptionCheckbox("NoRestartPrompt", "Prevents a restart prompt appearing");
-    private static PFButton CheckForUpdate = new PFButton(10, 10, 160, 30, "Check For Update", new Color(255, 255, 87));
+    internal static PluginOptionTab UpdaterTab;
+
+    internal static PluginCheckbox IsEnabledBox = new PluginCheckbox(
+        "Enabled",
+        "Enables the auto updater",
+        true,
+        "Enables or disables automatic updates for PathfinderAPI"
+    );
+    internal static PluginCheckbox IncludePrerelease = new PluginCheckbox(
+        "Include Pre Releases",
+        "Autoupdate to pre-releases",
+        configDesc: "Whether or not to automatically update to beta versions"
+    );
+    internal static PluginCheckbox NoRestartPrompt = new PluginCheckbox(
+        "No Restart Prompt",
+        "Prevents a restart prompt from appearing",
+        configDesc: "Whether ot not the restart prompt will appear when the update is finished"
+    );
+
+    private static PFButton CheckForUpdate = new PFButton(10, 10, 200, 30, "Check For Update", new Color(255, 255, 87));
     private const string UPDATE_STRING = "Update";
-    private static PFButton PerformUpdate = new PFButton(180, 10, 160, 30, UPDATE_STRING);
+    private static PFButton PerformUpdate = new PFButton(220, 10, 170, 30, UPDATE_STRING);
     private static RestartPopupScreen popupScreen;
 
-
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(Program), nameof(Program.Main))]
     internal static void PFAPILoaded()
     {
-        OptionsManager.AddOption("Updater", IsEnabledBox);
-        OptionsManager.AddOption("Updater", IncludePrerelease);
-        OptionsManager.AddOption("Updater", NoRestartPrompt);
-        EventManager<CustomOptionsSaveEvent>.AddHandler(OptionsSaved);
+        UpdaterTab = OptionsManager.GetOrRegisterTab(PathfinderUpdaterPlugin.Instance, "Updater")
+        .AddOption(IsEnabledBox)
+        .AddOption(IncludePrerelease)
+        .AddOption(NoRestartPrompt);
         EventManager<DrawMainMenuEvent>.AddHandler(OnDrawMainMenu);
         CanPerformUpdate = PathfinderUpdaterPlugin.NeedsUpdate;
-    }
-
-    internal static void OptionsSaved(CustomOptionsSaveEvent args)
-    {
-        PathfinderUpdaterPlugin.IsEnabled.Value = IsEnabledBox.Value;
-        PathfinderUpdaterPlugin.EnablePreReleases.Value = IncludePrerelease.Value;
-        PathfinderUpdaterPlugin.NoRestartPrompt.Value = NoRestartPrompt.Value;
-        if(popupScreen != null)
-            popupScreen.NoRestartPrompt.Value = PathfinderUpdaterPlugin.NoRestartPrompt.Value;
     }
 
     internal static async Task PerformCheckAndUpdateButtonAsync()
@@ -64,8 +65,8 @@ internal static class MainMenuOverride
         PerformUpdate.Text = "Currently Updating...";
         await PathfinderUpdaterPlugin.PerformUpdateAsync();
         PerformUpdate.Text = oldText;
-        if(!menu.ScreenManager.screens.Contains(popupScreen) && !PathfinderUpdaterPlugin.NoRestartPrompt.Value)
-            menu.ScreenManager.AddScreen(popupScreen ??= new RestartPopupScreen());
+        if(!menu.ScreenManager.screens.Contains(popupScreen) && !NoRestartPrompt.Value)
+            menu.ScreenManager.AddScreen(popupScreen ??= new RestartPopupScreen(PathfinderUpdaterPlugin.Config));
         CanPerformUpdate = !menu.ScreenManager.screens.Contains(popupScreen);
         CanCheckForUpdate = couldCheckForUpdate;
     }
@@ -74,6 +75,8 @@ internal static class MainMenuOverride
     private static bool CanPerformUpdate;
     internal static void OnDrawMainMenu(MainMenuEvent args)
     {
+        if(!IsEnabledBox.Value) return;
+
         if(CheckForUpdate.Do() && CanCheckForUpdate)
             Task.Run(async () => await PerformCheckAndUpdateButtonAsync());
 

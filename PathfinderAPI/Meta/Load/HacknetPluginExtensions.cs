@@ -6,13 +6,13 @@ public static class HacknetPluginExtensions
 {
     public static string GetOptionsTag(this HacknetPlugin plugin)
     {
-        if(!OptionsTabAttribute.pluginToOptionsTag.TryGetValue(plugin, out var tag))
+        if(!OptionsTabAttribute.pluginToOptTabAttribute.TryGetValue(plugin, out var attr))
             return null;
-        return tag;
+        return attr.TabName;
     }
 
     public static bool HasOptionsTag(this HacknetPlugin plugin)
     {
-        return OptionsTabAttribute.pluginToOptionsTag.ContainsKey(plugin);
+        return OptionsTabAttribute.pluginToOptTabAttribute.ContainsKey(plugin);
     }
 }

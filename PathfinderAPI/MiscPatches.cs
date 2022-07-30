@@ -51,7 +51,7 @@ internal static class MiscPatches
         c.RemoveRange(3);
 
         c.Emit(OpCodes.Ldsfld, AccessTools.Field(typeof(PathfinderOptions), nameof(PathfinderOptions.DisableSteamCloudError)));
-        c.Emit(OpCodes.Ldfld, AccessTools.Field(typeof(OptionCheckbox), nameof(OptionCheckbox.Value)));
+        c.Emit(OpCodes.Callvirt, AccessTools.Method(typeof(PluginCheckbox), $"get_{nameof(PluginCheckbox.Value)}"));
 
         c.GotoNext(MoveType.Before, x => x.MatchLdstr(out _));
         c.Next.Operand = "Steam Cloud saving disabled by Pathfinder";

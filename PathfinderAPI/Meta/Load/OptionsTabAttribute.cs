@@ -6,17 +6,21 @@ namespace Pathfinder.Meta.Load;
 [AttributeUsage(AttributeTargets.Class)]
 public class OptionsTabAttribute : BaseAttribute
 {
-    internal static readonly Dictionary<HacknetPlugin, string> pluginToOptionsTag = new Dictionary<HacknetPlugin, string>();
+    internal static readonly Dictionary<HacknetPlugin, OptionsTabAttribute> pluginToOptTabAttribute = new Dictionary<HacknetPlugin, OptionsTabAttribute>();
 
-    public string Tag { get; }
+    [Obsolete("Use TabName")]
+    public string Tag { get => TabName; set => TabName = value; }
+    public string TabName { get; set; }
+    public string TabId { get; set; }
 
-    public OptionsTabAttribute(string tag)
+    public OptionsTabAttribute(string tag, string tabId = null)
     {
-        this.Tag = tag;
+        TabName = tag;
+        TabId = tabId;
     }
 
     protected internal override void CallOn(HacknetPlugin plugin, MemberInfo targettedInfo)
     {
-        pluginToOptionsTag.Add(plugin, Tag);
+        pluginToOptTabAttribute.Add(plugin, this);
     }
 }
