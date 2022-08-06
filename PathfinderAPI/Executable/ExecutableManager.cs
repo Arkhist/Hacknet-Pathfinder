@@ -164,7 +164,7 @@ public static class ExecutableManager
         c.Emit(OpCodes.Ldarg_1);
 
         c.EmitDelegate<Func<Folder, int, OS, bool>>((folder, i, os) => {
-            if(CustomExes.Any(x => x.Value.ExeData == folder.files[i].data)){
+            if(CustomExes.Any(x => x.ExeData == folder.files[i].data)){
                 os.write(folder.files[i].name.Replace(".exe", ""));
                 return true;
             }
