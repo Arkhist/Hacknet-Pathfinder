@@ -23,6 +23,8 @@ public class PathfinderAPIPlugin : HacknetPlugin
     new internal static Harmony HarmonyInstance;
     new internal static ConfigFile Config;
 
+    public static readonly bool GameIsSteamVersion = typeof(Hacknet.PlatformAPI.Storage.SteamCloudStorageMethod).GetMethod("Load") != null;
+
     public override bool Load()
     {
         PathfinderAPIPlugin.HarmonyInstance = base.HarmonyInstance;
