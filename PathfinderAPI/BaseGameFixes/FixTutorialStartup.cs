@@ -22,7 +22,7 @@ public static class FixTutorialStartup
         c.Emit(OpCodes.Ldarg_1);
         c.EmitDelegate<Action<OS>>(os =>
         {
-            if (ExtensionLoader.ActiveExtensionInfo.StartingMissionPath != null)
+            if (Settings.IsInExtensionMode && ExtensionLoader.ActiveExtensionInfo?.StartingMissionPath != null)
                 os.currentMission = (ActiveMission)ComputerLoader.readMission(ExtensionLoader.ActiveExtensionInfo.FolderPath + "/" + ExtensionLoader.ActiveExtensionInfo.StartingMissionPath);
         });
     }
