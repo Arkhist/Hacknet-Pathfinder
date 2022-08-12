@@ -3,6 +3,7 @@ using Hacknet;
 using HarmonyLib;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using Pathfinder.Options;
 
 namespace Pathfinder;
 
