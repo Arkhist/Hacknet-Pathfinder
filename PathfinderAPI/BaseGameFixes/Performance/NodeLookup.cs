@@ -195,14 +195,13 @@ internal static class NodeLookup
         c.EmitDelegate<Func<string[], OS, int>>((args, os) => 
             os.netMap.nodes.IndexOf(ComputerLookup.Find(args[1], SearchType.Ip | SearchType.Name))
         );
-        c.Emit(OpCodes.Dup);
+        c.Emit(OpCodes.Stloc_1);
 
+        c.Emit(OpCodes.Ldloc_1);
         c.Emit(OpCodes.Ldc_I4_M1);
         c.Emit(OpCodes.Ceq);
         // incrementLabel will be preserved but loop behavior removed
         c.Emit(OpCodes.Brtrue, incrementLabel);
-
-        c.Emit(OpCodes.Stloc_1);
 
         // Remove remaining loop behavior
         c.GotoLabel(incrementLabel);
