@@ -37,6 +37,11 @@ public class GameExecutable : BaseExecutable
     /// </summary>
     public virtual bool CanAddToSystem { get; set; } = true;
     /// <summary>
+    /// Determines whether the executable can be killed
+    /// If set to false, the executable will be re-added after it has been removed
+    /// </summary>
+    public virtual bool CanBeKilled { get; set; } = true;
+    /// <summary>
     /// Written to the terminal if failed or errored when not null
     /// </summary>
     /// <value></value>
@@ -153,6 +158,14 @@ public class GameExecutable : BaseExecutable
 
     public sealed override void Killed()
     {
+        if (!CanBeKilled)
+        {
+            os.delayer.Post(
+                (ActionDelayer x) => !os.exes.Contains(this),
+                () => os.exes.Add(this)
+            );
+            return;
+        }
         Result = CompletionResult.Killed;
         needsRemoval = true;
         Completed();
