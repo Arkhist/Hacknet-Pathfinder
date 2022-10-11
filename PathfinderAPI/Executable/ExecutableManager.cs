@@ -204,4 +204,39 @@ public static class ExecutableManager
                 exe.Completed();
         });
     }
+
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(Programs), nameof(Programs.kill))]
+    private static void programsKillFix(ILContext il)
+    {
+        ILCursor c = new ILCursor(il);
+
+        ILLabel leaveLabel = null;
+        c.GotoNext(
+            x => x.MatchLeaveS(out leaveLabel)
+        );
+
+        // os.write("Process " + num + "[" + os.exes[num2].IdentifierName + "] Ended");
+        c.GotoPrev(MoveType.Before,
+            x => x.MatchLdstr("] Ended")
+        );
+        c.Remove();
+        c.Emit(OpCodes.Ldarg_1);
+        c.Emit(OpCodes.Ldloc_1);
+        c.EmitDelegate<Func<OS, int, bool>>((os, num2) =>
+            os.exes[num2].CanKill()
+        );
+        c.Emit(OpCodes.Stloc_3); // no longer in use
+        c.Emit(OpCodes.Ldloc_3);
+        c.EmitDelegate<Func<bool, string>>(canKill =>
+            canKill ? "] Ended" : "] Did not Respond"
+        );
+
+        // (no C# code)
+        c.GotoNext(MoveType.After,
+            x => x.MatchCallvirt(AccessTools.Method(typeof(OS), nameof(OS.write)))
+        );
+        c.Emit(OpCodes.Ldloc_3);
+        c.Emit(OpCodes.Brfalse, leaveLabel);
+    }
 }

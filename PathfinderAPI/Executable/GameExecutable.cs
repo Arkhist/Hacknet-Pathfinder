@@ -158,14 +158,6 @@ public class GameExecutable : BaseExecutable
 
     public sealed override void Killed()
     {
-        if (!CanBeKilled)
-        {
-            os.delayer.Post(
-                (ActionDelayer x) => !os.exes.Contains(this),
-                () => os.exes.Add(this)
-            );
-            return;
-        }
         Result = CompletionResult.Killed;
         needsRemoval = true;
         Completed();
