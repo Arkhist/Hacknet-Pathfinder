@@ -22,7 +22,7 @@ public static class ExecutableManager
         public Type ExeType;
     }
 
-    private static readonly List<CustomExeInfo?> CustomExes = new List<CustomExeInfo?>();
+    private static readonly List<CustomExeInfo> CustomExes = new List<CustomExeInfo>();
         
     static ExecutableManager()
     {
@@ -33,14 +33,14 @@ public static class ExecutableManager
 
     private static void GetTextReplacementExe(TextReplaceEvent e)
     {
-        var exe = CustomExes.FirstOrDefault(x => x.Value.XmlId == e.Original);
+        var exe = CustomExes.FirstOrNull(x => x.XmlId == e.Original);
         if (!exe.HasValue)
             return;
         e.Replacement = exe.Value.ExeData;
     }
     private static void OnExeExecute(ExecutableExecuteEvent e)
     {
-        var exe = CustomExes.FirstOrDefault(x => x.Value.ExeData == e.ExecutableData);
+        var exe = CustomExes.FirstOrNull(x => x.ExeData == e.ExecutableData);
         if (!exe.HasValue)
             return;
         var location = new Rectangle(e.OS.ram.bounds.X, e.OS.ram.bounds.Y + RamModule.contentStartOffset, RamModule.MODULE_WIDTH, (int)OS.EXE_MODULE_HEIGHT);
@@ -57,7 +57,7 @@ public static class ExecutableManager
 
     private static void OnPluginUnload(Assembly pluginAsm)
     {
-        CustomExes.RemoveAll(x => x.Value.ExeType.Assembly == pluginAsm);
+        CustomExes.RemoveAll(x => x.ExeType.Assembly == pluginAsm);
     }
 
     public static void RegisterExecutable<T>(string xmlName) where T : BaseExecutable => RegisterExecutable(typeof(T), xmlName);
@@ -75,16 +75,16 @@ public static class ExecutableManager
         });
     }
 
-    public static string GetCustomExeData(string xmlName) => CustomExes.FirstOrDefault(x => x.Value.XmlId == xmlName)?.ExeData;
+    public static string GetCustomExeData(string xmlName) => CustomExes.FirstOrNull(x => x.XmlId == xmlName)?.ExeData;
 
     public static void UnregisterExecutable(string xmlName)
     {
-        CustomExes.RemoveAll(x => x.Value.XmlId == xmlName);
+        CustomExes.RemoveAll(x => x.XmlId == xmlName);
     }
     public static void UnregisterExecutable<T>() => UnregisterExecutable(typeof(T));
     public static void UnregisterExecutable(Type exeType)
     {
-        CustomExes.RemoveAll(x => x.Value.ExeType == exeType);
+        CustomExes.RemoveAll(x => x.ExeType == exeType);
     }
 
     public static void AddGameExecutable(this OS os, GameExecutable exe, Rectangle location, string[] args)
@@ -164,7 +164,7 @@ public static class ExecutableManager
         c.Emit(OpCodes.Ldarg_1);
 
         c.EmitDelegate<Func<Folder, int, OS, bool>>((folder, i, os) => {
-            if(CustomExes.Any(x => x.Value.ExeData == folder.files[i].data)){
+            if(CustomExes.Any(x => x.ExeData == folder.files[i].data)){
                 os.write(folder.files[i].name.Replace(".exe", ""));
                 return true;
             }
