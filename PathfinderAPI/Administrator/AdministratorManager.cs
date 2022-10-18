@@ -60,11 +60,11 @@ public static class AdministratorManager
 
     public static void RegisterAdministrator<T>() where T : BaseAdministrator => RegisterAdministrator(typeof(T));
     public static void RegisterAdministrator(Type adminType) => RegisterAdministrator(adminType, adminType.Name);
-    public static void RegisterAdministrator<T>(string adminTypeName) where T : BaseAdministrator => RegisterAdministrator(typeof(T), adminTypeName);
-    public static void RegisterAdministrator(Type adminType, string adminTypeName)
+    public static void RegisterAdministrator<T>(string xmlName) where T : BaseAdministrator => RegisterAdministrator(typeof(T), xmlName);
+    public static void RegisterAdministrator(Type adminType, string xmlName)
     {
         adminType.ThrowNotInherit<BaseAdministrator>(nameof(adminType));
-        CustomAdministrators.Add(adminTypeName, adminType);
+        CustomAdministrators.Add(xmlName, adminType);
     }
 
     public static void UnregisterAdministrator<T>() where T : BaseAdministrator => UnregisterAdministrator(typeof(T));
@@ -74,8 +74,8 @@ public static class AdministratorManager
         if (xmlName != null)
             CustomAdministrators.Remove(xmlName);
     }
-    public static void UnregisterAdministrator(string adminTypeName)
+    public static void UnregisterAdministrator(string xmlName)
     {
-        CustomAdministrators.Remove(adminTypeName);
+        CustomAdministrators.Remove(xmlName);
     }
 }
