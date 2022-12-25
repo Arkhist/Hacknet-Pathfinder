@@ -34,7 +34,7 @@ internal static class HHBS
         var combine = AccessTools.Method(typeof(Path), nameof(Path.Combine), new Type[] { typeof(string), typeof(string) });
             
         c.Emit(OpCodes.Ldloc_0);
-        c.Emit(OpCodes.Ldstr, "Hacknet");
+        c.Emit(OpCodes.Ldstr, "HacknetPathfinder");
         c.Emit(OpCodes.Call, combine);
         c.Emit(OpCodes.Ldstr, "Accounts");
         c.Emit(OpCodes.Call, combine);
