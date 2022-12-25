@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Hacknet;
 using Hacknet.Factions;
 using Hacknet.Localization;
@@ -124,8 +124,6 @@ public static class SaveLoader
         {
             foreach (var daemon in os.netMap.nodes.SelectMany(x => x.daemons))
                 daemon.loadInit();
-
-            os.netMap.loadAssignGameNodes();
         }, ParseOption.FireOnEnd);
         executor.RegisterExecutor("HacknetSave.NetworkMap.network.computer", (exec, info) =>
             {
@@ -547,6 +545,9 @@ public static class SaveLoader
                 break;
             case "mail":
                 os.netMap.mailServer = comp;
+                break;
+            case "academic":
+                os.netMap.academicDatabase = comp;
                 break;
         }
 
