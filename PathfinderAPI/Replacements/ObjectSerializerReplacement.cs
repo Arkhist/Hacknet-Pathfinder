@@ -133,14 +133,26 @@ public static class ObjectSerializerReplacement
                     __result = info.Children.GetElement("Title").Content;
                     break;
                 case "OnlineAccount":
-                    __result = info.Children.GetElement("Username").Content;
+                    __result = info.Children.GetElement("Username").Content + "#" + info.Children.GetElement("ID").Content;
+                    break;
+                case "CAROData":
+                    __result = info.Children.GetElement("UserID").Content;
+                    break;
+                case "Account":
+                    __result = info.Children.GetElement("ID").Content;
+                    break;
+                case "SurveillanceProfile":
+                    __result = info.Children.GetElement("Name").Content;
+                    break;
+                case "AgentDetails":
+                    __result = info.Children.GetElement("Codename").Content;
                     break;
                 default:
-                    __result = info.Name.Replace(" ", "_").ToLower();
+                    __result = info.Name;
                     break;
             }
 
-            __result = Utils.GetNonRepeatingFilename(__result, ".rec", __instance.DatasetFolder);
+            __result = Utils.GetNonRepeatingFilename(__result.Replace(" ", "_").ToLower(), ".rec", __instance.DatasetFolder);
             return false;
         }
 
