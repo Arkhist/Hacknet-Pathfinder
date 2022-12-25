@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Xml;
 using Hacknet;
 using HarmonyLib;
@@ -84,61 +84,7 @@ public static class ActionsLoader
         {
             var set = new SerializableConditionalActionSet();
                 
-            #region Conditions
-                
-            if (ConditionManager.TryLoadCustomCondition(conditionInfo, out var customCondition))
-            {
-                set.Condition = customCondition;
-            }
-            else
-            {
-                switch (conditionInfo.Name)
-                {
-                    case "OnAdminGained":
-                        set.Condition = new SCOnAdminGained()
-                        {
-                            target = conditionInfo.Attributes.GetOrThrow("target", "No target found for OnAdminGained condition!")
-                        };
-                        break;
-                    case "OnConnect":
-                        set.Condition = new SCOnConnect()
-                        {
-                            target = conditionInfo.Attributes.GetOrThrow("target", "No target found for OnConnect condition!"),
-                            requiredFlags = conditionInfo.Attributes.GetString("requiredFlags", null),
-                            needsMissionComplete = conditionInfo.Attributes.GetBool("needsMissionComplete")
-                        };
-                        break;
-                    case "HasFlags":
-                        set.Condition = new SCHasFlags()
-                        {
-                            requiredFlags = conditionInfo.Attributes.GetString("requiredFlags", null)
-                        };
-                        break;
-                    case "Instantly":
-                        set.Condition = new SCInstantly()
-                        {
-                            needsMissionComplete = conditionInfo.Attributes.GetBool("needsMissionComplete")
-                        };
-                        break;
-                    case "OnDisconnect":
-                        set.Condition = new SCOnDisconnect()
-                        {
-                            target = conditionInfo.Attributes.GetOrDefault("target")
-                        };
-                        break;
-                    case "DoesNotHaveFlags":
-                        set.Condition = new SCDoesNotHaveFlags()
-                        {
-                            Flags = conditionInfo.Attributes.GetString("Flags", null)
-                        };
-                        break;
-                }
-            }
-                
-            if (set.Condition == null)
-                throw new FormatException($"Condition {conditionInfo.Name} could not be found!");
-                
-            #endregion
+            set.Condition = ReadCondition(conditionInfo);
                 
             set.Actions.AddRange(conditionInfo.Children.Select(ReadAction));
                 
@@ -146,6 +92,52 @@ public static class ActionsLoader
         }
             
         return ret;
+    }
+
+    public static SerializableCondition ReadCondition(ElementInfo conditionInfo)
+    {
+        if (ConditionManager.TryLoadCustomCondition(conditionInfo, out var customCondition))
+        {
+            return customCondition;
+        }
+
+        switch (conditionInfo.Name)
+        {
+            case "OnAdminGained":
+                return new SCOnAdminGained()
+                {
+                    target = conditionInfo.Attributes.GetOrThrow("target", "No target found for OnAdminGained condition!")
+                };
+            case "OnConnect":
+                return new SCOnConnect()
+                {
+                    target = conditionInfo.Attributes.GetOrThrow("target", "No target found for OnConnect condition!"),
+                    requiredFlags = conditionInfo.Attributes.GetString("requiredFlags", null),
+                    needsMissionComplete = conditionInfo.Attributes.GetBool("needsMissionComplete")
+                };
+            case "HasFlags":
+                return new SCHasFlags()
+                {
+                    requiredFlags = conditionInfo.Attributes.GetString("requiredFlags", null)
+                };
+            case "Instantly":
+                return new SCInstantly()
+                {
+                    needsMissionComplete = conditionInfo.Attributes.GetBool("needsMissionComplete")
+                };
+            case "OnDisconnect":
+                return new SCOnDisconnect()
+                {
+                    target = conditionInfo.Attributes.GetOrDefault("target")
+                };
+            case "DoesNotHaveFlags":
+                return new SCDoesNotHaveFlags()
+                {
+                    Flags = conditionInfo.Attributes.GetString("Flags", null)
+                };
+            default:
+                throw new FormatException($"Condition {conditionInfo.Name} could not be found!");
+        }
     }
 
     public static SerializableAction ReadAction(ElementInfo actionInfo)
