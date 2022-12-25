@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using BepInEx.Logging;
 using BepInEx.Bootstrap;
 using Hacknet.Extensions;
@@ -101,7 +101,7 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
             Log.LogMessage($"Unloaded {temp}");
         }
         TemporaryPluginGUIDs.Clear();
-        ChainloaderFix.Remaps.Clear();
+        ChainloaderFix.ClearRemaps();
 
         Log.LogMessage("Finished unloading extension plugins");
     }
@@ -187,6 +187,7 @@ internal static class ExtensionPluginPatches
 internal static class ChainloaderFix
 {
     internal static Dictionary<string, Assembly> Remaps = new Dictionary<string, Assembly>();
+    internal static Dictionary<string, AssemblyDefinition> RemapDefinitions = new Dictionary<string, AssemblyDefinition>();
 
     [HarmonyILManipulator]
     [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "Execute")]
@@ -204,25 +205,40 @@ internal static class ChainloaderFix
             byte[] asmBytes;
             string name;
 
-            using (var asm = AssemblyDefinition.ReadAssembly(path))
+            var asm = AssemblyDefinition.ReadAssembly(path, new ReaderParameters()
             {
-                name = asm.Name.Name;
-                asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
+                AssemblyResolver = new RenamedAssemblyResolver()
+            });
+            name = asm.Name.Name;
+            asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
 
-                using (var ms = new MemoryStream())
-                {
-                    asm.Write(ms);
-                    asmBytes = ms.ToArray();
-                }
-
+            using (var ms = new MemoryStream())
+            {
+                asm.Write(ms);
+                asmBytes = ms.ToArray();
             }
 
             var loaded = Assembly.Load(asmBytes);
             Remaps[name] = loaded;
+            RemapDefinitions[name] = asm;
 
             return loaded;
         });
     }
+    internal static void ClearRemaps()
+    {
+        Remaps.Clear();
+        foreach (var asm in RemapDefinitions.Values)
+            asm.Dispose();
+        RemapDefinitions.Clear();
+    }
+}
+internal class RenamedAssemblyResolver : DefaultAssemblyResolver
+{
+    public override AssemblyDefinition Resolve(AssemblyNameReference name, ReaderParameters parameters) =>
+        ChainloaderFix.RemapDefinitions.TryGetValue(name.Name, out var asm)
+            ? asm
+            : base.Resolve(name, parameters);
 }
 
 [HarmonyPatch]
