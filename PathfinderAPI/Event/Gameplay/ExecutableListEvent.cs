@@ -23,7 +23,7 @@ public class ExecutableListEvent : PathfinderEvent
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Programs), nameof(Programs.execute))]
     private static bool ProgramsExecuteReplacement(string[] args, OS os){
-        var binFiles = (os.connectedComp ?? os.thisComputer).files.root.searchForFolder("bin").files; // folders[2].files;
+        var binFiles = os.thisComputer.files.root.searchForFolder("bin").files; // folders[2].files;
 
         var binExes = new Dictionary<FileEntry, bool>();
         foreach (FileEntry exeFile in binFiles)
