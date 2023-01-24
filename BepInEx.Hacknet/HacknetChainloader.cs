@@ -131,6 +131,9 @@ internal static class ExtensionPluginPatches
             
         try
         {
+            HN.Settings.IsInExtensionMode = true;
+            ExtensionLoader.ActiveExtensionInfo = info;
+
             var newPluginPath = Path.Combine(info.GetFullFolderPath(), "Plugins");
             var newConfigPath = Path.Combine(newPluginPath, "Configs");
 
@@ -145,6 +148,8 @@ internal static class ExtensionPluginPatches
         }
         catch (Exception ex)
         {
+            HN.Settings.IsInExtensionMode = false;
+
             HacknetChainloader.Instance.Log.LogError($"A fatal exception occured while loading extension plugins, aborting:\n{ex}");
 
             __runOriginal = false;
