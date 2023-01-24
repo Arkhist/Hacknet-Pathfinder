@@ -16,11 +16,10 @@ internal static class AttributeManager
         var c = new ILCursor(il);
 
         c.GotoNext(
-            x => x.MatchLdloc(1),
             x => x.MatchCallvirt(AccessTools.Method(typeof(HacknetPlugin), nameof(HacknetPlugin.Load)))
         );
 
-        c.Emit(OpCodes.Ldloc, 1);
+        c.Emit(OpCodes.Dup);
         c.Emit(OpCodes.Call, AccessTools.Method(typeof(AttributeManager), nameof(ReadAttributesFor)));
     }
 
