@@ -21,7 +21,7 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
             "BepInEx/core/BepInEx.Hacknet.dll"
         );
 
-    public const string VERSION = "5.2.0";
+    public const string VERSION = "5.3.0";
     public static readonly Version Version = Version.Parse(VERSION);
         
     public static HacknetChainloader Instance;
