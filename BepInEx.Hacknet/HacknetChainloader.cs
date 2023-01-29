@@ -53,7 +53,6 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
         }
 
         var plugins = base.DiscoverPlugins();
-        TemporaryPluginGUIDs = plugins.Select(plugin => plugin.Metadata.GUID).ToList();
         return plugins;
     }
 
@@ -61,20 +60,13 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
     {
         var type = pluginAssembly.GetType(pluginInfo.TypeName);
 
-        HacknetPlugin pluginInstance = null;
-        try
+        HacknetPlugin pluginInstance = (HacknetPlugin) Activator.CreateInstance(type);
+        if (!pluginInstance.Load())
         {
-            pluginInstance = (HacknetPlugin) Activator.CreateInstance(type);
-            if (!pluginInstance.Load())
-            {
-                throw new Exception($"{pluginInfo.Metadata.GUID} returned false on its load method");
-            }
+            throw new Exception($"{pluginInfo.Metadata.GUID} returned false on its load method");
         }
-        catch
-        {
-            TemporaryPluginGUIDs.Remove(pluginInfo.Metadata.GUID);
-            throw;
-        }
+        if (HN.Settings.IsInExtensionMode)
+            TemporaryPluginGUIDs.Add(pluginInfo.Metadata.GUID);
 
         return pluginInstance;
     }
@@ -90,7 +82,7 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
     {
         Log.LogMessage("Unloading extension plugins...");
             
-        foreach (var temp in TemporaryPluginGUIDs)
+        foreach (var temp in TemporaryPluginGUIDs.Reverse<string>())
         {
             if (!((HacknetPlugin)this.Plugins[temp].Instance).Unload())
             {
