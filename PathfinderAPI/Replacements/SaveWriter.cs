@@ -486,6 +486,10 @@ public static class SaveWriter
         {
             spec = "player";
         }
+        if (node.Equals(node.os.netMap.academicDatabase)) // academicDatabase can be null
+        {
+            spec = "academic";
+        }
         result.SetAttributeValue("spec", spec);
         result.SetAttributeValue("id", node.idName);
         if (node.icon != null)

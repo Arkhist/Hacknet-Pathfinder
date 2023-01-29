@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using BepInEx.Logging;
 using BepInEx.Bootstrap;
 using Hacknet.Extensions;
@@ -21,7 +21,7 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
             "BepInEx/core/BepInEx.Hacknet.dll"
         );
 
-    public const string VERSION = "5.2.0";
+    public const string VERSION = "5.3.0";
     public static readonly Version Version = Version.Parse(VERSION);
         
     public static HacknetChainloader Instance;
@@ -53,7 +53,6 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
         }
 
         var plugins = base.DiscoverPlugins();
-        TemporaryPluginGUIDs = plugins.Select(plugin => plugin.Metadata.GUID).ToList();
         return plugins;
     }
 
@@ -61,20 +60,13 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
     {
         var type = pluginAssembly.GetType(pluginInfo.TypeName);
 
-        HacknetPlugin pluginInstance = null;
-        try
+        HacknetPlugin pluginInstance = (HacknetPlugin) Activator.CreateInstance(type);
+        if (!pluginInstance.Load())
         {
-            pluginInstance = (HacknetPlugin) Activator.CreateInstance(type);
-            if (!pluginInstance.Load())
-            {
-                throw new Exception($"{pluginInfo.Metadata.GUID} returned false on its load method");
-            }
+            throw new Exception($"{pluginInfo.Metadata.GUID} returned false on its load method");
         }
-        catch
-        {
-            TemporaryPluginGUIDs.Remove(pluginInfo.Metadata.GUID);
-            throw;
-        }
+        if (HN.Settings.IsInExtensionMode)
+            TemporaryPluginGUIDs.Add(pluginInfo.Metadata.GUID);
 
         return pluginInstance;
     }
@@ -90,7 +82,7 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
     {
         Log.LogMessage("Unloading extension plugins...");
             
-        foreach (var temp in TemporaryPluginGUIDs)
+        foreach (var temp in TemporaryPluginGUIDs.Reverse<string>())
         {
             if (!((HacknetPlugin)this.Plugins[temp].Instance).Unload())
             {
@@ -101,7 +93,7 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
             Log.LogMessage($"Unloaded {temp}");
         }
         TemporaryPluginGUIDs.Clear();
-        ChainloaderFix.Remaps.Clear();
+        ChainloaderFix.ClearRemaps();
 
         Log.LogMessage("Finished unloading extension plugins");
     }
@@ -131,6 +123,9 @@ internal static class ExtensionPluginPatches
             
         try
         {
+            HN.Settings.IsInExtensionMode = true;
+            ExtensionLoader.ActiveExtensionInfo = info;
+
             var newPluginPath = Path.Combine(info.GetFullFolderPath(), "Plugins");
             var newConfigPath = Path.Combine(newPluginPath, "Configs");
 
@@ -145,6 +140,8 @@ internal static class ExtensionPluginPatches
         }
         catch (Exception ex)
         {
+            HN.Settings.IsInExtensionMode = false;
+
             HacknetChainloader.Instance.Log.LogError($"A fatal exception occured while loading extension plugins, aborting:\n{ex}");
 
             __runOriginal = false;
@@ -187,6 +184,7 @@ internal static class ExtensionPluginPatches
 internal static class ChainloaderFix
 {
     internal static Dictionary<string, Assembly> Remaps = new Dictionary<string, Assembly>();
+    internal static Dictionary<string, AssemblyDefinition> RemapDefinitions = new Dictionary<string, AssemblyDefinition>();
 
     [HarmonyILManipulator]
     [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "Execute")]
@@ -204,25 +202,40 @@ internal static class ChainloaderFix
             byte[] asmBytes;
             string name;
 
-            using (var asm = AssemblyDefinition.ReadAssembly(path))
+            var asm = AssemblyDefinition.ReadAssembly(path, new ReaderParameters()
             {
-                name = asm.Name.Name;
-                asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
+                AssemblyResolver = new RenamedAssemblyResolver()
+            });
+            name = asm.Name.Name;
+            asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
 
-                using (var ms = new MemoryStream())
-                {
-                    asm.Write(ms);
-                    asmBytes = ms.ToArray();
-                }
-
+            using (var ms = new MemoryStream())
+            {
+                asm.Write(ms);
+                asmBytes = ms.ToArray();
             }
 
             var loaded = Assembly.Load(asmBytes);
             Remaps[name] = loaded;
+            RemapDefinitions[name] = asm;
 
             return loaded;
         });
     }
+    internal static void ClearRemaps()
+    {
+        Remaps.Clear();
+        foreach (var asm in RemapDefinitions.Values)
+            asm.Dispose();
+        RemapDefinitions.Clear();
+    }
+}
+internal class RenamedAssemblyResolver : DefaultAssemblyResolver
+{
+    public override AssemblyDefinition Resolve(AssemblyNameReference name, ReaderParameters parameters) =>
+        ChainloaderFix.RemapDefinitions.TryGetValue(name.Name, out var asm)
+            ? asm
+            : base.Resolve(name, parameters);
 }
 
 [HarmonyPatch]

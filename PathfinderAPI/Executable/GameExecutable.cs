@@ -37,6 +37,10 @@ public class GameExecutable : BaseExecutable
     /// </summary>
     public virtual bool CanAddToSystem { get; set; } = true;
     /// <summary>
+    /// Determines whether the executable can be killed
+    /// </summary>
+    public virtual bool CanBeKilled { get; set; } = true;
+    /// <summary>
     /// Written to the terminal if failed or errored when not null
     /// </summary>
     /// <value></value>

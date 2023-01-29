@@ -8,7 +8,7 @@ namespace Pathfinder.Administrator;
 
 public static class AdministratorManager
 {
-    private static readonly List<Type> CustomAdministrators = new List<Type>();
+    private static readonly Dictionary<string, Type> CustomAdministrators = new Dictionary<string, Type>();
 
     static AdministratorManager()
     {
@@ -20,8 +20,8 @@ public static class AdministratorManager
         if (!info.Attributes.TryGetValue("type", out var adminTypeName))
             return;
             
-        var adminType = CustomAdministrators.FirstOrDefault(x => x.Name == adminTypeName);
-        if (adminType != null) {
+        if (CustomAdministrators.TryGetValue(adminTypeName, out Type adminType))
+        {
             BaseAdministrator admin = (BaseAdministrator)Activator.CreateInstance(adminType, new object[] { comp, os });
             admin.LoadFromXml(info);
             comp.admin = admin;
@@ -54,19 +54,28 @@ public static class AdministratorManager
 
     private static void onPluginUnload(Assembly pluginAsm)
     {
-        CustomAdministrators.RemoveAll(x => x.Assembly == pluginAsm);
+        foreach (var name in CustomAdministrators.Where(x => x.Value.Assembly == pluginAsm).Select(x => x.Key).ToList())
+            CustomAdministrators.Remove(name);
     }
 
     public static void RegisterAdministrator<T>() where T : BaseAdministrator => RegisterAdministrator(typeof(T));
-    public static void RegisterAdministrator(Type adminType)
+    public static void RegisterAdministrator(Type adminType) => RegisterAdministrator(adminType, adminType.Name);
+    public static void RegisterAdministrator<T>(string xmlName) where T : BaseAdministrator => RegisterAdministrator(typeof(T), xmlName);
+    public static void RegisterAdministrator(Type adminType, string xmlName)
     {
         adminType.ThrowNotInherit<BaseAdministrator>(nameof(adminType));
-        CustomAdministrators.Add(adminType);
+        CustomAdministrators.Add(xmlName, adminType);
     }
 
     public static void UnregisterAdministrator<T>() where T : BaseAdministrator => UnregisterAdministrator(typeof(T));
     public static void UnregisterAdministrator(Type adminType)
     {
-        CustomAdministrators.Remove(adminType);
+        var xmlName = CustomAdministrators.FirstOrDefault(x => x.Value == adminType).Key;
+        if (xmlName != null)
+            CustomAdministrators.Remove(xmlName);
+    }
+    public static void UnregisterAdministrator(string xmlName)
+    {
+        CustomAdministrators.Remove(xmlName);
     }
 }

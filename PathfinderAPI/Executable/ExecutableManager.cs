@@ -22,25 +22,26 @@ public static class ExecutableManager
         public Type ExeType;
     }
 
-    private static readonly List<CustomExeInfo?> CustomExes = new List<CustomExeInfo?>();
+    private static readonly List<CustomExeInfo> CustomExes = new List<CustomExeInfo>();
         
     static ExecutableManager()
     {
         EventManager<TextReplaceEvent>.AddHandler(GetTextReplacementExe);
         EventManager<ExecutableExecuteEvent>.AddHandler(OnExeExecute);
+        EventManager<ExecutableListEvent>.AddHandler(OnExecutableList);
         EventManager.onPluginUnload += OnPluginUnload;
     }
 
     private static void GetTextReplacementExe(TextReplaceEvent e)
     {
-        var exe = CustomExes.FirstOrDefault(x => x.Value.XmlId == e.Original);
+        var exe = CustomExes.FirstOrNull(x => x.XmlId == e.Original);
         if (!exe.HasValue)
             return;
         e.Replacement = exe.Value.ExeData;
     }
     private static void OnExeExecute(ExecutableExecuteEvent e)
     {
-        var exe = CustomExes.FirstOrDefault(x => x.Value.ExeData == e.ExecutableData);
+        var exe = CustomExes.FirstOrNull(x => x.ExeData == e.ExecutableData);
         if (!exe.HasValue)
             return;
         var location = new Rectangle(e.OS.ram.bounds.X, e.OS.ram.bounds.Y + RamModule.contentStartOffset, RamModule.MODULE_WIDTH, (int)OS.EXE_MODULE_HEIGHT);
@@ -57,7 +58,7 @@ public static class ExecutableManager
 
     private static void OnPluginUnload(Assembly pluginAsm)
     {
-        CustomExes.RemoveAll(x => x.Value.ExeType.Assembly == pluginAsm);
+        CustomExes.RemoveAll(x => x.ExeType.Assembly == pluginAsm);
     }
 
     public static void RegisterExecutable<T>(string xmlName) where T : BaseExecutable => RegisterExecutable(typeof(T), xmlName);
@@ -75,16 +76,16 @@ public static class ExecutableManager
         });
     }
 
-    public static string GetCustomExeData(string xmlName) => CustomExes.FirstOrDefault(x => x.Value.XmlId == xmlName)?.ExeData;
+    public static string GetCustomExeData(string xmlName) => CustomExes.FirstOrNull(x => x.XmlId == xmlName)?.ExeData;
 
     public static void UnregisterExecutable(string xmlName)
     {
-        CustomExes.RemoveAll(x => x.Value.XmlId == xmlName);
+        CustomExes.RemoveAll(x => x.XmlId == xmlName);
     }
     public static void UnregisterExecutable<T>() => UnregisterExecutable(typeof(T));
     public static void UnregisterExecutable(Type exeType)
     {
-        CustomExes.RemoveAll(x => x.Value.ExeType == exeType);
+        CustomExes.RemoveAll(x => x.ExeType == exeType);
     }
 
     public static void AddGameExecutable(this OS os, GameExecutable exe, Rectangle location, string[] args)
@@ -139,46 +140,14 @@ public static class ExecutableManager
         }
         return true;
     }
-    
-    [HarmonyILManipulator]
-    [HarmonyPatch(typeof(Programs), nameof(Programs.execute))]
-    private static void programsExecuteFix(ILContext il){
-        var c = new ILCursor(il);
 
-        ILLabel branchCondition = null;
-
-        c.GotoNext(MoveType.After,
-            // for (int i = 0; i < folder.files.Count; i++)
-            // int i = 0;
-            x => x.MatchNop(),
-            x => x.MatchLdcI4(0),
-            x => x.MatchStloc(2),
-            x => x.MatchBr(out branchCondition),
-            // for (int j = 0; j < PortExploits.exeNums.Count; j++)
-            // int j = 0;
-            x => x.MatchNop()
-        );
-
-        c.Emit(OpCodes.Ldloc_1);
-        c.Emit(OpCodes.Ldloc_2);
-        c.Emit(OpCodes.Ldarg_1);
-
-        c.EmitDelegate<Func<Folder, int, OS, bool>>((folder, i, os) => {
-            if(CustomExes.Any(x => x.Value.ExeData == folder.files[i].data)){
-                os.write(folder.files[i].name.Replace(".exe", ""));
-                return true;
-            }
-            return false;
-        });
-
-        int i = c.Index;
-
-        c.GotoLabel(branchCondition, MoveType.Before);
-        c.Index -= 5;
-        ILLabel branchIncrement = c.MarkLabel();
-
-        c.Index = i;
-        c.Emit(OpCodes.Brtrue, branchIncrement);
+    private static void OnExecutableList(ExecutableListEvent e)
+    {
+        foreach (FileEntry exeFile in e.BinExes.Keys.ToList())
+        {
+            if(CustomExes.Any(x => x.ExeData == exeFile.data))
+                e.BinExes[exeFile] = true;
+        }
     }
 
     [HarmonyILManipulator]
@@ -203,5 +172,40 @@ public static class ExecutableManager
             if(os.exes[index] is GameExecutable exe)
                 exe.Completed();
         });
+    }
+
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(Programs), nameof(Programs.kill))]
+    private static void programsKillFix(ILContext il)
+    {
+        ILCursor c = new ILCursor(il);
+
+        ILLabel leaveLabel = null;
+        c.GotoNext(
+            x => x.MatchLeaveS(out leaveLabel)
+        );
+
+        // os.write("Process " + num + "[" + os.exes[num2].IdentifierName + "] Ended");
+        c.GotoPrev(MoveType.Before,
+            x => x.MatchLdstr("] Ended")
+        );
+        c.Remove();
+        c.Emit(OpCodes.Ldarg_1);
+        c.Emit(OpCodes.Ldloc_1);
+        c.EmitDelegate<Func<OS, int, bool>>((os, num2) =>
+            os.exes[num2].CanKill()
+        );
+        c.Emit(OpCodes.Stloc_3); // no longer in use
+        c.Emit(OpCodes.Ldloc_3);
+        c.EmitDelegate<Func<bool, string>>(canKill =>
+            canKill ? "] Ended" : "] Did not Respond"
+        );
+
+        // (no C# code)
+        c.GotoNext(MoveType.After,
+            x => x.MatchCallvirt(AccessTools.Method(typeof(OS), nameof(OS.write)))
+        );
+        c.Emit(OpCodes.Ldloc_3);
+        c.Emit(OpCodes.Brfalse, leaveLabel);
     }
 }
