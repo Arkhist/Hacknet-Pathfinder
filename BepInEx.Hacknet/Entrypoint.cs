@@ -10,6 +10,8 @@ public static class Entrypoint
 {
     public static void Bootstrap()
     {
+        WriteDiagnosticHeader();
+
         AppDomain.CurrentDomain.AssemblyResolve += ResolveBepAssembly;
         if (Type.GetType("Mono.Runtime") != null)
             AppDomain.CurrentDomain.AssemblyResolve += ResolveGACAssembly;
@@ -18,6 +20,33 @@ public static class Entrypoint
         Environment.SetEnvironmentVariable("MONOMOD_DMD_TYPE", "dynamicmethod");
 
         LoadBepInEx.Load();
+    }
+
+    private static void WriteDiagnosticHeader()
+    {
+        string Center(string s, int r)
+        {
+            int x = r   - s.Length;
+            int l = x/2 + s.Length;
+            return s.PadLeft(l).PadRight(r);
+        }
+        void WriteInBox(params string[] lines)
+        {
+            int l = lines.Max(s => s.Length);
+
+            Console.WriteLine("#" + new string('=', l+2) + "#");
+            foreach (string line in lines)
+                Console.WriteLine("| " + Center(line,l) + " |");
+            Console.WriteLine("#" + new string('=', l+2) + "#");
+        }
+        bool hasDLC  = File.Exists("Content/DLC/DLCFaction.xml");
+        bool isSteam = typeof(HN.PlatformAPI.Storage.SteamCloudStorageMethod).GetField("deserialized") != null;
+        WriteInBox
+        (
+            $"Hacknet {(hasDLC ? "+Labyrinths " : "")}{(isSteam ? "Steam" : "Non-Steam")} {HN.MainMenu.OSVersion}",
+            $"{Environment.OSVersion.Platform} ({SDL2.SDL.SDL_GetPlatform()})",
+            $"Chainloader {HacknetChainloader.VERSION}"
+        );
     }
 
     public static Assembly ResolveBepAssembly(object sender, ResolveEventArgs args)
