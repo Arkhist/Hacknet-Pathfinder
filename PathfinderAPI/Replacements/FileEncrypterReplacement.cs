@@ -1,18 +1,22 @@
 using System.Runtime.InteropServices;
+using System.Text;
 using Hacknet;
 using HarmonyLib;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using Pathfinder.Util;
 
 namespace Pathfinder.Replacements;
 
 [HarmonyPatch]
-public static class FileEncrypterReplacement
+internal static class FileEncrypterReplacement
 {
     // Two things need to be replaced here
-    // First, decryption needs to be attempted at max 3 times for all three hash types when it wasn't created by Pathfinder.
+    // First, decryption needs to be attempted at max 4 times for all three hash types when it wasn't created by Pathfinder.
     // 1. Windows .NET Framework 64 bit's hash
     // 2. Windows .NET Framework 32 bit's hash (yes, they're different)
     // 3. Mono's older hash (the one shipped with Hacknet on Linux, newer Mono uses the NetFX hash (i think))
+    // 4. as a last resort, try GetHashCode (bleh)
     // Second, encryption should *always* use Pathfinder's stable hash.
     // Files encrypted by Pathfinder will get an extra header section just with PATHFINDER, so we can tell which are stable.
     // Stable hash I'm using here is FNV1a xor-folded to 16 bits, for its simplicity. https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function
@@ -95,8 +99,12 @@ public static class FileEncrypterReplacement
         }
         
         // password wasn't correct, time to guess at header decoding! :)
-        // the best way i can think of to do this is to see if the IP is just "ERROR" (default value), exists on the netmap, or just contains three dots (xxx.xxx.xxx.xxx)
-        // also checks if the header text is ERROR for good measure
+        // the best way i can think of to do this is to:
+        // 1. IP is
+        //   a. "ERROR" (default value)
+        //   b. exists on the netmap
+        //   c. just contains three dots (xxx.xxx.xxx.xxx)
+        // 2. header text is "ERROR" for good measure
         // should cover most cases
         foreach (var hashFunction in _hashFunctions)
         {
@@ -118,8 +126,18 @@ public static class FileEncrypterReplacement
             }
         }
         
-        // give up
-        __result = new[] { "", "", "", "", "", "" };
+        // give up, use GetHashCode to give back something for headers :(
+        var passHashBad = GetHashCodeHashBad(pass);
+        var emptyHashBad = GetHashCodeHashBad(string.Empty);
+        __result = new[]
+        {
+            FileEncrypter.Decrypt(headerParts[1], emptyHashBad),
+            FileEncrypter.Decrypt(headerParts[2], emptyHashBad),
+            null,
+            headerParts.Length > 4 ? FileEncrypter.Decrypt(headerParts[4], emptyHashBad) : null,
+            "0",
+            FileEncrypter.Decrypt(headerParts[3], passHashBad)
+        };
         return false;
     }
 
@@ -144,6 +162,27 @@ public static class FileEncrypterReplacement
     {
         __result = Fnv1aHash(code);
         return false;
+    }
+
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(FileEncrypter), nameof(FileEncrypter.EncryptString))]
+    private static void EncryptStringIL(ILContext il)
+    {
+        var c = new ILCursor(il);
+
+        var appendMethod = AccessTools.DeclaredMethod(typeof(StringBuilder), nameof(StringBuilder.Append), new[] { typeof(string) });
+        
+        c.GotoNext(MoveType.After, 
+            x => x.MatchCallvirt(appendMethod),
+            x => x.MatchPop()
+        );
+
+        c.Emit(OpCodes.Ldloc_2);
+        c.Emit(OpCodes.Ldstr, "::");
+        c.Emit(OpCodes.Callvirt, appendMethod);
+        c.Emit(OpCodes.Ldsfld, AccessTools.DeclaredField(typeof(FileEncrypterReplacement), nameof(PathfinderNeedle)));
+        c.Emit(OpCodes.Callvirt, appendMethod);
+        c.Emit(OpCodes.Pop);
     }
 
     private static ushort Fnv1aHash(string str)
