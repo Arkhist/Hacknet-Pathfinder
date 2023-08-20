@@ -42,7 +42,7 @@ public class EventReader
         if (Reader == null)
             using (XmlReader reader = XmlReader.Create(new StringReader(Text))) while (reader.Read());
 
-        using (Reader = Reader ?? XmlReader.Create(new StringReader(Text)))
+        using (Reader ??= XmlReader.Create(new StringReader(Text)))
         {
             while (Reader.Read())
             {
