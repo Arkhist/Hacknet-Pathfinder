@@ -33,6 +33,7 @@
     <TargetFrameworkProfile />
     <LangVersion>10</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <PathfinderSolutionDir>$(MSBuildThisFileDirectory)</PathfinderSolutionDir>
     <LibsDir>$(PathfinderSolutionDir)libs/</LibsDir>
