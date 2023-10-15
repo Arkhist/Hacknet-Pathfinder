@@ -196,7 +196,7 @@ public static class ActionsLoader
             case "AddIRCMessage":
                 return new SAAddIRCMessage()
                 {
-                    Author = ComputerLoader.filter(actionInfo.Attributes.GetOrThrow("Author", "Invalid author for AddIRCMessage", StringExtensions.HasContent)),
+                    Author = ComputerLoader.filter(actionInfo.Attributes.GetString("Author")),
                     Message = ComputerLoader.filter(string.IsNullOrEmpty(actionInfo.Content) ? throw new FormatException("Invalid message for AddIRCMessage") : actionInfo.Content),
                     Delay = actionInfo.Attributes.GetFloat("Delay"),
                     TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddIRCMessage", StringExtensions.HasContent)
