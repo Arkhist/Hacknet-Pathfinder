@@ -15,12 +15,6 @@
     </Reference>
     <Reference Include="Mono.Cecil, Version=0.11.4.0" Private="False" />
     <Reference Include="MonoMod.Utils, Version=21.9.19.1" Private="False" />
-
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="System.Memory" IncludeAssets="compile" PrivateAssets="all" Version="4.5.5" />
-    <PackageReference Include="System.Buffers" IncludeAssets="compile" PrivateAssets="all" Version="4.5.1" />
-    <PackageReference Include="System.Numerics.Vectors" IncludeAssets="compile" PrivateAssets="all" Version="4.5.0" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" IncludeAssets="compile" PrivateAssets="all" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
