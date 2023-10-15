@@ -2,6 +2,8 @@
 
 An extensive modding API and loader for Hacknet that enables practically limitless programable extensions to the game.
 
+Docs: https://arkhist.github.io/Hacknet-Pathfinder/
+
 ## Installation
 
 There are several options available to choose to install Pathfinder, the installer .exe, the installer .py, or the manually with the .zip.

@@ -30,6 +30,8 @@ public class PathfinderAPIPlugin : HacknetPlugin
         PathfinderAPIPlugin.HarmonyInstance = base.HarmonyInstance;
         Logger.LogSource = base.Log;
         PathfinderAPIPlugin.Config = base.Config;
+        
+        Environment.SetEnvironmentVariable("LD_PRELOAD", $"./lib{(Environment.Is64BitProcess ? "64" : "")}/libcef.so");
 
         foreach (var initMethod in typeof(PathfinderAPIPlugin).Assembly.GetTypes().SelectMany(AccessTools.GetDeclaredMethods))
         {
