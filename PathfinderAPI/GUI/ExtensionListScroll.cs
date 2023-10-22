@@ -37,7 +37,7 @@ internal static class ExtensionListScroll {
 		const double bottomMargin = 140;
 		const int itemHeight = 55;
 		int extensionsOnScreen = (int) ((fullScreen.Height - drawPos.Y - bottomMargin) / itemHeight) + 1;
-		int bottomMostPosition = self.Extensions.Count - extensionsOnScreen;
+		int bottomMostPosition = Math.Max(self.Extensions.Count - extensionsOnScreen, 0);
 
 		int newPosition = self.ScrollStartIndex + (int) GuiData.getMouseWheelScroll();
 		if(newPosition < 0)
