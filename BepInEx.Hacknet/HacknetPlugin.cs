@@ -26,7 +26,7 @@ public abstract class HacknetPlugin
     public abstract bool Load();
 
     /// <summary>
-    /// Runs after all plugins have executed thier Load method
+    /// Runs after all plugins have executed their Load method
     /// </summary>
     public virtual void PostLoad() {}
 
