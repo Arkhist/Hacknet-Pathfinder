@@ -515,9 +515,8 @@ public static class SaveLoader
                         break;
                     case "DLCCredits":
                         DLCCreditsDaemon dlcdaemon = null;
-                        string credits_title, credits_button = null;
-                        if (daemon.Attributes.TryGetValue("Title", out credits_title) ||
-                            daemon.Attributes.TryGetValue("Button", out credits_button))
+                        if (daemon.Attributes.TryGetValue("Title", out var credits_title) |
+                            daemon.Attributes.TryGetValue("Button", out var credits_button))
                             dlcdaemon = new DLCCreditsDaemon(comp, os, credits_title, credits_button);
                         else
                             dlcdaemon = new DLCCreditsDaemon(comp, os);
