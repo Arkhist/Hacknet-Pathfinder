@@ -1,7 +1,9 @@
 using Hacknet;
 using HarmonyLib;
+using Mono.Cecil;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using MonoMod.Utils;
 
 namespace Pathfinder.BaseGameFixes;
 
@@ -18,7 +20,10 @@ public static class KeepBranchesOnMailMissionCompletion {
 			x => x.MatchLdfld<Hacknet.Daemon>("os"),
 			x => x.MatchLdfld<OS>("branchMissions"),
 			x => x.MatchLdloc(4),
-			x => x.MatchCallvirt(out _),
+			x => x.MatchCallvirt(out MethodReference method) &&
+				method.DeclaringType.Is(typeof(List<ActiveMission>)) &&
+				method.Name == "get_Item"
+			,
 			x => x.MatchCall<MailServer>("attemptCompleteMission"),
 			x => x.MatchStloc(11)
 		);
@@ -28,7 +33,9 @@ public static class KeepBranchesOnMailMissionCompletion {
 			x => x.MatchLdarg(0),
 			x => x.MatchLdfld<Hacknet.Daemon>("os"),
 			x => x.MatchLdfld<OS>("branchMissions"),
-			x => x.MatchCallvirt(out _)
+			x => x.MatchCallvirt(out MethodReference method) &&
+				method.DeclaringType.Is(typeof(List<ActiveMission>)) &&
+				method.Name == "Clear"
 		);
 		Instruction endOfRange = cursor.Prev;
 
