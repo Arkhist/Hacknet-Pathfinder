@@ -41,6 +41,9 @@ public static class ExecutableManager
     }
     private static void OnExeExecute(ExecutableExecuteEvent e)
     {
+        if (e.Result != ExecutionResult.NotFound)
+            return;
+
         var exe = CustomExes.FirstOrNull(x => x.ExeData == e.ExecutableData);
         if (!exe.HasValue)
             return;
