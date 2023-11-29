@@ -5,6 +5,7 @@ using HarmonyLib;
 using Pathfinder.Meta;
 using Pathfinder.Util;
 using System.Globalization;
+using SDL2;
 
 namespace Pathfinder;
 
@@ -43,6 +44,10 @@ public class PathfinderAPIPlugin : HacknetPlugin
 
         CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
         CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+        
+        // Expose textures and renderbuffers to other OpenGL contexts for funky mods =D
+        SDL.SDL_GL_SetAttribute(SDL.SDL_GLattr.SDL_GL_SHARE_WITH_CURRENT_CONTEXT, 1);
+        
         return true;
     }
 }
