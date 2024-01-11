@@ -1,4 +1,4 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
 using Hacknet;
@@ -33,8 +33,7 @@ internal static class NeedsMissionComplete
             x => x.MatchLdfld(AccessTools.Field(typeof(SCOnConnect), nameof(SCOnConnect.needsMissionComplete)))
         );
 
-        // retain last 3 instructions (ldloc_4, br, ret) for earlier `return false`
-        c.RemoveRange((c.Instrs.Count - 3) - c.Index);
+        c.RemoveRange((c.Instrs.Count - 1) - c.Index);
         c.Emit(OpCodes.Ldarg_0);
         var startInst = c.Prev;
         c.Emit(OpCodes.Ldloc_0);
