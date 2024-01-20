@@ -108,13 +108,8 @@ internal static class ExtensionPluginPatches
 
     private static bool FirstExtensionLoaded = false;
 
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(ExtensionsMenuScreen), nameof(ExtensionsMenuScreen.ActivateExtensionPage))]
-    internal static void LoadTempPluginsPrefix(ExtensionInfo info, ref bool __runOriginal)
+    internal static bool LoadTempPlugins(ExtensionInfo info)
     {
-        if (!__runOriginal)
-            return;
-            
         if (!FirstExtensionLoaded)
         {
             HacknetChainloader.Instance.HarmonyInstance.PatchAll(typeof(ChainloaderFix));
@@ -136,7 +131,7 @@ internal static class ExtensionPluginPatches
                 HacknetChainloader.Instance.Execute();
             }
 
-            __runOriginal = true;
+            return true;
         }
         catch (Exception ex)
         {
@@ -144,8 +139,39 @@ internal static class ExtensionPluginPatches
 
             HacknetChainloader.Instance.Log.LogError($"A fatal exception occured while loading extension plugins, aborting:\n{ex}");
 
-            __runOriginal = false;
+            return false;
         }
+    }
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(ExtensionsMenuScreen), nameof(ExtensionsMenuScreen.ActivateExtensionPage))]
+    internal static void LoadTempPluginsOnExtensionPage(ExtensionInfo info, ref bool __runOriginal)
+    {
+        if (!__runOriginal)
+            return;
+
+        __runOriginal = LoadTempPlugins(info);
+    }
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(HN.Game1), nameof(HN.Game1.LoadInitialScreens))]
+    internal static void LoadTempPluginsOnExtstart(ILContext il)
+    {
+        ILCursor c = new ILCursor(il);
+
+        ILLabel skipLabel = null;
+        c.GotoNext(MoveType.Before,
+            x => x.MatchCall(AccessTools.Method(typeof(HN.MainMenu), nameof(HN.MainMenu.CreateNewAccountForExtensionAndStart))),
+            x => x.MatchNop(),
+            x => x.MatchNop(),
+            x => x.MatchBr(out skipLabel)
+        );
+        
+        c.GotoPrev(MoveType.After,
+            x => x.MatchStsfld(AccessTools.Field(typeof(ExtensionLoader), nameof(ExtensionLoader.ActiveExtensionInfo)))
+        );
+        c.EmitDelegate<Func<bool>>(() =>
+            LoadTempPlugins(ExtensionLoader.ActiveExtensionInfo)
+        );
+        c.Emit(OpCodes.Brfalse, skipLabel);
     }
 
     [HarmonyPostfix]
