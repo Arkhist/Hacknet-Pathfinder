@@ -157,13 +157,10 @@ internal static class ExtensionPluginPatches
     {
         ILCursor c = new ILCursor(il);
 
-        ILLabel skipLabel = null;
         c.GotoNext(MoveType.Before,
-            x => x.MatchCall(AccessTools.Method(typeof(HN.MainMenu), nameof(HN.MainMenu.CreateNewAccountForExtensionAndStart))),
-            x => x.MatchNop(),
-            x => x.MatchNop(),
-            x => x.MatchBr(out skipLabel)
+            x => x.MatchLdsfld(AccessTools.Field(typeof(HN.Settings), nameof(HN.Settings.MenuStartup)))
         );
+        ILLabel skipLabel = c.MarkLabel();
         
         c.GotoPrev(MoveType.After,
             x => x.MatchStsfld(AccessTools.Field(typeof(ExtensionLoader), nameof(ExtensionLoader.ActiveExtensionInfo)))
