@@ -66,23 +66,18 @@ public class ElementInfo
         writer.WriteEndElement();
     }
 
-    public static XElement ConvertToXElement(ElementInfo el)
+    public XElement ConvertToXElement()
     {
-        XElement Xel = new XElement(el.Name, el.Content);
-        foreach (KeyValuePair<string, string> elAt in el.Attributes)
+        XElement Xel = new(Name, Content);
+        foreach (KeyValuePair<string, string> elAt in Attributes)
         {
             Xel.SetAttributeValue(elAt.Key, elAt.Value);
         }
-        foreach (ElementInfo elx in el.Children)
+        foreach (ElementInfo elx in Children)
         {
-            Xel.Add(ConvertToXElement(elx));
+            Xel.Add(elx.ConvertToXElement());
         }
         return Xel;
-    }
-
-    public XElement ConvertToXElement()
-    {
-        return ConvertToXElement(this);
     }
 }
 
