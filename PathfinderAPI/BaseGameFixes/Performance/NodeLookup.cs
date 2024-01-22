@@ -4,8 +4,6 @@ using Hacknet.Misc;
 using HarmonyLib;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using Pathfinder.Event.BepInEx;
-using Pathfinder.Meta.Load;
 using Pathfinder.Util;
 
 namespace Pathfinder.BaseGameFixes.Performance;
@@ -126,94 +124,6 @@ internal static class NodeLookup
         comp.idName = "Gen" + MissionGenerator.generationCount;
         ComputerLookup.Add(comp);
     }
-
-    [Event]
-    internal static void PatchExtensionLoader(LoadEvent _)
-    {
-        Logger.LogSource.LogWarning("patching extension loader");
-        PathfinderAPIPlugin.HarmonyInstance.Patch(
-            AccessTools.Method(
-                AccessTools.TypeByName("Hacknet.Extensions.ExtensionLoader.<>c__DisplayClassa"),
-                "<ReloadExtensionNodes>b__8"
-            ),
-            postfix: new HarmonyMethod(AccessTools.Method(typeof(NodeLookup), nameof(RebuildReloadExtensionNodes))),
-            ilmanipulator: new HarmonyMethod(AccessTools.Method(typeof(NodeLookup), nameof(ModifyReloadExtensionNodes)))
-        );
-    }
-    // [HarmonyILManipulator]
-    // [HarmonyPatch("ExtensionLoader.<>c__DisplayClassa", "<ReloadExtensionNodes>b__8")]
-    internal static void ModifyReloadExtensionNodes(ILContext il)
-    {
-        ILCursor c = new(il);
-
-        ILLabel loopHead = null;
-        c.GotoNext(MoveType.Before,
-            // for (int i = 0; i < os.netMap.nodes.Count; i++)
-            x => x.MatchLdcI4(0),
-            x => x.MatchStloc(4),
-            // (no C# code)
-            x => x.MatchBr(out loopHead)
-        );
-        c.RemoveRange(3);
-
-        c.GotoLabel(loopHead);
-        int i = c.Index - 4;
-
-        c.GotoNext(MoveType.After,
-            // for (int i = 0; i < os.netMap.nodes.Count; i++)
-            // ...
-            // for (int i = 0; i < os.netMap.nodes.Count; i++)
-            // ...
-            x => x.MatchBrtrue(out _)
-        );
-        int j = c.Index;
-
-        c.Index = i;
-        c.RemoveRange(j-i);
-
-        c.GotoNext(MoveType.Before,
-            // Computer computer2 = os.netMap.nodes[i];
-            x => x.MatchLdarg(0),
-            x => x.MatchLdfld(AccessTools.Field(AccessTools.TypeByName("Hacknet.Extensions.ExtensionLoader.<>c__DisplayClassa"), "os")),
-            x => x.MatchLdfld(AccessTools.Field(typeof(OS), nameof(OS.netMap))),
-            x => x.MatchLdfld(AccessTools.Field(typeof(NetworkMap), nameof(NetworkMap.nodes))),
-            x => x.MatchLdloc(4),
-            x => x.MatchCallvirt(AccessTools.Method(typeof(List<Computer>), "get_Item")),
-            //
-            x => x.MatchStloc(5)
-        );
-        c.MoveAfterLabels();
-        c.RemoveRange(6);
-        c.Emit(OpCodes.Ldloc_0);
-        c.EmitDelegate<Func<Computer, Computer>>(computer =>
-            ComputerLookup.FindById(computer.idName));
-        c.Index++;
-        
-        ILLabel skipLabel = null;
-        c.FindNext(out _,
-            // if (computer2.idName == computer.idName)
-            // ...
-            x => x.MatchBrtrue(out skipLabel)
-        );
-
-        c.Emit(OpCodes.Ldloc, 5);
-        c.EmitDelegate<Func<Computer, bool>>(computer2 =>
-            computer2 == null
-        );
-        c.Emit(OpCodes.Brtrue, skipLabel);
-
-        c.Emit(OpCodes.Ldarg_0);
-        c.Emit(OpCodes.Ldfld, AccessTools.Field(AccessTools.TypeByName("Hacknet.Extensions.ExtensionLoader.<>c__DisplayClassa"), "os"));
-        c.Emit(OpCodes.Ldloc, 5);
-
-        c.EmitDelegate<Func<OS, Computer, int>>((os, computer2) =>
-            os.netMap.nodes.IndexOf(computer2));
-        c.Emit(OpCodes.Stloc, 4);
-    }
-    // [HarmonyPostfix]
-    // [HarmonyPatch("ExtensionLoader.<>c__DisplayClassa", "<ReloadExtensionNodes>b__8")]
-    internal static void RebuildReloadExtensionNodes() =>
-        ComputerLookup.RebuildLookups();
 
     [HarmonyILManipulator]
     [HarmonyPatch(typeof(ISPDaemon), nameof(ISPDaemon.DrawIPEntryScreen))]
