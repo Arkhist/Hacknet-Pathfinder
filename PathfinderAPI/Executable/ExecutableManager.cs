@@ -79,6 +79,17 @@ public static class ExecutableManager
         });
     }
 
+    public static bool IsXmlId(string xmlName) =>
+        CustomExes.Any(x => x.XmlId == xmlName);
+
+    public static bool IsExeData(string exeData) =>
+        CustomExes.Any(x => x.ExeData == exeData);
+
+    public static bool IsRegistered<T>() where T: BaseExecutable =>
+        IsRegistered(typeof(T));
+    public static bool IsRegistered(Type exeType) =>
+        CustomExes.Any(x => x.ExeType == exeType);
+
     public static string GetCustomExeData(string xmlName) => CustomExes.FirstOrNull(x => x.XmlId == xmlName)?.ExeData;
 
     public static void UnregisterExecutable(string xmlName)
@@ -148,7 +159,7 @@ public static class ExecutableManager
     {
         foreach (FileEntry exeFile in e.BinExes.Keys.ToList())
         {
-            if(CustomExes.Any(x => x.ExeData == exeFile.data))
+            if (IsExeData(exeFile.data))
                 e.BinExes[exeFile] = true;
         }
     }
