@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using HarmonyLib;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
@@ -35,7 +35,17 @@ public class ExecutableExecuteEvent : PathfinderEvent
     public Folder ExeFolder { get; private set; }
     public int FileIndex { get; private set; }
     public FileEntry ExeFile { get; private set; }
-    public ExecutionResult Result { get; set; } = ExecutionResult.NotFound;
+    private ExecutionResult _result = ExecutionResult.NotFound;
+    public ExecutionResult Result
+    {
+        get => _result;
+        set
+        {
+            _result = value;
+            if (value == ExecutionResult.Cancelled)
+                Cancelled = true;
+        }
+    }
 
     public ExecutableExecuteEvent(Computer com, OS os, Folder fol, int finde, FileEntry file, string[] args)
     {
@@ -85,7 +95,7 @@ public class ExecutableExecuteEvent : PathfinderEvent
             var executableExecuteEvent = new ExecutableExecuteEvent(com, os, fol, founde, f, args);
             EventManager<ExecutableExecuteEvent>.InvokeAll(executableExecuteEvent);
 
-            return executableExecuteEvent.Cancelled ? -1 : (int)executableExecuteEvent.Result;
+            return (int)(executableExecuteEvent.Cancelled ? ExecutionResult.Cancelled : executableExecuteEvent.Result);
         });
 
         c.Emit(OpCodes.Dup);
@@ -103,5 +113,6 @@ public enum ExecutionResult
 {
     NotFound = -1,
     Error = 0,
-    StartupSuccess = 1
+    StartupSuccess = 1,
+    Cancelled,
 }
