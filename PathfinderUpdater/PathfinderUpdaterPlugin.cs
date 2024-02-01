@@ -13,6 +13,13 @@ using Pathfinder.Meta;
 namespace PathfinderUpdater;
 
 [BepInPlugin(ModGUID, ModName, HacknetChainloader.VERSION)]
+[PluginInfo("An extension to Pathfinder which automatically updates BepInEx.Hacknet, PathfinderAPI, and PathfinderUpdater.",
+    Authors = new string[]
+    {
+        "Windows10CE (Araon)", "Spartan322 (George)"
+    }
+)]
+[PluginWebsite("Github", "https://github.com/Arkhist/Hacknet-Pathfinder")]
 [Updater(
     "https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases",
     "Pathfinder.Release.zip",
