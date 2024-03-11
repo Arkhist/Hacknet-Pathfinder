@@ -22,7 +22,7 @@ public static class ExecutableManager
         public Type ExeType;
     }
 
-    private static readonly List<CustomExeInfo> _customExes = new List<CustomExeInfo>();
+    private static readonly List<CustomExeInfo> _customExes = [];
 
     public static IReadOnlyList<CustomExeInfo> AllCustomExes => _customExes;
     
@@ -58,7 +58,7 @@ public static class ExecutableManager
                 e.Arguments.ToArray()
             );
         else
-            e.OS.addExe((BaseExecutable)Activator.CreateInstance(exe.Value.ExeType, new object[] { location, e.OS, e.Arguments.ToArray() }));
+            e.OS.addExe((BaseExecutable)Activator.CreateInstance(exe.Value.ExeType, [location, e.OS, e.Arguments.ToArray()]));
         e.Result = ExecutionResult.StartupSuccess;
     }
 
@@ -178,7 +178,7 @@ public static class ExecutableManager
             x => x.MatchLdarg(0),
             x => x.MatchLdfld(AccessTools.Field(typeof(OS), nameof(OS.exes))),
             x => x.MatchLdloc(1),
-            x => x.MatchCallvirt(AccessTools.Method(typeof(List<ExeModule>), nameof(List<ExeModule>.RemoveAt), new[] {typeof(int)}))
+            x => x.MatchCallvirt(AccessTools.Method(typeof(List<ExeModule>), nameof(List<ExeModule>.RemoveAt), [typeof(int)]))
         );
 
         c.Emit(OpCodes.Ldarg, 0);
@@ -191,38 +191,33 @@ public static class ExecutableManager
         });
     }
 
-    [HarmonyILManipulator]
+    [HarmonyPrefix]
     [HarmonyPatch(typeof(Programs), nameof(Programs.kill))]
-    private static void programsKillFix(ILContext il)
+    private static bool programsKillFix(string[] args, OS os)
     {
-        ILCursor c = new ILCursor(il);
-
-        ILLabel leaveLabel = null;
-        c.GotoNext(
-            x => x.MatchLeaveS(out leaveLabel)
-        );
-
-        // os.write("Process " + num + "[" + os.exes[num2].IdentifierName + "] Ended");
-        c.GotoPrev(MoveType.Before,
-            x => x.MatchLdstr("] Ended")
-        );
-        c.Remove();
-        c.Emit(OpCodes.Ldarg_1);
-        c.Emit(OpCodes.Ldloc_1);
-        c.EmitDelegate<Func<OS, int, bool>>((os, num2) =>
-            os.exes[num2].CanKill()
-        );
-        c.Emit(OpCodes.Stloc_3); // no longer in use
-        c.Emit(OpCodes.Ldloc_3);
-        c.EmitDelegate<Func<bool, string>>(canKill =>
-            canKill ? "] Ended" : "] Did not Respond"
-        );
-
-        // (no C# code)
-        c.GotoNext(MoveType.After,
-            x => x.MatchCallvirt(AccessTools.Method(typeof(OS), nameof(OS.write)))
-        );
-        c.Emit(OpCodes.Ldloc_3);
-        c.Emit(OpCodes.Brfalse, leaveLabel);
+        if (args is [_, var pidStr, ..] && int.TryParse(pidStr, out var pid))
+        {
+            foreach (var exe in os.exes)
+            {
+                if (exe.PID == pid)
+                {
+                    if (exe.Kill())
+                    {
+                        os.write($"Process {pidStr}[{exe.IdentifierName}] Ended");
+                    }
+                    else
+                    {
+                        os.write("The process did not respond");
+                    }
+                    return false;
+                }
+            }
+            os.write(LocaleTerms.Loc("Invalid PID"));
+        }
+        else
+        {
+            os.write(LocaleTerms.Loc("Error: Invalid PID or Input Format"));
+        }
+        return false;
     }
 }

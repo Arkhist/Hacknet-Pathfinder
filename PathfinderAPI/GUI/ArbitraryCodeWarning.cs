@@ -82,7 +82,7 @@ internal static class ArbitraryCodeWarning
             return true;
         }
 
-        List<string> warnings = new List<string>();
+        List<string> warnings = [];
         foreach (var dll in dlls)
         {
             try

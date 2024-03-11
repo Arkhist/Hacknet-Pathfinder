@@ -41,7 +41,7 @@ public class PathfinderAPIPlugin : HacknetPlugin
         }
 
         HarmonyInstance.PatchAll(typeof(PathfinderAPIPlugin).Assembly);
-
+        
         CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
         CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
         

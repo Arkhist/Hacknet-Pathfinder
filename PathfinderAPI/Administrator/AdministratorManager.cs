@@ -22,7 +22,7 @@ public static class AdministratorManager
             
         if (CustomAdministrators.TryGetValue(adminTypeName, out Type adminType))
         {
-            BaseAdministrator admin = (BaseAdministrator)Activator.CreateInstance(adminType, new object[] { comp, os });
+            BaseAdministrator admin = (BaseAdministrator)Activator.CreateInstance(adminType, [comp, os]);
             admin.LoadFromXml(info);
             comp.admin = admin;
         }

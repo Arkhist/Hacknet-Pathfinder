@@ -31,7 +31,7 @@ internal static class HHBS
             x => x.MatchLdsfld(AccessTools.Field(typeof(Settings), nameof(Settings.IsInExtensionMode)))
         );
 
-        var combine = AccessTools.Method(typeof(Path), nameof(Path.Combine), new Type[] { typeof(string), typeof(string) });
+        var combine = AccessTools.Method(typeof(Path), nameof(Path.Combine), [typeof(string), typeof(string)]);
             
         c.Emit(OpCodes.Ldloc_0);
         c.Emit(OpCodes.Ldstr, "HacknetPathfinder");

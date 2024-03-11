@@ -34,7 +34,7 @@ public static class MissionLoader
         public ParseOption Options;
     }
         
-    private static readonly List<MissionExecutorHolder> CustomExecutors = new List<MissionExecutorHolder>();
+    private static readonly List<MissionExecutorHolder> CustomExecutors = [];
 
     public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : MissionExecutor, new() => RegisterExecutor(typeof(T), element, options);
     public static void RegisterExecutor(Type executorType, string element, ParseOption options = ParseOption.None)
@@ -169,13 +169,13 @@ public static class MissionLoader
         if (ComputerLoader.MissionPreLoadComplete != null)
             ComputerLoader.MissionPreLoadComplete();
             
-        mission = new ActiveMission(new List<MisisonGoal>(), null, default)
+        mission = new ActiveMission([], null, default)
         {
             willSendEmail = true,
             reloadGoalsSourceFile = filename
         };
-        branches = new List<ActiveMission>();
-        mission.email.attachments = new List<string>();
+        branches = [];
+        mission.email.attachments = [];
 
         hasMissionTag = false;
             

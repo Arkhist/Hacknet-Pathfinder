@@ -35,7 +35,7 @@ public static class SaveLoader
         public ParseOption Options;
     }
         
-    private static readonly List<SaveExecutorHolder> CustomExecutors = new List<SaveExecutorHolder>();
+    private static readonly List<SaveExecutorHolder> CustomExecutors = [];
 
     public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : SaveExecutor, new() => RegisterExecutor(typeof(T), element, options);
     public static void RegisterExecutor(Type executorType, string element, ParseOption options = ParseOption.None)
@@ -595,7 +595,7 @@ public static class SaveLoader
             MissionGenerationParser.Other = root.Attributes.GetString("genOther", null);
         }
             
-        var goalsFile = root.Attributes.GetOrThrow("goals", "Invalid goals file for active mission", StringExtensions.ContentFileExists).ContentFilePath();
+        var goalsFile = root.Attributes.GetOrThrow("goals", "Invalid goals file for active mission", PFStringExtensions.ContentFileExists).ContentFilePath();
         return MissionLoader.LoadContentMission(goalsFile);
     }
 }

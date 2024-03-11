@@ -16,7 +16,7 @@ public class ElementInfo
     } = null;
     public ElementInfo Parent { get; set; }
     public Dictionary<string, string> Attributes { get; set; } = new Dictionary<string, string>();
-    public List<ElementInfo> Children { get; set; } = new List<ElementInfo>();
+    public List<ElementInfo> Children { get; set; } = [];
     public ulong NodeID { get; } = freeId++;
 
     public override string ToString()

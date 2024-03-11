@@ -21,7 +21,7 @@ public class CachedCustomTheme : IDisposable
     {
         foreach (var field in AccessTools.GetDeclaredFields(typeof(OS)).Where(x => x.FieldType == typeof(Color)))
         {
-            var dynMethod = new DynamicMethodDefinition(field.Name, typeof(Color).MakeByRefType(), new Type[] {typeof(OS)});
+            var dynMethod = new DynamicMethodDefinition(field.Name, typeof(Color).MakeByRefType(), [typeof(OS)]);
             var p = dynMethod.GetILProcessor();
             p.Emit(OpCodes.Ldarg_0);
             p.Emit(OpCodes.Ldflda, field);
@@ -100,24 +100,34 @@ public class CachedCustomTheme : IDisposable
         }
     }
 
-    [HarmonyReversePatch]
-    [HarmonyPatch(typeof(CustomTheme), nameof(CustomTheme.GetThemeForLayout))]
-    private static OSTheme GetLayoutForTheme(string name)
+    private static OSTheme GetThemeForLayout(string theme)
     {
-        void Manipulator(ILContext il)
+        if (theme == null)
+            return OSTheme.HacknetBlue;
+        switch (theme.ToLower())
         {
-            ILCursor c = new ILCursor(il);
-
-            // instead of getting the theme string from this, get it from arg 0
-            while (c.TryGotoNext(x =>
-                       x.MatchLdfld(AccessTools.Field(typeof(CustomTheme), nameof(CustomTheme.themeLayoutName)))))
-            {
-                c.Remove();
-            }
+            case "blue":
+                return OSTheme.HacknetBlue;
+            case "green":
+                return OSTheme.HackerGreen;
+            case "greencompact":
+                return OSTheme.GreenCompact;
+            case "white":
+            case "csec":
+                return OSTheme.HacknetWhite;
+            case "mint":
+            case "teal":
+                return OSTheme.HacknetMint;
+            case "colamaeleon":
+            case "cola":
+                return OSTheme.Colamaeleon;
+            case "riptide":
+                return OSTheme.Riptide;
+            case "riptide2":
+                return OSTheme.Riptide2;
+            default:
+                return OSTheme.HacknetPurple;
         }
-            
-        Manipulator(null);
-        return default;
     }
 
     public void ApplyTo(OS os)
@@ -141,7 +151,7 @@ public class CachedCustomTheme : IDisposable
             }
             else if (setting.Name == "themeLayoutName")
             {
-                ThemeManager.switchThemeLayout(os, GetLayoutForTheme(setting.Content));
+                ThemeManager.switchThemeLayout(os, GetThemeForLayout(setting.Content));
             }
         }
 

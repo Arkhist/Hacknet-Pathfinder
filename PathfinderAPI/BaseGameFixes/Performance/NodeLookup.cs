@@ -109,7 +109,7 @@ internal static class NodeLookup
 
         c.GotoNext(MoveType.After,
             x => x.MatchLdstr("practiceServer"),
-            x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(NetworkMap), nameof(NetworkMap.discoverNode), new Type[] { typeof(string) }))
+            x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(NetworkMap), nameof(NetworkMap.discoverNode), [typeof(string)]))
         );
 
         c.Emit(OpCodes.Ldnull);
@@ -224,7 +224,7 @@ internal static class NodeLookup
     }
 
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(NetworkMap), nameof(NetworkMap.discoverNode), new Type[]{ typeof(string) })]
+    [HarmonyPatch(typeof(NetworkMap), nameof(NetworkMap.discoverNode), [typeof(string)])]
     internal static bool ModifyNetworkMapDiscoverNodeString(NetworkMap __instance, string cName)
     {
         Computer c = ComputerLookup.FindById(cName);

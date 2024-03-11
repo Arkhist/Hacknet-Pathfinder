@@ -42,7 +42,7 @@ public static class ActionsLoader
             
         c.GotoNext(MoveType.Before,
             x => x.MatchLdloc(7),
-            x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(XmlReader), nameof(XmlReader.Create), new Type[] { typeof(Stream) })),
+            x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(XmlReader), nameof(XmlReader.Create), [typeof(Stream)])),
             x => x.MatchStloc(8),
             x => x.MatchLdloc(8),
             x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(SerializableAction), nameof(SerializableAction.Deserialize)))
@@ -152,7 +152,7 @@ public static class ActionsLoader
             case "LoadMission":
                 return ActionDelayDecorator.Create(actionInfo, new SALoadMission()
                 {
-                    MissionName = actionInfo.Attributes.GetOrThrow("MissionName", "Invalid mission for LoadMission action", StringExtensions.ContentFileExists)
+                    MissionName = actionInfo.Attributes.GetOrThrow("MissionName", "Invalid mission for LoadMission action", PFStringExtensions.ContentFileExists)
                 });
             case "RunFunction":
                 return new SARunFunction()
@@ -176,22 +176,22 @@ public static class ActionsLoader
                     tag = null;
                 return ActionDelayDecorator.Create(actionInfo, new SAAddMissionToHubServer()
                 {
-                    MissionFilepath = actionInfo.Attributes.GetOrWarn("MissionFilepath", "Invalid mission file path for AddMissionToHubServer", StringExtensions.ContentFileExists),
-                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddMissionToHubServer", StringExtensions.HasContent),
+                    MissionFilepath = actionInfo.Attributes.GetOrWarn("MissionFilepath", "Invalid mission file path for AddMissionToHubServer", PFStringExtensions.ContentFileExists),
+                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddMissionToHubServer", PFStringExtensions.HasContent),
                     AssignmentTag = tag,
                     StartsComplete = actionInfo.Attributes.GetBool("StartsComplete")
                 });
             case "RemoveMissionFromHubServer":
                 return ActionDelayDecorator.Create(actionInfo, new SARemoveMissionFromHubServer()
                 {
-                    MissionFilepath = actionInfo.Attributes.GetOrWarn("MissionFilepath", "Invalid mission file path for RemoveMissionFromHubServer", StringExtensions.ContentFileExists),
-                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for RemoveMissionFromHubServer", StringExtensions.HasContent)
+                    MissionFilepath = actionInfo.Attributes.GetOrWarn("MissionFilepath", "Invalid mission file path for RemoveMissionFromHubServer", PFStringExtensions.ContentFileExists),
+                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for RemoveMissionFromHubServer", PFStringExtensions.HasContent)
                 });
             case "AddThreadToMissionBoard":
                 return ActionDelayDecorator.Create(actionInfo, new SAAddThreadToMissionBoard()
                 {
-                    ThreadFilepath = actionInfo.Attributes.GetOrWarn("ThreadFilepath", "Invalid thread path for AddThreadToMissionBoard", StringExtensions.ContentFileExists),
-                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddThreadToMissionBoard", StringExtensions.HasContent)
+                    ThreadFilepath = actionInfo.Attributes.GetOrWarn("ThreadFilepath", "Invalid thread path for AddThreadToMissionBoard", PFStringExtensions.ContentFileExists),
+                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddThreadToMissionBoard", PFStringExtensions.HasContent)
                 });
             case "AddIRCMessage":
                 return new SAAddIRCMessage()
@@ -199,29 +199,29 @@ public static class ActionsLoader
                     Author = ComputerLoader.filter(actionInfo.Attributes.GetString("Author")),
                     Message = ComputerLoader.filter(string.IsNullOrEmpty(actionInfo.Content) ? throw new FormatException("Invalid message for AddIRCMessage") : actionInfo.Content),
                     Delay = actionInfo.Attributes.GetFloat("Delay"),
-                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddIRCMessage", StringExtensions.HasContent)
+                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AddIRCMessage", PFStringExtensions.HasContent)
                 };
             case "AddConditionalActions":
                 return new SAAddConditionalActions()
                 {
-                    Filepath = actionInfo.Attributes.GetOrWarn("Filepath", "Invalid actions path for AddConditionalActions", StringExtensions.ContentFileExists),
+                    Filepath = actionInfo.Attributes.GetOrWarn("Filepath", "Invalid actions path for AddConditionalActions", PFStringExtensions.ContentFileExists),
                     Delay = actionInfo.Attributes.GetFloat("Delay"),
                     DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                 };
             case "CopyAsset":
                 return ActionDelayDecorator.Create(actionInfo, new SACopyAsset()
                 {
-                    SourceComp = actionInfo.Attributes.GetOrThrow("SourceComp", "Invalid source computer for CopyAsset", StringExtensions.HasContent),
+                    SourceComp = actionInfo.Attributes.GetOrThrow("SourceComp", "Invalid source computer for CopyAsset", PFStringExtensions.HasContent),
                     SourceFilePath = actionInfo.Attributes.GetOrThrow("SourceFilePath", "Source file path is required for CopyAsset"),
-                    SourceFileName = actionInfo.Attributes.GetOrThrow("SourceFileName", "Invalid source file name for CopyAsset", StringExtensions.HasContent),
-                    DestComp = actionInfo.Attributes.GetOrThrow("DestComp", "Invalid dest computer for CopyAsset", StringExtensions.HasContent),
-                    DestFilePath = actionInfo.Attributes.GetOrThrow("DestFilePath", "Invalid dest file path for CopyAsset", StringExtensions.HasContent),
+                    SourceFileName = actionInfo.Attributes.GetOrThrow("SourceFileName", "Invalid source file name for CopyAsset", PFStringExtensions.HasContent),
+                    DestComp = actionInfo.Attributes.GetOrThrow("DestComp", "Invalid dest computer for CopyAsset", PFStringExtensions.HasContent),
+                    DestFilePath = actionInfo.Attributes.GetOrThrow("DestFilePath", "Invalid dest file path for CopyAsset", PFStringExtensions.HasContent),
                     DestFileName = actionInfo.Attributes.GetString("DestFileName", actionInfo.Attributes.GetString("SourceFileName"))
                 });
             case "CrashComputer":
                 return new SACrashComputer()
                 {
-                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target comp for CrashComputer", StringExtensions.HasContent),
+                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target comp for CrashComputer", PFStringExtensions.HasContent),
                     CrashSource = actionInfo.Attributes.GetString("CrashSource", null),
                     Delay = actionInfo.Attributes.GetFloat("Delay"),
                     DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
@@ -229,16 +229,16 @@ public static class ActionsLoader
             case "DeleteFile":
                 return new SADeleteFile()
                 {
-                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target comp for DeleteFile", StringExtensions.HasContent),
+                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target comp for DeleteFile", PFStringExtensions.HasContent),
                     FilePath = actionInfo.Attributes.GetOrThrow("FilePath", "Invalid path for DeleteFile"),
-                    FileName = actionInfo.Attributes.GetOrThrow("FileName", "Invalid file name for DeleteFile", StringExtensions.HasContent),
+                    FileName = actionInfo.Attributes.GetOrThrow("FileName", "Invalid file name for DeleteFile", PFStringExtensions.HasContent),
                     Delay = actionInfo.Attributes.GetFloat("Delay"),
                     DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                 };
             case "LaunchHackScript":
                 return new SALaunchHackScript()
                 {
-                    Filepath = actionInfo.Attributes.GetOrThrow("Filepath", "Invalid hackerscript path for LaunchHackScript", StringExtensions.ContentFileExists),
+                    Filepath = actionInfo.Attributes.GetOrThrow("Filepath", "Invalid hackerscript path for LaunchHackScript", PFStringExtensions.ContentFileExists),
                     TargetComp = actionInfo.Attributes.GetString("TargetComp", null),
                     SourceComp = actionInfo.Attributes.GetString("SourceComp", null),
                     RequireSourceIntact = actionInfo.Attributes.GetBool("RequireSourceIntact"),
@@ -249,7 +249,7 @@ public static class ActionsLoader
             case "SwitchToTheme":
                 return new SASwitchToTheme()
                 {
-                    ThemePathOrName = actionInfo.Attributes.GetOrThrow("ThemePathOrName", "Invalid theme name or path for SwitchToTheme", StringExtensions.HasContent),
+                    ThemePathOrName = actionInfo.Attributes.GetOrThrow("ThemePathOrName", "Invalid theme name or path for SwitchToTheme", PFStringExtensions.HasContent),
                     FlickerInDuration = actionInfo.Attributes.GetFloat("FlickerInDuration"),
                     Delay = actionInfo.Attributes.GetFloat("Delay"),
                     DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
@@ -273,9 +273,9 @@ public static class ActionsLoader
             case "AppendToFile":
                 return new SAAppendToFile()
                 {
-                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AppendToFile", StringExtensions.HasContent),
+                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for AppendToFile", PFStringExtensions.HasContent),
                     TargetFolderpath = actionInfo.Attributes.GetOrThrow("TargetFolderpath", "Invalid path for AppendToFile"),
-                    TargetFilename = actionInfo.Attributes.GetOrThrow("TargetFilename", "Invalid file name for AppendToFile", StringExtensions.HasContent),
+                    TargetFilename = actionInfo.Attributes.GetOrThrow("TargetFilename", "Invalid file name for AppendToFile", PFStringExtensions.HasContent),
                     DataToAdd = ComputerLoader.filter(actionInfo.Content ?? throw new FormatException("AppendToFile can't have no content")),
                     Delay = actionInfo.Attributes.GetFloat("Delay"),
                     DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
@@ -298,29 +298,29 @@ public static class ActionsLoader
                             return false;
                         return true;
                     }),
-                    Target = actionInfo.Attributes.GetOrThrow("Target", "Invalid target computer for ChangeAlertIcon", StringExtensions.HasContent),
+                    Target = actionInfo.Attributes.GetOrThrow("Target", "Invalid target computer for ChangeAlertIcon", PFStringExtensions.HasContent),
                     Delay = actionInfo.Attributes.GetFloat("Delay"),
                     DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                 };
             case "HideNode":
                 return new SAHideNode()
                 {
-                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for HideNode", StringExtensions.HasContent),
+                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for HideNode", PFStringExtensions.HasContent),
                     Delay = actionInfo.Attributes.GetFloat("Delay"),
                     DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                 };
             case "GivePlayerUserAccount":
                 return new SAGivePlayerUserAccount()
                 {
-                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for GivePlayerUserAccount", StringExtensions.HasContent),
-                    Username = actionInfo.Attributes.GetOrThrow("Username", "Invalid username for GivePlayerUserAccount", StringExtensions.HasContent),
+                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for GivePlayerUserAccount", PFStringExtensions.HasContent),
+                    Username = actionInfo.Attributes.GetOrThrow("Username", "Invalid username for GivePlayerUserAccount", PFStringExtensions.HasContent),
                     Delay = actionInfo.Attributes.GetFloat("Delay"),
                     DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                 };
             case "ChangeIP":
                 return new SAChangeIP()
                 {
-                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for ChangeIP", StringExtensions.HasContent),
+                    TargetComp = actionInfo.Attributes.GetOrThrow("TargetComp", "Invalid target computer for ChangeIP", PFStringExtensions.HasContent),
                     NewIP = actionInfo.Attributes.GetString("NewIP", null),
                     Delay = actionInfo.Attributes.GetFloat("Delay"),
                     DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
@@ -347,7 +347,7 @@ public static class ActionsLoader
             case "ShowNode":
                 return new SAShowNode()
                 {
-                    Target = actionInfo.Attributes.GetAnyOrThrow(new[] { "Target", "TargetComp" }, "Invalid target computer for ShowNode", StringExtensions.HasContent),
+                    Target = actionInfo.Attributes.GetAnyOrThrow(["Target", "TargetComp"], "Invalid target computer for ShowNode", PFStringExtensions.HasContent),
                     Delay = actionInfo.Attributes.GetFloat("Delay"),
                     DelayHost = actionInfo.Attributes.GetString("DelayHost", null)
                 };

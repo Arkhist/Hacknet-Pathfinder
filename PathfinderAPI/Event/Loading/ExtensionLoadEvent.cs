@@ -40,7 +40,7 @@ public class ExtensionLoadEvent : PathfinderEvent
 
     // I would hook Hacknet.Screens.DrawExtensionInfoDetail instead, but for some reason that method is cursed, so I look here instead
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(Button), nameof(Button.doButton), new Type[] { typeof(int), typeof(int), typeof(int), typeof(int), typeof(int), typeof(string), typeof(Color?) })]
+    [HarmonyPatch(typeof(Button), nameof(Button.doButton), [typeof(int), typeof(int), typeof(int), typeof(int), typeof(int), typeof(string), typeof(Color?)])]
     [HarmonyBefore("BepInEx.Hacknet.Chainloader")]
     private static void OnBackButtonPressPostfix(int myID, bool __result)
     {

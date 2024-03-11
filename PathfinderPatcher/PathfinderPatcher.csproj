@@ -1,14 +1,13 @@
-﻿<Project ToolsVersion="16.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup Label="Build">
     <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>12</LangVersion>
+    <PublishAot>true</PublishAot>
   </PropertyGroup>
 
-  <Import Project="..\Configurations.props" />
-
   <ItemGroup>
-    <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e" />
-
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="AsmResolver.DotNet" Version="5.5.1" />
   </ItemGroup>
 </Project>

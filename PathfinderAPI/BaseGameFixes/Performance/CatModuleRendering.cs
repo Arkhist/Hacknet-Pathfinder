@@ -55,7 +55,7 @@ internal static class CatModuleRendering
     private static string lastFileData = null;
         
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(ThemeManager), nameof(ThemeManager.switchTheme), new Type[] { typeof(object), typeof(OSTheme) })]
+    [HarmonyPatch(typeof(ThemeManager), nameof(ThemeManager.switchTheme), [typeof(object), typeof(OSTheme)])]
     internal static void CacheDisplayStringForThemeSwitch(object osObject)
     {
         var os = (OS) osObject;

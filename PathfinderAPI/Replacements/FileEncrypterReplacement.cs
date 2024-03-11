@@ -25,7 +25,7 @@ internal static class FileEncrypterReplacement
     // - Aaron
     
     // Just keep all the legacy hash functions in an array to make this easy to loop over
-    private static readonly Func<string, ushort>[] _hashFunctions = { Fx64Hash, MonoHash, Fx32Hash, GetHashCodeHashBad };
+    private static readonly Func<string, ushort>[] _hashFunctions = [Fx64Hash, MonoHash, Fx32Hash, GetHashCodeHashBad];
 
     private static readonly ushort Fnv1aEmptyHash = Fnv1aHash(string.Empty);
     
@@ -57,8 +57,8 @@ internal static class FileEncrypterReplacement
             var hash = Fnv1aHash(pass);
             var passcodeCheck = FileEncrypter.Decrypt(headerParts[3], hash);
             var correctPass = passcodeCheck == "ENCODED";
-            __result = new[]
-            {
+            __result =
+            [
                 // header text
                 FileEncrypter.Decrypt(headerParts[1], Fnv1aEmptyHash),
                 // IP address
@@ -71,7 +71,7 @@ internal static class FileEncrypterReplacement
                 correctPass ? "1" : "0",
                 // whatever the decryption attempt for ENCODED came back as (even if it failed)
                 passcodeCheck
-            };
+            ];
             return false;
         }
 
@@ -85,15 +85,15 @@ internal static class FileEncrypterReplacement
             if (correct)
             {
                 var emptyHash = hashFunction(string.Empty);
-                __result = new[]
-                {
+                __result =
+                [
                     FileEncrypter.Decrypt(headerParts[1], emptyHash),
                     FileEncrypter.Decrypt(headerParts[2], emptyHash),
                     FileEncrypter.Decrypt(lines[1], attempedHash),
                     headerParts.Length > 4 ? FileEncrypter.Decrypt(headerParts[4], emptyHash) : null,
                     "1",
                     decodedMarker
-                };
+                ];
                 return false;
             }
         }
@@ -113,15 +113,15 @@ internal static class FileEncrypterReplacement
             var headerText = FileEncrypter.Decrypt(headerParts[1], emptyHash);
             if (decodedIp == "ERROR" || ComputerLookup.FindByIp(decodedIp, false) != null || decodedIp.Count(c => c == '.') == 3 || headerText == "ERROR")
             {
-                __result = new[]
-                {
+                __result =
+                [
                     headerText,
                     decodedIp,
                     null,
                     headerParts.Length > 4 ? FileEncrypter.Decrypt(headerParts[4], emptyHash) : null,
                     "0",
                     FileEncrypter.Decrypt(headerParts[3], hashFunction(pass))
-                };
+                ];
                 return false;
             }
         }
@@ -129,15 +129,15 @@ internal static class FileEncrypterReplacement
         // give up, use GetHashCode to give back something for headers :(
         var passHashBad = GetHashCodeHashBad(pass);
         var emptyHashBad = GetHashCodeHashBad(string.Empty);
-        __result = new[]
-        {
+        __result =
+        [
             FileEncrypter.Decrypt(headerParts[1], emptyHashBad),
             FileEncrypter.Decrypt(headerParts[2], emptyHashBad),
             null,
             headerParts.Length > 4 ? FileEncrypter.Decrypt(headerParts[4], emptyHashBad) : null,
             "0",
             FileEncrypter.Decrypt(headerParts[3], passHashBad)
-        };
+        ];
         return false;
     }
 
@@ -147,12 +147,12 @@ internal static class FileEncrypterReplacement
     {
         // i'm too lazy to actually implement this.
         var fullDecrypt = FileEncrypter.DecryptString(data, pass);
-        __result = new[]
-        {
+        __result =
+        [
             fullDecrypt[0],
             fullDecrypt[1],
             fullDecrypt[3]
-        };
+        ];
         return false;
     }
 
@@ -170,7 +170,7 @@ internal static class FileEncrypterReplacement
     {
         var c = new ILCursor(il);
 
-        var appendMethod = AccessTools.DeclaredMethod(typeof(StringBuilder), nameof(StringBuilder.Append), new[] { typeof(string) });
+        var appendMethod = AccessTools.DeclaredMethod(typeof(StringBuilder), nameof(StringBuilder.Append), [typeof(string)]);
         
         c.GotoNext(MoveType.After, 
             x => x.MatchCallvirt(appendMethod),

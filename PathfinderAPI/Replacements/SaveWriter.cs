@@ -59,11 +59,11 @@ public static class SaveWriter
                 {
                     throw new InvalidOperationException("More than one field in object " + action.ToString() + " is a content serializable type");
                 }
-                contentValue = string.Format(CultureInfo.InvariantCulture, "{0}", new object[] { field.GetValue(action) });
+                contentValue = string.Format(CultureInfo.InvariantCulture, "{0}", [field.GetValue(action)]);
             }
             else
             {
-                var fieldVal = string.Format(CultureInfo.InvariantCulture, "{0}", new object[] { field.GetValue(action) });
+                var fieldVal = string.Format(CultureInfo.InvariantCulture, "{0}", [field.GetValue(action)]);
                 result.SetAttributeValue(field.Name, fieldVal);
             }
         }
@@ -95,7 +95,7 @@ public static class SaveWriter
         var fields = condType.GetFields();
         foreach (var field in fields)
         {
-            var fieldVal = string.Format(CultureInfo.InvariantCulture, "{0}", new object[1] { field.GetValue(cond) });
+            var fieldVal = string.Format(CultureInfo.InvariantCulture, "{0}", [field.GetValue(cond)]);
             result.SetAttributeValue(field.Name, fieldVal);
         }
 
@@ -306,55 +306,54 @@ public static class SaveWriter
         switch (daemon)
         {
             case MailServer _:
-                result = CreateDaemonElement(daemon, "MailServer", 
-                    new[] {"name", "themeColor"}, 
-                    new[] {"name", "color"}
+                result = CreateDaemonElement(daemon, "MailServer",
+                    ["name", "themeColor"],
+                    ["name", "color"]
                 );
                 break;
             case MissionListingServer listServer:
                 if (listServer.HasCustomColor)
                     result = CreateDaemonElement(daemon, "MissionListingServer",
-                        new[]
-                        {
+                        [
                             "name", "groupName", "isPublic", "missionAssigner", "listingTitle", "IconReloadPath",
                             "themeColor", "ArticleFolderPath"
-                        },
-                        new[] {"name", "group", "public", "assign", "title", "icon", "color", "articles"}
+                        ],
+                        ["name", "group", "public", "assign", "title", "icon", "color", "articles"]
                     );
                 else
                     result = CreateDaemonElement(daemon, "MissionListingServer",
-                        new[] {"name", "groupName", "isPublic", "missionAssigner", "listingTitle"},
-                        new[] {"name", "group", "public", "assign", "title"}
+                        ["name", "groupName", "isPublic", "missionAssigner", "listingTitle"],
+                        ["name", "group", "public", "assign", "title"]
                     );
                 break;
             case AddEmailDaemon _:
                 result = CreateDaemonElement(daemon, "AddEmailServer",
-                    new[] {"name",},
-                    new[] {"name"}
+                    ["name"],
+                    ["name"]
                 );
                 break;
             case MessageBoardDaemon _:
                 result = CreateDaemonElement(daemon, "MessageBoard",
-                    new[] {"name", "BoardName"},
-                    new[] {"name", "boardName"}
+                    ["name", "BoardName"],
+                    ["name", "boardName"]
                 );
                 break;
             case OnlineWebServerDaemon _:
                 result = CreateDaemonElement(daemon, "OnlineWebServer",
-                    new[] {"name", "webURL"},
-                    new[] {"name", "url"}
+                    ["name", "webURL"],
+                    ["name", "url"]
                 );
                 break;
             case WebServerDaemon _:
                 result = CreateDaemonElement(daemon, "WebServer",
-                    new[] {"name", "saveURL"},
-                    new[] {"name", "url"}
+                    ["name", "saveURL"],
+                    ["name", "url"]
                 );
                 break;
             case AcademicDatabaseDaemon _:
                 result = CreateDaemonElement(daemon, "AcademicDatabse",
-                    new[] {"name"},
-                    new[] {"name"}
+                    ["name"],
+                    ["name"]
                 );
                 break;
             case MissionHubServer _:
@@ -367,7 +366,7 @@ public static class SaveWriter
                 result = CreateDaemonElement(daemon, "MedicalDatabase", new string[0], new string[0]);
                 break;
             case HeartMonitorDaemon _:
-                result = CreateDaemonElement(daemon, "HeartMonitor", new[] {"PatientID"}, new[] {"patient"});
+                result = CreateDaemonElement(daemon, "HeartMonitor", ["PatientID"], ["patient"]);
                 break;
             case PointClickerDaemon _:
                 result = CreateDaemonElement(daemon, "PointClicker", new string[0], new string[0]);
@@ -383,8 +382,8 @@ public static class SaveWriter
                 break;
             case UploadServerDaemon _:
                 result = CreateDaemonElement(daemon, "UploadServerDaemon",
-                    new[] {"name", "Foldername", "themeColor", "needsAuthentication", "hasReturnViewButton"},
-                    new[] {"name", "foldername", "color", "needsAuth", "hasReturnViewButton"}
+                    ["name", "Foldername", "themeColor", "needsAuthentication", "hasReturnViewButton"],
+                    ["name", "foldername", "color", "needsAuth", "hasReturnViewButton"]
                 );
                 break;
             case DLCHubServer _:
@@ -392,8 +391,8 @@ public static class SaveWriter
                 break;
             case DatabaseDaemon database:
                 result = CreateDaemonElement(daemon, "DatabaseDaemon",
-                    new[] {"name", "Permissions", "DataTypeIdentifier", "Foldername"},
-                    new[] {"Name", "Permissions", "DataType", "Foldername"}
+                    ["name", "Permissions", "DataTypeIdentifier", "Foldername"],
+                    ["Name", "Permissions", "DataType", "Foldername"]
                 );
                 if (database.HadThemeColorApplied)
                 {
@@ -407,9 +406,9 @@ public static class SaveWriter
 
                 break;
             case WhitelistConnectionDaemon _:
-                result = CreateDaemonElement(daemon, "WhitelistAuthenticatorDaemon", 
-                    new[] {"AuthenticatesItself"},
-                    new[] {"SelfAuthenticating"}
+                result = CreateDaemonElement(daemon, "WhitelistAuthenticatorDaemon",
+                    ["AuthenticatesItself"],
+                    ["SelfAuthenticating"]
                 );
                 break;
             case IRCDaemon _:
@@ -417,14 +416,14 @@ public static class SaveWriter
                 break;
             case MarkovTextDaemon _:
                 result = CreateDaemonElement(daemon, "MarkovTextDaemon",
-                    new[] {"name", "corpusFolderPath"},
-                    new[] {"Name", "SourceFilesContentFolder"}
+                    ["name", "corpusFolderPath"],
+                    ["Name", "SourceFilesContentFolder"]
                 );
                 break;
             case AircraftDaemon aircraft:
                 result = CreateDaemonElement(daemon, "AircraftDaemon",
-                    new[] {"name", "FlightProgress"},
-                    new[] {"Name", "Progress"}
+                    ["name", "FlightProgress"],
+                    ["Name", "Progress"]
                 );
                 result.SetAttributeValue("OriginX", aircraft.mapOrigin.X);
                 result.SetAttributeValue("OriginY", aircraft.mapOrigin.Y);
@@ -433,8 +432,8 @@ public static class SaveWriter
                 break;
             case LogoCustomConnectDisplayDaemon _:
                 result = CreateDaemonElement(daemon, "LogoCustomConnectDisplayDaemon",
-                    new[] {"logoImageName", "titleImageName", "LogoShouldClipOverdraw", "buttonAlignmentName"},
-                    new[] {"logo", "title", "overdrawLogo", "buttonAlignment"}
+                    ["logoImageName", "titleImageName", "LogoShouldClipOverdraw", "buttonAlignmentName"],
+                    ["logo", "title", "overdrawLogo", "buttonAlignment"]
                 );
                 break;
             case CustomConnectDisplayDaemon _:
@@ -442,8 +441,8 @@ public static class SaveWriter
                 break;
             case LogoDaemon _:
                 result = CreateDaemonElement(daemon, "LogoDaemon",
-                    new[] {"LogoImagePath", "showsTitle", "TextColor", "name"},
-                    new[] {"LogoImagePath", "ShowsTitle", "TextColor", "Name"}
+                    ["LogoImagePath", "showsTitle", "TextColor", "name"],
+                    ["LogoImagePath", "ShowsTitle", "TextColor", "Name"]
                 );
                 break;
             case DLCCreditsDaemon credits:

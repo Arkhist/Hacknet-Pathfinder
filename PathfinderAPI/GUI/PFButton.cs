@@ -7,7 +7,7 @@ namespace Pathfinder.GUI;
 public class PFButton : IDisposable
 {
     private static int _idCounter = int.MinValue;
-    private static readonly List<int> returnedIds = new List<int>();
+    private static readonly List<int> returnedIds = [];
     public static int GetNextID()
     {
         if (returnedIds.Count > 0)

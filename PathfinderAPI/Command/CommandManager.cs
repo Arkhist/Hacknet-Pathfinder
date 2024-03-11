@@ -49,10 +49,11 @@ public static class CommandManager
         }
     }
 
-    [HarmonyReversePatch(HarmonyReversePatchType.Original)]
-    [HarmonyPatch(typeof(ProgramList), nameof(ProgramList.init))]
-    [MethodImpl(MethodImplOptions.NoInlining)]
-    private static void OrigProgramListInit() { throw new NotImplementedException(); }
+    [Initialize]
+    private static void Initialize()
+    {
+        ProgramList.init();
+    }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(ProgramList), nameof(ProgramList.init))]
@@ -64,7 +65,6 @@ public static class CommandManager
 
     private static void RebuildAutoComplete()
     {
-        OrigProgramListInit();
         foreach (var command in CustomCommands.AllItems)
         {
             if (command.Autocomplete && !ProgramList.programs.Contains(command.Name))

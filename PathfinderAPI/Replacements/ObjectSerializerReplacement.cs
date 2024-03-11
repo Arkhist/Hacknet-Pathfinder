@@ -20,7 +20,7 @@ public static class ObjectSerializerReplacement
     }
         
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(ObjectSerializer), nameof(ObjectSerializer.SerializeObject), new Type[] { typeof(object), typeof(bool) })]
+    [HarmonyPatch(typeof(ObjectSerializer), nameof(ObjectSerializer.SerializeObject), [typeof(object), typeof(bool)])]
     public static bool SerializeObject(object o, bool preventOuterTag, ref string __result)
     {
         if (o == null)
@@ -39,7 +39,7 @@ public static class ObjectSerializerReplacement
     }
 
     [HarmonyILManipulator]
-    [HarmonyPatch(typeof(ObjectSerializer), nameof(ObjectSerializer.SerializeObject), new Type[] {typeof(object), typeof(bool)})]
+    [HarmonyPatch(typeof(ObjectSerializer), nameof(ObjectSerializer.SerializeObject), [typeof(object), typeof(bool)])]
     private static void DontSerializeStaticFields(ILContext il)
     {
         ILCursor c = new ILCursor(il);
@@ -50,7 +50,7 @@ public static class ObjectSerializerReplacement
     }
 
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(ObjectSerializer), nameof(ObjectSerializer.DeserializeObject), new Type[] { typeof(XmlReader), typeof(Type) })]
+    [HarmonyPatch(typeof(ObjectSerializer), nameof(ObjectSerializer.DeserializeObject), [typeof(XmlReader), typeof(Type)])]
     public static bool DeserializeObject(XmlReader rdr, Type t, out object __result)
     {
         var executor = new EventExecutor(rdr);
@@ -182,8 +182,8 @@ public static class ObjectSerializerReplacement
                 type = typeof(Neopal.PetType);
             }
 
-            return new List<ReflectiveRenderer.RenderableField>()
-            {
+            return
+            [
                 new ReflectiveRenderer.RenderableField()
                 {
                     IndentLevel = indent,
@@ -192,7 +192,7 @@ public static class ObjectSerializerReplacement
                     t = type,
                     VariableName = info.Name
                 }
-            };
+            ];
         }
             
         var list = new List<ReflectiveRenderer.RenderableField>()

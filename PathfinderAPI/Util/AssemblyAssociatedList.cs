@@ -28,7 +28,7 @@ public class AssemblyAssociatedList<T>
     public void Add(T val, Assembly owner)
     {
         if (!asmDictionary.ContainsKey(owner))
-            asmDictionary[owner] = new List<T>();
+            asmDictionary[owner] = [];
         asmDictionary[owner].Add(val);
 
         InvalidateCache();

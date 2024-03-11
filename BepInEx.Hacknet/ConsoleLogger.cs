@@ -26,4 +26,6 @@ internal class ConsoleLogger : ILogListener
         Console.Out.Write(eventArgs.ToStringLine());
         Console.ForegroundColor = ConsoleColor.Gray;
     }
+
+    public LogLevel LogLevelFilter => ConfigConsoleDisplayedLevel.Value;
 }

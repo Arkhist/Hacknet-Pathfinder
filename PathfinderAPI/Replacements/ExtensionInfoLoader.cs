@@ -31,14 +31,11 @@ public static class ExtensionInfoLoader
         public ParseOption Options;
     }
 
-    private static readonly List<string> ValidLanguages = new List<string>
-    {
-        "en-us", "de-de", "fr-be", "ru-ru", "es-ar", "ko-kr", "ja-jp", "zh-cn"
-    };
+    private static readonly List<string> ValidLanguages = ["en-us", "de-de", "fr-be", "ru-ru", "es-ar", "ko-kr", "ja-jp", "zh-cn"];
 
     public static void AddLanguage(string language) => ValidLanguages.Add(language);
         
-    private static readonly List<ExtensionInfoExecutorHolder> CustomExecutors = new List<ExtensionInfoExecutorHolder>();
+    private static readonly List<ExtensionInfoExecutorHolder> CustomExecutors = [];
 
     public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : ExtensionInfoExecutor, new() => RegisterExecutor(typeof(T), element, options);
     public static void RegisterExecutor(Type executorType, string element, ParseOption options = ParseOption.None)
@@ -83,7 +80,7 @@ public static class ExtensionInfoLoader
         executor.RegisterExecutor("AllowSaves", (exec, info) => extInfo.AllowSave = info.ContentAsBoolean(), ParseOption.ParseInterior);
         executor.RegisterExecutor("StartingVisibleNodes", (exec, info) =>
             extInfo.StartingVisibleNodes = info.Content
-                ?.Split(new[] {',', ' ', '\t', '\n', '\r', '/'}, StringSplitOptions.RemoveEmptyEntries) ?? new string[]{}, ParseOption.ParseInterior);
+                ?.Split(new[] {',', ' ', '\t', '\n', '\r', '/'}, StringSplitOptions.RemoveEmptyEntries) ?? [], ParseOption.ParseInterior);
         executor.RegisterExecutor("StartingMission", (exec, info) => extInfo.StartingMissionPath = info.Content != "NONE" ? info.Content : null, ParseOption.ParseInterior);
         executor.RegisterExecutor("StartingActions", (exec, info) => extInfo.StartingActionsPath = info.Content != "NONE" ? info.Content : null, ParseOption.ParseInterior);
         executor.RegisterExecutor("Description", (exec, info) => extInfo.Description = Utils.CleanFilterStringToRenderable(info.Content), ParseOption.ParseInterior);

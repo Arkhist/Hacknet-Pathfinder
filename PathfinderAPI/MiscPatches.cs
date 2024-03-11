@@ -22,7 +22,7 @@ internal static class MiscPatches
         if (formatType == null)
             return;
 
-        var original = AccessTools.Method(typeof(StackTrace), nameof(StackTrace.ToString), new Type[] { formatType });
+        var original = AccessTools.Method(typeof(StackTrace), nameof(StackTrace.ToString), [formatType]);
         var manipulator = AccessTools.Method(typeof(MiscPatches), nameof(IncludeILOffsetInTrace));
 
         PathfinderAPIPlugin.HarmonyInstance.Patch(original, ilmanipulator: new HarmonyMethod(manipulator));

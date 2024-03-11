@@ -8,10 +8,7 @@ public class ExecutableListEvent : PathfinderEvent
 {
     public OS OS { get; }
 
-    public List<string> EmbeddedExes { get; } = new List<string>
-    {
-        "PortHack", "ForkBomb", "Shell", "Tutorial"
-    };
+    public List<string> EmbeddedExes { get; } = ["PortHack", "ForkBomb", "Shell", "Tutorial"];
     public Dictionary<FileEntry, bool> BinExes { get; }
 
     public ExecutableListEvent(OS os, Dictionary<FileEntry, bool> binExes)

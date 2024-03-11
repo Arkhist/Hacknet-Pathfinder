@@ -24,7 +24,7 @@ public static class FixExtensionTests
             x => x.MatchLdstr("/"),
             x => x.MatchLdsfld(AccessTools.Field(typeof(ExtensionLoader), nameof(ExtensionLoader.ActiveExtensionInfo))),
             x => x.MatchLdfld(AccessTools.Field(typeof(ExtensionInfo), nameof(ExtensionInfo.StartingMissionPath))),
-            x => x.MatchCall(AccessTools.Method(typeof(string), nameof(string.Concat), new Type[] { typeof(string), typeof(string), typeof(string) })),
+            x => x.MatchCall(AccessTools.Method(typeof(string), nameof(string.Concat), [typeof(string), typeof(string), typeof(string)])),
             _ => true,
             x => x.MatchCall(AccessTools.Method(typeof(TestSuite), nameof(TestSuite.TestMission))),
             x => x.MatchStloc(out int _)
@@ -56,7 +56,7 @@ public static class FixExtensionTests
             x => x.MatchLdstr("/"),
             x => x.MatchLdarg(0),
             x => x.MatchLdfld(AccessTools.Field(typeof(ExtensionInfo), nameof(ExtensionInfo.StartingMissionPath))),
-            x => x.MatchCall(AccessTools.Method(typeof(string), nameof(string.Concat), new Type[] { typeof(string), typeof(string), typeof(string) })),
+            x => x.MatchCall(AccessTools.Method(typeof(string), nameof(string.Concat), [typeof(string), typeof(string), typeof(string)])),
             x => x.MatchCall(AccessTools.Method(typeof(File), nameof(File.Exists))),
             x => x.MatchStloc(3),
             x => x.MatchLdloc(3),

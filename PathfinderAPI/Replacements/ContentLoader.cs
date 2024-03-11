@@ -49,7 +49,7 @@ public static class ContentLoader
         public ParseOption Options;
     }
         
-    private static readonly List<ComputerExecutorHolder> CustomExecutors = new List<ComputerExecutorHolder>();
+    private static readonly List<ComputerExecutorHolder> CustomExecutors = [];
 
     public static void RegisterExecutor<T>(string element, ParseOption options = ParseOption.None) where T : ComputerExecutor, new() => RegisterExecutor(typeof(T), element, options);
     public static void RegisterExecutor(Type executorType, string element, ParseOption options = ParseOption.None)
@@ -80,7 +80,7 @@ public static class ContentLoader
     private static OS os = null;
     private static Computer comp = null;
     private static Computer eos = null;
-    private static readonly List<Computer> eosList = new List<Computer>();
+    private static readonly List<Computer> eosList = [];
     private static ComputerHolder holder = null;
 
     static ContentLoader()
@@ -832,7 +832,7 @@ public static class ContentLoader
 
         c.GotoNext(MoveType.Before,
             x => x.MatchLdloc(4),
-            x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(XmlReader), nameof(XmlReader.Create), new Type[] { typeof(Stream) })),
+            x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(XmlReader), nameof(XmlReader.Create), [typeof(Stream)])),
             x => x.MatchStloc(5),
             x => x.MatchLdloc(5),
             x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(Faction), nameof(Faction.loadFromSave)))

@@ -36,12 +36,12 @@ public class PathfinderUpdaterPlugin : HacknetPlugin
     public static bool NeedsUpdate;
     internal static Updater PathfinderUpdater;
 
-    public static readonly List<Updater> Updaters = new List<Updater>();
-    private static readonly List<string> UpdaterWhitelistGuids = new List<string>
-    {
+    public static readonly List<Updater> Updaters = [];
+    private static readonly List<string> UpdaterWhitelistGuids =
+    [
         "com.Pathfinder.API",
         "com.Pathfinder.Updater"
-    };
+    ];
 
     public override bool Load()
     {
@@ -55,8 +55,6 @@ public class PathfinderUpdaterPlugin : HacknetPlugin
         NoRestartPrompt = Config.Bind<bool>("AutoUpdater", "NoRestartPrompt", false, "Whether ot not the restart prompt will automatically appear when the update is finished");
 
         HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
-        if (Type.GetType("Mono.Runtime") != null)
-            HarmonyInstance.CreateClassProcessor(typeof(MonoRuntimeFixConfig), true).Patch();
 
         if (!IsEnabled.Value)
             return true;
@@ -133,15 +131,5 @@ public class PathfinderUpdaterPlugin : HacknetPlugin
             VersionToRequest = updater.LatestVersion;
         }
         return checks.ToArray();
-    }
-}
-
-public static class MonoRuntimeFixConfig
-{
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(ConfigurationManager), "OpenExeConfigurationInternal")]
-    private static void Prefix(out string exePath)
-    {
-        exePath = Paths.ExecutablePath;
     }
 }

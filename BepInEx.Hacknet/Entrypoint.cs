@@ -110,8 +110,8 @@ internal static class LoadBepInEx
             Paths.SetExecutablePath(typeof(HN.Program).Assembly.GetName().Name);
 
             Logger.Listeners.Add(new ConsoleLogger());
-            AccessTools.PropertySetter(typeof(TraceLogSource), nameof(TraceLogSource.IsListening)).Invoke(null, new object[] { true });
-            ConsoleManager.Initialize(true);
+            AccessTools.PropertySetter(typeof(TraceLogSource), nameof(TraceLogSource.IsListening)).Invoke(null, [true]);
+            ConsoleManager.Initialize(true, true);
 
             // Start chainloader for plugins
             var chainloader = new HacknetChainloader();

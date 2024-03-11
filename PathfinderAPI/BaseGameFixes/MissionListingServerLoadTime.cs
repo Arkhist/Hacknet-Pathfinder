@@ -44,7 +44,7 @@ internal static class MissionListingServerLoadTime
             {
                 foreach (var file in Directory.GetFiles(listingDaemon.CustomFolderLoadPath, "*.xml"))
                 {
-                    OS.currentInstance.branchMissions = new List<ActiveMission>();
+                    OS.currentInstance.branchMissions = [];
                     listingDaemon.addMisison(MissionLoader.LoadContentMission(file));
                 }
 
@@ -52,7 +52,7 @@ internal static class MissionListingServerLoadTime
                 {
                     for (int i = 0; i < 2; i++)
                     {
-                        OS.currentInstance.branchMissions = new List<ActiveMission>();
+                        OS.currentInstance.branchMissions = [];
                         listingDaemon.addMisison((ActiveMission)MissionGenerator.generate(2));
                     }
                 }

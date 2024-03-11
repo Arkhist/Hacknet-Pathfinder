@@ -30,7 +30,7 @@ public class DrawMainMenuTitlesEvent : MainMenuEvent
         ILCursor c = new ILCursor(il);
 
         c.GotoNext(MoveType.After,
-            x => x.MatchCall(AccessTools.Constructor(typeof(Rectangle), new Type[] { typeof(int), typeof(int), typeof(int), typeof(int) }))
+            x => x.MatchCall(AccessTools.Constructor(typeof(Rectangle), [typeof(int), typeof(int), typeof(int), typeof(int)]))
         );
 
         c.Emit(OpCodes.Ldarg_0);
@@ -78,7 +78,7 @@ public class DrawMainMenuTitlesEvent : MainMenuEvent
             x => x.MatchCall(AccessTools.Method(
                     typeof(TextItem),
                     nameof(TextItem.doFontLabel),
-                    new Type[] { typeof(Vector2), typeof(string), typeof(SpriteFont), typeof(Color?), typeof(float), typeof(float), typeof(bool) }
+                    [typeof(Vector2), typeof(string), typeof(SpriteFont), typeof(Color?), typeof(float), typeof(float), typeof(bool)]
                 )
             )
         );

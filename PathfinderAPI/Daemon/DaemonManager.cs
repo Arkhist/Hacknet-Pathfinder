@@ -8,7 +8,7 @@ namespace Pathfinder.Daemon;
 
 public static class DaemonManager
 {
-    internal static readonly List<Type> CustomDaemons = new List<Type>();
+    internal static readonly List<Type> CustomDaemons = [];
 
     static DaemonManager()
     {
@@ -20,7 +20,7 @@ public static class DaemonManager
         var daemonType = CustomDaemons.FirstOrDefault(x => x.Name == info.Name);
         if (daemonType != null)
         {
-            BaseDaemon daemon = (BaseDaemon)Activator.CreateInstance(daemonType, new object[] { comp, info.Name, os });
+            BaseDaemon daemon = (BaseDaemon)Activator.CreateInstance(daemonType, [comp, info.Name, os]);
             daemon.LoadFromXml(info);
             comp.daemons.Add(daemon);
             return true;

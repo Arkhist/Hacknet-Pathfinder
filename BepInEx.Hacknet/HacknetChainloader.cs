@@ -27,7 +27,7 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
     public static HacknetChainloader Instance;
 
     internal ManualLogSource Log = Logger.CreateLogSource("HacknetChainloader");
-    internal List<string> TemporaryPluginGUIDs = new List<string>();
+    internal List<string> TemporaryPluginGUIDs = [];
 
     internal Harmony HarmonyInstance;
     private bool _firstLoadDone = false;
@@ -126,8 +126,8 @@ internal static class ExtensionPluginPatches
 
             if (Directory.Exists(newPluginPath) && Directory.GetFiles(newPluginPath, "*.dll", SearchOption.AllDirectories).Length > 0)
             {
-                PluginPathSetter.Invoke(null, new object[] { newPluginPath });
-                ConfigPathSetter.Invoke(null, new object[] { newConfigPath });
+                PluginPathSetter.Invoke(null, [newPluginPath]);
+                ConfigPathSetter.Invoke(null, [newConfigPath]);
                 HacknetChainloader.Instance.Execute();
             }
 
@@ -210,28 +210,27 @@ internal static class ChainloaderFix
     internal static Dictionary<string, AssemblyDefinition> RemapDefinitions = new Dictionary<string, AssemblyDefinition>();
 
     [HarmonyILManipulator]
-    [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "Execute")]
+    [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "LoadPlugins", [typeof(IList<PluginInfo>)])]
     internal static void PluginCecilHacks(ILContext il)
     {
         ILCursor c = new ILCursor(il);
 
         c.GotoNext(MoveType.Before,
-            x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(Assembly), "LoadFile", new Type[] { typeof(string) }))
+            x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(Assembly), "LoadFrom", [typeof(string)]))
         );
 
         c.Remove();
         c.EmitDelegate<Func<string, Assembly>>(path =>
         {
-            byte[] asmBytes;
-            string name;
-
             var asm = AssemblyDefinition.ReadAssembly(path, new ReaderParameters()
             {
                 AssemblyResolver = new RenamedAssemblyResolver()
-            });
-            name = asm.Name.Name;
+            }); 
+            var name = asm.Name.Name;
             asm.Name.Name = asm.Name.Name + "-" + DateTime.Now.Ticks;
+            asm.MainModule.Attributes &= ~ModuleAttributes.Required32Bit;
 
+            byte[] asmBytes;
             using (var ms = new MemoryStream())
             {
                 asm.Write(ms);
@@ -267,7 +266,7 @@ internal static class LogWriteLineToDisk
     internal static TextWriter LogWriter = null;
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(Console), nameof(Console.WriteLine), new Type[] { typeof(string) })]
+    [HarmonyPatch(typeof(Console), nameof(Console.WriteLine), [typeof(string)])]
     internal static void WriteWriteLineToLog(string value)
     {
         LogWriter?.WriteLine(value);

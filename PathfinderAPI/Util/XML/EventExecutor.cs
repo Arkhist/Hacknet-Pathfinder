@@ -51,7 +51,7 @@ public class EventExecutor : EventReader
             var ret = new Dictionary<string, List<ExecutorHolder>>();
             foreach (var exec in Executors)
             {
-                ret[exec.Key] = new List<ExecutorHolder>(exec.Value);
+                ret[exec.Key] = [..exec.Value];
             }
 
             foreach (var temp in TemporaryExecutors)
@@ -59,7 +59,7 @@ public class EventExecutor : EventReader
                 if (ret.ContainsKey(temp.Key))
                     ret[temp.Key].AddRange(temp.Value);
                 else
-                    ret[temp.Key] = new List<ExecutorHolder>(temp.Value);
+                    ret[temp.Key] = [..temp.Value];
             }
 
             _allExecs = ret;
@@ -97,9 +97,9 @@ public class EventExecutor : EventReader
         Text = null;
         TemporaryExecutors = new Dictionary<string, List<ExecutorHolder>>();
         _allExecs = null;
-        currentExecutors = new List<ReadExecution>();
+        currentExecutors = [];
         currentElementStack = new Stack<ElementInfo>();
-        ParentNames = new List<string>();
+        ParentNames = [];
     }
 
     public void PopState()
@@ -117,9 +117,9 @@ public class EventExecutor : EventReader
     public void RegisterExecutor(string element, ReadExecution executor, ParseOption options = ParseOption.None)
     {
         if (!Executors.ContainsKey(element))
-            Executors.Add(element, new List<ExecutorHolder>());
+            Executors.Add(element, []);
         if (!TemporaryExecutors.ContainsKey(element))
-            TemporaryExecutors.Add(element, new List<ExecutorHolder>());
+            TemporaryExecutors.Add(element, []);
             
         if (Executors[element].Any(x => (x.Options & ParseOption.DontAllowOthers) != 0) ||
             TemporaryExecutors[element].Any(x => (x.Options & ParseOption.DontAllowOthers) != 0))
@@ -139,9 +139,9 @@ public class EventExecutor : EventReader
     public void RegisterTempExecutor(string element, ReadExecution executor, ParseOption options = ParseOption.None)
     {
         if (!TemporaryExecutors.ContainsKey(element))
-            TemporaryExecutors.Add(element, new List<ExecutorHolder>());
+            TemporaryExecutors.Add(element, []);
         if (!Executors.ContainsKey(element))
-            Executors.Add(element, new List<ExecutorHolder>());
+            Executors.Add(element, []);
             
         if (TemporaryExecutors[element].Any(x => (x.Options & ParseOption.DontAllowOthers) != 0) ||
             Executors[element].Any(x => (x.Options & ParseOption.DontAllowOthers) != 0))

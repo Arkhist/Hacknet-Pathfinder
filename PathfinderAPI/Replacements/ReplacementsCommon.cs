@@ -18,7 +18,7 @@ public static class ReplacementsCommon
 
         if (info.Children.TryGetElement("Commands", out var commands))
         {
-            foreach (var command in commands.Children.Select(x => x.Content).Where(StringExtensions.HasContent))
+            foreach (var command in commands.Children.Select(x => x.Content).Where(PFStringExtensions.HasContent))
             {
                 if (command.Contains("\n"))
                 {
@@ -107,16 +107,16 @@ public static class ReplacementsCommon
 
     internal static bool isPathfinderComputer = false;
 
-    internal static readonly List<ElementInfo> defaultPorts = new List<ElementInfo>
-    {
+    internal static readonly List<ElementInfo> defaultPorts =
+    [
         new ElementInfo() { Name = "web" },
         new ElementInfo() { Name = "smtp" },
         new ElementInfo() { Name = "ftp" },
         new ElementInfo() { Name = "ssh" }
-    };
+    ];
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(Computer), MethodType.Constructor, new Type[] { typeof(string), typeof(string), typeof(Vector2), typeof(int), typeof(byte), typeof(OS) })]
+    [HarmonyPatch(typeof(Computer), MethodType.Constructor, [typeof(string), typeof(string), typeof(Vector2), typeof(int), typeof(byte), typeof(OS)])]
     private static void LoadDefaultPortsIfReplacement(Computer __instance)
     {
         if (!isPathfinderComputer)

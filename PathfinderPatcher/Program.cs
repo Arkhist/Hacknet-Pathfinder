@@ -1,106 +1,85 @@
-﻿using System.Security;
-using SR = System.Reflection;
-using Mono.Cecil;
-using Mono.Cecil.Cil;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using AsmResolver.DotNet;
+using AsmResolver.DotNet.Cloning;
+using AsmResolver.DotNet.Code.Cil;
+using AsmResolver.PE.DotNet.Cil;
 
 namespace PathfinderPatcher;
 
-class Program
+internal static class Program
 {
-    static void Main(string[] args)
+    [UnconditionalSuppressMessage("Trimming", "IL2026")]
+    [UnconditionalSuppressMessage("Trimming", "IL2111")]
+    private static void Main(string[] args)
     {
-        using (AssemblyDefinition hn = AssemblyDefinition.ReadAssembly("Hacknet.exe"))
+        var hn = AssemblyDefinition.FromFile("Hacknet.exe");
+        var m = hn.ManifestModule!;
+
+        var newHn = new AssemblyDefinition("Hacknet", new Version(1, 0, 0, 1));
+        newHn.Modules.Add(new ModuleDefinition("Hacknet"));
+        var newM = newHn.ManifestModule!;
+
+        var cloner = new MemberCloner(newM)
+            .AddListener(new PublicizingListener())
+            .AddListener(new InjectTypeClonerListener(newM));
+
+        foreach (var type in m.TopLevelTypes)
+            cloner.Include(type);
+
+        cloner.Clone();
+
+        var importer = newM.DefaultImporter;
+
+        var cctor = newM.GetOrCreateModuleConstructor();
+        cctor.CilMethodBody = new CilMethodBody(cctor)
         {
-            void MakePublic(TypeDefinition type, bool nested = false)
+            Instructions =
             {
-                if (nested)
-                {
-                    type.IsNestedPublic = true;
-                }
-                else
-                {
-                    type.IsPublic = true;
-                }
-                foreach (var method in type.Methods)
-                    method.IsPublic = true;
-                foreach (var field in type.Fields)
-                    field.IsPublic = true;
-                foreach (var property in type.Properties)
-                {
-                    if (property.GetMethod != null)
-                        property.GetMethod.IsPublic = true;
-                    if (property.SetMethod != null)
-                        property.SetMethod.IsPublic = true;
-                }
-
-                foreach (var nestedType in type.NestedTypes)
-                {
-                    MakePublic(nestedType, true);
-                }
+                new CilInstruction(CilOpCodes.Ldstr, "./BepInEx/core/BepInEx.Hacknet.dll"),
+                new CilInstruction(CilOpCodes.Call, importer.ImportMethod(typeof(System.IO.Path).GetMethod("GetFullPath", [typeof(string)])!)),
+                new CilInstruction(CilOpCodes.Call, importer.ImportMethod(typeof(Assembly).GetMethod("LoadFile", [typeof(string)])!)),
+                new CilInstruction(CilOpCodes.Ldstr, "BepInEx.Hacknet.Entrypoint"),
+                new CilInstruction(CilOpCodes.Callvirt, importer.ImportMethod(typeof(Assembly).GetMethod("GetType", [typeof(string)])!)),
+                new CilInstruction(CilOpCodes.Ldstr, "Bootstrap"),
+                new CilInstruction(CilOpCodes.Callvirt, importer.ImportMethod(typeof(Type).GetMethod("GetMethod", [typeof(string)])!)),
+                new CilInstruction(CilOpCodes.Ldnull),
+                new CilInstruction(CilOpCodes.Ldnull),
+                new CilInstruction(CilOpCodes.Callvirt, importer.ImportMethod(typeof(MethodBase).GetMethod("Invoke", [typeof(object), typeof(object[])])!)),
+                new CilInstruction(CilOpCodes.Pop),
+                new CilInstruction(CilOpCodes.Ret)
             }
-                
-            // Make everything public
-            foreach (var type in hn.MainModule.Types)
-            {
-                MakePublic(type);
-            }
+        };
+        
+        newHn.Write("Hacknet.dll");
 
-            // We want to run before everything else, including the Main program function, so we make a static module constructor
-            var hnEntryType = hn.MainModule.Types.First(x => x.Name == "<Module>");
+        Console.WriteLine("Successfully wrote Hacknet.dll to disk");
+    }
+}
 
-            var ctor = new MethodDefinition(".cctor",
-                Mono.Cecil.MethodAttributes.Public
-                | Mono.Cecil.MethodAttributes.Static
-                | Mono.Cecil.MethodAttributes.HideBySig
-                | Mono.Cecil.MethodAttributes.SpecialName
-                | Mono.Cecil.MethodAttributes.RTSpecialName,
-                hn.MainModule.TypeSystem.Void
-            );
-
-            // Inject the call
-            var processor = ctor.Body.GetILProcessor();
-
-            // Get absolute path of BepInEx.Hacknet.dll
-            processor.Emit(OpCodes.Ldstr, "./BepInEx/core/BepInEx.Hacknet.dll");
-            processor.Emit(OpCodes.Call, hn.MainModule.ImportReference(typeof(System.IO.Path).GetMethod("GetFullPath", new Type[] { typeof(string) })));
-            // Load BepInEx.Hacknet.dll
-            processor.Emit(OpCodes.Call, hn.MainModule.ImportReference(typeof(SR.Assembly).GetMethod("LoadFile", new Type[] { typeof(string) })));
-            // Get Entrypoint type
-            processor.Emit(OpCodes.Ldstr, "BepInEx.Hacknet.Entrypoint");
-            processor.Emit(OpCodes.Call, hn.MainModule.ImportReference(typeof(SR.Assembly).GetMethod("GetType", new Type[] { typeof(string) })));
-            // Get bootstrap method
-            processor.Emit(OpCodes.Ldstr, "Bootstrap");
-            processor.Emit(OpCodes.Call, hn.MainModule.ImportReference(typeof(Type).GetMethod("GetMethod", new Type[] { typeof(string) })));
-            // Call bootstrap method
-            processor.Emit(OpCodes.Ldnull);
-            processor.Emit(OpCodes.Ldnull);
-            processor.Emit(OpCodes.Callvirt, hn.MainModule.ImportReference(typeof(SR.MethodBase).GetMethod("Invoke", new Type[] { typeof(object), typeof(object[]) })));
-            processor.Emit(OpCodes.Pop);
-            // Return
-            processor.Emit(OpCodes.Ret);
-
-            hnEntryType.Methods.Add(ctor);
-
-            // Hacknet needs to be able to access *everything*, this ensures that
-            var unverifiableType = hn.MainModule.ImportReference(typeof(UnverifiableCodeAttribute)).Resolve();
-            var unverifiableCtor = hn.MainModule.ImportReference(unverifiableType.Methods.First(x => x.IsConstructor && x.Parameters.Count == 0));
-            hn.MainModule.CustomAttributes.Add(new CustomAttribute(unverifiableCtor));
-
-            var corlibRef = hn.MainModule.AssemblyReferences.FirstOrDefault(x => x.Name == "mscorlib");
-            corlibRef.PublicKey = null;
-            corlibRef.PublicKeyToken = null;
-            corlibRef.HasPublicKey = false;
-
-            var targetRuntime = hn.CustomAttributes.FirstOrDefault(x => x.AttributeType.Name == "TargetFrameworkAttribute");
-            targetRuntime.ConstructorArguments.Clear();
-            targetRuntime.ConstructorArguments.Add(new CustomAttributeArgument(hn.MainModule.TypeSystem.String, ".NETFramework,Version=v4.7.2"));
-            targetRuntime.Properties.Clear();
-            targetRuntime.Properties.Add(new CustomAttributeNamedArgument("FrameworkDisplayName", new CustomAttributeArgument(hn.MainModule.TypeSystem.String, ".NET Framework 4.7.2")));
-
-            // Write modified assembly to disk
-            hn.Write("HacknetPathfinder.exe");
-                
-            Console.WriteLine("Successfully wrote HacknetPathfinder.exe to disk!");
+internal sealed class PublicizingListener : IMemberClonerListener
+{
+    public void OnClonedType(TypeDefinition original, TypeDefinition cloned)
+    {
+        if (cloned.IsNested)
+            cloned.IsNestedPublic = true;
+        else
+            cloned.IsPublic = true;
+    }
+    public void OnClonedMethod(MethodDefinition original, MethodDefinition cloned)
+    {
+        cloned.IsPublic = true;
+        if (original.Module.ManagedEntryPoint == original)
+        {
+            cloned.Module.ManagedEntryPoint = cloned;
         }
     }
+    public void OnClonedField(FieldDefinition original, FieldDefinition cloned)
+    {
+        cloned.IsPublic = true;
+    }
+    public void OnClonedMember(IMemberDefinition original, IMemberDefinition cloned) { }
+    public void OnClonedProperty(PropertyDefinition original, PropertyDefinition cloned) { }
+    public void OnClonedEvent(EventDefinition original, EventDefinition cloned) { }
 }

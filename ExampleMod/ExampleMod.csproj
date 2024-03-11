@@ -27,13 +27,13 @@
     </PropertyGroup>
 
     <PropertyGroup Label="Build">
-        <TargetFramework>net472</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <TargetFrameworkProfile />
         <LangVersion>10</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <AssemblySearchPaths>
         $(AssemblySearchPaths);
-        ../libs/;
+        ..\libs\;
         $(HacknetDir);
         </AssemblySearchPaths>
     </PropertyGroup>
@@ -55,23 +55,12 @@
     </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.5.5.0, Culture=neutral, PublicKeyToken=null" Private="False" />
-    <Reference Include="BepInEx.Core, Version=6.0.0.423, Culture=neutral, PublicKeyToken=null" Private="False" />
-    <Reference Include="FNA, Version=17.2.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
-    <Reference Include="Hacknet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Private="False">
-      <HintPath>../libs/HacknetPathfinder.exe</HintPath>
-    </Reference>
+    <Reference Include="BepInEx.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="FNA, Version=24.3.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="Hacknet, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null" Private="False" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BepInEx.Hacknet\BepInEx.Hacknet.csproj">
-      <Project>{64faeda5-e87c-47ed-8200-e1de1f263040}</Project>
-      <Name>BepInEx.Hacknet</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\PathfinderAPI\PathfinderAPI.csproj">
-      <Project>{4de0a4cf-ec60-46e1-ad96-be3a0f5be406}</Project>
-      <Name>PathfinderAPI</Name>
-      <Private>False</Private>
-    </ProjectReference>
+    <ProjectReference Include="..\BepInEx.Hacknet\BepInEx.Hacknet.csproj" Private="false" />
+    <ProjectReference Include="..\PathfinderAPI\PathfinderAPI.csproj" Private="false" />
   </ItemGroup>
 </Project>

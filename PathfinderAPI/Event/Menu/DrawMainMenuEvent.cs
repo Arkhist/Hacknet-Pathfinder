@@ -23,7 +23,7 @@ public class DrawMainMenuEvent : MainMenuEvent
         );
 
         c.Emit(OpCodes.Ldarg_0);
-        c.Emit(OpCodes.Newobj, AccessTools.DeclaredConstructor(typeof(DrawMainMenuEvent), new Type[] { typeof(MainMenu) }));
+        c.Emit(OpCodes.Newobj, AccessTools.DeclaredConstructor(typeof(DrawMainMenuEvent), [typeof(MainMenu)]));
         c.Emit(OpCodes.Call, AccessTools.DeclaredMethod(typeof(EventManager<DrawMainMenuEvent>), nameof(EventManager<DrawMainMenuEvent>.InvokeAll)));
     }
 }

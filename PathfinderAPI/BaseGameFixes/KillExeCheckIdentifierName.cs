@@ -19,7 +19,7 @@ public static class KillExeCheckIdentifierName
             // (...)
             x => x.MatchLdfld(AccessTools.Field(typeof(SAKillExe), nameof(SAKillExe.ExeName))),
             x => x.MatchCallvirt(AccessTools.Method(typeof(string), nameof(string.ToLower))),
-            x => x.MatchCallvirt(AccessTools.Method(typeof(string), nameof(string.Contains), new Type[]{ typeof(string) })),
+            x => x.MatchCallvirt(AccessTools.Method(typeof(string), nameof(string.Contains), [typeof(string)])),
             x => x.MatchLdcI4(0),
             x => x.MatchCeq()
         );

@@ -36,7 +36,7 @@ internal class EventHandler<T> : IComparable<EventHandler<T>>, IEquatable<EventH
     
 public static class EventManager
 {
-    internal static readonly List<object> Instances = new List<object>();
+    internal static readonly List<object> Instances = [];
     internal static void AddEventManagerInstance(object managerObj)
     {
         Instances.Add(managerObj);
@@ -64,15 +64,15 @@ public static class EventManager
         }
 
         object handlerDelegate = typeof(AccessTools)
-            .GetMethod("MethodDelegate")
+            .GetMethod("MethodDelegate", [typeof(MethodInfo), typeof(object), typeof(bool)])
             .MakeGenericMethod(typeof(Action<>).MakeGenericType(pathfinderEvent))
-            .Invoke(null, new object[] { handler, null, true });
+            .Invoke(null, [handler, null, true]);
 
         object eventHandler = Activator.CreateInstance(
             typeof(EventHandler<>).MakeGenericType(pathfinderEvent),
             AccessTools.all,
             default,
-            new object[] { handlerDelegate, options },
+            [handlerDelegate, options],
             default
         );
 
@@ -82,7 +82,7 @@ public static class EventManager
             
         eventManagerType
             .GetMethod("AddHandlerInternal", AccessTools.all)
-            .Invoke(instance, new object[] { eventHandler, handler.Module.Assembly });
+            .Invoke(instance, [eventHandler, handler.Module.Assembly]);
     }
 }
 

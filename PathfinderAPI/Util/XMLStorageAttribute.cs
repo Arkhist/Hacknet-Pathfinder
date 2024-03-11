@@ -166,12 +166,12 @@ public class XMLStorageAttribute : Attribute
                     continue;
                 }
 
-                setMethod.Invoke(obj, new object[] { trueVal });
+                setMethod.Invoke(obj, [trueVal]);
                 hasSetContent = true;
             }
             else
             {
-                setMethod.Invoke(obj, new object[] { trueVal });
+                setMethod.Invoke(obj, [trueVal]);
             }
         }
     }

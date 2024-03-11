@@ -1,5 +1,4 @@
 ﻿<Project ToolsVersion="16.0">
-
   <Import Project="..\Configurations.props" />
 
   <PropertyGroup>
@@ -7,21 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.5.5.0" Private="False" />
-    <Reference Include="BepInEx.Core, Version=6.0.0.423" Private="False" />
-    <Reference Include="FNA, Version=17.2.0.0" Private="False" />
-    <Reference Include="Hacknet, Version=1.0.0.0" Private="False">
-      <HintPath>$(LibsDir)HacknetPathfinder.exe</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil, Version=0.11.4.0" Private="False" />
-    <Reference Include="MonoMod.Utils, Version=21.9.19.1" Private="False" />
+    <Reference Include="BepInEx.Core, Version=6.0.0.0" Private="False" />
+    <Reference Include="FNA, Version=24.3.0.0" Private="False" />
+    <Reference Include="Hacknet, Version=1.0.0.1" Private="False" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj" Private="False">
-      <Project>{64faeda5-e87c-47ed-8200-e1de1f263040}</Project>
-      <Name>BepInEx.Hacknet</Name>
-      <Private>False</Private>
-    </ProjectReference>
+    <ProjectReference Include="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj" Private="False" />
   </ItemGroup>
 </Project>

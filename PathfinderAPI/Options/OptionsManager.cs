@@ -22,7 +22,7 @@ public class OptionsTab
 {
     public string Name;
 
-    public List<Option> Options = new List<Option>();
+    public List<Option> Options = [];
 
     internal int ButtonID = PFButton.GetNextID();
 

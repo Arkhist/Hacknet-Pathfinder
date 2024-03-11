@@ -15,7 +15,7 @@ namespace Pathfinder.BaseGameFixes.Performance;
 public static class ThemeCaching
 {
     private static FixedSizeCacheDict<string, CachedCustomTheme> CachedThemes = null;
-    private static List<string> ThemeTasks = new List<string>();
+    private static List<string> ThemeTasks = [];
 
     private static readonly object cacheLock = new object();
 
@@ -26,7 +26,7 @@ public static class ThemeCaching
     internal static void QueueUpCustomThemes(OS __instance)
     {
         TargetTheme = null;
-        ThemeTasks = new List<string>();
+        ThemeTasks = [];
             
         if (!Settings.IsInExtensionMode)
         {
@@ -65,7 +65,7 @@ public static class ThemeCaching
     }
 
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(ThemeManager), nameof(ThemeManager.switchTheme), new Type[] { typeof(object), typeof(string) })]
+    [HarmonyPatch(typeof(ThemeManager), nameof(ThemeManager.switchTheme), [typeof(object), typeof(string)])]
     internal static bool SwitchThemeReplacement(object osObject, string customThemePath)
     {
         var os = (OS) osObject;
@@ -123,7 +123,7 @@ public static class ThemeCaching
         
     // this is ONLY done by DLCIntroExe.UpdateUIFlickerIn and nowhere else, this is so so so so dumb
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(ThemeManager), nameof(ThemeManager.switchTheme), new Type[] { typeof(object), typeof(OSTheme) })]
+    [HarmonyPatch(typeof(ThemeManager), nameof(ThemeManager.switchTheme), [typeof(object), typeof(OSTheme)])]
     internal static bool SwitchToLastCustomTheme(object osObject, OSTheme theme)
     {
         if (theme == OSTheme.Custom)
