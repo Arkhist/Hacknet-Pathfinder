@@ -17,6 +17,10 @@ nav:
         - Ports: mod/ports.md
     - Pathfinder Development: 
         - Contributing: contributing.md
+    - Hacknet Documentation:
+        - GUI: hndocs/gui/README.md
+    - Development Guides:
+        - GUI Basics: guides/guibasics.md
     - API:
         - Classes: /doxybook/Classes
         - Namespaces: /doxybook/Namespaces
