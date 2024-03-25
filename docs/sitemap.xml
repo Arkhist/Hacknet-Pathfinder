@@ -2,57 +2,87 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://arkhist.github.io/Hacknet-Pathfinder/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2024-03-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://arkhist.github.io/Hacknet-Pathfinder/contributing/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2024-03-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://arkhist.github.io/Hacknet-Pathfinder/guides/guibasics/</loc>
+         <lastmod>2024-03-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://arkhist.github.io/Hacknet-Pathfinder/hndocs/gui/</loc>
+         <lastmod>2024-03-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://arkhist.github.io/Hacknet-Pathfinder/hndocs/gui/Buttons/</loc>
+         <lastmod>2024-03-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://arkhist.github.io/Hacknet-Pathfinder/hndocs/gui/CheckBoxes/</loc>
+         <lastmod>2024-03-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://arkhist.github.io/Hacknet-Pathfinder/hndocs/gui/Rectangles/</loc>
+         <lastmod>2024-03-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://arkhist.github.io/Hacknet-Pathfinder/hndocs/gui/TextItem/</loc>
+         <lastmod>2024-03-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://arkhist.github.io/Hacknet-Pathfinder/mod/actions/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2024-03-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://arkhist.github.io/Hacknet-Pathfinder/mod/administrators/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2024-03-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://arkhist.github.io/Hacknet-Pathfinder/mod/commands/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2024-03-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://arkhist.github.io/Hacknet-Pathfinder/mod/conditions/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2024-03-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://arkhist.github.io/Hacknet-Pathfinder/mod/daemons/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2024-03-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://arkhist.github.io/Hacknet-Pathfinder/mod/executables/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2024-03-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://arkhist.github.io/Hacknet-Pathfinder/mod/missions/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2024-03-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://arkhist.github.io/Hacknet-Pathfinder/mod/ports/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2024-03-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://arkhist.github.io/Hacknet-Pathfinder/mod/start/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2024-03-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

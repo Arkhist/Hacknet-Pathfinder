@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://arkhist.github.io/Hacknet-Pathfinder/guides/guibasics/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>GUI Basics - Hacknet Pathfinder Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "GUI Basics";
+        var mkdocs_page_input_path = "guides/guibasics.md";
+        var mkdocs_page_url = "/Hacknet-Pathfinder/guides/guibasics/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Hacknet Pathfinder Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Pathfinder</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mod Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mod/start/">Getting started</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mod/actions/">Actions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mod/administrators/">Administrators</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mod/commands/">Commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mod/conditions/">Conditions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mod/daemons/">Daemons</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mod/executables/">Executables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mod/missions/">Missions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mod/ports/">Ports</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pathfinder Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../contributing/">Contributing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hacknet Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../hndocs/gui/">GUI</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Development Guides</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">GUI Basics</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="/doxybook/Classes">Classes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/doxybook/Namespaces">Namespaces</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/doxybook/Modules">Modules</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/doxybook/Files">Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/doxybook/Pages">Related Pages</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="/doxybook/Examples">Examples</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Hacknet Pathfinder Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Development Guides</li>
+      <li class="breadcrumb-item active">GUI Basics</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><center></p>
+<h1>Hacknet GUI Basics</h1>
+<p></center></p>
+<hr />
+<p>This guide will go over the basics you need to know for handling GUI in Hacknet. For sake of example, we'll be doing everything relating to the GUI in a daemon. For now, we can use the <a href="../../mod/daemons/">example daemon</a>.</p>
+<pre><code class="language-csharp">[Pathfinder.Meta.Load.Daemon]
+public class CustomDaemon : Pathfinder.Daemon.BaseDaemon
+{
+    public CustomDaemon(Computer computer, string serviceName, OS opSystem) : base(computer, serviceName, opSystem) { }
+
+    public override string Identifier =&gt; &quot;Custom Daemon&quot;;
+
+    public override void draw(Rectangle bounds, SpriteBatch sb)
+    {
+        base.draw(bounds, sb);
+    }
+}
+</code></pre>
+<blockquote>
+<h2 id="xfna-tip-drawing-frames">[!] X/FNA Tip - Drawing Frames</h2>
+<p>FNA's <code>draw</code> method runs <em>every frame</em>. That means if the game is running at 60fps, then whatever you put in <code>draw</code> will fire sixty times every second. If you need to handle logic, it's better to put it in <code>Update</code>, but we'll get to that later.</p>
+</blockquote>
+<p>Don't worry about registering the daemon; the class attribute (<code>Pathfinder.Meta.Load.Daemon</code>) will do it for us automagically. (That's your word of the day!) Anywho. Now that we've got the daemon set up, let's get started with some basic GUI stuff. Let's draw a square! If you've read the docs, then you'll know we can do this with <a href="../../hndocs/gui/Rectangles/">RenderedRectangle</a>. We'll just be creating a 100x100 rectangle, but there is something we'll need to cover; bounds.</p>
+<p>When drawing in a section of the screen, such as a daemon or executable, you'll want to draw inside of its <code>bounds</code>. This is basically a <a href="https://learn.microsoft.com/en-us/previous-versions/windows/silverlight/dotnet-windows-silverlight/bb198628(v=xnagamestudio.35)"><code>Rectangle</code></a> that is fit to where the content should be. You'll want to draw inside these bounds, because Hacknet uses global positioning for drawing stuff. This means, for example, if you want to draw something 10 pixels from the left of a daemon display, you'd need to offset 10 pixels from the daemons <code>bounds.X</code>.</p>
+<h2 id="topic-1-rectangles">Topic 1: Rectangles</h2>
+<p>Let's say we want a 100x100 square that's 10 pixels from the top-left of the daemon. How would we do it? Give it a shot yourself; and then come back when you think you've got the answer.</p>
+<p>Back? Great! Here's what I did, personally;</p>
+<pre><code class="language-csharp">    public override void draw(Rectangle bounds, SpriteBatch sb)
+    {
+        base.draw(bounds, sb);
+
+        RenderedRectangle.doRectangle(bounds.X + 10, bounds.Y + 10, 100, 100, Color.White);
+    }
+</code></pre>
+<p>Yep, it's that easy. Now, when you put this daemon in a node (via <code>&lt;CustomDaemon/&gt;</code>), you'll see the rectangle you drew. Doesn't it look beautiful? Oh, also, congratulations! You're a Pathfinder mod developer now! This method is how you'd also draw things in an executable. However, before we give ourselves a pat on the back, we need to remember something! Hacknet is played by many different people, all with different types of screens. In other words, we should also size our stuff dynamically. For this, we can use <code>bounds.Width</code> and <code>bounds.Height</code>.</p>
+<p>In our case, we want to make a square. This means we can use the same value for width and height. Let's use... the bound's height. We don't want the square to be <em>huge</em>, so let's get, say, 10% of the height. Again, try this yourself before moving on!</p>
+<pre><code class="language-csharp">    public override void draw(Rectangle bounds, SpriteBatch sb)
+    {
+        base.draw(bounds, sb);
+
+        RenderedRectangle.doRectangle(bounds.X + 10, bounds.Y + 10, bounds.Height * 0.1f, bounds.Height * 0.1f, Color.White);
+    }
+</code></pre>
+<p>(<strong>NOTE</strong>: This can also be written as <code>bounds.Height / 10f</code>, but either works. I prefer multiplication most of the time, but to each their own.)</p>
+<p>Now that we're using percents of the display, this will look the same on all displays, for the most part. If we were to use the bound's width, it wouldn't be a <em>huge</em> worry, but it might look too big on ultrawide screens. Anyway, <em>now</em> you can pat yourself on the back; your daemon will look almost identical on every display. Hooray for parity!</p>
+<h2 id="topic-2-buttons">Topic 2: Buttons</h2>
+<p>Now, let's get a tiny bit more advanced, and create a button with a counter. It might be a good idea to clear the <code>draw</code> function again; but it's up to you.</p>
+<p><a href="../../hndocs/gui/Buttons/">Buttons</a> will be very useful to you moving forward; it's basically the main way a user interacts with daemons, and sometimes even executables! We'll be creating an easy button, just one that tracks how many times we've clicked it. We'll also be throwing a dash of <a href="../../hndocs/gui/TextItem/">text labels</a> in here for good measure. Don't worry - nothing too serious!</p>
+<p>I won't explain how buttons work here - <a href="../../hndocs/gui/Buttons/">the documentation page linked above</a> already does that. I will explain how to place them, though you will soon see it is not all different from how rectangles are placed. Let's create a pretty simple button that's 25 pixels offset from the top-left of the daemon bounds. Feel free to make it however big you want - I'll make mine half of the daemon's width, and 50px high. (Yes, the height is constant, but it's so small; so it's negligible in this context.)</p>
+<p>Additionally, we'll be using <code>PFButton</code> to get the button ID using <code>GetNextID</code>. This is best defined as a class field. (Don't forget to add <code>using Pathfinder.GUI;</code> to the top of your code!)</p>
+<pre><code class="language-csharp">    int buttonID = PFButton.GetNextID();
+
+    public override void draw(Rectangle bounds, SpriteBatch sb)
+    {
+        base.draw(bounds, sb);
+
+        Button.doButton(buttonID, bounds.X + 25, bounds.Y + 25, bounds.Width / 2, 50, &quot;Add to Counter&quot;, Color.White);
+    }
+</code></pre>
+<p>We'll also need to keep track of how many times the button is clicked, so let's define an <code>int</code> named <code>counter</code> as a class field. Additionally, let's store the button's value as a <code>bool</code>. We'll use that to create an <code>if</code> statement that will add to <code>counter</code> when <code>true</code>.</p>
+<pre><code class="language-csharp">    int buttonID = PFButton.GetNextID();
+    int counter = 0;
+
+    public override void draw(Rectangle bounds, SpriteBatch sb)
+    {
+        base.draw(bounds, sb);
+
+        bool buttonPressed = Button.doButton(buttonID, bounds.X + 25, bounds.Y + 25, bounds.Width / 2, 50, &quot;Add to Counter&quot;, Color.White);
+
+        if(buttonPressed) {
+            counter++;
+        }
+    }
+</code></pre>
+<p>Now, the button will add to the counter variable every time it is clicked. Wunderbar! (That's your German word of the day!) However, we have no way of showing the value of the counter. So, let's create a label that will show the value of counter. I'll be using a <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated">string template</a> here, but feel free to show it however you like.</p>
+<pre><code class="language-csharp">    int buttonID = PFButton.GetNextID();
+    int counter = 0;
+
+    public override void draw(Rectangle bounds, SpriteBatch sb)
+    {
+        base.draw(bounds, sb);
+
+        Vector2 textPosition = new Vector2(bounds.X + 25, bounds.Y + 100);
+        string labelText = $&quot;The button has been pressed {counter} time(s)!&quot;;
+
+        bool buttonPressed = Button.doButton(buttonID, bounds.X + 25, bounds.Y + 25, bounds.Width / 2, 50, &quot;Add to Counter&quot;, Color.White);
+        TextItem.doLabel(textPosition, labelText, Color.White);
+
+        if(buttonPressed) {
+            counter++;
+        }
+    }
+</code></pre>
+<blockquote>
+<h2 id="c-tip-interpolating-strings">[!] C# Tip - Interpolating Strings</h2>
+<p>Those coming from other languages might be more familiar with string concatenation. However, generally, string interpolation makes cleaner code. You can learn more about string interpolation in the <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated">Microsoft docs</a>.</p>
+</blockquote>
+<p>When you click the button, you should see the text update in real-time now. The more you click the button, the higher the value gets! Again, buttons can be used in this same manner in executables, as well. Overall, here's what our example daemon looks like:</p>
+<pre><code class="language-csharp">[Pathfinder.Meta.Load.Daemon]
+public class CustomDaemon : Pathfinder.Daemon.BaseDaemon
+{
+    public CustomDaemon(Computer computer, string serviceName, OS opSystem) : base(computer, serviceName, opSystem) { }
+
+    public override string Identifier =&gt; &quot;Custom Daemon&quot;;
+
+    int buttonID = PFButton.GetNextID();
+    int counter = 0;
+
+    public override void draw(Rectangle bounds, SpriteBatch sb)
+    {
+        base.draw(bounds, sb);
+
+        Vector2 textPosition = new Vector2(bounds.X + 25, bounds.Y + 100);
+        string labelText = $&quot;The button has been pressed {counter} time(s)!&quot;;
+
+        bool buttonPressed = Button.doButton(buttonID, bounds.X + 25, bounds.Y + 25, bounds.Width / 2, 50, &quot;Add to Counter&quot;, Color.White);
+        TextItem.doLabel(textPosition, labelText, Color.White);
+
+        if(buttonPressed) {
+            counter++;
+        }
+    }
+}
+</code></pre>
+<p>And the result: <br />
+<img alt="A screenshot of Hacknet showing a daemon with the button and text, stating the button has been pressed 12 times." src="../img/buttonCounterExample.png" /></p>
+<p>Congratulations! 🎉 Pat yourself on the back again, you are now familiar with the basics of Hacknet's GUI system. You can only get better from here - the sky's the limit!</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../hndocs/gui/" class="btn btn-neutral float-left" title="GUI"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../hndocs/gui/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
