@@ -1,4 +1,4 @@
-﻿using Hacknet.Gui;
+using Hacknet.Gui;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -47,13 +47,23 @@ public class PFButton : IDisposable
         Texture = texture;
     }
 
-    public bool Do()
+    public bool Do() =>
+        DoAt(X, Y);
+    public bool Do(Point offset) =>
+        Do(offset.X, offset.Y);
+    public bool Do(Rectangle offset) =>
+        Do(offset.X, offset.Y);
+    public bool Do(Vector2 offset) =>
+        Do((int) offset.X, (int) offset.Y);
+    public bool Do(int offsetX, int offsetY) =>
+        DoAt(X + offsetX, Y + offsetY);
+    private bool DoAt(int x, int y)
     {
         if (invalid)
             throw new ObjectDisposedException(nameof(PFButton), "This Button has been disposed, and is no longer valid");
         if (Texture == null)
-            return Button.doButton(ID, X, Y, Width, Height, Text, Color);
-        return Button.doButton(ID, X, Y, Width, Height, Text, Color, Texture);
+            return Button.doButton(ID, x, y, Width, Height, Text, Color);
+        return Button.doButton(ID, x, y, Width, Height, Text, Color, Texture);
     }
 
     public void Dispose()
