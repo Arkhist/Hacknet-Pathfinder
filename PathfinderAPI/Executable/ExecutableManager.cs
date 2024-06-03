@@ -41,6 +41,9 @@ public static class ExecutableManager
     }
     private static void OnExeExecute(ExecutableExecuteEvent e)
     {
+        if (e.Result != ExecutionResult.NotFound)
+            return;
+
         var exe = CustomExes.FirstOrNull(x => x.ExeData == e.ExecutableData);
         if (!exe.HasValue)
             return;
@@ -75,6 +78,17 @@ public static class ExecutableManager
             ExeType = executableType
         });
     }
+
+    public static bool IsXmlId(string xmlName) =>
+        CustomExes.Any(x => x.XmlId == xmlName);
+
+    public static bool IsExeData(string exeData) =>
+        CustomExes.Any(x => x.ExeData == exeData);
+
+    public static bool IsRegistered<T>() where T: BaseExecutable =>
+        IsRegistered(typeof(T));
+    public static bool IsRegistered(Type exeType) =>
+        CustomExes.Any(x => x.ExeType == exeType);
 
     public static string GetCustomExeData(string xmlName) => CustomExes.FirstOrNull(x => x.XmlId == xmlName)?.ExeData;
 
@@ -145,7 +159,7 @@ public static class ExecutableManager
     {
         foreach (FileEntry exeFile in e.BinExes.Keys.ToList())
         {
-            if(CustomExes.Any(x => x.ExeData == exeFile.data))
+            if (IsExeData(exeFile.data))
                 e.BinExes[exeFile] = true;
         }
     }

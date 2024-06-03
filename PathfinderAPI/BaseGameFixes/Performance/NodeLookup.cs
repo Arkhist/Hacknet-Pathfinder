@@ -45,18 +45,6 @@ internal static class NodeLookup
         }
     }
 
-    [HarmonyILManipulator]
-    [HarmonyPatch(typeof(ISPDaemon), nameof(ISPDaemon.DrawIPEntryScreen))]
-    internal static void OnISPChangeIP(ILContext il)
-    {
-        ILCursor c = new ILCursor(il);
-            
-        c.GotoNext(MoveType.After, x => x.MatchStfld(AccessTools.Field(typeof(Computer), nameof(Computer.ip))));
-
-        c.Emit(OpCodes.Ldnull);
-        c.Emit(OpCodes.Call, AccessTools.Method(typeof(ComputerLookup), nameof(ComputerLookup.RebuildLookups)));
-    }
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(AircraftDaemon), nameof(AircraftDaemon.CrashAircraft))]
     internal static void OnAircraftDaemonChangeIP()
@@ -135,6 +123,123 @@ internal static class NodeLookup
         var comp = (Computer)__result;
         comp.idName = "Gen" + MissionGenerator.generationCount;
         ComputerLookup.Add(comp);
+    }
+
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(ISPDaemon), nameof(ISPDaemon.DrawIPEntryScreen))]
+    internal static void ModifyISPDaemonDrawIPEntryScreen(ILContext il)
+    {
+        ILCursor c = new(il);
+
+        ILLabel loopHead = null;
+        c.GotoNext(MoveType.Before,
+            // flag = false;
+            x => x.MatchLdcI4(0),
+            x => x.MatchStloc(2),
+            // for (int i = 0; i < os.netMap.nodes.Count; i++)
+            x => x.MatchLdcI4(0),
+            x => x.MatchStloc(3),
+            // (no C# code)
+            x => x.MatchBr(out loopHead)
+        );
+        int i = c.Index;
+
+        c.GotoLabel(loopHead);
+        c.GotoNext(MoveType.After,
+            // for (int i = 0; i < os.netMap.nodes.Count; i++)
+            // ...
+            // for (int i = 0; i < os.netMap.nodes.Count; i++)
+            // ...
+            x => x.MatchBrtrue(out _)
+        );
+        int j = c.Index;
+
+        c.Index = i;
+        c.RemoveRange(j-i);
+
+        c.Emit(OpCodes.Ldarg_0);
+        c.EmitDelegate<Func<ISPDaemon, bool>>(__instance => {
+            Computer c = ComputerLookup.FindByIp(__instance.scannedComputer.ip, false);
+
+            return (c != null) && (c.idName != __instance.scannedComputer.idName);
+        });
+        c.Emit(OpCodes.Stloc_2);
+
+        c.Emit(OpCodes.Ldnull);
+        c.Emit(OpCodes.Call, AccessTools.Method(typeof(ComputerLookup), nameof(ComputerLookup.RebuildLookups)));
+    }
+    [HarmonyILManipulator]
+    [HarmonyPatch(typeof(ISPDaemon), nameof(ISPDaemon.DrawLoadingScreen))]
+    internal static void ModifyISPDaemonDrawLoadingScreen(ILContext il)
+    {
+        ILCursor c = new(il);
+
+        ILLabel loopHead = null;
+        c.GotoNext(MoveType.Before,
+            // scannedComputer = null;
+            x => x.MatchNop(),
+            x => x.MatchLdarg(0),
+            x => x.MatchLdnull(),
+            x => x.MatchStfld(AccessTools.Field(typeof(ISPDaemon), nameof(ISPDaemon.scannedComputer))),
+            // for (int i = 0; i < os.netMap.nodes.Count; i++)
+            x => x.MatchLdcI4(0),
+            x => x.MatchStloc(1),
+            // (no C# code)
+            x => x.MatchBr(out loopHead)
+        );
+        int i = ++c.Index;
+
+        c.GotoLabel(loopHead);
+        c.GotoNext(MoveType.After,
+            // for (int i = 0; i < os.netMap.nodes.Count; i++)
+            // ...
+            // for (int i = 0; i < os.netMap.nodes.Count; i++)
+            // ...
+            x => x.MatchBrtrue(out ILLabel _)
+        );
+        int j = c.Index;
+
+        c.Index = i;
+        c.RemoveRange(j-i);
+
+        c.Emit(OpCodes.Ldarg_0);
+        c.EmitDelegate<Action<ISPDaemon>>(__instance =>
+            __instance.scannedComputer = ComputerLookup.FindByIp(__instance.ipSearch, false));
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(MissionFunctions), nameof(MissionFunctions.findComp))]
+    internal static bool ModifyMissionFunctionsFindComp(string target, ref Computer __result)
+    {
+        __result = ComputerLookup.FindById(target);
+        return false;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Multiplayer), nameof(Multiplayer.getComp))]
+    internal static bool ModifyMultiplayerGetComp(string ip, OS os, ref Computer __result)
+    {
+        __result = ComputerLookup.FindByIp(ip, false);
+        return false;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(NetworkMap), nameof(NetworkMap.discoverNode), new Type[]{ typeof(string) })]
+    internal static bool ModifyNetworkMapDiscoverNodeString(NetworkMap __instance, string cName)
+    {
+        Computer c = ComputerLookup.FindById(cName);
+        if (c != null)
+            __instance.discoverNode(c);
+
+        return false;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Programs), nameof(Programs.computerExists))]
+    internal static bool ModifyProgramsComputerExists(OS os, string ip, ref bool __result)
+    {
+        __result = ComputerLookup.Find(ip, SearchType.Ip | SearchType.Name) != null;
+        return false;
     }
 
     [HarmonyPrefix]
