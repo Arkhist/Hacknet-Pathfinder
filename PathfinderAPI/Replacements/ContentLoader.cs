@@ -875,7 +875,7 @@ public static class ContentLoader
             executor.RegisterTempExecutor("Computer." + customDaemon.Name, (exec, info) =>
             {
                 DaemonManager.TryLoadCustomDaemon(info, comp, os);
-            });
+            }, ParseOption.ParseInterior);
         }
 
         ReplacementsCommon.isPathfinderComputer = true;
