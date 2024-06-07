@@ -2,6 +2,8 @@
 using System.Runtime.CompilerServices;
 using BepInEx.Logging;
 using HarmonyLib;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
 using HN = global::Hacknet;
 
 namespace BepInEx.Hacknet;
@@ -12,12 +14,10 @@ public static class Entrypoint
     {
         WriteDiagnosticHeader();
 
-        AppDomain.CurrentDomain.AssemblyResolve += ResolveBepAssembly;
-        if (Type.GetType("Mono.Runtime") != null)
-            AppDomain.CurrentDomain.AssemblyResolve += ResolveGACAssembly;
-        AppDomain.CurrentDomain.AssemblyResolve += ResolveRenamedAssembly;
+        Assembly.LoadFile(Path.GetFullPath("Steamworks.NET.dll"));
 
-        Environment.SetEnvironmentVariable("MONOMOD_DMD_TYPE", "dynamicmethod");
+        AppDomain.CurrentDomain.AssemblyResolve += ResolveBepAssembly;
+        AppDomain.CurrentDomain.AssemblyResolve += ResolveRenamedAssembly;
 
         LoadBepInEx.Load();
     }
@@ -67,28 +67,6 @@ public static class Entrypoint
         return null;
     }
 
-    public static Assembly ResolveGACAssembly(object sender, ResolveEventArgs args)
-    {
-        var asmName = new AssemblyName(args.Name);
-
-        try
-        {
-            foreach (var path in Directory
-                         .GetFiles($"/usr/lib/mono/gac/{asmName.Name}", $"{asmName.Name}.dll", SearchOption.AllDirectories)
-                         .Select(Path.GetFullPath))
-            {
-                try
-                {
-                    return Assembly.LoadFile(path);
-                }
-                catch { }
-            }
-        }
-        catch { }
-
-        return null;
-    }
-
     public static Assembly ResolveRenamedAssembly(object sender, ResolveEventArgs args)
     {
         var asmName = new AssemblyName(args.Name);
@@ -102,9 +80,16 @@ public static class Entrypoint
 
 internal static class LoadBepInEx
 {
+    private static Hook _harmonyFix;
+    
     [MethodImpl(MethodImplOptions.NoInlining)]
     internal static void Load()
     {
+        _harmonyFix = new Hook(
+            typeof(Harmony).Assembly.GetType("HarmonyLib.Internal.RuntimeFixes.StackTraceFixes")!
+                .GetMethod("FixStackTrace", (BindingFlags)(-1))!,
+            void (ILContext _) => { }, applyByDefault: true);
+        
         try
         {
             Paths.SetExecutablePath(typeof(HN.Program).Assembly.GetName().Name);

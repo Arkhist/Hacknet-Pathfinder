@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup Label="Build">
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>12</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <PublishAot>true</PublishAot>
+        <InvariantGlobalization>true</InvariantGlobalization>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <OptimizationPreference>Size</OptimizationPreference>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <DebugSymbols>false</DebugSymbols>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="TerraFX.Interop.Windows" Version="10.0.20348" Condition="'$(RuntimeIdentifier)' == 'win-x64'" />
+        <ProjectReference Include="..\CefInterop\CefInterop.csproj" />
+    </ItemGroup>
+
+</Project>

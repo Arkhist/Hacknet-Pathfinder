@@ -8,12 +8,12 @@
 
   <ItemGroup>
     <Reference Include="BepInEx.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null" />
-    <Reference Include="FNA, Version=24.3.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="FNA, Version=$(FNAVersion), Culture=neutral, PublicKeyToken=null" Private="False" />
     <Reference Include="Hacknet, Version=1.0.0.1" Private="False" />
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="HarmonyX" Version="2.12.0" />
+    <PackageReference Include="HarmonyX" Version="2.13.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="SemanticVersioning" Version="2.0.2" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />

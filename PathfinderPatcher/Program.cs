@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Reflection;
 using AsmResolver.DotNet;
 using AsmResolver.DotNet.Cloning;
@@ -73,6 +74,12 @@ internal sealed class PublicizingListener : IMemberClonerListener
         if (original.Module.ManagedEntryPoint == original)
         {
             cloned.Module.ManagedEntryPoint = cloned;
+        }
+        else if (cloned.Name == "InitPlatformAPI")
+        {
+            var inst = cloned.CilMethodBody!.Instructions.Single(i => i is { OpCode.Code: CilCode.Call, Operand: IMethodDefOrRef { Name.Value: "InitSafe" } });
+            var call = (IMethodDefOrRef)inst.Operand;
+            inst.Operand = new MemberReference(call.DeclaringType, "Init", call.Signature);
         }
     }
     public void OnClonedField(FieldDefinition original, FieldDefinition cloned)

@@ -30,7 +30,6 @@
 
   <PropertyGroup Label="Build">
     <TargetFramework>net8.0</TargetFramework>
-    <TargetFrameworkProfile />
     <LangVersion>12</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -44,10 +43,7 @@
     $(LibsDir);
     $(HacknetDir);
     </AssemblySearchPaths>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugType>full</DebugType>
+    <FNAVersion>24.06.0.0</FNAVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

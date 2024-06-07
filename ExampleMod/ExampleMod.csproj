@@ -56,7 +56,7 @@
 
   <ItemGroup>
     <Reference Include="BepInEx.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
-    <Reference Include="FNA, Version=24.3.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
+    <Reference Include="FNA, Version=24.06.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
     <Reference Include="Hacknet, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null" Private="False" />
   </ItemGroup>
   <ItemGroup>

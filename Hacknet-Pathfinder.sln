@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderAPI", "Pathfinder
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderUpdater", "PathfinderUpdater\PathfinderUpdater.csproj", "{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefSubprocess", "CefSubprocess\CefSubprocess.csproj", "{F5D40869-E9BF-4BFF-A9BF-1DAE2E30896C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefInterop", "CefInterop\CefInterop.csproj", "{88195127-D422-4382-A277-114D85CE25C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5D40869-E9BF-4BFF-A9BF-1DAE2E30896C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D40869-E9BF-4BFF-A9BF-1DAE2E30896C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D40869-E9BF-4BFF-A9BF-1DAE2E30896C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D40869-E9BF-4BFF-A9BF-1DAE2E30896C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88195127-D422-4382-A277-114D85CE25C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88195127-D422-4382-A277-114D85CE25C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88195127-D422-4382-A277-114D85CE25C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88195127-D422-4382-A277-114D85CE25C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -21,8 +21,6 @@ public class DrawMainMenuTitlesEvent : MainMenuEvent
     static Color defaultTitleColor = new Color(190, 190, 190, 0);
     static SpriteFont defaultTitleFont;
 
-    delegate void EmitDelegate(MainMenu menu, ref Rectangle rect);
-
     [HarmonyILManipulator]
     [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.DrawBackgroundAndTitle))]
     private static void onDrawMainMenuTitlesIL(ILContext il)
@@ -35,7 +33,7 @@ public class DrawMainMenuTitlesEvent : MainMenuEvent
 
         c.Emit(OpCodes.Ldarg_0);
         c.Emit(OpCodes.Ldloca, 0);
-        c.EmitDelegate<EmitDelegate>((MainMenu self, ref Rectangle dest) =>
+        c.EmitDelegate((MainMenu self, ref Rectangle dest) =>
         {
             if (defaultTitleFont == null) defaultTitleFont = self.ScreenManager.Game.Content.Load<SpriteFont>("Kremlin");
 
