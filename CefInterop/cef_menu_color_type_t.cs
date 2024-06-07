@@ -1,0 +1,13 @@
+namespace CefInterop
+{
+    public enum cef_menu_color_type_t
+    {
+        CEF_MENU_COLOR_TEXT,
+        CEF_MENU_COLOR_TEXT_HOVERED,
+        CEF_MENU_COLOR_TEXT_ACCELERATOR,
+        CEF_MENU_COLOR_TEXT_ACCELERATOR_HOVERED,
+        CEF_MENU_COLOR_BACKGROUND,
+        CEF_MENU_COLOR_BACKGROUND_HOVERED,
+        CEF_MENU_COLOR_COUNT,
+    }
+}

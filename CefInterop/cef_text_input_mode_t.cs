@@ -1,0 +1,16 @@
+namespace CefInterop
+{
+    public enum cef_text_input_mode_t
+    {
+        CEF_TEXT_INPUT_MODE_DEFAULT,
+        CEF_TEXT_INPUT_MODE_NONE,
+        CEF_TEXT_INPUT_MODE_TEXT,
+        CEF_TEXT_INPUT_MODE_TEL,
+        CEF_TEXT_INPUT_MODE_URL,
+        CEF_TEXT_INPUT_MODE_EMAIL,
+        CEF_TEXT_INPUT_MODE_NUMERIC,
+        CEF_TEXT_INPUT_MODE_DECIMAL,
+        CEF_TEXT_INPUT_MODE_SEARCH,
+        CEF_TEXT_INPUT_MODE_MAX = CEF_TEXT_INPUT_MODE_SEARCH,
+    }
+}
