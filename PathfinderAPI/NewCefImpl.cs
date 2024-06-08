@@ -5,6 +5,8 @@ using System.Runtime.InteropServices.Marshalling;
 using CefInterop;
 using Hacknet;
 using HarmonyLib;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics.PackedVector;
 using MonoMod.Cil;
 
 namespace Pathfinder;
@@ -72,15 +74,21 @@ public static unsafe partial class NewCefImpl
 
     [UnmanagedCallersOnly]
     static void OnPaint(_cef_render_handler_t* renderer, _cef_browser_t* browser,
-        cef_paint_element_type_t paintElementType, nuint rectCount, _cef_rect_t* rects, void* buffer, int width,
+        cef_paint_element_type_t paintElementType, nuint rectCount, _cef_rect_t* rects, void* bufferPtr, int width,
         int height)
     {
-        var bufferBytes = (byte*)buffer;
-        for (nuint i = 0; i < (nuint)width * (nuint)height * 4; i += 4)
+        uint* buffer = (uint*)bufferPtr;
+        var array = WebRenderer.texBuffer;
+        var span = MemoryMarshal.Cast<byte, uint>(WebRenderer.texBuffer);
+        for (int i = 0; i < width * height; i++)
         {
-            (bufferBytes[i], bufferBytes[i + 2]) = (bufferBytes[i + 2], bufferBytes[i]);
+            var value = buffer[i];
+            span[i] = (value & 0x00_ff_00_00) >> 16 | (value & 0x_00_00_ff) << 16 | value & 0xff_00_ff_00;
         }
-        WebRenderer.TextureUpdated((nint)buffer);
+        
+        WebRenderer.texture.SetData(array);
+        WebRenderer.loadingPage = false;
+        browser->@base.release(&browser->@base);
     }
 
     [LibraryImport("Kernel32.dll")]
@@ -92,12 +100,15 @@ public static unsafe partial class NewCefImpl
     [FixedAddressValueType]
     private static _cef_app_t _app;
 
-    private static _cef_browser_t* _browser;
+    [FixedAddressValueType]
+    private static _cef_client_t _client;
 
     [FixedAddressValueType]
     private static _cef_render_handler_t _renderer;
 
-    private static int _w, _h;
+    private static _cef_browser_t* _browser;
+
+    private static int _w = 500, _h = 500;
 
     public static void Initialize()
     {
@@ -116,7 +127,7 @@ public static unsafe partial class NewCefImpl
 
         _app = new _cef_app_t
         {
-            @base = stubCounter,
+            @base = stubCounter with { size = (nuint)sizeof(_cef_app_t) },
             get_browser_process_handler = &GetProcessHandler,
             get_resource_bundle_handler = &GetResourceBundleHandler,
             on_before_command_line_processing = &OnBeforeCommandLineProcessing,
@@ -142,7 +153,7 @@ public static unsafe partial class NewCefImpl
 
         _renderer = new _cef_render_handler_t
         {
-            @base = stubCounter,
+            @base = stubCounter with { size = (nuint)sizeof(_cef_render_handler_t) },
             get_view_rect = &GetViewRect,
             on_paint = &OnPaint
         };
@@ -152,13 +163,12 @@ public static unsafe partial class NewCefImpl
             windowless_rendering_enabled = 1
         };
 
-        var client = new _cef_client_t
+        _client = new _cef_client_t
         {
-            @base = stubCounter,
-            get_render_handler = &GetRenderHandler,
-            
+            @base = stubCounter with { size = (nuint)sizeof(_cef_client_t) },
+            get_render_handler = &GetRenderHandler
         };
-
+        
         var initialUrl = new _cef_string_utf16_t
         {
             dtor = &StringDealloc,
@@ -168,17 +178,13 @@ public static unsafe partial class NewCefImpl
 
         var browserSettings = new _cef_browser_settings_t
         {
-            background_color = uint.MaxValue,
             javascript_close_windows = cef_state_t.STATE_DISABLED,
             javascript_access_clipboard = cef_state_t.STATE_DISABLED,
             size = (nuint)sizeof(_cef_browser_settings_t)
         };
 
-        _browser = CefInterop.Methods.cef_browser_host_create_browser_sync(&windowInfo, &client, &initialUrl,
+        _browser = CefInterop.Methods.cef_browser_host_create_browser_sync(&windowInfo, (_cef_client_t*)Unsafe.AsPointer(ref _client), &initialUrl,
             &browserSettings, null, null);
-
-        Debug.Assert(client.get_render_handler(&client) != null);
-        Debug.Assert(_browser != null);
     }
 
     public static void SetViewport(int width, int height)
