@@ -1,6 +1,6 @@
 ﻿<Project ToolsVersion="16.0" DefaultTargets="Build">
 
-    <Import Project="..\Configurations.props" />
+    <Import Project="..\..\Configurations.props" />
 
     <ItemGroup>
         <Reference Include="BepInEx.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null" Private="False" />
@@ -8,8 +8,8 @@
         <Reference Include="Hacknet, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj" Private="false" />
-      <ProjectReference Include="$(PathfinderSolutionDir)PathfinderAPI\PathfinderAPI.csproj" Private="false" />
+      <ProjectReference Include="$(PathfinderSolutionDir)src\BepInEx.Hacknet\BepInEx.Hacknet.csproj" Private="false" />
+      <ProjectReference Include="$(PathfinderSolutionDir)src\PathfinderAPI\PathfinderAPI.csproj" Private="false" />
     </ItemGroup>
 
 </Project>

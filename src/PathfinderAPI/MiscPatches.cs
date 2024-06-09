@@ -119,7 +119,7 @@ internal static class MiscPatches
         c.GotoNext(MoveType.After, x => x.MatchPop());
 
         c.Prev.OpCode = OpCodes.Nop;
-        while (!c.Next.MatchLeaveS(out _)) c.Remove();
+        while (!c.Next!.MatchLeave(out _)) c.Remove();
         c.EmitDelegate<Action<Exception>>(ex =>
         {
             HacknetLogger.LogError(new Exception("Exception occurred during threaded execute", ex));

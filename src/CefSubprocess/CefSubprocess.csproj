@@ -8,7 +8,6 @@
         <Nullable>enable</Nullable>
         <PublishAot>true</PublishAot>
         <InvariantGlobalization>true</InvariantGlobalization>
-        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <OptimizationPreference>Size</OptimizationPreference>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
@@ -18,7 +17,6 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="TerraFX.Interop.Windows" Version="10.0.20348" Condition="'$(RuntimeIdentifier)' == 'win-x64'" />
         <ProjectReference Include="..\CefInterop\CefInterop.csproj" />
     </ItemGroup>
 

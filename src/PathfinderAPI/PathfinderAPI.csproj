@@ -1,5 +1,5 @@
 ﻿<Project ToolsVersion="16.0">
-  <Import Project="..\Configurations.props" />
+  <Import Project="..\..\Configurations.props" />
 
   <PropertyGroup>
     <RootNamespace>Pathfinder</RootNamespace>
@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(PathfinderSolutionDir)BepInEx.Hacknet\BepInEx.Hacknet.csproj" Private="False" />
-    <ProjectReference Include="$(PathfinderSolutionDir)CefInterop\CefInterop.csproj" />
+    <ProjectReference Include="$(PathfinderSolutionDir)src\BepInEx.Hacknet\BepInEx.Hacknet.csproj" Private="False" />
+    <ProjectReference Include="$(PathfinderSolutionDir)src\CefInterop\CefInterop.csproj" />
   </ItemGroup>
 </Project>

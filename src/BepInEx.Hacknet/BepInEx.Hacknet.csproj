@@ -1,6 +1,6 @@
 <Project ToolsVersion="16.0" >
 
-  <Import Project="..\Configurations.props" />
+  <Import Project="..\..\Configurations.props" />
   
   <PropertyGroup>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>

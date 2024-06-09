@@ -1,6 +1,6 @@
 namespace CefInterop
 {
-    public unsafe partial struct _cef_window_info_t
+    public unsafe partial struct _cef_window_info_t_windows
     {
         [NativeTypeName("DWORD")]
         public uint ex_style;

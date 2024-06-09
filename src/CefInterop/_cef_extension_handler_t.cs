@@ -18,7 +18,7 @@ namespace CefInterop
         public delegate* unmanaged<_cef_extension_handler_t*, _cef_extension_t*, _cef_string_utf16_t*, _cef_client_t**, _cef_browser_settings_t*, int> on_before_background_browser;
 
         [NativeTypeName("int (*)(struct _cef_extension_handler_t *, struct _cef_extension_t *, struct _cef_browser_t *, struct _cef_browser_t *, int, const cef_string_t *, int, struct _cef_window_info_t *, struct _cef_client_t **, struct _cef_browser_settings_t *) __attribute__((stdcall))")]
-        public delegate* unmanaged<_cef_extension_handler_t*, _cef_extension_t*, _cef_browser_t*, _cef_browser_t*, int, _cef_string_utf16_t*, int, _cef_window_info_t*, _cef_client_t**, _cef_browser_settings_t*, int> on_before_browser;
+        public delegate* unmanaged<_cef_extension_handler_t*, _cef_extension_t*, _cef_browser_t*, _cef_browser_t*, int, _cef_string_utf16_t*, int, void*, _cef_client_t**, _cef_browser_settings_t*, int> on_before_browser;
 
         [NativeTypeName("struct _cef_browser_t *(*)(struct _cef_extension_handler_t *, struct _cef_extension_t *, struct _cef_browser_t *, int) __attribute__((stdcall))")]
         public delegate* unmanaged<_cef_extension_handler_t*, _cef_extension_t*, _cef_browser_t*, int, _cef_browser_t*> get_active_browser;

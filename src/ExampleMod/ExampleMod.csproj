@@ -33,7 +33,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <AssemblySearchPaths>
         $(AssemblySearchPaths);
-        ..\libs\;
+        ..\..\libs\;
         $(HacknetDir);
         </AssemblySearchPaths>
     </PropertyGroup>

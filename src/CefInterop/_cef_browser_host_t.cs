@@ -69,7 +69,7 @@ namespace CefInterop
         public delegate* unmanaged<_cef_browser_host_t*, int, void> stop_finding;
 
         [NativeTypeName("void (*)(struct _cef_browser_host_t *, const struct _cef_window_info_t *, struct _cef_client_t *, const struct _cef_browser_settings_t *, const cef_point_t *) __attribute__((stdcall))")]
-        public delegate* unmanaged<_cef_browser_host_t*, _cef_window_info_t*, _cef_client_t*, _cef_browser_settings_t*, _cef_point_t*, void> show_dev_tools;
+        public delegate* unmanaged<_cef_browser_host_t*, void*, _cef_client_t*, _cef_browser_settings_t*, _cef_point_t*, void> show_dev_tools;
 
         [NativeTypeName("void (*)(struct _cef_browser_host_t *) __attribute__((stdcall))")]
         public delegate* unmanaged<_cef_browser_host_t*, void> close_dev_tools;

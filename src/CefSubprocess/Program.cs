@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using CefInterop;
@@ -48,12 +49,21 @@ public static unsafe class Program
     [UnmanagedCallersOnly]
     static void OnBeforeSchemaRegister(_cef_app_t* app, _cef_scheme_registrar_t* schemas) { }
     
-    public static int Main(string[] args)
+    public static int Main()
     {
-        var cefArgs = new _cef_main_args_t
+        void* argsPtr;
+        _cef_main_args_t_windows argsWin = default;
+        _cef_main_args_t_linux argsLinux = default;
+        if (OperatingSystem.IsWindows())
         {
-            instance = TerraFX.Interop.Windows.Windows.GetModuleHandle(null).Value
-        };
+            argsPtr = &argsWin;
+            argsWin.Initialize();
+        }
+        else
+        {
+            argsPtr = &argsLinux;
+            argsLinux.Initialize(Environment.ProcessPath ?? throw new Exception("abc"));
+        }
 
         var app = new _cef_app_t
         {
@@ -71,6 +81,6 @@ public static unsafe class Program
             get_render_process_handler = &GetRenderProcessHandler
         };
 
-        return CefInterop.Methods.cef_execute_process(&cefArgs, &app, null);
+        return CefInterop.Methods.cef_execute_process(argsPtr, &app, null);
     }
 }

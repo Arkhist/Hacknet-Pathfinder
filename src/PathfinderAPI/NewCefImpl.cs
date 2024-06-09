@@ -91,10 +91,7 @@ public static unsafe partial class NewCefImpl
         browser->@base.release(&browser->@base);
     }
 
-    [LibraryImport("Kernel32.dll")]
-    private static partial void* GetModuleHandleA(void* str);
-
-    private const string SubprocessPath = "CefSubprocess.exe";
+    private const string SubprocessPath = "CefSubprocess";
     private const string InitialPath = "file:///nope.html";
 
     [FixedAddressValueType]
@@ -112,11 +109,20 @@ public static unsafe partial class NewCefImpl
 
     public static void Initialize()
     {
-        var args = new _cef_main_args_t
+        void* argsPtr;
+        _cef_main_args_t_windows argsWin = default;
+        _cef_main_args_t_linux argsLinux = default;
+        if (OperatingSystem.IsWindows())
         {
-            instance = GetModuleHandleA(null)
-        };
-
+            argsPtr = &argsWin;
+            argsWin.Initialize();
+        }
+        else
+        {
+            argsPtr = &argsLinux;
+            argsLinux.Initialize(typeof(Program).Assembly.Location);
+        }
+        
         var stubCounter = new _cef_base_ref_counted_t
         {
             add_ref = &AddRef,
@@ -136,6 +142,10 @@ public static unsafe partial class NewCefImpl
         };
 
         var path = Path.GetFullPath(SubprocessPath);
+        if (OperatingSystem.IsWindows())
+        {
+            path += ".exe";
+        }
         var settings = new _cef_settings_t
         {
             browser_subprocess_path = new _cef_string_utf16_t
@@ -144,12 +154,13 @@ public static unsafe partial class NewCefImpl
                 length = (nuint)path.Length,
                 str = Utf16StringMarshaller.ConvertToUnmanaged(path)
             },
-            no_sandbox = 1,
+            no_sandbox = OperatingSystem.IsWindows() ? 0 : 1,
             windowless_rendering_enabled = 1,
+            //chrome_runtime = 1,
             size = (nuint)sizeof(_cef_settings_t),
         };
 
-        _ = Methods.cef_initialize(&args, &settings, (_cef_app_t*)Unsafe.AsPointer(ref _app), null);
+        _ = Methods.cef_initialize(argsPtr, &settings, (_cef_app_t*)Unsafe.AsPointer(ref _app), null);
 
         _renderer = new _cef_render_handler_t
         {
@@ -158,10 +169,25 @@ public static unsafe partial class NewCefImpl
             on_paint = &OnPaint
         };
 
-        var windowInfo = new _cef_window_info_t
+        void* windowInfoPtr;
+        _cef_window_info_t_windows winWindow;
+        _cef_window_info_t_linux linWindow;
+        if (OperatingSystem.IsWindows())
         {
-            windowless_rendering_enabled = 1
-        };
+            winWindow = new _cef_window_info_t_windows
+            {
+                windowless_rendering_enabled = 1
+            };
+            windowInfoPtr = &winWindow;
+        }
+        else
+        {
+            linWindow = new _cef_window_info_t_linux
+            {
+                windowless_rendering_enabled = 1
+            };
+            windowInfoPtr = &linWindow;
+        }
 
         _client = new _cef_client_t
         {
@@ -183,7 +209,7 @@ public static unsafe partial class NewCefImpl
             size = (nuint)sizeof(_cef_browser_settings_t)
         };
 
-        _browser = CefInterop.Methods.cef_browser_host_create_browser_sync(&windowInfo, (_cef_client_t*)Unsafe.AsPointer(ref _client), &initialUrl,
+        _browser = CefInterop.Methods.cef_browser_host_create_browser_sync(windowInfoPtr, (_cef_client_t*)Unsafe.AsPointer(ref _client), &initialUrl,
             &browserSettings, null, null);
     }
 
