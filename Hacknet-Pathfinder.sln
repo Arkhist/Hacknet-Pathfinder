@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderPatcher", "PathfinderPatcher\PathfinderPatcher.csproj", "{71E84BE2-DC97-41A1-B96C-090005A851F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderPatcher", "src\PathfinderPatcher\PathfinderPatcher.csproj", "{71E84BE2-DC97-41A1-B96C-090005A851F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepInEx.Hacknet", "BepInEx.Hacknet\BepInEx.Hacknet.csproj", "{64FAEDA5-E87C-47ED-8200-E1DE1F263040}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepInEx.Hacknet", "src\BepInEx.Hacknet\BepInEx.Hacknet.csproj", "{64FAEDA5-E87C-47ED-8200-E1DE1F263040}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleMod", "ExampleMod\ExampleMod.csproj", "{D9FD21F5-A4EA-4B32-915F-31FD1EB7F2BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleMod", "src\ExampleMod\ExampleMod.csproj", "{D9FD21F5-A4EA-4B32-915F-31FD1EB7F2BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderAPI", "PathfinderAPI\PathfinderAPI.csproj", "{4DE0A4CF-EC60-46E1-AD96-BE3A0F5BE406}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderAPI", "src\PathfinderAPI\PathfinderAPI.csproj", "{4DE0A4CF-EC60-46E1-AD96-BE3A0F5BE406}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderUpdater", "PathfinderUpdater\PathfinderUpdater.csproj", "{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderUpdater", "src\PathfinderUpdater\PathfinderUpdater.csproj", "{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefSubprocess", "CefSubprocess\CefSubprocess.csproj", "{F5D40869-E9BF-4BFF-A9BF-1DAE2E30896C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefSubprocess", "src\CefSubprocess\CefSubprocess.csproj", "{F5D40869-E9BF-4BFF-A9BF-1DAE2E30896C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefInterop", "CefInterop\CefInterop.csproj", "{88195127-D422-4382-A277-114D85CE25C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefInterop", "src\CefInterop\CefInterop.csproj", "{88195127-D422-4382-A277-114D85CE25C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
