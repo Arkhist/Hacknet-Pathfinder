@@ -10,14 +10,14 @@ namespace Pathfinder.BaseGameFixes;
 public static class FlickeringTextReportNull {
 	[HarmonyPatch(typeof(FlickeringTextEffect), nameof(FlickeringTextEffect.GetReportString))]
 	[HarmonyILManipulator]
-	private static void GetReportStringManipulator(ILContext context) {
+	private static void GetReportStringManipulator(ILContext context, ILLabel retLabel) {
 		ILCursor cursor = new(context);
 
 		ILLabel unskipLabel = context.DefineLabel();
 		cursor.Emit(OpCodes.Ldsfld, typeof(FlickeringTextEffect).GetField(nameof(FlickeringTextEffect.LinedItemTarget), BindingFlags.Static | BindingFlags.Public));
 		cursor.Emit(OpCodes.Brtrue, unskipLabel);
 		cursor.Emit(OpCodes.Ldstr, "FlickeringTextEffect was not used in this execution.");
-		cursor.Emit(OpCodes.Ret);
+		cursor.Emit(OpCodes.Br, retLabel);
 		unskipLabel.Target = cursor.Next;
 	}
 }

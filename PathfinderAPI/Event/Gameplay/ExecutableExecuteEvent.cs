@@ -71,7 +71,7 @@ public class ExecutableExecuteEvent : PathfinderEvent
 
     [HarmonyILManipulator]
     [HarmonyPatch(typeof(ProgramRunner), nameof(ProgramRunner.AttemptExeProgramExecution))]
-    private static void onExecutableExecuteIL(ILContext il)
+    private static void onExecutableExecuteIL(ILContext il, ILLabel retLabel)
     {
         ILCursor c = new ILCursor(il);
 
@@ -102,7 +102,7 @@ public class ExecutableExecuteEvent : PathfinderEvent
         c.Emit(OpCodes.Ldc_I4_0);
         var label = c.DefineLabel();
         c.Emit(OpCodes.Blt, label);
-        c.Emit(OpCodes.Ret);
+        c.Emit(OpCodes.Br, retLabel);
         c.Emit(OpCodes.Pop);
         label.Target = c.Prev;
     }
