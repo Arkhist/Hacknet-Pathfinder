@@ -64,13 +64,4 @@ public class PortRecord : IEquatable<PortRecord>
             return hashCode;
         }
     }
-        
-#pragma warning disable 618
-    [Obsolete("Avoid PortData")]
-    public static explicit operator PortRecord(PortData data)
-        => new PortRecord(data.Protocol, data.DisplayName, data.Port, data.OriginalPort);
-
-    [Obsolete("Avoid PortData")]
-    public static explicit operator PortData(PortRecord record)
-        => new PortData(record.Protocol, record.OriginalPortNumber, record.DefaultPortNumber, record.DefaultDisplayName);
 }

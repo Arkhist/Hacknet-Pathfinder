@@ -63,7 +63,7 @@ public static class ExtensionInfoLoader
 
     private static readonly EventExecutor executor = new EventExecutor();
 
-    private static ExtensionInfo extInfo = null;
+    private static ExtensionInfo extInfo;
         
     static ExtensionInfoLoader()
     {

@@ -47,8 +47,7 @@ public static class ActionManager
     {
         actionType.ThrowNotInherit<PathfinderAction>(nameof(actionType));
         CustomActions.Add(xmlName, actionType);
-        if (!XmlNames.ContainsKey(actionType))
-            XmlNames.Add(actionType, xmlName);
+        XmlNames.TryAdd(actionType, xmlName);
     }
 
     public static void UnregisterAction<T>() where T : PathfinderAction => UnregisterAction(typeof(T));
@@ -56,15 +55,12 @@ public static class ActionManager
     {
         foreach(var xmlName in CustomActions.Where(x => x.Value == actionType).Select(x => x.Key).ToList())
             CustomActions.Remove(xmlName);
-        if(XmlNames.ContainsKey(actionType))
-            XmlNames.Remove(actionType);
+        XmlNames.Remove(actionType);
     }
     public static void UnregisterAction(string xmlName)
     {
-        if (!CustomActions.ContainsKey(xmlName))
+        if (!CustomActions.Remove(xmlName, out var actionType))
             return;
-        var actionType = CustomActions[xmlName];
-        CustomActions.Remove(xmlName);
         if (XmlNames[actionType] != xmlName)
             return;
         /* find the next applicable name */

@@ -1,5 +1,6 @@
 ﻿namespace Pathfinder.Meta;
 
+[AttributeUsage(AttributeTargets.Class)]
 public class UpdaterAttribute : Attribute
 {
     public string GithubApiUrl { get; set; }

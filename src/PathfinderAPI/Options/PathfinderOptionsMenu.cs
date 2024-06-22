@@ -12,8 +12,8 @@ namespace Pathfinder.Options;
 [HarmonyPatch]
 internal static class PathfinderOptionsMenu
 {
-    private static bool isInPathfinderMenu = false;
-    private static string currentTabName = null;
+    private static bool isInPathfinderMenu;
+    private static string currentTabName;
 
     private static PFButton ReturnButton = new PFButton(10, 10, 220, 54, "Back to Options", Color.Yellow);
 

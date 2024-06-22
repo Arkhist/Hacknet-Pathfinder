@@ -14,12 +14,12 @@ namespace Pathfinder.BaseGameFixes.Performance;
 [HarmonyPatch]
 public static class ThemeCaching
 {
-    private static FixedSizeCacheDict<string, CachedCustomTheme> CachedThemes = null;
+    private static FixedSizeCacheDict<string, CachedCustomTheme> CachedThemes;
     private static List<string> ThemeTasks = [];
 
     private static readonly object cacheLock = new object();
 
-    private static string TargetTheme = null;
+    private static string TargetTheme;
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(OS), nameof(OS.LoadContent))]
@@ -170,7 +170,7 @@ public static class ThemeCaching
         });
     }
 
-    private static float themeFpsLimitCounter = 0f;
+    private static float themeFpsLimitCounter;
     private delegate bool MakeSlowerDelegate(float timeSince, ref float timeRemaining);
         
     [HarmonyILManipulator]

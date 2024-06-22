@@ -126,7 +126,7 @@ public class GameExecutable : BaseExecutable
     {
         try
         {
-            switch(Result)
+            switch (Result)
             {
                 case CompletionResult.Success:
                     OnCompleteSuccess();
@@ -143,16 +143,12 @@ public class GameExecutable : BaseExecutable
             }
             OnComplete();
 
-            if(Result == CompletionResult.Failure
-               || Result == CompletionResult.Error
-               && ErrorReturn != null)
+            if (Result == CompletionResult.Failure
+                || Result == CompletionResult.Error
+                && ErrorReturn != null)
                 os.write($"{Args[0]}: {(Result == CompletionResult.Failure ? $"failed" : "errored")} with '{ErrorReturn}'");
         }
-        catch(Exception e)
-        {
-            if(!CatchException(e))
-                throw e;
-        }
+        catch (Exception e) when (CatchException(e)) { }
     }
 
     public sealed override void Killed()
@@ -171,16 +167,6 @@ public class GameExecutable : BaseExecutable
         {
             OnUpdate(t);
         }
-        catch(Exception e)
-        {
-            if(!CatchException(e))
-                throw e;
-        }
-    }
-
-    [Obsolete]
-    public sealed override string GetIdentifier()
-    {
-        throw new NotImplementedException();
+        catch (Exception e) when (CatchException(e)) { }
     }
 }

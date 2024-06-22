@@ -56,8 +56,7 @@ public class Updater
         HandleStreamDownloadAction handeStreamDownload = null
     )
     {
-        if(pluginType == null)
-            throw new ArgumentNullException(nameof(pluginType));
+        ArgumentNullException.ThrowIfNull(pluginType);
 
         PluginType = pluginType;
         FindVersion = findVersion ?? FindVersionDefault;

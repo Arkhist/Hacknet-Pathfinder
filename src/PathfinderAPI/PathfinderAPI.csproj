@@ -9,6 +9,7 @@
     <Reference Include="BepInEx.Core, Version=6.0.0.0" Private="False" />
     <Reference Include="FNA, Version=$(FNAVersion)" Private="False" />
     <Reference Include="Hacknet, Version=1.0.0.1" Private="False" />
+    <Reference Include="Steamworks.NET" Private="False" />
   </ItemGroup>
 
   <ItemGroup>

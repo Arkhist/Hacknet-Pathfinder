@@ -59,16 +59,4 @@ public class PortState
     {
         return Computer.RemovePort(Record);
     }
-        
-#pragma warning disable 618
-    [Obsolete("Avoid PortData")]
-    public static explicit operator PortData(PortState state)
-        => new PortData(state.Record.Protocol, state.Record.OriginalPortNumber, state.PortNumber, state.DisplayName)
-        {
-            Cracked = state.Cracked
-        };
-
-    [Obsolete("Avoid PortData")]
-    public static explicit operator PortState(PortData data)
-        => new PortState(null, (PortRecord)data, data.Cracked);
 }

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Pathfinder.GUI;
 
-public class PFButton : IDisposable
+public sealed class PFButton : IDisposable
 {
     private static int _idCounter = int.MinValue;
     private static readonly List<int> returnedIds = [];
@@ -34,7 +34,7 @@ public class PFButton : IDisposable
     public Color? Color;
     public Texture2D Texture;
 
-    private bool invalid = false;
+    private bool invalid;
         
     public PFButton(int x, int y, int width, int height, string text, Color? color = null, Texture2D texture = null)
     {

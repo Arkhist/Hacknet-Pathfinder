@@ -10,74 +10,6 @@ using Pathfinder.Util;
 
 namespace Pathfinder.Port;
 
-[Obsolete("Use PortState or PortRecord instead")]
-public class PortData : IEquatable<PortData>
-{
-    public string Protocol { get; }
-    public string DisplayName { get; set; }
-    public int Port { get; set; }
-    public int OriginalPort { get; private set; }
-    public bool Cracked { get; set; } = false;
-
-    public PortData(string proto, int portNum, string displayName)
-    {
-        Protocol = proto;
-        Port = portNum;
-        OriginalPort = portNum;
-        DisplayName = displayName;
-    }
-
-    internal PortData(string proto, int origPortNum, int portNum, string displayName)
-    {
-        Protocol = proto;
-        Port = portNum;
-        OriginalPort = origPortNum;
-        DisplayName = displayName;
-    }
-
-    public PortData Clone()
-    {
-        var ret = new PortData(Protocol, Port, DisplayName)
-        {
-            OriginalPort = OriginalPort
-        };
-        return ret;
-    }
-            
-    public bool Equals(PortData other)
-    {
-        return !object.ReferenceEquals(other, null) && Protocol == other.Protocol && Port == other.Port && OriginalPort == other.OriginalPort;
-    }
-    public static bool operator ==(PortData first, PortData second)
-    {
-        return first?.Equals(second) ?? second is null;
-    }
-    public static bool operator !=(PortData first, PortData second)
-    {
-        return !(first == second);
-    }
-    public override bool Equals(object obj)
-    {
-        if (ReferenceEquals(null, obj))
-            return false;
-        if (ReferenceEquals(this, obj))
-            return true;
-        if (obj.GetType() != this.GetType())
-            return false;
-        return Equals((PortData)obj);
-    }
-    public override int GetHashCode()
-    {
-        unchecked
-        {
-            var hashCode = (Protocol != null ? Protocol.GetHashCode() : 0);
-            hashCode = (hashCode * 397) ^ Port;
-            hashCode = (hashCode * 397) ^ OriginalPort;
-            return hashCode;
-        }
-    }
-}
-    
 [HarmonyPatch]
 public static class ComputerExtensions
 {
@@ -122,14 +54,6 @@ public static class ComputerExtensions
             record = new PortRecord(protocol, displayName, portNum);
         comp.AddPort(record.CreateState(null, displayName, portNum));
     }
-    [Obsolete("Use AddPort(PortRecord) or AddPort(PortState) instead")]
-    public static void AddPort(this Computer comp, PortData port)
-    {
-        var ports = PortTable.GetOrCreateValue(comp);
-        if (ports.ContainsKey(port.Protocol))
-            return;
-        comp.AddPort(port.Protocol, port.Port, port.DisplayName);
-    }
     public static void AddPort(this Computer comp, PortRecord record)
     {
         record.ThrowNull(nameof(record));
@@ -143,10 +67,9 @@ public static class ComputerExtensions
     }
     public static void AddPort(this Computer comp, PortState port)
     {
-        if(port == null)
-            throw new ArgumentNullException(nameof(port));
+        ArgumentNullException.ThrowIfNull(port);
 
-        if(port.Computer != null && port.Computer != comp)
+        if (port.Computer != null && port.Computer != comp)
             throw new InvalidOperationException($"{nameof(port)} already has a Computer assigned to it");
 
         if(port.Record == null)
@@ -182,34 +105,14 @@ public static class ComputerExtensions
         return ret;
     }
 
-    [Obsolete("Use GetPortState(string) instead")]
-    public static PortData GetPort(this Computer comp, string protocol)
-    {
-        return (PortData)comp.GetPortState(protocol);
-    }
-
     public static List<PortState> GetAllPortStates(this Computer comp)
     {
         return PortTable.GetOrCreateValue(comp).Values.ToList();
     }
 
-    [Obsolete("Use GetAllPortStates() instead")]
-    public static List<PortData> GetAllPorts(this Computer comp)
-    {
-        return PortTable.GetOrCreateValue(comp).Values.Select(record => (PortData)record).ToList();
-    }
-
     public static Dictionary<string, PortState> GetPortStateDict(this Computer comp)
     {
         return PortTable.GetOrCreateValue(comp);
-    }
-
-    [Obsolete("Use GetPortStateDict() instead")]
-    public static Dictionary<string, PortData> GetPortDict(this Computer comp)
-    {
-        return comp.GetPortStateDict()
-            .Select(pair => new KeyValuePair<string, PortData>(pair.Key, (PortData)pair.Value))
-            .ToDictionary(p => p.Key, p => p.Value);
     }
 
     public static bool HasInitializedPorts(Computer comp) => PortTable.TryGetValue(comp, out _);

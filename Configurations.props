@@ -33,6 +33,9 @@
     <LangVersion>12</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AnalysisLevel>latest-Recommended</AnalysisLevel>
+    <NoWarn>CA1051,CA2211,CA1716,CA1000,CA1707,CA2201,CA1715</NoWarn>
+    <InvariantGlobalization>true</InvariantGlobalization>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <PathfinderSolutionDir>$(MSBuildThisFileDirectory)</PathfinderSolutionDir>
     <LibsDir>$(PathfinderSolutionDir)libs/</LibsDir>

@@ -115,34 +115,30 @@ public static class ExecutableManager
         var computer = os.connectedComp ?? os.thisComputer;
         try
         {
-            if(exe.needsProxyAccess && computer.proxyActive)
+            if (exe.needsProxyAccess && computer.proxyActive)
             {
                 exe.OnProxyBypassFailure();
-                if(!exe.IgnoreProxyFailPrint)
+                if (!exe.IgnoreProxyFailPrint)
                     os.write(LocaleTerms.Loc("Proxy Active -- Cannot Execute"));
                 return;
             }
 
-            if(os.ramAvaliable >= exe.ramCost)
+            if (os.ramAvaliable >= exe.ramCost)
             {
                 exe.OnInitialize();
-                if(exe.CanAddToSystem)
+                if (exe.CanAddToSystem)
                     os.exes.Add(exe);
                 return;
             }
 
             exe.OnNoAvailableRam();
-            if(!exe.IgnoreMemoryBehaviorPrint)
+            if (!exe.IgnoreMemoryBehaviorPrint)
             {
                 os.ram.FlashMemoryWarning();
                 os.write(LocaleTerms.Loc("Insufficient Memory"));
             }
         }
-        catch(Exception e)
-        {
-            if(!exe.CatchException(e))
-                throw e;
-        }
+        catch (Exception e) when (exe.CatchException(e)) { }
     }
 
     [HarmonyPrefix]

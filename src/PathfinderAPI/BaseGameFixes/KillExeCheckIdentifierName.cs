@@ -27,7 +27,7 @@ public static class KillExeCheckIdentifierName
         c.Emit(OpCodes.Ldloc_0);
         c.Emit(OpCodes.Ldloc_1);
         c.EmitDelegate<Func<SAKillExe, OS, int, bool>>((__instance, oS, i) =>
-            oS.exes[i].IdentifierName.ToLower().Contains(__instance.ExeName.ToLower())
+            oS.exes[i].IdentifierName.Contains(__instance.ExeName, StringComparison.OrdinalIgnoreCase)
         );
         c.Emit(OpCodes.Ldc_I4_0);
         c.Emit(OpCodes.Ceq);

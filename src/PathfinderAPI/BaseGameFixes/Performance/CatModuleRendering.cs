@@ -45,14 +45,14 @@ internal static class CatModuleRendering
         });
     }
 
-    private static bool isFlickering = false;
+    private static bool isFlickering;
         
     [HarmonyPrefix]
     [HarmonyPatch(typeof(ActiveEffectsUpdater), nameof(ActiveEffectsUpdater.Update))]
     internal static void CheckThemeSwapFlicker(ActiveEffectsUpdater __instance) => isFlickering = __instance.themeSwapTimeRemaining > 0f;
 
-    private static string displayCache2 = null;
-    private static string lastFileData = null;
+    private static string displayCache2;
+    private static string lastFileData;
         
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ThemeManager), nameof(ThemeManager.switchTheme), [typeof(object), typeof(OSTheme)])]

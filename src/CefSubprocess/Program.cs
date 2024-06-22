@@ -44,13 +44,25 @@ public static unsafe class Program
     static _cef_render_process_handler_t* GetRenderProcessHandler(_cef_app_t* _) => null;
 
     [UnmanagedCallersOnly]
-    static void OnBeforeCommandLineProcessing(_cef_app_t* app, _cef_string_utf16_t* something, _cef_command_line_t* commandLine) { }
+    static void OnBeforeCommandLineProcessing(_cef_app_t* app, _cef_string_utf16_t* something, _cef_command_line_t* commandLine)
+    {
+        // const string thing = "disable-gpu-sandbox";
+        // var newSwitch = new _cef_string_utf16_t
+        // {
+        //     dtor = &StringDealloc,
+        //     length = (nuint)thing.Length,
+        //     str = Utf16StringMarshaller.ConvertToUnmanaged(thing)
+        // };
+        // commandLine->append_switch(commandLine, &newSwitch);
+    }
     
     [UnmanagedCallersOnly]
     static void OnBeforeSchemaRegister(_cef_app_t* app, _cef_scheme_registrar_t* schemas) { }
     
-    public static int Main()
+    public static int Main(string[] args)
     {
+        File.WriteAllText($"{Process.GetCurrentProcess().Id}-out.txt", string.Join(", ", args));
+        
         void* argsPtr;
         _cef_main_args_t_windows argsWin = default;
         _cef_main_args_t_linux argsLinux = default;

@@ -7,7 +7,7 @@ using MonoMod.Cil;
 namespace Pathfinder.BaseGameFixes;
 
 [HarmonyPatch]
-internal class LoadBuiltinThemes {
+internal static class LoadBuiltinThemes {
 	/**
 		 * <summary>Replaces dumb manual enumeration name lookup with <c>Enum.TryParse</c></summary>
 		 * <remarks>
@@ -32,9 +32,9 @@ internal class LoadBuiltinThemes {
 					return false;
 				return typeRef.FullName == "Hacknet.OSTheme";
 			},
-			x => x.MatchCall(typeof(Type), "GetTypeFromHandle"),
-			x => x.MatchCall(typeof(Enum), "GetValues")
-		);
+			x => x.MatchCall<Type>("GetTypeFromHandle"),
+			x => x.MatchCall<Enum>("GetValues")
+        );
 		cursor.RemoveRange(57); // whew
 		/* arg1: `info.Theme` */
 		cursor.Emit(OpCodes.Ldarg_0); /* info */

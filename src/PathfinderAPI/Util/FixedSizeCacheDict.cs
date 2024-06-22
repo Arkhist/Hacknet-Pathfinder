@@ -2,17 +2,17 @@
 
 public class LRUCacheLinkedListNode<K,V> where K : class where V : class
 {
-    public K Key {get; set;} = default;
-    public V Value {get; set;} = default;
-    public LRUCacheLinkedListNode<K,V> Next {get; set;} = null;
-    public LRUCacheLinkedListNode<K,V> Previous {get; set;} = null;
+    public K Key {get; set;}
+    public V Value {get; set;}
+    public LRUCacheLinkedListNode<K,V> Next {get; set;}
+    public LRUCacheLinkedListNode<K,V> Previous {get; set;}
 }
 
 public class FixedSizeCacheDict<K, V> where K : class where V : class
 {
     public readonly int Max;
-    public LRUCacheLinkedListNode<K, V> BackingListHead { get; private set; } = null;
-    public LRUCacheLinkedListNode<K,V> BackingListTail { get; private set; } = null;
+    public LRUCacheLinkedListNode<K, V> BackingListHead { get; private set; }
+    public LRUCacheLinkedListNode<K,V> BackingListTail { get; private set; }
     private readonly Dictionary<K, LRUCacheLinkedListNode<K,V>> FastAccessDict = new Dictionary<K, LRUCacheLinkedListNode<K,V>>();
         
     public FixedSizeCacheDict(int maxSize)

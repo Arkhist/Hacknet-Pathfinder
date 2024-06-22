@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Runtime.InteropServices;
 using System.Text;
 using Hacknet;
@@ -25,7 +26,7 @@ internal static class FileEncrypterReplacement
     // - Aaron
     
     // Just keep all the legacy hash functions in an array to make this easy to loop over
-    private static readonly Func<string, ushort>[] _hashFunctions = [Fx64Hash, MonoHash, Fx32Hash, GetHashCodeHashBad];
+    private static readonly ImmutableArray<Func<string, ushort>> _hashFunctions = [Fx64Hash, MonoHash, Fx32Hash, GetHashCodeHashBad];
 
     private static readonly ushort Fnv1aEmptyHash = Fnv1aHash(string.Empty);
     
@@ -51,7 +52,7 @@ internal static class FileEncrypterReplacement
             throw new FormatException("Tried to decrypt an invalid valid DEC ENC file \"" + data + "\" - not enough headers");
         }
 
-        if (headerParts[headerParts.Length - 1] == PathfinderNeedle)
+        if (headerParts[^1] == PathfinderNeedle)
         {
             // we know this is FNV1a
             var hash = Fnv1aHash(pass);

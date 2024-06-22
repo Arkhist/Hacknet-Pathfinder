@@ -4,7 +4,7 @@ using HarmonyLib;
 namespace Pathfinder.BaseGameFixes;
 
 [HarmonyPatch]
-internal class ClearPostLoadActions
+internal static class ClearPostLoadActions
 {
     [HarmonyPostfix]
     [HarmonyPatch(typeof(OS), nameof(OS.LoadContent))]

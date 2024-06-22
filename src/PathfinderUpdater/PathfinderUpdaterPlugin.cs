@@ -32,7 +32,7 @@ public class PathfinderUpdaterPlugin : HacknetPlugin
     internal static ConfigEntry<string> AcceptedUpdate;
     internal static ConfigEntry<string> CurrentVersion;
 
-    public static Version VersionToRequest = null;
+    public static Version VersionToRequest;
     public static bool NeedsUpdate;
     internal static Updater PathfinderUpdater;
 

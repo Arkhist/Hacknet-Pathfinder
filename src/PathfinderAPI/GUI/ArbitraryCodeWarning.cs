@@ -13,10 +13,10 @@ namespace Pathfinder.GUI;
 [HarmonyPatch]
 internal static class ArbitraryCodeWarning
 {
-    private static ExtensionInfo needsApproval = null;
-    private static ExtensionInfo approvedInfo = null;
-    private static string messages = null;
-    private static ExtensionsMenuScreen screen = null;
+    private static ExtensionInfo needsApproval;
+    private static ExtensionInfo approvedInfo;
+    private static string messages;
+    private static ExtensionsMenuScreen screen;
 
     [Util.Initialize]
     internal static void Initialize()

@@ -75,7 +75,7 @@ public class TestExe : Pathfinder.Executable.BaseExecutable
         Hacknet.Gui.TextItem.doLabel(new Vector2(Bounds.Center.X, Bounds.Center.Y), "blue text", new Color(255, 0, 0));
     }
 
-    private float total = 0f;
+    private float total;
     public override void Update(float t)
     {
         base.Update(t);
@@ -166,7 +166,7 @@ public class TestAction : DelayablePathfinderAction
     [XMLStorage(IsContent = true)]
     public string stringToWrite;
 
-    private int min = 0;
+    private int min;
     private int max = 9;
         
     private static readonly Random Rand = new Random();

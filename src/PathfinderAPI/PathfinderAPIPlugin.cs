@@ -31,8 +31,6 @@ public class PathfinderAPIPlugin : HacknetPlugin
         PathfinderAPIPlugin.HarmonyInstance = base.HarmonyInstance;
         Logger.LogSource = base.Log;
         PathfinderAPIPlugin.Config = base.Config;
-        
-        Environment.SetEnvironmentVariable("LD_PRELOAD", $"./lib{(Environment.Is64BitProcess ? "64" : "")}/libcef.so");
 
         foreach (var initMethod in typeof(PathfinderAPIPlugin).Assembly.GetTypes().SelectMany(AccessTools.GetDeclaredMethods))
         {
@@ -46,7 +44,7 @@ public class PathfinderAPIPlugin : HacknetPlugin
         CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
         
         // Expose textures and renderbuffers to other OpenGL contexts for funky mods =D
-        SDL.SDL_GL_SetAttribute(SDL.SDL_GLattr.SDL_GL_SHARE_WITH_CURRENT_CONTEXT, 1);
+        _ = SDL.SDL_GL_SetAttribute(SDL.SDL_GLattr.SDL_GL_SHARE_WITH_CURRENT_CONTEXT, 1);
         
         return true;
     }

@@ -2,16 +2,11 @@
 
 public abstract class PathfinderEvent
 {
-    internal bool cancelled = false;
-    public bool Cancelled { 
-        get
-        {
-            return cancelled;
-        }
-        set
-        {
-            cancelled |= value;
-        }
+    internal bool _cancelled;
+    public bool Cancelled
+    {
+        get => _cancelled;
+        set => _cancelled |= value;
     }
-    public bool Thrown { get; internal set; } = false;
+    public bool Thrown { get; internal set; }
 }

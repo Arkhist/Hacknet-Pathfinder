@@ -6,11 +6,11 @@ using Pathfinder.Options;
 
 namespace PathfinderUpdater;
 
-internal class RestartPopupScreen : GameScreen
+internal sealed class RestartPopupScreen : GameScreen, IDisposable
 {
-    private PFButton AcceptVersion = new PFButton(500, 330, 120, 30, "Yes", new Color(102,255,127));
-    private PFButton DenyVersion = new PFButton(980, 330, 120, 30, "No", new Color(255,92,87));
-    internal OptionCheckbox NoRestartPrompt = new OptionCheckbox("", "Do not prompt for restart");
+    private readonly PFButton AcceptVersion = new PFButton(500, 330, 120, 30, "Yes", new Color(102,255,127));
+    private readonly PFButton DenyVersion = new PFButton(980, 330, 120, 30, "No", new Color(255,92,87));
+    internal readonly OptionCheckbox NoRestartPrompt = new OptionCheckbox("", "Do not prompt for restart");
 
     public RestartPopupScreen()
     {
@@ -45,5 +45,11 @@ internal class RestartPopupScreen : GameScreen
         base.ExitScreen();
         PathfinderUpdaterPlugin.NoRestartPrompt.Value = NoRestartPrompt.Value;
         MainMenuOverride.NoRestartPrompt.Value = PathfinderUpdaterPlugin.NoRestartPrompt.Value;
+    }
+
+    public void Dispose()
+    {
+        AcceptVersion.Dispose();
+        DenyVersion.Dispose();
     }
 }

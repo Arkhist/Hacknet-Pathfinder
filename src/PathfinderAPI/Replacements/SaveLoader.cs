@@ -64,7 +64,7 @@ public static class SaveLoader
     }
 
     private static EventExecutor executor = new EventExecutor();
-    private static OS os = null;
+    private static OS os;
 
     static SaveLoader()
     {
@@ -111,7 +111,7 @@ public static class SaveLoader
         {
             os.Flags.Flags.Clear();
 
-            foreach (var flag in info.Content?.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries) ?? new string[0])
+            foreach (var flag in info.Content?.Split([','], StringSplitOptions.RemoveEmptyEntries) ?? [])
             {
                 os.Flags.Flags.Add(flag
                     .Replace("[%%COMMAREPLACED%%]", ",")
@@ -119,7 +119,7 @@ public static class SaveLoader
             }
         }, ParseOption.ParseInterior);
         executor.RegisterExecutor("HacknetSave.NetworkMap",
-            (exec, info) => { Enum.TryParse(info.Attributes.GetString("sort"), out os.netMap.SortingAlgorithm); });
+            (exec, info) => { _ = Enum.TryParse(info.Attributes.GetString("sort"), out os.netMap.SortingAlgorithm); });
         executor.RegisterExecutor("HacknetSave.NetworkMap", (exec, info) =>
         {
             foreach (var daemon in os.netMap.nodes.SelectMany(x => x.daemons))
@@ -246,7 +246,7 @@ public static class SaveLoader
         }
 
         foreach (var link in info.Children.GetElement("links").Content?
-                     .Split((char[]) null, StringSplitOptions.RemoveEmptyEntries) ?? new string[0])
+                     .Split((char[]) null, StringSplitOptions.RemoveEmptyEntries) ?? [])
         {
             comp.links.Add(int.Parse(link));
         }
@@ -260,7 +260,7 @@ public static class SaveLoader
         if (info.Children.TryGetElement("ports", out var ports))
         {
             if (ports.Content != null)
-                foreach (var port in ports.Content.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var port in ports.Content.Split([' '], StringSplitOptions.RemoveEmptyEntries))
                 {
                     var parts = port.Split(':');
                     var record = PortManager.GetPortRecordFromProtocol(parts[0]);
@@ -322,7 +322,7 @@ public static class SaveLoader
                     known = user.Attributes.GetBool("known")
                 };
 
-                if (username.ToLower() == "admin")
+                if (username.Equals("admin", StringComparison.OrdinalIgnoreCase))
                     comp.adminPass = pass;
 
                 comp.users.Add(userDetail);

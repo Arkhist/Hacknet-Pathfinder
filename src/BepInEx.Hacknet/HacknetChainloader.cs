@@ -30,7 +30,7 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
     internal List<string> TemporaryPluginGUIDs = [];
 
     internal Harmony HarmonyInstance;
-    private bool _firstLoadDone = false;
+    private bool _firstLoadDone;
         
     public override void Initialize(string gameExePath = null)
     {
@@ -106,7 +106,7 @@ internal static class ExtensionPluginPatches
     private static readonly MethodInfo PluginPathSetter = AccessTools.PropertySetter(typeof(Paths), nameof(Paths.PluginPath));
     private static readonly MethodInfo ConfigPathSetter = AccessTools.PropertySetter(typeof(Paths), nameof(Paths.ConfigPath));
 
-    private static bool FirstExtensionLoaded = false;
+    private static bool FirstExtensionLoaded;
 
     internal static bool LoadTempPlugins(ExtensionInfo info)
     {
@@ -252,7 +252,7 @@ internal static class ChainloaderFix
         RemapDefinitions.Clear();
     }
 }
-internal class RenamedAssemblyResolver : DefaultAssemblyResolver
+internal sealed class RenamedAssemblyResolver : DefaultAssemblyResolver
 {
     public override AssemblyDefinition Resolve(AssemblyNameReference name, ReaderParameters parameters) =>
         ChainloaderFix.RemapDefinitions.TryGetValue(name.Name, out var asm)
@@ -263,7 +263,7 @@ internal class RenamedAssemblyResolver : DefaultAssemblyResolver
 [HarmonyPatch]
 internal static class LogWriteLineToDisk
 {
-    internal static TextWriter LogWriter = null;
+    internal static TextWriter LogWriter;
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Console), nameof(Console.WriteLine), [typeof(string)])]

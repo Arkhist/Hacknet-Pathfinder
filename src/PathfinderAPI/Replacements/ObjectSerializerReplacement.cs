@@ -44,7 +44,7 @@ public static class ObjectSerializerReplacement
     {
         ILCursor c = new ILCursor(il);
             
-        c.GotoNext(MoveType.After, x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(Type), nameof(Type.GetFields), new Type[0])));
+        c.GotoNext(MoveType.After, x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(Type), nameof(Type.GetFields), [])));
 
         c.EmitDelegate<Func<FieldInfo[], FieldInfo[]>>(fields => fields.Where(x => !x.IsStatic).ToArray());
     }

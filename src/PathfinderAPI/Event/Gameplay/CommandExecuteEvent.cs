@@ -8,7 +8,7 @@ public class CommandExecuteEvent : PathfinderEvent
 {
     public OS Os { get; }
     public string[] Args { get; set; }
-    private bool found = false;
+    private bool found;
     public bool Found
     {
         get => found;

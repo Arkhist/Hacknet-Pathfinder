@@ -42,7 +42,7 @@ public class EventAttribute : BaseAttribute
         };
     }
 
-    private void CallOn(HacknetPlugin plugin, MethodInfo info)
+    private static void CallOn(HacknetPlugin plugin, MethodInfo info)
     {
         if(!info.IsStatic)
             throw new InvalidOperationException("EventAttribute can not register event handlers to instance methods");
@@ -50,7 +50,7 @@ public class EventAttribute : BaseAttribute
         EventManager.AddHandler(eventType, info);
     }
 
-    private void CallOn(HacknetPlugin plugin, Type type)
+    private static void CallOn(HacknetPlugin plugin, Type type)
     {
         foreach(var method in type.GetMethods(
                     BindingFlags.Public

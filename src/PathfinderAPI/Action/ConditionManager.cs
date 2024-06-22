@@ -47,8 +47,7 @@ public static class ConditionManager
     {
         conditionType.ThrowNotInherit<PathfinderCondition>(nameof(conditionType));
         CustomConditions.Add(xmlName, conditionType);
-        if (!XmlNames.ContainsKey(conditionType))
-            XmlNames.Add(conditionType, xmlName);
+        XmlNames.TryAdd(conditionType, xmlName);
     }
 
     public static void UnregisterCondition<T>() where T : PathfinderCondition => UnregisterCondition(typeof(T));
@@ -56,15 +55,12 @@ public static class ConditionManager
     {
         foreach(var xmlName in CustomConditions.Where(x => x.Value == conditionType).Select(x => x.Key).ToList())
             CustomConditions.Remove(xmlName);
-        if(XmlNames.ContainsKey(conditionType))
-            XmlNames.Remove(conditionType);
+        XmlNames.Remove(conditionType);
     }
     public static void UnregisterCondition(string xmlName)
     {
-        if (!CustomConditions.ContainsKey(xmlName))
+        if (!CustomConditions.Remove(xmlName, out var conditionType))
             return;
-        var conditionType = CustomConditions[xmlName];
-        CustomConditions.Remove(xmlName);
         if (XmlNames[conditionType] != xmlName)
             return;
         /* find the next applicable name */

@@ -10,9 +10,9 @@ using Pathfinder.Util.XML;
 namespace Pathfinder.Util;
 
 [HarmonyPatch]
-public class CachedCustomTheme : IDisposable
+internal sealed class CachedCustomTheme : IDisposable
 {
-    public delegate ref Color RefColorFieldDelegate(OS instance);
+    private delegate ref Color RefColorFieldDelegate(OS instance);
         
     private static readonly Dictionary<string, RefColorFieldDelegate> OSColorFieldsFast = new Dictionary<string, RefColorFieldDelegate>();
         
@@ -32,9 +32,9 @@ public class CachedCustomTheme : IDisposable
         
     public ElementInfo ThemeInfo { get; }
     public Texture2D BackgroundImage { get; internal set; }
-    private byte[] TextureData = null;
+    private byte[] TextureData;
     public string Path { get; }
-    public bool Loaded { get; private set; } = false;
+    public bool Loaded { get; private set; }
 
     public CachedCustomTheme(string themeFileName)
     {

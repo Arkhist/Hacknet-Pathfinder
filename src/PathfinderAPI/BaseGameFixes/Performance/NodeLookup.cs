@@ -73,7 +73,7 @@ internal static class NodeLookup
 
         c.GotoNext(MoveType.Before,
             x => x.MatchLdsfld(typeof(ComputerLoader), nameof(ComputerLoader.postAllLoadedActions)),
-            x => x.MatchCallOrCallvirt(typeof(System.Action), nameof(System.Action.Invoke))
+            x => x.MatchCallOrCallvirt<System.Action>(nameof(System.Action.Invoke))
         );
 
         c.Emit(OpCodes.Ldnull);

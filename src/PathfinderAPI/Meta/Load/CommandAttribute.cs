@@ -22,7 +22,7 @@ public class CommandAttribute : BaseAttribute
     protected internal override void CallOn(HacknetPlugin plugin, MemberInfo targettedInfo)
     {
         var methodInfo = (MethodInfo)targettedInfo;
-        var commandAction = (Action<OS, string[]>)methodInfo.CreateDelegate(typeof(Action<OS, string[]>));
+        var commandAction = methodInfo.CreateDelegate<Action<OS, string[]>>();
         CommandManager.RegisterCommand(CommandName, commandAction, AddAutocomplete, CaseSensitive);
     }
 }

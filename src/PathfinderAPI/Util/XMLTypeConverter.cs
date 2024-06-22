@@ -9,16 +9,16 @@ public delegate string FromTypeConverter(object o);
 
 public static class XMLTypeConverter
 {
-    private class ConversionFailureException : Exception
+    private sealed class ConversionFailureException : Exception
     {
         public ConversionFailureException(string val, Type t, Exception inner) : base($"The value \"{(val is null ? "is null and" : $"\"{val}\"")}\" could not be converted to {t.Name}", inner) { }
         public ConversionFailureException(object o, Exception inner) : base($"The object {(o is null ? "is null and" : $"\"{o.ToString()}\"")} could not be converted to a string", inner) { }
     }
 
-    private class TypeConverter
+    private sealed class TypeConverter
     {
-        public ToTypeConverter ToType;
-        public FromTypeConverter FromType;
+        public readonly ToTypeConverter ToType;
+        public readonly FromTypeConverter FromType;
 
         public TypeConverter(ToTypeConverter toType, FromTypeConverter fromType)
         {

@@ -20,7 +20,7 @@ public static class ReplacementsCommon
         {
             foreach (var command in commands.Children.Select(x => x.Content).Where(PFStringExtensions.HasContent))
             {
-                if (command.Contains("\n"))
+                if (command.Contains('\n'))
                 {
                     foreach (var trueCommand in command.Split(Utils.robustNewlineDelim, StringSplitOptions.RemoveEmptyEntries))
                     {
@@ -105,7 +105,7 @@ public static class ReplacementsCommon
         return ret;
     }
 
-    internal static bool isPathfinderComputer = false;
+    internal static bool isPathfinderComputer;
 
     internal static readonly List<ElementInfo> defaultPorts =
     [

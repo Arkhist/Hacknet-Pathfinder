@@ -142,7 +142,7 @@ public static class SaveWriter
         foreach (var flag in flags.Flags)
         {
             flagsBuild.Append(flag.Replace(",", "[%%COMMAREPLACED%%]"));
-            flagsBuild.Append(",");
+            flagsBuild.Append(',');
         }
         if (flagsBuild.Length > 0)
         {
@@ -357,28 +357,28 @@ public static class SaveWriter
                 );
                 break;
             case MissionHubServer _:
-                result = CreateDaemonElement(daemon, "MissionHubServer", new string[0], new string[0]);
+                result = CreateDaemonElement(daemon, "MissionHubServer", [], []);
                 break;
             case DeathRowDatabaseDaemon _:
-                result = CreateDaemonElement(daemon, "DeathRowDatabase", new string[0], new string[0]);
+                result = CreateDaemonElement(daemon, "DeathRowDatabase", [], []);
                 break;
             case MedicalDatabaseDaemon _:
-                result = CreateDaemonElement(daemon, "MedicalDatabase", new string[0], new string[0]);
+                result = CreateDaemonElement(daemon, "MedicalDatabase", [], []);
                 break;
             case HeartMonitorDaemon _:
                 result = CreateDaemonElement(daemon, "HeartMonitor", ["PatientID"], ["patient"]);
                 break;
             case PointClickerDaemon _:
-                result = CreateDaemonElement(daemon, "PointClicker", new string[0], new string[0]);
+                result = CreateDaemonElement(daemon, "PointClicker", [], []);
                 break;
             case ISPDaemon _:
-                result = CreateDaemonElement(daemon, "ispSystem", new string[0], new string[0]);
+                result = CreateDaemonElement(daemon, "ispSystem", [], []);
                 break;
             case PorthackHeartDaemon _:
-                result = CreateDaemonElement(daemon, "porthackheart", new string[0], new string[0]);
+                result = CreateDaemonElement(daemon, "porthackheart", [], []);
                 break;
             case SongChangerDaemon _:
-                result = CreateDaemonElement(daemon, "SongChangerDaemon", new string[0], new string[0]);
+                result = CreateDaemonElement(daemon, "SongChangerDaemon", [], []);
                 break;
             case UploadServerDaemon _:
                 result = CreateDaemonElement(daemon, "UploadServerDaemon",
@@ -387,7 +387,7 @@ public static class SaveWriter
                 );
                 break;
             case DLCHubServer _:
-                result = CreateDaemonElement(daemon, "DHSDaemon", new string[0], new string[0]);
+                result = CreateDaemonElement(daemon, "DHSDaemon", [], []);
                 break;
             case DatabaseDaemon database:
                 result = CreateDaemonElement(daemon, "DatabaseDaemon",
@@ -412,7 +412,7 @@ public static class SaveWriter
                 );
                 break;
             case IRCDaemon _:
-                result = CreateDaemonElement(daemon, "IRCDaemon", new string[0], new string[0]);
+                result = CreateDaemonElement(daemon, "IRCDaemon", [], []);
                 break;
             case MarkovTextDaemon _:
                 result = CreateDaemonElement(daemon, "MarkovTextDaemon",
@@ -437,7 +437,7 @@ public static class SaveWriter
                 );
                 break;
             case CustomConnectDisplayDaemon _:
-                result = CreateDaemonElement(daemon, "CustomConnectDisplayDaemon", new string[0], new string[0]);
+                result = CreateDaemonElement(daemon, "CustomConnectDisplayDaemon", [], []);
                 break;
             case LogoDaemon _:
                 result = CreateDaemonElement(daemon, "LogoDaemon",
@@ -446,7 +446,7 @@ public static class SaveWriter
                 );
                 break;
             case DLCCreditsDaemon credits:
-                result = CreateDaemonElement(daemon, "DLCCredits", new string[0], new string[0]);
+                result = CreateDaemonElement(daemon, "DLCCredits", [], []);
                 if (credits.OverrideTitle != null)
                 {
                     result.SetAttributeValue("Title", credits.OverrideTitle);
@@ -462,7 +462,7 @@ public static class SaveWriter
 
                 break;
             case FastActionHost fah:
-                result = CreateDaemonElement(daemon, "FastActionHost", new string[0], new string[0]);
+                result = CreateDaemonElement(daemon, "FastActionHost", [], []);
                 fah.folder.files = fah.DelayedActions.GetAllFilesForActions();
                 break;
         }

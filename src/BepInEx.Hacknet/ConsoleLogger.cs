@@ -3,14 +3,14 @@ using BepInEx.Configuration;
 
 namespace BepInEx.Hacknet;
 
-internal class ConsoleLogger : ILogListener
+internal sealed class ConsoleLogger : ILogListener
 {
-    protected static readonly ConfigEntry<LogLevel> ConfigConsoleDisplayedLevel = ConfigFile.CoreConfig.Bind(
+    private static readonly ConfigEntry<LogLevel> ConfigConsoleDisplayedLevel = ConfigFile.CoreConfig.Bind(
         "Logging.Console", "LogLevels",
         LogLevel.Fatal | LogLevel.Error | LogLevel.Warning | LogLevel.Message | LogLevel.Info,
         "Only displays the specified log levels in the console output.");
 
-    protected static readonly ConfigEntry<bool> BackupConsoleEnabled = ConfigFile.CoreConfig.Bind(
+    private static readonly ConfigEntry<bool> BackupConsoleEnabled = ConfigFile.CoreConfig.Bind(
         "Logging.Console", "BackupConsole",
         false,
         "Enables backup console output in case the normal one fails.");

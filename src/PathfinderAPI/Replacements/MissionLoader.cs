@@ -63,9 +63,9 @@ public static class MissionLoader
     }
 
     private static EventExecutor executor = new EventExecutor();
-    private static ActiveMission mission = null;
-    private static List<ActiveMission> branches = null;
-    private static bool hasMissionTag = false;
+    private static ActiveMission mission;
+    private static List<ActiveMission> branches;
+    private static bool hasMissionTag;
         
     static MissionLoader()
     {

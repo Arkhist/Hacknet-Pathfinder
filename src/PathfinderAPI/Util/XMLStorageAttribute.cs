@@ -8,8 +8,8 @@ namespace Pathfinder.Util;
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false)]
 public class XMLStorageAttribute : Attribute
 {
-    public bool IsContent { get; set; } = false;
-    public Type Converter { get; set; } = null;
+    public bool IsContent { get; set; }
+    public Type Converter { get; set; }
         
     private const BindingFlags Flags = BindingFlags.Instance | BindingFlags.Public;
     public static XElement WriteToElement(IXmlName obj)

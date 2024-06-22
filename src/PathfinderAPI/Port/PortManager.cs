@@ -25,9 +25,7 @@ public static class PortManager
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     public static void RegisterPort(string protocol, string displayName, int defaultPort = -1) => RegisterPortInternal(new PortRecord(protocol, displayName, defaultPort), Assembly.GetCallingAssembly());
-    [Obsolete("PortData is obsolete, use RegisterPort(PortRecord)")]
-    [MethodImpl(MethodImplOptions.NoInlining)]
-    public static void RegisterPort(PortData info) => RegisterPortInternal((PortRecord)info, Assembly.GetCallingAssembly());
+
     [MethodImpl(MethodImplOptions.NoInlining)]
     public static void RegisterPort(PortRecord record) => RegisterPortInternal(record, Assembly.GetCallingAssembly());
 
@@ -65,18 +63,6 @@ public static class PortManager
         if (port != null)
             return port;
         return ComputerExtensions.OGPorts.Values.FirstOrDefault(x => x.DefaultPortNumber == num);
-    }
-
-    [Obsolete("Use GetPortRecordFromProtocol(string)")]
-    public static PortData GetPortDataFromProtocol(string proto)
-    {
-        return (PortData)GetPortRecordFromProtocol(proto);
-    }
-
-    [Obsolete("Use GetPortRecordFromNumber(int)")]
-    public static PortData GetPortDataFromNumber(int num)
-    {
-        return (PortData)GetPortRecordFromNumber(num);
     }
 
     public static void LoadPortsFromChildren(Computer comp, IEnumerable<ElementInfo> children, bool clearAll)
@@ -133,9 +119,9 @@ public static class PortManager
     {
         if (clearExisting)
             comp.ClearPorts();
-        foreach (var port in portString.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries))
+        foreach (var port in portString.Split([' ', ','], StringSplitOptions.RemoveEmptyEntries))
         {
-            var portParts = port.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+            var portParts = port.Split([':'], StringSplitOptions.RemoveEmptyEntries);
             if (portParts.Length == 1)
             {
                 var record = GetPortRecordFromProtocol(portParts[0]);
@@ -177,7 +163,7 @@ public static class PortManager
 
     public static void LoadPortsFromStringVanilla(Computer comp, string portsList)
     {
-        foreach (var port in portsList.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries))
+        foreach (var port in portsList.Split([' ', ','], StringSplitOptions.RemoveEmptyEntries))
         {
             if (!int.TryParse(port, out var portNum))
             {

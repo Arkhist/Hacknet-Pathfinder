@@ -54,7 +54,7 @@ public class ExecutableExecuteEvent : PathfinderEvent
         ExeFolder = fol;
         FileIndex = finde;
         ExeFile = file;
-        Arguments = [..args ?? new string[0]];
+        Arguments = args is null ? [] : args.ToList();
     }
 
     public string this[int index]

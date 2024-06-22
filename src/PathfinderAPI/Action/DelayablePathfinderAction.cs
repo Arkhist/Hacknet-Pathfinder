@@ -12,7 +12,7 @@ public abstract class DelayablePathfinderAction : PathfinderAction
     public string Delay;
 
     private DelayableActionSystem delayHost;
-    private float delay = 0f;
+    private float delay;
         
     public sealed override void Trigger(object os_obj)
     {

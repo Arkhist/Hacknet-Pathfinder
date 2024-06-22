@@ -77,11 +77,11 @@ public static class ContentLoader
 
     private static readonly EventExecutor executor = new EventExecutor();
 
-    private static OS os = null;
-    private static Computer comp = null;
-    private static Computer eos = null;
+    private static OS os;
+    private static Computer comp;
+    private static Computer eos;
     private static readonly List<Computer> eosList = [];
-    private static ComputerHolder holder = null;
+    private static ComputerHolder holder;
 
     static ContentLoader()
     {
@@ -93,7 +93,7 @@ public static class ContentLoader
             byte type;
             if (!byte.TryParse(typeString, out type))
             {
-                if (typeString.ToLowerInvariant() == "empty")
+                if (typeString.Equals("empty", StringComparison.OrdinalIgnoreCase))
                     type = 4;
                 else
                     throw new FormatException("Invalid computer type");
@@ -408,9 +408,9 @@ public static class ContentLoader
         executor.RegisterExecutor("Computer.missionHubServer", (exec, info) =>
         {
             var missionPath = ExtensionLoader.ActiveExtensionInfo.FolderPath + "/" + info.Attributes.GetString("missionFolderPath", null);
-            missionPath = missionPath.Replace("\\", "/");
-            if (!missionPath.EndsWith("/"))
-                missionPath += "/";
+            missionPath = missionPath.Replace('\\', '/');
+            if (!missionPath.EndsWith('/'))
+                missionPath += '/';
                 
             comp.daemons.Add(new MissionHubServer(
                 comp,
@@ -579,14 +579,14 @@ public static class ContentLoader
                 themeColor = info.Attributes.GetColor("themeColor", new Color(38, 201, 155)).Value
             };
                 
-            foreach (var userInfo in info.Children.Where(x => x.Name.ToLower() == "user" || x.Name.ToLower() == "agent"))
+            foreach (var userInfo in info.Children.Where(x => x.Name.Equals("user", StringComparison.OrdinalIgnoreCase) || x.Name.Equals("agent", StringComparison.OrdinalIgnoreCase)))
             {
                 if (userInfo.Attributes.TryGetValue("name", out var name))
                 {
                     dlcHub.AddAgent(
                         name.Filter(),
                         userInfo.Attributes.GetString("pass", "password").Filter(),
-                        userInfo.Attributes.GetColor("color", Color.LightGreen).Value
+                        userInfo.Attributes.GetColor("color", Color.LightGreen)!.Value
                     );
                 }
             }
@@ -792,7 +792,7 @@ public static class ContentLoader
                     firstNewline = content.Length;
                 noteFile = content.Substring(0, firstNewline);
                 if (noteFile.Length > 50)
-                    noteFile = noteFile.Substring(0, 47) + "...";
+                    noteFile = string.Concat(noteFile.AsSpan(..47), "...");
             }
             notesFolder.files.Add(new FileEntry(content, noteFile));
         }, ParseOption.ParseInterior);

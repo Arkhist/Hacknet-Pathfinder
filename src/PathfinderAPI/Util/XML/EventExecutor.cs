@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Runtime.InteropServices;
+using System.Xml;
 
 namespace Pathfinder.Util.XML;
 
@@ -39,7 +40,7 @@ public class EventExecutor : EventReader
     private Dictionary<string, List<ExecutorHolder>> TemporaryExecutors =
         new Dictionary<string, List<ExecutorHolder>>();
 
-    private Dictionary<string, List<ExecutorHolder>> _allExecs = null;
+    private Dictionary<string, List<ExecutorHolder>> _allExecs;
         
     private Dictionary<string, List<ExecutorHolder>> AllExecutors
     {
@@ -56,10 +57,9 @@ public class EventExecutor : EventReader
 
             foreach (var temp in TemporaryExecutors)
             {
-                if (ret.ContainsKey(temp.Key))
-                    ret[temp.Key].AddRange(temp.Value);
-                else
-                    ret[temp.Key] = [..temp.Value];
+                ref var list = ref CollectionsMarshal.GetValueRefOrAddDefault(ret, temp.Key, out bool exists);
+                if (exists) list.AddRange(temp.Value);
+                else list = temp.Value.ToList();
             }
 
             _allExecs = ret;
@@ -262,7 +262,7 @@ public class EventExecutor : EventReader
                 return true;
             }
 
-            if (!name.Contains("."))
+            if (!name.Contains('.'))
             {
                 if (AllExecutors.TryGetValue("*", out executors))
                 {

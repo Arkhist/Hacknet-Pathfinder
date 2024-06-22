@@ -15,19 +15,6 @@ namespace Pathfinder;
 [HarmonyPatch]
 internal static class MiscPatches
 {
-    [Util.Initialize]
-    internal static void Initialize()
-    {
-        var formatType = typeof(StackTrace).GetNestedType("TraceFormat", System.Reflection.BindingFlags.NonPublic);
-        if (formatType == null)
-            return;
-
-        var original = AccessTools.Method(typeof(StackTrace), nameof(StackTrace.ToString), [formatType]);
-        var manipulator = AccessTools.Method(typeof(MiscPatches), nameof(IncludeILOffsetInTrace));
-
-        PathfinderAPIPlugin.HarmonyInstance.Patch(original, ilmanipulator: new HarmonyMethod(manipulator));
-    }
-
     [HarmonyILManipulator]
     [HarmonyPatch(typeof(LocalDocumentsStorageMethod), nameof(LocalDocumentsStorageMethod.Load))]
     internal static void ChangeSaveDirIL(ILContext il)
@@ -45,33 +32,6 @@ internal static class MiscPatches
     [HarmonyPostfix]
     [HarmonyPatch(typeof(HacknetPlugin), nameof(HacknetPlugin.Unload))]
     internal static void OnPluginUnload(ref HacknetPlugin __instance) => Event.EventManager.InvokeOnPluginUnload(__instance.GetType().Assembly);
-        
-    internal static void IncludeILOffsetInTrace(ILContext il)
-    {
-        ILCursor c = new ILCursor(il);
-
-        int frameLoc = 6;
-        ILLabel targetLabel = null;
-
-        var found = c.TryGotoNext(MoveType.Before,
-            x => x.MatchLdloc(out frameLoc),
-            x => x.MatchCallvirt(AccessTools.Method(typeof(StackFrame), nameof(StackFrame.GetILOffset))),
-            x => x.MatchLdcI4(-1),
-            x => x.MatchBeq(out targetLabel)
-        );
-
-        if (!found)
-            return;
-
-        c.GotoLabel(targetLabel);
-
-        c.Emit(OpCodes.Ldloc, frameLoc);
-        c.Emit(OpCodes.Ldloc, 4);
-        c.EmitDelegate<Action<StackFrame, StringBuilder>>((frame, builder) =>
-        {
-            builder.Append($" IL<0x{frame.GetILOffset().ToString("X4")}>");
-        });
-    }
         
     [HarmonyILManipulator]
     [HarmonyPatch(typeof(MainMenu), "<HookUpCreationEvents>b__1")]
@@ -130,7 +90,7 @@ internal static class MiscPatches
     [HarmonyPatch(typeof(Program), nameof(Program.Main))]
     private static void CheckDebug(string[] args)
     {
-        if (args.Any(x => x.ToLower() == "-enabledebug"))
+        if (args.Any(x => x.Equals("-enabledebug", StringComparison.OrdinalIgnoreCase)))
             DebugCommands.AddCommands();
     }
 }

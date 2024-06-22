@@ -13,7 +13,7 @@ public struct EventHandlerOptions
     public bool ContinueOnThrow;
 }
     
-internal class EventHandler<T> : IComparable<EventHandler<T>>, IEquatable<EventHandler<T>>, IEquatable<MethodInfo> where T : PathfinderEvent
+internal sealed class EventHandler<T> : IComparable<EventHandler<T>>, IEquatable<EventHandler<T>>, IEquatable<MethodInfo> where T : PathfinderEvent
 {
     internal readonly Action<T> HandlerAction;
     internal readonly MethodInfo HandlerInfo;
@@ -32,6 +32,10 @@ internal class EventHandler<T> : IComparable<EventHandler<T>>, IEquatable<EventH
     public bool Equals(EventHandler<T> other) => HandlerInfo.Equals(other?.HandlerInfo);
 
     public bool Equals(MethodInfo other) => HandlerInfo.Equals(other);
+    
+    public override bool Equals(object other) => other is EventHandler<T> handler && Equals(handler) || other is MethodInfo method && Equals(method);
+    
+    public override int GetHashCode() => HandlerInfo.GetHashCode();
 }
     
 public static class EventManager
@@ -90,11 +94,11 @@ public static class EventManager
 /// Manager for <see cref="PathfinderEvent"/> handlers
 /// </summary>
 /// <typeparam name="T">The type of <see cref="PathfinderEvent"/></typeparam>
-public class EventManager<T> where T : PathfinderEvent
+public sealed class EventManager<T> where T : PathfinderEvent
 {
     private readonly AssemblyAssociatedList<EventHandler<T>> handlers = new AssemblyAssociatedList<EventHandler<T>>();
 
-    private static EventManager<T> _instance = null;
+    private static EventManager<T> _instance;
 
     public static EventManager<T> Instance => _instance ?? (_instance = new EventManager<T>());
 

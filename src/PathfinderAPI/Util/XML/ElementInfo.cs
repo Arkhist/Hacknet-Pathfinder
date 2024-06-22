@@ -7,13 +7,10 @@ namespace Pathfinder.Util.XML;
 
 public class ElementInfo
 {
-    private static ulong freeId = 0;
+    private static ulong freeId;
         
     public string Name { get; set; }
-    public string Content {
-        get;
-        set;
-    } = null;
+    public string Content { get; set; }
     public ElementInfo Parent { get; set; }
     public Dictionary<string, string> Attributes { get; set; } = new Dictionary<string, string>();
     public List<ElementInfo> Children { get; set; } = [];
