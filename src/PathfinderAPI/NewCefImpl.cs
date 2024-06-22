@@ -2,17 +2,20 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
+using BepInEx.Logging;
 using CefInterop;
 using Hacknet;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics.PackedVector;
 using MonoMod.Cil;
+using Pathfinder.Options;
+using Steamworks;
 
 namespace Pathfinder;
 
 [HarmonyPatch]
-public static unsafe partial class NewCefImpl
+internal static unsafe partial class NewCefImpl
 {
     [UnmanagedCallersOnly]
     static void AddRef(_cef_base_ref_counted_t* counter)
@@ -41,19 +44,20 @@ public static unsafe partial class NewCefImpl
     static void StringDealloc(ushort* str) => Utf16StringMarshaller.Free(str);
 
     [UnmanagedCallersOnly]
-    static _cef_browser_process_handler_t* GetProcessHandler(_cef_app_t* _) => null;
-    
-    [UnmanagedCallersOnly]
-    static _cef_resource_bundle_handler_t* GetResourceBundleHandler(_cef_app_t* _) => null;
-
-    [UnmanagedCallersOnly]
-    static _cef_render_process_handler_t* GetRenderProcessHandler(_cef_app_t* _) => null;
-
-    [UnmanagedCallersOnly]
-    static void OnBeforeCommandLineProcessing(_cef_app_t* app, _cef_string_utf16_t* something, _cef_command_line_t* commandLine) { }
-    
-    [UnmanagedCallersOnly]
-    static void OnBeforeSchemaRegister(_cef_app_t* app, _cef_scheme_registrar_t* schemas) { }
+    static void OnBeforeCommandLineProcessing(_cef_app_t* app, _cef_string_utf16_t* something, _cef_command_line_t* commandLine)
+    {
+        if (OperatingSystem.IsLinux())
+        {
+            const string thing = "disable-gpu-sandbox";
+            var newSwitch = new _cef_string_utf16_t
+            {
+                dtor = &StringDealloc,
+                length = (nuint)thing.Length,
+                str = Utf16StringMarshaller.ConvertToUnmanaged(thing)
+            };
+            commandLine->append_switch(commandLine, &newSwitch);
+        }
+    }
 
     [UnmanagedCallersOnly]
     static _cef_render_handler_t* GetRenderHandler(_cef_client_t* _)
@@ -91,7 +95,8 @@ public static unsafe partial class NewCefImpl
         browser->@base.release(&browser->@base);
     }
 
-    private const string SubprocessPath = "CefSubprocess";
+    private const string SubprocessPathWindows = "CefSubprocess.exe";
+    private const string SubprocessPathLinux = "CefSubprocess";
     private const string InitialPath = "file:///nope.html";
 
     [FixedAddressValueType]
@@ -107,10 +112,67 @@ public static unsafe partial class NewCefImpl
 
     private static int _w = 500, _h = 500;
 
+    private static HHTMLBrowser _steamBrowser = HHTMLBrowser.Invalid;
+    private static IDisposable[] _callbackHolder;
+
+    private enum CefKind
+    {
+        Invalid = 0,
+        Cef,
+        Steam
+    }
+
+    private static CefKind _cefKind;
+
     public static void Initialize()
     {
+        if (!PathfinderOptions.ForceCef.Value && PathfinderAPIPlugin.GameIsSteamVersion && PlatformAPISettings.Running)
+        {
+            InitializeSteam();
+            _cefKind = CefKind.Steam;
+        }
+        else
+        {
+            InitializeCef();
+            _cefKind = CefKind.Cef;
+        }
+        
+        Logger.Log(LogLevel.Debug, $"Initiated Cef using kind: {_cefKind}");
+    }
+
+    private static void InitializeSteam()
+    {
+        SteamHTMLSurface.Init();
+        _callbackHolder = [
+            Callback<HTML_StartRequest_t>.Create(req => SteamHTMLSurface.AllowStartRequest(req.unBrowserHandle, true)),
+            Callback<HTML_JSAlert_t>.Create(alert => SteamHTMLSurface.JSDialogResponse(alert.unBrowserHandle, true)),
+            Callback<HTML_JSConfirm_t>.Create(confirm => SteamHTMLSurface.JSDialogResponse(confirm.unBrowserHandle, true)),
+            Callback<HTML_FileOpenDialog_t>.Create(file => SteamHTMLSurface.FileLoadDialogResponse(file.unBrowserHandle, 0)),
+            Callback<HTML_NeedsPaint_t>.Create(paint =>
+            {
+                var buffer = (uint*)paint.pBGRA;
+                var span = MemoryMarshal.Cast<byte, uint>(WebRenderer.texBuffer);
+                for (int i = 0; i < span.Length; i++)
+                {
+                    var value = buffer[i];
+                    span[i] = (value & 0x00_ff_00_00) >> 16 | (value & 0x_00_00_ff) << 16 | value & 0xff_00_ff_00;
+                }
+                WebRenderer.texture.SetData(WebRenderer.texBuffer);
+                WebRenderer.loadingPage = false;
+            })
+        ];
+        using var browserResult = CallResult<HTML_BrowserReady_t>.Create((browser, _) => _steamBrowser = browser.unBrowserHandle);
+        browserResult.Set(SteamHTMLSurface.CreateBrowser(null, null));
+        while (_steamBrowser == HHTMLBrowser.Invalid)
+        {
+            SteamAPI.RunCallbacks();
+        }
+    }
+    
+    public static void InitializeCef()
+    {
         void* argsPtr;
-        _cef_main_args_t_windows argsWin = default;
+        _cef_main_args_t_windows argsWin;
         _cef_main_args_t_linux argsLinux = default;
         if (OperatingSystem.IsWindows())
         {
@@ -134,18 +196,12 @@ public static unsafe partial class NewCefImpl
         _app = new _cef_app_t
         {
             @base = stubCounter with { size = (nuint)sizeof(_cef_app_t) },
-            get_browser_process_handler = &GetProcessHandler,
-            get_resource_bundle_handler = &GetResourceBundleHandler,
             on_before_command_line_processing = &OnBeforeCommandLineProcessing,
-            on_register_custom_schemes = &OnBeforeSchemaRegister,
-            get_render_process_handler = &GetRenderProcessHandler
         };
 
-        var path = Path.GetFullPath(SubprocessPath);
-        if (OperatingSystem.IsWindows())
-        {
-            path += ".exe";
-        }
+        var path = OperatingSystem.IsWindows() ? SubprocessPathWindows : SubprocessPathLinux;
+        path = Path.GetFullPath(path);
+        var cachePath = Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), "cef-cache");
         var settings = new _cef_settings_t
         {
             browser_subprocess_path = new _cef_string_utf16_t
@@ -154,9 +210,14 @@ public static unsafe partial class NewCefImpl
                 length = (nuint)path.Length,
                 str = Utf16StringMarshaller.ConvertToUnmanaged(path)
             },
-            no_sandbox = OperatingSystem.IsWindows() ? 0 : 1,
+            root_cache_path = new _cef_string_utf16_t {
+                dtor = &StringDealloc,
+                length = (nuint)cachePath.Length,
+                str = Utf16StringMarshaller.ConvertToUnmanaged(cachePath)
+            },
+            no_sandbox = 1,
             windowless_rendering_enabled = 1,
-            //chrome_runtime = 1,
+            chrome_runtime = 1,
             size = (nuint)sizeof(_cef_settings_t),
         };
 
@@ -176,7 +237,8 @@ public static unsafe partial class NewCefImpl
         {
             winWindow = new _cef_window_info_t_windows
             {
-                windowless_rendering_enabled = 1
+                windowless_rendering_enabled = 1,
+                runtime_style = cef_runtime_style_t.CEF_RUNTIME_STYLE_ALLOY
             };
             windowInfoPtr = &winWindow;
         }
@@ -184,7 +246,8 @@ public static unsafe partial class NewCefImpl
         {
             linWindow = new _cef_window_info_t_linux
             {
-                windowless_rendering_enabled = 1
+                windowless_rendering_enabled = 1,
+                runtime_style = cef_runtime_style_t.CEF_RUNTIME_STYLE_ALLOY
             };
             windowInfoPtr = &linWindow;
         }
@@ -211,26 +274,80 @@ public static unsafe partial class NewCefImpl
 
         _browser = CefInterop.Methods.cef_browser_host_create_browser_sync(windowInfoPtr, (_cef_client_t*)Unsafe.AsPointer(ref _client), &initialUrl,
             &browserSettings, null, null);
-    }
 
-    public static void SetViewport(int width, int height)
-    {
-        _w = width;
-        _h = height;
-        var host = _browser->get_host(_browser);
-        host->was_resized(host);
-    }
-
-    public static void LoadURL(string urlString)
-    {
-        var url = new _cef_string_utf16_t
+        if (OperatingSystem.IsLinux())
         {
-            dtor = &StringDealloc,
-            length = (nuint)urlString.Length,
-            str = Utf16StringMarshaller.ConvertToUnmanaged(urlString)
-        };
-        var mainFrame = _browser->get_main_frame(_browser);
-        mainFrame->load_url(mainFrame, &url);
+            argsLinux.Dispose();
+        }
+    }
+
+    private static void Update()
+    {
+        switch (_cefKind)
+        {
+            case CefKind.Cef:
+                Methods.cef_do_message_loop_work();
+                break;
+            case CefKind.Steam:
+                SteamAPI.RunCallbacks();
+                break;
+        }
+    }
+
+    private static void SetViewport(int width, int height)
+    {
+        switch (_cefKind)
+        {
+            case CefKind.Cef:
+                _w = width;
+                _h = height;
+                var host = _browser->get_host(_browser);
+                host->was_resized(host);
+                break;
+            case CefKind.Steam:
+                SteamHTMLSurface.SetSize(_steamBrowser, (uint)width, (uint)height);
+                break;
+        }
+    }
+
+    private static void LoadURL(string urlString)
+    {
+        switch (_cefKind)
+        {
+            case CefKind.Cef:
+                var url = new _cef_string_utf16_t
+                {
+                    dtor = &StringDealloc,
+                    length = (nuint)urlString.Length,
+                    str = Utf16StringMarshaller.ConvertToUnmanaged(urlString)
+                };
+                var mainFrame = _browser->get_main_frame(_browser);
+                mainFrame->load_url(mainFrame, &url);
+                break;
+            case CefKind.Steam:
+                SteamHTMLSurface.LoadURL(_steamBrowser, urlString, null);
+                break;
+        }
+    }
+
+    private static void Shutdown()
+    {
+        switch (_cefKind)
+        {
+            case CefKind.Cef:
+                _browser->@base.release(&_browser->@base);
+                Methods.cef_shutdown();
+                break;
+            case CefKind.Steam:
+                SteamHTMLSurface.RemoveBrowser(_steamBrowser);
+                foreach (var callback in _callbackHolder)
+                {
+                    callback.Dispose();
+                }
+                _callbackHolder = [];
+                SteamHTMLSurface.Shutdown();
+                break;
+        }
     }
 
     [HarmonyILManipulator]
@@ -257,7 +374,7 @@ public static unsafe partial class NewCefImpl
 
         c.GotoNext(x => x.MatchCall(AccessTools.DeclaredMethod(typeof(XNAWebRenderer), nameof(XNAWebRenderer.XNAWR_Update))));
 
-        c.Next!.Operand = il.Import(AccessTools.DeclaredMethod(typeof(Methods), nameof(Methods.cef_do_message_loop_work)));
+        c.Next!.Operand = il.Import(AccessTools.DeclaredMethod(typeof(NewCefImpl), nameof(Update)));
     }
     
     [HarmonyILManipulator]
@@ -290,6 +407,6 @@ public static unsafe partial class NewCefImpl
 
         c.GotoNext(x => x.MatchCall(AccessTools.DeclaredMethod(typeof(XNAWebRenderer), nameof(XNAWebRenderer.XNAWR_Shutdown))));
 
-        c.Next!.Operand = il.Import(AccessTools.DeclaredMethod(typeof(Methods), nameof(Methods.cef_shutdown)));
+        c.Next!.Operand = il.Import(AccessTools.DeclaredMethod(typeof(NewCefImpl), nameof(Shutdown)));
     }
 }
