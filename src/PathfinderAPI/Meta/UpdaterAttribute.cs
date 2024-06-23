@@ -1,6 +1,7 @@
 ﻿namespace Pathfinder.Meta;
 
 [AttributeUsage(AttributeTargets.Class)]
+[Obsolete("PathfinderUpdater no longer exists in the same form, and does not update plugins.")]
 public class UpdaterAttribute : Attribute
 {
     public string GithubApiUrl { get; set; }

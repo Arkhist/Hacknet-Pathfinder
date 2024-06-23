@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleMod", "src\ExampleMo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderAPI", "src\PathfinderAPI\PathfinderAPI.csproj", "{4DE0A4CF-EC60-46E1-AD96-BE3A0F5BE406}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderUpdater", "src\PathfinderUpdater\PathfinderUpdater.csproj", "{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefSubprocess", "src\CefSubprocess\CefSubprocess.csproj", "{F5D40869-E9BF-4BFF-A9BF-1DAE2E30896C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefInterop", "src\CefInterop\CefInterop.csproj", "{88195127-D422-4382-A277-114D85CE25C8}"
@@ -39,10 +37,6 @@ Global
 		{4DE0A4CF-EC60-46E1-AD96-BE3A0F5BE406}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DE0A4CF-EC60-46E1-AD96-BE3A0F5BE406}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DE0A4CF-EC60-46E1-AD96-BE3A0F5BE406}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A21A9ADF-50A9-4F73-AA14-59CF85E4CA9B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F5D40869-E9BF-4BFF-A9BF-1DAE2E30896C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F5D40869-E9BF-4BFF-A9BF-1DAE2E30896C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5D40869-E9BF-4BFF-A9BF-1DAE2E30896C}.Release|Any CPU.ActiveCfg = Release|Any CPU
