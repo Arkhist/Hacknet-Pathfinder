@@ -17,7 +17,6 @@ public static class Entrypoint
         Assembly.LoadFile(Path.GetFullPath("Steamworks.NET.dll"));
 
         AppDomain.CurrentDomain.AssemblyResolve += ResolveBepAssembly;
-        AppDomain.CurrentDomain.AssemblyResolve += ResolveRenamedAssembly;
 
         LoadBepInEx.Load();
     }
@@ -63,16 +62,6 @@ public static class Entrypoint
             }
             catch {}
         }
-
-        return null;
-    }
-
-    public static Assembly ResolveRenamedAssembly(object sender, ResolveEventArgs args)
-    {
-        var asmName = new AssemblyName(args.Name);
-
-        if (ChainloaderFix.Remaps.TryGetValue(asmName.Name, out Assembly ret))
-            return ret;
 
         return null;
     }
