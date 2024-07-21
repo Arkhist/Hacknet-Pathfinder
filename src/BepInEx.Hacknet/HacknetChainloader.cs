@@ -217,9 +217,9 @@ internal static class ChainloaderFix
         c.EmitDelegate((string path) =>
         {
             using var asm = AssemblyDefinition.ReadAssembly(path);
-
+            
             asm.MainModule.Attributes &= ~ModuleAttributes.Required32Bit;
-
+            
             using var stream = new MemoryStream();
             
             asm.Write(stream);

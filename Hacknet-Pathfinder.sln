@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderPatcher", "src\PathfinderPatcher\PathfinderPatcher.csproj", "{71E84BE2-DC97-41A1-B96C-090005A851F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathfinderInstaller", "src\PathfinderInstaller\PathfinderInstaller.csproj", "{71E84BE2-DC97-41A1-B96C-090005A851F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepInEx.Hacknet", "src\BepInEx.Hacknet\BepInEx.Hacknet.csproj", "{64FAEDA5-E87C-47ED-8200-E1DE1F263040}"
 EndProject
