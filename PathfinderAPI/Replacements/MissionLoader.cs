@@ -127,7 +127,7 @@ public static class MissionLoader
         executor.RegisterExecutor("mission.posting", (exec, info) =>
         {
             mission.postingTitle = info.Attributes.GetString("title", "UNKNOWN").Filter();
-            mission.postingBody = info.Content ?? "UNKNOWN";
+            mission.postingBody = (info.Content ?? "UNKNOWN").Filter();
             mission.postingAcceptFlagRequirements = info.Attributes.GetString("reqs").Split(Utils.commaDelim, StringSplitOptions.RemoveEmptyEntries);
             mission.requiredRank = info.Attributes.GetInt("requiredRank");
             mission.difficulty = info.Attributes.GetInt("difficulty");
