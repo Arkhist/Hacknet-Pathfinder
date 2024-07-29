@@ -22,12 +22,12 @@ nav:
     - Development Guides:
         - GUI Basics: guides/guibasics.md
     - API:
-        - Classes: /doxybook/Classes
-        - Namespaces: /doxybook/Namespaces
-        - Modules: /doxybook/Modules
-        - Files: /doxybook/Files
-        - Related Pages: /doxybook/Pages
-        - Examples: /doxybook/Examples
+        - Classes: doxybook/Classes/index.md
+        - Namespaces: doxybook/Namespaces/index.md
+        - Modules: doxybook/Modules/index.md
+        - Files: doxybook/Files/index.md
+        - Related Pages: doxybook/Pages/index.md
+        - Examples: doxybook/Examples/index.md
 theme: readthedocs
 markdown_extensions:
     - footnotes
