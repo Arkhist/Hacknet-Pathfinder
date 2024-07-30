@@ -24,7 +24,7 @@ internal static class NeedsMissionComplete
 
     [HarmonyILManipulator]
     [HarmonyPatch(typeof(SCOnConnect), nameof(SCOnConnect.Check))]
-    internal static void ActiveMissionLogicFixIL(ILContext il)
+    internal static void ActiveMissionLogicFixIL(ILContext il, ILLabel retLabel)
     {
         ILCursor c = new ILCursor(il);
 
@@ -43,7 +43,7 @@ internal static class NeedsMissionComplete
             (!self.needsMissionComplete || os.currentMission == null || os.currentMission.isComplete()) 
             && (os.connectedComp != null && os.connectedComp.ip == comp.ip)
         );
-        c.Emit(OpCodes.Ret);
+        c.Emit(OpCodes.Br, retLabel);
 
         foreach (var label in il.Labels)
         {

@@ -15,14 +15,17 @@ namespace Pathfinder.Executable;
 [HarmonyPatch]
 public static class ExecutableManager
 {
-    private struct CustomExeInfo
+    public struct CustomExeInfo
     {
         public string ExeData;
         public string XmlId;
         public Type ExeType;
     }
 
-    private static readonly List<CustomExeInfo> CustomExes = new List<CustomExeInfo>();
+    private static readonly List<CustomExeInfo> _customExes = new List<CustomExeInfo>();
+
+    public static IReadOnlyList<CustomExeInfo> AllCustomExes => _customExes;
+    
         
     static ExecutableManager()
     {
@@ -34,7 +37,7 @@ public static class ExecutableManager
 
     private static void GetTextReplacementExe(TextReplaceEvent e)
     {
-        var exe = CustomExes.FirstOrNull(x => x.XmlId == e.Original);
+        var exe = _customExes.FirstOrNull(x => x.XmlId == e.Original);
         if (!exe.HasValue)
             return;
         e.Replacement = exe.Value.ExeData;
@@ -44,7 +47,7 @@ public static class ExecutableManager
         if (e.Result != ExecutionResult.NotFound)
             return;
 
-        var exe = CustomExes.FirstOrNull(x => x.ExeData == e.ExecutableData);
+        var exe = _customExes.FirstOrNull(x => x.ExeData == e.ExecutableData);
         if (!exe.HasValue)
             return;
         var location = new Rectangle(e.OS.ram.bounds.X, e.OS.ram.bounds.Y + RamModule.contentStartOffset, RamModule.MODULE_WIDTH, (int)OS.EXE_MODULE_HEIGHT);
@@ -61,7 +64,7 @@ public static class ExecutableManager
 
     private static void OnPluginUnload(Assembly pluginAsm)
     {
-        CustomExes.RemoveAll(x => x.ExeType.Assembly == pluginAsm);
+        _customExes.RemoveAll(x => x.ExeType.Assembly == pluginAsm);
     }
 
     public static void RegisterExecutable<T>(string xmlName) where T : BaseExecutable => RegisterExecutable(typeof(T), xmlName);
@@ -71,7 +74,7 @@ public static class ExecutableManager
         var builder = new StringBuilder();
         foreach (var exeByte in Encoding.ASCII.GetBytes("PathfinderExe:" + executableType.FullName))
             builder.Append(Convert.ToString(exeByte, 2));
-        CustomExes.Add(new CustomExeInfo
+        _customExes.Add(new CustomExeInfo
         {
             ExeData = builder.ToString(),
             XmlId = xmlName,
@@ -80,26 +83,26 @@ public static class ExecutableManager
     }
 
     public static bool IsXmlId(string xmlName) =>
-        CustomExes.Any(x => x.XmlId == xmlName);
+        _customExes.Any(x => x.XmlId == xmlName);
 
     public static bool IsExeData(string exeData) =>
-        CustomExes.Any(x => x.ExeData == exeData);
+        _customExes.Any(x => x.ExeData == exeData);
 
     public static bool IsRegistered<T>() where T: BaseExecutable =>
         IsRegistered(typeof(T));
     public static bool IsRegistered(Type exeType) =>
-        CustomExes.Any(x => x.ExeType == exeType);
+        _customExes.Any(x => x.ExeType == exeType);
 
-    public static string GetCustomExeData(string xmlName) => CustomExes.FirstOrNull(x => x.XmlId == xmlName)?.ExeData;
+    public static string GetCustomExeData(string xmlName) => _customExes.FirstOrNull(x => x.XmlId == xmlName)?.ExeData;
 
     public static void UnregisterExecutable(string xmlName)
     {
-        CustomExes.RemoveAll(x => x.XmlId == xmlName);
+        _customExes.RemoveAll(x => x.XmlId == xmlName);
     }
     public static void UnregisterExecutable<T>() => UnregisterExecutable(typeof(T));
     public static void UnregisterExecutable(Type exeType)
     {
-        CustomExes.RemoveAll(x => x.ExeType == exeType);
+        _customExes.RemoveAll(x => x.ExeType == exeType);
     }
 
     public static void AddGameExecutable(this OS os, GameExecutable exe, Rectangle location, string[] args)
