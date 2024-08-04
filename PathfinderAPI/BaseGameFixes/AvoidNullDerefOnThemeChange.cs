@@ -21,18 +21,18 @@ internal static class AvoidNullDerefOnThemeChange {
 		ILLabel afterConditionals = il.DefineLabel();
 		Type str = typeof(string);
 		FieldInfo strEmpty = AccessTools.Field(str, nameof(string.Empty));
-		ConstructorInfo fileCtor = AccessTools.Constructor(typeof(FileEntry), [str, str]);
+		ConstructorInfo fileCtor = AccessTools.Constructor(typeof(FileEntry), new[]{str, str});
 		FieldInfo folderFiles = AccessTools.Field(typeof(Folder), nameof(Folder.files));
 		MethodInfo fileListAdd = AccessTools.Method(folderFiles.FieldType, nameof(Folder.files.Add));
 
-		il.GotoNext([ // doesn't matter where we move relative to these, we just need the label at the end of this instruction set
+		il.GotoNext( // doesn't matter where we move relative to these, we just need the label at the end of this instruction set
 			i => i.MatchLdloc(2),
 			i => i.MatchLdnull(),
 			i => i.MatchCeq(),
 			i => i.MatchStloc(6),
 			i => i.MatchLdloc(6),
-			i => i.MatchBrtrue(out fileIsNull),
-		]);
+			i => i.MatchBrtrue(out fileIsNull)
+		);
 
 		il.GotoLabel(fileIsNull, MoveType.Before); // we need to insert a branch after making the backup, in order to NOT make a duplicate file
 		il.Emit(OpCodes.Br, afterConditionals); // coming in from the part that ran when FileEntry is NOT null, making the backup theme file
