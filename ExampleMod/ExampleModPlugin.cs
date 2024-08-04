@@ -21,7 +21,7 @@ public class ExampleModPlugin2 : BepInEx.Hacknet.HacknetPlugin
         base.HarmonyInstance.PatchAll(typeof(PatchClass2));
 
         Pathfinder.Executable.ExecutableManager.RegisterExecutable<TestExe>("#PF_TEST_EXE#");
-        Pathfinder.Port.PortManager.RegisterPort("ex", "example port");
+        Pathfinder.Port.PortManager.RegisterPort("ex", "example port", 1515);
         Pathfinder.Daemon.DaemonManager.RegisterDaemon<TestDaemon>();
         Pathfinder.Command.CommandManager.RegisterCommand("pathfinder", TestCommand);
         Pathfinder.Mission.GoalManager.RegisterGoal<TestGoal>("resetIP");
