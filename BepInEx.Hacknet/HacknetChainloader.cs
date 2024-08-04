@@ -53,6 +53,19 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
         }
 
         var plugins = base.DiscoverPlugins();
+        
+        // Filter the list to those NOT already loaded, warn on duplicate plugins.
+        for (int i = plugins.Count - 1; i > -1; i--)
+        {
+            PluginInfo extPlugin = plugins[i];
+            
+            if (Plugins.ContainsKey(extPlugin.Metadata.GUID))
+            {
+                Log.LogWarning($"Skipped loading of '{extPlugin.Metadata.GUID}' as already loaded globally.");
+                plugins.RemoveAt(i);
+            }
+        }
+        
         return plugins;
     }
 
