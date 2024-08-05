@@ -1,10 +1,11 @@
-﻿<Project ToolsVersion="16.0">
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0">
 
   <PropertyGroup Label="Build">
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <Import Project="..\Configurations.props" />
+  <Import Project="..\Configurations.targets" />
 
   <ItemGroup>
     <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e" />
