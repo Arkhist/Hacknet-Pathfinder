@@ -126,8 +126,12 @@ public static class ExecutableManager
             if(os.ramAvaliable >= exe.ramCost)
             {
                 exe.OnInitialize();
-                if(exe.CanAddToSystem)
+                if (exe.CanAddToSystem)
+                {
+                    exe.bounds.X = os.ram.bounds.X;
+                    exe.bounds.Width = os.ram.bounds.Width;
                     os.exes.Add(exe);
+                }
                 return;
             }
 
