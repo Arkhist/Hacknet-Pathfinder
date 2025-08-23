@@ -80,10 +80,11 @@ public static class CommandManager
     }
         
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public static void RegisterCommand(string commandName, Action<OS, string[]> handler, bool addAutocomplete = true, bool caseSensitive = false)
-    {
-        var pluginAsm = Assembly.GetCallingAssembly();
+    public static void RegisterCommand(string commandName, Action<OS, string[]> handler, bool addAutocomplete = true, bool caseSensitive = false) =>
+        RegisterCommandInternal(commandName, Assembly.GetCallingAssembly(), handler, addAutocomplete, caseSensitive);
 
+    internal static void RegisterCommandInternal(string commandName, Assembly pluginAsm, Action<OS, string[]> handler, bool addAutocomplete = true, bool caseSensitive = false)
+    {
         if (CustomCommands.AllItems.Any(x => x.Name == commandName))
             throw new ArgumentException($"Command {commandName} has already been registered!", nameof(commandName));
                 
