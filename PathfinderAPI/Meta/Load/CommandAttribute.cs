@@ -23,6 +23,6 @@ public class CommandAttribute : BaseAttribute
     {
         var methodInfo = (MethodInfo)targettedInfo;
         var commandAction = (Action<OS, string[]>)methodInfo.CreateDelegate(typeof(Action<OS, string[]>));
-        CommandManager.RegisterCommand(CommandName, commandAction, AddAutocomplete, CaseSensitive);
+        CommandManager.RegisterCommandInternal(CommandName, targettedInfo.Module.Assembly, commandAction, AddAutocomplete, CaseSensitive);
     }
 }
