@@ -54,16 +54,12 @@ public class HacknetChainloader : BaseChainloader<HacknetPlugin>
 
         var plugins = base.DiscoverPlugins();
         
-        // Filter the list to those NOT already loaded, warn on duplicate plugins.
-        for (int i = plugins.Count - 1; i > -1; i--)
+        // Stub any duplicate PluginInfos using the global ones to satisfy extension plugin dependencies
+        // ChainloaderFix warns and skips reloading the stubs
+        for (var i = 0; i < plugins.Count; i++)
         {
-            PluginInfo extPlugin = plugins[i];
-            
-            if (Plugins.ContainsKey(extPlugin.Metadata.GUID))
-            {
-                Log.LogWarning($"Skipped loading of '{extPlugin.Metadata.GUID}' as already loaded globally.");
-                plugins.RemoveAt(i);
-            }
+			if (Plugins.TryGetValue(plugins[i].Metadata.GUID, out var globalPlugin))
+                plugins[i] = globalPlugin;
         }
         
         return plugins;
@@ -226,7 +222,32 @@ internal static class ChainloaderFix
     [HarmonyPatch(typeof(BaseChainloader<HacknetPlugin>), "Execute")]
     internal static void PluginCecilHacks(ILContext il)
     {
-        ILCursor c = new ILCursor(il);
+        var c = new ILCursor(il);
+
+        ILLabel skipTryCatch = null;
+        c.GotoNext(MoveType.Before,
+            x => x.MatchBr(out skipTryCatch),
+            // Logger.LogInfo($"Loading [{item}]");
+            x => x.MatchNop(),
+            // .try
+            x => x.MatchLdstr("Loading [{0}]")
+        );
+        c.Index++;
+        c.MoveAfterLabels();
+        c.Emit(OpCodes.Ldarg_0);
+        c.Emit(OpCodes.Ldloc, 5);
+        c.EmitDelegate(bool(HacknetChainloader @this, PluginInfo item) =>
+        {
+            if (item.Instance != null)
+            {
+                var error = $"Skipping [{item}] because it was already loaded globally.";
+                @this.Log.LogWarning(error);
+                @this.DependencyErrors.Add(error);
+                return false;
+            }
+            return true;
+        });
+        c.Emit(OpCodes.Brfalse, skipTryCatch);
 
         c.GotoNext(MoveType.Before,
             x => x.MatchCallOrCallvirt(AccessTools.Method(typeof(Assembly), "LoadFile", new Type[] { typeof(string) }))
