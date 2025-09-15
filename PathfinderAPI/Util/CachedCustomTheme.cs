@@ -1,4 +1,4 @@
-﻿using Hacknet;
+using Hacknet;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -50,35 +50,22 @@ public class CachedCustomTheme : IDisposable
 
     public void Load(bool isMainThread)
     {
-        if (ThemeInfo.Children.All(x => x.Name != "backgroundImagePath"))
+        if (!ThemeInfo.Children.TryGetElement("backgroundImagePath", out var imagePath) || !imagePath.Content.HasContent())
         {
             Loaded = true;
             return;
         }
-            
-        if (isMainThread && TextureData == null)
-        {
-            if (ThemeInfo.Children.TryGetElement("backgroundImagePath", out var imagePath))
-            {
-                if (imagePath.Content.HasContent())
-                {
-                    if (imagePath.Content.ContentFileExists())
-                    {
-                        using (FileStream imageSteam = File.OpenRead(imagePath.Content.ContentFilePath()))
-                        {
-                            BackgroundImage = Texture2D.FromStream(GuiData.spriteBatch.GraphicsDevice, imageSteam);
-                        }
-                    }
-                    else
-                    {
-                        Logger.Log(BepInEx.Logging.LogLevel.Warning, "Could not find theme background image " + imagePath.Content + " for theme " + Path);
-                    }
 
-                    Loaded = true;
-                }
+        if (!isMainThread)
+        {
+            if (imagePath.Content.ContentFileExists())
+            {
+                TextureData = File.ReadAllBytes(imagePath.Content.ContentFilePath());
             }
+            return;
         }
-        else if (isMainThread)
+
+        if (TextureData != null)
         {
             using (var ms = new MemoryStream(TextureData))
             {
@@ -87,17 +74,21 @@ public class CachedCustomTheme : IDisposable
 
             TextureData = null;
             Loaded = true;
+            return;
+        }
+
+        if (imagePath.Content.ContentFileExists())
+        {
+            using (FileStream imageSteam = File.OpenRead(imagePath.Content.ContentFilePath()))
+            {
+                BackgroundImage = Texture2D.FromStream(GuiData.spriteBatch.GraphicsDevice, imageSteam);
+            }
         }
         else
         {
-            if (ThemeInfo.Children.TryGetElement("backgroundImagePath", out var imagePath))
-            {
-                if (imagePath.Content.HasContent() && imagePath.Content.ContentFileExists())
-                {
-                    TextureData = File.ReadAllBytes(imagePath.Content.ContentFilePath());
-                }
-            }
+            Logger.Log(BepInEx.Logging.LogLevel.Warning, "Could not find theme background image " + imagePath.Content + " for theme " + Path);
         }
+        Loaded = true;
     }
 
     [HarmonyReversePatch]
