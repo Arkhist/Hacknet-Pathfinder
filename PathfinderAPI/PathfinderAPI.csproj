@@ -13,6 +13,8 @@
     <Reference Include="Hacknet, Version=1.0.0.0" Private="False">
       <HintPath>$(LibsDir)HacknetPathfinder.exe</HintPath>
     </Reference>
+    <Reference Include="SemanticVersioning, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a89bb7dc6f7a145c" Private="False" />
+    
     <Reference Include="Mono.Cecil, Version=0.11.4.0" Private="False" />
     <Reference Include="MonoMod.Utils, Version=21.9.19.1" Private="False" />
   </ItemGroup>
