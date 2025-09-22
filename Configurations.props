@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0">
+<Project ToolsVersion="16.0">
 
   <Import Condition="Exists('Custom.props')" Project="Custom.props" />
 
@@ -39,6 +39,7 @@
     <LibsDir>$(PathfinderSolutionDir)libs/</LibsDir>
     <PatcherDir>$(PathfinderSolutionDir)PathfinderPatcher/</PatcherDir>
     <PatcherBinDir>$(PatcherDir)bin/$(Configuration)/</PatcherBinDir>
+    <BepInExTestDir>$(PathfinderSolutionDir).debug/</BepInExTestDir>
     <AssemblySearchPaths>
     $(AssemblySearchPaths);
     $(LibsDir);

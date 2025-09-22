@@ -1,4 +1,4 @@
-<Project ToolsVersion="16.0" >
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0" >
 
   <Import Project="..\Configurations.props" />
 
@@ -25,6 +25,9 @@
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
   </ItemGroup>
 
+
+  <Import Project="..\Configurations.targets" />
+
   <Target Condition=" $(DisableBepInExHacknetPrepareForBuild.ToLower()) != 'true' "
     Name="BepInExPrebuild" BeforeTargets="PrepareForBuild" >
     <MSBuild Projects="$(PatcherDir)PathfinderPatcher.csproj"
@@ -49,4 +52,40 @@
       DestinationFiles="$(HacknetDir)HacknetPathfinder.exe"
     />
   </Target>
+
+  <ItemGroup Label="BeforeRunGameSetup">
+    <_BepInExCoreFiles Include="$(MSBuildThisFileDirectory)bin/$(Configuration)/*" />
+  </ItemGroup>
+
+  <Target Name="BeforeRunGame"  BeforeTargets="RunGame">
+    <CallTarget Targets="Build" />
+    <MoveDir Condition="Exists('$(HacknetDir)BepInEx')"
+      SourceDirectories="$(HacknetDir)BepInEx"
+      DestinationFolder="$(HacknetDir)temp"
+    />
+    <MakeDir Condition="!Exists('$(BepInExTestDir)')" Directories="$(BepInExTestDir)" />
+    <WriteLinesToFile
+      File="$(BepInExTestDir)/.gitignore"
+      Lines="#Plugin Testing
+*"
+      Overwrite="true"
+    />
+    <Copy
+      SourceFiles="@(_BepInExCoreFiles)"
+      DestinationFolder="$(BepInExTestDir)core"
+      UseHardlinksIfPossible="true"
+    />
+    <MakeDir Condition="!Exists('$(BepInExTestDir)plugins')" Directories="$(BepInExTestDir)plugins" />
+
+    <MoveDir SourceDirectories="$(BepInExTestDir)" DestinationDirectories="$(HacknetDir)BepInEx" UseSymlinkOrJunction="true" />
+  </Target>
+
+  <Target Name="ProjectRunGameCleanup" BeforeTargets="RunGameCleanup">
+    <RemoveDir Directories="$(HacknetDir)BepInEx" />
+    <MoveDir Condition="Exists('$(HacknetDir)temp/BepInEx')"
+      SourceDirectories="$(HacknetDir)temp/BepInEx"
+      DestinationFolder="$(HacknetDir)"
+    />
+  </Target>
+
 </Project>
