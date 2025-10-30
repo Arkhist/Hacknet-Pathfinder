@@ -4,7 +4,9 @@ import stat
 import subprocess
 from tkinter import *
 from tkinter import filedialog
+from tkinter import messagebox
 from tkinter.ttk import *
+from tkinter.messagebox import askyesno
 import shutil
 from threading import Thread
 import requests
@@ -18,13 +20,30 @@ if platform.system() == 'Windows':
 
 
 def install_pathfinder(gen_event_callback, hacknet_directory):
-    for asset in requests.get('https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases').json()[0]['assets']:
-        if 'Pathfinder.Release' in asset['name']:
-            url = asset['browser_download_url']
-            break
+    def extract_zip(zip_io_or_path):
+        with ZipFile(zip_io_or_path) as pathfinder_zip:
+            pathfinder_zip.extractall(path=hacknet_directory)
 
-    with ZipFile(BytesIO(requests.get(url).content)) as pathfinder_zip:
-        pathfinder_zip.extractall(path=hacknet_directory)
+    try:
+        for asset in requests.get('https://api.github.com/repos/Arkhist/Hacknet-Pathfinder/releases').json()[0]['assets']:
+            if 'Pathfinder.Release' in asset['name']:
+                url = asset['browser_download_url']
+                break
+        extract_zip(BytesIO(requests.get(url).content))
+    except:
+        messagebox.showerror("Installation failed","Installation failed, failed to download Pathfinder!")
+        if not askyesno("Installation failed",
+                        "It cannot be downloaded from Github. Do you need to use a local compressed package?"):
+            gen_event_callback('<<InstallFailure-Over>>')
+            return
+        from tkinter.filedialog import askopenfilename
+        local_zip = askopenfilename(
+            title="Select the Pathfinder compressed package:",
+            filetypes=[("ZIP files", "*.zip")])
+        if not local_zip:
+            gen_event_callback('<<InstallFailure-Over>>')
+            return
+        extract_zip(local_zip)
 
     patcher_exe = os.path.join(hacknet_directory, 'PathfinderPatcher.exe')
     if platform.system() == 'Windows':
@@ -134,6 +153,7 @@ class App(Frame):
 
         self.master = master
         self.master.bind('<<InstallComplete>>', self.install_complete)
+        self.master.bind('<<InstallFailure-Over>>', self.install_failure_over)
         self.master.bind('<<InstallFailure>>', self.install_failure)
 
         self.content = Frame(self.master)
@@ -197,6 +217,11 @@ class App(Frame):
         self.make_message_box('Installation Complete!', title='Success')
         self.progress.destroy()
         self.progress = None
+
+    def install_failure_over(self, event):
+        self.progress.destroy()
+        self.progress = None
+        return
 
     def install_failure(self, event):
         self.make_message_box('Installation failed, this may have left an unfinished installation in your Hacknet folder!', title='Failure')
